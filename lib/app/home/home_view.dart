@@ -57,17 +57,27 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ],
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(80),
-              child: CachedNetworkImage(
-                imageUrl: 'https://dummyimage.com/70x70/000/0011ff',
-                height: 70,
-                width: 70,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
+             GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 8.0, 
+          mainAxisSpacing: 8.0, 
+        ),
+        itemCount: 10, 
+        itemBuilder: (context, index) {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(80),
+            child: CachedNetworkImage(
+              imageUrl: 'https://dummyimage.com/70x70/000/0011ff?text=$index', // Example URL with index
+              height: 70,
+              width: 70,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
+          );
+        },
+      ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
