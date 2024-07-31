@@ -22,9 +22,10 @@ class LanguageCard extends StatelessWidget {
       child: Container(
         height: Get.height * 0.1,
         decoration: BoxDecoration(
-            color: AppColors.lightprimary,
+            color: AppColors.primaryborder,
             border: Border.all(
-                color: isSelected ? AppColors.primary : AppColors.lightprimary),
+                color:
+                    isSelected ? AppColors.primary : AppColors.primaryborder),
             borderRadius: BorderRadius.circular(40)),
         child: Center(
           child: Text(
