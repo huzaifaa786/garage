@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/app/home/home_binding.dart';
+import 'package:mobilegarage/app/home/home_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
@@ -8,7 +10,6 @@ import 'package:mobilegarage/app/select_lang/select_language_view.dart';
 import 'package:mobilegarage/app/splash/splash_binding.dart';
 import 'package:mobilegarage/app/splash/splash_view.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
-
 
 class AppPages {
   static final List<GetPage> pages = [
@@ -44,6 +45,14 @@ class AppPages {
     //   transition: Transition.downToUp,
     //   transitionDuration: const Duration(milliseconds: 100),
     // ),
-   
+
+    //TODO:  [Home Route]
+    GetPage(
+      name: AppRoutes.home,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
   ];
 }

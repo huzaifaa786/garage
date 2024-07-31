@@ -4,12 +4,12 @@ class AppRoutes {
   static const signup = '/signup';
   static const signin = '/signin';
   static const selectlang = '/selectlang';
+  static const home = '/home';
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';
   // static const orders = '/orders';
   // static const otp = '/otp';
-  // static const home = '/home';
   // static const language = '/language';
   // static const notifications = '/notifications';
   // static const changePassword = '/ChangePassword';
@@ -18,7 +18,4 @@ class AppRoutes {
   // static const map = '/map';
   // static const policies = '/policies';
   // static const help = '/help';
-
-
-  
 }
