@@ -10,7 +10,6 @@ import 'package:mobilegarage/app/onboarding/onboarding_controller.dart';
 import 'package:mobilegarage/components/buttons/main_button.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});

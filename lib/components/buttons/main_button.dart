@@ -38,9 +38,17 @@ class MainButton extends StatelessWidget {
       child: Container(
         height: height,
         width: buttonWidth,
-        decoration: BoxDecoration(
-          boxShadow: buttonShadow,
-          borderRadius: BorderRadius.circular(radius!),
+        // decoration: BoxDecoration(
+        //   boxShadow: buttonShadow,
+        //   // color: AppColors.primary,
+        //   borderRadius: BorderRadius.circular(radius!),
+        // ),
+         decoration: ShapeDecoration(
+          color: btncolor,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(45),
+              side: BorderSide.none),
+          shadows: buttonShadow,
         ),
         child: Center(
           child: AppText(
