@@ -4,8 +4,8 @@ class HomeController extends GetxController {
   static HomeController instance = Get.find();
 
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  // }
 }
