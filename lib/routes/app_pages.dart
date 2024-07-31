@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
+import 'package:mobilegarage/app/auth/signup/signup_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
@@ -37,14 +39,14 @@ class AppPages {
       transition: Transition.leftToRight,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-    // //TODO:  [signin Route]
-    // GetPage(
-    //   name: AppRoutes.signin,
-    //   page: () => const SignInView(),
-    //   binding: SignInBinding(),
-    //   transition: Transition.downToUp,
-    //   transitionDuration: const Duration(milliseconds: 100),
-    // ),
+    //TODO:  [signup Route]
+    GetPage(
+      name: AppRoutes.signup,
+      page: () => const SignupView(),
+      binding: SignupBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
 
     //TODO:  [Home Route]
     GetPage(

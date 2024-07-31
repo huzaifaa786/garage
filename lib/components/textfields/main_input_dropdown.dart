@@ -1,10 +1,8 @@
 // import 'package:dropdown_button2/dropdown_button2.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:flutter_svg/svg.dart';
 // import 'package:get/get.dart';
-// import 'package:mrfastpartner/utils/colors/app_color.dart';
-// import 'package:mrfastpartner/utils/decorations/box_decoration.dart';
+// import 'package:mobilegarage/utils/colors/app_color.dart';
+// import 'package:mobilegarage/utils/decorations/box_decoration.dart';
 
 // class MainInputDropdown extends StatefulWidget {
 //   const MainInputDropdown({
@@ -15,6 +13,8 @@
 //     required this.onchange,
 //     required this.items,
 //   });
+
+
 
 //   final String hint;
 //   final TextEditingController controller;
@@ -43,7 +43,7 @@
 //               child: DropdownButton2(
 //                 iconStyleData: IconStyleData(
 //                     icon: Padding(
-//                   padding: EdgeInsets.only(left: 15.w, right: 15.w),
+//                   padding: EdgeInsets.only(left: 15, right: 15),
 //                   child: SvgPicture.asset('assets/icons/polygon.svg'),
 //                 )),
 //                 isExpanded: true,
@@ -51,11 +51,11 @@
 //                   children: [
 //                     Expanded(
 //                       child: Padding(
-//                         padding: EdgeInsets.only(left: 15.w, right: 15.w),
+//                         padding: EdgeInsets.only(left: 15, right: 15),
 //                         child: Text(
 //                           widget.hint.tr,
 //                           style: TextStyle(
-//                             fontSize: 12.sp,
+//                             fontSize: 12,
 //                             fontWeight: FontWeight.w400,
 //                             color: AppColors.black.withOpacity(0.4),
 //                           ),
@@ -69,11 +69,11 @@
 //                     .map((String item) => DropdownMenuItem<String>(
 //                           value: item,
 //                           child: Padding(
-//                             padding: EdgeInsets.only(left: 15.w, right: 15.w),
+//                             padding: EdgeInsets.only(left: 15, right: 15),
 //                             child: Text(
 //                               item,
 //                               style: TextStyle(
-//                                 fontSize: 12.sp,
+//                                 fontSize: 12,
 //                                 fontWeight: FontWeight.w400,
 //                                 color: AppColors.black,
 //                               ),
@@ -115,7 +115,7 @@
 //                     widget.errorText!,
 //                     style: TextStyle(
 //                       color: AppColors.red,
-//                       fontSize: 9.sp,
+//                       fontSize: 9,
 //                     ),
 //                   ),
 //                 ],
