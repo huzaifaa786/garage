@@ -4,7 +4,7 @@ import 'package:mobilegarage/utils/colors/app_color.dart';
 
 var circularInputDecoration = BoxDecoration(
     borderRadius: BorderRadius.circular(4),
-    color: AppColors.lightgrey,
+    color: AppColors.borderlightgrey,
     border: Border.all(
       color: AppColors.black,
       width: 1,
