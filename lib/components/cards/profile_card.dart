@@ -38,17 +38,17 @@ class ProfileCard extends StatelessWidget {
               //     borderRadius: BorderRadius.circular(45),
               //     color: AppColors.primary,
               //   ),
-                // ClipRRect(
-                //       borderRadius: BorderRadius.circular(8),
-                //       child: image != null && image!.isNotEmpty
-                //           ? CachedNetworkImage(
-                //               height: MediaQuery.of(context).size.height * 0.21,
-                //               width: MediaQuery.of(context).size.width * 0.4,
-                //               imageUrl: image,
-                //               fit: BoxFit.cover,
-                //             )
-                //           : Container(),
-                //     ),
+                ClipRRect(
+              borderRadius: BorderRadius.circular(80),
+              child: CachedNetworkImage(
+                imageUrl: 'https://dummyimage.com/70x70/000/0011ff',
+                height: 70,
+                width: 70,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
+            ),
              // ),
               Positioned(
                   bottom: 0,
