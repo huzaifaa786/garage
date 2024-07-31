@@ -1,12 +1,13 @@
-//! BUTTON SHADOW
 import 'package:flutter/material.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
+//! BUTTON SHADOW
 
 var buttonShadow = [
   const BoxShadow(color: AppColors.primary),
   BoxShadow(
       color: Colors.black.withOpacity(0.25),
-      blurRadius: 1.0,
+      blurRadius: 8.6,
+      spreadRadius: -8.6,
       offset: const Offset(-3.0, -2.0)),
   BoxShadow(
       color: Colors.black.withOpacity(0.25),
