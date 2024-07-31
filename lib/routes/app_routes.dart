@@ -5,6 +5,8 @@ class AppRoutes {
   static const signin = '/signin';
   static const selectlang = '/selectlang';
   static const home = '/home';
+  static const account = '/account';
+  
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';
