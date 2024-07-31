@@ -1,0 +1,37 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
+import 'package:mobilegarage/app/splash/splash_binding.dart';
+import 'package:mobilegarage/app/splash/splash_view.dart';
+import 'package:mobilegarage/routes/app_pages.dart';
+import 'package:mobilegarage/utils/colors/app_color.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.light().copyWith(
+          primary: AppColors.primarybg,
+        ),
+        useMaterial3: true,
+        scaffoldBackgroundColor: AppColors.white,
+      ),
+      debugShowCheckedModeBanner: false,
+      builder: EasyLoading.init(),
+      initialBinding: SplashBinding(),
+              home: const SplashView(),
+              getPages: AppPages.pages,
+    );
+  }
+}
+
