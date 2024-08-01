@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_controller.dart';
-import 'package:mobilegarage/components/app_bar/chat_top_bar.dart';
+import 'package:mobilegarage/components/app_bar/icon_top_bar.dart';
 import 'package:mobilegarage/components/app_bar/top_bar.dart';
 
 class ChatsAccountsView extends StatefulWidget {
@@ -25,6 +25,17 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                   title: "Chats",
                   showicon: true,
                 ),
+              ),
+              body: SafeArea(
+                child: SingleChildScrollView(
+                    child: Column(
+                  children: [
+                    ListView.builder(
+                        itemBuilder: (BuildContext context, int index) {
+                      return Column(children: [],);
+                    })
+                  ],
+                )),
               ),
             ));
   }
