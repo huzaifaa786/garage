@@ -1,10 +1,11 @@
-// // ignore_for_file: deprecated_member_use
+// // // ignore_for_file: deprecated_member_use
 
 // import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 // import 'package:flutter_svg/svg.dart';
 // import 'package:get/get.dart';
-// import 'package:mrfastpartner/utils/app_text/app_text.dart';
+// import 'package:mobilegarage/utils/app_text/app_text.dart';
+
 
 // class TopBar extends StatelessWidget {
 //   const TopBar({
@@ -21,7 +22,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Padding(
-//       padding: EdgeInsets.only(left: 20.w),
+//       padding: EdgeInsets.only(left: 20),
 //       child: Row(
 //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //         children: [
@@ -38,7 +39,7 @@
 //               : const SizedBox.shrink(),
 //           AppText(
 //             title: '$title',
-//             size: 16.sp,
+//             size: 16,
 //             fontWeight: FontWeight.w500,
 //             color: textColor,
 //           ),
