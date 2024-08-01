@@ -10,6 +10,7 @@ class AppRoutes {
 
   
   
+  static const chats_accounts = '/chats_accounts';
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';

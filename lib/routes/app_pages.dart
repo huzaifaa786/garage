@@ -3,6 +3,8 @@
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
+import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
@@ -75,6 +77,13 @@ class AppPages {
       name: AppRoutes.editprofile,
       page: () => const EditProfileView(),
       binding: EditProfileBinding(),
+       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.chats_accounts,
+      page: () => const ChatsAccountsView(),
+      binding: ChatsAccountsBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
