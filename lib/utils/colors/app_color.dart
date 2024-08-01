@@ -11,7 +11,5 @@ class AppColors {
   static const grey = Colors.grey;
   static const lightgrey = Color(0x00F9F9F9);
   static const borderlightgrey = Color(0xFFF5F5F5);
-
-
-
+  static const offWhiteColor = Color(4294572537);
 }

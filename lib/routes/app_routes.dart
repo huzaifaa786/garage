@@ -6,6 +6,9 @@ class AppRoutes {
   static const selectlang = '/selectlang';
   static const home = '/home';
   static const account = '/account';
+   static const editprofile = '/editprofile';
+
+  
   
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
