@@ -1,5 +1,3 @@
-// ignore_for_file: use_super_parameters, library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
@@ -9,12 +7,14 @@ class ViewMore extends StatefulWidget {
   final String initialText;
   final String? toggledText;
   final bool showIcon;
+  final VoidCallback? onTap; // Add this line
 
   const ViewMore({
     Key? key,
     required this.initialText,
     this.toggledText,
     this.showIcon = true,
+    this.onTap, // Add this line
   }) : super(key: key);
 
   @override
@@ -27,13 +27,14 @@ class _ViewMoreState extends State<ViewMore> {
   void _toggleView() {
     setState(() {
       _isToggled = !_isToggled;
+      if (widget.onTap != null) {
+        widget.onTap!(); // Call the onTap callback
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final double gapSize = widget.showIcon ? 7 : 14;
-
     return GestureDetector(
       onTap: _toggleView,
       child: Container(
@@ -46,7 +47,7 @@ class _ViewMoreState extends State<ViewMore> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Gap(gapSize),
+            Gap(_isToggled ? 5 : 14), // Adjust gap based on toggle state
             AppText(
               title: _isToggled
                   ? (widget.toggledText ?? widget.initialText)
@@ -62,7 +63,7 @@ class _ViewMoreState extends State<ViewMore> {
                     : Icons.keyboard_arrow_down_rounded,
                 color: AppColors.primary,
               ),
-            Gap(gapSize),
+            Gap(_isToggled ? 5 : 14), // Adjust gap based on toggle state
           ],
         ),
       ),
