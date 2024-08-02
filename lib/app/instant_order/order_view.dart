@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class OrderView extends StatefulWidget {
@@ -10,6 +12,12 @@ class OrderView extends StatefulWidget {
 class _OrderViewState extends State<OrderView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [],
+        ),
+      ),
+    );
   }
 }
