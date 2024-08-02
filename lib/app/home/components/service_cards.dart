@@ -1,20 +1,21 @@
-// ignore_for_file: prefer_const_constructors, use_super_parameters
+// ignore_for_file: prefer_const_constructors, use_super_parameters, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class ServiceCard extends StatelessWidget {
-  final String imageUrl;
+  final String image;
   final String title;
   final String price;
   final VoidCallback onTap;
 
   const ServiceCard({
     Key? key,
-    required this.imageUrl,
+    required this.image,
     required this.title,
     required this.price,
     required this.onTap,
@@ -22,10 +23,17 @@ class ServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 4,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,22 +41,17 @@ class ServiceCard extends StatelessWidget {
           Stack(
             children: [
               Container(
-                height: 100,
+                // height: 100,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.25),
-                      blurRadius: 4,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(12),
+                  ),
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
                   child: CachedNetworkImage(
-                    imageUrl: imageUrl,
-                    height: 100,
+                    imageUrl: image,
+                    height: 80,
                     width: double.infinity,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => CircularProgressIndicator(),
@@ -84,14 +87,19 @@ class ServiceCard extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(
+              left: 8.0,
+              right: 8.0,
+              top: 8.0,
+              bottom: 10.0,
+            ),
             child: SizedBox(
               width: Get.width * 0.18,
               child: AppText(
                 title: title,
                 fontWeight: FontWeight.w600,
                 size: 10.0,
-                maxLines: 3,
+                maxLines: 2,
                 overFlow: TextOverflow.ellipsis,
               ),
             ),
@@ -99,20 +107,49 @@ class ServiceCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  price,
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                  ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                      child: AppText(
+                        title: price,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                        size: 12.0,
+                        maxLines: 1,
+                        // overFlow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    AppText(
+                      title: ' AED',
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w600,
+                      size: 12.0,
+                      // overFlow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
                 IconButton(
-                  icon: Icon(Icons.shopping_cart, color: Colors.red),
+                  icon: Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/cart_ic.svg',
+                        height: 14,
+                        width: 14,
+                      ),
+                    ),
+                  ),
                   onPressed: onTap,
-                ),
+                )
               ],
             ),
           ),

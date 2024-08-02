@@ -1,12 +1,12 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:flutter_svg/svg.dart';
-// import 'package:gap/gap.dart';
-// import 'package:get/get.dart';
-// import 'package:mrfast/utils/app_text/app_rich_text.dart';
-// import 'package:mrfast/utils/app_text/app_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:mobilegarage/utils/app_text/app_text.dart';
+import 'package:mobilegarage/utils/colors/app_color.dart';
 
-// class UiUtilites {
+class UiUtilites {
 //   static UploadphotoAlert(
 //     context,
 //     title1,
@@ -189,96 +189,98 @@
 //     );
 //   }
 
-//   static successSnackbar(String message, String title) {
-//     Get.snackbar(
-//       title.tr,
-//       message.tr,
-//       backgroundColor: AppColors.green,
-//       colorText: AppColors.white,
-//       duration: const Duration(seconds: 2),
-//       snackPosition: SnackPosition.BOTTOM,
-//     );
-//   }
+  static successSnackbar(String message, String title) {
+    Get.snackbar(
+      title.tr,
+      message.tr,
+      backgroundColor: AppColors.darkprimary,
+      colorText: AppColors.white,
+      duration: const Duration(seconds: 2),
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  }
 
-//   static showBottomSheet(container) {
-//     Get.bottomSheet(container);
-//   }
+  static showBottomSheet(container) {
+    Get.bottomSheet(container);
+  }
 
-//   static SuccessAlert(context) {
-//     return showDialog(
-//         context: context,
-//         builder: (BuildContext context) {
-//           Future.delayed(Duration(seconds: 5), () {
-//             Get.back();
-//           });
-//           return AlertDialog(
-//             backgroundColor: AppColors.lightblack,
-//             surfaceTintColor: AppColors.lightblack,
-//             content: Wrap(children: [
-//               Column(
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Row(
-//                     mainAxisAlignment: MainAxisAlignment.end,
-//                     children: [
-//                       GestureDetector(
-//                           onTap: () {
-//                             Get.back();
-//                           },
-//                           child: SvgPicture.asset('assets/icons/cancel.svg'))
-//                     ],
-//                   ),
-//                   Gap(5.h),
-//                   SvgPicture.asset('assets/icons/Success.svg'),
-//                   Gap(10.h),
-//                   AppText(
-//                     title: 'You have placed your\n order successfully !'.tr,
-//                     size: 12.sp,
-//                     fontWeight: FontWeight.w500,
-//                     color: AppColors.white,
-//                   ),
-//                   Gap(17.h),
-//                   AppText(
-//                     title: 'and we are currently connecting'.tr,
-//                     size: 10.sp,
-//                     fontWeight: FontWeight.w400,
-//                     color: AppColors.white,
-//                   ),
-//                   AppText(
-//                     title: 'you to your partner.'.tr,
-//                     size: 10.sp,
-//                     fontWeight: FontWeight.w400,
-//                     color: AppColors.white,
-//                   ),
-//                   Gap(20.h),
-//                   Container(
-//                       decoration: BoxDecoration(
-//                         borderRadius: BorderRadius.circular(150),
-//                         boxShadow: [
-//                           BoxShadow(
-//                             color: Colors.white.withOpacity(0.2),
-//                             spreadRadius: 12,
-//                             blurRadius: 10,
-//                             offset: Offset(2, 3),
-//                           ),
-//                         ],
-//                       ),
-//                       child: ClipRRect(
-//                         borderRadius: BorderRadius.circular(150),
-//                         child: Image.asset(
-//                           'assets/icons/thunder.gif',
-//                           width: 120.w,
-//                           height: 132.h,
-//                           fit: BoxFit.cover,
-//                         ),
-//                       )),
-//                   Gap(20.h),
-//                 ],
-//               ),
-//             ]),
-//           );
-//         });
-//   }
+  static SuccessAlert(context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          Future.delayed(Duration(seconds: 5), () {
+            Get.back();
+          });
+          return AlertDialog(
+            backgroundColor: AppColors.darkprimary,
+            surfaceTintColor: AppColors.primarybg,
+            content: Wrap(children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: SvgPicture.asset('assets/icons/cancel.svg'))
+                    ],
+                  ),
+                  Gap(5),
+                  SvgPicture.asset('assets/icons/Success.svg'),
+                  Gap(10),
+                  AppText(
+                    title: 'You have placed your\n order successfully !'.tr,
+                    size: 12,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.white,
+                  ),
+                  Gap(17),
+                  AppText(
+                    title: 'and we are currently connecting'.tr,
+                    size: 10,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.white,
+                  ),
+                  AppText(
+                    title: 'you to your partner.'.tr,
+                    size: 10,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.white,
+                  ),
+                  Gap(20),
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(150),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white.withOpacity(0.2),
+                            spreadRadius: 12,
+                            blurRadius: 10,
+                            offset: Offset(2, 3),
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(150),
+                        child: Image.asset(
+                          'assets/images/cart_bg.png',
+                          height: 101,
+                          width: 394,
+                          // width: 120,
+                          // height: 132,
+                          fit: BoxFit.cover,
+                        ),
+                      )),
+                  Gap(20),
+                ],
+              ),
+            ]),
+          );
+        });
+  }
 
 //   static errorAlert(context) {
 //     return showDialog(
@@ -333,4 +335,4 @@
 //           );
 //         });
 //   }
-// }
+}
