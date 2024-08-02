@@ -11,11 +11,16 @@ class AppRoutes {
 
   
   
+  // static const editprofile = '/editprofile';
+  static const language = '/language ';
+  static const chatScreen = '/chatScreen';
   static const chats_accounts = '/chats_accounts';
+  static const orders = '/orders';
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';
   // static const orders = '/orders';
+  // static const otp = '/otp';
   // static const language = '/language';
   // static const notifications = '/notifications';
   // static const changePassword = '/ChangePassword';

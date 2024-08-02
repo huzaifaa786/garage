@@ -7,10 +7,16 @@ import 'package:mobilegarage/app/auth/signin/signin_bindings.dart';
 import 'package:mobilegarage/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/app/chat_screen/chat_screen_binding.dart';
+import 'package:mobilegarage/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
+import 'package:mobilegarage/app/order/order_binding.dart';
+import 'package:mobilegarage/app/order/order_view.dart';
+import 'package:mobilegarage/app/languange/languange_binding.dart';
+import 'package:mobilegarage/app/languange/languange_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/app/profile/account_binding.dart';
@@ -67,7 +73,7 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
-      //TODO:  [Account Route]
+    //TODO:  [Account Route]
     GetPage(
       name: AppRoutes.account,
       page: () => const AccountView(),
@@ -76,15 +82,16 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
-          //TODO:  [Edit Profile Route]
+    //TODO:  [Edit Profile Route]
     GetPage(
       name: AppRoutes.editprofile,
       page: () => const EditProfileView(),
       binding: EditProfileBinding(),
-       transition: Transition.downToUp,
+      transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    //TODO:  [chat Account Route]
+    GetPage(
       name: AppRoutes.chats_accounts,
       page: () => const ChatsAccountsView(),
       binding: ChatsAccountsBinding(),
@@ -101,7 +108,27 @@ class AppPages {
      GetPage(
       name: AppRoutes.otp,
       page: () => const OtpView(),
-      binding: OtpBinding(),
+      binding: OtpBinding(),),
+    //TODO:  [Language Route]
+    GetPage(
+      name: AppRoutes.language,
+      page: () => const LanguangeView(),
+      binding: LanguangeBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [chat Screen]
+    GetPage(
+      name: AppRoutes.chatScreen,
+      page: () => ChatScreenView(),
+      binding: ChatScreenBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    GetPage(
+      name: AppRoutes.orders,
+      page: () => OrderView(),
+      binding: OrderBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),

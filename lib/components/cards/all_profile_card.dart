@@ -10,7 +10,7 @@ class AllProfileCard extends StatelessWidget {
     required this.text,
     required this.image,
     required this.ontap,
-   required this.text2,
+    required this.text2,
   });
   final String text;
   final String image;
@@ -19,7 +19,7 @@ class AllProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: ontap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 11),
@@ -46,7 +46,11 @@ class AllProfileCard extends StatelessWidget {
                 Gap(5),
                 Text(
                   text2,
-                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400,color: AppColors.grey,),
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.grey,
+                  ),
                 ),
               ],
             ),
