@@ -8,10 +8,10 @@ import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class ChatTopBar extends StatelessWidget {
-  const ChatTopBar({super.key, this.showicon, this.title});
+  const ChatTopBar({super.key, this.showicon, this.title,});
   final showicon;
   final title;
-
+ 
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,10 +36,12 @@ class ChatTopBar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              showicon?
               Image.asset(
                 'assets/images/chat withoutbackground.png',
                 // color: AppColors.darkprimary,
-              ),
+              )
+              :Text(''),
               Gap(3),
               AppText(
                 title: title,

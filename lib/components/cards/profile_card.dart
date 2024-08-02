@@ -5,20 +5,25 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard(
-      {super.key, required this.userName, required this.userNumber,this.image,required this.ontap,});
+  const ProfileCard({
+    super.key,
+    required this.userName,
+    required this.userNumber,
+    this.image,
+    required this.ontap,
+  });
   final String userName;
   final String userNumber;
   final image;
-    final VoidCallback ontap;
+  final VoidCallback ontap;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: ontap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 11),
-        height: Get.height * 0.10,
+        height: Get.height * 0.12,
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
@@ -42,18 +47,18 @@ class ProfileCard extends StatelessWidget {
                 //     borderRadius: BorderRadius.circular(45),
                 //     color: AppColors.primary,
                 //   ),
-                 ClipRRect(
-                borderRadius: BorderRadius.circular(80),
-                child: CachedNetworkImage(
-                  imageUrl: 'https://dummyimage.com/70x70/000/0011ff',
-                  height: 70,
-                  width: 70,
-                  fit: BoxFit.cover,
-                  // placeholder: (context, url) => CircularProgressIndicator(),
-                  // errorWidget: (context, url, error) => Icon(Icons.error),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(80),
+                  child: CachedNetworkImage(
+                    imageUrl: 'https://dummyimage.com/70x70/000/0011ff',
+                    height: 70,
+                    width: 70,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
                 ),
-              ),
-               // ),
+                // ),
                 Positioned(
                     bottom: 0,
                     right: 0,
