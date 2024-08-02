@@ -13,7 +13,13 @@ class SplashController extends GetxController {
 
   void initscreen() async {
     await Future.delayed(const Duration(seconds: 3), () {
-      Get.offNamed(AppRoutes.home);
+<<<<<<< HEAD
+      Get.offNamed(AppRoutes.chats_accounts);
+=======
+      Get.offNamed(AppRoutes.account);
+>>>>>>> 8d9e1b3ac90eea20fd80933cf4567671afd20825
     });
   }
 }
+
+ 

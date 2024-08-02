@@ -7,6 +7,8 @@ class AppRoutes {
   static const home = '/home';
   static const account = '/account';
   static const editprofile = '/editprofile';
+  static const language = '/language ';
+  static const chatScreen = '/chatScreen';
   static const chats_accounts = '/chats_accounts';
   static const orders = '/orders';
   // static const forgotpassword = '/forgotpassword';

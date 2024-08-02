@@ -3,12 +3,16 @@
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/app/chat_screen/chat_screen_binding.dart';
+import 'package:mobilegarage/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
 import 'package:mobilegarage/app/instant_order/order_binding.dart';
 import 'package:mobilegarage/app/instant_order/order_view.dart';
+import 'package:mobilegarage/app/languange/languange_binding.dart';
+import 'package:mobilegarage/app/languange/languange_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/app/profile/account_binding.dart';
@@ -82,6 +86,7 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+    //TODO:  [chat Account Route]
     GetPage(
       name: AppRoutes.chats_accounts,
       page: () => const ChatsAccountsView(),
@@ -89,9 +94,25 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+    //TODO:  [Language Route]
+    GetPage(
+      name: AppRoutes.language,
+      page: () => const LanguangeView(),
+      binding: LanguangeBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [chat Screen]
+    GetPage(
+      name: AppRoutes.chatScreen,
+      page: () => ChatScreenView(),
+      binding: ChatScreenBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
     GetPage(
       name: AppRoutes.orders,
-      page: () =>  OrderView(),
+      page: () => OrderView(),
       binding: OrderBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),

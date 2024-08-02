@@ -23,7 +23,9 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
     return GetBuilder<ChatsAccountsController>(
         builder: (controller) => Scaffold(
               appBar: AppBar(
-                title: ChatTopBar(
+                toolbarHeight: Get.height * 0.1,
+                automaticallyImplyLeading: false,
+                title: IconTopBar(
                   title: "Chats",
                   showicon: true,
                 ),
@@ -32,18 +34,16 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                 child: SingleChildScrollView(
                     child: Column(
                   children: [
-
                     ListView.builder(
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),
-                        itemCount:controller.item.length,
+                        itemCount: controller.item.length,
                         itemBuilder: (BuildContext context, int index) {
-                           final item = controller.item[index];
+                          final item = controller.item[index];
                           return Container(
-                              color: AppColors.grey.shade300,
+                              color: AppColors.grey.shade100,
                               child: ChartsCard(
-                              item: item,
-
+                                item: item,
                               ));
                         })
                   ],

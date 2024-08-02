@@ -60,7 +60,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                                   controller.nextPage();
                                 }
                               : () {
-                                  Get.offAllNamed(AppRoutes.home);
+                                  Get.offAllNamed(AppRoutes.signup);
                                 },
                     ),
                     Gap(Get.height * 0.03),
