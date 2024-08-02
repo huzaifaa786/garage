@@ -1,20 +1,30 @@
-// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
-class ChartsCard extends StatelessWidget {
-  const ChartsCard({super.key, this.item});
+class ChartsCard extends StatefulWidget {
+  ChartsCard({super.key, this.item});
   final item;
+
+  @override
+  State<ChartsCard> createState() => _ChartsCardState();
+}
+
+class _ChartsCardState extends State<ChartsCard> {
+  void handleTap() {
+    Get.toNamed(AppRoutes.chatScreen);
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: item["onTap"],
+      onTap: handleTap,
       child: Container(
         margin: EdgeInsets.only(bottom: 2),
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -23,20 +33,36 @@ class ChartsCard extends StatelessWidget {
         color: AppColors.white,
         child: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: CachedNetworkImage(
-                imageUrl: item["imgurl"],
-                height: 55,
+            Container(
+              width: 54.0,
+              height: 54.0,
+              decoration: BoxDecoration(
+                color: Color(0xff7c94b6),
+                image: DecorationImage(
+                  image: NetworkImage(
+                    'https://dummyimage.com/61x61/000/fff',
+                  ),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                border: Border.all(
+                  color: AppColors.grey.shade100,
+                  width: 3.0,
+                ),
               ),
             ),
+            // GestureDetector(
+            //     onTap: () {
+            //       Get.toNamed(AppRoutes.chatScreen);
+            //     },
+            //     child: Text("ddd")),
             Gap(8),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  title: item["messagetitle"],
+                  title: widget.item["messagetitle"],
                   color: AppColors.darkprimary,
                   size: 14,
                   fontWeight: FontWeight.w600,
@@ -44,13 +70,18 @@ class ChartsCard extends StatelessWidget {
                 Gap(4),
                 Row(
                   children: [
-                    AppText(
-                      title: item["messageSubTitle"],
-                      color: AppColors.grey,
-                      size: 10,
-                      fontWeight: FontWeight.w500,
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: Get.width * 0.44),
+                      child: AppText(
+                        maxLines: 1,
+                        title: widget.item['messageSubTitle'],
+                        color: AppColors.grey,
+                        overFlow: TextOverflow.ellipsis,
+                        size: 10,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                    item["showBluedot"]
+                    widget.item["showBluedot"]
                         ? Container(
                             height: 5,
                             width: 5,
@@ -60,12 +91,14 @@ class ChartsCard extends StatelessWidget {
                             ),
                           )
                         : SizedBox.shrink(),
+                    Gap(3),
                     AppText(
-                      title: item['newMessage'],
+                      title: widget.item['newMessage'],
                       size: 10,
                       fontWeight: FontWeight.w600,
-                      color:
-                          item["showcolor"] ? AppColors.black : AppColors.grey,
+                      color: widget.item["showcolor"]
+                          ? AppColors.black
+                          : AppColors.grey,
                     ),
                   ],
                 ),

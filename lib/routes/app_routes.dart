@@ -6,10 +6,11 @@ class AppRoutes {
   static const selectlang = '/selectlang';
   static const home = '/home';
   static const account = '/account';
-   static const editprofile = '/editprofile';
-   static const language  = '/language ';
-  // 
-  
+  static const editprofile = '/editprofile';
+  static const language = '/language ';
+  static const chatScreen = '/chatScreen';
+  //
+
   static const chats_accounts = '/chats_accounts';
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
