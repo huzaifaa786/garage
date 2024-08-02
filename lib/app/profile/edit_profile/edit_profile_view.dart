@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_controller.dart';
-import 'package:mobilegarage/components/app_bar/chat_top_bar.dart';
+
 import 'package:mobilegarage/components/buttons/main_button.dart';
 import 'package:mobilegarage/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/components/textfields/name_inputfield.dart';
