@@ -7,6 +7,7 @@ import 'package:mobilegarage/app/profile/edit_profile/edit_profile_controller.da
 
 import 'package:mobilegarage/components/buttons/main_button.dart';
 import 'package:mobilegarage/components/cards/all_profile_card.dart';
+import 'package:mobilegarage/components/textfields/main_input.dart';
 import 'package:mobilegarage/components/textfields/name_inputfield.dart';
 import 'package:mobilegarage/components/textfields/phone_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
@@ -70,11 +71,22 @@ class _EditProfileViewState extends State<EditProfileView> {
                     ],
                   ),
                   Gap(22),
-                  NameInputField(controller: controller.nameController),
+                  MainInput(
+                    hint: 'Name'.tr,
+                    controller: controller.nameController,
+                    errorText: '',
+                  ),
                   Gap(22),
-                  PhoneInputField(
+                  MainInput(
+                    hint: '+971  User 2366718'.tr,
+                    readOnly: false,
                     controller: controller.phoneController,
-                    onChanged: controller.onChanged,
+                    errorText: '',
+                    type: TextInputType.phone,
+                    onchange: (value) {
+                      print(
+                          'Current input: $value'); 
+                    },
                   ),
                   Gap(88),
                   MainButton(
