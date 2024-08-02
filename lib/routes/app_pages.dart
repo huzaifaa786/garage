@@ -7,6 +7,8 @@ import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
+import 'package:mobilegarage/app/languange/languange_binding.dart';
+import 'package:mobilegarage/app/languange/languange_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/app/profile/account_binding.dart';
@@ -85,6 +87,15 @@ class AppPages {
       page: () => const ChatsAccountsView(),
       binding: ChatsAccountsBinding(),
       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
+     //TODO:  [Languange Route]
+    GetPage(
+      name: AppRoutes.language ,
+      page: () => const LanguangeView(),
+      binding: LanguangeBinding(),
+       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
   ];
