@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -37,7 +36,6 @@ class ChartsCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  //"messagetitle: "Street garage",
                   title: item["messagetitle"],
                   color: AppColors.darkprimary,
                   size: 14,
@@ -47,7 +45,6 @@ class ChartsCard extends StatelessWidget {
                 Row(
                   children: [
                     AppText(
-                      //"messageSubTitle": "oh hello ahmed, the batte ...",
                       title: item["messageSubTitle"],
                       color: AppColors.grey,
                       size: 10,

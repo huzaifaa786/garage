@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
-class ChatTopBar extends StatelessWidget {
-  const ChatTopBar({super.key, this.showicon, this.title});
+class IconTopBar extends StatelessWidget {
+  const IconTopBar({super.key, this.showicon, this.title});
   final showicon;
   final title;
 
