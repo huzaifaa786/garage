@@ -7,6 +7,8 @@ import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
+import 'package:mobilegarage/app/instant_order/order_binding.dart';
+import 'package:mobilegarage/app/instant_order/order_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/app/profile/account_binding.dart';
@@ -63,7 +65,7 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
-      //TODO:  [Account Route]
+    //TODO:  [Account Route]
     GetPage(
       name: AppRoutes.account,
       page: () => const AccountView(),
@@ -72,18 +74,25 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
-          //TODO:  [Edit Profile Route]
+    //TODO:  [Edit Profile Route]
     GetPage(
       name: AppRoutes.editprofile,
       page: () => const EditProfileView(),
       binding: EditProfileBinding(),
-       transition: Transition.downToUp,
+      transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.chats_accounts,
       page: () => const ChatsAccountsView(),
       binding: ChatsAccountsBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    GetPage(
+      name: AppRoutes.orders,
+      page: () =>  OrderView(),
+      binding: OrderBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
