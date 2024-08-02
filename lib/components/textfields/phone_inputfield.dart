@@ -37,6 +37,8 @@ class PhoneInputField extends StatelessWidget {
         counterStyle: TextStyle(fontSize: 0),
       ),
       initialCountryCode: 'AE',
+      showDropdownIcon: false,
+      flagsButtonPadding: EdgeInsets.only(left: 20),
       dropdownIcon: Icon(
         Icons.arrow_drop_down,
       ),
