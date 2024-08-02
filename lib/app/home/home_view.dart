@@ -99,21 +99,22 @@ class HomeView extends StatelessWidget {
                               width: 22,
                             ),
                             Gap(10),
-                            AppText(
-                              title: 'Car wash',
-                              fontWeight: FontWeight.w600,
-                              size: 16.0,
+                            GestureDetector(
+                              onTap: () {
+                            Get.toNamed(AppRoutes.orders);
+                                
+                              },
+                              child: AppText(
+                                title: 'Car wash',
+                                fontWeight: FontWeight.w600,
+                                size: 16.0,
+                              ),
                             ),
                           ],
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.orders);
-                          },
-                          child: ViewMore(
-                            initialText: 'See all',
-                            showIcon: false,
-                          ),
+                        ViewMore(
+                          initialText: 'See all',
+                          showIcon: false,
                         ),
                       ],
                     ),

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mobilegarage/app/instant_order/order_controller.dart';
+import 'package:mobilegarage/app/order/order_controller.dart';
 
 class OrderBinding extends Bindings {
   @override
