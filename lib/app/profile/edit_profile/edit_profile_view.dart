@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_controller.dart';
+import 'package:mobilegarage/components/app_bar/icon_top_bar.dart';
 
 import 'package:mobilegarage/components/buttons/main_button.dart';
 import 'package:mobilegarage/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/components/textfields/main_input.dart';
-import 'package:mobilegarage/components/textfields/name_inputfield.dart';
+
 import 'package:mobilegarage/components/textfields/phone_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
@@ -26,12 +27,13 @@ class _EditProfileViewState extends State<EditProfileView> {
   Widget build(BuildContext context) {
     return GetBuilder<EditProfileController>(
       builder: (controller) => Scaffold(
-        // appBar: AppBar(
-        //   title: ChatTopBar(
-        //     title: "Edit profile",
-        //     showicon: false,
-        //   ),
-        // ),
+        appBar: AppBar(
+          title: IconTopBar(
+            title: "Edit profile",
+            showicon: false,
+          ),
+          automaticallyImplyLeading: false,
+        ),
         body: SafeArea(
             child: Center(
           child: Padding(
@@ -42,22 +44,37 @@ class _EditProfileViewState extends State<EditProfileView> {
                   Gap(52),
                   Stack(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(80),
-                        child: CachedNetworkImage(
-                          imageUrl: 'https://dummyimage.com/70x70/000/0011ff',
-                          height: 110,
-                          width: 106,
-                          fit: BoxFit.cover,
-                          // placeholder: (context, url) => CircularProgressIndicator(),
-                          // errorWidget: (context, url, error) => Icon(Icons.error),
-                        ),
-                      ),
+                    controller.cameraImage != null
+                              ? Image.file(
+                                  controller.cameraImage!,
+                                  height: 110,
+                                  width: 106,
+                                  fit: BoxFit.cover,
+                                )
+                              :
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(80),
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    'https://dummyimage.com/70x70/000/0011ff',
+                                height: 110,
+                                width: 106,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                            ),
                       // ),
                       Positioned(
                           bottom: 0,
                           right: 0,
-                          child: Image.asset('assets/images/camera.png')),
+                          child: GestureDetector(
+                              onTap: () {
+                                controller.selectCameraImage();
+                              },
+                              child: Image.asset('assets/images/camera.png'))),
                     ],
                   ),
                   Gap(20),
@@ -79,20 +96,21 @@ class _EditProfileViewState extends State<EditProfileView> {
                   Gap(22),
                   MainInput(
                     hint: '+971  User 2366718'.tr,
-                    readOnly: false,
+                    readOnly: true,
                     controller: controller.phoneController,
                     errorText: '',
-                    type: TextInputType.phone,
                     onchange: (value) {
-                      print(
-                          'Current input: $value'); 
+                      print('Current input: $value');
                     },
                   ),
                   Gap(88),
                   MainButton(
                     title: 'Save changes',
                     buttonWidth: Get.width * 0.77,
-                    onTap: () {},
+                    onTap: () {
+                     
+                      Get.back();
+                    },
                   ),
                   Gap(20),
                 ],
