@@ -36,6 +36,7 @@ class _AccountViewState extends State<AccountView> {
               child: Column(
                 children: [
                   ProfileCard(
+                    image: 'https://dummyimage.com/70x70/000/0011ff',
                     userName: 'User38498990',
                     userNumber: '+971 0000 0000',
                     ontap: () {},

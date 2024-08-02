@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_pages.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -23,7 +25,7 @@ class ProfileCard extends StatelessWidget {
       onTap: ontap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 11),
-        height: Get.height * 0.12,
+        height: Get.height * 0.14,
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
@@ -50,7 +52,7 @@ class ProfileCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(80),
                   child: CachedNetworkImage(
-                    imageUrl: 'https://dummyimage.com/70x70/000/0011ff',
+                    imageUrl: image,
                     height: 70,
                     width: 70,
                     fit: BoxFit.cover,
@@ -62,7 +64,11 @@ class ProfileCard extends StatelessWidget {
                 Positioned(
                     bottom: 0,
                     right: 0,
-                    child: Image.asset('assets/images/edit.png')),
+                    child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRoutes.editprofile);
+                        },
+                        child: Image.asset('assets/images/edit.png'))),
               ],
             ),
             Gap(10),
