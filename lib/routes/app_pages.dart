@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/app/auth/otp/otp_binding.dart';
+import 'package:mobilegarage/app/auth/otp/otp_view.dart';
+import 'package:mobilegarage/app/auth/signin/signin_bindings.dart';
+import 'package:mobilegarage/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/app/auth/signup/signup_view.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
@@ -87,5 +91,20 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+      GetPage(
+      name: AppRoutes.signin,
+      page: () => const SigninView(),
+      binding: SigninBindings(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.otp,
+      page: () => const OtpView(),
+      binding: OtpBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
   ];
+
 }

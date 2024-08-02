@@ -1,63 +1,107 @@
-// import 'package:dotted_border/dotted_border.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:flutter_svg/svg.dart';
-// import 'package:gap/gap.dart';
-// import 'package:get/get.dart';
-// import 'package:mrfastpartner/utils/app_text/app_text.dart';
-// import 'package:mrfastpartner/utils/colors/app_color.dart';
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
 
-// class DottedBorderButton extends StatelessWidget {
-//   const DottedBorderButton({
-//     super.key,
-//     this.title,
-//     required this.imgselect,
-//     this.isImgSelected,
-//   });
-//   final title;
-//   final VoidCallback imgselect;
-//   final isImgSelected;
+import 'dart:io';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//       onTap: imgselect,
-//       child: DottedBorder(
-//         color: isImgSelected == false ? AppColors.red : AppColors.orange,
-//         strokeWidth: 1,
-//         dashPattern: [
-//           5,
-//           5,
-//         ],
-//         borderType: BorderType.RRect,
-//         radius: Radius.circular(4.r),
-//         child: Container(
-//           height: 50.h,
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               SvgPicture.asset(
-//                 'assets/icons/camera.svg',
-//                 color:
-//                     isImgSelected == false ? AppColors.red : AppColors.orange,
-//                 height: 15.h,
-//                 width: 15.w,
-//               ),
-//               Gap(4.w),
-//               AppText(
-//                 title: isImgSelected == false ? title : 'Uploaded'.tr,
-//                 size: 11.sp,
-//                 fontWeight: FontWeight.w400,
-//                 color:
-//                     isImgSelected == false ? AppColors.red : AppColors.orange,
-//               ),
-//               Gap(14.w),
-//               if (isImgSelected == true)
-//                 SvgPicture.asset('assets/icons/circletick.svg'),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:mobilegarage/utils/app_text/app_text.dart';
+import 'package:mobilegarage/utils/colors/app_color.dart';
+
+class DottedBorderButton extends StatelessWidget {
+  const DottedBorderButton(
+      {super.key,
+      this.title,
+      required this.imgselect,
+      this.isImgSelected,
+      this.selectedimgpath,this.imgRemove});
+  final title;
+  final VoidCallback imgselect;
+  final isImgSelected;
+  final selectedimgpath;
+  final VoidCallback? imgRemove;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: imgselect,
+      child: DottedBorder(
+        color: isImgSelected == false ? AppColors.red : AppColors.lightgreen,
+        strokeWidth: 1,
+        dashPattern: [
+          5,
+          5,
+        ],
+        borderType: BorderType.RRect,
+        radius: Radius.circular(34),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: AppColors.lightprimary,
+          ),
+          height: 55,
+          child: Row(
+            mainAxisAlignment: isImgSelected && selectedimgpath != null
+                ? MainAxisAlignment.spaceEvenly
+                : MainAxisAlignment.center,
+            children: [
+              if (isImgSelected && selectedimgpath != null)
+                Stack(children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: Image.file(
+                      File(selectedimgpath!),
+                      width: 45,
+                      height: 45,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: imgRemove,
+                        child: Container(
+                            height: 14,
+                            width: 14,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14),
+                                color: AppColors.primary),
+                            child: Icon(
+                              Icons.close,
+                              color: AppColors.white,
+                              size: 10,
+                            ))),
+                  ),
+                ]),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/image.svg',
+                    color: isImgSelected == false
+                        ? AppColors.red
+                        : AppColors.lightgreen,
+                  ),
+                  Gap(4),
+                  AppText(
+                    title: isImgSelected == false ? title : 'Uploaded'.tr,
+                    size: 11,
+                    fontWeight: FontWeight.w400,
+                    color: isImgSelected == false
+                        ? AppColors.red
+                        : AppColors.lightgreen,
+                  ),
+                ],
+              ),
+              Gap(14),
+              if (isImgSelected == true)
+                SvgPicture.asset('assets/icons/check-circle.svg'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

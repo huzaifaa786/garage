@@ -7,6 +7,7 @@ class AppRoutes {
   static const home = '/home';
   static const account = '/account';
    static const editprofile = '/editprofile';
+  static const otp = '/otp';
 
   
   
@@ -15,7 +16,6 @@ class AppRoutes {
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';
   // static const orders = '/orders';
-  // static const otp = '/otp';
   // static const language = '/language';
   // static const notifications = '/notifications';
   // static const changePassword = '/ChangePassword';
