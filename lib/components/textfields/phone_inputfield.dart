@@ -23,7 +23,7 @@ class PhoneInputField extends StatelessWidget {
       decoration: InputDecoration(
         // contentPadding: EdgeInsets.only(top: 5),
         filled: true,
-        fillColor: AppColors.lightgrey,
+        fillColor: AppColors.borderlightgrey,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(30)),
@@ -32,7 +32,7 @@ class PhoneInputField extends StatelessWidget {
             borderRadius: BorderRadius.circular(30)),
         border: OutlineInputBorder(
             // borderSide: BorderSide.none,
-            borderSide: BorderSide(color: AppColors.lightgrey),
+            borderSide: BorderSide(color: AppColors.borderlightgrey),
             borderRadius: BorderRadius.circular(30)),
         counterStyle: TextStyle(fontSize: 0),
       ),

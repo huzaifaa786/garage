@@ -3,10 +3,16 @@
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
+import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
+import 'package:mobilegarage/app/profile/account_binding.dart';
+import 'package:mobilegarage/app/profile/account_view.dart';
+import 'package:mobilegarage/app/profile/edit_profile/edit_profile_binding.dart';
+import 'package:mobilegarage/app/profile/edit_profile/edit_profile_view.dart';
 import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/app/select_lang/select_language_view.dart';
 import 'package:mobilegarage/app/splash/splash_binding.dart';
@@ -53,6 +59,31 @@ class AppPages {
       name: AppRoutes.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
+      //TODO:  [Account Route]
+    GetPage(
+      name: AppRoutes.account,
+      page: () => const AccountView(),
+      binding: AccountBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
+          //TODO:  [Edit Profile Route]
+    GetPage(
+      name: AppRoutes.editprofile,
+      page: () => const EditProfileView(),
+      binding: EditProfileBinding(),
+       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.chats_accounts,
+      page: () => const ChatsAccountsView(),
+      binding: ChatsAccountsBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),

@@ -34,7 +34,7 @@ class HomeAppbar extends StatelessWidget {
               ],
             ),
           ],
-        )
+        ),
       ],
     );
   }
