@@ -72,11 +72,12 @@ class _OrderViewState extends State<OrderView> {
                         controller: controller.priceController,
                         errorText: '',
                       ),
-                    //   DottedBorderButton(
-                    //   title: 'Upload vehicle photo'.tr,
-                    //   imgselect: () => controller.selectvechileImage('vehicle'),
-                    //   isImgSelected: controller.isImageSelected('vehicle'),
-                    // ),
+                      Gap(15),
+                      DottedBorderButton(
+                        title: 'Upload vehicle photo'.tr,
+                        imgselect: () => controller.selectVehicleImage(),
+                        isImgSelected: controller.isImageSelected(),
+                      ),
                     ],
                   ),
                 ),

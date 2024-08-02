@@ -9,46 +9,33 @@ class OrderController extends GetxController {
   static OrderController instance = Get.find();
   TextEditingController priceController = TextEditingController();
   TextEditingController serviceController = TextEditingController();
-  // TextEditingController serviceController = TextEditingController();
 
   final picker = ImagePicker();
-  String? vechileImage;
+  String? vehicleImage;
+  String? vehicleImageBase64;
 
-
- // Convert Image to Base64
-  String? convertImageToBase64(String? imagePath) {
-    if (imagePath == null) return null;
-
+  // Convert Image to Base64
+  String? convertImageToBase64(String imagePath) {
     File imageFile = File(imagePath);
     List<int> imageBytes = imageFile.readAsBytesSync();
-    String base64Image = base64Encode(imageBytes);
-    return base64Image;
+    return base64Encode(imageBytes);
   }
 
-
-  selectvechileImage(String imageType) async {
+  // Select Image
+  Future<void> selectVehicleImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      switch (imageType) {
-        case 'vehicle':
-          vechileImage = pickedFile.path;
-          break;
-      }
+      vehicleImage = pickedFile.path;
+      vehicleImageBase64 = convertImageToBase64(vehicleImage!);
       update();
     } else {
       print('No image selected.');
     }
-    update();
+  }
+
+  // Check if Image is Selected
+  bool isImageSelected() {
+    return vehicleImage != null;
   }
 }
-
-// bool isImageSelected(String imageType) {
-//   switch (imageType) {
-//     case 'vehicle':
-//       return vechileImage != null;
-//          default:
-//         return false;
-//   }
-// }
-//  String? vehicleImageBase64 = convertImageToBase64(vechileImage);
