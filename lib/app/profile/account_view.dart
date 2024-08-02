@@ -22,12 +22,12 @@ class _AccountViewState extends State<AccountView> {
   Widget build(BuildContext context) {
     return GetBuilder<AccountController>(
       builder: (controller) => Scaffold(
-        appBar: AppBar(
-          title: ChatTopBar(
-            title: "Profile",
-            showicon: false,
-          ),
-        ),
+        // appBar: AppBar(
+        //   title: ChatTopBar(
+        //     title: "Profile",
+        //     showicon: false,
+        //   ),
+        // ),
         backgroundColor: AppColors.grey.withOpacity(0.1),
         body: SafeArea(
           child: Container(

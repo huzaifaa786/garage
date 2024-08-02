@@ -25,12 +25,12 @@ class _EditProfileViewState extends State<EditProfileView> {
   Widget build(BuildContext context) {
     return GetBuilder<EditProfileController>(
       builder: (controller) => Scaffold(
-        appBar: AppBar(
-          title: ChatTopBar(
-            title: "Edit profile",
-            showicon: false,
-          ),
-        ),
+        // appBar: AppBar(
+        //   title: ChatTopBar(
+        //     title: "Edit profile",
+        //     showicon: false,
+        //   ),
+        // ),
         body: SafeArea(
             child: Center(
           child: Padding(
