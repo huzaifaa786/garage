@@ -114,7 +114,9 @@ class AppPages {
       name: AppRoutes.otp,
       page: () => const OtpView(),
       binding: OtpBinding(),
-    ),
+            transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),),
+    
     //TODO:  [Language Route]
     GetPage(
       name: AppRoutes.language,
@@ -143,6 +145,13 @@ class AppPages {
       name: AppRoutes.search,
       page: () => SearchView(),
       binding: SearchBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+      GetPage(
+      name: AppRoutes.orders,
+      page: () => const OrderView(),
+      binding: OrderBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
