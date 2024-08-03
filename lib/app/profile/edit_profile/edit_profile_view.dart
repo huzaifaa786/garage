@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_controller.dart';
 import 'package:mobilegarage/components/app_bar/icon_top_bar.dart';
+import 'package:mobilegarage/components/app_bar/top_bar.dart';
 
 import 'package:mobilegarage/components/buttons/main_button.dart';
 import 'package:mobilegarage/components/cards/all_profile_card.dart';
@@ -14,6 +17,7 @@ import 'package:mobilegarage/components/textfields/phone_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
+import 'package:mobilegarage/utils/shadows/appbar_shadow.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -23,19 +27,26 @@ class EditProfileView extends StatefulWidget {
 }
 
 class _EditProfileViewState extends State<EditProfileView> {
- 
-
-  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EditProfileController>(
       builder: (controller) => Scaffold(
-        appBar: AppBar(
-          title: IconTopBar(
-            title: "Edit profile",
-            showicon: false,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(95.0),
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [appbarShadow],
+            ),
+            child: AppBar(
+              automaticallyImplyLeading: false,
+              scrolledUnderElevation: 0.0,
+              toolbarHeight: 95.0,
+              title: TopBar(
+                showicon: true,
+                title: "Edit profile",
+              ),
+            ),
           ),
-          automaticallyImplyLeading: false,
         ),
         body: SafeArea(
             child: Center(
@@ -96,7 +107,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                   MainInput(
                     hint: 'Name'.tr,
                     controller: controller.nameController,
-                    
                     errorText: '',
                   ),
                   Gap(22),

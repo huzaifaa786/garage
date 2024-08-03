@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/profile/account_controller.dart';
 import 'package:mobilegarage/components/app_bar/icon_top_bar.dart';
+import 'package:mobilegarage/components/app_bar/top_bar.dart';
 
 import 'package:mobilegarage/components/buttons/logout_button.dart';
 import 'package:mobilegarage/components/buttons/main_button.dart';
@@ -11,6 +12,7 @@ import 'package:mobilegarage/components/cards/email_profile_card.dart';
 import 'package:mobilegarage/components/cards/profile_card.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
+import 'package:mobilegarage/utils/shadows/appbar_shadow.dart';
 
 class AccountView extends StatefulWidget {
   const AccountView({super.key});
@@ -24,12 +26,22 @@ class _AccountViewState extends State<AccountView> {
   Widget build(BuildContext context) {
     return GetBuilder<AccountController>(
       builder: (controller) => Scaffold(
-        appBar: AppBar(
-          title: IconTopBar(
-            title: "Profile",
-            showicon: false,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(95.0),
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [appbarShadow],
+            ),
+            child: AppBar(
+              automaticallyImplyLeading: false,
+              scrolledUnderElevation: 0.0,
+              toolbarHeight: 95.0,
+              title: TopBar(
+                showicon: true,
+                title: "Profile",
+              ),
+            ),
           ),
-          automaticallyImplyLeading: false,
         ),
         backgroundColor: AppColors.grey.withOpacity(0.1),
         body: SafeArea(
@@ -50,8 +62,8 @@ class _AccountViewState extends State<AccountView> {
                       Get.toNamed(
                         AppRoutes.editprofile,
                         arguments: {
-                           'image':'https://dummyimage.com/70x70/000/0011ff',
-                          'userName':'User38498990',
+                          'image': 'https://dummyimage.com/70x70/000/0011ff',
+                          'userName': 'User38498990',
                           'userNumber': '+971 0000 0000',
                         },
                       );
@@ -91,7 +103,9 @@ class _AccountViewState extends State<AccountView> {
                   LogoutButton(
                     title: 'Log out',
                     buttonWidth: Get.width * 0.77,
-                    onTap: () {},
+                    onTap: () {
+                     
+                    },
                   ),
                   Gap(25),
                 ],
