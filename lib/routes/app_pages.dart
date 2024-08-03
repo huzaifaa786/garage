@@ -19,6 +19,8 @@ import 'package:mobilegarage/app/languange/languange_binding.dart';
 import 'package:mobilegarage/app/languange/languange_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
+import 'package:mobilegarage/app/order_history/order_history_binding.dart';
+import 'package:mobilegarage/app/order_history/order_history_view.dart';
 import 'package:mobilegarage/app/profile/account_binding.dart';
 import 'package:mobilegarage/app/profile/account_view.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_binding.dart';
@@ -101,17 +103,18 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-      GetPage(
+    GetPage(
       name: AppRoutes.signin,
       page: () => const SigninView(),
       binding: SigninBindings(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.otp,
       page: () => const OtpView(),
-      binding: OtpBinding(),),
+      binding: OtpBinding(),
+    ),
     //TODO:  [Language Route]
     GetPage(
       name: AppRoutes.language,
@@ -128,10 +131,11 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+    //TODO:  [Order_history Screen]
     GetPage(
-      name: AppRoutes.orders,
-      page: () => OrderView(),
-      binding: OrderBinding(),
+      name: AppRoutes.order_history,
+      page: () => OrderHistoryView(),
+      binding: OrderHistoryBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
@@ -143,5 +147,4 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
   ];
-
 }
