@@ -39,8 +39,8 @@ class ServicesIcons extends StatelessWidget {
               borderRadius: BorderRadius.circular(80),
               child: CachedNetworkImage(
                 imageUrl: imageUrl,
-                height: Get.height * 0.08,
-                width: Get.width * 0.2,
+                // height: 70,
+                // width: 70,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Icon(Icons.error),
