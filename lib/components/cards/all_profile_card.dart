@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,8 +40,8 @@ class AllProfileCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  height: 25,
-                  width: 25,
+                  height: 35,
+                  width: 35,
                   decoration: BoxDecoration(
                     color: AppColors.lightprimary,
                     borderRadius: BorderRadius.circular(80),
