@@ -12,7 +12,7 @@ class AppRoutes {
   static const otp = '/otp';
   static const search = '/search';
   // static const editprofile = '/editprofile';
-  static const language = '/language ';
+  static const language = '/language';
   static const chatScreen = '/chatScreen';
   static const order_history = '/order_history';
   static const chats_accounts = '/chats_accounts';

@@ -12,10 +12,16 @@ class AllProfileCard extends StatelessWidget {
     required this.image,
     required this.ontap,
     required this.text2,
+    required this.height,
+    required this.width,
+
+
   });
   final String text;
   final String image;
   final String text2;
+  final height;
+  final  width;
   final VoidCallback ontap;
 
   @override
@@ -24,8 +30,8 @@ class AllProfileCard extends StatelessWidget {
       onTap: ontap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 11),
-        height: Get.height * 0.08,
-        width: Get.width,
+        height: height,
+        width: width,
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
