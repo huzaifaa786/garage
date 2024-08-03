@@ -1,8 +1,5 @@
-// ignore_for_file: unnecessary_overrides
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/app/home/components/service_cards.dart';
 
 class ServiceItem {
   final String imageUrl;
@@ -14,15 +11,15 @@ class ServiceItem {
   });
 }
 
-class ServiceCardItems {
-  final String imageUrl;
-  final String text;
+class ServiceCards {
+  final String image;
+  final String title;
   final String price;
   final VoidCallback onTap;
 
-  ServiceCardItems({
-    required this.imageUrl,
-    required this.text,
+  ServiceCards({
+    required this.image,
+    required this.title,
     required this.price,
     required this.onTap,
   });
@@ -30,6 +27,23 @@ class ServiceCardItems {
 
 class HomeController extends GetxController {
   static HomeController instance = Get.find();
+
+  bool _showAllItems = false;
+
+  bool get showAllItems => _showAllItems;
+
+  void toggleView() {
+    _showAllItems = !_showAllItems;
+    update();
+  }
+
+  bool get hasServices => services.isNotEmpty;
+  int get itemCount => showAllItems ? services.length : 4;
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   var services = <ServiceItem>[
     ServiceItem(
@@ -66,47 +80,36 @@ class HomeController extends GetxController {
     ),
   ];
 
-  var servicesCards = <ServiceCard>[
-    ServiceCard(
-      image: 'https://dummyimage.com/70x70/000/fff',
-      title: 'Hand washing car',
-      price: '90.90909090',
-      onTap: () {},
-    ),
-    ServiceCard(
-      image: 'https://dummyimage.com/70x70/000/fff',
-      title: 'Automatic washing car',
-      price: '1234567821',
-      onTap: () {},
-    ),
-    ServiceCard(
-      image: 'https://dummyimage.com/70x70/000/fff',
-      title: 'Self washing car',
-      price: 'qwerty',
-      onTap: () {},
-    ),
-    ServiceCard(
-      image: 'https://dummyimage.com/70x70/000/fff',
-      title: 'Hand washing car',
-      price: 'ytrewq',
-      onTap: () {},
-    ),
-    ServiceCard(
-      image: 'https://dummyimage.com/70x70/000/fff',
-      title: 'Automatic washing car',
-      price: '',
-      onTap: () {},
-    ),
-    ServiceCard(
-      image: 'https://dummyimage.com/70x70/000/fff',
-      title: 'Self washing car',
-      price: '',
-      onTap: () {},
-    ),
+  var servicesCards = <ServiceCards>[
+    ServiceCards(
+        image: 'https://dummyimage.com/70x70/000/fff',
+        title: 'Hand washing car',
+        price: '90.90909090',
+        onTap: () {}),
+    ServiceCards(
+        image: 'https://dummyimage.com/70x70/000/fff',
+        title: 'Automatic washing car',
+        price: '1234567821',
+        onTap: () {}),
+    ServiceCards(
+        image: 'https://dummyimage.com/70x70/000/fff',
+        title: 'Self washing car',
+        price: 'qwerty',
+        onTap: () {}),
+    ServiceCards(
+        image: 'https://dummyimage.com/70x70/000/fff',
+        title: 'Hand washing car',
+        price: 'ytrewq',
+        onTap: () {}),
+    ServiceCards(
+        image: 'https://dummyimage.com/70x70/000/fff',
+        title: 'Automatic washing car',
+        price: '',
+        onTap: () {}),
+    ServiceCards(
+        image: 'https://dummyimage.com/70x70/000/fff',
+        title: 'Self washing car',
+        price: '',
+        onTap: () {}),
   ];
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
 }

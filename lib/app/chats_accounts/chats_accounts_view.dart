@@ -23,6 +23,8 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
     return GetBuilder<ChatsAccountsController>(
         builder: (controller) => Scaffold(
               appBar: AppBar(
+                toolbarHeight: Get.height * 0.1,
+                automaticallyImplyLeading: false,
                 title: IconTopBar(
                   title: "Chats",
                   showicon: true,
@@ -39,7 +41,7 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                         itemBuilder: (BuildContext context, int index) {
                           final item = controller.item[index];
                           return Container(
-                              color: AppColors.grey.shade300,
+                              color: AppColors.grey.shade100,
                               child: ChartsCard(
                                 item: item,
                               ));
