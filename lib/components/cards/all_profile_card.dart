@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
@@ -24,6 +25,7 @@ class AllProfileCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 11),
         height: Get.height * 0.08,
+        width: Get.width,
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
@@ -35,8 +37,18 @@ class AllProfileCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset(
-                  image,
+                Container(
+                  height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                    color: AppColors.lightprimary,
+                    borderRadius: BorderRadius.circular(80),
+                  ),
+                  child: SvgPicture.asset(
+                    image,
+                    color: AppColors.primarybg,
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
                 Gap(10),
                 Text(

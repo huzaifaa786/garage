@@ -9,6 +9,7 @@ import 'package:mobilegarage/app/order/components/vehicle_listTile.dart';
 import 'package:mobilegarage/app/order/order_controller.dart';
 import 'package:mobilegarage/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/components/buttons/dotted_border_button.dart';
+import 'package:mobilegarage/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/components/textfields/main_input.dart';
 import 'package:mobilegarage/components/textfields/price_inputfield.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
@@ -185,16 +186,17 @@ class _OrderViewState extends State<OrderView> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                PriceInput(
-                                  hint: 'Price',
-                                  controller: controller.priceController,
-                                  errorText: '',
-                                ),
+                                AllProfileCard(
+                                    text: 'Dubai',
+                                    image: 'assets/icons/map_pin.svg',
+                                    text2: 'zayed street , house3564 ,....',
+                                    ontap: () {}),
                               ],
                             ),
                           ),
                         ],
                       ),
+                      Gap(20),
                     ]),
                   ),
                 ),
