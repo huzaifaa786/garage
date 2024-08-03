@@ -34,13 +34,16 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconInputField(
-                      hasprefix: true,
-                      hint: 'Search for garages, service ..'.tr,
-                      readOnly: false,
-                      onChange: (value) {
-                        Get.toNamed(AppRoutes.search);
-                      },
+                    GestureDetector(
+                      onTap: () {},
+                      child: IconInputField(
+                        hasprefix: true,
+                        hint: 'Search for garages, service ..'.tr,
+                        readOnly: false,
+                        onChange: (value) {
+                          Get.toNamed(AppRoutes.search);
+                        },
+                      ),
                     ),
                     Gap(30),
                     if (controller.hasServices) ...[

@@ -20,7 +20,7 @@ class IconInputField extends StatelessWidget {
     this.errorText,
     this.type = TextInputType.text,
     this.onChange,
-    this.ontap,
+    this.ontap,this.width
   });
   final ValueChanged<String>? onChange;
   final VoidCallback? ontap;
@@ -36,7 +36,7 @@ class IconInputField extends StatelessWidget {
   final int maxlines;
   final bool readOnly;
   final String? errorText;
-
+final width;
   @override
   Widget build(BuildContext context) {
     return Container(
