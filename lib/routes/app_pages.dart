@@ -23,6 +23,9 @@ import 'package:mobilegarage/app/profile/account_binding.dart';
 import 'package:mobilegarage/app/profile/account_view.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_binding.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_view.dart';
+import 'package:mobilegarage/app/search/search_binding.dart';
+import 'package:mobilegarage/app/search/search_controller.dart';
+import 'package:mobilegarage/app/search/search_view.dart';
 import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/app/select_lang/select_language_view.dart';
 import 'package:mobilegarage/app/splash/splash_binding.dart';
@@ -129,6 +132,13 @@ class AppPages {
       name: AppRoutes.orders,
       page: () => OrderView(),
       binding: OrderBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.search,
+      page: () => SearchView(),
+      binding: SearchBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),

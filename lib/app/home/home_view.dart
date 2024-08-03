@@ -38,6 +38,9 @@ class HomeView extends StatelessWidget {
                       hasprefix: true,
                       hint: 'Search for garages, service ..'.tr,
                       readOnly: false,
+                      onChange: (value) {
+                        Get.toNamed(AppRoutes.search);
+                      },
                     ),
                     Gap(30),
                     if (controller.hasServices) ...[
@@ -101,8 +104,7 @@ class HomeView extends StatelessWidget {
                             Gap(10),
                             GestureDetector(
                               onTap: () {
-                            Get.toNamed(AppRoutes.orders);
-                                
+                                Get.toNamed(AppRoutes.orders);
                               },
                               child: AppText(
                                 title: 'Car wash',

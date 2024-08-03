@@ -8,6 +8,7 @@ class AppRoutes {
   static const account = '/account';
    static const editprofile = '/editprofile';
   static const otp = '/otp';
+  static const search = '/search';
 
   
   
