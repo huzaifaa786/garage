@@ -77,13 +77,13 @@ class _AccountViewState extends State<AccountView> {
                       text2: 'zayed street , house3564 ,....',
                       ontap: () {}),
                     Gap(15),
-                  // AllProfileCard(
-                  //   height:Get.height*0.1,
-                  //   width: Get.width* 0.8,
-                  //     text: 'My cards',
-                  //     image: 'assets/images/my_card.png',
-                  //     text2: '',
-                  //     ontap: () {}),
+                  AllProfileCard(
+                    height:Get.height*0.1,
+                    width: Get.width* 0.8,
+                      text: 'My cards',
+                      image: 'assets/icons/credit-card.svg',
+                      text2: '',
+                      ontap: () {}),
                   // Gap(15),
                   // AllProfileCard(
                   //   height:Get.height*0.1,
