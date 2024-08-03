@@ -155,5 +155,12 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+    GetPage(
+      name: AppRoutes.orders,
+      page: () => const OrderView(),
+      binding: OrderBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
   ];
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -172,6 +172,30 @@ class _OrderViewState extends State<OrderView> {
                         ),
                       ]),
                       Gap(20),
+                      Stack(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/images/map_image.png',
+                            ),
+                          ),
+                          Positioned(
+                            left: Get.width * 0.1,
+                            right: Get.width * 0.1,
+                            top: Get.height * 0.12,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                PriceInput(
+                                  hint: 'Price',
+                                  controller: controller.priceController,
+                                  errorText: '',
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ]),
                   ),
                 ),
