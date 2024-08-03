@@ -25,6 +25,7 @@ class ServicesIcons extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(80),
+              color: AppColors.white,
               boxShadow: [
                 BoxShadow(
                   color: AppColors.shadowblack,
