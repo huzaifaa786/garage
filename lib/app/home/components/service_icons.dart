@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
@@ -35,11 +36,11 @@ class ServicesIcons extends StatelessWidget {
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(35),
+              borderRadius: BorderRadius.circular(80),
               child: CachedNetworkImage(
                 imageUrl: imageUrl,
-                height: 70,
-                width: 70,
+                height: Get.height * 0.08,
+                width: Get.width * 0.2,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Icon(Icons.error),

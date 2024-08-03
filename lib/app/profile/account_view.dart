@@ -3,9 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/profile/account_controller.dart';
 import 'package:mobilegarage/components/app_bar/icon_top_bar.dart';
-
 import 'package:mobilegarage/components/buttons/logout_button.dart';
-import 'package:mobilegarage/components/buttons/main_button.dart';
 import 'package:mobilegarage/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/components/cards/email_profile_card.dart';
 import 'package:mobilegarage/components/cards/profile_card.dart';
@@ -50,8 +48,8 @@ class _AccountViewState extends State<AccountView> {
                       Get.toNamed(
                         AppRoutes.editprofile,
                         arguments: {
-                           'image':'https://dummyimage.com/70x70/000/0011ff',
-                          'userName':'User38498990',
+                          'image': 'https://dummyimage.com/70x70/000/0011ff',
+                          'userName': 'User38498990',
                           'userNumber': '+971 0000 0000',
                         },
                       );
