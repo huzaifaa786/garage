@@ -6,7 +6,6 @@ import 'package:mobilegarage/components/app_bar/icon_top_bar.dart';
 import 'package:mobilegarage/components/app_bar/top_bar.dart';
 
 import 'package:mobilegarage/components/buttons/logout_button.dart';
-import 'package:mobilegarage/components/buttons/main_button.dart';
 import 'package:mobilegarage/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/components/cards/email_profile_card.dart';
 import 'package:mobilegarage/components/cards/profile_card.dart';
