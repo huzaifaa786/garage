@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class IconInputField extends StatelessWidget {
@@ -20,7 +21,8 @@ class IconInputField extends StatelessWidget {
     this.errorText,
     this.type = TextInputType.text,
     this.onChange,
-    this.ontap,this.width
+    this.ontap,
+    this.width,
   });
   final ValueChanged<String>? onChange;
   final VoidCallback? ontap;
@@ -36,11 +38,12 @@ class IconInputField extends StatelessWidget {
   final int maxlines;
   final bool readOnly;
   final String? errorText;
-final width;
+  final width;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 55,
+      width: width,
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: AppColors.grey.withOpacity(0.4)),
         borderRadius: BorderRadius.circular(60),
@@ -59,8 +62,8 @@ final width;
                 : AutovalidateMode.onUserInteraction),
         keyboardType: type,
         style: TextStyle(
-          color: AppColors.grey,
-          fontSize: 11,
+          color: AppColors.black,
+          fontSize: 13,
           fontWeight: FontWeight.w400,
         ),
         decoration: InputDecoration(
