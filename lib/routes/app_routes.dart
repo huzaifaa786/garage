@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class AppRoutes {
   static const splash = '/splash';
   static const onboarding = '/onboarding';
@@ -9,8 +11,7 @@ class AppRoutes {
   static const editprofile = '/editprofile';
   static const language = '/language ';
   static const chatScreen = '/chatScreen';
-  //
-
+  static const order_history = '/order_history';
   static const chats_accounts = '/chats_accounts';
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';

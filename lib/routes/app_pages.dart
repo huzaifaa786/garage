@@ -13,6 +13,8 @@ import 'package:mobilegarage/app/languange/languange_binding.dart';
 import 'package:mobilegarage/app/languange/languange_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
+import 'package:mobilegarage/app/order_history/order_history_binding.dart';
+import 'package:mobilegarage/app/order_history/order_history_view.dart';
 import 'package:mobilegarage/app/profile/account_binding.dart';
 import 'package:mobilegarage/app/profile/account_view.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_binding.dart';
@@ -106,6 +108,14 @@ class AppPages {
       name: AppRoutes.chatScreen,
       page: () => ChatScreenView(),
       binding: ChatScreenBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [Order_history Screen]
+    GetPage(
+      name: AppRoutes.order_history,
+      page: () => OrderHistoryView(),
+      binding: OrderHistoryBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
