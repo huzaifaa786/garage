@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class AllProfileCard extends StatelessWidget {
@@ -16,14 +17,12 @@ class AllProfileCard extends StatelessWidget {
     required this.text2,
     required this.height,
     required this.width,
-
-
   });
   final String text;
   final String image;
   final String text2;
   final height;
-  final  width;
+  final width;
   final VoidCallback ontap;
 
   @override
@@ -59,22 +58,29 @@ class AllProfileCard extends StatelessWidget {
                   ),
                 ),
                 Gap(10),
-                Text(
-                  text,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                AppText(
+                  title: text,
+                  size: 12,
+                  fontWeight: FontWeight.w500,
+                  overFlow: TextOverflow.ellipsis,
                 ),
                 Gap(5),
-                Text(
-                  text2,
-                  style: TextStyle(
-                    fontSize: 10,
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: Get.width * 0.29),
+                  child: AppText(
+                    title: text2,
+                    size: 10,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.grey,
+                    overFlow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
             ),
-            Image.asset('assets/images/errow_back.png'),
+            SvgPicture.asset(
+              'assets/icons/arrow_right.svg',
+              height: 20,
+              width: 20,
+            ),
           ],
         ),
       ),
