@@ -9,6 +9,7 @@ import 'package:mobilegarage/components/buttons/main_button.dart';
 import 'package:mobilegarage/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/components/cards/email_profile_card.dart';
 import 'package:mobilegarage/components/cards/profile_card.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class AccountView extends StatefulWidget {
@@ -44,8 +45,17 @@ class _AccountViewState extends State<AccountView> {
                   ProfileCard(
                     image: 'https://dummyimage.com/70x70/000/0011ff',
                     userName: 'User38498990',
-                    userNumber: '+971 0000 0000',
-                    ontap: () {},
+                    userNumber: 'User38498990',
+                    ontap: () {
+                      Get.toNamed(
+                        AppRoutes.editprofile,
+                        arguments: {
+                           'image':'https://dummyimage.com/70x70/000/0011ff',
+                          'userName':'User38498990',
+                          'userNumber': '+971 0000 0000',
+                        },
+                      );
+                    },
                   ),
                   Gap(23),
                   AllProfileCard(
