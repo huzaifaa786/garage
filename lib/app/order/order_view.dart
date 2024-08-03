@@ -187,11 +187,11 @@ class _OrderViewState extends State<OrderView> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                AllProfileCard(
-                                    text: 'Dubai',
-                                    image: 'assets/icons/map_pin.svg',
-                                    text2: 'zayed street , house3564 ,....',
-                                    ontap: () {}),
+                                // AllProfileCard(
+                                //     text: 'Dubai',
+                                //     image: 'assets/icons/map_pin.svg',
+                                //     text2: 'zayed street , house3564 ,....',
+                                //     ontap: () {}),
                               ],
                             ),
                           ),
