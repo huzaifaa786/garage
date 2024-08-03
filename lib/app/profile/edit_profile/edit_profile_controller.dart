@@ -14,32 +14,32 @@ class EditProfileController extends GetxController {
   TextEditingController nameController = TextEditingController();
   File? cameraImage;
   final picker = ImagePicker();
-   List<File> newImages = [];
-   List<String> base64Images = [];
 
-    selectMultiImage() async {
-    final pickedFiles = await picker.pickMultiImage();
-
-    if (pickedFiles.isNotEmpty) {
-      for (var element in pickedFiles) {
-        newImages.add(File(element.path));
-      }
-      update();
-   
-     }
+    @override
+  void onInit() {
+    super.onInit();
+    receiveArguments();
   }
 
+ 
+  void receiveArguments() {
+    
+    var args = Get.arguments;
+    if (args != null) {
+      nameController.text = args['userName'] ?? '';
+      phoneController.text = args['userNumber'] ?? '';
+    }
+  }
 
   selectCameraImage() async {
     final pickedFile = await picker.pickImage(
-      source: ImageSource.camera,
+      source: ImageSource.gallery,
     );
 
     if (pickedFile != null) {
       // return File(pickedFile.path);
       cameraImage = File(pickedFile.path);
       update();
-    } 
+    }
   }
-
-} 
+}

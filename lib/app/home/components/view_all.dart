@@ -7,14 +7,14 @@ class ViewMore extends StatefulWidget {
   final String initialText;
   final String? toggledText;
   final bool showIcon;
-  final VoidCallback? onTap; // Add this line
+  final VoidCallback? onTap;
 
   const ViewMore({
     Key? key,
     required this.initialText,
     this.toggledText,
     this.showIcon = true,
-    this.onTap, // Add this line
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -28,13 +28,29 @@ class _ViewMoreState extends State<ViewMore> {
     setState(() {
       _isToggled = !_isToggled;
       if (widget.onTap != null) {
-        widget.onTap!(); // Call the onTap callback
+        widget.onTap!();
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // Determine the gap size based on text and icon state
+    double leftGap = 14.0;
+    double rightGap = 14.0;
+
+    if (widget.showIcon) {
+      if (_isToggled) {
+        leftGap = 10.0;
+        rightGap = 10.0;
+      }
+    } else {
+      if (widget.initialText == 'See all') {
+        leftGap = 18.0;
+        rightGap = 18.0;
+      }
+    }
+
     return GestureDetector(
       onTap: _toggleView,
       child: Container(
@@ -47,13 +63,13 @@ class _ViewMoreState extends State<ViewMore> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Gap(_isToggled ? 5 : 14), // Adjust gap based on toggle state
+            Gap(leftGap),
             AppText(
               title: _isToggled
                   ? (widget.toggledText ?? widget.initialText)
                   : widget.initialText,
-              fontWeight: FontWeight.w400,
-              size: 8.0,
+              fontWeight: FontWeight.w500,
+              size: 10.0,
               color: AppColors.primary,
             ),
             if (widget.showIcon)
@@ -63,7 +79,7 @@ class _ViewMoreState extends State<ViewMore> {
                     : Icons.keyboard_arrow_down_rounded,
                 color: AppColors.primary,
               ),
-            Gap(_isToggled ? 5 : 14), // Adjust gap based on toggle state
+            Gap(rightGap),
           ],
         ),
       ),

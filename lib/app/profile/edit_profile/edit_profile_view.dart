@@ -23,6 +23,9 @@ class EditProfileView extends StatefulWidget {
 }
 
 class _EditProfileViewState extends State<EditProfileView> {
+ 
+
+  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EditProfileController>(
@@ -44,37 +47,39 @@ class _EditProfileViewState extends State<EditProfileView> {
                   Gap(52),
                   Stack(
                     children: [
-                    controller.cameraImage != null
-                              ? Image.file(
-                                  controller.cameraImage!,
+                      CircleAvatar(
+                        radius: 55,
+                        backgroundColor: Colors.grey[300],
+                        backgroundImage: controller.cameraImage != null
+                            ? FileImage(controller.cameraImage!)
+                            : null,
+                        child: controller.cameraImage == null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(80),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      'https://dummyimage.com/70x70/000/0011ff',
                                   height: 110,
                                   width: 106,
                                   fit: BoxFit.cover,
-                                )
-                              :
-                          ClipRRect(
-                              borderRadius: BorderRadius.circular(80),
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    'https://dummyimage.com/70x70/000/0011ff',
-                                height: 110,
-                                width: 106,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
-                            ),
-                      // ),
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                              )
+                            : null,
+                      ),
                       Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: GestureDetector(
-                              onTap: () {
-                                controller.selectCameraImage();
-                              },
-                              child: Image.asset('assets/images/camera.png'))),
+                        bottom: 0,
+                        right: 0,
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.selectCameraImage();
+                          },
+                          child: Image.asset('assets/images/camera.png'),
+                        ),
+                      ),
                     ],
                   ),
                   Gap(20),
@@ -91,6 +96,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   MainInput(
                     hint: 'Name'.tr,
                     controller: controller.nameController,
+                    
                     errorText: '',
                   ),
                   Gap(22),
@@ -108,7 +114,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                     title: 'Save changes',
                     buttonWidth: Get.width * 0.77,
                     onTap: () {
-                     
                       Get.back();
                     },
                   ),

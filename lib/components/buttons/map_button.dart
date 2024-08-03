@@ -48,31 +48,36 @@ class GoogleMapButton extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (hasIcon)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    child: SvgPicture.asset(
-                      iconSvgPath,
+            if (address == '')
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (hasIcon)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: SvgPicture.asset(
+                        iconSvgPath,
+                        color: widgetsColor,
+                        fit: BoxFit.scaleDown,
+                        height: 22,
+                        width: 22,
+                      ),
+                    ),
+                  Text(
+                    title,
+                    style: TextStyle(
                       color: widgetsColor,
-                      fit: BoxFit.scaleDown,
-                      height: 22,
-                      width: 22,
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: widgetsColor,
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            if (address != '') Text('$address')
+                ],
+              ),
+            if (address != '')
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('$address'),
+              )
           ],
         ),
       ),

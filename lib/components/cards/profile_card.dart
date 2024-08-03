@@ -66,7 +66,8 @@ class ProfileCard extends StatelessWidget {
                     right: 0,
                     child: GestureDetector(
                         onTap: () {
-                          Get.toNamed(AppRoutes.editprofile);
+                           Get.toNamed(AppRoutes.editprofile);
+                      
                         },
                         child: Image.asset('assets/images/edit.png'))),
               ],

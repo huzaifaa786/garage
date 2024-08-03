@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -189,69 +191,41 @@ class UiUtilites {
 //     );
 //   }
 
-  static successSnackbar(String message, String title) {
-    Get.snackbar(
-      title.tr,
-      message.tr,
-      backgroundColor: AppColors.darkprimary,
-      colorText: AppColors.white,
-      duration: const Duration(seconds: 2),
-      snackPosition: SnackPosition.BOTTOM,
-    );
-  }
+  // static successSnackbar(String message, String title) {
+  //   Get.snackbar(
+  //     title.tr,
+  //     message.tr,
+  //     backgroundColor: AppColors.white,
+  //     colorText: AppColors.darkprimary,
+  //     duration: const Duration(seconds: 2),
+  //     snackPosition: SnackPosition.BOTTOM,
+  //   );
+  // }
 
-  static showBottomSheet(container) {
-    Get.bottomSheet(container);
-  }
+  // static showBottomSheet(container) {
+  //   Get.bottomSheet(container);
+  // }
 
   static SuccessAlert(context) {
     return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          Future.delayed(Duration(seconds: 5), () {
-            Get.back();
-          });
-          return AlertDialog(
-            backgroundColor: AppColors.darkprimary,
-            surfaceTintColor: AppColors.primarybg,
-            content: Wrap(children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: SvgPicture.asset('assets/icons/cancel.svg'))
-                    ],
-                  ),
-                  Gap(5),
-                  SvgPicture.asset('assets/icons/Success.svg'),
-                  Gap(10),
-                  AppText(
-                    title: 'You have placed your\n order successfully !'.tr,
-                    size: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.white,
-                  ),
-                  Gap(17),
-                  AppText(
-                    title: 'and we are currently connecting'.tr,
-                    size: 10,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.white,
-                  ),
-                  AppText(
-                    title: 'you to your partner.'.tr,
-                    size: 10,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.white,
-                  ),
-                  Gap(20),
-                  Container(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 5), () {
+          Get.back();
+        });
+        return AlertDialog(
+          backgroundColor: AppColors.white,
+          surfaceTintColor: AppColors.white,
+          // contentPadding: EdgeInsets.all(0),
+          content: SizedBox(
+            width: Get.width * 0.5,
+            height: Get.height * 0.27,
+            child: Wrap(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(150),
                         boxShadow: [
@@ -267,19 +241,54 @@ class UiUtilites {
                         borderRadius: BorderRadius.circular(150),
                         child: Image.asset(
                           'assets/images/cart_bg.png',
-                          height: 101,
-                          width: 394,
-                          // width: 120,
-                          // height: 132,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
-                      )),
-                  Gap(20),
-                ],
-              ),
-            ]),
-          );
-        });
+                      ),
+                    ),
+                    Gap(20),
+                    AppText(
+                      title: 'Added to cart successfully !'.tr,
+                      size: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.primarybg,
+                    ),
+                    Gap(20),
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        height: Get.height * 0.05,
+                        width: Get.width * 0.4,
+                        decoration: BoxDecoration(
+                          color: AppColors.lightprimary,
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Gap(14),
+                            Container(
+                              decoration: BoxDecoration(),
+                              child: AppText(
+                                title: 'View cart',
+                                fontWeight: FontWeight.w500,
+                                size: 10.0,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
 //   static errorAlert(context) {

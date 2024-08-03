@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/app/auth/otp/otp_binding.dart';
+import 'package:mobilegarage/app/auth/otp/otp_view.dart';
+import 'package:mobilegarage/app/auth/signin/signin_bindings.dart';
+import 'package:mobilegarage/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/app/auth/signup/signup_view.dart';
 import 'package:mobilegarage/app/chat_screen/chat_screen_binding.dart';
@@ -9,6 +13,8 @@ import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
+import 'package:mobilegarage/app/order/order_binding.dart';
+import 'package:mobilegarage/app/order/order_view.dart';
 import 'package:mobilegarage/app/languange/languange_binding.dart';
 import 'package:mobilegarage/app/languange/languange_view.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
@@ -94,7 +100,17 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-
+      GetPage(
+      name: AppRoutes.signin,
+      page: () => const SigninView(),
+      binding: SigninBindings(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.otp,
+      page: () => const OtpView(),
+      binding: OtpBinding(),),
     //TODO:  [Language Route]
     GetPage(
       name: AppRoutes.language,
@@ -111,13 +127,21 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+<<<<<<< HEAD
     //TODO:  [Order_history Screen]
     GetPage(
       name: AppRoutes.order_history,
       page: () => OrderHistoryView(),
       binding: OrderHistoryBinding(),
+=======
+    GetPage(
+      name: AppRoutes.orders,
+      page: () => OrderView(),
+      binding: OrderBinding(),
+>>>>>>> 20c1a7104d9a6420bc8e2a5ce250ee12ded8403c
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
   ];
+
 }
