@@ -8,18 +8,12 @@ class AppRoutes {
   static const selectlang = '/selectlang';
   static const home = '/home';
   static const account = '/account';
-   static const editprofile = '/editprofile';
+  static const editprofile = '/editprofile';
   static const otp = '/otp';
-
-  
-  
   // static const editprofile = '/editprofile';
   static const language = '/language ';
   static const chatScreen = '/chatScreen';
-<<<<<<< HEAD
   static const order_history = '/order_history';
-=======
->>>>>>> 20c1a7104d9a6420bc8e2a5ce250ee12ded8403c
   static const chats_accounts = '/chats_accounts';
   static const orders = '/orders';
   // static const forgotpassword = '/forgotpassword';

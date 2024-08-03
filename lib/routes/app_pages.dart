@@ -100,17 +100,18 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-      GetPage(
+    GetPage(
       name: AppRoutes.signin,
       page: () => const SigninView(),
       binding: SigninBindings(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.otp,
       page: () => const OtpView(),
-      binding: OtpBinding(),),
+      binding: OtpBinding(),
+    ),
     //TODO:  [Language Route]
     GetPage(
       name: AppRoutes.language,
@@ -127,21 +128,13 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-<<<<<<< HEAD
     //TODO:  [Order_history Screen]
     GetPage(
       name: AppRoutes.order_history,
       page: () => OrderHistoryView(),
       binding: OrderHistoryBinding(),
-=======
-    GetPage(
-      name: AppRoutes.orders,
-      page: () => OrderView(),
-      binding: OrderBinding(),
->>>>>>> 20c1a7104d9a6420bc8e2a5ce250ee12ded8403c
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
   ];
-
 }
