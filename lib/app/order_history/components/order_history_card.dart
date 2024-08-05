@@ -1,8 +1,5 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_typing_uninitialized_variables
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
@@ -12,11 +9,15 @@ class OrderHistoryCard extends StatelessWidget {
     super.key,
     this.orders,
   });
-  final orders;
+  final Map<String, dynamic>? orders;
 
   @override
   Widget build(BuildContext context) {
-    String product = orders['product'];
+    String productDetail = orders!['product_Detail'];
+    String productType = orders!['product_type'];
+    String carWashDate = orders!['date'];
+    String carWashTime = orders!['time'];
+
     return Wrap(
       children: [
         Container(
@@ -33,7 +34,7 @@ class OrderHistoryCard extends StatelessWidget {
                   color: Color(0xff7c94b6),
                   image: DecorationImage(
                     image: NetworkImage(
-                      orders["productImage"],
+                      orders!["productImage"].toString(),
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -44,10 +45,6 @@ class OrderHistoryCard extends StatelessWidget {
                   ),
                 ),
               ),
-              // CachedNetworkImage(
-              //   // imageUrl: "https://dummyimage.com/93x93/000/fff",
-              //   imageUrl: orders["productImage"],
-              // ),
               Gap(10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +57,7 @@ class OrderHistoryCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Color(0xff7c94b6),
                           image: DecorationImage(
-                            image: NetworkImage(orders["clientImage"]),
+                            image: NetworkImage(orders!["clientImage"]),
                             fit: BoxFit.cover,
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(80.0)),
@@ -72,7 +69,7 @@ class OrderHistoryCard extends StatelessWidget {
                       ),
                       Gap(2),
                       AppText(
-                        title: orders["client Name"],
+                        title: orders!["client Name"].toString(),
                         fontWeight: FontWeight.w600,
                         size: 12,
                         color: AppColors.darkprimary,
@@ -80,22 +77,20 @@ class OrderHistoryCard extends StatelessWidget {
                     ],
                   ),
                   AppText(
-                    title: orders["product"],
+                    title: orders!["product"].toString(),
                     size: 10,
                     fontWeight: FontWeight.w600,
                   ),
                   Gap(5),
-                  product != "Car battery oil"
-                      ? product == "Car washing"
+                  productDetail.isNotEmpty
+                      ? productType.isNotEmpty
                           ? AppText(
-                              title: "type: ${orders["product_Detail"]}"
-                                  .toString(),
+                              title: "Type: ${orders!["product_type"]}",
                               fontWeight: FontWeight.w400,
                               size: 8,
                             )
                           : AppText(
-                              title: " Size: ${orders["product_Detail"]}"
-                                  .toString(),
+                              title: "Size: ${orders!["product_Detail"]}",
                               fontWeight: FontWeight.w400,
                               size: 8,
                             )
@@ -106,20 +101,20 @@ class OrderHistoryCard extends StatelessWidget {
                       SvgPicture.asset("assets/icons/cars.svg"),
                       Gap(2),
                       AppText(
-                        title: orders["carName"],
+                        title: orders!["carName"].toString(),
                         size: 8,
                         fontWeight: FontWeight.w500,
                       ),
                     ],
                   ),
                   Gap(5),
-                  product == "Car washing"
+                  carWashDate.isNotEmpty
                       ? Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppText(
-                              title: "Date: ${orders['date'].toString()}",
+                              title: "Date: $carWashDate",
                               fontWeight: FontWeight.w400,
                               size: 8,
                             ),
@@ -129,13 +124,13 @@ class OrderHistoryCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 AppText(
-                                  title: "Time: ${orders['time'].toString()}",
+                                  title: "Time: $carWashTime",
                                   fontWeight: FontWeight.w400,
                                   size: 8,
                                 ),
                                 Gap(120),
                                 AppText(
-                                  title: "${orders['Price'].toString()} AED",
+                                  title: "${orders!['Price']} AED",
                                   fontWeight: FontWeight.w400,
                                   color: AppColors.darkblue,
                                   size: 8,
@@ -149,13 +144,13 @@ class OrderHistoryCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppText(
-                              title: "Amount: ${orders["item"]} ".toString(),
+                              title: "Amount: ${orders!["item"]}",
                               fontWeight: FontWeight.w400,
                               size: 8,
                             ),
                             Gap(120),
                             AppText(
-                              title: "${orders['Price'].toString()} AED",
+                              title: "${orders!['Price']} AED",
                               fontWeight: FontWeight.w400,
                               color: AppColors.darkblue,
                               size: 8,

@@ -107,8 +107,10 @@ class _AccountViewState extends State<AccountView> {
                       ontap: () {}),
                   Gap(15),
                   EmailProfileCard(
+                      height: Get.height * 0.1,
+                      width: Get.width * 0.8,
                       text: 'Contact us',
-                      image: 'assets/images/email.png',
+                      image: 'assets/icons/mail.svg',
                       text2: 'mobilegarage1@gmail.com',
                       ontap: () {}),
                   Gap(53),

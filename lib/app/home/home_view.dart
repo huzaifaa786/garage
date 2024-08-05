@@ -89,6 +89,7 @@ class HomeView extends StatelessWidget {
                           return ServicesIcons(
                             imageUrl: item.imageUrl,
                             text: item.text,
+                            
                           );
                         },
                       ),
