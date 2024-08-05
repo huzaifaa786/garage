@@ -41,7 +41,6 @@ class ServicesIcons extends StatelessWidget {
                 imageUrl: imageUrl,
                 // height: 70,
                 // width: 70,
-                
                 fit: BoxFit.cover,
                 placeholder: (context, url) => CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Icon(Icons.error),

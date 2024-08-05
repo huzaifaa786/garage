@@ -19,6 +19,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
+      autoRemove: false,
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
@@ -34,6 +35,7 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                   
                     GestureDetector(
                       onTap: () {},
                       child: IconInputField(

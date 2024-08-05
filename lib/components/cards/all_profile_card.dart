@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class AllProfileCard extends StatelessWidget {
@@ -11,10 +13,15 @@ class AllProfileCard extends StatelessWidget {
     required this.image,
     required this.ontap,
     required this.text2,
+    required this.height,
+    required this.width,
   });
+
   final String text;
   final String image;
   final String text2;
+  final height;
+  final width;
   final VoidCallback ontap;
 
   @override
@@ -23,38 +30,56 @@ class AllProfileCard extends StatelessWidget {
       onTap: ontap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 11),
-        height: Get.height * 0.08,
+        height: height,
+        width: width,
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
           borderRadius: BorderRadius.circular(40),
-          //Image.asset('assets/images/location.png'),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(
-                  image,
+                Container(
+                  height: 35,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    color: AppColors.lightprimary,
+                    borderRadius: BorderRadius.circular(80),
+                  ),
+                  child: SvgPicture.asset(
+                    image,
+                    color: AppColors.primarybg,
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
                 Gap(10),
-                Text(
-                  text,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                AppText(
+                  title: text,
+                  size: 12,
+                  fontWeight: FontWeight.w500,
+                  overFlow: TextOverflow.ellipsis,
                 ),
                 Gap(5),
-                Text(
-                  text2,
-                  style: TextStyle(
-                    fontSize: 10,
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: Get.width * 0.29),
+                  child: AppText(
+                    title: text2,
+                    size: 10,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.grey,
+                    overFlow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
             ),
-            Image.asset('assets/images/errow_back.png'),
+            SvgPicture.asset(
+              'assets/icons/arrow_right.svg',
+              height: 20,
+              width: 20,
+            ),
           ],
         ),
       ),

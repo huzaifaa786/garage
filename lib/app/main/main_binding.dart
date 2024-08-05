@@ -7,7 +7,7 @@ class MainBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => HomeController());
-    Get.lazyPut(() => OrderController);
+    Get.lazyPut(() => OrderController());
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => AccountController());
   }

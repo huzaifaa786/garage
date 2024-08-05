@@ -13,6 +13,8 @@ import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
+import 'package:mobilegarage/app/main/main_binding.dart';
+import 'package:mobilegarage/app/main/main_view.dart';
 import 'package:mobilegarage/app/order/order_binding.dart';
 import 'package:mobilegarage/app/order/order_view.dart';
 import 'package:mobilegarage/app/languange/languange_binding.dart';
@@ -141,14 +143,21 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.search,
       page: () => SearchView(),
       binding: SearchBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-      GetPage(
+    GetPage(
+      name: AppRoutes.main,
+      page: () => MainView(),
+      binding: MainBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    GetPage(
       name: AppRoutes.orders,
       page: () => const OrderView(),
       binding: OrderBinding(),

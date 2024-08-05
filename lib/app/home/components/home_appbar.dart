@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:mobilegarage/utils/colors/app_color.dart';
 
 class HomeAppbar extends StatelessWidget {
   const HomeAppbar({super.key});
@@ -26,10 +27,14 @@ class HomeAppbar extends StatelessWidget {
               children: [
                 SvgPicture.asset('assets/icons/bell.svg'),
                 Gap(20),
-                Image.asset(
-                  'assets/images/chat.png',
-                  height: 31,
-                  width: 32,
+                Container(
+                  height: 35,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    color: AppColors.lightprimary,
+                    borderRadius: BorderRadius.circular(80),
+                  ),
+                  child: Image.asset('assets/images/chat.png'),
                 ),
               ],
             ),
