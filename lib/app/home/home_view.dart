@@ -35,6 +35,7 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                   
                     GestureDetector(
                       onTap: () {},
                       child: IconInputField(

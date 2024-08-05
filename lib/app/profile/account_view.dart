@@ -21,6 +21,7 @@ class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AccountController>(
+      autoRemove: false,
       builder: (controller) => Scaffold(
         appBar: AppBar(
           title: IconTopBar(
