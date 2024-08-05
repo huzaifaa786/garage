@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
@@ -16,14 +14,13 @@ class AllProfileCard extends StatelessWidget {
     required this.text2,
     required this.height,
     required this.width,
-
-
   });
+
   final String text;
   final String image;
   final String text2;
-  final height;
-  final  width;
+  final double height;
+  final double width;
   final VoidCallback ontap;
 
   @override
@@ -38,12 +35,12 @@ class AllProfileCard extends StatelessWidget {
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
           borderRadius: BorderRadius.circular(40),
-          //Image.asset('assets/images/location.png'),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   height: 35,
@@ -59,17 +56,32 @@ class AllProfileCard extends StatelessWidget {
                   ),
                 ),
                 Gap(10),
-                Text(
-                  text,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-                ),
-                Gap(5),
-                Text(
-                  text2,
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.grey,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        text,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Gap(2),
+                      Text(
+                        text2,
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.grey,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: true,
+                      ),
+                    ],
                   ),
                 ),
               ],
