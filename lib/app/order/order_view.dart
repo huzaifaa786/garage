@@ -9,6 +9,8 @@ import 'package:mobilegarage/app/order/components/vehicle_listTile.dart';
 import 'package:mobilegarage/app/order/order_controller.dart';
 import 'package:mobilegarage/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/components/buttons/dotted_border_button.dart';
+import 'package:mobilegarage/components/buttons/main_button.dart';
+import 'package:mobilegarage/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/components/textfields/main_input.dart';
 import 'package:mobilegarage/components/textfields/price_inputfield.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
@@ -136,24 +138,26 @@ class _OrderViewState extends State<OrderView> {
                         ],
                       ),
                       Gap(10),
-                      SizedBox(
-                        height: controller.listHeight,
-                        child: ListView.builder(
-                          physics: BouncingScrollPhysics(),
-                          itemCount: controller.items.length,
-                          itemBuilder: (context, index) {
-                            final item = controller.items[index];
-                            return VehicleListTile(
-                              value: item['id']!,
-                              groupValue: controller.selectedValue.toString(),
-                              onChanged: (value) {
-                                controller.selectedValue = value;
-                                controller.update();
-                              },
-                              iconPath: 'assets/icons/vehicle.svg',
-                              text: item['text']!,
-                            );
-                          },
+                      SingleChildScrollView(
+                        child: SizedBox(
+                          height: controller.listHeight,
+                          child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: controller.items.length,
+                            itemBuilder: (context, index) {
+                              final item = controller.items[index];
+                              return VehicleListTile(
+                                value: item['id']!,
+                                groupValue: controller.selectedValue.toString(),
+                                onChanged: (value) {
+                                  controller.selectedValue = value;
+                                  controller.update();
+                                },
+                                iconPath: 'assets/icons/vehicle.svg',
+                                text: item['text']!,
+                              );
+                            },
+                          ),
                         ),
                       ),
                       Gap(20),
@@ -186,16 +190,40 @@ class _OrderViewState extends State<OrderView> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                PriceInput(
-                                  hint: 'Price',
-                                  controller: controller.priceController,
-                                  errorText: '',
+                                AllProfileCard(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.9,
+                                  text: 'Dubai',
+                                  image: 'assets/icons/map_pin.svg',
+                                  text2: 'zayed street , house3564 ,....',
+                                  ontap: () {},
                                 ),
                               ],
                             ),
                           ),
                         ],
                       ),
+                      Gap(60),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          MainButton(
+                            buttonWidth: Get.width * 0.3,
+                            height: Get.width * 0.13,
+                            title: 'Cancel',
+                            btncolor: AppColors.lightprimary,
+                            textcolor: AppColors.primarybg,
+                            onTap: () {},
+                          ),
+                          MainButton(
+                            buttonWidth: Get.width * 0.45,
+                            height: Get.width * 0.13,
+                            title: 'Confirm',
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
+                      Gap(60),
                     ]),
                   ),
                 ),

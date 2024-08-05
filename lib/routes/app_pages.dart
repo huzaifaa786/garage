@@ -116,7 +116,9 @@ class AppPages {
       name: AppRoutes.otp,
       page: () => const OtpView(),
       binding: OtpBinding(),
-    ),
+            transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),),
+    
     //TODO:  [Language Route]
     GetPage(
       name: AppRoutes.language,
