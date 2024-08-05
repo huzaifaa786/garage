@@ -100,9 +100,12 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
                     shrinkWrap: true, 
                     physics: NeverScrollableScrollPhysics(), 
                     itemBuilder: (context, index) {
-                      return QuestionAnswerTile(
-                        questionAnswer: controller.questionsAndAnswers[index],
-                      );
+                       final qa = controller.questionsAndAnswers[index];
+      
+      return TermsConditionQuestionAnswer(
+        question: qa.question, 
+        answer: qa.answer,    
+      );
                     },
                   ),
                 ),
