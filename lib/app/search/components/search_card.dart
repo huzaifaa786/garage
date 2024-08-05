@@ -153,37 +153,62 @@ class SearchCard extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 25, bottom: 10),
-                  child: Row(
+                  padding: const EdgeInsets.only(top: 15, bottom: 5),
+                  child: Stack(
                     children: [
-                      ClipPath(
-                        clipper: RightCircularClipper(),
-                        child: Container(
-                          padding: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.red.withOpacity(0.1),
-                              // border: Border.all(),
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  bottomLeft: Radius.circular(20))),
-                          height: 50,
-                          width: Get.width * 0.6,
-                          child: Center(
-                            child: Text(
-                              'View garage',
-                              style: TextStyle(color: Colors.red, fontSize: 16),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ClipPath(
+                            clipper: RightCircularClipper(),
+                            child: GestureDetector(
+                              onTap: () {
+                                print('object');
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: AppColors.lightprimary,
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        bottomLeft: Radius.circular(20))),
+                                height: Get.height * 0.05,
+                                width: Get.width * 0.6,
+                                child: Center(
+                                  child: Text(
+                                    'View garage',
+                                    style: TextStyle(
+                                        color: Colors.red, fontSize: 16),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Gap(13)
+                        ],
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: Get.height * 0.003,
+                        child: GestureDetector(
+                          onTap: () {
+                            print('object23');
+                          },
+                          child: Container(
+                            height: Get.height * 0.045,
+                            width: Get.width * 0.085,
+                            decoration: BoxDecoration(
+                              color: AppColors.lightprimary,
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            child: Image.asset(
+                              'assets/images/chat.png',
                             ),
                           ),
                         ),
-                      ),
-                      Image.asset(
-                        'assets/images/chat.png',
-                        height: 31,
-                        width: 32,
-                      ),
+                      )
                     ],
                   ),
-                ),
+                )
               ],
             ),
           ),
