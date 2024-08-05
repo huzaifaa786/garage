@@ -15,6 +15,8 @@ import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
 import 'package:mobilegarage/app/main/main_binding.dart';
 import 'package:mobilegarage/app/main/main_view.dart';
+import 'package:mobilegarage/app/my_cars/my_cars_binding.dart';
+import 'package:mobilegarage/app/my_cars/my_cars_view.dart';
 import 'package:mobilegarage/app/order/order_binding.dart';
 import 'package:mobilegarage/app/order/order_view.dart';
 import 'package:mobilegarage/app/languange/languange_binding.dart';
@@ -118,9 +120,10 @@ class AppPages {
       name: AppRoutes.otp,
       page: () => const OtpView(),
       binding: OtpBinding(),
-            transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100),),
-    
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
     //TODO:  [Language Route]
     GetPage(
       name: AppRoutes.language,
@@ -170,7 +173,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.termscondition,
       page: () => TermsConditionsView(),
-      binding: TermsConditionsBinding(),
+      binding: TermsConditionsBinding(), ),
+    GetPage(
+      name: AppRoutes.my_cars,
+      page: () => const MyCarsView(),
+      binding: MyCarsBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),

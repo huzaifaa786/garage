@@ -84,21 +84,25 @@ class _AccountViewState extends State<AccountView> {
                       text: 'My cards',
                       image: 'assets/icons/credit-card.svg',
                       text2: '',
-                      ontap: () {}),
+                      ontap: () {
+                        Get.toNamed(AppRoutes.my_cars);
+                      }),
                   Gap(15),
                   AllProfileCard(
                       height: Get.height * 0.1,
                       width: Get.width * 0.8,
                       text: 'Orders history',
-                      image: 'assets/icons/order.svg',
+                      image: 'assets/images/order_history.png',
                       text2: '12 items',
-                      ontap: () {}),
+                      ontap: () {
+                        Get.toNamed(AppRoutes.order_history);
+                      }),
                   Gap(15),
                   AllProfileCard(
                       height: Get.height * 0.1,
                       width: Get.width * 0.8,
                       text: 'Language',
-                      image: 'assets/icons/language.svg',
+                      image: 'assets/images/languange.png',
                       text2: 'English',
                       ontap: () {
                         Get.toNamed(AppRoutes.language);
