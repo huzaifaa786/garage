@@ -28,6 +28,7 @@ class _OrderViewState extends State<OrderView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderController>(
+        autoRemove: false,
         builder: (controller) => Scaffold(
               appBar: PreferredSize(
                 preferredSize: Size.fromHeight(95.0),
@@ -137,24 +138,26 @@ class _OrderViewState extends State<OrderView> {
                         ],
                       ),
                       Gap(10),
-                      SizedBox(
-                        height: controller.listHeight,
-                        child: ListView.builder(
-                          physics: BouncingScrollPhysics(),
-                          itemCount: controller.items.length,
-                          itemBuilder: (context, index) {
-                            final item = controller.items[index];
-                            return VehicleListTile(
-                              value: item['id']!,
-                              groupValue: controller.selectedValue.toString(),
-                              onChanged: (value) {
-                                controller.selectedValue = value;
-                                controller.update();
-                              },
-                              iconPath: 'assets/icons/vehicle.svg',
-                              text: item['text']!,
-                            );
-                          },
+                      SingleChildScrollView(
+                        child: SizedBox(
+                          height: controller.listHeight,
+                          child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: controller.items.length,
+                            itemBuilder: (context, index) {
+                              final item = controller.items[index];
+                              return VehicleListTile(
+                                value: item['id']!,
+                                groupValue: controller.selectedValue.toString(),
+                                onChanged: (value) {
+                                  controller.selectedValue = value;
+                                  controller.update();
+                                },
+                                iconPath: 'assets/icons/vehicle.svg',
+                                text: item['text']!,
+                              );
+                            },
+                          ),
                         ),
                       ),
                       Gap(20),
@@ -187,11 +190,14 @@ class _OrderViewState extends State<OrderView> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                // AllProfileCard(
-                                //     text: 'Dubai',
-                                //     image: 'assets/icons/map_pin.svg',
-                                //     text2: 'zayed street , house3564 ,....',
-                                //     ontap: () {}),
+                                AllProfileCard(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.9,
+                                  text: 'Dubai',
+                                  image: 'assets/icons/map_pin.svg',
+                                  text2: 'zayed street , house3564 ,....',
+                                  ontap: () {},
+                                ),
                               ],
                             ),
                           ),
@@ -203,13 +209,15 @@ class _OrderViewState extends State<OrderView> {
                         children: [
                           MainButton(
                             buttonWidth: Get.width * 0.3,
+                            height: Get.width * 0.13,
                             title: 'Cancel',
                             btncolor: AppColors.lightprimary,
-                            onTap: () {},
                             textcolor: AppColors.primarybg,
+                            onTap: () {},
                           ),
                           MainButton(
                             buttonWidth: Get.width * 0.45,
+                            height: Get.width * 0.13,
                             title: 'Confirm',
                             onTap: () {},
                           ),
