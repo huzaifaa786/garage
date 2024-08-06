@@ -21,44 +21,46 @@ class ServicesIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 7.0),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(80),
-              color: AppColors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.shadowblack,
-                  blurRadius: 4.0,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(80),
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                // height: 70,
-                // width: 70,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
+        Container(
+          height: Get.height * 0.12,
+          width: Get.width * 0.3,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.white,
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: AppColors.shadowblack,
+            //     blurRadius: 4.0,
+            //     offset: Offset(0, 4),
+            //   ),
+            // ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              // height: 70,
+              // width: 70,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
         ),
-        Gap(15),
+        Gap(10),
         Flexible(
           flex: 1,
-          child: AppText(
-            title: text,
-            fontWeight: FontWeight.w500,
-            color: AppColors.primarybg,
-            size: 10.0,
-            textAlign: TextAlign.center,
-            overFlow: TextOverflow.ellipsis,
-            maxLines: 2,
+          child: SizedBox(
+            height: Get.height * 0.2,
+            child: AppText(
+              title: text,
+              fontWeight: FontWeight.w500,
+              color: AppColors.primarybg,
+              size: 12.0,
+              textAlign: TextAlign.center,
+              overFlow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
           ),
         ),
       ],
