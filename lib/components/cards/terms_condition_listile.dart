@@ -12,23 +12,47 @@ class TermsConditionQuestionAnswer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-
-      title: AppText(
-        title: question,
-        size: 10,
-        fontWeight: FontWeight.w500,
-      ),
-      subtitle: Padding(
-        padding: const EdgeInsets.only(top: 8.0),
-        child: AppText(
-            title: answer,
-            size: 8,
-            fontWeight: FontWeight.w400,
-            color: Colors.black.withOpacity(0.8),
-            height: 1.5),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Question Row
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppText(
+                title: 'Q. ',
+                fontWeight: FontWeight.bold,
+              ),
+              
+              Expanded(
+                child: AppText(
+                  title: question,
+                  overFlow: TextOverflow.visible, 
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 8), // Adds some space between the question and answer
+          
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppText(
+                title: 'A. ',
+                fontWeight: FontWeight.bold,
+              ),
+              
+              Expanded(
+                child: AppText(
+                  title: answer,
+                  overFlow: TextOverflow.visible, 
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

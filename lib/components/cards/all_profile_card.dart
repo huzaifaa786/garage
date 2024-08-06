@@ -68,6 +68,7 @@ class AllProfileCard extends StatelessWidget {
                   constraints: BoxConstraints(maxWidth: Get.width * 0.29),
                   child: AppText(
                     title: text2,
+                    color: AppColors.grey,
                     size: 10,
                     fontWeight: FontWeight.w400,
                     overFlow: TextOverflow.ellipsis,
