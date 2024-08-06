@@ -13,6 +13,10 @@ import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
 import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
+import 'package:mobilegarage/app/main/main_binding.dart';
+import 'package:mobilegarage/app/main/main_view.dart';
+import 'package:mobilegarage/app/my_cars/my_cars_binding.dart';
+import 'package:mobilegarage/app/my_cars/my_cars_view.dart';
 import 'package:mobilegarage/app/order/order_binding.dart';
 import 'package:mobilegarage/app/order/order_view.dart';
 import 'package:mobilegarage/app/languange/languange_binding.dart';
@@ -32,6 +36,8 @@ import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/app/select_lang/select_language_view.dart';
 import 'package:mobilegarage/app/splash/splash_binding.dart';
 import 'package:mobilegarage/app/splash/splash_view.dart';
+import 'package:mobilegarage/app/terms/terms_conditions_binding.dart';
+import 'package:mobilegarage/app/terms/terms_conditions_view.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 
 class AppPages {
@@ -114,9 +120,10 @@ class AppPages {
       name: AppRoutes.otp,
       page: () => const OtpView(),
       binding: OtpBinding(),
-            transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100),),
-    
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
     //TODO:  [Language Route]
     GetPage(
       name: AppRoutes.language,
@@ -141,17 +148,36 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.search,
       page: () => SearchView(),
       binding: SearchBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-      GetPage(
+    GetPage(
+      name: AppRoutes.main,
+      page: () => MainView(),
+      binding: MainBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    GetPage(
       name: AppRoutes.orders,
       page: () => const OrderView(),
       binding: OrderBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+        //TODO:  [Order_history Screen]
+    GetPage(
+      name: AppRoutes.termscondition,
+      page: () => TermsConditionsView(),
+      binding: TermsConditionsBinding(), ),
+    GetPage(
+      name: AppRoutes.my_cars,
+      page: () => const MyCarsView(),
+      binding: MyCarsBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),

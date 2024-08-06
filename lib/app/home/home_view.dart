@@ -17,6 +17,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
+      autoRemove: false,
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
@@ -70,6 +71,7 @@ class HomeView extends StatelessWidget {
                           return ServicesIcons(
                             imageUrl: item.imageUrl,
                             text: item.text,
+                            
                           );
                         },
                       ),

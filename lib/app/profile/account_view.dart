@@ -24,6 +24,7 @@ class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AccountController>(
+      autoRemove: false,
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(95.0),
@@ -70,49 +71,55 @@ class _AccountViewState extends State<AccountView> {
                   ),
                   Gap(23),
                   AllProfileCard(
-                    height:Get.height*0.1,
-                    width: Get.width* 0.8,
+                      height: Get.height * 0.1,
+                      width: Get.width * 0.8,
                       text: 'Dubai',
                       image: 'assets/icons/map_pin.svg',
                       text2: 'zayed street , house3564 ,....',
                       ontap: () {}),
-                    Gap(15),
+                  Gap(15),
                   AllProfileCard(
-                    height:Get.height*0.1,
-                    width: Get.width* 0.8,
+                      height: Get.height * 0.1,
+                      width: Get.width * 0.8,
                       text: 'My cards',
                       image: 'assets/icons/credit-card.svg',
                       text2: '',
-                      ontap: () {}),
-                  // Gap(15),
-                  // AllProfileCard(
-                  //   height:Get.height*0.1,
-                  //   width: Get.width* 0.8,
-                  //     text: 'Orders history',
-                  //     image: 'assets/images/order_history.png',
-                  //     text2: '12 items',
-                  //     ontap: () {}),
-                  // Gap(15),
-                  // AllProfileCard(
-                  //   height:Get.height*0.1,
-                  //   width: Get.width* 0.8,
-                  //     text: 'Language',
-                  //     image: 'assets/images/languange.png',
-                  //     text2: 'English',
-                  //     ontap: () {}),
-                  // Gap(15),
+                      ontap: () {
+                        Get.toNamed(AppRoutes.my_cars);
+                      }),
+                  Gap(15),
+                  AllProfileCard(
+                      height: Get.height * 0.1,
+                      width: Get.width * 0.8,
+                      text: 'Orders history',
+                      image: 'assets/images/order_history.png',
+                      text2: '12 items',
+                      ontap: () {
+                        Get.toNamed(AppRoutes.order_history);
+                      }),
+                  Gap(15),
+                  AllProfileCard(
+                      height: Get.height * 0.1,
+                      width: Get.width * 0.8,
+                      text: 'Language',
+                      image: 'assets/images/languange.png',
+                      text2: 'English',
+                      ontap: () {
+                        Get.toNamed(AppRoutes.language);
+                      }),
+                  Gap(15),
                   EmailProfileCard(
+                      height: Get.height * 0.1,
+                      width: Get.width * 0.8,
                       text: 'Contact us',
-                      image: 'assets/images/email.png',
+                      image: 'assets/icons/mail.svg',
                       text2: 'mobilegarage1@gmail.com',
                       ontap: () {}),
                   Gap(53),
                   LogoutButton(
                     title: 'Log out',
                     buttonWidth: Get.width * 0.77,
-                    onTap: () {
-                     
-                    },
+                    onTap: () {},
                   ),
                   Gap(25),
                 ],

@@ -26,6 +26,7 @@ class _OrderViewState extends State<OrderView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderController>(
+        autoRemove: false,
         builder: (controller) => Scaffold(
               appBar: PreferredSize(
                 preferredSize: Size.fromHeight(95.0),

@@ -17,6 +17,10 @@ class AppRoutes {
   static const order_history = '/order_history';
   static const chats_accounts = '/chats_accounts';
   static const orders = '/orders';
+  static const main = '/main';
+  static const termscondition = '/termscondition';
+  
+  static const my_cars = '/my_cars';
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';

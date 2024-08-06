@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
@@ -18,6 +16,7 @@ class AllProfileCard extends StatelessWidget {
     required this.height,
     required this.width,
   });
+
   final String text;
   final String image;
   final String text2;
@@ -37,12 +36,12 @@ class AllProfileCard extends StatelessWidget {
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
           borderRadius: BorderRadius.circular(40),
-          //Image.asset('assets/images/location.png'),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   height: 35,
