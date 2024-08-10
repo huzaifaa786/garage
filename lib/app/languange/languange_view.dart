@@ -23,7 +23,7 @@ class _LanguangeViewState extends State<LanguangeView> {
   Widget build(BuildContext context) {
     return GetBuilder<LanguagesController>(
       builder: (controller) => Scaffold(
-         appBar: PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size.fromHeight(95.0),
           child: Container(
             decoration: BoxDecoration(
@@ -35,17 +35,17 @@ class _LanguangeViewState extends State<LanguangeView> {
               toolbarHeight: 95.0,
               title: TopBar(
                 showicon: true,
-                title: "Profile",
+                title: "Language",
               ),
             ),
           ),
         ),
         body: SafeArea(
             child: Container(
-              padding: EdgeInsets.only(left: 40,right: 40,top: 30),
-              child: Column(
-                        children: [
-              GestureDetector(
+          padding: EdgeInsets.only(left: 40, right: 40, top: 30),
+          child: Column(
+            children: [
+              InkWell(
                 onTap: () async {
                   await controller.toggleplan(translateMethod.English);
                   Get.updateLocale(const Locale('en', 'US'));
@@ -82,8 +82,7 @@ class _LanguangeViewState extends State<LanguangeView> {
                       value: translateMethod.English,
                       groupValue: controller.site,
                       activeColor: AppColors.primary,
-                      fillColor:
-                          MaterialStateProperty.all(AppColors.primary),
+                      fillColor: MaterialStateProperty.all(AppColors.primary),
                       onChanged: (value) async {
                         await controller.toggleplan(value!);
                         Get.updateLocale(const Locale('en', 'US'));
@@ -97,7 +96,7 @@ class _LanguangeViewState extends State<LanguangeView> {
                 ),
               ),
               Gap(22),
-              GestureDetector(
+              InkWell(
                 onTap: () async {
                   await controller.toggleplan(translateMethod.Arabic);
                   Get.updateLocale(const Locale('ar', 'AE'));
@@ -136,8 +135,7 @@ class _LanguangeViewState extends State<LanguangeView> {
                       Radio(
                         value: translateMethod.Arabic,
                         groupValue: controller.site,
-                        fillColor:
-                            MaterialStateProperty.all(AppColors.primary),
+                        fillColor: MaterialStateProperty.all(AppColors.primary),
                         activeColor: AppColors.primary,
                         onChanged: (value) async {
                           await controller.toggleplan(value!);
@@ -154,9 +152,9 @@ class _LanguangeViewState extends State<LanguangeView> {
                   ),
                 ),
               )
-                        ],
-                      ),
-            )),
+            ],
+          ),
+        )),
       ),
     );
   }

@@ -38,6 +38,8 @@ import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/app/select_lang/select_language_view.dart';
 import 'package:mobilegarage/app/splash/splash_binding.dart';
 import 'package:mobilegarage/app/splash/splash_view.dart';
+import 'package:mobilegarage/app/terms/terms_conditions_binding.dart';
+import 'package:mobilegarage/app/terms/terms_conditions_view.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 
 class AppPages {
@@ -169,6 +171,11 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+        //TODO:  [Order_history Screen]
+    GetPage(
+      name: AppRoutes.termscondition,
+      page: () => TermsConditionsView(),
+      binding: TermsConditionsBinding(), ),
     GetPage(
       name: AppRoutes.my_cars,
       page: () => const MyCarsView(),

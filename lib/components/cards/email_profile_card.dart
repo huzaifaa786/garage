@@ -67,7 +67,7 @@ class EmailProfileCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.black,
+                    color: AppColors.grey,
                   ),
                 ),
               ],

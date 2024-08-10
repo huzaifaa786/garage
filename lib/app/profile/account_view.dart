@@ -71,7 +71,7 @@ class _AccountViewState extends State<AccountView> {
                   ),
                   Gap(23),
                   AllProfileCard(
-                      height: Get.height * 0.1,
+                      height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       text: 'Dubai',
                       image: 'assets/icons/map_pin.svg',
@@ -81,7 +81,7 @@ class _AccountViewState extends State<AccountView> {
                       }),
                   Gap(15),
                   AllProfileCard(
-                      height: Get.height * 0.1,
+                      height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       text: 'My cards',
                       image: 'assets/icons/credit-card.svg',
@@ -91,25 +91,27 @@ class _AccountViewState extends State<AccountView> {
                       }),
                   Gap(15),
                   AllProfileCard(
-                      height: Get.height * 0.1,
+                      height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       text: 'Orders history',
-                      image: 'assets/images/order_history.png',
+                      image: 'assets/icons/order.svg',
                       text2: '12 items',
                       ontap: () {
                         Get.toNamed(AppRoutes.order_history);
                       }),
                   Gap(15),
                   AllProfileCard(
-                      height: Get.height * 0.1,
+                      height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       text: 'Language',
-                      image: 'assets/images/languange.png',
+                      image: 'assets/icons/language.svg',
                       text2: 'English',
-                      ontap: () {}),
+                      ontap: () {
+                        Get.toNamed(AppRoutes.language);
+                      }),
                   Gap(15),
                   EmailProfileCard(
-                      height: Get.height * 0.1,
+                      height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       text: 'Contact us',
                       image: 'assets/icons/mail.svg',
@@ -117,6 +119,8 @@ class _AccountViewState extends State<AccountView> {
                       ontap: () {}),
                   Gap(53),
                   LogoutButton(
+                    image: 'assets/icons/log-out.svg',
+                    
                     title: 'Log out',
                     buttonWidth: Get.width * 0.77,
                     onTap: () {},
