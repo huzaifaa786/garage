@@ -205,6 +205,93 @@ class UiUtilites {
   // static showBottomSheet(container) {
   //   Get.bottomSheet(container);
   // }
+  static DeleteAlert(context, carName, yesOnTap,noOnTap) {
+    return showDialog(
+      
+        context: context,
+        
+        builder: (BuildContext context,) {
+          // Future.delayed(Duration(seconds: 5), () {
+          //   Get.back();
+          // });
+
+          return AlertDialog(
+              content: Wrap(children: [
+            Column(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 14.0),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Are you sure that you want to delete ",
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "“$carName”",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red),
+                            ),
+                            TextSpan(text: ' from your cars?'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Row(
+                      children: [
+                        Container(
+                          width: Get.width * 0.3,
+                          height: Get.height * 0.1 / 2.4,
+                          decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(color: AppColors.grey.shade200),
+                                right:
+                                    BorderSide(color: AppColors.grey.shade200)),
+                          ),
+                          child: Center(
+                              child: Expanded(
+                            child: GestureDetector(
+                              onTap: noOnTap,
+                              child: Text(
+                                "No",
+                                style: TextStyle(color: AppColors.red),
+                              ),
+                            ),
+                          )),
+                        ),
+                        Container(
+                          width: Get.width * 0.3,
+                          height: Get.height * 0.1 / 2.4,
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(color: AppColors.grey.shade200),
+                            ),
+                          ),
+                          child: Center(
+                              child: Expanded(
+                            child: GestureDetector(
+                              onTap: yesOnTap,
+                              child: Text(
+                                "Yes",
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            ),
+                          )),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ]));
+        });
+  }
 
   static SuccessAlert(context) {
     return showDialog(

@@ -142,6 +142,7 @@ class _OrderViewState extends State<OrderView> {
                         child: SizedBox(
                           height: controller.listHeight,
                           child: ListView.builder(
+                            shrinkWrap: false,
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: controller.items.length,
                             itemBuilder: (context, index) {

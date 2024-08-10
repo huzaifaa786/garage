@@ -76,7 +76,9 @@ class _AccountViewState extends State<AccountView> {
                       text: 'Dubai',
                       image: 'assets/icons/map_pin.svg',
                       text2: 'zayed street , house3564 ,....',
-                      ontap: () {}),
+                      ontap: () {
+                        Get.toNamed(AppRoutes.my_location);
+                      }),
                   Gap(15),
                   AllProfileCard(
                       height: Get.height * 0.1,

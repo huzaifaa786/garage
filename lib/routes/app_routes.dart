@@ -19,6 +19,7 @@ class AppRoutes {
   static const orders = '/orders';
   static const main = '/main';
   static const my_cars = '/my_cars';
+  static const my_location = '/my_location';
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';

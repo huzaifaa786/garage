@@ -17,6 +17,8 @@ import 'package:mobilegarage/app/main/main_binding.dart';
 import 'package:mobilegarage/app/main/main_view.dart';
 import 'package:mobilegarage/app/my_cars/my_cars_binding.dart';
 import 'package:mobilegarage/app/my_cars/my_cars_view.dart';
+import 'package:mobilegarage/app/my_location/my_location_binding.dart';
+import 'package:mobilegarage/app/my_location/my_location_view.dart';
 import 'package:mobilegarage/app/order/order_binding.dart';
 import 'package:mobilegarage/app/order/order_view.dart';
 import 'package:mobilegarage/app/languange/languange_binding.dart';
@@ -171,6 +173,13 @@ class AppPages {
       name: AppRoutes.my_cars,
       page: () => const MyCarsView(),
       binding: MyCarsBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.my_location,
+      page: () => const MyLocationView(),
+      binding: MyLocationBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
