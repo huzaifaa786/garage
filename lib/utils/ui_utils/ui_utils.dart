@@ -117,79 +117,81 @@ class UiUtilites {
 //     );
 //   }
 
-//   static logoutSuccessAlert(context, ontap, ontapno) {
-//     return showDialog(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           backgroundColor: AppColors.white,
-//           surfaceTintColor: AppColors.white,
-//           shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.all(Radius.circular(13))),
-//           content: Container(
-//             decoration: BoxDecoration(
-//               color: Colors.white,
-//               borderRadius: BorderRadius.all(Radius.circular(20.0)),
-//             ),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.start,
-//               crossAxisAlignment: CrossAxisAlignment.stretch,
-//               mainAxisSize: MainAxisSize.min,
-//               children: <Widget>[
-//                 Gap(10),
-//                 Padding(
-//                   padding: const EdgeInsets.only(left: 15, right: 15),
-//                   child: Text(
-//                     'Are You Sure, you want to logout!'.tr,
-//                     textAlign: TextAlign.center,
-//                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
-//                   ),
-//                 ),
-//                 Gap(30),
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                   children: [
-//                     GestureDetector(
-//                       onTap: ontap,
-//                       child: Container(
-//                         height: 35,
-//                         width: 55,
-//                         decoration: BoxDecoration(
-//                             color: AppColors.primary_color,
-//                             borderRadius: BorderRadius.circular(10)),
-//                         child: Center(
-//                           child: Text(
-//                             'Yes'.tr,
-//                             style: TextStyle(fontSize: 20.0),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     GestureDetector(
-//                       onTap: ontapno,
-//                       child: Container(
-//                         height: 35,
-//                         width: 50,
-//                         decoration: BoxDecoration(
-//                             color: AppColors.primary_color,
-//                             borderRadius: BorderRadius.circular(10)),
-//                         child: Center(
-//                           child: Text(
-//                             'No'.tr,
-//                             style: TextStyle(fontSize: 20.0),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 )
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
+  static logoutSuccessAlert(context, ontap, ontapno) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: AppColors.white,
+          surfaceTintColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(13))),
+          content: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Gap(10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Text(
+                    'Are You Sure, you want to logout!'.tr,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Gap(30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: ontap,
+                      child: Container(
+                        height: 35,
+                        width: 55,
+                        decoration: BoxDecoration(
+                          /// changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee////
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                          child: Text(
+                            'Yes'.tr,
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: ontapno,
+                      child: Container(
+                        height: 35,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          /// changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee////
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                          child: Text(
+                            'No'.tr,
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   // static successSnackbar(String message, String title) {
   //   Get.snackbar(
@@ -205,6 +207,93 @@ class UiUtilites {
   // static showBottomSheet(container) {
   //   Get.bottomSheet(container);
   // }
+  static DeleteAlert(context, carName, yesOnTap,noOnTap) {
+    return showDialog(
+      
+        context: context,
+        
+        builder: (BuildContext context,) {
+          // Future.delayed(Duration(seconds: 5), () {
+          //   Get.back();
+          // });
+
+          return AlertDialog(
+              content: Wrap(children: [
+            Column(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 14.0),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Are you sure that you want to delete ",
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "“$carName”",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red),
+                            ),
+                            TextSpan(text: ' from your cars?'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Row(
+                      children: [
+                        Container(
+                          width: Get.width * 0.3,
+                          height: Get.height * 0.1 / 2.4,
+                          decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(color: AppColors.grey.shade200),
+                                right:
+                                    BorderSide(color: AppColors.grey.shade200)),
+                          ),
+                          child: Center(
+                              child: Expanded(
+                            child: GestureDetector(
+                              onTap: noOnTap,
+                              child: Text(
+                                "No",
+                                style: TextStyle(color: AppColors.red),
+                              ),
+                            ),
+                          )),
+                        ),
+                        Container(
+                          width: Get.width * 0.3,
+                          height: Get.height * 0.1 / 2.4,
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(color: AppColors.grey.shade200),
+                            ),
+                          ),
+                          child: Center(
+                              child: Expanded(
+                            child: GestureDetector(
+                              onTap: yesOnTap,
+                              child: Text(
+                                "Yes",
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            ),
+                          )),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ]));
+        });
+  }
 
   static SuccessAlert(context) {
     return showDialog(

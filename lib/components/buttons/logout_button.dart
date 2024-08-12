@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
@@ -8,6 +9,7 @@ import 'package:mobilegarage/utils/shadows/button_shadow.dart';
 class LogoutButton extends StatelessWidget {
   LogoutButton({
     super.key,
+    required this.image,
     this.title,
     double? radius,
     this.onTap,
@@ -31,6 +33,7 @@ class LogoutButton extends StatelessWidget {
   final Color btncolor;
   final Color textcolor;
   final FontWeight txtweight;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,20 @@ class LogoutButton extends StatelessWidget {
 
         child: Row(
           children: [
-            Image.asset('assets/images/logout.png'),
+            Container(
+              height: 35,
+              width: 35,
+              decoration: BoxDecoration(
+                color: AppColors.lightprimary,
+                borderRadius: BorderRadius.circular(80),
+              ),
+              child: SvgPicture.asset(
+                image,
+                color: AppColors.primarybg,
+                fit: BoxFit.scaleDown,
+              ),
+            ),
+            // Image.asset('assets/images/logout.png'),
             Gap(10),
             AppText(
               title: '$title',

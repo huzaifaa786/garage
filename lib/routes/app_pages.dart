@@ -15,6 +15,10 @@ import 'package:mobilegarage/app/home/home_binding.dart';
 import 'package:mobilegarage/app/home/home_view.dart';
 import 'package:mobilegarage/app/main/main_binding.dart';
 import 'package:mobilegarage/app/main/main_view.dart';
+import 'package:mobilegarage/app/my_cars/my_cars_binding.dart';
+import 'package:mobilegarage/app/my_cars/my_cars_view.dart';
+import 'package:mobilegarage/app/my_location/my_location_binding.dart';
+import 'package:mobilegarage/app/my_location/my_location_view.dart';
 import 'package:mobilegarage/app/order/order_binding.dart';
 import 'package:mobilegarage/app/order/order_view.dart';
 import 'package:mobilegarage/app/languange/languange_binding.dart';
@@ -34,6 +38,8 @@ import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/app/select_lang/select_language_view.dart';
 import 'package:mobilegarage/app/splash/splash_binding.dart';
 import 'package:mobilegarage/app/splash/splash_view.dart';
+import 'package:mobilegarage/app/terms/terms_conditions_binding.dart';
+import 'package:mobilegarage/app/terms/terms_conditions_view.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 
 class AppPages {
@@ -116,9 +122,10 @@ class AppPages {
       name: AppRoutes.otp,
       page: () => const OtpView(),
       binding: OtpBinding(),
-            transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100),),
-    
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
     //TODO:  [Language Route]
     GetPage(
       name: AppRoutes.language,
@@ -161,6 +168,25 @@ class AppPages {
       name: AppRoutes.orders,
       page: () => const OrderView(),
       binding: OrderBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+        //TODO:  [Order_history Screen]
+    GetPage(
+      name: AppRoutes.termscondition,
+      page: () => TermsConditionsView(),
+      binding: TermsConditionsBinding(), ),
+    GetPage(
+      name: AppRoutes.my_cars,
+      page: () => const MyCarsView(),
+      binding: MyCarsBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.my_location,
+      page: () => const MyLocationView(),
+      binding: MyLocationBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
