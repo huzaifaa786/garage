@@ -1,12 +1,12 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/search/components/search_card.dart';
 import 'package:mobilegarage/app/search/search_controller.dart';
 import 'package:mobilegarage/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/components/textfields/icon_inputfield.dart';
 import 'package:mobilegarage/utils/app_text/app_text.dart';
-import 'package:mobilegarage/utils/colors/app_color.dart';
 import 'package:mobilegarage/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/utils/ui_utils/ui_utils.dart';
 
@@ -40,32 +40,12 @@ class SearchView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
-                // Gap(20),
-                // Row(
-                //   children: [
-                //     IconInputField(
-                //       width: Get.width * 0.7,
-                //       hasprefix: true,
-                //       hint: 'Search for garages, service ..'.tr,
-                //       readOnly: false,
-                //       onChange: (value) {},
-                //     ),
-                //     Gap(15),
-                //     Container(
-                //       height: 40,
-                //       width: 40,
-                //       decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.circular(30),
-                //           color: AppColors.lightprimary),
-                //       child: Image.asset('assets/images/menu.png'),
-                //     ),
-                //   ],
-                // ),
                 Gap(15),
                 Row(
                   children: [
+                    Gap(5),
                     AppText(
-                      title: 'Results ',
+                      title: 'Results',
                       size: 14,
                       fontWeight: FontWeight.w500,
                     ),
@@ -74,12 +54,11 @@ class SearchView extends StatelessWidget {
                 ListView.builder(
                   itemCount: controller.searchCards.length,
                   shrinkWrap: true,
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     final item = controller.searchCards[index];
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4.0, horizontal: 2.0),
+                      padding: const EdgeInsets.only(top: 15),
                       child: SearchCard(
                         image: item.image,
                         title: item.title,
