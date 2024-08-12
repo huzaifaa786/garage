@@ -12,6 +12,7 @@ import 'package:mobilegarage/components/cards/profile_card.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 import 'package:mobilegarage/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/utils/ui_utils/ui_utils.dart';
 
 class AccountView extends StatefulWidget {
   const AccountView({super.key});
@@ -108,20 +109,29 @@ class _AccountViewState extends State<AccountView> {
                         Get.toNamed(AppRoutes.language);
                       }),
                   Gap(15),
-                  EmailProfileCard(
-                      height: Get.height * 0.08,
-                      width: Get.width * 0.8,
-                      text: 'Contact us',
-                      image: 'assets/icons/mail.svg',
-                      text2: 'mobilegarage1@gmail.com',
-                      ontap: () {}),
+                  AllProfileCard(
+                    text: 'Settings',
+                    image: 'assets/icons/language.svg',
+                    ontap: () {},
+                    text2: '',
+                    height: Get.height * 0.08,
+                    width: Get.width * 0.8,
+                  ),
+                  // EmailProfileCard(
+                  //     height: Get.height * 0.08,
+                  //     width: Get.width * 0.8,
+                  //     text: 'Contact us',
+                  //     image: 'assets/icons/mail.svg',
+                  //     text2: 'mobilegarage1@gmail.com',
+                  //     ontap: () {}),
                   Gap(53),
                   LogoutButton(
                     image: 'assets/icons/log-out.svg',
-                    
                     title: 'Log out',
                     buttonWidth: Get.width * 0.77,
-                    onTap: () {},
+                    onTap: () {
+                      UiUtilites.logoutSuccessAlert(context, () {}, () {});
+                    },
                   ),
                   Gap(25),
                 ],

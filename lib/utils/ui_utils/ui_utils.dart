@@ -117,79 +117,81 @@ class UiUtilites {
 //     );
 //   }
 
-//   static logoutSuccessAlert(context, ontap, ontapno) {
-//     return showDialog(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           backgroundColor: AppColors.white,
-//           surfaceTintColor: AppColors.white,
-//           shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.all(Radius.circular(13))),
-//           content: Container(
-//             decoration: BoxDecoration(
-//               color: Colors.white,
-//               borderRadius: BorderRadius.all(Radius.circular(20.0)),
-//             ),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.start,
-//               crossAxisAlignment: CrossAxisAlignment.stretch,
-//               mainAxisSize: MainAxisSize.min,
-//               children: <Widget>[
-//                 Gap(10),
-//                 Padding(
-//                   padding: const EdgeInsets.only(left: 15, right: 15),
-//                   child: Text(
-//                     'Are You Sure, you want to logout!'.tr,
-//                     textAlign: TextAlign.center,
-//                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
-//                   ),
-//                 ),
-//                 Gap(30),
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                   children: [
-//                     GestureDetector(
-//                       onTap: ontap,
-//                       child: Container(
-//                         height: 35,
-//                         width: 55,
-//                         decoration: BoxDecoration(
-//                             color: AppColors.primary_color,
-//                             borderRadius: BorderRadius.circular(10)),
-//                         child: Center(
-//                           child: Text(
-//                             'Yes'.tr,
-//                             style: TextStyle(fontSize: 20.0),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     GestureDetector(
-//                       onTap: ontapno,
-//                       child: Container(
-//                         height: 35,
-//                         width: 50,
-//                         decoration: BoxDecoration(
-//                             color: AppColors.primary_color,
-//                             borderRadius: BorderRadius.circular(10)),
-//                         child: Center(
-//                           child: Text(
-//                             'No'.tr,
-//                             style: TextStyle(fontSize: 20.0),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 )
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
+  static logoutSuccessAlert(context, ontap, ontapno) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: AppColors.white,
+          surfaceTintColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(13))),
+          content: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Gap(10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Text(
+                    'Are You Sure, you want to logout!'.tr,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Gap(30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: ontap,
+                      child: Container(
+                        height: 35,
+                        width: 55,
+                        decoration: BoxDecoration(
+                          /// changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee////
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                          child: Text(
+                            'Yes'.tr,
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: ontapno,
+                      child: Container(
+                        height: 35,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          /// changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee////
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                          child: Text(
+                            'No'.tr,
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   // static successSnackbar(String message, String title) {
   //   Get.snackbar(
