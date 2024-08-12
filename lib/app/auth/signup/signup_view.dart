@@ -88,7 +88,7 @@ class SignupView extends StatelessWidget {
                             ),
                             Gap(20),
                             GoogleMapButton(
-                                title: 'Select location on Google map'.tr,
+                                title: 'Select location on Google map',
                                 address: controller.currentAddress,
                                 onPressed: () async {
                                   if (await getLocationPermission() == true) {
