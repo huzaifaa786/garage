@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -121,71 +123,110 @@ class UiUtilites {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: AppColors.white,
-          surfaceTintColor: AppColors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(13))),
-          content: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(20.0)),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Gap(10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: Text(
-                    'Are You Sure, you want to logout!'.tr,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+        return BackdropFilter(
+         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: AlertDialog(
+            backgroundColor: AppColors.white,
+            surfaceTintColor: AppColors.white,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            content: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/cross.svg',
+                          height: 20,
+                          width: 20,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Gap(30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    GestureDetector(
-                      onTap: ontap,
-                      child: Container(
-                        height: 35,
-                        width: 55,
-                        decoration: BoxDecoration(
-                          /// changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee////
-                            color: AppColors.primary,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                          child: Text(
-                            'Yes'.tr,
-                            style: TextStyle(fontSize: 20.0),
+                  Gap(10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Text(
+                      'Are you Sure that \nyou want to log out?'.tr,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Gap(20),
+                  Container(
+                      child:
+                          Divider(thickness: 1, height: 1, color: Colors.grey)),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'No'.tr,
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: AppColors.red,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: ontapno,
-                      child: Container(
-                        height: 35,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          /// changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee////
-                            color: AppColors.primary,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                          child: Text(
-                            'No'.tr,
-                            style: TextStyle(fontSize: 20.0),
+                      Container(
+                        height: 50,
+                        width: 1,
+                        color: Colors.grey,
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Yes'.tr,
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: AppColors.lightgreen, // Green text for "Yes"
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         );
@@ -207,12 +248,12 @@ class UiUtilites {
   // static showBottomSheet(container) {
   //   Get.bottomSheet(container);
   // }
-  static DeleteAlert(context, carName, yesOnTap,noOnTap) {
+  static DeleteAlert(context, carName, yesOnTap, noOnTap) {
     return showDialog(
-      
         context: context,
-        
-        builder: (BuildContext context,) {
+        builder: (
+          BuildContext context,
+        ) {
           // Future.delayed(Duration(seconds: 5), () {
           //   Get.back();
           // });
