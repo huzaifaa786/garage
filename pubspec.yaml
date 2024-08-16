@@ -54,6 +54,9 @@ dependencies:
   timelines: ^0.1.0
   flutter_rating_bar: ^4.0.1
   convex_bottom_bar: ^3.2.0
+  input_quantity: ^2.4.0
+  easy_stepper: ^0.8.5+1
+  another_stepper: ^1.2.2
 
 
 

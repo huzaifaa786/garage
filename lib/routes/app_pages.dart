@@ -7,6 +7,8 @@ import 'package:mobilegarage/app/auth/signin/signin_bindings.dart';
 import 'package:mobilegarage/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/app/cart/cart_bindings.dart';
+import 'package:mobilegarage/app/cart/cart_view.dart';
 import 'package:mobilegarage/app/chat_screen/chat_screen_binding.dart';
 import 'package:mobilegarage/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
@@ -19,6 +21,8 @@ import 'package:mobilegarage/app/my_cars/my_cars_binding.dart';
 import 'package:mobilegarage/app/my_cars/my_cars_view.dart';
 import 'package:mobilegarage/app/my_location/my_location_binding.dart';
 import 'package:mobilegarage/app/my_location/my_location_view.dart';
+import 'package:mobilegarage/app/notification/notification_binding.dart';
+import 'package:mobilegarage/app/notification/notification_view.dart';
 import 'package:mobilegarage/app/order/order_binding.dart';
 import 'package:mobilegarage/app/order/order_view.dart';
 import 'package:mobilegarage/app/languange/languange_binding.dart';
@@ -188,6 +192,20 @@ class AppPages {
       page: () => const MyLocationView(),
       binding: MyLocationBinding(),
       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.cart,
+      page: () => const CartView(),
+      binding: CartBindings(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     GetPage(
+      name: AppRoutes.notification,
+      page: () => const NotificationView(),
+      binding: NotificationBinding(),
+      transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 100),
     ),
   ];

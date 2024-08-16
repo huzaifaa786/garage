@@ -24,7 +24,7 @@ class OrderHistoryCard extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: 7, bottom: 7),
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+          padding: EdgeInsets.symmetric(horizontal:25, vertical: 25),
           color: AppColors.white,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

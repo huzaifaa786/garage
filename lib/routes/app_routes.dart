@@ -11,7 +11,6 @@ class AppRoutes {
   static const editprofile = '/editprofile';
   static const otp = '/otp';
   static const search = '/search';
-  // static const editprofile = '/editprofile';
   static const language = '/language';
   static const chatScreen = '/chatScreen';
   static const order_history = '/order_history';
@@ -19,20 +18,9 @@ class AppRoutes {
   static const orders = '/orders';
   static const main = '/main';
   static const termscondition = '/termscondition';
-  
   static const my_cars = '/my_cars';
   static const my_location = '/my_location';
-  // static const forgotpassword = '/forgotpassword';
-  // static const phonesignup = '/phonesignup';
-  // static const profile = '/profile';
-  // static const orders = '/orders';
-  // static const otp = '/otp';
-  // static const language = '/language';
-  // static const notifications = '/notifications';
-  // static const changePassword = '/ChangePassword';
-  // static const updatepassword = '/updatepassword';
-  // static const main = '/main';
-  // static const map = '/map';
-  // static const policies = '/policies';
-  // static const help = '/help';
+  static const cart = '/cart';
+  static const notification = '/notification';
+  
 }
