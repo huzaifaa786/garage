@@ -31,8 +31,6 @@ class SearchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: Get.width * 0.28,
-      // height: Get.height * 0.2,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -40,7 +38,12 @@ class SearchCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.25),
             blurRadius: 4,
-            offset: Offset(0, 4),
+            offset: Offset(4, 4),
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 4,
+            offset: Offset(-4, -4),
           ),
         ],
       ),
