@@ -66,7 +66,7 @@ class _HomeViewState extends State<HomeView> {
                       );
                     },
                     options: CarouselOptions(
-                      height: Get.height * 0.3,
+                      height: Get.height * 0.28,
                       enableInfiniteScroll: true,
                       autoPlay: true,
                       viewportFraction: 0.9,

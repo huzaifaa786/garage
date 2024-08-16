@@ -1,51 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
-import 'package:mobilegarage/app/auth/otp/otp_binding.dart';
-import 'package:mobilegarage/app/auth/otp/otp_view.dart';
-import 'package:mobilegarage/app/auth/signin/signin_bindings.dart';
-import 'package:mobilegarage/app/auth/signin/signin_view.dart';
-import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
-import 'package:mobilegarage/app/auth/signup/signup_view.dart';
 import 'package:mobilegarage/app/cart/cart_bindings.dart';
 import 'package:mobilegarage/app/cart/cart_view.dart';
-import 'package:mobilegarage/app/chat_screen/chat_screen_binding.dart';
-import 'package:mobilegarage/app/chat_screen/chat_screen_view.dart';
-import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
-import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
-import 'package:mobilegarage/app/home/home_binding.dart';
-import 'package:mobilegarage/app/home/home_view.dart';
-import 'package:mobilegarage/app/main/main_binding.dart';
-import 'package:mobilegarage/app/main/main_view.dart';
-import 'package:mobilegarage/app/my_cars/my_cars_binding.dart';
-import 'package:mobilegarage/app/my_cars/my_cars_view.dart';
-import 'package:mobilegarage/app/my_location/my_location_binding.dart';
-import 'package:mobilegarage/app/my_location/my_location_view.dart';
 import 'package:mobilegarage/app/notification/notification_binding.dart';
 import 'package:mobilegarage/app/notification/notification_view.dart';
-import 'package:mobilegarage/app/order/order_binding.dart';
-import 'package:mobilegarage/app/order/order_view.dart';
-import 'package:mobilegarage/app/languange/languange_binding.dart';
-import 'package:mobilegarage/app/languange/languange_view.dart';
-import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
-import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
-import 'package:mobilegarage/app/order_history/order_history_binding.dart';
-import 'package:mobilegarage/app/order_history/order_history_view.dart';
-import 'package:mobilegarage/app/profile/account_binding.dart';
-import 'package:mobilegarage/app/profile/account_view.dart';
-import 'package:mobilegarage/app/profile/edit_profile/edit_profile_binding.dart';
-import 'package:mobilegarage/app/profile/edit_profile/edit_profile_view.dart';
-import 'package:mobilegarage/app/search/search_binding.dart';
-import 'package:mobilegarage/app/search/search_controller.dart';
-import 'package:mobilegarage/app/search/search_view.dart';
-import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
-import 'package:mobilegarage/app/select_lang/select_language_view.dart';
-import 'package:mobilegarage/app/splash/splash_binding.dart';
-import 'package:mobilegarage/app/splash/splash_view.dart';
-import 'package:mobilegarage/app/terms/terms_conditions_binding.dart';
-import 'package:mobilegarage/app/terms/terms_conditions_view.dart';
-import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
-import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/splash/splash_binding.dart';
 import 'package:mobilegarage/splash/splash_view.dart';
 
@@ -55,6 +14,8 @@ import 'package:mobilegarage/user_app/app/auth/signin/signin_bindings.dart';
 import 'package:mobilegarage/user_app/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
+import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_binding.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_binding.dart';
@@ -292,6 +253,7 @@ class AppPages {
     ),
      GetPage(
       name: AppRoutes.cart,
+      page:  () => CartView(),
       binding: CartBindings(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
@@ -305,6 +267,7 @@ class AppPages {
     ),
 
   //TODO:  [Setting Screen]
+  GetPage(
       name: AppRoutes.setting,
       page: () => SettingView(),
       binding: SettingBinding(),

@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/notification/components/notification_card.dart';
 import 'package:mobilegarage/app/notification/notification_controller.dart';
-import 'package:mobilegarage/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/utils/app_text/app_text.dart';
-import 'package:mobilegarage/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class NotificationView extends StatelessWidget {
   const NotificationView({super.key});
@@ -17,6 +16,7 @@ class NotificationView extends StatelessWidget {
       builder: (controller) => Scaffold(
         appBar: AppBar(
           title: TopBar(
+            
             title: 'Notifications',
           ),
         ),

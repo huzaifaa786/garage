@@ -71,7 +71,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       btncolor: AppColors.white,
                       textcolor: AppColors.primary,
                       onTap: () {
-                        Get.offAllNamed(AppRoutes.home);
+                        Get.offAllNamed(AppRoutes.main);
                       },
                     ),
                   ],

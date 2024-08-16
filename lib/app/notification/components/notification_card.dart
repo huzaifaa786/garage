@@ -1,16 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:another_stepper/another_stepper.dart';
-import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/notification/notification_controller.dart';
-import 'package:mobilegarage/app/order/order_view.dart';
-import 'package:mobilegarage/utils/app_text/app_rich_text.dart';
-import 'package:mobilegarage/utils/app_text/app_text.dart';
-import 'package:mobilegarage/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/app/cart/cart_view.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 import 'package:mobilegarage/user_app/app/home/home_view.dart';
 
-import 'package:mobilegarage/user_app/app/order/order_view.dart';
 import 'package:mobilegarage/user_app/app/profile/account_view.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -23,8 +23,7 @@ class _MainViewState extends State<MainView> with RouteAware {
 
   final List<Widget> _fragments = [
     const HomeView(),
-    Container(),
-    const OrderView(),
+    const CartView(),
     const AccountView(),
   ];
 
@@ -35,37 +34,26 @@ class _MainViewState extends State<MainView> with RouteAware {
     String label,
   ) {
     return InkWell(
-      onTap: index == 1
-          ? () {}
-          : () {
-              setState(() {
-                _bottom_index = index;
-              });
-            },
+      onTap: () {
+        setState(() {
+          _bottom_index = index;
+        });
+      },
       child: Container(
-        // width: Get.width * 0.22,
         color: AppColors.white,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                index == 1
-                    ? ""
-                    : _bottom_index == index
-                        ? iconPath
-                        : iconPath1,
-                // height: 15,
-                // width: 15,
+                _bottom_index == index ? iconPath : iconPath1,
               ),
               Text(
                 label,
                 style: TextStyle(
-                  color: index == 1
-                      ? Colors.transparent
-                      : _bottom_index == index
-                          ? AppColors.red.shade900
-                          : AppColors.black,
+                  color: _bottom_index == index
+                      ? AppColors.red.shade900
+                      : AppColors.black,
                   fontSize: 10,
                   fontWeight: FontWeight.w500,
                 ),
@@ -73,18 +61,6 @@ class _MainViewState extends State<MainView> with RouteAware {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _BuildnavigationB() {
-    return Container(
-      margin: EdgeInsets.only(top: 34),
-      height: 7,
-      width: 7,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: AppColors.red,
       ),
     );
   }
@@ -101,14 +77,6 @@ class _MainViewState extends State<MainView> with RouteAware {
             body: SafeArea(
               child: _fragments[_bottom_index],
             ),
-            floatingActionButton: FloatingActionButton(
-              shape: CircleBorder(),
-              onPressed: () {},
-              child: Icon(Icons.add),
-              backgroundColor: Colors.red,
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
                 boxShadow: [
@@ -121,12 +89,9 @@ class _MainViewState extends State<MainView> with RouteAware {
               ),
               child: BottomAppBar(
                 shape: CircularNotchedRectangle(),
-                height: Get.height * 0.1 / 1.2,
-                shadowColor: AppColors.black,
-                notchMargin: 5,
+                height: Get.height * 0.1,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     _BuildnavigationBarItem(
                       0,
@@ -136,19 +101,12 @@ class _MainViewState extends State<MainView> with RouteAware {
                     ),
                     _BuildnavigationBarItem(
                       1,
-                      "",
-                      "",
-                      'Home',
-                    ),
-                    _BuildnavigationB(),
-                    _BuildnavigationBarItem(
-                      2,
                       "assets/icons/redCart.svg",
                       "assets/icons/cart.svg",
                       'Carts',
                     ),
                     _BuildnavigationBarItem(
-                      3,
+                      2,
                       "assets/icons/redUser.svg",
                       "assets/icons/user.svg",
                       'Profile',

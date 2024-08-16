@@ -6,8 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:input_quantity/input_quantity.dart';
-import 'package:mobilegarage/utils/app_text/app_text.dart';
-import 'package:mobilegarage/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class CartCard extends StatelessWidget {
   const CartCard({

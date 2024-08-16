@@ -1,10 +1,9 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/utils/borders/border.dart';
-import 'package:mobilegarage/utils/colors/app_color.dart';
-import 'package:mobilegarage/utils/decorations/box_decoration.dart';
-
+import 'package:mobilegarage/user_app/utils/borders/border.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 class PromocodeTextfield extends StatelessWidget {
   const PromocodeTextfield({
     super.key,

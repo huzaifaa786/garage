@@ -5,13 +5,12 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/cart/cart_controller.dart';
 import 'package:mobilegarage/app/cart/components/cart_card.dart';
-import 'package:mobilegarage/app/order_history/components/order_history_card.dart';
-import 'package:mobilegarage/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/components/buttons/main_button.dart';
-import 'package:mobilegarage/components/textfields/promocode_textfield.dart';
-import 'package:mobilegarage/utils/app_text/app_text.dart';
-import 'package:mobilegarage/utils/colors/app_color.dart';
-import 'package:mobilegarage/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
+import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
+import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
 class CartView extends StatelessWidget {
   const CartView({super.key});
@@ -19,6 +18,7 @@ class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
+      autoRemove: false,
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(95.0),
