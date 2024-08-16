@@ -33,7 +33,7 @@ class SplashController extends GetxController {
     // String? apiToken = box.read('api_token');
     // bool firstRun = await IsFirstRun.isFirstRun();
     // if (firstRun == true) {
-    Get.offAllNamed(AppRoutes.language);
+    Get.offAllNamed(AppRoutes.selectlang);
     // Get.offAllNamed(AppRoutes.signin);
     // } else {
     //   if (apiToken != null) {
