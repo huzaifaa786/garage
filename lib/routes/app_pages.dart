@@ -1,49 +1,90 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
-import 'package:mobilegarage/app/auth/otp/otp_binding.dart';
-import 'package:mobilegarage/app/auth/otp/otp_view.dart';
-import 'package:mobilegarage/app/auth/signin/signin_bindings.dart';
-import 'package:mobilegarage/app/auth/signin/signin_view.dart';
-import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
-import 'package:mobilegarage/app/auth/signup/signup_view.dart';
-import 'package:mobilegarage/app/chat_screen/chat_screen_binding.dart';
-import 'package:mobilegarage/app/chat_screen/chat_screen_view.dart';
-import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
-import 'package:mobilegarage/app/chats_accounts/chats_accounts_view.dart';
-import 'package:mobilegarage/app/home/home_binding.dart';
-import 'package:mobilegarage/app/home/home_view.dart';
-import 'package:mobilegarage/app/main/main_binding.dart';
-import 'package:mobilegarage/app/main/main_view.dart';
-import 'package:mobilegarage/app/my_cars/my_cars_binding.dart';
-import 'package:mobilegarage/app/my_cars/my_cars_view.dart';
-import 'package:mobilegarage/app/my_location/my_location_binding.dart';
-import 'package:mobilegarage/app/my_location/my_location_view.dart';
-import 'package:mobilegarage/app/order/order_binding.dart';
-import 'package:mobilegarage/app/order/order_view.dart';
-import 'package:mobilegarage/app/languange/languange_binding.dart';
-import 'package:mobilegarage/app/languange/languange_view.dart';
-import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
-import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
-import 'package:mobilegarage/app/order_history/order_history_binding.dart';
-import 'package:mobilegarage/app/order_history/order_history_view.dart';
-import 'package:mobilegarage/app/profile/account_binding.dart';
-import 'package:mobilegarage/app/profile/account_view.dart';
-import 'package:mobilegarage/app/profile/edit_profile/edit_profile_binding.dart';
-import 'package:mobilegarage/app/profile/edit_profile/edit_profile_view.dart';
-import 'package:mobilegarage/app/search/search_binding.dart';
-import 'package:mobilegarage/app/search/search_controller.dart';
-import 'package:mobilegarage/app/search/search_view.dart';
-import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
-import 'package:mobilegarage/app/select_lang/select_language_view.dart';
-import 'package:mobilegarage/app/splash/splash_binding.dart';
-import 'package:mobilegarage/app/splash/splash_view.dart';
-import 'package:mobilegarage/app/terms/terms_conditions_binding.dart';
-import 'package:mobilegarage/app/terms/terms_conditions_view.dart';
+import 'package:mobilegarage/splash/splash_binding.dart';
+import 'package:mobilegarage/splash/splash_view.dart';
+
+import 'package:mobilegarage/user_app/app/auth/otp/otp_binding.dart';
+import 'package:mobilegarage/user_app/app/auth/otp/otp_view.dart';
+import 'package:mobilegarage/user_app/app/auth/signin/signin_bindings.dart';
+import 'package:mobilegarage/user_app/app/auth/signin/signin_view.dart';
+import 'package:mobilegarage/user_app/app/auth/signup/signup_binding.dart';
+import 'package:mobilegarage/user_app/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_binding.dart';
+import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
+import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_binding.dart';
+import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_view.dart';
+import 'package:mobilegarage/user_app/app/home/home_binding.dart';
+import 'package:mobilegarage/user_app/app/home/home_view.dart';
+import 'package:mobilegarage/user_app/app/languange/languange_binding.dart';
+import 'package:mobilegarage/user_app/app/languange/languange_view.dart';
+import 'package:mobilegarage/user_app/app/main/main_binding.dart';
+import 'package:mobilegarage/user_app/app/main/main_view.dart';
+import 'package:mobilegarage/user_app/app/my_cars/my_cars_binding.dart';
+import 'package:mobilegarage/user_app/app/my_cars/my_cars_view.dart';
+import 'package:mobilegarage/user_app/app/my_location/my_location_binding.dart';
+import 'package:mobilegarage/user_app/app/my_location/my_location_view.dart';
+import 'package:mobilegarage/user_app/app/order/order_binding.dart';
+import 'package:mobilegarage/user_app/app/order/order_view.dart';
+
+import 'package:mobilegarage/user_app/app/onboarding/onboarding_binding.dart';
+import 'package:mobilegarage/user_app/app/onboarding/onboarding_view.dart';
+import 'package:mobilegarage/user_app/app/order_history/order_history_binding.dart';
+import 'package:mobilegarage/user_app/app/order_history/order_history_view.dart';
+import 'package:mobilegarage/user_app/app/profile/account_binding.dart';
+import 'package:mobilegarage/user_app/app/profile/account_view.dart';
+import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_binding.dart';
+import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_view.dart';
+import 'package:mobilegarage/user_app/app/search/search_binding.dart';
+import 'package:mobilegarage/user_app/app/search/search_view.dart';
+import 'package:mobilegarage/user_app/app/select_lang/select_language_binding.dart';
+import 'package:mobilegarage/user_app/app/select_lang/select_language_view.dart';
+import 'package:mobilegarage/user_app/app/terms/terms_conditions_binding.dart';
+import 'package:mobilegarage/user_app/app/terms/terms_conditions_view.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/vendor_app/app/auth/change_forgot_password/change_forgot_password_binding.dart';
+import 'package:mobilegarage/vendor_app/app/auth/change_forgot_password/change_forgot_password_view.dart';
+import 'package:mobilegarage/vendor_app/app/auth/forgot_password/forgot_otp_verify/forgot_otp_verify.dart';
+import 'package:mobilegarage/vendor_app/app/auth/forgot_password/forgot_password_binding.dart';
+import 'package:mobilegarage/vendor_app/app/auth/forgot_password/forgot_password_view.dart';
+import 'package:mobilegarage/vendor_app/app/auth/sign_in/signin_binding.dart';
+import 'package:mobilegarage/vendor_app/app/auth/sign_in/signin_view.dart';
+import 'package:mobilegarage/vendor_app/app/auth/sign_up/signup_binding.dart';
+import 'package:mobilegarage/vendor_app/app/auth/sign_up/signup_view.dart';
+import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_binding.dart';
+import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_view.dart';
+import 'package:mobilegarage/vendor_app/app/banner/banner_binding.dart';
+import 'package:mobilegarage/vendor_app/app/banner/banner_view.dart';
+import 'package:mobilegarage/vendor_app/app/chat/chat_binding.dart';
+import 'package:mobilegarage/vendor_app/app/chat/chat_view.dart';
+import 'package:mobilegarage/vendor_app/app/contactus/contactus_binding.dart';
+import 'package:mobilegarage/vendor_app/app/contactus/contactus_view.dart';
+import 'package:mobilegarage/vendor_app/app/home/home_binding.dart';
+import 'package:mobilegarage/vendor_app/app/home/home_view.dart';
+import 'package:mobilegarage/vendor_app/app/language/language_binding.dart';
+import 'package:mobilegarage/vendor_app/app/language/language_view.dart';
+import 'package:mobilegarage/vendor_app/app/map/map_binding.dart';
+import 'package:mobilegarage/vendor_app/app/map/map_view.dart';
+import 'package:mobilegarage/vendor_app/app/notification/notification_binding.dart';
+import 'package:mobilegarage/vendor_app/app/notification/notification_view.dart';
+import 'package:mobilegarage/vendor_app/app/order/orders/orders_binding.dart';
+import 'package:mobilegarage/vendor_app/app/order/orders/orders_view.dart';
+import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_binding.dart';
+import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_view.dart';
+import 'package:mobilegarage/vendor_app/app/product/products/products_binding.dart';
+import 'package:mobilegarage/vendor_app/app/product/products/products_view.dart';
+import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepassword_binding.dart';
+import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepassword_view.dart';
+import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_binding.dart';
+import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_view.dart';
+import 'package:mobilegarage/vendor_app/app/sale/sale_binding.dart';
+import 'package:mobilegarage/vendor_app/app/sale/sale_view.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
+
+
+    //////////////////user_app//////////////////
     //TODO:  [Splash Route]
     GetPage(
       name: AppRoutes.splash,
@@ -190,5 +231,128 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+
+
+
+    ////////////////////vendor_app/////////////////////////
+     GetPage(
+      name: AppRoutes.splash,
+      page: () => const SplashView(),
+      binding: SplashBinding(),
+    ),
+
+    //* {Sign up Route}
+    GetPage(
+      name: AppRoutes.vsignup,
+      page: () => const VSignupView(),
+      binding: VSignUpBinding(),
+    ),
+
+    //* {Sign in Route}
+    GetPage(
+      name: AppRoutes.vsignin,
+      page: () => const VSignInView(),
+      binding: VSignInBinding(),
+    ),
+
+    //* {Forgot Route}
+    GetPage(
+      name: AppRoutes.forgot_password,
+      page: () => const VForgotPasswordView(),
+      binding: VForgotPasswordBinding(),
+    ),
+
+    //* {Forgot Otp Verify Route}
+    GetPage(
+      name: AppRoutes.vforgot_otp_verify,
+      page: () => const VForgotOtpVerifyView(),
+      binding: VForgotPasswordBinding(),
+    ),
+
+    //* {Change Forgot Password Route}
+    GetPage(
+      name: AppRoutes.vchange_forgot_password,
+      page: () => const VChangeForgotPasswordView(),
+      binding: VChangeForgotPasswordBinding(),
+    ),
+
+     //* {Change Password Route}
+  
+
+    //* {Product Form View Route}
+    GetPage(
+      name: AppRoutes.vproduct_form_view,
+      page: () => const ProductFormView(),
+      binding: ProductFormBinding(),
+    ),
+
+    //* {Order List View Route}
+    GetPage(
+      name: AppRoutes.vorders_view,
+      page: () => const VOrdersView(),
+      binding: VOrdersBinding(),
+    ),
+
+    GetPage(
+      name: AppRoutes.vhome,
+      page: () => VHomeView(),
+      binding: VHomeBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.veditprofile,
+      page: () => const VEditprofileView(),
+      binding: VEditprofileBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vavaliabledate,
+      page: () => const AvaliableDateView(),
+      binding: AvaliableDateBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vsale,
+      page: () => const SaleView(),
+      binding: SaleBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vchangepassword,
+      page: () => const VChangepasswordView(),
+      binding: VChangepasswordBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vnotification,
+      page: () => const VNotificationView(),
+      binding: VNotificationBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vchat,
+      page: () => const VChatView(),
+      binding: VChatBinding(),
+    ),
+
+    GetPage(
+      name: AppRoutes.vproductlist,
+      page: () => const VProductsView(),
+      binding: VProductsBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vmap,
+      page: () => VMapView(),
+      binding: VMapBinding(),
+    ),
+       GetPage(
+      name: AppRoutes.vbanner,
+      page: () => VBannerView(),
+      binding: VBannerBinding(),
+    ),
+       GetPage(
+      name: AppRoutes.vcontactus,
+      page: () => VContactusView(),
+      binding: VContactusBinding(),
+    ),
+     GetPage(
+      name: AppRoutes.vlanguage,
+      page: () => const VLanguageView(),
+      binding: VLanguageBinding(),
+     )
   ];
 }
