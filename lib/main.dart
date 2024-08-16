@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/app/splash/splash_binding.dart';
-import 'package:mobilegarage/app/splash/splash_view.dart';
-import 'package:mobilegarage/helper/loading.dart';
+import 'package:mobilegarage/splash/splash_binding.dart';
+import 'package:mobilegarage/splash/splash_view.dart';
+
+import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/routes/app_pages.dart';
-import 'package:mobilegarage/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 void main()async {
    WidgetsFlutterBinding.ensureInitialized();
