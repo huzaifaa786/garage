@@ -15,8 +15,8 @@ class NotificationView extends StatelessWidget {
     return GetBuilder<NotificationController>(
       builder: (controller) => Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: TopBar(
-            
             title: 'Notifications',
           ),
         ),

@@ -7,8 +7,8 @@ import 'package:gap/gap.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class HomeAppbar extends StatelessWidget {
-  const HomeAppbar({super.key});
-
+  const HomeAppbar({super.key,this.onNotificationtap});
+  final onNotificationtap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,7 +25,9 @@ class HomeAppbar extends StatelessWidget {
             Gap(10),
             Row(
               children: [
-                SvgPicture.asset('assets/icons/bell.svg'),
+                GestureDetector(
+                  onTap: onNotificationtap,
+                    child: SvgPicture.asset('assets/icons/bell.svg')),
                 Gap(20),
                 Container(
                   height: 35,

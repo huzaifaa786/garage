@@ -6,10 +6,13 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class NotificationController extends GetxController {
   static NotificationController instanse = Get.find();
-  int activestatus = 0;
+  int activestatus = 2;
 
   List<Map<String, dynamic>> notifications = [
-    {"productImage": "https://dummyimage.com/93x93/000/fff", "status": 's'},
+    {
+      "productImage": "https://dummyimage.com/93x93/000/fff",
+      "status": 'neworder'
+    },
   ];
   List<StepperData> get stepperData => [
         StepperData(
@@ -37,16 +40,20 @@ class NotificationController extends GetxController {
         StepperData(
             title: StepperText(
               "On the way",
-              textStyle: const TextStyle(
-                  color: AppColors.greybg,
+              textStyle: TextStyle(
+                  color: activestatus != 1
+                      ? AppColors.lightgreen
+                      : AppColors.greybg,
                   fontSize: 10,
                   fontWeight: FontWeight.w500),
             ),
             iconWidget: Container(
               height: 30,
               width: 30,
-              decoration: const BoxDecoration(
-                  color: AppColors.lightgreen,
+              decoration: BoxDecoration(
+                  color: activestatus != 1
+                      ? AppColors.lightgreen
+                      : AppColors.greybg,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
                 child: SvgPicture.asset(
@@ -59,16 +66,20 @@ class NotificationController extends GetxController {
         StepperData(
             title: StepperText(
               "Delivered",
-              textStyle: const TextStyle(
-                  color: AppColors.lightgreen,
+              textStyle: TextStyle(
+                  color: activestatus == 2
+                      ? AppColors.lightgreen
+                      : AppColors.greybg,
                   fontSize: 10,
                   fontWeight: FontWeight.w500),
             ),
             iconWidget: Container(
               height: 30,
               width: 30,
-              decoration: const BoxDecoration(
-                  color: AppColors.lightgreen,
+              decoration: BoxDecoration(
+                  color: activestatus == 2
+                      ? AppColors.lightgreen
+                      : AppColors.greybg,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
                 child: SvgPicture.asset(

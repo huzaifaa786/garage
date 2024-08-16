@@ -35,7 +35,11 @@ class _HomeViewState extends State<HomeView> {
             automaticallyImplyLeading: false,
             scrolledUnderElevation: 0.0,
             toolbarHeight: 80,
-            title: HomeAppbar(),
+            title: HomeAppbar(
+              onNotificationtap: () {
+                Get.toNamed(AppRoutes.notification);
+              },
+            ),
           ),
           body: SafeArea(
             child: Padding(
@@ -110,7 +114,8 @@ class _HomeViewState extends State<HomeView> {
                     Gap(30),
                     Expanded(
                       child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: controller.itemCount,
                           crossAxisSpacing: 6.0,
                           mainAxisSpacing: 2.0,
