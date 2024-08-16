@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,22 +13,22 @@ class EditProfileController extends GetxController {
   static EditProfileController instance = Get.find();
   TextEditingController phoneController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   File? cameraImage;
   final picker = ImagePicker();
 
-    @override
+  @override
   void onInit() {
     super.onInit();
     receiveArguments();
   }
 
- 
   void receiveArguments() {
-    
     var args = Get.arguments;
     if (args != null) {
       nameController.text = args['userName'] ?? '';
       phoneController.text = args['userNumber'] ?? '';
+      emailController.text = args['userEmail'] ?? '';
     }
   }
 

@@ -22,6 +22,15 @@ class AppRoutes {
   
   static const my_cars = '/my_cars';
   static const my_location = '/my_location';
+  static const setting = '/setting';
+  static const faq = '/faq';
+  static const privacy = '/privacy';
+  static const aboutus = '/aboutus';
+  static const promotion = '/promotion';
+  static const changephonenumber = '/changephonenumber';
+ 
+  
+  
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';

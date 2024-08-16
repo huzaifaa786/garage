@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:mobilegarage/components/cards/terms_condition_listile.dart';
 
-class TermsConditionsController extends GetxController {
-  static TermsConditionsController instance = Get.find();
+class PrivacyController extends GetxController {
+  static PrivacyController instance = Get.find();
   
 
 

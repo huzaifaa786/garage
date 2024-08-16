@@ -59,6 +59,7 @@ class _AccountViewState extends State<AccountView> {
                     image: 'https://dummyimage.com/70x70/000/0011ff',
                     userName: 'User38498990',
                     userNumber: 'User38498990',
+                    userEmail: 'ahmed34@gmail.com',
                     ontap: () {
                       Get.toNamed(
                         AppRoutes.editprofile,
@@ -66,6 +67,7 @@ class _AccountViewState extends State<AccountView> {
                           'image': 'https://dummyimage.com/70x70/000/0011ff',
                           'userName': 'User38498990',
                           'userNumber': '+971 0000 0000',
+                          'userEmail': 'ahmed34@gmail.com',
                         },
                       );
                     },
@@ -74,7 +76,8 @@ class _AccountViewState extends State<AccountView> {
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
-                      text: 'Dubai',
+                      color: AppColors.lightprimary,
+                      text: 'Dubai',textColor: AppColors.black,
                       image: 'assets/icons/map_pin.svg',
                       text2: 'zayed street , house3564 ,....',
                       ontap: () {
@@ -84,27 +87,20 @@ class _AccountViewState extends State<AccountView> {
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
-                      text: 'My cards',
-                      image: 'assets/icons/credit-card.svg',
+                      color: AppColors.lightprimary,
+                      text: 'My cars',textColor: AppColors.black,
+                      image: 'assets/icons/car.svg',
                       text2: '',
                       ontap: () {
                         Get.toNamed(AppRoutes.my_cars);
                       }),
+
                   Gap(15),
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
-                      text: 'Orders history',
-                      image: 'assets/icons/order.svg',
-                      text2: '12 items',
-                      ontap: () {
-                        Get.toNamed(AppRoutes.order_history);
-                      }),
-                  Gap(15),
-                  AllProfileCard(
-                      height: Get.height * 0.08,
-                      width: Get.width * 0.8,
-                      text: 'Language',
+                      color: AppColors.lightprimary,
+                      text: 'Language',textColor: AppColors.black,
                       image: 'assets/icons/language.svg',
                       text2: 'English',
                       ontap: () {
@@ -112,13 +108,27 @@ class _AccountViewState extends State<AccountView> {
                       }),
                   Gap(15),
                   AllProfileCard(
-                    text: 'Settings',
-                    image: 'assets/icons/language.svg',
-                    ontap: () {},
+                    color: AppColors.lightprimary,
+                    text: 'Settings',textColor: AppColors.black,
+                    image: 'assets/icons/setting.svg',
+                    ontap: () {
+                      Get.toNamed(AppRoutes.setting);
+                    },
                     text2: '',
                     height: Get.height * 0.08,
                     width: Get.width * 0.8,
                   ),
+                  Gap(15),
+                  AllProfileCard(
+                    color: AppColors.lightprimary,
+                      height: Get.height * 0.08,
+                      width: Get.width * 0.8,
+                      text: 'Orders history',textColor: AppColors.black,
+                      image: 'assets/icons/order.svg',
+                      text2: '12 items',
+                      ontap: () {
+                        Get.toNamed(AppRoutes.order_history);
+                      }),
                   // EmailProfileCard(
                   //     height: Get.height * 0.08,
                   //     width: Get.width * 0.8,

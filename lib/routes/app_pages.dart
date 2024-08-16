@@ -1,12 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/app/FAQ/faq_binding.dart';
+import 'package:mobilegarage/app/FAQ/faq_view.dart';
+import 'package:mobilegarage/app/aboutus/aboutus_binding.dart';
+import 'package:mobilegarage/app/aboutus/aboutus_view.dart';
 import 'package:mobilegarage/app/auth/otp/otp_binding.dart';
 import 'package:mobilegarage/app/auth/otp/otp_view.dart';
 import 'package:mobilegarage/app/auth/signin/signin_bindings.dart';
 import 'package:mobilegarage/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/app/change_phonenumber/change_phonenumber_binding.dart';
+import 'package:mobilegarage/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/app/chat_screen/chat_screen_binding.dart';
 import 'package:mobilegarage/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/app/chats_accounts/chats_accounts_binding.dart';
@@ -27,15 +33,21 @@ import 'package:mobilegarage/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/app/order_history/order_history_binding.dart';
 import 'package:mobilegarage/app/order_history/order_history_view.dart';
+import 'package:mobilegarage/app/privacy/privacy_binding.dart';
+import 'package:mobilegarage/app/privacy/privacy_view.dart';
 import 'package:mobilegarage/app/profile/account_binding.dart';
 import 'package:mobilegarage/app/profile/account_view.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_binding.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_view.dart';
+import 'package:mobilegarage/app/promotion/promotion_binding.dart';
+import 'package:mobilegarage/app/promotion/promotion_view.dart';
 import 'package:mobilegarage/app/search/search_binding.dart';
 import 'package:mobilegarage/app/search/search_controller.dart';
 import 'package:mobilegarage/app/search/search_view.dart';
 import 'package:mobilegarage/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/app/select_lang/select_language_view.dart';
+import 'package:mobilegarage/app/setting/setting_binding.dart';
+import 'package:mobilegarage/app/setting/setting_view.dart';
 import 'package:mobilegarage/app/splash/splash_binding.dart';
 import 'package:mobilegarage/app/splash/splash_view.dart';
 import 'package:mobilegarage/app/terms/terms_conditions_binding.dart';
@@ -190,5 +202,53 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+            //TODO:  [Setting Screen]
+    GetPage(
+      name: AppRoutes.setting,
+      page: () => SettingView(),
+      binding: SettingBinding(),
+       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100), 
+      ),
+        //TODO:  [FAQ Screen]
+    GetPage(
+      name: AppRoutes.faq,
+      page: () => FaqView(),
+      binding: FaqBinding(),
+       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100), 
+      ),
+       //TODO:  [FAQ Screen]
+    GetPage(
+      name: AppRoutes.privacy,
+      page: () => PrivacyView(),
+      binding: PrivacyBinding(),
+       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100), 
+      ),
+           //TODO:  [Aboutus Screen]
+    GetPage(
+      name: AppRoutes.aboutus,
+      page: () => AboutusView(),
+      binding: AboutusBinding(),
+       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100), 
+      ),
+          //TODO:  [Promotion Screen]
+    GetPage(
+      name: AppRoutes.promotion,
+      page: () => PromotionView(),
+      binding: PromotionBinding(),
+       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100), 
+      ),
+               //TODO:  [Change Phone Number Screen]
+    GetPage(
+      name: AppRoutes.changephonenumber,
+      page: () => ChangePhonenumberView(),
+      binding: ChangePhonenumberBinding(),
+       transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100), 
+      )
   ];
 }

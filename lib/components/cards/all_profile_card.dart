@@ -12,17 +12,21 @@ class AllProfileCard extends StatelessWidget {
     this.text,
     required this.image,
     required this.ontap,
-     this.text2,
+    this.text2,
     required this.height,
     required this.width,
+    required this.color,
+    required this.textColor,
   });
 
   final text;
   final String image;
-  final  text2;
+  final text2;
   final height;
   final width;
   final VoidCallback ontap;
+  final color;
+  final textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,7 @@ class AllProfileCard extends StatelessWidget {
                     height: 35,
                     width: 35,
                     decoration: BoxDecoration(
-                      color: AppColors.lightprimary,
+                      color: color,
                       borderRadius: BorderRadius.circular(80),
                     ),
                     child: SvgPicture.asset(
@@ -61,6 +65,7 @@ class AllProfileCard extends StatelessWidget {
                   Gap(10),
                   AppText(
                     title: text,
+                    color: textColor,
                     size: 12,
                     fontWeight: FontWeight.w500,
                     overFlow: TextOverflow.ellipsis,
@@ -70,6 +75,7 @@ class AllProfileCard extends StatelessWidget {
                     constraints: BoxConstraints(maxWidth: Get.width * 0.29),
                     child: AppText(
                       title: text2,
+                      
                       size: 10,
                       fontWeight: FontWeight.w400,
                       overFlow: TextOverflow.ellipsis,

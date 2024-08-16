@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/app/privacy/privacy_controller.dart';
 import 'package:mobilegarage/app/terms/terms_conditions_controller.dart';
 import 'package:mobilegarage/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/components/cards/terms_condition_listile.dart';
@@ -11,17 +12,17 @@ import 'package:mobilegarage/utils/app_text/app_text.dart';
 import 'package:mobilegarage/utils/colors/app_color.dart';
 import 'package:mobilegarage/utils/shadows/appbar_shadow.dart';
 
-class TermsConditionsView extends StatefulWidget {
-  const TermsConditionsView({super.key});
+class PrivacyView extends StatefulWidget {
+  const PrivacyView({super.key});
 
   @override
-  State<TermsConditionsView> createState() => _TermsConditionsViewState();
+  State<PrivacyView> createState() => _TermsConditionsViewState();
 }
 
-class _TermsConditionsViewState extends State<TermsConditionsView> {
+class _TermsConditionsViewState extends State<PrivacyView> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TermsConditionsController>(
+    return GetBuilder<PrivacyController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(95.0),
@@ -35,7 +36,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
               toolbarHeight: 95.0,
               title: TopBar(
                 showicon: true,
-                title: "Terms & Conditions",
+                title: "Privacy",
               ),
             ),
           ),
@@ -53,8 +54,8 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       AppText(
-                        title: 'Terms & Conditions',
-                        size: 12,
+                        title: 'Privacy',
+                        size: 16,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,
                       ),

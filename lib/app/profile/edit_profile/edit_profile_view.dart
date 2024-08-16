@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/profile/edit_profile/edit_profile_controller.dart';
@@ -109,6 +110,28 @@ class _EditProfileViewState extends State<EditProfileView> {
                     controller: controller.nameController,
                     errorText: '',
                   ),
+                  Gap(12),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        AppText(
+                          title: '(Optional)',
+                          size: 10,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.grey,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gap(12),
+                  MainInput(
+                    hint: 'Email'.tr,
+                    controller: controller.emailController,
+                    errorText: '',
+                  ),
+
                   Gap(22),
                   MainInput(
                     hint: '+971  User 2366718'.tr,
@@ -119,7 +142,35 @@ class _EditProfileViewState extends State<EditProfileView> {
                       print('Current input: $value');
                     },
                   ),
-                  Gap(88),
+                  Gap(22),
+                  Container(
+                    height: 37,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                      color: AppColors.lightprimary,
+                      borderRadius: BorderRadius.circular(80),
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.changephonenumber);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppText(
+                            title: 'Change phone number',
+                            size: 12,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.primary,
+                          ),
+                          Gap(2),
+                          SvgPicture.asset('assets/icons/arrow-left.svg'),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Gap(50),
+                  // Gap(88),
                   MainButton(
                     title: 'Save changes',
                     buttonWidth: Get.width * 0.77,
