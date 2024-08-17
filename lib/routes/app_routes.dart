@@ -22,14 +22,13 @@ class AppRoutes {
   static const my_location = '/my_location';
   static const cart = '/cart';
   static const notification = '/notification';
-  
   static const setting = '/setting';
   static const faq = '/faq';
   static const privacy = '/privacy';
   static const aboutus = '/aboutus';
   static const promotion = '/promotion';
   static const changephonenumber = '/changephonenumber';
- 
+  static const garage = '/garage';
   
   
   // static const forgotpassword = '/forgotpassword';
