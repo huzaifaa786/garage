@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/selectside/selectside_binding.dart';
+import 'package:mobilegarage/selectside/selectside_view.dart';
+import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
+import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/app/cart/cart_bindings.dart';
 import 'package:mobilegarage/app/cart/cart_view.dart';
 import 'package:mobilegarage/app/notification/notification_binding.dart';
@@ -315,7 +319,7 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-      //TODO:  [garage Number Screen]
+    //TODO:  [garage Number Screen]
     GetPage(
       name: AppRoutes.garage,
       page: () => GarageView(),
@@ -324,7 +328,13 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
-    ////////////////////vendor_app/////////////////////////
+    //////////////////! vendor_app///////////////////////////////
+    GetPage(
+      name: AppRoutes.selectside,
+      page: () => const SelectsideView(),
+      binding: SelectsideBinding(),
+    ),
+
     GetPage(
       name: AppRoutes.splash,
       page: () => const SplashView(),
