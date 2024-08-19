@@ -15,4 +15,5 @@ class SearchScreenController extends GetxController {
         price: '1234567821',
         onTap: () {}),
   ];
+ 
 }
