@@ -319,7 +319,7 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-      //TODO:  [garage Number Screen]
+    //TODO:  [garage Number Screen]
     GetPage(
       name: AppRoutes.garage,
       page: () => GarageView(),
@@ -328,13 +328,13 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
-    ////////////////////vendor_app/////////////////////////
-       GetPage(
+    //////////////////! vendor_app///////////////////////////////
+    GetPage(
       name: AppRoutes.selectside,
       page: () => const SelectsideView(),
       binding: SelectsideBinding(),
     ),
-    
+
     GetPage(
       name: AppRoutes.splash,
       page: () => const SplashView(),

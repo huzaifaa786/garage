@@ -29,9 +29,9 @@ class AppRoutes {
   static const promotion = '/promotion';
   static const changephonenumber = '/changephonenumber';
   static const selectside = '/selectside';
-
- 
   static const garage = '/garage';
+  static const bookservice = '/bookservice';
+
   
   
   // static const forgotpassword = '/forgotpassword';
