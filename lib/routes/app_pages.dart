@@ -18,8 +18,7 @@ import 'package:mobilegarage/user_app/app/auth/signin/signin_bindings.dart';
 import 'package:mobilegarage/user_app/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_view.dart';
-import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
-import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
+
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_binding.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_binding.dart';
@@ -36,6 +35,8 @@ import 'package:mobilegarage/user_app/app/my_cars/my_cars_binding.dart';
 import 'package:mobilegarage/user_app/app/my_cars/my_cars_view.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_binding.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_view.dart';
+import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_binding.dart';
+import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_view.dart';
 import 'package:mobilegarage/user_app/app/order/order_binding.dart';
 import 'package:mobilegarage/user_app/app/order/order_view.dart';
 
@@ -319,7 +320,7 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-      //TODO:  [garage Number Screen]
+    //TODO:  [garage Number Screen]
     GetPage(
       name: AppRoutes.garage,
       page: () => GarageView(),
@@ -328,13 +329,21 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
+    GetPage(
+      name: AppRoutes.acceptedorder,
+      page: () => AccaptedOrderView(),
+      binding: AccaptedOrderBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
     ////////////////////vendor_app/////////////////////////
-       GetPage(
+    GetPage(
       name: AppRoutes.selectside,
       page: () => const SelectsideView(),
       binding: SelectsideBinding(),
     ),
-    
+
     GetPage(
       name: AppRoutes.splash,
       page: () => const SplashView(),

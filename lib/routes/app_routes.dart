@@ -29,6 +29,8 @@ class AppRoutes {
   static const promotion = '/promotion';
   static const changephonenumber = '/changephonenumber';
   static const selectside = '/selectside';
+    static const acceptedorder = '/acceptedorder';
+
 
  
   static const garage = '/garage';
