@@ -50,10 +50,22 @@ dependencies:
   cached_network_image: ^3.3.1
   dotted_border: ^2.1.0
   image_picker: ^1.1.2
+  image_cropper: ^8.0.1
   flutter_otp_text_field: ^1.1.3+2
   timelines: ^0.1.0
+  pin_code_fields: ^8.0.1
+  url_launcher: ^6.3.0
   flutter_rating_bar: ^4.0.1
+  table_calendar: ^3.1.2
+  flutter_switch: ^0.3.2
   convex_bottom_bar: ^3.2.0
+  input_quantity: ^2.4.0
+  easy_stepper: ^0.8.5+1
+  another_stepper: ^1.2.2
+  animated_snack_bar: ^0.4.0
+  carousel_slider: ^5.0.0
+  shimmer: ^3.0.0
+
 
 
 
