@@ -338,6 +338,7 @@ class AppPages {
     ),
 
     ////////////////////vendor_app/////////////////////////
+    //////////////////! vendor_app///////////////////////////////
     GetPage(
       name: AppRoutes.selectside,
       page: () => const SelectsideView(),

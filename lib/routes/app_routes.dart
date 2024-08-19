@@ -34,6 +34,8 @@ class AppRoutes {
 
  
   static const garage = '/garage';
+  static const bookservice = '/bookservice';
+
   
   
   // static const forgotpassword = '/forgotpassword';
