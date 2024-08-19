@@ -5,6 +5,10 @@ import 'package:mobilegarage/selectside/selectside_binding.dart';
 import 'package:mobilegarage/selectside/selectside_view.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
+import 'package:mobilegarage/app/cart/cart_bindings.dart';
+import 'package:mobilegarage/app/cart/cart_view.dart';
+import 'package:mobilegarage/app/notification/notification_binding.dart';
+import 'package:mobilegarage/app/notification/notification_view.dart';
 import 'package:mobilegarage/splash/splash_binding.dart';
 import 'package:mobilegarage/splash/splash_view.dart';
 
@@ -14,10 +18,14 @@ import 'package:mobilegarage/user_app/app/auth/signin/signin_bindings.dart';
 import 'package:mobilegarage/user_app/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_view.dart';
+import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
+import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_binding.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_binding.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_view.dart';
+import 'package:mobilegarage/user_app/app/garage/garage_binding.dart';
+import 'package:mobilegarage/user_app/app/garage/garage_view.dart';
 import 'package:mobilegarage/user_app/app/home/home_binding.dart';
 import 'package:mobilegarage/user_app/app/home/home_view.dart';
 import 'package:mobilegarage/user_app/app/languange/languange_binding.dart';
@@ -100,8 +108,6 @@ import 'package:mobilegarage/vendor_app/app/sale/sale_view.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
-
-
     //////////////////user_app//////////////////
     //TODO:  [Splash Route]
     GetPage(
@@ -230,11 +236,12 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-        //TODO:  [Order_history Screen]
+    //TODO:  [Order_history Screen]
     GetPage(
       name: AppRoutes.termscondition,
       page: () => TermsConditionsView(),
-      binding: TermsConditionsBinding(), ),
+      binding: TermsConditionsBinding(),
+    ),
     GetPage(
       name: AppRoutes.my_cars,
       page: () => const MyCarsView(),
@@ -242,62 +249,84 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.my_location,
       page: () => const MyLocationView(),
       binding: MyLocationBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+    GetPage(
+      name: AppRoutes.cart,
+      page: () => CartView(),
+      binding: CartBindings(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    GetPage(
+      name: AppRoutes.notification,
+      page: () => const NotificationView(),
+      binding: NotificationBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
 
-  //TODO:  [Setting Screen]
+    //TODO:  [Setting Screen]
     GetPage(
       name: AppRoutes.setting,
       page: () => SettingView(),
       binding: SettingBinding(),
-       transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100), 
-      ),
-        //TODO:  [FAQ Screen]
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [FAQ Screen]
     GetPage(
       name: AppRoutes.faq,
       page: () => FaqView(),
       binding: FaqBinding(),
-       transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100), 
-      ),
-       //TODO:  [FAQ Screen]
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [FAQ Screen]
     GetPage(
       name: AppRoutes.privacy,
       page: () => PrivacyView(),
       binding: PrivacyBinding(),
-       transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100), 
-      ),
-           //TODO:  [Aboutus Screen]
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [Aboutus Screen]
     GetPage(
       name: AppRoutes.aboutus,
       page: () => AboutusView(),
       binding: AboutusBinding(),
-       transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100), 
-      ),
-          //TODO:  [Promotion Screen]
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [Promotion Screen]
     GetPage(
       name: AppRoutes.promotion,
       page: () => PromotionView(),
       binding: PromotionBinding(),
-       transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100), 
-      ),
-               //TODO:  [Change Phone Number Screen]
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [Change Phone Number Screen]
     GetPage(
       name: AppRoutes.changephonenumber,
       page: () => ChangePhonenumberView(),
       binding: ChangePhonenumberBinding(),
-       transition: Transition.downToUp,
-      transitionDuration: const Duration(milliseconds: 100), 
-      ),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+      //TODO:  [garage Number Screen]
+    GetPage(
+      name: AppRoutes.garage,
+      page: () => GarageView(),
+      binding: GarageBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
 
     ////////////////////vendor_app/////////////////////////
        GetPage(
@@ -305,7 +334,8 @@ class AppPages {
       page: () => const SelectsideView(),
       binding: SelectsideBinding(),
     ),
-     GetPage(
+    
+    GetPage(
       name: AppRoutes.splash,
       page: () => const SplashView(),
       binding: SplashBinding(),
@@ -346,8 +376,7 @@ class AppPages {
       binding: VChangeForgotPasswordBinding(),
     ),
 
-     //* {Change Password Route}
-  
+    //* {Change Password Route}
 
     //* {Product Form View Route}
     GetPage(
@@ -409,21 +438,20 @@ class AppPages {
       page: () => VMapView(),
       binding: VMapBinding(),
     ),
-       GetPage(
+    GetPage(
       name: AppRoutes.vbanner,
       page: () => VBannerView(),
       binding: VBannerBinding(),
     ),
-       GetPage(
+    GetPage(
       name: AppRoutes.vcontactus,
       page: () => VContactusView(),
       binding: VContactusBinding(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.vlanguage,
       page: () => const VLanguageView(),
       binding: VLanguageBinding(),
-     ),
-          
+    ),
   ];
 }

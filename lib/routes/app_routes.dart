@@ -11,7 +11,6 @@ class AppRoutes {
   static const editprofile = '/editprofile';
   static const otp = '/otp';
   static const search = '/search';
-  // static const editprofile = '/editprofile';
   static const language = '/language';
   static const chatScreen = '/chatScreen';
   static const order_history = '/order_history';
@@ -19,9 +18,10 @@ class AppRoutes {
   static const orders = '/orders';
   static const main = '/main';
   static const termscondition = '/termscondition';
-  
   static const my_cars = '/my_cars';
   static const my_location = '/my_location';
+  static const cart = '/cart';
+  static const notification = '/notification';
   static const setting = '/setting';
   static const faq = '/faq';
   static const privacy = '/privacy';
@@ -31,6 +31,7 @@ class AppRoutes {
   static const selectside = '/selectside';
 
  
+  static const garage = '/garage';
   
   
   // static const forgotpassword = '/forgotpassword';

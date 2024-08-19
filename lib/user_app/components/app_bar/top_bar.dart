@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -11,11 +12,15 @@ class TopBar extends StatelessWidget {
     super.key,
     this.title,
     this.showicon = true,
+    this.showgarageicon = true,
+
     this.textColor = AppColors.darkprimary,
   });
 
   final String? title;
   final bool showicon;
+  final bool showgarageicon;
+
   final Color textColor;
 
   @override
@@ -37,11 +42,17 @@ class TopBar extends StatelessWidget {
                     ),
                   )
                 : const SizedBox.shrink(),
-            AppText(
-              title: '$title',
-              size: 16,
-              fontWeight: FontWeight.w600,
-              color: textColor,
+            Row(
+              children: [
+                AppText(
+                  title: '$title',
+                  size: 16,
+                  fontWeight: FontWeight.w600,
+                  color: textColor,
+                ),
+                Gap(5),
+                SvgPicture.asset('assets/icons/authorizegarage.svg')
+              ],
             ),
             AppText(
               title: '*****',
