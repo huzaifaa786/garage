@@ -28,6 +28,8 @@ class AppRoutes {
   static const aboutus = '/aboutus';
   static const promotion = '/promotion';
   static const changephonenumber = '/changephonenumber';
+  static const selectside = '/selectside';
+
  
   
   

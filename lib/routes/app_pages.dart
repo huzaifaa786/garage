@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/selectside/selectside_binding.dart';
+import 'package:mobilegarage/selectside/selectside_view.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/splash/splash_binding.dart';
@@ -298,6 +300,11 @@ class AppPages {
       ),
 
     ////////////////////vendor_app/////////////////////////
+       GetPage(
+      name: AppRoutes.selectside,
+      page: () => const SelectsideView(),
+      binding: SelectsideBinding(),
+    ),
      GetPage(
       name: AppRoutes.splash,
       page: () => const SplashView(),
