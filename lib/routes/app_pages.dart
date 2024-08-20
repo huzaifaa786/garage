@@ -3,6 +3,8 @@
 import 'package:get/get.dart';
 import 'package:mobilegarage/selectside/selectside_binding.dart';
 import 'package:mobilegarage/selectside/selectside_view.dart';
+import 'package:mobilegarage/user_app/app/book_service/book_service_binding.dart';
+import 'package:mobilegarage/user_app/app/book_service/book_service_view.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/app/cart/cart_bindings.dart';
@@ -18,8 +20,6 @@ import 'package:mobilegarage/user_app/app/auth/signin/signin_bindings.dart';
 import 'package:mobilegarage/user_app/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_view.dart';
-import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
-import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_binding.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_binding.dart';
@@ -38,7 +38,6 @@ import 'package:mobilegarage/user_app/app/my_location/my_location_binding.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_view.dart';
 import 'package:mobilegarage/user_app/app/order/order_binding.dart';
 import 'package:mobilegarage/user_app/app/order/order_view.dart';
-
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/user_app/app/order_history/order_history_binding.dart';
@@ -324,6 +323,14 @@ class AppPages {
       name: AppRoutes.garage,
       page: () => GarageView(),
       binding: GarageBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+    //TODO:  [book service Screen]
+    GetPage(
+      name: AppRoutes.bookservice,
+      page: () => BookServiceView(),
+      binding: BookServiceBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
