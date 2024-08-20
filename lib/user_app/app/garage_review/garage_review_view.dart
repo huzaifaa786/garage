@@ -7,8 +7,8 @@ import 'package:mobilegarage/user_app/app/garage_review/components/garage_review
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
-class GarageReviewView extends StatelessWidget {
-  const GarageReviewView({super.key});
+class GarageReviewBottomSheetView extends StatelessWidget {
+  const GarageReviewBottomSheetView({super.key});
 
   @override
   Widget build(BuildContext context) {

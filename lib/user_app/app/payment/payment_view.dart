@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/cart/components/cart_card.dart';
+import 'package:mobilegarage/user_app/app/payment/components/payment_bottomsheet.dart';
 import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -19,7 +20,7 @@ class PaymentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<PaymentsController>(
       builder: (controller) => Scaffold(
-            appBar: PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size.fromHeight(95.0),
           child: Container(
             decoration: BoxDecoration(
@@ -33,7 +34,7 @@ class PaymentView extends StatelessWidget {
             ),
           ),
         ),
-      body: SafeArea(
+        body: SafeArea(
             child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -83,39 +84,92 @@ class PaymentView extends StatelessWidget {
                   onTap: controller.promoCode,
                   isApplied: controller.isapplied,
                 ),
+                Gap(20)
               ],
             ),
           ),
         )),
         bottomNavigationBar: Container(
-          height: 100,
+          height: Get.height*0.24,
           decoration: BoxDecoration(
-              border: Border.all(color: AppColors.grey.withOpacity(0.4))),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppText(
-                    title: 'Total:',
-                    size: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.black.withOpacity(0.4),
-                  ),
-                  Gap(10),
-                  AppText(
-                    title: '30.00AED',
-                    size: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ],
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+            color: AppColors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                blurRadius: 4,
+                offset: Offset(4, 4),
               ),
-              MainButton(
-                buttonWidth: Get.width * 0.5,
-                title: 'Purchase',
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                blurRadius: 4,
+                offset: Offset(-4, -4),
               ),
             ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Gap(10),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    AppText(
+                      title: 'Sub total:',
+                      size: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
+                     AppText(
+                      title: '100.50 AED',
+                      size: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ],
+                ),
+                Gap(15),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    AppText(
+                      title: 'discount:',
+                      size: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
+                     AppText(
+                      title: '70.50 AED',
+                      size: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ],
+                ), 
+                Gap(15),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    AppText(
+                      title: 'Total:',
+                      size: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
+                     AppText(
+                      title: '30.50 AED',
+                      size: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ],
+                ),
+                Gap(20),
+                MainButton(
+                  buttonWidth: Get.width * 0.7,
+                  title: 'Pay',
+                  onTap: () {
+                    Get.bottomSheet(PaymentBottomsheet(),
+                    isScrollControlled: true,
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

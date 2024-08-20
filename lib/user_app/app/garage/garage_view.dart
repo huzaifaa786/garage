@@ -127,7 +127,7 @@ class GarageView extends StatelessWidget {
                           clipper: RightCircularClipper(),
                           child: GestureDetector(
                             onTap: () {
-                           Get.bottomSheet(GarageReviewView(),
+                           Get.bottomSheet(GarageReviewBottomSheetView(),
                            isScrollControlled: true
                            );
 
