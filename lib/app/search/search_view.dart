@@ -22,13 +22,13 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   @override
-    int _selectedIndex = -1;
+  //   int _selectedIndex = -1;
 
-  void _onContainerTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  // void _onContainerTap(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
   Widget build(BuildContext context) {
     return GetBuilder<SearchScreenController>(
       builder: (controller) => Scaffold(
@@ -56,20 +56,15 @@ class _SearchViewState extends State<SearchView> {
             child: Column(
               children: [
                 Gap(15),
-                GestureDetector(
-                  onTap: () {
-                    settingModalBottomSheet(Get.context!, controller);
-                  },
-                  child: Row(
-                    children: [
-                      Gap(5),
-                      AppText(
-                        title: 'Results',
-                        size: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ],
-                  ),
+                Row(
+                  children: [
+                    Gap(5),
+                    AppText(
+                      title: 'Results',
+                      size: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ],
                 ),
                 ListView.builder(
                   itemCount: controller.searchCards.length,
@@ -100,94 +95,5 @@ class _SearchViewState extends State<SearchView> {
     );
   }
 
-  void settingModalBottomSheet(context, SearchScreenController controller) {
-    
-    showModalBottomSheet(
-        backgroundColor: AppColors.white,
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            padding: EdgeInsets.only(left: 15, right: 15, top: 30, bottom: 50),
-            decoration: BoxDecoration(
-                // boxShadow: [
-                //   BoxShadow(
-                //     color: Colors.black.withOpacity(0.2),
-                //     spreadRadius: 1,
-                //     blurRadius: 5,
-                //     offset: Offset(1, -2), // changes position of shadow
-                //   ),
-                // ],
-                ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Filter By',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ),
-                Gap(5),
-                Divider(
-                  color: AppColors.grey.withOpacity(0.2),
-                  thickness: 1,
-                ),
-                Gap(2),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          AppText(
-                            title: 'Sort',
-                            size: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ],
-                      ),
-                      Gap(5),
-                      Row(
-                        children: [
-                          Container(
-                            height: 5,
-                            width: 5,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.black,
-                            ),
-                          ),
-                          Gap(5),
-                          AppText(
-                            title: 'Price',
-                            size: 12,
-                            fontWeight: FontWeight.w500,
-                          )
-                        ],
-                      ),
-                      Gap(10),
-                      Row(
-                        children: [
-                   BottomsheetContainer(
-          isSelected: _selectedIndex == 0,
-          onTap: () => _onContainerTap(0),
-        ),
-        const SizedBox(width: 5),
-        BottomsheetContainer(
-          isSelected: _selectedIndex == 1,
-          onTap: () => _onContainerTap(1),
-        ),
-                        ],
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          );
-        });
-  }
+
 }
