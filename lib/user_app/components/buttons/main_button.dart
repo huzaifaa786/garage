@@ -9,7 +9,6 @@ class MainButton extends StatelessWidget {
   MainButton({
     super.key,
     this.title,
-    this.icon,
     double? radius,
     this.onTap,
     double? height,
@@ -24,7 +23,7 @@ class MainButton extends StatelessWidget {
         fontsize = fontsize ?? 14.0;
 
   final String? title;
-  final icon;
+
   final double? radius;
   final Function()? onTap;
   final double? height;
@@ -55,11 +54,6 @@ class MainButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              icon,
-              height: 20,
-              width: 20,
-            ),
             AppText(
               title: '$title',
               color: textcolor,
