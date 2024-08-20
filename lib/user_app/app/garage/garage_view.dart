@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
+import 'package:mobilegarage/user_app/app/garage_review/garage_review_view.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_icons.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -126,7 +127,10 @@ class GarageView extends StatelessWidget {
                           clipper: RightCircularClipper(),
                           child: GestureDetector(
                             onTap: () {
-                              print('object');
+                           Get.bottomSheet(GarageReviewView(),
+                           isScrollControlled: true
+                           );
+
                             },
                             child: Container(
                               decoration: BoxDecoration(

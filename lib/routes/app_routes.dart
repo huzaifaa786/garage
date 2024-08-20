@@ -31,12 +31,11 @@ class AppRoutes {
   static const selectside = '/selectside';
   static const garage = '/garage';
   static const bookservice = '/bookservice';
-
-  
+  static const payments = '/payments';
   
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
-  // static const profile = '/profile';
+  // static const profile =  '/profile';
   // static const orders = '/orders';
   // static const otp = '/otp';
   // static const language = '/language';
