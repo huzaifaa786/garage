@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -221,25 +222,3 @@ class SearchCard extends StatelessWidget {
   }
 }
 
-class RightCircularClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    double radius = size.height / 3;
-    Path path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width - radius, 0)
-      ..arcToPoint(
-        Offset(size.width - radius, size.height),
-        radius: Radius.circular(radius),
-        clockwise: false,
-      )
-      ..lineTo(0, size.height)
-      ..close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
