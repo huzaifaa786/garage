@@ -1204,7 +1204,23 @@ packages:
       sha256: "2bc4b4ecddd75309300d8096f781c0e3280ca1ef85beda558d33fcbedc2eead4"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "0.6.4"
+  time:
+    dependency: "direct main"
+    description:
+      name: time
+      sha256: ad8e018a6c9db36cb917a031853a1aae49467a93e0d464683e029537d848c221
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.4"
+  time_picker_spinner_pop_up:
+    dependency: "direct main"
+    description:
+      name: time_picker_spinner_pop_up
+      sha256: "835f94121ef87ffc9f61ecf359f4d2001fc24517cad1578f95a35da00a4664f7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   timelines:
     dependency: "direct main"
     description:

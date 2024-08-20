@@ -2,26 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
+class BottomsheetContainer extends StatefulWidget {
+  const BottomsheetContainer({super.key});
 
-class BottomsheetContainer extends StatelessWidget {
-  final bool isSelected;
-  final VoidCallback onTap;
+  @override
+  _BottomsheetContainerState createState() => _BottomsheetContainerState();
+}
 
-  const BottomsheetContainer({
-    super.key,
-    required this.isSelected,
-    required this.onTap,
-  });
+class _BottomsheetContainerState extends State<BottomsheetContainer> {
+  bool istap = true;
+
+  void _toggleTap() {
+    setState(() {
+      istap = !istap; // Toggle the value of istap
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: _toggleTap,
       child: Container(
         height: 31,
         width: 103,
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : Colors.white, // Toggle colors
+          color: istap ? AppColors.primary : Colors.white, // Toggle colors
           borderRadius: BorderRadius.circular(30),
           border: Border.all(color: AppColors.primary),
         ),
@@ -30,7 +35,7 @@ class BottomsheetContainer extends StatelessWidget {
             title: 'From low to high',
             size: 10,
             fontWeight: FontWeight.w500,
-            color: isSelected ? Colors.white : Colors.black, // Toggle text color
+            color: istap ? Colors.white : Colors.black, // Toggle text color
           ),
         ),
       ),

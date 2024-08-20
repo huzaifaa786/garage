@@ -36,7 +36,7 @@ class HomeAppbar extends StatelessWidget {
                     color: AppColors.lightprimary,
                     borderRadius: BorderRadius.circular(80),
                   ),
-                  child: Image.asset('assets/images/chat.png'),
+                  child:SvgPicture.asset('assets/icons/chat.svg'),
                 ),
               ],
             ),

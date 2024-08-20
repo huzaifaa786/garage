@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, deprecated_member_use
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,14 +13,14 @@ class TopBar extends StatelessWidget {
     this.title,
     this.showicon = true,
     this.showgarageicon = true,
-
+    this.showtrailingicon = false,
     this.textColor = AppColors.darkprimary,
   });
 
   final String? title;
   final bool showicon;
   final bool showgarageicon;
-
+  final bool showtrailingicon;
   final Color textColor;
 
   @override
@@ -51,13 +51,34 @@ class TopBar extends StatelessWidget {
                   color: textColor,
                 ),
                 Gap(5),
-                SvgPicture.asset('assets/icons/authorizegarage.svg')
+                if (showgarageicon)
+                  SvgPicture.asset('assets/icons/authorizegarage.svg')
               ],
             ),
-            AppText(
-              title: '*****',
-              color: Colors.transparent,
-            ),
+            if (showtrailingicon)
+              Row(
+                children: [
+                  Container(
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      color: AppColors.lightprimary,
+                      borderRadius: BorderRadius.circular(80),
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/icons/cart.svg',
+                      color: AppColors.primarybg,
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                  Gap(10),
+                ],
+              )
+            else
+              AppText(
+                title: '*****',
+                color: Colors.transparent,
+              ),
           ],
         ),
       ),
