@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -21,6 +22,13 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   @override
+    int _selectedIndex = -1;
+
+  void _onContainerTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
   Widget build(BuildContext context) {
     return GetBuilder<SearchScreenController>(
       builder: (controller) => Scaffold(
@@ -93,7 +101,7 @@ class _SearchViewState extends State<SearchView> {
   }
 
   void settingModalBottomSheet(context, SearchScreenController controller) {
-    int _selectedIndex = 0;
+    
     showModalBottomSheet(
         backgroundColor: AppColors.white,
         context: context,
@@ -163,22 +171,15 @@ class _SearchViewState extends State<SearchView> {
                       Gap(10),
                       Row(
                         children: [
-                         BottomsheetContainer(
-                          isSelected: _selectedIndex == 0,
-                          onTap: () {
-                            setState(() {
-                              _selectedIndex = 0;
-                            });
-                          },
-                        ),
-                          Gap(5),
-                          BottomsheetContainer(
-                          isSelected: _selectedIndex == 1,
-                          onTap: () {
-                            setState(() {
-                              _selectedIndex = 1;
-                            });
-                          },),
+                   BottomsheetContainer(
+          isSelected: _selectedIndex == 0,
+          onTap: () => _onContainerTap(0),
+        ),
+        const SizedBox(width: 5),
+        BottomsheetContainer(
+          isSelected: _selectedIndex == 1,
+          onTap: () => _onContainerTap(1),
+        ),
                         ],
                       )
                     ],
