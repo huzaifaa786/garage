@@ -127,10 +127,8 @@ class GarageView extends StatelessWidget {
                           clipper: RightCircularClipper(),
                           child: GestureDetector(
                             onTap: () {
-                           Get.bottomSheet(GarageReviewBottomSheetView(),
-                           isScrollControlled: true
-                           );
-
+                              Get.bottomSheet(GarageReviewBottomSheetView(),
+                                  isScrollControlled: true);
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -223,9 +221,19 @@ class GarageView extends StatelessWidget {
                   itemCount: controller.services.length,
                   itemBuilder: (context, index) {
                     final item = controller.services[index];
-                    return ServicesIcons(
-                      imageUrl: item.imageUrl,
-                      text: item.text,
+                    bool iselected = controller.selectedindex == index;
+                    return GestureDetector(
+                      onTap: () {
+                        controller.selectindex(index);
+                      },
+                      child: AnimatedOpacity(
+                        duration: Duration(milliseconds: 300),
+                        opacity: iselected ? 1.0 : 0.6,
+                        child: ServicesIcons(
+                          imageUrl: item.imageUrl,
+                          text: item.text,
+                        ),
+                      ),
                     );
                   },
                 ),
