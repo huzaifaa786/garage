@@ -52,7 +52,10 @@ class _SearchViewState extends State<SearchView> {
                 Gap(15),
                 GestureDetector(
                   onTap: () {
-                    Get.bottomSheet(FilterBottomsheet());
+                    Get.bottomSheet(FilterBottomsheet(),
+
+                    isScrollControlled: true
+                    );
                   },
                   child: Row(
                     children: [

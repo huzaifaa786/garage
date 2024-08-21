@@ -8,6 +8,7 @@ class SearchScreenController extends GetxController {
   int selectedIndex = 0;
   int selectedIndexTwo = 0;
   int selectedIndexThree = 0;
+  int selectedIndexFour = 0;
   var searchCards = <SearchCard>[
     SearchCard(
         image: 'https://dummyimage.com/70x70/000/fff',
@@ -34,6 +35,11 @@ class SearchScreenController extends GetxController {
 
   void selectIndexThree(int index) {
     selectedIndexThree = index;
+    update();
+  }
+
+  void selectIndexFour(int index) {
+    selectedIndexFour = index;
     update();
   }
 }
