@@ -1,27 +1,36 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
+
+class DropdownItem {
+  final String title;
+  final String? icon; // Explicitly make the icon nullable
+
+  DropdownItem({required this.title, this.icon});
+}
 
 class MainInputDropdown extends StatefulWidget {
   const MainInputDropdown({
     super.key,
     required this.hint,
     required this.controller,
-    required this.errorText,
-    required this.onchange,
+    this.errorText,
+    this.onchange,
     required this.items,
+    this.show,
   });
 
   final String hint;
   final TextEditingController controller;
-  final String? errorText;
-  final Function(String) onchange;
-  final List<String> items;
+  final String? errorText; // Nullable String
+  final Function(String)? onchange;
+  final List<DropdownItem> items;
+  final bool? show;
 
   @override
   State<MainInputDropdown> createState() => _MainInputDropdownState();
@@ -31,101 +40,143 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
   String? selectedValue;
 
   @override
+  void initState() {
+    super.initState();
+
+    // Initial validation: Ensure that selectedValue is valid
+    if (widget.items.isNotEmpty) {
+      selectedValue = widget
+          .items.first.title; // Default to first item if selectedValue is null
+    }
+
+    // Ensure there are no duplicate titles in the items list
+    _ensureUniqueItems();
+  }
+
+  void _ensureUniqueItems() {
+    Set<String> uniqueTitles = {};
+    for (var item in widget.items) {
+      if (!uniqueTitles.add(item.title)) {
+        throw FlutterError(
+            'Duplicate items detected in DropdownButton: ${item.title}');
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 60,
-            decoration: widget.errorText!.isNotEmpty
+            width: Get.width,
+            decoration: (widget.errorText?.isNotEmpty ?? false)
                 ? circularErrorInputDecoration
                 : circularInputDecoration,
             child: DropdownButtonHideUnderline(
-              child: DropdownButton2(
-                iconStyleData: IconStyleData(
-                    icon: Padding(
-                  padding: EdgeInsets.only(left: 15, right: 25),
-                  child: SvgPicture.asset(
-                    'assets/icons/polygon.svg',
-                    color: AppColors.primary,
-                  ),
-                )),
-                isExpanded: true,
-                hint: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 25, right: 25),
-                        child: Text(
-                          widget.hint.tr,
+              child: DropdownButton2<String>(
+                hint: AppText(
+                  title: widget.hint,
+                  size: 11,
+                  fontWeight: FontWeight.w400,
+                ),
+                items: widget.items.map((DropdownItem item) {
+                  return DropdownMenuItem<String>(
+                    value: item.title,
+                    child: Row(
+                      children: [
+                        if (item.icon != null)
+                          SvgPicture.asset(
+                            item.icon!,
+                            color: AppColors.black,
+                          ),
+                        SizedBox(width: 8), // Add space between icon and text
+                        Text(
+                          item.title,
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: AppColors.black.withOpacity(0.4),
+                            color: item.title == selectedValue
+                                ? AppColors.white_color
+                                : AppColors.black,
                           ),
-                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-                items: widget.items
-                    .map((String item) => DropdownMenuItem<String>(
-                          value: item,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 25, right: 15),
-                            child: Text(
-                              item,
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.black,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ))
-                    .toList(),
+                  );
+                }).toList(),
                 value: selectedValue,
-                onChanged: (String? value) {
+                onChanged: (value) {
                   setState(() {
-                    selectedValue = value;
+                    selectedValue = value; // Set the selected value
                   });
-                  widget.onchange(value!);
+                  if (widget.onchange != null) {
+                    widget.onchange!(value!);
+                  }
                 },
-                dropdownStyleData: DropdownStyleData(
-                  useRootNavigator: true,
-                  maxHeight: 200,
-                  width: 170,
-                  direction: DropdownDirection.left,
+                selectedItemBuilder: (BuildContext context) {
+                  return widget.items.map((item) {
+                    return Center(
+                      child: Row(
+                        children: [
+                          if (item.icon != null)
+                            SvgPicture.asset(
+                              item.icon!,
+                              color: AppColors.black,
+                            ),
+                          SizedBox(width: 8), // Add space between icon and text
+                          AppText(
+                            title: item.title,
+                            size: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList();
+                },
+                menuItemStyleData: MenuItemStyleData(
+                  height: 60,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  selectedMenuItemBuilder: (context, child) =>
+                      Container(color: AppColors.primary_color, child: child),
+                ),
+                iconStyleData: IconStyleData(
+                  icon: SvgPicture.asset(ImageConst.drop_down_icon),
+                ),
+                buttonStyleData: ButtonStyleData(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                  width: Get.width,
                   decoration: BoxDecoration(
-                    border: Border.all(width: 1),
+                    color: AppColors.input_bg_color,
+                    borderRadius: BorderRadius.circular(45),
+                  ),
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  direction: DropdownDirection.left,
+                  maxHeight: Get.height * 0.4,
+                  width: 160,
+                  padding: const EdgeInsets.all(0),
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(4),
+                      topLeft: Radius.circular(10),
                     ),
                   ),
                 ),
-                buttonStyleData: ButtonStyleData(),
               ),
             ),
           ),
-          // if (widget.errorText != null)
-          //   Padding(
-          //     padding: const EdgeInsets.only(top: 5, bottom: 10),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.start,
-          //       children: [
-          //         Text(
-          //           widget.errorText!,
-          //           style: TextStyle(
-          //             color: AppColors.red,
-          //             fontSize: 9,
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
+          if (widget.errorText?.isNotEmpty ?? false)
+            Padding(
+              padding: EdgeInsets.only(top: 4, left: 16, right: 16),
+              child: AppText(
+                title: widget.errorText!,
+                color: AppColors.primary_color,
+                size: 10,
+              ),
+            ),
         ],
       ),
     );

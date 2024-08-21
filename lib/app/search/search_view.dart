@@ -3,13 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/user_app/components/cards/bottomsheet_container.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
-import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 

@@ -3,7 +3,12 @@ import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 
 class GarageController extends GetxController {
   static GarageController instanse = Get.find();
-
+int selectedindex = 0;
+void selectindex(int index){
+selectedindex=index;
+update();
+print('object');
+}
  var services = <ServiceItem>[
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',

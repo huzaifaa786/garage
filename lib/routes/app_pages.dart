@@ -5,6 +5,8 @@ import 'package:mobilegarage/selectside/selectside_binding.dart';
 import 'package:mobilegarage/selectside/selectside_view.dart';
 import 'package:mobilegarage/user_app/app/book_service/book_service_binding.dart';
 import 'package:mobilegarage/user_app/app/book_service/book_service_view.dart';
+import 'package:mobilegarage/user_app/app/car_details/car_details_binding.dart';
+import 'package:mobilegarage/user_app/app/car_details/car_details_view.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/app/cart/cart_bindings.dart';
@@ -20,6 +22,7 @@ import 'package:mobilegarage/user_app/app/auth/signin/signin_bindings.dart';
 import 'package:mobilegarage/user_app/app/auth/signin/signin_view.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_binding.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_view.dart';
+
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_binding.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_binding.dart';
@@ -36,6 +39,8 @@ import 'package:mobilegarage/user_app/app/my_cars/my_cars_binding.dart';
 import 'package:mobilegarage/user_app/app/my_cars/my_cars_view.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_binding.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_view.dart';
+import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_binding.dart';
+import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_view.dart';
 import 'package:mobilegarage/user_app/app/order/order_binding.dart';
 import 'package:mobilegarage/user_app/app/order/order_view.dart';
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_binding.dart';
@@ -342,6 +347,15 @@ class AppPages {
     ),
 
 
+    GetPage(
+      name: AppRoutes.acceptedorder,
+      page: () => AccaptedOrderView(),
+      binding: AccaptedOrderBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
+    ////////////////////vendor_app/////////////////////////
     //////////////////! vendor_app///////////////////////////////
     GetPage(
       name: AppRoutes.selectside,
@@ -466,6 +480,11 @@ class AppPages {
       name: AppRoutes.vlanguage,
       page: () => const VLanguageView(),
       binding: VLanguageBinding(),
+    ),
+     GetPage(
+      name: AppRoutes.cardetails,
+      page: () => CarDetailsView(),
+      binding:CarDetailsBinding(),
     ),
   ];
 }
