@@ -16,7 +16,7 @@ class FilterBottomsheetContainer extends StatelessWidget {
 
   final String text;
   final int index;
-  final String group; // 'price', 'closest', 'rating', or 'results'
+  final String group; 
   final double height;
   final double width;
 

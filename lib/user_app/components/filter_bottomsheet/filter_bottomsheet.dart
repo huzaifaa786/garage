@@ -72,8 +72,6 @@ class FilterBottomsheet extends StatelessWidget {
                           ],
                         ),
                         Gap(5),
-
-                        // Price Group
                         Row(
                           children: [
                             FilterBottomsheetContainer(
@@ -93,7 +91,6 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         Gap(15),
                         Row(
                           children: [
@@ -114,8 +111,6 @@ class FilterBottomsheet extends StatelessWidget {
                           ],
                         ),
                         Gap(5),
-
-                        // Closest Group
                         Row(
                           children: [
                             FilterBottomsheetContainer(
@@ -135,7 +130,6 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         Gap(15),
                         Row(
                           children: [
@@ -156,8 +150,6 @@ class FilterBottomsheet extends StatelessWidget {
                           ],
                         ),
                         Gap(5),
-
-                        // Rating Group
                         Row(
                           children: [
                             FilterBottomsheetContainer(
@@ -177,7 +169,6 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         Gap(11),
                         Divider(
                           color: AppColors.lightgrey,
@@ -212,8 +203,6 @@ class FilterBottomsheet extends StatelessWidget {
                           ],
                         ),
                         Gap(5),
-
-                        // Results Group
                         Row(
                           children: [
                             FilterBottomsheetContainer(
@@ -239,18 +228,16 @@ class FilterBottomsheet extends StatelessWidget {
                               index: 2,
                               group: 'results',
                             ),
-                           
-                          
                           ],
                         ),
                         Gap(10),
-                     FilterBottomsheetContainer(
-                              height: 31,
-                              width: 103,
-                              text: 'Only products',
-                              index: 3,
-                              group: 'results',
-                            ),
+                        FilterBottomsheetContainer(
+                          height: 31,
+                          width: 103,
+                          text: 'Only products',
+                          index: 3,
+                          group: 'results',
+                        ),
                         Gap(11),
                         Divider(
                           color: AppColors.lightgrey,
@@ -260,9 +247,7 @@ class FilterBottomsheet extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                // Add your reset logic here
-                              },
+                              onTap: () {},
                               child: Container(
                                 height: 46,
                                 width: 100,
@@ -282,9 +267,7 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                             Gap(10),
                             GestureDetector(
-                              onTap: () {
-                                // Add your filter logic here
-                              },
+                              onTap: () {},
                               child: Container(
                                 height: 46,
                                 width: 143,
