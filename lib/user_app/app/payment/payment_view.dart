@@ -66,6 +66,40 @@ class PaymentView extends StatelessWidget {
                         ],
                       );
                     }),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppText(
+                      title: 'Date &Time',
+                      size: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.lightprimary,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AppText(
+                              title: '18 March 2024',
+                              size: 10,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            Gap(9),
+                            AppText(
+                              title: '09:00 am',
+                              size: 10,
+                              fontWeight: FontWeight.w500,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Row(
                   children: [
                     Gap(10),
@@ -90,7 +124,7 @@ class PaymentView extends StatelessWidget {
           ),
         )),
         bottomNavigationBar: Container(
-          height: Get.height*0.24,
+          height: Get.height * 0.24,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),
@@ -109,19 +143,20 @@ class PaymentView extends StatelessWidget {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Gap(10),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     AppText(
                       title: 'Sub total:',
                       size: 10,
                       fontWeight: FontWeight.w500,
                     ),
-                     AppText(
+                    AppText(
                       title: '100.50 AED',
                       size: 12,
                       fontWeight: FontWeight.w600,
@@ -129,29 +164,31 @@ class PaymentView extends StatelessWidget {
                   ],
                 ),
                 Gap(15),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     AppText(
                       title: 'discount:',
                       size: 10,
                       fontWeight: FontWeight.w500,
                     ),
-                     AppText(
+                    AppText(
                       title: '70.50 AED',
                       size: 12,
                       fontWeight: FontWeight.w600,
                     ),
                   ],
-                ), 
+                ),
                 Gap(15),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     AppText(
                       title: 'Total:',
                       size: 10,
                       fontWeight: FontWeight.w500,
                     ),
-                     AppText(
+                    AppText(
                       title: '30.50 AED',
                       size: 12,
                       fontWeight: FontWeight.w600,
@@ -163,8 +200,9 @@ class PaymentView extends StatelessWidget {
                   buttonWidth: Get.width * 0.7,
                   title: 'Pay',
                   onTap: () {
-                    Get.bottomSheet(PaymentBottomsheet(),
-                    isScrollControlled: true,
+                    Get.bottomSheet(
+                      PaymentBottomsheet(),
+                      isScrollControlled: true,
                     );
                   },
                 ),
