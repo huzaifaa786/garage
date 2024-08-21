@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/cart/components/cart_card.dart';
+import 'package:mobilegarage/user_app/app/payment/components/date_location_card.dart';
 import 'package:mobilegarage/user_app/app/payment/components/payment_bottomsheet.dart';
 import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -66,40 +67,38 @@ class PaymentView extends StatelessWidget {
                         ],
                       );
                     }),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    AppText(
-                      title: 'Date &Time',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.lightprimary,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AppText(
-                              title: '18 March 2024',
-                              size: 10,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            Gap(9),
-                            AppText(
-                              title: '09:00 am',
-                              size: 10,
-                              fontWeight: FontWeight.w500,
-                            )
-                          ],
+                    Gap(15),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppText(
+                          title: 'Date &Time',
+                          size: 10,
+                          fontWeight: FontWeight.w500,
+                        ), 
+                        Gap(8),
+                        DateLocationCard(
+                          txt: '18 March 2024    09:00 am',
                         ),
-                      ),
+                        Gap(8),
+
+                        AppText(
+                          title: 'Location',
+                          size: 10,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        Gap(8),
+                        DateLocationCard(
+                          txt:
+                              'Dubai zayed street , house3564 ,....Dubai zayed street , house3564  ',
+                        )
+                      ],
                     ),
                   ],
                 ),
+                Gap(15),
                 Row(
                   children: [
                     Gap(10),

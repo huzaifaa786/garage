@@ -3,10 +3,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:another_stepper/another_stepper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class OrderController extends GetxController {
   static OrderController instance = Get.find();
@@ -93,4 +96,85 @@ class OrderController extends GetxController {
     {'id': 'vehicle4', 'text': 'GMC'},
     {'id': 'vehicle5', 'text': 'Range Rover'},
   ];
+///////////
+///
+  int activestatus = 2;
+
+   List<StepperData> get stepperData => [
+        StepperData(
+            // title: StepperText(
+            //   "Accepted",
+            //   textStyle: const TextStyle(
+            //       color: AppColors.lightgreen,
+            //       fontSize: 10,
+            //       fontWeight: FontWeight.w500),
+            // ),
+            title: StepperText('text'),
+            iconWidget: Container(
+              height: 30,
+              width: 30,
+              decoration: const BoxDecoration(
+                  color: AppColors.lightgreen,
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: Center(
+                child: SvgPicture .asset(
+                  'assets/icons/check-circlewhite.svg',
+                  height: 20,
+                  width: 20,
+                ),
+              ),
+            )),
+        StepperData(
+            title: StepperText(
+              "On the way",
+              textStyle: TextStyle(
+                  color: activestatus != 1
+                      ? AppColors.lightgreen
+                      : AppColors.greybg,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500),
+            ),
+            iconWidget: Container(
+              height: 30,
+              width: 30,
+              decoration: BoxDecoration(
+                  color: activestatus != 1
+                      ? AppColors.lightgreen
+                      : AppColors.greybg,
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: Center(
+                child: SvgPicture.asset(
+                  'assets/icons/check-circlewhite.svg',
+                  height: 20,
+                  width: 20,
+                ),
+              ),
+            )),
+        StepperData(
+            title: StepperText(
+              "Delivered",
+              textStyle: TextStyle(
+                  color: activestatus == 2
+                      ? AppColors.lightgreen
+                      : AppColors.greybg,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500),
+            ),
+            iconWidget: Container(
+              height: 30,
+              width: 30,
+              decoration: BoxDecoration(
+                  color: activestatus == 2
+                      ? AppColors.lightgreen
+                      : AppColors.greybg,
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: Center(
+                child: SvgPicture.asset(
+                  'assets/icons/check-circlewhite.svg',
+                  height: 20,
+                  width: 20,
+                ),
+              ),
+            )),
+      ];
 }

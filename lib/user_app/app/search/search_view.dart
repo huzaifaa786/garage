@@ -12,9 +12,10 @@ import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/cards/bottomsheet_container.dart';
-import 'package:mobilegarage/user_app/components/cards/profile_card.dart';
-import 'package:mobilegarage/user_app/components/filter_bottomsheet.dart';
+
+
 import 'package:mobilegarage/user_app/components/textfields/icon_inputfield.dart';
+import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
