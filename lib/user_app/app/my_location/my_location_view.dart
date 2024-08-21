@@ -104,7 +104,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                             controller.emirateController.text = value;
                             // controller.emirateValidation(value);
                           },
-                          items: controller.citiesList,
+                          items: controller.city,
                         ),
                         Gap(20),
                         MainInput(

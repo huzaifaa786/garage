@@ -29,14 +29,13 @@ class AppRoutes {
   static const promotion = '/promotion';
   static const changephonenumber = '/changephonenumber';
   static const selectside = '/selectside';
-    static const acceptedorder = '/acceptedorder';
+  static const acceptedorder = '/acceptedorder';
+  static const cardetails = '/cardetaile';
 
-
- 
   static const garage = '/garage';
   static const bookservice = '/bookservice';
   static const payments = '/payments';
-  
+
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile =  '/profile';
@@ -50,7 +49,6 @@ class AppRoutes {
   // static const map = '/map';
   // static const policies = '/policies';
   // static const help = '/help';
-
 
   //////////////////////vendor_app//////////////////
 

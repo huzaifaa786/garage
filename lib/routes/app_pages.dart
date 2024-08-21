@@ -5,6 +5,8 @@ import 'package:mobilegarage/selectside/selectside_binding.dart';
 import 'package:mobilegarage/selectside/selectside_view.dart';
 import 'package:mobilegarage/user_app/app/book_service/book_service_binding.dart';
 import 'package:mobilegarage/user_app/app/book_service/book_service_view.dart';
+import 'package:mobilegarage/user_app/app/car_details/car_details_binding.dart';
+import 'package:mobilegarage/user_app/app/car_details/car_details_view.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/app/cart/cart_bindings.dart';
@@ -478,6 +480,11 @@ class AppPages {
       name: AppRoutes.vlanguage,
       page: () => const VLanguageView(),
       binding: VLanguageBinding(),
+    ),
+     GetPage(
+      name: AppRoutes.cardetails,
+      page: () => CarDetailsView(),
+      binding:CarDetailsBinding(),
     ),
   ];
 }
