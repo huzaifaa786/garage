@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_controller.dart';
+import 'package:mobilegarage/user_app/app/order/accapted_order/component/order_card.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 
 class AccaptedOrderView extends StatefulWidget {
@@ -22,8 +23,20 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
               appBarTitle: 'Accepted  Orders',
               hasBgColor: false,
               hasShadow: true,
-              child: Column(
-                children: [],
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        OrderCard(),
+                      ],
+                    ),
+                    Column(
+                      children: [],
+                    )
+                  ],
+                ),
               ),
             ));
   }
