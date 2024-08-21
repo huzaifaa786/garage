@@ -31,9 +31,8 @@ class AppRoutes {
   static const selectside = '/selectside';
   static const garage = '/garage';
   static const bookservice = '/bookservice';
+  static const cardetails = '/cardetails';
 
-  
-  
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile = '/profile';
@@ -47,7 +46,6 @@ class AppRoutes {
   // static const map = '/map';
   // static const policies = '/policies';
   // static const help = '/help';
-
 
   //////////////////////vendor_app//////////////////
 

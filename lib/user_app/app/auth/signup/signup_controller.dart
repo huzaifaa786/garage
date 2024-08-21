@@ -7,9 +7,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:mobilegarage/user_app/components/textfields/main_input_dropdown.dart';
 
 class SignupController extends GetxController {
   static SignupController innstanse = Get.find();
+  TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emirateController = TextEditingController();
   TextEditingController adreesdetailController = TextEditingController();
@@ -36,15 +38,31 @@ class SignupController extends GetxController {
   }
 
   /////////////////
-  List<String> citiesList = [
-    'Dubai',
-    'Abu Dhabi',
-    'Fujairah',
-    'Ras Al Khaimah',
-    'Sharjah',
-    'Umm Al Quwain',
-    'Ajman',
-    'Western Region',
+  final List<DropdownItem> city = [
+    DropdownItem(
+      title: 'Dubai',
+    ),
+    DropdownItem(
+      title: 'Abu Dhabi',
+    ),
+    DropdownItem(
+      title: 'Fujairah',
+    ),
+    DropdownItem(
+      title: 'Ras Al Khaimah',
+    ),
+    DropdownItem(
+      title: 'Sharjah',
+    ),
+    DropdownItem(
+      title: 'Umm Al Quwain',
+    ),
+    DropdownItem(
+      title: 'Ajman',
+    ),
+    DropdownItem(
+      title: 'Western Region',
+    ),
   ];
 ///////////////
   Position? currentPosition;
@@ -67,14 +85,14 @@ class SignupController extends GetxController {
     // Add more cars as needed
   ];
 
-   List<Map<String, dynamic>> vehicleSections = [
+  List<Map<String, dynamic>> vehicleSections = [
     {
       'vehicleDetailController': TextEditingController(),
       'selectedVehicle': 'Car',
       'vehicleImage': null,
     }
   ];
-   void addVehicleSection() {
+  void addVehicleSection() {
     vehicleSections.add({
       'vehicleDetailController': TextEditingController(),
       'selectedVehicle': 'Car',
@@ -82,6 +100,7 @@ class SignupController extends GetxController {
     });
     update();
   }
+
   void removeVehicleSection(int index) {
     vehicleSections.removeAt(index);
     update();
@@ -91,8 +110,10 @@ class SignupController extends GetxController {
     vehicleSections[index]['selectedVehicle'] = vehicleName;
     update();
   }
-    Future<void> selectVehicleImage(int index) async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+  Future<void> selectVehicleImage(int index) async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       vehicleSections[index]['vehicleImage'] = pickedFile.path;
       update();
