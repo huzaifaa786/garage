@@ -23,6 +23,7 @@ class IconInputField extends StatelessWidget {
     this.onChange,
     this.ontap,
     this.width,
+    this.height = 55,
   });
   final ValueChanged<String>? onChange;
   final VoidCallback? ontap;
@@ -35,61 +36,67 @@ class IconInputField extends StatelessWidget {
   final TextInputType type;
   final String? lable;
   final AutovalidateMode? autovalidateMode;
-  final int maxlines;
+  final maxlines;
   final bool readOnly;
   final String? errorText;
-  final width;
+  final double? width;
+  final double? height;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 55,
-      width: width,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: AppColors.grey.withOpacity(0.4)),
-        borderRadius: BorderRadius.circular(60),
-      ),
-      child: TextFormField(
-        readOnly: readOnly,
-        maxLines: maxlines,
-        obscureText: obscure,
-        controller: controller,
-        onChanged: onChange,
-        validator: validator,
-        onTap: ontap,
-        autovalidateMode: autovalidateMode ??
-            (validator == null
-                ? AutovalidateMode.disabled
-                : AutovalidateMode.onUserInteraction),
-        keyboardType: type,
-        style: TextStyle(
-          color: AppColors.black,
-          fontSize: 13,
-          fontWeight: FontWeight.w400,
+    return GestureDetector(
+      onTap: () {
+        onChange;
+      },
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: AppColors.grey.withOpacity(0.4)),
+          borderRadius: BorderRadius.circular(60),
         ),
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-          fillColor: AppColors.borderlightgrey,
-          filled: true,
-          prefixIcon: hasprefix
-              ? Padding(
-                  padding: const EdgeInsets.only(
-                      left: 30.0, right: 20.0, top: 12.0, bottom: 12.0),
-                  child: SvgPicture.asset(
-                    prefixIcon ?? 'assets/icons/search.svg',
-                    height: 24,
-                    width: 24,
-                  ),
-                )
-              : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(60),
-            borderSide: BorderSide.none,
-          ),
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: AppColors.grey,
+        child: TextFormField(
+          readOnly: readOnly,
+          maxLines: maxlines,
+          obscureText: obscure,
+          controller: controller,
+          onChanged: onChange,
+          validator: validator,
+          onTap: ontap,
+          autovalidateMode: autovalidateMode ??
+              (validator == null
+                  ? AutovalidateMode.disabled
+                  : AutovalidateMode.onUserInteraction),
+          keyboardType: type,
+          style: TextStyle(
+            color: AppColors.black,
             fontSize: 13,
             fontWeight: FontWeight.w400,
+          ),
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            fillColor: AppColors.borderlightgrey,
+            filled: true,
+            prefixIcon: hasprefix
+                ? Padding(
+                    padding: const EdgeInsets.only(
+                        left: 30.0, right: 20.0, top: 12.0, bottom: 12.0),
+                    child: SvgPicture.asset(
+                      prefixIcon ?? 'assets/icons/search.svg',
+                      height: 24,
+                      width: 24,
+                    ),
+                  )
+                : null,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(60),
+              borderSide: BorderSide.none,
+            ),
+            hintText: hint,
+            hintStyle: TextStyle(
+              color: AppColors.grey,
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ),

@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -13,19 +14,21 @@ class ServiceCard extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final String price;
+  final time;
 
-  const ServiceCard({
+  ServiceCard({
     required this.image,
     required this.title,
     required this.onTap,
     required this.price,
+    this.time,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width * 0.28,
-      height: Get.height * 0.2,
+      width: Get.width * 0.32,
+      height: Get.height * 0.3 / 1.3,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -109,6 +112,24 @@ class ServiceCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Row(
+              children: [
+                SvgPicture.asset(
+                  "assets/icons/clock.svg",
+                  width: 9,
+                  height: 9,
+                ),
+                Gap(3),
+                AppText(
+                  title: time,
+                  size: 8,
+                  fontWeight: FontWeight.w400,
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
@@ -117,18 +138,18 @@ class ServiceCard extends StatelessWidget {
                       width: 30,
                       child: AppText(
                         title: price,
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 0, 91, 165),
                         fontWeight: FontWeight.w600,
-                        size: 12.0,
+                        size: 10.0,
                         maxLines: 1,
                         overFlow: TextOverflow.visible,
                       ),
                     ),
                     AppText(
                       title: 'AED',
-                      color: Colors.blue,
+                      color: Color.fromARGB(255, 0, 91, 165),
                       fontWeight: FontWeight.w600,
-                      size: 12.0,
+                      size: 10.0,
                     ),
                   ],
                 ),
@@ -141,9 +162,10 @@ class ServiceCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(4.0),
+                      padding: EdgeInsets.all(4.0),
                       child: SvgPicture.asset(
                         'assets/icons/cart_ic.svg',
+                        alignment: Alignment.center,
                       ),
                     ),
                   ),

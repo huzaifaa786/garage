@@ -48,7 +48,9 @@ class _HomeViewState extends State<HomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoutes.search);
+                    },
                     child: IconInputField(
                       hasprefix: true,
                       hint: 'Search for garages, service ..'.tr,
@@ -70,6 +72,8 @@ class _HomeViewState extends State<HomeView> {
                       );
                     },
                     options: CarouselOptions(
+                      
+                      scrollPhysics: BouncingScrollPhysics(),
                       height: Get.height * 0.28,
                       enableInfiniteScroll: true,
                       autoPlay: true,
@@ -114,8 +118,9 @@ class _HomeViewState extends State<HomeView> {
                     Gap(30),
                     Expanded(
                       child: GridView.builder(
-                        gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: controller.itemCount,
                           crossAxisSpacing: 6.0,
                           mainAxisSpacing: 2.0,

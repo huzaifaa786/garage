@@ -1,14 +1,21 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 
 import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/cards/bottomsheet_container.dart';
-import 'package:mobilegarage/user_app/components/filter_bottomsheet.dart';
+
+
+import 'package:mobilegarage/user_app/components/textfields/icon_inputfield.dart';
+import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
@@ -46,26 +53,57 @@ class _SearchViewState extends State<SearchView> {
         body: SafeArea(
             child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
                 Gap(15),
-                GestureDetector(
-                  onTap: () {
-                    Get.bottomSheet(FilterBottomsheet(),
-
-                    isScrollControlled: true
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Gap(5),
-                      AppText(
-                        title: 'Results',
-                        size: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconInputField(
+                      width: Get.width * 0.7,
+                      hasprefix: true,
+                      hint: 'street,garages'.tr,
+                      readOnly: false,
+                      onChange: (value) {
+                        Get.toNamed(AppRoutes.search);
+                      },
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.bottomSheet(FilterBottomsheet(),
+                            isScrollControlled: true);
+                      },
+                      child: Container(
+                          height: 37,
+                          width: 37,
+                          padding: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.lightPink,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(
+                                      0.2), // Adjust opacity as needed
+                                  blurRadius: 6.0,
+                                )
+                              ]),
+                          child: SvgPicture.asset(
+                            "assets/icons/filter.svg",
+                            height: 1,
+                            width: 1,
+                            alignment: Alignment.center,
+                          )),
+                    ),
+                  ],
+                ),
+                Gap(25),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: AppText(
+                    title: 'Results',
+                    size: 14,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 ListView.builder(
@@ -75,7 +113,7 @@ class _SearchViewState extends State<SearchView> {
                   itemBuilder: (context, index) {
                     final item = controller.searchCards[index];
                     return Padding(
-                      padding: const EdgeInsets.only(top: 15),
+                      padding: EdgeInsets.only(top: 15),
                       child: SearchCard(
                         image: item.image,
                         title: item.title,
@@ -89,6 +127,25 @@ class _SearchViewState extends State<SearchView> {
                     );
                   },
                 ),
+                Gap(20),
+                GridView.builder(
+                    itemCount: 4,
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 15,
+                        crossAxisSpacing: 24,
+                        childAspectRatio: 0.8),
+                    itemBuilder: (context, index) {
+                      return ServiceCard(
+                          image: "https://dummyimage.com/70x70/d9c3d9/00000a",
+                          time: "12 sec",
+                          title: "1223",
+                          onTap: () {},
+                          price: "222");
+                    }),
+                Gap(20),
               ],
             ),
           ),
