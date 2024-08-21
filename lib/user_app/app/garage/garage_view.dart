@@ -7,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
+import 'package:mobilegarage/user_app/app/garage_review/garage_review_view.dart';
+import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_icons.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
@@ -105,7 +107,7 @@ class GarageView extends StatelessWidget {
               ),
               Gap(10),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 65),
+                padding: EdgeInsets.symmetric(horizontal: 65),
                 child: AppText(
                   title:
                       'in street garage we can solve all your car problems with the best price!',
@@ -125,7 +127,10 @@ class GarageView extends StatelessWidget {
                           clipper: RightCircularClipper(),
                           child: GestureDetector(
                             onTap: () {
-                              print('object');
+                           Get.bottomSheet(GarageReviewBottomSheetView(),
+                           isScrollControlled: true
+                           );
+
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -154,7 +159,9 @@ class GarageView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(width: Get.width*0.13,)
+                        SizedBox(
+                          width: Get.width * 0.13,
+                        )
                       ],
                     ),
                     Positioned(
@@ -175,7 +182,8 @@ class GarageView extends StatelessWidget {
                             child: Row(
                               children: [
                                 Image.asset(
-                                  'assets/images/chat.png',color: AppColors.primarybg,
+                                  'assets/images/chat.png',
+                                  color: AppColors.primarybg,
                                 ),
                                 Gap(5),
                                 AppText(
@@ -186,7 +194,6 @@ class GarageView extends StatelessWidget {
                                 )
                               ],
                             ),
-
                           ),
                         ),
                       ),
@@ -195,27 +202,95 @@ class GarageView extends StatelessWidget {
                 ),
               ),
               Gap(25),
-              AppText(title: 'Our Services',size: 14,fontWeight: FontWeight.w600,),
-
-              Expanded(
-                      child: GridView.builder(
-                        gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 6,
-                          crossAxisSpacing: 6.0,
-                          mainAxisSpacing: 2.0,
-                          mainAxisExtent: Get.height * 0.18,
-                        ),
-                        itemCount: controller.services.length,
-                        itemBuilder: (context, index) {
-                          final item = controller.services[index];
-                          return ServicesIcons(
-                            imageUrl: item.imageUrl,
-                            text: item.text,
-                          );
-                        },
-                      ),
+              AppText(
+                title: 'Our Services',
+                size: 14,
+                fontWeight: FontWeight.w600,
+              ),
+              Gap(45),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxWidth: Get.width * 0.88,
+                    minHeight: Get.height * 0.3,
+                    maxHeight: Get.height * 0.55),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 6.0,
+                    mainAxisSpacing: 2.0,
+                    mainAxisExtent: Get.height * 0.18,
+                  ),
+                  itemCount: controller.services.length,
+                  itemBuilder: (context, index) {
+                    final item = controller.services[index];
+                    return ServicesIcons(
+                      imageUrl: item.imageUrl,
+                      text: item.text,
+                    );
+                  },
+                ),
+              ),
+              Gap(30),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppText(
+                      title: 'Car wash',
+                      size: 14,
+                      fontWeight: FontWeight.w600,
                     ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.lightprimary,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        child: Row(
+                          children: [
+                            AppText(
+                              title: 'View less',
+                              size: 10,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.primary,
+                            ),
+                            Gap(3),
+                            Icon(
+                              Icons.keyboard_arrow_up,
+                              color: AppColors.primary,
+                              size: 16,
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Gap(30),
+              SizedBox(
+                width: Get.width * 0.9,
+                height: Get.height * 0.22,
+                child: ListView.builder(
+                  itemCount: 4,
+                  scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10, left: 3),
+                      child: ServiceCard(
+                          image: 'https://dummyimage.com/70x70/000/fff',
+                          title: 'title',
+                          onTap: () {},
+                          price: 'price'),
+                    ),
+                  ),
+                ),
+              ),
+              Gap(130),
             ],
           ),
         )),

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 final BoxShadow appbarShadow = BoxShadow(
-  color: AppColors.shadowblack, 
-  offset: Offset(0, 0),
+  color: AppColors.shadowblack.withOpacity(0.2),
+  offset: Offset(0,2),
   blurRadius: 4,
   spreadRadius: 0,
 );

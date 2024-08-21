@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/button_shadow.dart';
@@ -22,6 +23,7 @@ class MainButton extends StatelessWidget {
         fontsize = fontsize ?? 14.0;
 
   final String? title;
+
   final double? radius;
   final Function()? onTap;
   final double? height;
@@ -43,20 +45,22 @@ class MainButton extends StatelessWidget {
         //   // color: AppColors.primary,
         //   borderRadius: BorderRadius.circular(radius!),
         // ),
-         decoration: ShapeDecoration(
+        decoration: ShapeDecoration(
           color: btncolor,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(45),
-              side: BorderSide.none),
+              borderRadius: BorderRadius.circular(45), side: BorderSide.none),
           shadows: buttonShadow,
         ),
-        child: Center(
-          child: AppText(
-            title: '$title',
-            color: textcolor,
-            size: fontsize,
-            fontWeight: txtweight,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppText(
+              title: '$title',
+              color: textcolor,
+              size: fontsize,
+              fontWeight: txtweight,
+            ),
+          ],
         ),
       ),
     );

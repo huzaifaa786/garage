@@ -3,6 +3,8 @@
 import 'package:get/get.dart';
 import 'package:mobilegarage/selectside/selectside_binding.dart';
 import 'package:mobilegarage/selectside/selectside_view.dart';
+import 'package:mobilegarage/user_app/app/book_service/book_service_binding.dart';
+import 'package:mobilegarage/user_app/app/book_service/book_service_view.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_binding.dart';
 import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_view.dart';
 import 'package:mobilegarage/app/cart/cart_bindings.dart';
@@ -39,11 +41,12 @@ import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_bi
 import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_view.dart';
 import 'package:mobilegarage/user_app/app/order/order_binding.dart';
 import 'package:mobilegarage/user_app/app/order/order_view.dart';
-
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/user_app/app/order_history/order_history_binding.dart';
 import 'package:mobilegarage/user_app/app/order_history/order_history_view.dart';
+import 'package:mobilegarage/user_app/app/payment/payment_binding.dart';
+import 'package:mobilegarage/user_app/app/payment/payment_view.dart';
 import 'package:mobilegarage/user_app/app/profile/account_binding.dart';
 import 'package:mobilegarage/user_app/app/profile/account_view.dart';
 import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_binding.dart';
@@ -58,16 +61,12 @@ import 'package:mobilegarage/user_app/app/FAQ/faq_binding.dart';
 import 'package:mobilegarage/user_app/app/FAQ/faq_view.dart';
 import 'package:mobilegarage/user_app/app/aboutus/aboutus_binding.dart';
 import 'package:mobilegarage/user_app/app/aboutus/aboutus_view.dart';
-
 import 'package:mobilegarage/user_app/app/privacy/privacy_binding.dart';
 import 'package:mobilegarage/user_app/app/privacy/privacy_view.dart';
-
 import 'package:mobilegarage/user_app/app/promotion/promotion_binding.dart';
 import 'package:mobilegarage/user_app/app/promotion/promotion_view.dart';
-
 import 'package:mobilegarage/user_app/app/setting/setting_binding.dart';
 import 'package:mobilegarage/user_app/app/setting/setting_view.dart';
-
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/app/auth/change_forgot_password/change_forgot_password_binding.dart';
 import 'package:mobilegarage/vendor_app/app/auth/change_forgot_password/change_forgot_password_view.dart';
@@ -328,6 +327,23 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+    //TODO:  [book service Screen]
+    GetPage(
+      name: AppRoutes.bookservice,
+      page: () => BookServiceView(),
+      binding: BookServiceBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+     //TODO:  [payment Screen]
+    GetPage(
+      name: AppRoutes.payments,
+      page: () => PaymentView(),
+      binding: PaymentBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
+
 
     GetPage(
       name: AppRoutes.acceptedorder,
