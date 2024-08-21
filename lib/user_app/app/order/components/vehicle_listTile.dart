@@ -24,28 +24,31 @@ class VehicleListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       title: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Radio<String>(
             value: value,
             groupValue: groupValue,
             onChanged: onChanged,
+            fillColor: MaterialStatePropertyAll(AppColors.primarybg),
           ),
           Row(
             children: [
               SvgPicture.asset(
                 iconPath,
-                color: AppColors.primarybg,
-                height: 25,
-                width: 25,
+                // color: AppColors.primarybg,
+                height: 20,
+                width: 20,
               ),
-              Gap(5),
+              Gap(10),
               Text(
                 text,
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.primarybg,
+                  // color: AppColors.primarybg,
                 ),
               ),
             ],
