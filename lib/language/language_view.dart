@@ -3,19 +3,19 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/selectside/component/container.dart';
+import 'package:mobilegarage/language/component/language_selecter.dart';
 import 'package:mobilegarage/selectside/selectside_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
-class SelectsideView extends StatefulWidget {
-  const SelectsideView({super.key});
+class LanguageView extends StatefulWidget {
+  const LanguageView({super.key});
 
   @override
-  State<SelectsideView> createState() => _SelectsideViewState();
+  State<LanguageView> createState() => _LanguageView();
 }
 
-class _SelectsideViewState extends State<SelectsideView> {
+class _LanguageView extends State<LanguageView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SelectSideController>(
@@ -52,18 +52,18 @@ class _SelectsideViewState extends State<SelectsideView> {
                           child: Column(children: [
                             Gap(30),
                             AppText(
-                              title: 'Selct side..',
+                              title: '  Select \nlanguage',
                               size: 30,
                               fontWeight: FontWeight.w600,
                               color: const Color.fromARGB(255, 96, 3, 5),
                             ),
                             Gap(120),
-                            ContainerSelect(
-                              text: 'user',
+                            LanguageSelecter(
+                              text: 'English',
                             ),
                             Gap(60),
-                            ContainerSelect(
-                              text: 'Garage Owner',
+                            LanguageSelecter(
+                              text: 'العربية',
                             ),
                           ])),
                     ),
