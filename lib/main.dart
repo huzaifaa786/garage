@@ -6,11 +6,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/splash/splash_binding.dart';
 import 'package:mobilegarage/splash/splash_view.dart';
-
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/routes/app_pages.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-
 void main()async {
    WidgetsFlutterBinding.ensureInitialized();
   await LoadingHelper.init();
@@ -18,10 +16,8 @@ void main()async {
    EasyLoading.init();
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -41,4 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

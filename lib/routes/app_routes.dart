@@ -29,13 +29,16 @@ class AppRoutes {
   static const promotion = '/promotion';
   static const changephonenumber = '/changephonenumber';
   static const selectside = '/selectside';
+  static const acceptedorder = '/acceptedorder';
+  static const cardetails = '/cardetaile';
+
   static const garage = '/garage';
   static const bookservice = '/bookservice';
-  static const cardetails = '/cardetails';
+  static const payments = '/payments';
 
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
-  // static const profile = '/profile';
+  // static const profile =  '/profile';
   // static const orders = '/orders';
   // static const otp = '/otp';
   // static const language = '/language';

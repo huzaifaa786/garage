@@ -3,16 +3,25 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+
 import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
+import 'package:mobilegarage/user_app/components/cards/bottomsheet_container.dart';
+import 'package:mobilegarage/user_app/components/filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
-class SearchView extends StatelessWidget {
+class SearchView extends StatefulWidget {
   const SearchView({super.key});
 
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchScreenController>(
@@ -41,15 +50,23 @@ class SearchView extends StatelessWidget {
             child: Column(
               children: [
                 Gap(15),
-                Row(
-                  children: [
-                    Gap(5),
-                    AppText(
-                      title: 'Results',
-                      size: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    Get.bottomSheet(FilterBottomsheet(),
+
+                    isScrollControlled: true
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Gap(5),
+                      AppText(
+                        title: 'Results',
+                        size: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ],
+                  ),
                 ),
                 ListView.builder(
                   itemCount: controller.searchCards.length,
@@ -78,5 +95,89 @@ class SearchView extends StatelessWidget {
         )),
       ),
     );
+  }
+
+  void settingModalBottomSheet(context, SearchScreenController controller) {
+    showModalBottomSheet(
+        backgroundColor: AppColors.white,
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            padding: EdgeInsets.only(left: 15, right: 15, top: 30, bottom: 50),
+            decoration: BoxDecoration(
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: Colors.black.withOpacity(0.2),
+                //     spreadRadius: 1,
+                //     blurRadius: 5,
+                //     offset: Offset(1, -2), // changes position of shadow
+                //   ),
+                // ],
+                ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Filter By',
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+                Gap(5),
+                Divider(
+                  color: AppColors.grey.withOpacity(0.2),
+                  thickness: 1,
+                ),
+                Gap(2),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          AppText(
+                            title: 'Sort',
+                            size: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ],
+                      ),
+                      Gap(5),
+                      Row(
+                        children: [
+                          Container(
+                            height: 5,
+                            width: 5,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.black,
+                            ),
+                          ),
+                          Gap(5),
+                          AppText(
+                            title: 'Price',
+                            size: 12,
+                            fontWeight: FontWeight.w500,
+                          )
+                        ],
+                      ),
+                      Gap(10),
+                      Row(
+                        children: [
+                          BottomsheetContainer(),
+                          Gap(5),
+                          BottomsheetContainer(),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          );
+        });
   }
 }
