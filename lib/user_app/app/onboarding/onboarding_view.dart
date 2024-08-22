@@ -29,7 +29,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     Gap(50),
                     Image.asset('assets/images/auth_logo.png'),
                     SizedBox(
-                        height: Get.height * 0.55,
+                        height: Get.height * 0.54,
                         child: PageView(
                           controller: controller.pgecontroller,
                           onPageChanged: (index) {
@@ -63,7 +63,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                                   Get.offAllNamed(AppRoutes.selectlang);
                                 },
                     ),
-                    Gap(Get.height * 0.03),
+                    Gap(Get.height * 0.029),
                     MainButton(
                       title: controller.slideIndex != 2 ? 'Skip' : 'Sign in',
                       height: 55.0,

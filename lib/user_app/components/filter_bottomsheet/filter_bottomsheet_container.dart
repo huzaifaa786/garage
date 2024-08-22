@@ -19,10 +19,11 @@ class FilterBottomsheetContainer extends StatelessWidget {
   final String group; 
   final double height;
   final double width;
-
+final SearchScreenController controller = Get.put(SearchScreenController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchScreenController>(
+        init: controller,
       builder: (controller) {
         int selectedIndex;
         switch (group) {

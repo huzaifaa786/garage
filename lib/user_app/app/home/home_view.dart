@@ -8,7 +8,6 @@ import 'package:mobilegarage/user_app/app/home/components/banner_card.dart';
 import 'package:mobilegarage/user_app/app/home/components/home_appbar.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_icons.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
-
 import 'package:mobilegarage/user_app/components/textfields/icon_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -31,6 +30,7 @@ class _HomeViewState extends State<HomeView> {
       autoRemove: false,
       builder: (controller) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             scrolledUnderElevation: 0.0,
@@ -72,7 +72,6 @@ class _HomeViewState extends State<HomeView> {
                       );
                     },
                     options: CarouselOptions(
-                      
                       scrollPhysics: BouncingScrollPhysics(),
                       height: Get.height * 0.28,
                       enableInfiniteScroll: true,
@@ -132,7 +131,7 @@ class _HomeViewState extends State<HomeView> {
                           return ServicesIcons(
                             imageUrl: item.imageUrl,
                             text: item.text,
-                            ontap: (){
+                            ontap: () {
                               Get.toNamed(AppRoutes.filterorder);
                             },
                           );
