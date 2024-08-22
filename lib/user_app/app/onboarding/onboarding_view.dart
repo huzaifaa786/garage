@@ -60,7 +60,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                                   controller.nextPage();
                                 }
                               : () {
-                                  Get.offAllNamed(AppRoutes.signup);
+                                  Get.offAllNamed(AppRoutes.selectlang);
                                 },
                     ),
                     Gap(Get.height * 0.03),
@@ -71,7 +71,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       btncolor: AppColors.white,
                       textcolor: AppColors.primary,
                       onTap: () {
-                        Get.offAllNamed(AppRoutes.main);
+                        Get.offAllNamed(AppRoutes.selectlang);
                       },
                     ),
                   ],

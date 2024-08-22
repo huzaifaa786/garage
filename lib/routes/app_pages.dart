@@ -354,6 +354,13 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
+     GetPage(
+      name: AppRoutes.filterorder,
+      page: () => OrderView(),
+      binding: OrderBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: const Duration(milliseconds: 100),
+    ),
 
     ////////////////////vendor_app/////////////////////////
     //////////////////! vendor_app///////////////////////////////
