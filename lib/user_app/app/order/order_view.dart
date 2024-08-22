@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/order/order_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:stepper_list_view/stepper_list_view.dart';
@@ -73,7 +73,14 @@ class _OrderViewState extends State<OrderView> {
                                   return value.content;
                                 }),
                           ),
-                          Gap(20),
+                          Gap(40),
+                          MainButton(
+                            title: 'Next',
+                            onTap: () {
+                              Get.toNamed(AppRoutes.acceptedorder);
+                            },
+                          ),
+                          Gap(40),
                         ]),
                   ),
                 ),

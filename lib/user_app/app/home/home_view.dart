@@ -132,6 +132,9 @@ class _HomeViewState extends State<HomeView> {
                           return ServicesIcons(
                             imageUrl: item.imageUrl,
                             text: item.text,
+                            ontap: (){
+                              Get.toNamed(AppRoutes.filterorder);
+                            },
                           );
                         },
                       ),

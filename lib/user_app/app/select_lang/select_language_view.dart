@@ -61,7 +61,7 @@ class SelectLanguageView extends StatelessWidget {
                     title: 'Continue',
                     buttonWidth: Get.width * 0.77,
                     onTap: () {
-                      Get.offAllNamed(AppRoutes.onboarding);
+                      Get.offAllNamed(AppRoutes.selectside);
                     },
                   ),
                 ],
