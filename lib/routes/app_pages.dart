@@ -55,6 +55,8 @@ import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_bind
 import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_view.dart';
 import 'package:mobilegarage/user_app/app/search/search_binding.dart';
 import 'package:mobilegarage/user_app/app/search/search_view.dart';
+import 'package:mobilegarage/user_app/app/search_result/searchResult_binding.dart';
+import 'package:mobilegarage/user_app/app/search_result/searchResult_view.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_view.dart';
 import 'package:mobilegarage/user_app/app/terms/terms_conditions_binding.dart';
@@ -485,6 +487,12 @@ class AppPages {
       name: AppRoutes.cardetails,
       page: () => CarDetailsView(),
       binding:CarDetailsBinding(),
+    ),
+     GetPage(
+      name: AppRoutes.search_result,
+      page: () => const SearchresultView(),
+      binding: SearchResultBinding(),
+     
     ),
   ];
 }
