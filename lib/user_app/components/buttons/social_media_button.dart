@@ -16,17 +16,21 @@ class SocialMediaButton extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        height: 55,
-        width: 55,
+        // height: 55,
+        // width: 55,
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(80),
         ),
-        child: SvgPicture.asset(
-          image,
-          // 'assets/icons/local.svg',
-          color: AppColors.primarybg,
-          fit: BoxFit.scaleDown,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SvgPicture.asset(
+            image,
+            // 'assets/icons/local.svg',
+            color: AppColors.primarybg,
+            height: 20,
+            fit: BoxFit.scaleDown,
+          ),
         ),
       ),
     );

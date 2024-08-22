@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class HomeAppbar extends StatelessWidget {
@@ -29,14 +31,18 @@ class HomeAppbar extends StatelessWidget {
                   onTap: onNotificationtap,
                     child: SvgPicture.asset('assets/icons/bell.svg')),
                 Gap(20),
-                Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    color: AppColors.lightprimary,
-                    borderRadius: BorderRadius.circular(80),
+                GestureDetector(onTap: () {
+                  Get.toNamed(AppRoutes.chats_accounts);
+                },
+                  child: Container(
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      color: AppColors.lightprimary,
+                      borderRadius: BorderRadius.circular(80),
+                    ),
+                    child:SvgPicture.asset('assets/icons/chat.svg'),
                   ),
-                  child:SvgPicture.asset('assets/icons/chat.svg'),
                 ),
               ],
             ),

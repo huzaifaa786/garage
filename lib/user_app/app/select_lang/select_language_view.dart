@@ -10,6 +10,7 @@ import 'package:mobilegarage/user_app/components/enums/enums.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class SelectLanguageView extends StatelessWidget {
   const SelectLanguageView({super.key});
@@ -61,7 +62,8 @@ class SelectLanguageView extends StatelessWidget {
                     title: 'Continue',
                     buttonWidth: Get.width * 0.77,
                     onTap: () {
-                      Get.offAllNamed(AppRoutes.onboarding);
+                      Get.offAllNamed(AppRoutes.selectside);
+                   
                     },
                   ),
                 ],

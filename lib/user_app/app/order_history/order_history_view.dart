@@ -34,6 +34,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
                       toolbarHeight: 95.0,
                       title: TopBar(
                         showicon: true,
+                        showgarageicon: false,
                         title: "Orders history",
                       ),
                     ),

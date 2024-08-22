@@ -1,16 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_unnecessary_containers
-import 'package:another_stepper/another_stepper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/user_app/app/order/components/circle.dart';
-import 'package:mobilegarage/user_app/app/order/components/line.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/order/order_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:stepper_list_view/stepper_list_view.dart';
 
 class OrderView extends StatefulWidget {
   const OrderView({super.key});
@@ -52,109 +50,37 @@ class _OrderViewState extends State<OrderView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Gap(30),
-                          AnotherStepper(
-                            stepperList: controller.stepperData,
-                            stepperDirection: Axis.vertical,
-                            iconWidth: 30,
-                            iconHeight: 30,
-                            activeBarColor: AppColors.lightgreen,
-                            inActiveBarColor: Colors.grey,
-                            inverted: true,
-                            verticalGap: 20,
-                            activeIndex: controller.activestatus,
-                            barThickness: 8,
-                          )
-                          // Column(
-                          //   crossAxisAlignment: CrossAxisAlignment.start,
-                          //   children: [
-                          //     //! Filter By
-
-                          //     Row(
-                          //       mainAxisAlignment: MainAxisAlignment.start,
-                          //       children: [
-                          //         Container(
-                          //           height: 35,
-                          //           width: 35,
-                          //           decoration: BoxDecoration(
-                          //             color: AppColors.lightprimary,
-                          //             borderRadius:
-                          //                 BorderRadius.circular(80),
-                          //           ),
-                          //           child: SvgPicture.asset(
-                          //             'assets/icons/filter.svg',
-                          //             fit: BoxFit.scaleDown,
-                          //           ),
-                          //         ),
-                          //         Gap(10),
-                          //         AppText(
-                          //           title: 'Filter By',
-                          //           fontWeight: FontWeight.w600,
-                          //           size: 16.0,
-                          //           color: AppColors.primary,
-                          //         ),
-                          //       ],
-                          //     ),
-                          //     Gap(5),
-                          //     Row(
-                          //       mainAxisAlignment: MainAxisAlignment.start,
-                          //       children: [
-                          //         Gap(18),
-                          //         AppText(
-                          //           title: 'Approximate price '.tr,
-                          //           fontWeight: FontWeight.w400,
-                          //           size: 10.0,
-                          //           color: AppColors.grey,
-                          //         ),
-                          //         Row(
-                          //           children: [
-                          //             ConstrainedBox(
-                          //               constraints: BoxConstraints(
-                          //                   maxWidth: Get.width * 0.35),
-                          //               child: AppText(
-                          //                 title: '123.444444',
-                          //                 fontWeight: FontWeight.w600,
-                          //                 size: 13.0,
-                          //                 color: AppColors.primarybg,
-                          //                 overFlow: TextOverflow.ellipsis,
-                          //                 maxLines: 1,
-                          //               ),
-                          //             ),
-                          //             AppText(
-                          //               title: ' AED'.tr,
-                          //               fontWeight: FontWeight.w600,
-                          //               size: 13.0,
-                          //               color: AppColors.primarybg,
-                          //             ),
-                          //           ],
-                          //         ),
-                          //       ],
-                          //     ),
-
-                          //     //! All Brands
-                          //     Container(
-                          //       height: Get.height * 0.052,
-                          //     ),
-
-                          //     Column(
-                          //       crossAxisAlignment:
-                          //           CrossAxisAlignment.start,
-                          //       children: [
-                          //         Row(
-                          //           mainAxisAlignment:
-                          //               MainAxisAlignment.start,
-                          //           children: [
-                          //             Gap(18),
-                          //             AppText(
-                          //               title: 'All brands'.tr,
-                          //               fontWeight: FontWeight.w600,
-                          //               size: 12.0,
-                          //             ),
-                          //           ],
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ],
-                          // )
+                          SizedBox(
+                            width: Get.width,
+                            child: StepperListView(
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                showStepperInLast: true,
+                                stepperData: controller.stepperData,
+                                stepAvatar: (_, data) {
+                                  return PreferredSize(
+                                      preferredSize: Size.fromRadius(5),
+                                      child: Container(
+                                        height: 10,
+                                        width: 10,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: AppColors.darkprimary),
+                                      ));
+                                },
+                                stepContentWidget: (context, value) {
+                                  return value.content;
+                                }),
+                          ),
+                          Gap(40),
+                          MainButton(
+                            title: 'Next',
+                            onTap: () {
+                              Get.toNamed(AppRoutes.acceptedorder);
+                            },
+                          ),
+                          Gap(40),
                         ]),
                   ),
                 ),

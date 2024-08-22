@@ -35,6 +35,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
               toolbarHeight: 95.0,
               title: TopBar(
                 showicon: true,
+                showgarageicon: false,
                 title: "Terms & Conditions",
               ),
             ),

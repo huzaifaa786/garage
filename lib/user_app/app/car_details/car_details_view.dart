@@ -243,7 +243,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                     title: 'Continue',
                                     txtweight: FontWeight.w600,
                                     onTap: () {
-                                      Get.toNamed(AppRoutes.main);
+                                      Get.toNamed(AppRoutes.otp);
                                     },
                                   ),
                                 ),

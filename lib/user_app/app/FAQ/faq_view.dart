@@ -34,6 +34,7 @@ class _FaqViewState extends State<FaqView> {
               toolbarHeight: 95.0,
               title: TopBar(
                 showicon: true,
+                showgarageicon: false,
                 title: "FAQ",
               ),
             ),

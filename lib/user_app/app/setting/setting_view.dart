@@ -38,6 +38,7 @@ class _SettingViewState extends State<SettingView> {
                     toolbarHeight: 95.0,
                     title: TopBar(
                       showicon: true,
+                      showgarageicon: false,
                       title: "Settings",
                     ),
                   ),
@@ -130,7 +131,7 @@ class _SettingViewState extends State<SettingView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SocialMediaButton(
-                            image: 'assets/icons/mail.svg',
+                            image: 'assets/icons/mail_bold.svg',
                             ontap: () {},
                           ),
                           SocialMediaButton(
@@ -138,7 +139,8 @@ class _SettingViewState extends State<SettingView> {
                             ontap: () {},
                           ),
                           SocialMediaButton(
-                            image: 'assets/icons/Instagram.svg',
+                            
+                            image: 'assets/icons/whatsapp_img.svg',
                             ontap: () {},
                           ),
                           SocialMediaButton(

@@ -13,6 +13,8 @@ import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
+
 
 class PaymentView extends StatelessWidget {
   const PaymentView({super.key});
@@ -123,7 +125,7 @@ class PaymentView extends StatelessWidget {
           ),
         )),
         bottomNavigationBar: Container(
-          height: Get.height * 0.24,
+          height: Get.height * 0.25,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),
@@ -202,6 +204,7 @@ class PaymentView extends StatelessWidget {
                     Get.bottomSheet(
                       PaymentBottomsheet(),
                       isScrollControlled: true,
+                    
                     );
                   },
                 ),

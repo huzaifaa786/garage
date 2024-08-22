@@ -11,7 +11,6 @@ import 'package:mobilegarage/user_app/app/book_service/components/servicesTypesC
 import 'package:mobilegarage/user_app/app/home/components/banner_card.dart';
 import 'package:mobilegarage/user_app/app/order/components/vehicle_listTile.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
