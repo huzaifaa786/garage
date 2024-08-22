@@ -23,7 +23,7 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
               hasBgColor: false,
               hasShadow: true,
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(18.0),
                 child: Row(
                   children: [
                     Column(
