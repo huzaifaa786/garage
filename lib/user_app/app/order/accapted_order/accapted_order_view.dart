@@ -31,10 +31,8 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
           padding: const EdgeInsets.all(18.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment:
-                MainAxisAlignment.start, // Align items to the start
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Add the title row with "Select garage" and "(12) garages"
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -53,7 +51,7 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                     title: '(12) garages',
                     size: 12,
                     fontWeight: FontWeight.w500,
-                    color: AppColors.primary,
+                    color: AppColors.darkprimary,
                   ),
                 ],
               ),
@@ -64,7 +62,12 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
               },
               ),
 
+              Gap(6),
               OrderCard(),
+              Gap(50),
+              MainButton(
+                title: 'Confirm',
+              ),
             ],
           ),
         ),
