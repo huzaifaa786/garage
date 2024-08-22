@@ -8,6 +8,7 @@ import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
 class PaymentBottomsheet extends StatelessWidget {
   const PaymentBottomsheet({super.key});
@@ -155,7 +156,9 @@ class PaymentBottomsheet extends StatelessWidget {
                                     child: MainButton(
                                       buttonWidth: Get.width * 0.7,
                                       title: 'Checkout',
-                                      onTap: () {},
+                                      onTap: () {
+                          UiUtilites.SuccessAlert(context);
+                        },
                                     ),
                                   ),
                                 ),
