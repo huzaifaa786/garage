@@ -48,7 +48,7 @@ class CartCard extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: Get.width * 0.54,
+                width: Get.width * 0.525,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

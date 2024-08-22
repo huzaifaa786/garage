@@ -18,25 +18,20 @@ class OrderCard extends StatefulWidget {
 }
 
 class _OrderCardState extends State<OrderCard> {
-  bool isSelected = false;
-
-  void toggleSelection() {
-    setState(() {
-      isSelected = !isSelected;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AccaptedOrderController>(
       builder: (controller) => GestureDetector(
-        onTap: toggleSelection,
+        onTap: controller.toggleSelection,
         child: Container(
           width: Get.width * 0.9,
+          // width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             border: Border.all(
-              color: isSelected ? AppColors.primary : Colors.transparent,
+              color: controller.isSelected
+                  ? AppColors.primary
+                  : Colors.transparent,
             ),
             color: AppColors.white,
             boxShadow: [
@@ -52,7 +47,7 @@ class _OrderCardState extends State<OrderCard> {
             Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(15)),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(13)),
                   child: CachedNetworkImage(
                     imageUrl: 'https://dummyimage.com/70x70/000/fff',
                     height: 170,
@@ -70,20 +65,23 @@ class _OrderCardState extends State<OrderCard> {
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
-                Gap(4),
+                // Gap(4),
                 Flexible(
                   child: Column(
                     children: [
-                      Gap(4),
+                      //  Gap(4),
                       Container(
+                        height: 112,
+                        // width: 115,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(60)),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(60),
+                          // borderRadius: BorderRadius.circular(60),
+                          borderRadius:
+                              BorderRadius.only(topRight: Radius.circular(13)),
                           child: CachedNetworkImage(
-                            height: 72,
-                            imageUrl:
-                                'https://dummyimage.com/600x400/40d123/0dff00',
+                            // height: 72,
+                            imageUrl: 'https://dummyimage.com/97x72/000/fff',
                             fit: BoxFit.cover,
                             placeholderFadeInDuration:
                                 Duration(milliseconds: 500),
@@ -181,7 +179,9 @@ class _OrderCardState extends State<OrderCard> {
               child: Row(
                 children: [
                   Icon(
+                    
                     Icons.location_on_outlined,
+                    
                   ),
                   RichText(
                     textAlign: TextAlign.center,
@@ -212,74 +212,77 @@ class _OrderCardState extends State<OrderCard> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ClipPath(
-                          clipper: RightCircularClipper(),
-                          child: GestureDetector(
-                            onTap: () {
-                              print('object');
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: AppColors.lightprimary,
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      bottomLeft: Radius.circular(20))),
-                              height: Get.height * 0.05,
-                              width: Get.width * 0.6,
-                              child: Center(
-                                child: Text(
-                                  'View garage',
-                                  style: TextStyle(
-                                      color: Colors.red, fontSize: 16),
+            Padding(
+              padding: EdgeInsets.only(top: 15, bottom: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Stack(
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ClipPath(
+                            clipper: RightCircularClipper(),
+                            child: GestureDetector(
+                              onTap: () {
+                                print('object');
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: AppColors.lightprimary,
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        bottomLeft: Radius.circular(20))),
+                                height: Get.height * 0.05,
+                                width: Get.width * 0.6,
+                                child: Center(
+                                  child: Text(
+                                    'View garage',
+                                    style: TextStyle(
+                                        color: Colors.red, fontSize: 16),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Gap(13),
-                      ],
-                    ),
-                    Positioned(
-                      right: 0,
-                      top: Get.height * 0.003,
-                      child: GestureDetector(
-                        onTap: () {
-                          print('object23');
-                        },
-                        child: Container(
-                          height: Get.height * 0.045,
-                          width: Get.width * 0.085,
-                          decoration: BoxDecoration(
-                            color: AppColors.lightprimary,
-                            borderRadius: BorderRadius.circular(80),
-                          ),
-                          child: Image.asset(
-                            'assets/images/chat.png',
+                          Gap(13),
+                        ],
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: Get.height * 0.003,
+                        child: GestureDetector(
+                          onTap: () {
+                            print('object23');
+                          },
+                          child: Container(
+                            height: Get.height * 0.045,
+                            width: Get.width * 0.085,
+                            decoration: BoxDecoration(
+                              color: AppColors.lightprimary,
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            child: Image.asset(
+                              'assets/images/chat.png',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Gap(17),
-                // if (isSelected)
-                  isSelected?
-                  SvgPicture.asset(
-                    'assets/icons/check-circle.svg',
-                    height: 20,
-                    width: 20,
-                    color: AppColors.primary,
-                  )
-                  :Text(''),
-              ],
+                    ],
+                  ),
+                  Gap(17),
+                  // if (isSelected)
+                  controller.isSelected
+                      ? SvgPicture.asset(
+                          'assets/icons/check-circle.svg',
+                          height: 20,
+                          width: 20,
+                          color: AppColors.primary,
+                        )
+                      : Text(''),
+                ],
+              ),
             )
           ]),
         ),

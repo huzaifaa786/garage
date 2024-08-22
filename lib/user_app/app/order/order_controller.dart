@@ -9,10 +9,12 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
+import 'package:mobilegarage/user_app/app/order/components/vehicle_listTile.dart';
+import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
 import 'package:mobilegarage/user_app/components/cards/filter_product_card.dart';
+import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/app/product/products/component/product_card.dart';
 import 'package:stepper_list_view/stepper_list_view.dart';
 
 class OrderController extends GetxController {
@@ -29,16 +31,24 @@ class OrderController extends GetxController {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          color: AppColors.lightprimary,
-                          borderRadius: BorderRadius.circular(80),
-                        ),
-                        child: SvgPicture.asset(
-                          'assets/icons/filter.svg',
-                          fit: BoxFit.scaleDown,
+                      GestureDetector(
+                        onTap: () {
+                          Get.bottomSheet(
+                            FilterBottomsheet(),
+                            isScrollControlled: true,
+                          );
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                            color: AppColors.lightprimary,
+                            borderRadius: BorderRadius.circular(80),
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/icons/filter.svg',
+                            fit: BoxFit.scaleDown,
+                          ),
                         ),
                       ),
                       Gap(10),
@@ -112,7 +122,8 @@ class OrderController extends GetxController {
                       physics: BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: const EdgeInsets.only(right: 5,left: 5,top: 5,bottom: 5),
+                          padding: const EdgeInsets.only(
+                              right: 5, left: 5, top: 5, bottom: 15),
                           child: Center(
                             child: FilterProductCard(
                               productname: 'item.text',
@@ -130,24 +141,132 @@ class OrderController extends GetxController {
             ),
             id: '2'),
         StepperItemData(
-            content: Container(
-              height: 150,
-              width: 50,
-              color: AppColors.darkprimary,
+            content: Padding(
+              padding: const EdgeInsets.only(left: 5, bottom: 50),
+              child: DottedBorderButton(
+                title: 'Upload vehicle photo'.tr,
+                imgselect: () => selectVehicleImage(),
+                isImgSelected: isImageSelected(),
+                selectedimgpath: vehicleImage,
+                imgRemove: () => removeVehicleImage(),
+              ),
             ),
             id: '3'),
+        StepperItemData(
+            content: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset('assets/icons/vehicle.svg'),
+                      Gap(8),
+                      AppText(
+                        title: 'Choose your vehicle ',
+                        fontWeight: FontWeight.w600,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                  Gap(8),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: carNames.length,
+                    itemBuilder: (context, index) {
+                      final name = carNames[index];
+                      return VehicleListTile(
+                        value: name,
+                        groupValue: selectedCarName,
+                        onChanged: (value) {
+                          selectCar(value!);
+                        },
+                        iconPath: 'assets/icons/vehicle.svg',
+                        text: name,
+                      );
+                    },
+                  ),
+                  Gap(30),
+                ],
+              ),
+            ),
+            id: '4'),
+        StepperItemData(
+            content: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/garage_logo.svg',
+                        height: 30,
+                        width: 30,
+                      ),
+                      Gap(5),
+                      AppText(
+                        title: 'What do you prefer?',
+                        fontWeight: FontWeight.w600,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                  Gap(8),
+                  SizedBox(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: garageNames.length,
+                      itemBuilder: (context, index) {
+                        final name = garageNames[index];
+                        return VehicleListTile(
+                          value: name,
+                          groupValue: selectedgarageName,
+                          onChanged: (value) {
+                            selectGarage(value!);
+                          },
+                          iconPath: 'assets/icons/garage_logo.svg',
+                          text: name,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            id: '5')
       ];
+
+  String selectedCarName = 'Mercedes-Benz';
+  //! Method to select a car
+  void selectCar(String carName) {
+    selectedCarName = carName;
+    update();
+  }
+
+  //! List for car names
+  final List<String> carNames = [
+    'Mercedes-Benz',
+    'Mercedes-Benz SL-Class',
+  ];
+  String selectedgarageName = 'Select garage';
+  //! Method to select a garage
+  void selectGarage(String garageName) {
+    selectedgarageName = garageName;
+    update();
+  }
+
+//! List for garage names
+  final List<String> garageNames = [
+    'Select garage',
+    'Send to all garages',
+  ];
 
   final picker = ImagePicker();
   String? vehicleImage;
   String? vehicleImageBase64;
-  String? selectedValue;
-  int get itemCount => services.length;
-  static double itemHeight = Get.height * 0.04;
-
-  double get listHeight {
-    return services.length * (itemHeight);
-  }
 
   // Check if Image is Selected
   bool isImageSelected() {
@@ -164,7 +283,6 @@ class OrderController extends GetxController {
   // Select Image
   Future<void> selectVehicleImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
     if (pickedFile != null) {
       vehicleImage = pickedFile.path;
       vehicleImageBase64 = convertImageToBase64(vehicleImage!);
@@ -174,48 +292,9 @@ class OrderController extends GetxController {
     }
   }
 
-  //! ListView.builder
-
-  var services = <ServiceItem>[
-    ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Car wash',
-    ),
-    ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Oil change',
-    ),
-    ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Battery',
-    ),
-    ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Road Service',
-    ),
-    ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Maintenance',
-    ),
-    ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Battery',
-    ),
-    ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Car wash',
-    ),
-    ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Oil change',
-    ),
-  ];
-
-  final List<Map<String, String>> items = [
-    {'id': 'vehicle1', 'text': 'Toyota Lexus'},
-    {'id': 'vehicle2', 'text': 'Honda Civic'},
-    {'id': 'vehicle3', 'text': 'Ford Raptor'},
-    {'id': 'vehicle4', 'text': 'GMC'},
-    {'id': 'vehicle5', 'text': 'Range Rover'},
-  ];
+  void removeVehicleImage() {
+    vehicleImage = null;
+    vehicleImageBase64 = null;
+    update(); // This will trigger a UI update to reflect the changes
+  }
 }

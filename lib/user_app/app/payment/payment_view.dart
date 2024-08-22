@@ -125,7 +125,7 @@ class PaymentView extends StatelessWidget {
           ),
         )),
         bottomNavigationBar: Container(
-          height: Get.height * 0.24,
+          height: Get.height * 0.25,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/selectside/component/container.dart';
 import 'package:mobilegarage/selectside/selectside_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -59,11 +60,17 @@ class _SelectsideViewState extends State<SelectsideView> {
                             ),
                             Gap(120),
                             ContainerSelect(
+                              ontap: (){
+                                Get.toNamed(AppRoutes.signup);
+                              },
                               text: 'user',
                             ),
                             Gap(60),
                             ContainerSelect(
                               text: 'Garage Owner',
+                               ontap: (){
+                                Get.toNamed(AppRoutes.vsignup);
+                              },
                             ),
                           ])),
                     ),

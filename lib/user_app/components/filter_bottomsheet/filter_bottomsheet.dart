@@ -4,15 +4,13 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet_container.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 
 class FilterBottomsheet extends StatelessWidget {
   const FilterBottomsheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SearchScreenController>(
-      builder: (controller) => Container(
+    return  Container(
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -295,8 +293,7 @@ class FilterBottomsheet extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        ));
+      
   }
 }
