@@ -3,6 +3,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_controller.dart';
 import 'package:mobilegarage/user_app/app/order/accapted_order/component/order_card.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -57,7 +58,11 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                 ],
               ),
               SizedBox(height: 10),
-              MainButton(title: 'next',),
+              MainButton(title: 'next',
+              onTap: () {
+                Get.toNamed(AppRoutes.search_result);
+              },
+              ),
 
               OrderCard(),
             ],
