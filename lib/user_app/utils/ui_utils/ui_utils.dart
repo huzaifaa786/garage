@@ -9,8 +9,14 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 
 class UiUtilites {
+
+  
+
+
+
 //   static UploadphotoAlert(
 //     context,
 //     title1,

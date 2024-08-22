@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/Components/charts_card.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/icon_top_bar.dart';
+import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class ChatsAccountsView extends StatefulWidget {
@@ -22,9 +23,10 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
               appBar: AppBar(
                 toolbarHeight: Get.height * 0.1,
                 automaticallyImplyLeading: false,
-                title: IconTopBar(
+                title: TopBar(
                   title: "Chats",
                   showicon: true,
+
                 ),
               ),
               body: SafeArea(
