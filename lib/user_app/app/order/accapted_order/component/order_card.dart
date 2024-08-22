@@ -25,14 +25,14 @@ class _OrderCardState extends State<OrderCard> {
         onTap: controller.toggleSelection,
         child: Container(
           width: Get.width * 0.9,
-         // width: 200,
+          // width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            // border: Border.all(
-            //   color: controller.isSelected
-            //       ? AppColors.primary
-            //       : Colors.transparent,
-            // ),
+            border: Border.all(
+              color: controller.isSelected
+                  ? AppColors.primary
+                  : Colors.transparent,
+            ),
             color: AppColors.white,
             boxShadow: [
               BoxShadow(
@@ -179,7 +179,9 @@ class _OrderCardState extends State<OrderCard> {
               child: Row(
                 children: [
                   Icon(
+                    
                     Icons.location_on_outlined,
+                    
                   ),
                   RichText(
                     textAlign: TextAlign.center,
