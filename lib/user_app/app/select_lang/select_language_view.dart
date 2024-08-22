@@ -62,13 +62,8 @@ class SelectLanguageView extends StatelessWidget {
                     title: 'Continue',
                     buttonWidth: Get.width * 0.77,
                     onTap: () {
-                      // Get.offAllNamed(AppRoutes.selectside);
-                      UiUtilites.RatingAlertDialog(
-                          context: context,
-                          gatagetitle: 'gatagetitle',
-                          description: 'description',
-                          rating: 1,
-                          comment: 'comment');
+                      Get.offAllNamed(AppRoutes.selectside);
+                   
                     },
                   ),
                 ],
