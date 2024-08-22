@@ -37,6 +37,7 @@ class _ChangePhonenumberViewState extends State<ChangePhonenumberView> {
                     toolbarHeight: 95.0,
                     title: TopBar(
                       showicon: true,
+                      showgarageicon: false,
                       title: "Change phone number",
                     ),
                   ),

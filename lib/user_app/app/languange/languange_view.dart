@@ -33,6 +33,7 @@ class _LanguangeViewState extends State<LanguangeView> {
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
               title: TopBar(
+                showgarageicon: false,
                 showicon: true,
                 title: "Language",
               ),

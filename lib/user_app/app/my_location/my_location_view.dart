@@ -8,6 +8,7 @@ import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart'; // Import this package
 import 'package:mobilegarage/user_app/app/my_location/my_location_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
+import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/buttons/map_button.dart';
 import 'package:mobilegarage/user_app/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
@@ -34,6 +35,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                 toolbarHeight: 95.0,
                 title: TopBar(
                   title: "My Location",
+                  showgarageicon: false,
                 ),
               ),
               body: SafeArea(
@@ -214,6 +216,10 @@ class _MyLocationViewState extends State<MyLocationView> {
                             ],
                           ),
                         ),
+                      Gap(96),
+                      MainButton(title: 'Save changes',),
+                      Gap(27),
+                        
                       ],
                     ),
                   ),
