@@ -147,7 +147,7 @@ class SearchCard extends StatelessWidget {
                     SvgPicture.asset('assets/icons/map_pin.svg'),
                     Gap(5),
                     SizedBox(
-                      width: Get.width * 0.73,
+                      width: Get.width * 0.70,
                       child: AppText(
                         title: 'Dubai Zayed street , road 3452 ',
                         size: 11,
@@ -221,4 +221,3 @@ class SearchCard extends StatelessWidget {
     );
   }
 }
-

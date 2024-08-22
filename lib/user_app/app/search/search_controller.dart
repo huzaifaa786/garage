@@ -4,11 +4,12 @@ import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 class SearchScreenController extends GetxController {
   static SearchScreenController instance = Get.find();
 
-  // Define a variable to keep track of the selected index
-  int selectedIndex = 0;
-  int selectedIndexTwo = 0;
-  int selectedIndexThree = 0;
-  int selectedIndexFour = 0;
+  
+  int selectedIndexPrice = 0;
+  int selectedIndexClosest = 0;
+  int selectedIndexRating = 0;
+  int selectedIndexResults = 0;
+
   var searchCards = <SearchCard>[
     SearchCard(
         image: 'https://dummyimage.com/70x70/000/fff',
@@ -22,24 +23,27 @@ class SearchScreenController extends GetxController {
         onTap: () {}),
   ];
 
-  // Update the selected index and notify listeners
-  void selectIndex(int index) {
-    selectedIndex = index;
+ 
+  void selectIndexPrice(int index) {
+    selectedIndexPrice = index;
     update();
   }
 
-  void selectIndexTwo(int index) {
-    selectedIndexTwo = index;
+ 
+  void selectIndexClosest(int index) {
+    selectedIndexClosest = index;
     update();
   }
 
-  void selectIndexThree(int index) {
-    selectedIndexThree = index;
+ 
+  void selectIndexRating(int index) {
+    selectedIndexRating = index;
     update();
   }
 
-  void selectIndexFour(int index) {
-    selectedIndexFour = index;
+  
+  void selectIndexResults(int index) {
+    selectedIndexResults = index;
     update();
   }
 }
