@@ -30,17 +30,6 @@ class SplashController extends GetxController {
   }
 
   Future checkFirstSeen() async {
-    // String? apiToken = box.read('api_token');
-    // bool firstRun = await IsFirstRun.isFirstRun();
-    // if (firstRun == true) {
-    Get.offAllNamed(AppRoutes.search_result);
-    // Get.offAllNamed(AppRoutes.signin);
-    // } else {
-    //   if (apiToken != null) {
-    //     Get.offNamed(AppRoutes.main);
-    //   } else {
-    //     Get.offNamed(AppRoutes.signIn);
-    //   }
-    // }
+    Get.offAllNamed(AppRoutes.filterorder);
   }
 }

@@ -12,6 +12,7 @@ import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 import 'package:mobilegarage/user_app/app/order/components/vehicle_listTile.dart';
 import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
 import 'package:mobilegarage/user_app/components/cards/filter_product_card.dart';
+import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:stepper_list_view/stepper_list_view.dart';
@@ -30,16 +31,24 @@ class OrderController extends GetxController {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          color: AppColors.lightprimary,
-                          borderRadius: BorderRadius.circular(80),
-                        ),
-                        child: SvgPicture.asset(
-                          'assets/icons/filter.svg',
-                          fit: BoxFit.scaleDown,
+                      GestureDetector(
+                        onTap: () {
+                          Get.bottomSheet(
+                            FilterBottomsheet(),
+                            isScrollControlled: true,
+                          );
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                            color: AppColors.lightprimary,
+                            borderRadius: BorderRadius.circular(80),
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/icons/filter.svg',
+                            fit: BoxFit.scaleDown,
+                          ),
                         ),
                       ),
                       Gap(10),
@@ -144,88 +153,90 @@ class OrderController extends GetxController {
             ),
             id: '3'),
         StepperItemData(
-          content: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset('assets/icons/vehicle.svg'),
-                    Gap(8),
-                    AppText(
-                      title: 'Choose your vehicle ',
-                      fontWeight: FontWeight.w600,
-                      size: 12,
-                    ),
-                  ],
-                ),
-                Gap(8),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: carNames.length,
-                  itemBuilder: (context, index) {
-                    final name = carNames[index];
-                    return VehicleListTile(
-                      value: name,
-                      groupValue: selectedCarName,
-                      onChanged: (value) {
-                        selectCar(value!);
-                      },
-                      iconPath: 'assets/icons/vehicle.svg',
-                      text: name,
-                    );
-                  },
-                ),
-                Gap(30),
-              ],
-            ),
-          ),
-          id: '4'
-        ),
-         StepperItemData(
-          content: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset('assets/icons/garage_logo.svg',height: 30,width: 30,),
-                    Gap(5),
-                    AppText(
-                      title: 'What do you prefer?',
-                      fontWeight: FontWeight.w600,
-                      size: 12,
-                    ),
-                  ],
-                ),
-                Gap(8),
-                SizedBox(
-                  child: ListView.builder(
+            content: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset('assets/icons/vehicle.svg'),
+                      Gap(8),
+                      AppText(
+                        title: 'Choose your vehicle ',
+                        fontWeight: FontWeight.w600,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                  Gap(8),
+                  ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: garageNames.length,
+                    itemCount: carNames.length,
                     itemBuilder: (context, index) {
-                      final name = garageNames[index];
+                      final name = carNames[index];
                       return VehicleListTile(
                         value: name,
-                        groupValue: selectedgarageName,
+                        groupValue: selectedCarName,
                         onChanged: (value) {
-                          selectGarage(value!);
+                          selectCar(value!);
                         },
-                        iconPath: 'assets/icons/garage_logo.svg',
+                        iconPath: 'assets/icons/vehicle.svg',
                         text: name,
                       );
                     },
                   ),
-                ),
-              ],
+                  Gap(30),
+                ],
+              ),
             ),
-          ),
-          id: '5'
-        )
+            id: '4'),
+        StepperItemData(
+            content: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/garage_logo.svg',
+                        height: 30,
+                        width: 30,
+                      ),
+                      Gap(5),
+                      AppText(
+                        title: 'What do you prefer?',
+                        fontWeight: FontWeight.w600,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                  Gap(8),
+                  SizedBox(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: garageNames.length,
+                      itemBuilder: (context, index) {
+                        final name = garageNames[index];
+                        return VehicleListTile(
+                          value: name,
+                          groupValue: selectedgarageName,
+                          onChanged: (value) {
+                            selectGarage(value!);
+                          },
+                          iconPath: 'assets/icons/garage_logo.svg',
+                          text: name,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            id: '5')
       ];
 
   String selectedCarName = 'Mercedes-Benz';
@@ -241,7 +252,7 @@ class OrderController extends GetxController {
     'Mercedes-Benz SL-Class',
   ];
   String selectedgarageName = 'Select garage';
- //! Method to select a garage
+  //! Method to select a garage
   void selectGarage(String garageName) {
     selectedgarageName = garageName;
     update();
@@ -252,7 +263,6 @@ class OrderController extends GetxController {
     'Select garage',
     'Send to all garages',
   ];
- 
 
   final picker = ImagePicker();
   String? vehicleImage;
