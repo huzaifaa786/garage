@@ -24,57 +24,60 @@ class _OnboardingViewState extends State<OnboardingView> {
     return GetBuilder<OnboardingController>(
         builder: (controller) => Scaffold(
               body: SafeArea(
-                child: Column(
-                  children: [
-                    Gap(50),
-                    Image.asset('assets/images/auth_logo.png'),
-                    SizedBox(
-                        height: Get.height * 0.54,
-                        child: PageView(
-                          controller: controller.pgecontroller,
-                          onPageChanged: (index) {
-                            setState(() {
-                              controller.updateSlideIndex(index);
-                            });
-                          },
-                          children: [
-                            FragmentOneView(),
-                            FragmentTwoView(),
-                            FragmentThreeView(),
-                          ],
-                        )),
-                    MainButton(
-                      title: controller.slideIndex == 0
-                          ? 'Next'
-                          : controller.slideIndex == 1
-                              ? 'Next'
-                              : 'Sign up',
-                      height: 55.0,
-                      buttonWidth: Get.width * 0.7,
-                      onTap: controller.slideIndex == 0
-                          ? () {
-                              controller.nextPage();
-                            }
-                          : controller.slideIndex == 1
-                              ? () {
-                                  controller.nextPage();
-                                }
-                              : () {
-                                  Get.offAllNamed(AppRoutes.selectlang);
-                                },
-                    ),
-                    Gap(Get.height * 0.029),
-                    MainButton(
-                      title: controller.slideIndex != 2 ? 'Skip' : 'Sign in',
-                      height: 55.0,
-                      buttonWidth: Get.width * 0.7,
-                      btncolor: AppColors.white,
-                      textcolor: AppColors.primary,
-                      onTap: () {
-                        Get.offAllNamed(AppRoutes.selectlang);
-                      },
-                    ),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Gap(50),
+                      Image.asset('assets/images/auth_logo.png'),
+                      SizedBox(
+                          height: Get.height * 0.54,
+                          child: PageView(
+                            controller: controller.pgecontroller,
+                            onPageChanged: (index) {
+                              setState(() {
+                                controller.updateSlideIndex(index);
+                              });
+                            },
+                            children: [
+                              FragmentOneView(),
+                              FragmentTwoView(),
+                              FragmentThreeView(),
+                            ],
+                          )),
+                      MainButton(
+                        title: controller.slideIndex == 0
+                            ? 'Next'
+                            : controller.slideIndex == 1
+                                ? 'Next'
+                                : 'Sign up',
+                        height: 55.0,
+                        buttonWidth: Get.width * 0.7,
+                        onTap: controller.slideIndex == 0
+                            ? () {
+                                controller.nextPage();
+                              }
+                            : controller.slideIndex == 1
+                                ? () {
+                                    controller.nextPage();
+                                  }
+                                : () {
+                                    Get.offAllNamed(AppRoutes.selectlang);
+                                  },
+                      ),
+                      Gap(Get.height * 0.029),
+                      MainButton(
+                        title: controller.slideIndex != 2 ? 'Skip' : 'Sign in',
+                        height: 55.0,
+                        buttonWidth: Get.width * 0.7,
+                        btncolor: AppColors.white,
+                        textcolor: AppColors.primary,
+                        onTap: () {
+                          Get.offAllNamed(AppRoutes.selectlang);
+                        },
+                      ),
+                      Gap(5),
+                    ],
+                  ),
                 ),
               ),
             ));

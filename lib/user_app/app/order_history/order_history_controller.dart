@@ -10,11 +10,13 @@ class OrderHistoryController extends GetxController {
       "product": "Car super power battery",
       "product_Detail": "",
       "carName": "white Mercedes 2022",
-      "date": "",
-      "time": "",
+      "date": "2/3/230",
+      "time": "2:30",
       "Price": "230",
       "item": "2",
-      "product_type": "",
+      "product_type": "xx4",
+      "quantity": "4",
+      'TrackingNumber': "356729100",
     },
     {
       "productImage": "https://dummyimage.com/93x93/000/fff",
@@ -28,6 +30,8 @@ class OrderHistoryController extends GetxController {
       "Price": "230",
       "product_Detail": "7",
       "item": "5",
+      "quantity": "",
+      'TrackingNumber': "356729100",
     },
     {
       "productImage": "https://dummyimage.com/93x93/000/fff",
@@ -36,11 +40,13 @@ class OrderHistoryController extends GetxController {
       "product": "Car battery oil",
       "product_Detail": "",
       "carName": "white Mercedes 2022",
-      "date": "",
-      "time": "",
+      "time": "2:30",
       "Price": "230",
+      "date": "2/3/230",
       "item": "2",
-      "product_type": "",
+      "product_type": "xx4",
+      "quantity": "4",
+      'TrackingNumber': "356729100",
     }
   ];
 }

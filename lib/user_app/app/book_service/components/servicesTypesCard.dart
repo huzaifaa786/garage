@@ -53,7 +53,7 @@ class ServicesTypesCard extends StatelessWidget {
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxWidth: Get.width * 0.26,
+                  maxWidth: Get.width * 0.23,
                   maxHeight: Get.height * 0.09,
                 ),
                 child: AppText(

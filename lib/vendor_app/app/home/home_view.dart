@@ -49,7 +49,7 @@ class _VHomeViewState extends State<VHomeView> {
               child: Column(
             children: [
               Container(
-                height: Get.height * 0.42,
+                height: Get.height * 0.45,
                 decoration: BoxDecoration(color: AppColors.white_color),
                 child: Column(
                   children: [
@@ -113,12 +113,12 @@ class _VHomeViewState extends State<VHomeView> {
                           },
                           icon: 'assets/images/calendar.svg',
                           text: 'Edit unavailable dates ',
-                          width: MediaQuery.of(context).size.width * 0.40,
+                          width: MediaQuery.of(context).size.width * 0.42,
                         ),
                         Gap(10),
                         EditButton(
                           ontap: () {
-                            Get.toNamed(AppRoutes.editprofile);
+                            Get.toNamed(AppRoutes.veditprofile);
                           },
                           icon: 'assets/images/edit.svg',
                           text: 'Edit profit',
@@ -137,6 +137,9 @@ class _VHomeViewState extends State<VHomeView> {
                   child: Column(
                     children: [
                       MainBox(
+                          ontap: () {
+                            Get.toNamed(AppRoutes.vbanner);
+                          },
                         icon: 'assets/images/pluscircle.svg',
                         text: 'Promotional\n   banners',
                       ),
@@ -145,11 +148,17 @@ class _VHomeViewState extends State<VHomeView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MainBox(
+                             ontap: () {
+                            Get.toNamed(AppRoutes.vproduct_form_view);
+                          },
                             icon: 'assets/images/Group 51.svg',
                             text: 'Add product\n or service',
                           ),
                           Gap(27),
                           MainBox(
+                              ontap: () {
+                            Get.toNamed(AppRoutes.vproductlist);
+                          },
                             icon: 'assets/images/Group 53.svg',
                             text: 'Edit product &\n services',
                           )
@@ -160,6 +169,9 @@ class _VHomeViewState extends State<VHomeView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MainBox(
+                              ontap: () {
+                            Get.toNamed(AppRoutes.vorders_view);
+                          },
                             icon: 'assets/images/shopping-bag.svg',
                             text: 'Orders',
                           ),
@@ -167,6 +179,9 @@ class _VHomeViewState extends State<VHomeView> {
                           MainBox(
                             icon: 'assets/images/Group 500.svg',
                             text: 'Sales',
+                              ontap: () {
+                            Get.toNamed(AppRoutes.vsale);
+                          },
                           )
                         ],
                       ),
@@ -178,6 +193,9 @@ class _VHomeViewState extends State<VHomeView> {
                             Column(
                               children: [
                                 ReviewBox(
+                                     ontap: () {
+                            Get.toNamed(AppRoutes.vorders_view);
+                          },
                                   icon: 'assets/images/quick-check 1.png',
                                   text: 'Instant Order',
                                 ),
@@ -187,6 +205,9 @@ class _VHomeViewState extends State<VHomeView> {
                                   ontap: () => _openReviewBottomSheet(context),
                                 ),
                                 ReviewBox(
+                                   ontap: () {
+                            Get.toNamed(AppRoutes.vcontactus);
+                          },
                                   icon: 'assets/images/phone.png',
                                   text: 'Contact us',
                                 ),

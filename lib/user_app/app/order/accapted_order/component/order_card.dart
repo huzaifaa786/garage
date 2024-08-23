@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -227,7 +228,7 @@ class _OrderCardState extends State<OrderCard> {
                             clipper: RightCircularClipper(),
                             child: GestureDetector(
                               onTap: () {
-                                print('object');
+                              Get.toNamed(AppRoutes.garage);
                               },
                               child: Container(
                                 decoration: BoxDecoration(

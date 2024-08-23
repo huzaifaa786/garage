@@ -1,23 +1,17 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_controller.dart';
-import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
-import 'package:mobilegarage/user_app/components/buttons/map_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input_dropdown.dart';
 import 'package:mobilegarage/user_app/components/textfields/phone_inputfield.dart';
-import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
@@ -29,6 +23,7 @@ class SignupView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppColors.primarybg,
           toolbarHeight: 20,
+          automaticallyImplyLeading: false,
         ),
         body: SafeArea(
             child: Container(
@@ -99,18 +94,22 @@ class SignupView extends StatelessWidget {
                                 text: TextSpan(
                                   text: 'By continuing you agree to the',
                                   style: DefaultTextStyle.of(context).style,
+                                  
                                   children: <TextSpan>[
+                                   
+                                    
                                     TextSpan(
-                                        text: 'terms',
+                                        text: '\n\tterms',
                                         style: TextStyle(
                                             decoration:
                                                 TextDecoration.underline,
                                             fontWeight: FontWeight.bold)),
+                                            
                                     TextSpan(
-                                      text: 'and',
+                                      text: '\tand',
                                     ),
                                     TextSpan(
-                                        text: 'conditions',
+                                        text: '\tconditions',
                                         style: TextStyle(
                                             wordSpacing: 1,
                                             decoration:

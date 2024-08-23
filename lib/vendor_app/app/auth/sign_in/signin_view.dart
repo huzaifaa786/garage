@@ -110,7 +110,9 @@ class VSignInView extends StatelessWidget {
                                     title: 'Sign In',
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
-                                      controller.login();
+                                      // controller.login();
+                                      Get.toNamed(AppRoutes.vhome);
+
                                     },
                                   ),
                                   const Gap(30),
@@ -118,7 +120,7 @@ class VSignInView extends StatelessWidget {
                                     title: "Don’t have an account?",
                                     buttonText: 'Sign Up',
                                     onTap: () {
-                                      Get.toNamed(AppRoutes.signup);
+                                      Get.toNamed(AppRoutes.vsignup);
                                     },
                                   ),
                                 ],

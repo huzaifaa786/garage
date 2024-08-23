@@ -51,7 +51,8 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary_color,
                 ),
-                elevation: 0,
+                scrolledUnderElevation: 0,
+                elevation: 0.0,
                 backgroundColor: Colors.white),
           ),
         ),
@@ -60,7 +61,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
             child: Column(
               children: [
                 Container(
-                  height: Get.height * 0.4,
+                  height: Get.height * 0.44,
                   decoration: BoxDecoration(color: AppColors.white_color),
                   child: Padding(
                     padding: const EdgeInsets.all(25.0),
@@ -176,6 +177,9 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                           text: 'Change password',
                         ),
                         ChangePassword(
+                            ontap: () {
+                            Get.toNamed(AppRoutes.language);
+                          },
                           icon: 'assets/images/globe.svg',
                           text: 'Change language',
                           langtext: 'English',
