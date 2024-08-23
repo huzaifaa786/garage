@@ -22,7 +22,7 @@ class DateLocationCard extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth: Get.width * 0.685,
+                maxWidth: Get.width * 0.68,
               ),
               child: AppText(
                 title: txt!,

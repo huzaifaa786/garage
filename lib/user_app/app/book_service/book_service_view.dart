@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/book_service/book_service_controller.dart';
 import 'package:mobilegarage/user_app/app/book_service/components/seller_card.dart';
 import 'package:mobilegarage/user_app/app/book_service/components/servicesTypesCard.dart';
@@ -60,7 +61,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                   ],
                 ),
                 child: BottomAppBar(
-                  height: Get.height * 0.12,
+                  height: Get.height * 0.13,
                   child: Column(
                     children: [
                       Row(
@@ -94,7 +95,9 @@ class _BookServiceViewState extends State<BookServiceView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.payments);
+                                },
                                 child: Container(
                                   height: Get.height * 0.07,
                                   width: Get.width * 0.4,
@@ -163,7 +166,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                           ),
                         ],
                       ),
-                      Gap(20),
+                      Gap(10),
                     ],
                   ),
                 ),
@@ -516,7 +519,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                                 },
                               ),
                             ),
-                            Gap(80),
+                            Gap(50),
                           ],
                         ),
                       ),
