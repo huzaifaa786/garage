@@ -61,7 +61,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                   ],
                 ),
                 child: BottomAppBar(
-                  height: Get.height * 0.13,
+                  height: Get.height * 0.135,
                   child: Column(
                     children: [
                       Row(
@@ -338,8 +338,8 @@ class _BookServiceViewState extends State<BookServiceView> {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                crossAxisSpacing: 10.0,
-                                mainAxisSpacing: 10.0,
+                                crossAxisSpacing:6.0,
+                                mainAxisSpacing: 6.0,
                               ),
                               itemCount: controller.services.length,
                               itemBuilder: (context, index) {
