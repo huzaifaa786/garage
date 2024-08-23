@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
@@ -44,7 +45,9 @@ class AppLayout extends StatelessWidget {
               children: [
                 if (hasIcon == true)
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.back();
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Icon(

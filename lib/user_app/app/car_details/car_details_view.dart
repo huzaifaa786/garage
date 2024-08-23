@@ -28,6 +28,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
               appBar: AppBar(
                 backgroundColor: AppColors.primarybg,
                 toolbarHeight: 20,
+                automaticallyImplyLeading: false,
               ),
               body: SafeArea(
                   child: Container(
