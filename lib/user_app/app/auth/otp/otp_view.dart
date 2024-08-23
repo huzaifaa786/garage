@@ -39,7 +39,7 @@ class OtpView extends StatelessWidget {
                   child: SizedBox(
                       width: double.infinity,
                       child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -92,7 +92,6 @@ class OtpView extends StatelessWidget {
                                     print('object');
                                     Get.toNamed(AppRoutes.main);
                                   },
-                                  
                                 ),
                                 Gap(33),
                               ])))))),
