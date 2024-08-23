@@ -39,7 +39,7 @@ class OtpView extends StatelessWidget {
                   child: SizedBox(
                       width: double.infinity,
                       child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 35),
+                          padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -74,7 +74,7 @@ class OtpView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(6.0),
                                   numberOfFields: 6,
                                   fieldHeight: 51,
-                                  fieldWidth: 45,
+                                  fieldWidth: 42,
                                   keyboardType: TextInputType.number,
                                   focusedBorderColor: AppColors.primary,
                                   fillColor: AppColors.lightgrey,
