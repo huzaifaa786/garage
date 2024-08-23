@@ -35,6 +35,7 @@ class _TermsConditionsViewState extends State<PrivacyView> {
               toolbarHeight: 95.0,
               title: TopBar(
                 showicon: true,
+                showgarageicon: false,
                 title: "Privacy",
               ),
             ),

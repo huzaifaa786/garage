@@ -81,10 +81,11 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               : AppColors.primary_color,
                           suffixWidget: controller.isButtonClicked
                               ? Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8),
-                                child: SvgPicture.asset(
-                                    'assets/images/checkcircle.svg'),
-                              )
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
+                                  child: SvgPicture.asset(
+                                      'assets/images/checkcircle.svg'),
+                                )
                               : Gap(1),
                           ontap: () {
                             controller.onSaveChanges();
@@ -132,10 +133,11 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               : AppColors.primary_color,
                           suffixWidget: controller.isButtonClicked1
                               ? Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8),
-                                child: SvgPicture.asset(
-                                    'assets/images/checkcircle.svg'),
-                              )
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
+                                  child: SvgPicture.asset(
+                                      'assets/images/checkcircle.svg'),
+                                )
                               : Gap(1),
                           ontap: () {
                             controller.onSaveChanges();

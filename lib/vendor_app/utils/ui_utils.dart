@@ -2,11 +2,9 @@
 
 import 'dart:ui';
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
@@ -163,7 +161,11 @@ class UiUtilites {
     );
   }
 
-  static successAlertDialog({required context, required onTap, required title, required description}) {
+  static successAlertDialog(
+      {required context,
+      required onTap,
+      required title,
+      required description}) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -172,7 +174,7 @@ class UiUtilites {
           child: AlertDialog(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            contentPadding: EdgeInsets.symmetric(vertical: 20,horizontal: 15),
+            contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
             backgroundColor: AppColors.white_color,
             surfaceTintColor: AppColors.white_color,
             content: Wrap(
@@ -206,6 +208,58 @@ class UiUtilites {
                         titleColor: AppColors.primary_color,
                         ontap: onTap,
                       ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  //
+  static RatingAlertDialog(
+      {required context,
+      required gatagetitle,
+      required description,
+      required rating,
+      required comment}) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            backgroundColor: AppColors.white_color,
+            surfaceTintColor: AppColors.white_color,
+            content: Wrap(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  width: Get.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      AppText(
+                        title: '$gatagetitle',
+                        size: 14,
+                        fontWeight: FontWeight.w700,
+                        textAlign: TextAlign.center,
+                        color: AppColors.primary_color,
+                      ),
+                      Gap(10),
+                      AppText(
+                        title: '$description',
+                        size: 12,
+                        textAlign: TextAlign.center,
+                        color: Colors.grey,
+                      ),
+                      Gap(20),
                     ],
                   ),
                 ),

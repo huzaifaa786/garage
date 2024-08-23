@@ -33,6 +33,7 @@ class _PromotionViewState extends State<PromotionView> {
                     toolbarHeight: 95.0,
                     title: TopBar(
                       showicon: true,
+                      showgarageicon: false,
                       title: "Promotion",
                     ),
                   ),

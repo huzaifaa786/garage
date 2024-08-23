@@ -9,8 +9,14 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 
 class UiUtilites {
+
+  
+
+
+
 //   static UploadphotoAlert(
 //     context,
 //     title1,
@@ -162,6 +168,144 @@ class UiUtilites {
                       'Are you Sure that \nyou want to log out?'.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Gap(20),
+                  Container(
+                      child:
+                          Divider(thickness: 1, height: 1, color: Colors.grey)),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'No'.tr,
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: AppColors.red,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 50,
+                        width: 1,
+                        color: Colors.grey,
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(20)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Yes'.tr,
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: AppColors.lightgreen, // Green text for "Yes"
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
+
+
+
+
+
+
+    static DeleteSuccessAlert(context, ontap, ontapno) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: AlertDialog(
+            backgroundColor: AppColors.white,
+            surfaceTintColor: AppColors.white,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            content: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/cross.svg',
+                          height: 20,
+                          width: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Gap(10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Text(
+                      'Are you Sure that you want to delete'.tr,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Text(
+                      '“White mercedes 2022” '.tr,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500,color: AppColors.primary),
+                    ),
+                  ),
+                   Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Text(
+                      'from your cars?'.tr,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500,),
                     ),
                   ),
                   Gap(20),

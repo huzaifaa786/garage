@@ -56,17 +56,16 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                 ],
               ),
               SizedBox(height: 10),
-              MainButton(title: 'next',
-              onTap: () {
-                Get.toNamed(AppRoutes.search_result);
-              },
-              ),
+            
 
               Gap(6),
               OrderCard(),
               Gap(50),
               MainButton(
                 title: 'Confirm',
+                onTap: () {
+                  Get.toNamed(AppRoutes.search_result);
+                },
               ),
             ],
           ),

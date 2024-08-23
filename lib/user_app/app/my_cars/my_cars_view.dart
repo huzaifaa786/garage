@@ -9,10 +9,12 @@ import 'package:mobilegarage/user_app/app/my_cars/components/radio_card.dart';
 import 'package:mobilegarage/user_app/app/my_cars/my_cars_controllers.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
+import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
 class MyCarsView extends StatefulWidget {
   const MyCarsView({super.key});
@@ -39,6 +41,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                       toolbarHeight: 95.0,
                       title: TopBar(
                         showicon: true,
+                        showgarageicon: false,
                         title: "My Cars",
                       ),
                     ),
@@ -202,28 +205,11 @@ class _MyCarsViewState extends State<MyCarsView> {
                             ),
                           ),
                           Gap(28),
-                          GestureDetector(
-                            onTap:(){},
-                            child: Container(
-                              height: Get.height * 0.1 / 1.3,
-                              width: Get.width * 0.8,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: AppColors.red,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  AppText(
-                                    title: 'Save Changes',
-                                    color: AppColors.white,
-                                    size: 11,
-                                    fontWeight: FontWeight.w500,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                         
+                          MainButton(title: 'Save Changes',onTap: () {
+                            UiUtilites.DeleteSuccessAlert(context, () {}, () {});
+                          },),
+                          Gap(15),
                         ],
                       ),
                     ],

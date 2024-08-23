@@ -38,6 +38,7 @@ class _AccountViewState extends State<AccountView> {
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
               title: TopBar(
+                showgarageicon: false,
                 showicon: true,
                 title: "Profile",
               ),
