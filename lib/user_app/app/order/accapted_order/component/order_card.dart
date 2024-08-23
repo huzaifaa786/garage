@@ -90,6 +90,7 @@ class _OrderCardState extends State<OrderCard> {
                           ),
                         ),
                       ),
+                      
                       AppText(
                         title: 'Super car oil',
                         size: 11,
@@ -110,7 +111,7 @@ class _OrderCardState extends State<OrderCard> {
                         children: [
                           AppText(
                             title: '30.50 AED',
-                            size: 9,
+                            size: 8,
                             fontWeight: FontWeight.w500,
                             color: AppColors.darkblue,
                           ),
@@ -181,7 +182,7 @@ class _OrderCardState extends State<OrderCard> {
                   Icon(
                     
                     Icons.location_on_outlined,
-                    
+                    size: 15,
                   ),
                   RichText(
                     textAlign: TextAlign.center,

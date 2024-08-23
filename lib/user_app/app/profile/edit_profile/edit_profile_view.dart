@@ -43,6 +43,7 @@ class _EditProfileViewState extends State<EditProfileView> {
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
               title: TopBar(
+                showgarageicon: false,
                 showicon: true,
                 title: "Edit profile",
               ),

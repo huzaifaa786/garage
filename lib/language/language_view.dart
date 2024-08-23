@@ -21,6 +21,7 @@ class _LanguageView extends State<LanguageView> {
     return GetBuilder<SelectSideController>(
       builder: (controller) => Scaffold(
         appBar: AppBar(
+          
           backgroundColor: AppColors.primarybg,
           toolbarHeight: 20,
         ),

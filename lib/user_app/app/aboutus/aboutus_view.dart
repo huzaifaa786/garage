@@ -37,6 +37,7 @@ class _TermsConditionsViewState extends State<AboutusView> {
               toolbarHeight: 95.0,
               title: TopBar(
                 showicon: true,
+                showgarageicon: false,
                 title: "About us",
               ),
             ),
