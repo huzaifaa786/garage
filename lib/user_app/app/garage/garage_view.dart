@@ -281,7 +281,7 @@ class GarageView extends StatelessWidget {
               Gap(30),
               SizedBox(
                 width: Get.width * 0.9,
-                height: Get.height * 0.22,
+                height: Get.height * 0.25,
                 child: ListView.builder(
                   itemCount: 4,
                   scrollDirection: Axis.horizontal,
