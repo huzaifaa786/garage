@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/payment/components/payment_checkout_card.dart';
 import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -157,7 +158,7 @@ class PaymentBottomsheet extends StatelessWidget {
                                       buttonWidth: Get.width * 0.7,
                                       title: 'Checkout',
                                       onTap: () {
-                          UiUtilites.SuccessAlert(context);
+                                        Get.toNamed(AppRoutes.main);
                         },
                                     ),
                                   ),
