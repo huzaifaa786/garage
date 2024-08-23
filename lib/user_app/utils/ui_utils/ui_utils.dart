@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 
 class UiUtilites {
 
@@ -556,6 +557,68 @@ class UiUtilites {
                       ),
                     ),
                   ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
+  //  add vender dialog use in user app //
+  // **************************** //
+
+    static successAlertDialog(
+      {required context,
+      required onTap,
+      required title,
+      required description}) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            backgroundColor: AppColors.white_color,
+            surfaceTintColor: AppColors.white_color,
+            content: Wrap(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  width: Get.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(ImageConst.success_ic),
+                      AppText(
+                        title: '$title',
+                        size: 14,
+                        fontWeight: FontWeight.w700,
+                        textAlign: TextAlign.center,
+                        color: AppColors.darkprimary,
+                      ),
+                      Gap(10),
+                      AppText(
+                        title: '$description',
+                        size: 12,
+                        textAlign: TextAlign.center,
+                        color: AppColors.black,
+                      ),
+                      Gap(20),
+                      AppButton(
+                        height: 45,
+                        title: 'Back to home',
+                        buttonColor: AppColors.primary_color.withOpacity(0.1),
+                        titleColor: AppColors.primary_color,
+                        ontap: onTap,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
