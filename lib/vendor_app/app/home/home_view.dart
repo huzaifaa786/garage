@@ -84,6 +84,7 @@ class _VHomeViewState extends State<VHomeView> {
                         SvgPicture.asset('assets/images/Vector (20).svg')
                       ],
                     ),
+                    
                     Gap(8),
                     AppText(
                       title: 'All cars services and products.',
