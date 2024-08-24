@@ -35,5 +35,6 @@ class MyApp extends StatelessWidget {
               home: const SplashView(),
               getPages: AppPages.pages,
     );
+  
   }
 }
