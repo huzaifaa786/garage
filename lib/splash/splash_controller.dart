@@ -28,7 +28,6 @@ class SplashController extends GetxController {
       checkFirstSeen();
     });
   }
-
   Future checkFirstSeen() async {
     Get.offAllNamed(AppRoutes.selectlang);
   }
