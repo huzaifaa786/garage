@@ -22,26 +22,24 @@ class CarDetailsController extends GetxController {
     DropdownItem(title: 'Car', icon: "assets/icons/car (1).svg"),
     DropdownItem(title: 'Van', icon: "assets/icons/van.svg"),
     DropdownItem(title: 'Bus', icon: "assets/icons/bus.svg"),
-    DropdownItem(
-      title: 'Bike',
-    ),
-    
+    DropdownItem(title: 'Bike', icon: "assets/icons/bike.svg"),
   ];
   final List<DropdownItem> brands = [
-     DropdownItem(title: 'Honda'),
-      DropdownItem(title: 'Toyota'),
-      DropdownItem(title: 'Ford'),
-      DropdownItem(title: 'BMW'),
-      DropdownItem(title: 'BMwq'),
-      DropdownItem(title: 'BMWe'),
-      DropdownItem(title: 'BMWdf'),
-      DropdownItem(title: 'BMWx'),
-      DropdownItem(title: 'BMWv'),DropdownItem(title: 'wsss'),
-      DropdownItem(title: 'BMWxc'),
-      DropdownItem(title: 'BMWc'),
-      DropdownItem(title: 'BMWxj'),
-      DropdownItem(title: 'BMWs'),
-      DropdownItem(title: 'BMWsa'),
+    DropdownItem(title: 'Honda'),
+    DropdownItem(title: 'Toyota'),
+    DropdownItem(title: 'Ford'),
+    DropdownItem(title: 'BMW'),
+    DropdownItem(title: 'BMwq'),
+    DropdownItem(title: 'BMWe'),
+    DropdownItem(title: 'BMWdf'),
+    DropdownItem(title: 'BMWx'),
+    DropdownItem(title: 'BMWv'),
+    DropdownItem(title: 'wsss'),
+    DropdownItem(title: 'BMWxc'),
+    DropdownItem(title: 'BMWc'),
+    DropdownItem(title: 'BMWxj'),
+    DropdownItem(title: 'BMWs'),
+    DropdownItem(title: 'BMWsa'),
   ];
 
   void addVehicleSection() {
