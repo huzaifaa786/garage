@@ -204,6 +204,7 @@ class PaymentView extends StatelessWidget {
                     Get.bottomSheet(
                       PaymentBottomsheet(),
                       isScrollControlled: true,
+                      
                     
                     );
                   },

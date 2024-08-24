@@ -16,6 +16,7 @@ import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 
 class VHomeView extends StatefulWidget {
   const VHomeView({super.key});
@@ -210,11 +211,23 @@ class _VHomeViewState extends State<VHomeView> {
                                   icon: 'assets/images/phone.png',
                                   text: 'Contact us',
                                 ),
-                                ReviewBox(
-                                  icon: 'assets/images/power.png',
-                                  text: 'Log Out',
-                                ),
-                                Gap(15)
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return RatingAlertDialog(
+                              gatagetitle:
+                                  'Street garage', 
+                            );
+                          },
+                        );
+                                  },
+                                  child: ReviewBox(
+                                    icon: 'assets/images/power.png',
+                                    text: 'Log Out',
+                                  ),
+                                )
                               ],
                             ),
                           ],

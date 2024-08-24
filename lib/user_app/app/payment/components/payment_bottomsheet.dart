@@ -21,9 +21,7 @@ class PaymentBottomsheet extends StatelessWidget {
         constraints: BoxConstraints(maxHeight: Get.height * 0.8),
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)
-          ),
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -152,14 +150,22 @@ class PaymentBottomsheet extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 20),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
                                     child: MainButton(
                                       buttonWidth: Get.width * 0.7,
                                       title: 'Checkout',
                                       onTap: () {
-                                        Get.toNamed(AppRoutes.main);
-                        },
+                                        // UiUtilites.SuccessAlert(context);
+                                        UiUtilites.successAlertDialog(
+                                            context: context,
+                                            onTap: () {
+                                              Get.toNamed(AppRoutes.home);
+                                            },
+                                            title: 'Thank you!',
+                                            description:
+                                                'your order has been placed successfully, and soon a garage will accept your order.');
+                                      },
                                     ),
                                   ),
                                 ),
