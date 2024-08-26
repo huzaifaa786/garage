@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -42,14 +43,7 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
   @override
   void initState() {
     super.initState();
-
-    // Initial validation: Ensure that selectedValue is valid
-    if (widget.items.isNotEmpty) {
-      selectedValue = widget
-          .items.first.title; // Default to first item if selectedValue is null
-    }
-
-    // Ensure there are no duplicate titles in the items list
+    selectedValue = null;
     _ensureUniqueItems();
   }
 
@@ -92,9 +86,11 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                         if (item.icon != null)
                           SvgPicture.asset(
                             item.icon!,
-                            color: AppColors.black,
+                            color: item.title == selectedValue
+                                ? AppColors.white_color
+                                : AppColors.black,
                           ),
-                        SizedBox(width: 8), // Add space between icon and text
+                        Gap(8),
                         Text(
                           item.title,
                           style: TextStyle(
@@ -112,7 +108,7 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                 // value: selectedValue,
                 onChanged: (value) {
                   setState(() {
-                    selectedValue = value; // Set the selected value
+                    selectedValue = value;
                   });
                   if (widget.onchange != null) {
                     widget.onchange!(value!);
@@ -123,13 +119,6 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                     return Center(
                       child: Row(
                         children: [
-                          if (item.icon != null)
-                            SvgPicture.asset(
-                              item.icon!,
-                              color: AppColors.primarybg,
-
-                            ),
-                          SizedBox(width: 8), // Add space between icon and text
                           AppText(
                             title: item.title,
                             size: 14,
