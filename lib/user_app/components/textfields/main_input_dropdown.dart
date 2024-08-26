@@ -70,16 +70,19 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+             padding: EdgeInsets.only(left: 10),
             width: Get.width,
             decoration: (widget.errorText?.isNotEmpty ?? false)
                 ? circularErrorInputDecoration
                 : circularInputDecoration,
             child: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
+                
                 hint: AppText(
                   title: widget.hint,
-                  size: 11,
+                  size: 13,
                   fontWeight: FontWeight.w400,
+                    color: AppColors.black.withOpacity(0.4),
                 ),
                 items: widget.items.map((DropdownItem item) {
                   return DropdownMenuItem<String>(
@@ -106,7 +109,7 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                     ),
                   );
                 }).toList(),
-                value: selectedValue,
+                // value: selectedValue,
                 onChanged: (value) {
                   setState(() {
                     selectedValue = value; // Set the selected value

@@ -67,12 +67,14 @@ class SignupView extends StatelessWidget {
                             ),
                             Gap(20),
                             PhoneInputField(
+                              
                               controller: controller.phoneController,
                               onChanged: controller.onChanged,
                             ),
                             Gap(20),
                             MainInputDropdown(
                               hint: 'Emirate'.tr,
+                              
                               controller: controller.emirateController,
                               errorText: '',
                               onchange: (value) {

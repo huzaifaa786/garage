@@ -145,6 +145,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                 errorText: "",
                                                 onchange: (value) {},
                                                 items: controller.brands,
+                                                
                                               ),
                                               Gap(27),
                                               MainInputDropdown(
