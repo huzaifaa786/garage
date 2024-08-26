@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/vender_apis/auth/forgot_password_apis/forgot_password_api.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -53,7 +54,11 @@ class VForgotPasswordController extends GetxController {
   //TODO: Forgot Function
   forgot() async {
     if (await validateForm()) {
-      Get.toNamed(AppRoutes.vforgot_otp_verify);
+      var response =
+          await VForgotPasswordApi.forgotpassword(email: emailController.text);
+      if (response.isNotEmpty) {
+        Get.toNamed(AppRoutes.vforgot_otp_verify);
+      }
     }
   }
 
@@ -63,6 +68,12 @@ class VForgotPasswordController extends GetxController {
       UiUtilites.errorSnackbar('Error'.tr, 'Fill out complete otp.'.tr);
       return;
     }
-    Get.toNamed(AppRoutes.vchange_forgot_password);
+    var response = await VForgotPasswordApi.verifyotp(
+        otp: otpCode, email: emailController.text);
+    if (response.isNotEmpty) {
+      Get.toNamed(AppRoutes.vchange_forgot_password,
+          parameters: {'email': emailController.text});
+
+    }
   }
 }

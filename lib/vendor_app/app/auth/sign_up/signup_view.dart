@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+import 'package:mobilegarage/components/buttons/google_button.dart';
+import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/image_selection_tile.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/inputfiled_title.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/profile_and_cover_picker.dart';
@@ -124,14 +128,56 @@ class VSignupView extends StatelessWidget {
                             const Gap(16),
                             const InputfiledTitle(title: 'Garage location'),
                             const Gap(8),
-                            DropDownField(
-                              items: controller.items,
+                            GoogleButton(
+                              address: controller.currentAddress,
+                              isSelected: controller.locationselected,
+                              onTap: () async {
+                                if (await getLocationPermission() == true) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PlacePicker(
+                                        apiKey:
+                                            "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
+                                        onPlacePicked: (result) {
+                                          controller.currentAddress =
+                                              result.formattedAddress!;
+                                          controller.lat =
+                                              result.geometry!.location.lat;
+                                          controller.lng =
+                                              result.geometry!.location.lng;
+                                          controller.locationselected = true;
+                                          controller.update();
+                                          Navigator.of(context).pop();
+                                        },
+                                        initialPosition: LatLng(
+                                            controller.currentPosition != null
+                                                ? controller
+                                                    .currentPosition!.latitude
+                                                : 25.1972,
+                                            controller.currentPosition != null
+                                                ? controller
+                                                    .currentPosition!.longitude
+                                                : 55.2744),
+                                        useCurrentLocation: true,
+                                        resizeToAvoidBottomInset: false,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                            const Gap(15),
+                            DropDownField<EmirateModel>(
+                            displayValue: (item) =>item.name! ,
+                              items: controller.emirates,
                               hint: 'Emirate',
-                              selectedValue: controller.selectedValue,
+                              selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
-                                controller.selectedValue = value;
+                                controller.setSelectedEmirate(value);
                                 controller.update();
-                                controller.validateFields("Emirate", value);
+                                controller.validateFields(
+                                    "Emirate", controller.selectedEmirate?.name);
                               },
                               errorText: controller.emirateError,
                             ),
@@ -207,9 +253,7 @@ class VSignupView extends StatelessWidget {
                               title: 'Sign Up',
                               buttonColor: AppColors.primary_color,
                               ontap: () {
-                                // controller.register();
-                                 Get.offNamed(AppRoutes.vhome);
-
+                                controller.register();
                               },
                             ),
                             const Gap(12),
@@ -217,7 +261,7 @@ class VSignupView extends StatelessWidget {
                               title: "Already have an account?",
                               buttonText: 'Sign In',
                               onTap: () {
-                                 Get.offNamed(AppRoutes.vsignin);
+                                Get.offNamed(AppRoutes.vsignin);
                               },
                             )
                           ],

@@ -5,24 +5,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
-class DropDownField extends StatelessWidget {
+class DropDownField<T> extends StatelessWidget {
   DropDownField({
     super.key,
     required this.items,
     this.hint,
     this.selectedValue,
     this.onChanged,
-    this.errorText,
+    this.errorText,this.displayValue
   });
-  final List<String> items;
+  final List<T> items;
   final String? hint;
-  String? selectedValue;
-  final ValueChanged<String?>? onChanged;
+  T? selectedValue;
+  final ValueChanged<T?>? onChanged;
+  final String Function(T)? displayValue;
   final String? errorText;
   @override
   Widget build(BuildContext context) {
@@ -43,10 +45,10 @@ class DropDownField extends StatelessWidget {
                 // color: AppColors.black,
               ),
               items: items
-                  .map((item) => DropdownMenuItem<String>(
+                  .map((item) => DropdownMenuItem<T>(
                         value: item,
                         child: Text(
-                          item,
+                          displayValue!(item),
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -67,7 +69,7 @@ class DropDownField extends StatelessWidget {
                 return items.map((item) {
                   return Center(
                     child: AppText(
-                      title: item,
+                      title: displayValue!(item),
                       size: 14,
                       fontWeight: FontWeight.w400,
                     ),
