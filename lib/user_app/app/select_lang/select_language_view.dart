@@ -19,58 +19,87 @@ class SelectLanguageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SelectLanguageController>(
       builder: (controller) => Scaffold(
-        body: SafeArea(
-          child: SizedBox(
-            width: Get.width,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Gap(Get.height * 0.08),
-                  Image.asset('assets/images/auth_logo.png'),
-                  Gap(20),
-                  AppText(
-                    title: 'What is your\n language?..',
-                    size: 36,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.darkprimary,
-                  ),
-                  Gap(Get.height * 0.06),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: LanguageCard(
-                      ontap: () async {
-                        await controller.toggleplan(translateMethod.English);
-                      },
-                      title: 'English',
-                      isSelected: controller.site == translateMethod.English,
-                    ),
-                  ),
-                  Gap(30),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: LanguageCard(
-                      ontap: () async {
-                        await controller.toggleplan(translateMethod.Arabic);
-                      },
-                      title: 'العربية'.tr,
-                      isSelected: controller.site == translateMethod.Arabic,
-                    ),
-                  ),
-                  Gap(Get.height * 0.12),
-                  MainButton(
-                    title: 'Continue',
-                    buttonWidth: Get.width * 0.77,
-                    onTap: () {
-                      Get.offAllNamed(AppRoutes.selectside);
-                   
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+        appBar: AppBar(
+          backgroundColor: AppColors.primarybg,
+          toolbarHeight: 20,
+          automaticallyImplyLeading: false,
         ),
+        body: SafeArea(
+            child: Container(
+          height: Get.height,
+          width: Get.width,
+          decoration: BoxDecoration(color: AppColors.primarybg),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Image.asset('assets/images/splash_logo.png'),
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(80),
+                  ),
+                  child: Container(
+                    height: Get.height * 0.741,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 35,
+                        ),
+                        child: Column(
+                          children: [
+                            Gap(30),
+                            AppText(
+                              title: 'Select \n language',
+                              textAlign: TextAlign.center,
+                              size: 32,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.darkprimary,
+                            ),
+                            Gap(Get.height * 0.06),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50),
+                              child: LanguageCard(
+                                ontap: () async {
+                                  await controller
+                                      .toggleplan(translateMethod.English);
+                                      Get.offAllNamed(AppRoutes.selectside);
+                                },
+                                title: 'English',
+                                isSelected:
+                                    controller.site == translateMethod.English,
+                                    
+                              ),
+                            ),
+                            Gap(30),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50),
+                              child: LanguageCard(
+                                ontap: () async {
+                                  await controller
+                                      .toggleplan(translateMethod.Arabic);
+                                      Get.offAllNamed(AppRoutes.selectside);
+                                },
+                                title: 'العربية'.tr,
+                                isSelected:
+                                    controller.site == translateMethod.Arabic,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        )),
       ),
     );
   }
