@@ -65,6 +65,7 @@ class _VBannerViewState extends State<VBannerView> {
                     Gap(20),
                   ],
                 ),
+            
               ),
             ));
   }

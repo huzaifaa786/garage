@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/button.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/products_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
@@ -77,15 +78,18 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         EdittButton(
+                            ontap: () {
+                            Get.toNamed(AppRoutes.vproduct_form_view);
+                          },
                           icon: 'assets/images/edit.svg',
-                          width: Get.width * 0.25,
+                          width: Get.width * 0.22,
                           text: 'Edit',
                           color: AppColors.light_red,
                         ),
                         Gap(12),
                         EdittButton(
                           icon: 'assets/images/delete.svg',
-                          width: Get.width * 0.25,
+                          width: Get.width * 0.22,
                           text: 'Delete',
                           color: AppColors.light_red,
                         )

@@ -45,7 +45,7 @@ class _VContactusViewState extends State<VContactusView> {
                             icon: 'assets/images/Instagram.svg',
                           ),
                           ContactBox(
-                            icon: 'assets/images/whatsapp.svg',
+                            icon: 'assets/icons/whatsapp_img.svg',
                           ),
                           ContactBox(
                             icon: 'assets/icons/phone.svg',

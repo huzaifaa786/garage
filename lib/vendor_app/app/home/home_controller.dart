@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class VHomeController extends GetxController {
@@ -12,6 +13,22 @@ class VHomeController extends GetxController {
     "Review 2"
   ];
 
+  // RATING ALERTDIALOG CODE HERE //
+  String img = 'https://dummyimage.com/73x73/000/fff';
+  TextEditingController nameController = TextEditingController();
+  bool isSelected = false;
+  void toggleSelection() {
+    isSelected = !isSelected;
+    update();
+  }
+
+  double ratingss = 0.0;
+  void updateRatingg(double rating) {
+    ratingss = rating;
+    update();
+  }
+
+  // end //
   void toggleStatus(bool value) {
     if (value) {
       showConfirmationDialog(

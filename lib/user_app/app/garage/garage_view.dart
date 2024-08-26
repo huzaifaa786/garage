@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
 import 'package:mobilegarage/user_app/app/garage_review/garage_review_view.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
@@ -280,7 +281,7 @@ class GarageView extends StatelessWidget {
               Gap(30),
               SizedBox(
                 width: Get.width * 0.9,
-                height: Get.height * 0.22,
+                height: Get.height * 0.25,
                 child: ListView.builder(
                   itemCount: 4,
                   scrollDirection: Axis.horizontal,
@@ -292,8 +293,12 @@ class GarageView extends StatelessWidget {
                       child: ServiceCard(
                           image: 'https://dummyimage.com/70x70/000/fff',
                           title: 'title',
-                          onTap: () {},
-                          price: 'price'),
+                          onTap: () {
+                            Get.toNamed(AppRoutes.bookservice);
+                          },
+                          price: 'price',
+                          time: '12 :61',
+                          ),
                     ),
                   ),
                 ),
