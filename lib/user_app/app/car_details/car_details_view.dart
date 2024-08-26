@@ -134,7 +134,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                     'typeOfVehicleController'],
                                                 errorText: "",
                                                 onchange: (value) {},
-                                                items: controller.city,
+                                                items: controller.carbrand,
                                               ),
                                               Gap(27),
                                               MainInputDropdown(
@@ -155,7 +155,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                   section['brandNameController']
                                                       .text = value;
                                                 },
-                                                items: controller.city,
+                                                items: controller.carbrand,
                                               ),
                                               Gap(27),
                                               MainInput(
