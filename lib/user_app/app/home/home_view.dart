@@ -44,15 +44,15 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
           body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 40.0, right: 30.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.search);
-                    },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(AppRoutes.search);
+                  },
+                  child: Padding(
+                   padding: const EdgeInsets.only(left: 40.0, right: 30.0),
                     child: IconInputField(
                       hasprefix: true,
                       hint: 'Search for garages, service ..'.tr,
@@ -62,90 +62,96 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                   ),
-                  Gap(10),
-                  CarouselSlider.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index, realIndex) {
-                      return BannerCard(
-                        picture: 'https://dummyimage.com/70x70/000/fff',
-                        onTap: () {
-                          print('object');
-                        },
-                      );
-                    },
-                    options: CarouselOptions(
-                      scrollPhysics: BouncingScrollPhysics(),
-                      height: Get.height * 0.28,
-                      enableInfiniteScroll: true,
-                      autoPlay: true,
-                      viewportFraction: 0.9,
-                      enlargeCenterPage: false,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          i = index;
-                        });
+                ),
+                Gap(10),
+                CarouselSlider.builder(
+                  itemCount: 5,
+                
+                  itemBuilder: (context, index, realIndex) {
+                    return BannerCard(
+                      picture: 'https://dummyimage.com/70x70/000/fff',
+                      onTap: () {
+                        print('object');
                       },
-                    ),
+                    );
+                  },
+                  options: CarouselOptions(
+                    
+                    scrollPhysics: BouncingScrollPhysics(),
+                    height: Get.height * 0.28,
+                    enableInfiniteScroll: true,
+                    autoPlay: true,
+                    viewportFraction: 0.9,
+                    enlargeCenterPage: false,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        i = index;
+                      });
+                    },
                   ),
-                  Gap(10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SmoothPageIndicator(
-                        controller: PageController(),
-                        count: 6,
-                        axisDirection: Axis.horizontal,
-                        effect: ExpandingDotsEffect(
-                            dotHeight: 5,
-                            dotWidth: 5,
-                            activeDotColor: AppColors.primary,
-                            dotColor: AppColors.lightprimary),
-                      ),
-                    ],
-                  ),
-                  Gap(30),
-                  if (controller.hasServices) ...[
-                    Row(
-                      children: [
-                        Gap(10),
-                        AppText(
-                          title: 'Explore Services!',
-                          fontWeight: FontWeight.w600,
-                          size: 16.0,
-                          color: AppColors.darkprimary,
-                        ),
-                      ],
+                ),
+                Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SmoothPageIndicator(
+                      controller: PageController(),
+                      count: 6,
+                      axisDirection: Axis.horizontal,
+                      effect: ExpandingDotsEffect(
+                          dotHeight: 5,
+                          dotWidth: 5,
+                          activeDotColor: AppColors.primary,
+                          dotColor: AppColors.lightprimary),
                     ),
-                    Gap(30),
-                    Expanded(
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: controller.itemCount,
-                          crossAxisSpacing: 6.0,
-                          mainAxisSpacing: 2.0,
-                          mainAxisExtent: Get.height * 0.18,
-                        ),
-                        itemCount: controller.services.length,
-                        itemBuilder: (context, index) {
-                          final item = controller.services[index];
-                          return ServicesIcons(
-                            imageUrl: item.imageUrl,
-                            text: item.text,
-                            ontap: () {
-                              Get.toNamed(AppRoutes.filterorder);
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    Gap(40),
-                  ] else ...[
-                    Gap(0),
                   ],
-                ],
-              ),
+                ),
+                Gap(30),
+         if (controller.hasServices) ...[
+         Padding(
+          padding: const EdgeInsets.only(left: 40.0, right: 30.0),
+           child: Row(
+             children: [
+               Gap(10),
+               AppText(
+                 title: 'Explore Services!',
+                 fontWeight: FontWeight.w600,
+                 size: 16.0,
+                 color: AppColors.darkprimary,
+               ),
+             ],
+           ),
+         ),
+         Gap(30),
+         Expanded(
+           child: GridView.builder(
+            padding: EdgeInsets.only(left: 40.0, right: 30.0),
+             shrinkWrap: true,
+             physics: BouncingScrollPhysics(),
+             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+               crossAxisCount: controller.itemCount,
+               crossAxisSpacing: 6.0,
+               mainAxisSpacing: 2.0,
+               mainAxisExtent: Get.height * 0.18,
+             ),
+             itemCount: controller.services.length,
+             itemBuilder: (context, index) {
+               final item = controller.services[index];
+               return ServicesIcons(
+                 imageUrl: item.imageUrl,
+                 text: item.text,
+                 ontap: () {
+                   Get.toNamed(AppRoutes.filterorder);
+                 },
+               );
+             },
+           ),
+         ),
+         Gap(40),
+                         ] else ...[
+         Gap(0),
+                         ]
+              ],
             ),
           ),
         );

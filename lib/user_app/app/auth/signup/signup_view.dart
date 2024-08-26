@@ -58,6 +58,7 @@ class SignupView extends StatelessWidget {
                               size: 32,
                               fontWeight: FontWeight.w400,
                               color: AppColors.primarybg,
+                              fontFamily: 'Ibarra Real Nova',
                             ),
                             Gap(30),
                             MainInput(

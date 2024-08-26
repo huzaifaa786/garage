@@ -49,7 +49,7 @@ class MainButton extends StatelessWidget {
           color: btncolor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(45), side: BorderSide.none),
-          shadows: buttonShadow,
+          // shadows: buttonShadow,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

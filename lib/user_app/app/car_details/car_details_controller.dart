@@ -18,11 +18,19 @@ class CarDetailsController extends GetxController {
     }
   ];
 
-  final List<DropdownItem> city = [
-    DropdownItem(title: 'Car', icon: "assets/icons/car (1).svg"),
-    DropdownItem(title: 'Van', icon: "assets/icons/van.svg"),
-    DropdownItem(title: 'Bus', icon: "assets/icons/bus.svg"),
-    DropdownItem(title: 'Bike', icon: "assets/icons/bike.svg"),
+  final List<DropdownItem> carbrand = [
+    DropdownItem(
+      title: 'G_class',
+    ),
+    DropdownItem(
+      title: 'A_class',
+    ),
+    DropdownItem(
+      title: 'GlS',
+    ),
+    DropdownItem(
+      title: 'D_class',
+    ),
   ];
   final List<DropdownItem> brands = [
     DropdownItem(title: 'Honda'),
