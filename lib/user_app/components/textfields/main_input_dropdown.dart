@@ -126,7 +126,8 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                           if (item.icon != null)
                             SvgPicture.asset(
                               item.icon!,
-                              color: AppColors.black,
+                              color: AppColors.primarybg,
+
                             ),
                           SizedBox(width: 8), // Add space between icon and text
                           AppText(

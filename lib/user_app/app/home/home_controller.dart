@@ -38,7 +38,7 @@ class HomeController extends GetxController {
   }
 
   bool get hasServices => services.isNotEmpty;
-  int get itemCount => showAllItems ? services.length : 3;
+  int get itemCount => showAllItems ? services.length : 4;
 
   @override
   void onInit() {
@@ -75,6 +75,10 @@ class HomeController extends GetxController {
       text: 'Tyer Replacement',
     ),
     ServiceItem(
+      imageUrl: 'https://dummyimage.com/70x70/000/fff',
+      text: 'Oil change',
+    ),
+     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Oil change',
     ),
