@@ -18,6 +18,7 @@ class NotificationView extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: TopBar(
             title: 'Notifications',
+            showgarageicon: false,
           ),
         ),
         backgroundColor: AppColors.lightgrey,

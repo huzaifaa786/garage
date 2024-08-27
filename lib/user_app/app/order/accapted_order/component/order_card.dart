@@ -25,7 +25,7 @@ class _OrderCardState extends State<OrderCard> {
       builder: (controller) => GestureDetector(
         onTap: controller.toggleSelection,
         child: Container(
-          width: Get.width * 0.9,
+           width: Get.width * 0.9,
           // width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),

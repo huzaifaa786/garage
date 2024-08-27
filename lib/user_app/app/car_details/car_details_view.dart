@@ -135,7 +135,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                     'typeOfVehicleController'],
                                                 errorText: "",
                                                 onchange: (value) {},
-                                                items: controller.carbrand,
+                                                items: controller.typesofvehicals,
                                               ),
                                               Gap(27),
                                               MainInputDropdown(
