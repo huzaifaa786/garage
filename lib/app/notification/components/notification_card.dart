@@ -83,8 +83,8 @@ class NotificationCard extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 50),
                       child: AuthRichText(
                         title:
-                            'There are garages were accepted your order,\n please click to view them.',
-                        description: 'View',
+                            'Has been accepted your order!',
+                        description: 'View_order',
                         titlesize: 12,
                         descriptiosize: 12,
                         titleColor: AppColors.black,

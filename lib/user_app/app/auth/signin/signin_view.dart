@@ -54,6 +54,7 @@ class SigninView extends StatelessWidget {
                                           size: 32,
                                           fontWeight: FontWeight.w400,
                                           color: AppColors.primarybg,
+                                           fontFamily: 'Ibarra Real Nova',
                                         ),
                                         Gap(30),
                                         PhoneInputField(
@@ -72,18 +73,23 @@ class SigninView extends StatelessWidget {
                                                 controller.toggleCheckbox();
                                               },
                                               activeColor: AppColors.primary,
+                                              side: BorderSide(color: AppColors.primary),
                                             ),
+
                                             AppText(
                                               title: 'Remember me',
                                               size: 12,
                                               fontWeight: FontWeight.w500,
                                               color: AppColors.primary,
+                                              
                                             )
                                           ],
                                         ),
                                         Gap(70),
                                         MainButton(
                                           title: 'Sign In',
+                                        
+                                          
                                           txtweight: FontWeight.w600,
                                           onTap: () {
                                             Get.toNamed(AppRoutes.otp);
@@ -91,7 +97,7 @@ class SigninView extends StatelessWidget {
                                         ),
                                         Gap(40),
                                         AuthRichText(
-                                          title: 'Dont have an account?',
+                                          title: 'Already have an account?',
                                           description: 'Sign up',
                                           titlesize: 14,
                                           descriptiosize: 14,

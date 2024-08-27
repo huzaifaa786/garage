@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
 
 class VHomeController extends GetxController {
   var status = false.obs;
@@ -12,6 +13,20 @@ class VHomeController extends GetxController {
     "Review 1",
     "Review 2"
   ];
+
+@override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    garagedata();
+  }
+
+garagedata()async{
+  var response  = await  GetGarageApi.getgarage();
+  if(response.isNotEmpty){
+    print('object');
+  } 
+}
 
   // RATING ALERTDIALOG CODE HERE //
   String img = 'https://dummyimage.com/73x73/000/fff';
@@ -27,6 +42,7 @@ class VHomeController extends GetxController {
     ratingss = rating;
     update();
   }
+
 
   // end //
   void toggleStatus(bool value) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/vender_apis/auth/signin_api/sign_in_api.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 
 class VSignInController extends GetxController {
@@ -50,6 +52,13 @@ class VSignInController extends GetxController {
 
   //TODO: Sign In Function
   login() async {
-    if (await validateForm()) {}
+    if (await validateForm()) {
+      var response = await VSignInApi.login(
+          email: emailController.text, password: passwordController.text);
+      if (response.isNotEmpty) {
+        box.write('api_token', response['garage']['token']);
+        Get.offAllNamed(AppRoutes.vhome);
+      }
+    }
   }
 }

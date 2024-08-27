@@ -58,6 +58,7 @@ class SignupView extends StatelessWidget {
                               size: 32,
                               fontWeight: FontWeight.w400,
                               color: AppColors.primarybg,
+                              fontFamily: 'Ibarra Real Nova',
                             ),
                             Gap(30),
                             MainInput(
@@ -94,17 +95,13 @@ class SignupView extends StatelessWidget {
                                 text: TextSpan(
                                   text: 'By continuing you agree to the',
                                   style: DefaultTextStyle.of(context).style,
-                                  
                                   children: <TextSpan>[
-                                   
-                                    
                                     TextSpan(
                                         text: '\n\tterms',
                                         style: TextStyle(
                                             decoration:
                                                 TextDecoration.underline,
                                             fontWeight: FontWeight.bold)),
-                                            
                                     TextSpan(
                                       text: '\tand',
                                     ),
