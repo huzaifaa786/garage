@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/vender_apis/auth/forgot_password_apis/forgot_password_api.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 
@@ -59,11 +60,21 @@ class VChangeForgotPasswordController extends GetxController {
         validateFields('confirm_password', confirmPasswordController.text);
     return passwordErrorString.isEmpty && confirmPasswordErrorString.isEmpty;
   }
-
+  String? email='';
+ @override
+  void onInit() {
+    super.onInit();
+    email = Get.parameters['email'];
+  }
   //TODO: Forgot Function
   forgot() async {
     if (await validateForm()) {
-      Get.offAllNamed(AppRoutes.signin);
+      var response = await VForgotPasswordApi.updatepassword(
+        email: email.toString(), password: passwordController.text);
+    if (response.isNotEmpty) {
+      Get.offAllNamed(
+        AppRoutes.signin,
+      );}
     }
   }
 }

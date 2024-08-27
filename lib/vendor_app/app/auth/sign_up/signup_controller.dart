@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,6 +9,10 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/get_emirates_apis/get_emirates_api.dart';
+import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/signup_api.dart';
+import 'package:mobilegarage/models/emirate_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/validators.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -28,9 +34,6 @@ class VSignUpController extends GetxController {
   String? completePhoneNumber;
   Country? selectedCountry =
       countries.firstWhere((country) => country.fullCountryCode == "971");
-
-  //TODO: DropDown Varible
-  String? selectedValue;
 
   //TODO: Toggle Varible
   bool obscurePassword = true;
@@ -56,17 +59,40 @@ class VSignUpController extends GetxController {
   String confirmPasswordError = '';
   String garageDescriptionError = '';
 
-  //TODO: DropDown ListItem
-  final List<String> items = [
-    "Dubai",
-    "Abu Dhabi",
-    "Fujairah",
-    "Ras Al Khaimah",
-    "Sharjah",
-    "Umm Al Quwain",
-    "Ajman",
-    "Western Region",
-  ];
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    await getEmirates();
+  }
+
+  //TODO: DropDown Varible
+  EmirateModel? selectedEmirate;
+  List<EmirateModel> emirates = [];
+  int? selectedEmirateId;
+  getEmirates() async {
+    var response = await GetEmirates.getEmirats();
+    if (response.isNotEmpty) {
+      emirates = (response['emirates'] as List<dynamic>)
+          .map((item) => EmirateModel.from(item as Map<String, dynamic>))
+          .toList();
+
+      update();
+    }
+  }
+
+  void setSelectedEmirate(EmirateModel? emirate) {
+    selectedEmirate = emirate;
+    selectedEmirateId = emirate?.id;
+    update();
+  }
+
+//  Map  LatLng
+  String currentAddress = '';
+  double? lat;
+  double? lng;
+  Position? currentPosition;
+  bool locationselected = false;
 
   //TODO: Pasword Toggle
   void passwordToggle() {
@@ -98,7 +124,8 @@ class VSignUpController extends GetxController {
         update();
         return garageDescriptionError;
       case 'Emirate':
-        emirateError = Validators.emptyStringValidator(value ?? '', fieldName) ?? '';
+        emirateError =
+            Validators.emptyStringValidator(value ?? '', fieldName) ?? '';
         update();
         return emirateError;
       case 'Garage address detail':
@@ -133,7 +160,8 @@ class VSignUpController extends GetxController {
         validateFields('Garage name', garageNameController.text);
     final garageDescriptionErrorString =
         validateFields('Garage description', garageDescriptionController.text);
-    final emirateErrorString = validateFields('Emirate', selectedValue);
+    final emirateErrorString =
+        validateFields('Emirate', selectedEmirateId.toString());
     print('$emirateErrorString 12222222222222222222222222222222222222222');
     final garageAddressDetailErrorString = validateFields(
         'Garage address detail', garageDescriptionController.text);
@@ -150,23 +178,27 @@ class VSignUpController extends GetxController {
     }
 
     if (logo == null || logo!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', 'message');
+      UiUtilites.errorSnackbar('Error', "logo can't be empty");
       return false;
     }
     if (cover == null || cover!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', 'message');
+      UiUtilites.errorSnackbar('Error', "banner can't be empty");
       return false;
     }
     if (idCardBackSide == null || idCardBackSide!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', 'message');
+      UiUtilites.errorSnackbar('Error', "id backside can't be empty");
       return false;
     }
     if (idCardFrontSide == null || idCardFrontSide!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', 'message');
+      UiUtilites.errorSnackbar('Error', "id front side can't be empty");
       return false;
     }
     if (uploadLicense == null && uploadLicense!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', 'message');
+      UiUtilites.errorSnackbar('Error', "license can't be empty");
+      return false;
+    }
+    if (lat == null && lng == null) {
+      UiUtilites.errorSnackbar('Error', "location can't be empty");
       return false;
     }
     return nameErrorString.isEmpty &&
@@ -214,8 +246,13 @@ class VSignUpController extends GetxController {
     }
     return phoneNumberError;
   }
-  //TODO: End Phone Validation
 
+  //TODO: End Phone Validation
+  String? base64Logo;
+  String? base64Cover;
+  String? base64IdCardFrontSide;
+  String? base64IdCardBackSide;
+  String? base64UploadLicense;
   //TODO: IMAGE PICKER
   pickImageFromGallery(String imageName) async {
     final imageSelectorApi = ImageSelectorApi();
@@ -228,27 +265,28 @@ class VSignUpController extends GetxController {
             uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
+        String base64Image = base64Encode(await croppedImage.readAsBytes());
         switch (imageName) {
           case 'logo':
             logo = File(croppedImage.path);
-            // logoError = '';
+            base64Logo = base64Image;
             update();
             break;
           case 'cover':
             cover = File(croppedImage.path);
-            // coverError = '';
+            base64Cover = base64Image;
             update();
           case 'id_card_frontSide':
             idCardFrontSide = File(croppedImage.path);
-            // coverError = '';
+            base64IdCardFrontSide = base64Image;
             update();
           case 'id_card_backSide':
             idCardBackSide = File(croppedImage.path);
-            // coverError = '';
+            base64IdCardBackSide = base64Image;
             update();
           case 'upload_license':
             uploadLicense = File(croppedImage.path);
-            // coverError = '';
+            base64UploadLicense = base64Image;
             update();
           default:
             break;
@@ -260,7 +298,64 @@ class VSignUpController extends GetxController {
   }
 
   //TODO: Register Function
-  register() async{
-    if(await validateForm()){}
+  register() async {
+    if (await validateForm()) {
+      var response = await VSignupApi.registerapi(
+        name: garageNameController.text,
+        ownername: nameController.text,
+        phone: completePhoneNumber,
+        description: garageDescriptionController.text,
+        lat: lat.toString(),
+        lng: lng.toString(),
+        emirateid: selectedEmirateId.toString(),
+        addressdetail: garageAddressDetailController.text,
+        email: emailController.text,
+        password: passwordController.text,
+        banner: base64Cover,
+        logo: base64Logo,
+        license: base64UploadLicense,
+        idbackside: base64IdCardBackSide,
+        idfrontside: base64IdCardFrontSide,
+      );
+      if (response.isNotEmpty) {
+        box.write('api_token', response['garage']['token']);
+        resetfields();
+      }
+    }
+  }
+
+  resetfields() {
+    garageNameController.clear();
+    nameController.clear();
+    garageAddressDetailController.clear();
+    garageDescriptionController.clear();
+    emailController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
+    phoneNumberController.clear();
+    selectedEmirate = null;
+    
+    logo = null;
+    cover = null;
+    idCardFrontSide = null;
+    idCardBackSide = null;
+    uploadLicense = null;
+
+    lat = null;
+    lng = null;
+    currentAddress = '';
+    locationselected = false;
+
+    // clear errors also
+    emailError = '';
+    nameError = '';
+    garageNameError = '';
+    emirateError = '';
+    garageAddressDetailError = '';
+    phoneNumberError = '';
+    passwordError = '';
+    confirmPasswordError = '';
+    garageDescriptionError = '';
+    update();
   }
 }
