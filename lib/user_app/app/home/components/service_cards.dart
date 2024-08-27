@@ -28,7 +28,7 @@ class ServiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width * 0.32,
-      height: Get.height * 0.3 / 1.3,
+      // height: Get.height * 0.3 / 1.3,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -46,7 +46,6 @@ class ServiceCard extends StatelessWidget {
           Stack(
             children: [
               Container(
-                // height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(12),
@@ -121,6 +120,7 @@ class ServiceCard extends StatelessWidget {
                 Gap(3),
                 AppText(
                   title: time,
+                  color: AppColors.primary,
                   size: 8,
                   fontWeight: FontWeight.w400,
                 ),
@@ -135,7 +135,7 @@ class ServiceCard extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: 30,
+                      width: 25,
                       child: AppText(
                         title: price,
                         color: Color.fromARGB(255, 0, 91, 165),
@@ -164,7 +164,7 @@ class ServiceCard extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(4.0),
                       child: SvgPicture.asset(
-                        'assets/icons/cart_ic.svg',
+                        'assets/icons/cart_icon.svg',
                         alignment: Alignment.center,
                       ),
                     ),

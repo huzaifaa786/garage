@@ -140,7 +140,7 @@ class _SearchViewState extends State<SearchView> {
                     itemBuilder: (context, index) {
                       return ServiceCard(
                           image: "https://dummyimage.com/70x70/d9c3d9/00000a",
-                          time: "12 sec",
+                          time: "30 min",
                           title: "1223",
                           onTap: () {},
                           price: "222");

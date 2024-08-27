@@ -62,7 +62,7 @@ class SelectLanguageView extends StatelessWidget {
                             Gap(Get.height * 0.06),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 50),
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: LanguageCard(
                                 ontap: () async {
                                   await controller
@@ -78,7 +78,7 @@ class SelectLanguageView extends StatelessWidget {
                             Gap(30),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 50),
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: LanguageCard(
                                 ontap: () async {
                                   await controller

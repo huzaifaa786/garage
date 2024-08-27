@@ -111,6 +111,7 @@ class NotificationCard extends StatelessWidget {
                               verticalGap: 20,
                               activeIndex: controller.activestatus,
                               barThickness: 8,
+                              
                             ),
                           ),
                         ],
