@@ -46,6 +46,7 @@ class _SearchViewState extends State<SearchView> {
               title: TopBar(
                 showicon: true,
                 title: 'Search',
+                showgarageicon: false,
               ),
             ),
           ),
@@ -136,10 +137,11 @@ class _SearchViewState extends State<SearchView> {
                         crossAxisCount: 2,
                         mainAxisSpacing: 15,
                         crossAxisSpacing: 24,
-                        childAspectRatio: 0.8),
+                        childAspectRatio: 0.82),
                     itemBuilder: (context, index) {
                       return ServiceCard(
-                          image: "https://dummyimage.com/70x70/d9c3d9/00000a",
+                           image: "https://dummyimage.com/90x90/d9c3d9/00000a",
+                              // image:    " https://dummyimage.com/132x99/000/fff",
                           time: "30 min",
                           title: "1223",
                           onTap: () {},

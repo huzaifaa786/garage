@@ -123,29 +123,29 @@ class _HomeViewState extends State<HomeView> {
            ),
          ),
          Gap(30),
-         Expanded(
-           child: GridView.builder(
-            padding: EdgeInsets.only(left: 40.0, right: 30.0),
-             shrinkWrap: true,
-             physics: BouncingScrollPhysics(),
-             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-               crossAxisCount: controller.itemCount,
-               crossAxisSpacing: 6.0,
-               mainAxisSpacing: 2.0,
-               mainAxisExtent: Get.height * 0.18,
-             ),
-             itemCount: controller.services.length,
-             itemBuilder: (context, index) {
-               final item = controller.services[index];
-               return ServicesIcons(
-                 imageUrl: item.imageUrl,
-                 text: item.text,
-                 ontap: () {
-                   Get.toNamed(AppRoutes.filterorder);
-                 },
-               );
-             },
+         GridView.builder(
+          padding: EdgeInsets.only(left: 40.0, right: 30.0),
+           shrinkWrap: true,
+           physics: BouncingScrollPhysics(),
+           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+             crossAxisCount: controller.itemCount,
+             crossAxisSpacing: 6.0,
+             mainAxisSpacing: 2.0,
+             mainAxisExtent: Get.height * 0.18,
            ),
+           itemCount: controller.services.length,
+           
+           itemBuilder: (context, index) {
+            
+             final item = controller.services[index];
+             return ServicesIcons(
+               imageUrl: item.imageUrl,
+               text: item.text,
+               ontap: () {
+                 Get.toNamed(AppRoutes.filterorder);
+               },
+             );
+           },
          ),
          Gap(40),
                          ] else ...[

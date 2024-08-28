@@ -58,7 +58,7 @@ class SelectLanguageView extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               color: AppColors.darkprimary,
                             ),
-                            Gap(Get.height * 0.06),
+                            Gap(Get.height * 0.09),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 2),
