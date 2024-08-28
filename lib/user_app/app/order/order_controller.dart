@@ -42,7 +42,7 @@ class OrderController extends GetxController {
                           height: 35,
                           width: 35,
                           decoration: BoxDecoration(
-                            color: AppColors.lightprimary,
+                            // color: AppColors.lightprimary,
                             borderRadius: BorderRadius.circular(80),
                           ),
                           child: SvgPicture.asset(
@@ -69,7 +69,7 @@ class OrderController extends GetxController {
                         title: 'Approximate price '.tr,
                         fontWeight: FontWeight.w400,
                         size: 10.0,
-                        color: AppColors.grey,
+                        color: AppColors.black.withOpacity(0.8),
                       ),
                       Row(
                         children: [
@@ -142,9 +142,9 @@ class OrderController extends GetxController {
             id: '2'),
         StepperItemData(
             content: Padding(
-              padding: const EdgeInsets.only(left: 5, bottom: 50),
+              padding: const EdgeInsets.only(left: 5, bottom: 50, right: 10),
               child: DottedBorderButton(
-                title: 'Upload vehicle photo'.tr,
+                title: 'Upload service or product image'.tr,
                 imgselect: () => selectVehicleImage(),
                 isImgSelected: isImageSelected(),
                 selectedimgpath: vehicleImage,
@@ -214,24 +214,84 @@ class OrderController extends GetxController {
                     ],
                   ),
                   Gap(8),
-                  SizedBox(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: garageNames.length,
-                      itemBuilder: (context, index) {
-                        final name = garageNames[index];
-                        return VehicleListTile(
-                          value: name,
-                          groupValue: selectedgarageName,
-                          onChanged: (value) {
-                            selectGarage(value!);
-                          },
-                          iconPath: 'assets/icons/garage_logo.svg',
-                          text: name,
-                        );
-                      },
-                    ),
+                  // SizedBox(
+                  //   child: ListView.builder(
+                  //     shrinkWrap: true,
+                  //     physics: NeverScrollableScrollPhysics(),
+                  //     itemCount: garageNames.length,
+                  //     itemBuilder: (context, index) {
+                  //       final name = garageNames[index];
+                  //       return VehicleListTile(
+                  //         value: name,
+                  //         groupValue: selectedgarageName,
+                  // onChanged: (value) {
+                  //   selectGarage(value!);
+                  // },
+                  //         iconPath: 'assets/icons/garage_logo.svg',
+
+                  //         text: name,
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
+
+                  Row(
+                    children: [
+                      Radio<String>(
+                        value: 'Select garage',
+                        groupValue: selectedgarageName,
+                        onChanged: (value) {
+                          selectGarage(value!);
+                        },
+                        fillColor:
+                            MaterialStatePropertyAll(AppColors.primarybg),
+                      ),
+                      SvgPicture.asset(
+                        'assets/icons/garage_logo.svg',
+                        color: AppColors.primarybg,
+                        height: 20,
+                        width: 20,
+                      ),
+                      Gap(10),
+                      Text(
+                        'Select garage',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primarybg,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Gap(22),
+                  Row(
+                    children: [
+                      Radio<String>(
+                        value:
+                            'Send to all garages', // Updated to match the correct value
+                        groupValue: selectedgarageName,
+                        onChanged: (value) {
+                          selectGarage(value!);
+                        },
+                        fillColor:
+                            MaterialStatePropertyAll(AppColors.primarybg),
+                      ),
+                      Image.asset(
+                        'assets/images/all_garage.png',
+                        color: AppColors.primarybg,
+                        height: 30,
+                        width: 30,
+                      ),
+                      Gap(10),
+                      Text(
+                        'Send to all garages',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primarybg,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

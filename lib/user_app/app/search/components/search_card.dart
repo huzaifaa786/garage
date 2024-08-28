@@ -176,12 +176,12 @@ class SearchCard extends StatelessWidget {
                                         topLeft: Radius.circular(20),
                                         bottomLeft: Radius.circular(20))),
                                 height: Get.height * 0.05,
-                                width: Get.width * 0.6,
+                                width: Get.width * 0.67,
                                 child: Center(
                                   child: Text(
                                     'View garage',
                                     style: TextStyle(
-                                        color: Colors.red, fontSize: 16),
+                                        color: AppColors.primary, fontSize: 8,fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ),
