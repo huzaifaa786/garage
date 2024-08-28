@@ -164,7 +164,6 @@ class PaymentBottomsheet extends StatelessWidget {
                                             },
                                             title: 'Thank you!',
                                             description:
-                                          
                                                 'your order has been placed successfully, and soon a garage will accept your order.');
                                       },
                                     ),

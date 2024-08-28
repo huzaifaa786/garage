@@ -15,7 +15,6 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
-
 class PaymentView extends StatelessWidget {
   const PaymentView({super.key});
 
@@ -33,7 +32,10 @@ class PaymentView extends StatelessWidget {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(title: 'Payment'),
+              title: TopBar(
+                title: 'Payment',
+                showgarageicon: false,
+              ),
             ),
           ),
         ),
@@ -79,13 +81,12 @@ class PaymentView extends StatelessWidget {
                           title: 'Date &Time',
                           size: 10,
                           fontWeight: FontWeight.w500,
-                        ), 
+                        ),
                         Gap(8),
                         DateLocationCard(
                           txt: '18 March 2024    09:00 am',
                         ),
                         Gap(8),
-
                         AppText(
                           title: 'Location',
                           size: 10,
@@ -204,8 +205,6 @@ class PaymentView extends StatelessWidget {
                     Get.bottomSheet(
                       PaymentBottomsheet(),
                       isScrollControlled: true,
-                      
-                    
                     );
                   },
                 ),
