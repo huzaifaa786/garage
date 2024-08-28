@@ -105,52 +105,6 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
                 Gap(30),
-<<<<<<< HEAD
-         if (controller.hasServices) ...[
-         Padding(
-          padding: const EdgeInsets.only(left: 40.0, right: 30.0),
-           child: Row(
-             children: [
-               Gap(10),
-               AppText(
-                 title: 'Explore Services!',
-                 fontWeight: FontWeight.w600,
-                 size: 16.0,
-                 color: AppColors.darkprimary,
-               ),
-             ],
-           ),
-         ),
-         Gap(30),
-         GridView.builder(
-          padding: EdgeInsets.only(left: 40.0, right: 30.0),
-           shrinkWrap: true,
-           physics: BouncingScrollPhysics(),
-           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-             crossAxisCount: controller.itemCount,
-             crossAxisSpacing: 6.0,
-             mainAxisSpacing: 2.0,
-             mainAxisExtent: Get.height * 0.18,
-           ),
-           itemCount: controller.services.length,
-           
-           itemBuilder: (context, index) {
-            
-             final item = controller.services[index];
-             return ServicesIcons(
-               imageUrl: item.imageUrl,
-               text: item.text,
-               ontap: () {
-                 Get.toNamed(AppRoutes.filterorder);
-               },
-             );
-           },
-         ),
-         Gap(40),
-                         ] else ...[
-         Gap(0),
-                         ]
-=======
                 if (controller.hasServices) ...[
                   Padding(
                     padding: const EdgeInsets.only(left: 40.0, right: 30.0),
@@ -196,7 +150,6 @@ class _HomeViewState extends State<HomeView> {
                 ] else ...[
                   Gap(0),
                 ]
->>>>>>> d0d8d46b2b7ae914bd63ee6dd6e966aeaa77510b
               ],
             ),
           ),
