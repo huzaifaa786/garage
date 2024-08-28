@@ -20,17 +20,22 @@ class LanguageCard extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        height: Get.height * 0.1,
+        // height: Get.height * 0.1,
+        height: 70,
+        width: Get.width * 0.9,
         decoration: BoxDecoration(
-            color: AppColors.primaryborder,
-            border: Border.all(
-                color:
-                    isSelected ? AppColors.primary : AppColors.primaryborder),
+            color: AppColors.light_red,
+            // border: Border.all(
+            //     color:
+            //         isSelected ? AppColors.primary : AppColors.primaryborder),
             borderRadius: BorderRadius.circular(40)),
         child: Center(
           child: Text(
             title,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.primary),
           ),
         ),
       ),

@@ -13,6 +13,12 @@ class AppColors {
   static const black = Color(0xFF000000);
   static const shadowblack = Color(0x40000000);
   static const primaryborder = Color(0xFFE8D5D5);
+
+
+
+
+  
+  static Color light_red = const Color(0xFFFFF6F6);
   static const lightprimary = Color(0xFFFFEAEA);
   static const grey = Colors.grey;
   static const blackgrey = Color(0xBF000000);
