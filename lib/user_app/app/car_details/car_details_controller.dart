@@ -17,6 +17,12 @@ class CarDetailsController extends GetxController {
       'vehicleImage': null,
     }
   ];
+final List<DropdownItem> city = [
+    DropdownItem(title: 'Car', icon: "assets/icons/car (1).svg"),
+    DropdownItem(title: 'Van', icon: "assets/icons/van.svg"),
+    DropdownItem(title: 'Bus', icon: "assets/icons/bus.svg"),
+    DropdownItem(title: 'Bike', icon: "assets/icons/bike.svg"),
+  ];
 
   final List<DropdownItem> carbrand = [
     DropdownItem(

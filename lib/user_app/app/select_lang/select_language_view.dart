@@ -61,7 +61,7 @@ class SelectLanguageView extends StatelessWidget {
                             Gap(Get.height * 0.06),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 50),
+                                  const EdgeInsets.symmetric(horizontal: 2),
                               child: LanguageCard(
                                 ontap: () async {
                                   await controller
@@ -77,7 +77,11 @@ class SelectLanguageView extends StatelessWidget {
                             Gap(30),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 50),
+<<<<<<< HEAD
+                                  const EdgeInsets.symmetric(horizontal: 40),
+=======
+                                  const EdgeInsets.symmetric(horizontal: 2),
+>>>>>>> 6a0ede9b9800aaf4685bc7a811ba1917dbdfa503
                               child: LanguageCard(
                                 ontap: () async {
                                   await controller
@@ -85,6 +89,7 @@ class SelectLanguageView extends StatelessWidget {
                                       Get.offAllNamed(AppRoutes.selectside);
                                 },
                                 title: 'العربية'.tr,
+                              
                                 isSelected:
                                     controller.site == translateMethod.Arabic,
                               ),

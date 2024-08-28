@@ -72,7 +72,9 @@ class _SearchresultViewState extends State<SearchresultView> {
                   color: AppColors.lightgrey,
                   child: TableCalendar(
                     availableGestures: AvailableGestures.horizontalSwipe,
-                    firstDay: DateTime.utc(2023, 1, 1),
+                    firstDay: 
+                    controller.selectedService!='quickService'
+                    ?DateTime.utc(2023, 1, 1):DateTime.now(),
                     lastDay: DateTime.now(),
                     focusedDay: DateTime.now(),
                     calendarFormat: CalendarFormat.month,
@@ -203,21 +205,47 @@ class _SearchresultViewState extends State<SearchresultView> {
                                   ),
                                   Gap(5),
                                   controller.currentAddress == ""
-                                      ? AppText(
-                                          title:
-                                              "Select location on Google map",
-                                          size: 10,
-                                          fontWeight: FontWeight.w500,
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            AppText(
+                                              title:
+                                                  "Select location on Google map",
+                                              size: 10,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ],
                                         )
                                       : ConstrainedBox(
                                           constraints: BoxConstraints(
                                               maxWidth: Get.width * 0.46),
-                                          child: AppText(
-                                            title: controller.currentAddress,
-                                            size: 10,
-                                            fontWeight: FontWeight.w500,
+                                          child: Row(
+                                            
+                                            children: [
+                                              AppText(
+                                                title: controller.currentAddress,
+                                                size: 10,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ],
                                           ),
                                         ),
+                                        Gap(30),
+                                        SizedBox(width: 20,),
+                                        
+                                  Row(mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 20.0),
+                                        child: SvgPicture.asset(
+                                          "assets/icons/arrow_right.svg",
+                                          color: AppColors.primarybg,
+                                          fit: BoxFit.scaleDown,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
@@ -228,9 +256,12 @@ class _SearchresultViewState extends State<SearchresultView> {
                   ),
                 ),
                 Gap(30),
-                MainButton(title: 'Payment',onTap: () {
-                  Get.toNamed(AppRoutes.payments);
-                },),
+                MainButton(
+                  title: 'Payment',
+                  onTap: () {
+                    Get.toNamed(AppRoutes.payments);
+                  },
+                ),
                 Gap(50),
               ],
             ),

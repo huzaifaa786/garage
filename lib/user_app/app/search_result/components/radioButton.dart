@@ -12,7 +12,7 @@ class ColumnRadioTile extends StatelessWidget {
   const ColumnRadioTile({
     super.key,
   });
-
+  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchResultController>(

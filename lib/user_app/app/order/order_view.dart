@@ -35,63 +35,64 @@ class _OrderViewState extends State<OrderView> {
                   child: AppBar(
                     automaticallyImplyLeading: false,
                     scrolledUnderElevation: 0.0,
+                    
                     toolbarHeight: 95.0,
                     title: TopBar(
                       showicon: true,
+                        showgarageicon: false,
                       title: 'Find Service',
                     ),
                   ),
                 ),
               ),
               body: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Gap(30),
-                          SizedBox(
-                            width: Get.width,
-                            child: StepperListView(
-                                shrinkWrap: true,
-                                physics: BouncingScrollPhysics(),
-                                showStepperInLast: true,
-                                stepperData: controller.stepperData,
-                                stepAvatar: (_, data) {
-                                  return PreferredSize(
-                                      preferredSize: Size.fromRadius(5),
-                                      child: Container(
-                                        height: 10,
-                                        width: 10,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: AppColors.darkprimary),
-                                      ));
+                child: SingleChildScrollView(
+                  padding:EdgeInsets.only(right: 5,left: 5),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Gap(30),
+                        SizedBox(
+                          width: Get.width,
+                          child: StepperListView(
+                            
+                              shrinkWrap: true,
+                              physics: BouncingScrollPhysics(),
+                              showStepperInLast: true,
+                              stepperData: controller.stepperData,
+                              stepAvatar: (_, data) {
+                                return PreferredSize(
+                                    preferredSize: Size.fromRadius(5),
+                                    child: Container(
+                                      height: 10,
+                                      width: 10,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: AppColors.darkprimary),
+                                    ));
+                              },
+                              stepContentWidget: (context, value) {
+                                return value.content;
+                              }),
+                        ),
+                        Gap(40),
+                        MainButton(
+                          title: 'Next',
+                          onTap: () {
+                            Get.toNamed(AppRoutes.acceptedorder);
+                            UiUtilites.successAlertDialog(
+                                context: context,
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.home);
                                 },
-                                stepContentWidget: (context, value) {
-                                  return value.content;
-                                }),
-                          ),
-                          Gap(40),
-                          MainButton(
-                            title: 'Next',
-                            onTap: () {
-                              Get.toNamed(AppRoutes.acceptedorder);
-                              UiUtilites.successAlertDialog(
-                                  context: context,
-                                  onTap: () {
-                                    Get.toNamed(AppRoutes.home);
-                                  },
-                                  title: 'Thank you!',
-                                  description:
-                                      'A garage will accept your order from within 3-5 min.');
-                            },
-                          ),
-                          Gap(40),
-                        ]),
-                  ),
+                                title: 'Thank you!',
+                                description:
+                                    'A garage will accept your order from within 3-5 min.');
+                          },
+                        ),
+                        Gap(40),
+                      ]),
                 ),
               ),
             ));

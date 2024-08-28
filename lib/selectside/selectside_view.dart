@@ -63,7 +63,7 @@ class _SelectsideViewState extends State<SelectsideView> {
                               ontap: (){
                                    Get.toNamed(AppRoutes.signup);
                               },
-                              text: 'user',
+                              text: 'User',
                             ),
                             Gap(60),
                             ContainerSelect(

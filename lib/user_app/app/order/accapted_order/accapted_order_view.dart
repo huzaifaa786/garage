@@ -56,15 +56,20 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                 ],
               ),
               SizedBox(height: 10),
-            
-
               Gap(6),
               OrderCard(),
               Gap(50),
               MainButton(
                 title: 'Confirm',
+                btncolor: controller.isSelected
+                    ? AppColors.primary
+                    : AppColors.greybg,
                 onTap: () {
-                  Get.toNamed(AppRoutes.search_result);
+                  controller.toggleSelection();
+                  if(controller.isSelected){
+                       Get.toNamed(AppRoutes.search_result);
+                  }
+              
                 },
               ),
             ],
