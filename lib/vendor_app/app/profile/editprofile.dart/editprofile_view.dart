@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
@@ -58,10 +57,12 @@ class _VEditprofileViewState extends State<VEditprofileView> {
         ),
         body: SingleChildScrollView(
           child: SafeArea(
-            child: Column(
+            child:
+            controller.garage!=null?
+             Column(
               children: [
                 Container(
-                  height: Get.height * 0.44,
+                  // height: Get.height * 0.6,
                   decoration: BoxDecoration(color: AppColors.white_color),
                   child: Padding(
                     padding: const EdgeInsets.all(25.0),
@@ -69,7 +70,26 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                       children: [
                         Gap(13),
                         ProfileAndCoverPickerr(),
-                        Gap(13),
+                        SizedBox(height: Get.height*0.05),
+                        Row(
+                          children: [
+                            AppText(
+                              title: 'Garage description',
+                              color: Colors.grey,
+                            )
+                          ],
+                        ),
+                        Gap(20),
+                        AppInputField(
+                          errorText: controller.garageDescriptionError,
+                          hint: 'Garage description',
+                          controller: controller.garageDescriptionController,
+                          onchange: (val) {
+                            controller.validateFields(
+                                "Garage description", val);
+                          },
+                        ),
+                        Gap(30),
                         AppButton(
                           title: controller.isButtonClicked
                               ? 'Changes saved successfully'
@@ -96,58 +116,58 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                     ),
                   ),
                 ),
-                Gap(10),
-                Container(
-                  decoration: BoxDecoration(color: AppColors.white_color),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            AppText(
-                              title: 'Garage description',
-                              color: Colors.grey,
-                            )
-                          ],
-                        ),
-                        Gap(20),
-                        AppInputField(
-                          errorText: controller.garageDescriptionError,
-                          hint: 'Garage description',
-                          controller: controller.garageDescriptionController,
-                          onchange: (val) {
-                            controller.validateFields(
-                                "Garage description", val);
-                          },
-                        ),
-                        Gap(20),
-                        AppButton(
-                          title: controller.isButtonClicked1
-                              ? 'Changes saved successfully'
-                              : 'Save Changes',
-                          titleColor: controller.isButtonClicked1
-                              ? AppColors.green_color
-                              : AppColors.white_color,
-                          buttonColor: controller.isButtonClicked1
-                              ? AppColors.divider_color
-                              : AppColors.primary_color,
-                          suffixWidget: controller.isButtonClicked1
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  child: SvgPicture.asset(
-                                      'assets/images/checkcircle.svg'),
-                                )
-                              : Gap(1),
-                          ontap: () {
-                            controller.onSaveChanges();
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                Gap(0),
+                // Container(
+                //   decoration: BoxDecoration(color: AppColors.white_color),
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(20.0),
+                //     child: Column(
+                //       children: [
+                //         Row(
+                //           children: [
+                //             AppText(
+                //               title: 'Garage description',
+                //               color: Colors.grey,
+                //             )
+                //           ],
+                //         ),
+                //         Gap(20),
+                //         AppInputField(
+                //           errorText: controller.garageDescriptionError,
+                //           hint: 'Garage description',
+                //           controller: controller.garageDescriptionController,
+                //           onchange: (val) {
+                //             controller.validateFields(
+                //                 "Garage description", val);
+                //           },
+                //         ),
+                //         Gap(20),
+                //         AppButton(
+                //           title: controller.isButtonClicked1
+                //               ? 'Changes saved successfully'
+                //               : 'Save Changes',
+                //           titleColor: controller.isButtonClicked1
+                //               ? AppColors.green_color
+                //               : AppColors.white_color,
+                //           buttonColor: controller.isButtonClicked1
+                //               ? AppColors.divider_color
+                //               : AppColors.primary_color,
+                //           suffixWidget: controller.isButtonClicked1
+                //               ? Padding(
+                //                   padding:
+                //                       const EdgeInsets.symmetric(horizontal: 8),
+                //                   child: SvgPicture.asset(
+                //                       'assets/images/checkcircle.svg'),
+                //                 )
+                //               : Gap(1),
+                //           ontap: () {
+                //             controller.onSaveChanges();
+                //           },
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 Gap(13),
                 Container(
                   height: Get.height * 0.5,
@@ -177,7 +197,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                           text: 'Change password',
                         ),
                         ChangePassword(
-                            ontap: () {
+                          ontap: () {
                             Get.toNamed(AppRoutes.language);
                           },
                           icon: 'assets/images/globe.svg',
@@ -201,7 +221,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                   ),
                 )
               ],
-            ),
+            ):Gap(0),
           ),
         ),
       ),

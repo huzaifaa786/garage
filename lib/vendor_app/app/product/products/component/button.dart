@@ -30,12 +30,17 @@ class EdittButton extends StatelessWidget {
         child: Container(
           height: 35,
           width: width,
+           decoration: BoxDecoration(
+          color: AppColors.light_red,
+          border: Border.all(color: AppColors.primary_color),
+          borderRadius: BorderRadius.circular(50),
+        ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(icon),
+                SvgPicture.asset(icon,height: 15,),
                 AppText(
                   title: '  ' + text,
                   size: 10,
@@ -45,10 +50,7 @@ class EdittButton extends StatelessWidget {
               ],
             ),
           ),
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(50),
-          ),
+         
         ),
       ),
     );

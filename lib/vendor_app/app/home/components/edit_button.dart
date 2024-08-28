@@ -28,7 +28,7 @@ class EditButton extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              SvgPicture.asset(icon),
+              SvgPicture.asset(icon,height: 13,),
               AppText(
                 title: '  ' + text,
                 size: 10,
