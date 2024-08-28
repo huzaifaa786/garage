@@ -55,10 +55,12 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                               children: [
                                 Gap(37),
                                 AppText(
-                                  title: 'Car Details',
+                                  title: 'Car details',
                                   size: 32,
                                   fontWeight: FontWeight.w400,
-                                  color: AppColors.primarybg,
+                                  // color: AppColors.primarybg,
+                                   color: AppColors.heading_text_color,
+                                          fontFamily: 'Ibarra Real Nova',
                                 ),
                                 // Gap(15),
                                 Column(
@@ -135,7 +137,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                     'typeOfVehicleController'],
                                                 errorText: "",
                                                 onchange: (value) {},
-                                                items: controller.typesofvehicals,
+                                                items: controller. city,
                                               ),
                                               Gap(27),
                                               MainInputDropdown(

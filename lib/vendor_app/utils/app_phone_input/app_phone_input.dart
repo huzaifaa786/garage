@@ -48,7 +48,7 @@ class AppPhoneInput extends StatelessWidget {
           dropdownTextStyle: GoogleFonts.inter(fontSize: 14),
           style: GoogleFonts.inter(fontSize: 14),
           decoration: InputDecoration(
-            hintText: "78 9087 8827",
+            hintText: "phone number",
             hintStyle: GoogleFonts.inter(color: AppColors.hint_text_color),
             fillColor: AppColors.input_bg_color,
             filled: true,

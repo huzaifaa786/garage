@@ -10,6 +10,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
@@ -50,12 +51,19 @@ class SigninView extends StatelessWidget {
                                       child: Column(children: [
                                         Gap(30),
                                         AppText(
-                                          title: 'Sign In',
-                                          size: 32,
-                                          fontWeight: FontWeight.w400,
-                                          color: AppColors.primarybg,
-                                           fontFamily: 'Ibarra Real Nova',
+                                          title: ConstantStrings.sign_in,
+                                          size: 28,
+                                          fontWeight: FontWeight.w600,
+                                          color: AppColors.heading_text_color,
+                                          fontFamily: 'Ibarra Real Nova',
                                         ),
+                                        // AppText(
+                                        //   title: 'Sign In',
+                                        //   size: 32,
+                                        //   fontWeight: FontWeight.w400,
+                                        //   color: AppColors.primarybg,
+                                        //   fontFamily: 'Ibarra Real Nova',
+                                        // ),
                                         Gap(30),
                                         PhoneInputField(
                                           controller:
@@ -73,23 +81,20 @@ class SigninView extends StatelessWidget {
                                                 controller.toggleCheckbox();
                                               },
                                               activeColor: AppColors.primary,
-                                              side: BorderSide(color: AppColors.primary),
+                                              side: BorderSide(
+                                                  color: AppColors.primary),
                                             ),
-
                                             AppText(
                                               title: 'Remember me',
                                               size: 12,
                                               fontWeight: FontWeight.w500,
                                               color: AppColors.primary,
-                                              
                                             )
                                           ],
                                         ),
                                         Gap(70),
                                         MainButton(
                                           title: 'Sign In',
-                                        
-                                          
                                           txtweight: FontWeight.w600,
                                           onTap: () {
                                             Get.toNamed(AppRoutes.otp);

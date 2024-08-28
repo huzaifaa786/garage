@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/vender_apis/available_date_apis/unavailable_date_api.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AvaliableDateController extends GetxController {
@@ -22,6 +23,8 @@ class AvaliableDateController extends GetxController {
     }
     this.focusedDay = focusedDay;
     print(selectedDates);
+    isButtonClicked = false;
+
     update();
   }
 
@@ -29,8 +32,26 @@ class AvaliableDateController extends GetxController {
     return selectedDates.contains(day);
   }
 
-   void removeDate(DateTime day) {
+  void removeDate(DateTime day) {
     selectedDates.remove(day);
     update();
+  }
+
+  var isButtonClicked = false;
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    isButtonClicked = false;
+    update();
+  }
+
+  onconfirm() async{
+    var response = await VUnvailableDateApi.storeUnavailableDates(selectedDates);
+    if (response.isNotEmpty) {
+      selectedDates.clear();
+    isButtonClicked = true;
+      update();
+    }
   }
 }

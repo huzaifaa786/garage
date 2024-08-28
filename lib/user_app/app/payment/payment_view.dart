@@ -5,15 +5,14 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/cart/components/cart_card.dart';
 import 'package:mobilegarage/user_app/app/payment/components/date_location_card.dart';
+import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
 import 'package:mobilegarage/user_app/app/payment/components/payment_bottomsheet.dart';
 import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
 class PaymentView extends StatelessWidget {
   const PaymentView({super.key});
@@ -198,15 +197,28 @@ class PaymentView extends StatelessWidget {
                   ],
                 ),
                 Gap(20),
-                MainButton(
-                  buttonWidth: Get.width * 0.7,
-                  title: 'Pay',
-                  onTap: () {
-                    Get.bottomSheet(
-                      PaymentBottomsheet(),
-                      isScrollControlled: true,
-                    );
-                  },
+                Row(
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.done_all_rounded,
+                          color: AppColors.white,
+                          size: 20,
+                        ),
+                        IconMainButton(
+                          buttonWidth: Get.width * 0.7,
+                          title: 'Pay',
+                          onTap: () {
+                            Get.bottomSheet(
+                              PaymentBottomsheet(),
+                              isScrollControlled: true,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

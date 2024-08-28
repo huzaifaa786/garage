@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -45,6 +47,7 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                   color: AppColors.primary_color,
                 ),
                 elevation: 0,
+                scrolledUnderElevation: 0.0,
                 backgroundColor: Colors.white,
               ),
             ),
@@ -52,99 +55,102 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
           body: Padding(
             padding: const EdgeInsets.all(35.0),
             child: SafeArea(
-                child: Column(
-              children: [
-                AppInputField(
-                  errorText: controller.confirmPasswordError,
-                  hint: 'Old Password',
-                  obscure: controller.obscureOldPassword,
-                  controller: controller.oldpasswordController,
-                  onchange: (val) {
-                    controller.validateFields("old_password", val);
-                  },
-                  hasSuffix: true,
-                  suffixWidget: InkWell(
-                    onTap: controller.oldPasswordToggle,
-                    child: controller.obscureOldPassword
-                        ? SvgPicture.asset(
-                            ImageConst.eye_off_ic,
-                            fit: BoxFit.scaleDown,
-                          )
-                        : SvgPicture.asset(
-                            ImageConst.eye_ic,
-                            fit: BoxFit.scaleDown,
-                          ),
+                child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  AppInputField(
+                    errorText: controller.passwordError,
+                    hint: 'Old Password',
+                    obscure: controller.obscureOldPassword,
+                    controller: controller.oldpasswordController,
+                    onchange: (val) {
+                      controller.validateFields("old_password", val);
+                    },
+                    hasSuffix: true,
+                    suffixWidget: InkWell(
+                      onTap: controller.oldPasswordToggle,
+                      child: controller.obscureOldPassword
+                          ? SvgPicture.asset(
+                              ImageConst.eye_off_ic,
+                              fit: BoxFit.scaleDown,
+                            )
+                          : SvgPicture.asset(
+                              ImageConst.eye_ic,
+                              fit: BoxFit.scaleDown,
+                            ),
+                    ),
                   ),
-                ),
-                Gap(20),
-                AppInputField(
-                  errorText: controller.passwordError,
-                  hint: 'Password',
-                  obscure: controller.obscurePassword,
-                  controller: controller.passwordController,
-                  onchange: (val) {
-                    controller.validateFields("password", val);
-                  },
-                  hasSuffix: true,
-                  suffixWidget: InkWell(
-                    onTap: controller.passwordToggle,
-                    child: controller.obscurePassword
-                        ? SvgPicture.asset(
-                            ImageConst.eye_off_ic,
-                            fit: BoxFit.scaleDown,
-                          )
-                        : SvgPicture.asset(
-                            ImageConst.eye_ic,
-                            fit: BoxFit.scaleDown,
-                          ),
+                  Gap(20),
+                  AppInputField(
+                    errorText: controller.newpasswordError,
+                    hint: 'Password',
+                    obscure: controller.obscurePassword,
+                    controller: controller.passwordController,
+                    onchange: (val) {
+                      controller.validateFields("password", val);
+                    },
+                    hasSuffix: true,
+                    suffixWidget: InkWell(
+                      onTap: controller.passwordToggle,
+                      child: controller.obscurePassword
+                          ? SvgPicture.asset(
+                              ImageConst.eye_off_ic,
+                              fit: BoxFit.scaleDown,
+                            )
+                          : SvgPicture.asset(
+                              ImageConst.eye_ic,
+                              fit: BoxFit.scaleDown,
+                            ),
+                    ),
                   ),
-                ),
-                const Gap(20),
-                AppInputField(
-                  errorText: controller.confirmPasswordError,
-                  hint: 'Confirm Password',
-                  obscure: controller.cobscurePassword,
-                  controller: controller.confirmPasswordController,
-                  onchange: (val) {
-                    controller.validateFields("confirm_password", val);
-                  },
-                  hasSuffix: true,
-                  suffixWidget: InkWell(
-                    onTap: controller.confirmPasswordToggle,
-                    child: controller.cobscurePassword
-                        ? SvgPicture.asset(
-                            ImageConst.eye_off_ic,
-                            fit: BoxFit.scaleDown,
-                          )
-                        : SvgPicture.asset(
-                            ImageConst.eye_ic,
-                            fit: BoxFit.scaleDown,
-                          ),
+                  const Gap(20),
+                  AppInputField(
+                    errorText: controller.confirmPasswordError,
+                    hint: 'Confirm Password',
+                    obscure: controller.cobscurePassword,
+                    controller: controller.confirmPasswordController,
+                    onchange: (val) {
+                      controller.validateFields("confirm_password", val);
+                    },
+                    hasSuffix: true,
+                    suffixWidget: InkWell(
+                      onTap: controller.confirmPasswordToggle,
+                      child: controller.cobscurePassword
+                          ? SvgPicture.asset(
+                              ImageConst.eye_off_ic,
+                              fit: BoxFit.scaleDown,
+                            )
+                          : SvgPicture.asset(
+                              ImageConst.eye_ic,
+                              fit: BoxFit.scaleDown,
+                            ),
+                    ),
                   ),
-                ),
-                Gap(25),
-                AppButton(
-                  title: 'Confirm',
-                  buttonColor: controller.isButtonClicked
-                      ? AppColors.divider_color
-                      : AppColors.primary_color,
-                  ontap: () {
-                    controller.onSaveChanges();
-                  },
-                ),
-                Gap(10),
-                controller.isButtonClicked
-                    ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AppText(
-                            title: 'Password changed successfully ',color: AppColors.green_color,
-                          ),
-                          SvgPicture.asset('assets/images/checkcircle.svg'),
-                        ],
-                      )
-                    : Gap(1)
-              ],
+                  Gap(35),
+                  AppButton(
+                    title: 'Confirm',
+                    buttonColor: controller.isButtonClicked
+                        ? AppColors.divider_color
+                        : AppColors.primary_color,
+                    ontap: () {
+                      controller.onSaveChanges();
+                    },
+                  ),
+                  Gap(20),
+                  controller.isButtonClicked
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AppText(
+                              title: 'Password changed successfully ',
+                              color: AppColors.green_color,
+                            ),
+                            SvgPicture.asset('assets/images/checkcircle.svg'),
+                          ],
+                        )
+                      : Gap(1)
+                ],
+              ),
             )),
           )),
     );

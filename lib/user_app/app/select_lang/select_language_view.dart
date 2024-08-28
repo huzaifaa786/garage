@@ -85,6 +85,7 @@ class SelectLanguageView extends StatelessWidget {
                                       Get.offAllNamed(AppRoutes.selectside);
                                 },
                                 title: 'العربية'.tr,
+                              
                                 isSelected:
                                     controller.site == translateMethod.Arabic,
                               ),

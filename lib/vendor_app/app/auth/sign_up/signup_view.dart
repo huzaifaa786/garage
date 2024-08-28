@@ -109,6 +109,7 @@ class VSignupView extends StatelessWidget {
                             ),
                             const Gap(12),
                             AppPhoneInput(
+                              
                               onCountryChanged: controller.onCountryChanged,
                               errorText: controller.phoneNumberError,
                               onChanged: controller.phoneValidation,

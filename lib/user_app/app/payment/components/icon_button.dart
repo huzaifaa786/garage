@@ -1,12 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/button_shadow.dart';
 
-class MainButton extends StatelessWidget {
-  MainButton({
+class IconMainButton extends StatelessWidget {
+  IconMainButton({
     super.key,
     this.title,
     double? radius,
@@ -49,11 +50,17 @@ class MainButton extends StatelessWidget {
           color: btncolor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(45), side: BorderSide.none),
-           shadows: buttonShadow,
+          // shadows: buttonShadow,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+              Icon(
+                                        Icons.done_all_rounded,
+                                        color: AppColors.white,
+                                        size: 20,
+                                      ),
+                                      Gap(5),
             
             AppText(
               title: '$title',
@@ -61,9 +68,6 @@ class MainButton extends StatelessWidget {
               size: fontsize,
               fontWeight: txtweight,
             ),
-          
-
-            
           ],
         ),
       ),

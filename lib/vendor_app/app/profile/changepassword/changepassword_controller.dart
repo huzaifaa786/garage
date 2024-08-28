@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/vender_apis/edit_profile_apis/change_password_api.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 
 class VChangepasswordController extends GetxController {
@@ -7,10 +8,10 @@ class VChangepasswordController extends GetxController {
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController oldpasswordController = TextEditingController();
-
   TextEditingController confirmPasswordController = TextEditingController();
 
   String passwordError = '';
+  String newpasswordError = '';
   String confirmPasswordError = '';
 
   bool obscurePassword = true;
@@ -18,16 +19,22 @@ class VChangepasswordController extends GetxController {
   bool obscureOldPassword = true;
 
   bool color = false;
-
-
- var isButtonClicked = false;
-
-  void onSaveChanges() {
-    print(isButtonClicked);
-    isButtonClicked = true;
-
-    update();
+  var isButtonClicked = false;
+  void onSaveChanges() async {
+    if (await validateform()) {
+      var response = await VChangePasswordApi.changePassword(
+          password: oldpasswordController.text,
+          newpassword: passwordController.text);
+      if (response.isNotEmpty) {
+        isButtonClicked = true;
+        update();
+        Future.delayed(Duration(seconds: 3), () {
+          Get.back();
+        });
+      }
+    }
   }
+
   void passwordToggle() {
     obscurePassword = !obscurePassword;
     update();
@@ -51,9 +58,9 @@ class VChangepasswordController extends GetxController {
         update();
         return passwordError;
       case 'password':
-        passwordError = Validators.passwordValidator(value) ?? '';
+        newpasswordError = Validators.passwordValidator(value) ?? '';
         update();
-        return passwordError;
+        return newpasswordError;
       case 'confirm_password':
         confirmPasswordError = Validators.confrimPasswordValidator(
                 passwordController.text, value) ??
@@ -63,5 +70,18 @@ class VChangepasswordController extends GetxController {
       default:
         return '';
     }
+  }
+
+  // button validation
+  Future<bool> validateform() async {
+    final oldpasswordErrorString =
+        validateFields('old_password', oldpasswordController.text);
+    final passwordErrorString =
+        validateFields('password', passwordController.text);
+    final confirmpasswordErrorString =
+        validateFields('confirm_password', confirmPasswordController.text);
+    return oldpasswordErrorString.isEmpty &&
+        passwordErrorString.isEmpty &&
+        confirmpasswordErrorString.isEmpty;
   }
 }

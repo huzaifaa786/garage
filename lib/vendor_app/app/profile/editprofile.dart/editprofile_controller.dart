@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:mobilegarage/apis/vender_apis/edit_profile_apis/edit_profile_api.dart';
+import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
+import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 
@@ -11,29 +13,46 @@ class VEditprofileController extends GetxController {
   static VEditprofileController instance = Get.find();
   TextEditingController garageDescriptionController = TextEditingController();
 
-  File? logo;
-  File? cover;
-
   String garageDescriptionError = '';
-
   var isButtonClicked = false;
-  var isButtonClicked1 = false;
 
-  void onSaveChanges() {
-    print(isButtonClicked);
-    isButtonClicked = true;
-    isButtonClicked1 = true;
+  void onSaveChanges() async {
+    var response = await VEditProfileApi.editProfile(
+        description: garageDescriptionController.text,
+        logo: base64Logo,
+        banner: base64Cover);
+    if (response.isNotEmpty) {
+      garage = GarageModel.fromJson(response['garage']);
+      isButtonClicked = true;
+    }
+    update();
+    Get.back();
+  }
 
+  void onInit() async {
+    super.onInit();
+    isButtonClicked = false;
+    await garagedata();
     update();
   }
 
-  void onInit() {
-    super.onInit();
-    print(isButtonClicked);
+  GarageModel? garage;
+  garagedata() async {
+    var response = await VGetGarageApi.getgarage();
+    if (response.isNotEmpty) {
+      garage = GarageModel.fromJson(response['garage']);
+      garageDescriptionController.text=garage!.description!;
+      update();
 
-    isButtonClicked = false;
-    isButtonClicked1 = false;
+    }
   }
+
+  //
+  File? logo;
+  File? cover;
+  //
+  String? base64Logo;
+  String? base64Cover;
 
   pickImageFromGallery(String imageName) async {
     final imageSelectorApi = ImageSelectorApi();
@@ -46,15 +65,17 @@ class VEditprofileController extends GetxController {
             uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
+        String base64Image = base64Encode(await croppedImage.readAsBytes());
+
         switch (imageName) {
           case 'logo':
             logo = File(croppedImage.path);
-            // logoError = '';
+            base64Logo = base64Image;
             update();
             break;
           case 'cover':
             cover = File(croppedImage.path);
-            // coverError = '';
+            base64Cover = base64Image;
             update();
 
           default:
