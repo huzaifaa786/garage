@@ -7,13 +7,13 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 class TextSwitchButton extends StatelessWidget {
   TextSwitchButton({
     super.key,
-    this.ontoggle,
-    this.value,
+   required this.ontoggle,
+   required this.value,
     this.size = 12,
   });
 
-  final value;
-  final ontoggle;
+   final bool value;
+  final Function(bool) ontoggle;
   final double size;
 
   @override

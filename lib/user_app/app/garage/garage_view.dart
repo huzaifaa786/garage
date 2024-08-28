@@ -57,25 +57,33 @@ class GarageView extends StatelessWidget {
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                     Positioned(
-                        bottom: -30,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(60)),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(60),
-                            child: CachedNetworkImage(
-                              height: Get.height * 0.1,
-                              width: Get.width * 0.2,
-                              imageUrl:
-                                  'https://dummyimage.com/600x400/40d123/0dff00',
-                              fit: BoxFit.cover,
-                              placeholderFadeInDuration:
-                                  Duration(milliseconds: 500),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                      bottom: -30,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 5),
                             ),
+                          ],
+                        ),
+                        child: ClipOval(
+                          child: CachedNetworkImage(
+                            height: Get.height * 0.1,
+                            width: Get.height * 0.1,
+                            imageUrl:
+                                'https://dummyimage.com/600x400/40d123/0dff00',
+                            fit: BoxFit.cover,
+                            placeholderFadeInDuration:
+                                Duration(milliseconds: 500),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                           ),
-                        ))
+                        ),
+                      ),
+                    ),
                   ]),
               SizedBox(
                 height: Get.height * 0.06,
@@ -177,7 +185,7 @@ class GarageView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(80),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: Row(
                               children: [
                                 Image.asset(
@@ -213,10 +221,13 @@ class GarageView extends StatelessWidget {
                     minHeight: Get.height * 0.3,
                     maxHeight: Get.height * 0.55),
                 child: GridView.builder(
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    
                     crossAxisCount: 3,
                     crossAxisSpacing: 6.0,
-                    mainAxisSpacing: 2.0,
+                    mainAxisSpacing: 18.0,
                     mainAxisExtent: Get.height * 0.18,
                   ),
                   itemCount: controller.services.length,
@@ -227,14 +238,15 @@ class GarageView extends StatelessWidget {
                       onTap: () {
                         controller.selectindex(index);
                       },
-                      child: AnimatedOpacity(
-                        duration: Duration(milliseconds: 300),
-                        opacity: iselected ? 1.0 : 0.6,
+                      // child: AnimatedOpacity(
+                      //   duration: Duration(milliseconds: 300),
+                      //   opacity: iselected ? 1.0 : 0.6,
                         child: ServicesIcons(
                           imageUrl: item.imageUrl,
                           text: item.text,
+                          subText: item.subText,
                         ),
-                      ),
+                    //  ),
                     );
                   },
                 ),
@@ -291,14 +303,14 @@ class GarageView extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 10, left: 3),
                       child: ServiceCard(
-                          image: 'https://dummyimage.com/70x70/000/fff',
-                          title: 'title',
-                          onTap: () {
-                            Get.toNamed(AppRoutes.bookservice);
-                          },
-                          price: 'price',
-                          time: '12 :61',
-                          ),
+                        image: 'https://dummyimage.com/70x70/000/fff',
+                        title: 'title',
+                        onTap: () {
+                          Get.toNamed(AppRoutes.bookservice);
+                        },
+                        price: 'price',
+                        time: '12 :61',
+                      ),
                     ),
                   ),
                 ),

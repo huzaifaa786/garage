@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/vender_apis/home_apis/garage_status_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
+import 'package:mobilegarage/models/garage_model.dart';
 
 class VHomeController extends GetxController {
-  var status = false.obs;
   String? image;
   List<String> review = [
     "Review 1",
@@ -20,14 +21,21 @@ class VHomeController extends GetxController {
     super.onInit();
     garagedata();
   }
-
+GarageModel? garage;
 garagedata()async{
-  var response  = await  GetGarageApi.getgarage();
+  var response  = await  VGetGarageApi.getgarage();
   if(response.isNotEmpty){
-    print('object');
+     garage = GarageModel.fromJson(response['garage']);
+     update();
   } 
 }
-
+updateGarageStatus()async{
+  var response  = await  VGarageStatusApi.updateGarrageStatus();
+  if(response.isNotEmpty){
+     garage = GarageModel.fromJson(response['garage']);
+     update();
+  } 
+}
   // RATING ALERTDIALOG CODE HERE //
   String img = 'https://dummyimage.com/73x73/000/fff';
   TextEditingController nameController = TextEditingController();
@@ -43,15 +51,20 @@ garagedata()async{
     update();
   }
 
+  var status = GarageModel().obs;
 
   // end //
-  void toggleStatus(bool value) {
-    if (value) {
-      showConfirmationDialog(
-          true, "Are you sure you want to mark your garage as available?");
-    } else {
-      showConfirmationDialog(
-          false, "Are you sure you want to mark your garage as unavailable?");
+  void toggleStatus(bool value) async{
+      if (garage != null) {
+           showConfirmationDialog(value, value 
+        ? "Are you sure you want to mark your garage as available?" 
+        : "Are you sure you want to mark your garage as unavailable?", 
+        onConfirm: () async {
+          await updateGarageStatus();
+          garage!.opened = value;
+          update();
+        });
+      update(); 
     }
   }
 
@@ -61,7 +74,7 @@ garagedata()async{
     update();
   }
 
-  void showConfirmationDialog(bool intendedValue, String message) {
+  void showConfirmationDialog(bool intendedValue, String message, {VoidCallback? onConfirm}) {
     Get.dialog(
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -90,7 +103,7 @@ garagedata()async{
               ),
               ElevatedButton(
                 onPressed: () {
-                  status.value = intendedValue;
+                 onConfirm!();
                   Get.back();
                 },
                 style: ElevatedButton.styleFrom(

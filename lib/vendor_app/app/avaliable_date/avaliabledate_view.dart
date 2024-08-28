@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/components/selected_date.dart';
+import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
@@ -37,6 +40,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
             ),
             child: AppBar(
               centerTitle: true,
+              
               title: AppText(
                 title: 'Edit unavailable dates',
                 size: 16,
@@ -44,6 +48,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                 color: AppColors.primary_color,
               ),
               elevation: 0,
+              scrolledUnderElevation: 0.0,
               backgroundColor: Colors.white,
             ),
           ),
@@ -70,6 +75,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TableCalendar(
+                      availableGestures: AvailableGestures.none,
                       firstDay: DateTime.utc(2010, 10, 16),
                       lastDay: DateTime.utc(2030, 3, 14),
                       focusedDay: controller.focusedDay,
@@ -137,7 +143,32 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                         ],
                       ),
                       Gap(13),
-                      SelectedDate()
+                      SelectedDate(),
+                      Gap(20),
+
+                     AppButton(
+                      buttonWidth: 0.8,
+                          title: controller.isButtonClicked
+                              ? 'Confirm'
+                              : 'Confirm',
+                          titleColor: controller.isButtonClicked
+                              ? AppColors.green_color
+                              : AppColors.white_color,
+                          buttonColor: controller.isButtonClicked
+                              ? AppColors.divider_color
+                              : AppColors.primary_color,
+                          suffixWidget: controller.isButtonClicked
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
+                                  child: SvgPicture.asset(
+                                      'assets/images/checkcircle.svg'),
+                                )
+                              : Gap(1),
+                          ontap: () {
+                            controller.onconfirm();
+                          },
+                        )
                     ],
                   ),
                 )
