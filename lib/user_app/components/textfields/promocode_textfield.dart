@@ -64,6 +64,7 @@ class PromocodeTextfield extends StatelessWidget {
                   fillColor: Colors.transparent,
                   filled: true,
                   border: inputborder,
+                
                   errorBorder: errorInputBorder,
                   errorStyle: TextStyle(fontSize: 0),
                   hoverColor: Colors.transparent,
@@ -81,12 +82,16 @@ class PromocodeTextfield extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             child: ElevatedButton(
+              
+              
               style: ElevatedButton.styleFrom(
+               
                 backgroundColor:
                     isApplied ? AppColors.white : AppColors.primary,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(24),
                 ),
+                minimumSize: Size(35,35)
               ),
               onPressed: onTap,
               child: Text(

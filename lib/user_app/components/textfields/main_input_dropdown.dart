@@ -43,7 +43,10 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
   @override
   void initState() {
     super.initState();
+
+    // Initialize the selected value to null to show the hint initially
     selectedValue = null;
+
     _ensureUniqueItems();
   }
 
@@ -64,19 +67,16 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-             padding: EdgeInsets.only(left: 10),
             width: Get.width,
             decoration: (widget.errorText?.isNotEmpty ?? false)
                 ? circularErrorInputDecoration
                 : circularInputDecoration,
             child: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
-                
                 hint: AppText(
                   title: widget.hint,
-                  size: 13,
+                  size: 11,
                   fontWeight: FontWeight.w400,
-                    color: AppColors.black.withOpacity(0.4),
                 ),
                 items: widget.items.map((DropdownItem item) {
                   return DropdownMenuItem<String>(
@@ -105,7 +105,7 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                     ),
                   );
                 }).toList(),
-                // value: selectedValue,
+                value: selectedValue,
                 onChanged: (value) {
                   setState(() {
                     selectedValue = value;

@@ -40,8 +40,9 @@ class DropDownField<T> extends StatelessWidget {
             child: DropdownButton2(
               hint: AppText(
                 title: hint!,
-                size: 11,
+                size: 12,
                 fontWeight: FontWeight.w400,
+                  color: AppColors.hint_text_color,
                 // color: AppColors.black,
               ),
               items: items

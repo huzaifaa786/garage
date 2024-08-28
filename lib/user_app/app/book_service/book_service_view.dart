@@ -515,6 +515,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                                     },
                                     iconPath: 'assets/icons/vehicle.svg',
                                     text: name,
+                                    
                                   );
                                 },
                               ),

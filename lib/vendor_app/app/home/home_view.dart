@@ -108,7 +108,7 @@ class _VHomeViewState extends State<VHomeView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        EdittButton(
+                        EditButton(
                           ontap: () {
                             Get.toNamed(AppRoutes.vavaliabledate);
                           },

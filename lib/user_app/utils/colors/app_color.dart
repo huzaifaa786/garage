@@ -7,6 +7,7 @@ class AppColors {
   static const lightblue = Color(0xFF148EFF);
   static const primarybg = Color(0xFF990002);
   static const darkprimary = Color(0xFF5C0000);
+   static Color heading_text_color = const Color(0xFF2D0001);
   static const darkblue = Color(0xFF1061FF);
   static const primary = Color(0xFFC50709);
   static const white = Color(0xFFFFFFFF);

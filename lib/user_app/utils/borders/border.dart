@@ -6,5 +6,5 @@ var inputborder = OutlineInputBorder(
 
 var errorInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(30),
-  borderSide: const BorderSide(color: AppColors.red),
+  borderSide:  BorderSide(color: AppColors.red),
 );

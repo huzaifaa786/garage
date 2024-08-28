@@ -231,6 +231,8 @@ class _SearchresultViewState extends State<SearchresultView> {
                                             ],
                                           ),
                                         ),
+                                        Gap(30),
+                                        SizedBox(width: 20,),
                                         
                                   Row(mainAxisAlignment: MainAxisAlignment.end,
                                     children: [

@@ -38,7 +38,7 @@ class VehicleListTile extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 iconPath,
-                color: AppColors.primarybg,
+                color: AppColors.black,
                 height: 20,
                 width: 20,
               ),
@@ -48,7 +48,7 @@ class VehicleListTile extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.primarybg,
+                  color: AppColors.black,
                 ),
               ),
             ],

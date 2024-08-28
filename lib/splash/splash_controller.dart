@@ -29,7 +29,6 @@ class SplashController extends GetxController {
     });
   }
   Future checkFirstSeen() async {
-    Get.offAllNamed(AppRoutes.search_result);
-    Get.offAllNamed(AppRoutes.vhome);
+    Get.offAllNamed(AppRoutes.selectlang);
   }
 }    

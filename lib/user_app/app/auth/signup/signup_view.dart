@@ -12,6 +12,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
@@ -53,13 +54,20 @@ class SignupView extends StatelessWidget {
                         child: Column(
                           children: [
                             Gap(30),
-                            AppText(
-                              title: 'Sign Up',
-                              size: 32,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.primarybg,
-                              fontFamily: 'Ibarra Real Nova',
-                            ),
+                               AppText(
+                                    title: ConstantStrings.sign_up,
+                                    size: 28,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.heading_text_color,
+                                    fontFamily: 'Ibarra Real Nova',
+                                  ),
+                            // AppText(
+                            //   title: 'Sign Up',
+                            //   size: 32,
+                            //   fontWeight: FontWeight.w400,
+                            //   color: AppColors.primarybg,
+                            //   fontFamily: 'Ibarra Real Nova',
+                            // ),
                             Gap(30),
                             MainInput(
                               hint: 'Name'.tr,
