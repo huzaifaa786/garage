@@ -15,6 +15,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
+import 'package:mobilegarage/vendor_app/utils/app_phone_input/app_phone_input.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
@@ -56,47 +57,43 @@ class SignupView extends StatelessWidget {
                         child: Column(
                           children: [
                             Gap(30),
-                               AppText(
-                                    title: ConstantStrings.sign_up,
-                                    size: 28,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColors.heading_text_color,
-                                    fontFamily: 'Ibarra Real Nova',
-                                  ),
-                          
+                            AppText(
+                              title: ConstantStrings.sign_up,
+                              size: 28,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.heading_text_color,
+                              fontFamily: 'Ibarra Real Nova',
+                            ),
+
                             Gap(30),
                             MainInput(
                               hint: 'Name'.tr,
                               controller: controller.nameController,
                               errorText: controller.nameError,
+                             onchange: (p0) {
+                               controller.validateFields(
+                                    "name", p0);
+                             },   
                             ),
                             Gap(20),
-                            PhoneInputField(
+                             AppPhoneInput(
+                              onCountryChanged: controller.onCountryChanged,
+                              errorText: controller.phoneError,
+                              onChanged: controller.phoneValidation,
                               controller: controller.phoneController,
-                              onChanged: controller.onChanged,
                             ),
                             Gap(20),
-                            // MainInputDropdown(
-                            //   hint: 'Emirate'.tr,
-                            //   controller: controller.emirateController,
-                            //   errorText: '',
-                            //   onchange: (value) {
-                            //     controller.emirateController.text = value;
-                            //     // controller.emirateValidation(value);
-                            //   },
-                            //   items: controller.city,
-                            // ),
-                              DropDownField<EmirateModel>(
-                                
-                            displayValue: (item) =>item.name! ,
+                            DropDownField<EmirateModel>(
+                              displayValue: (item) => item.name!,
                               items: controller.emirates,
                               hint: 'Emirate',
                               selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
                                 controller.setSelectedEmirate(value);
+                                controller.validateFields(
+                                    "Emirate", controller.selectedEmirateId.toString());
                                 controller.update();
-                                // controller.validateFields(
-                                //     "Emirate", controller.selectedEmirate?.name);
+
                               },
                               errorText: controller.emirateError,
                             ),
@@ -104,7 +101,11 @@ class SignupView extends StatelessWidget {
                             MainInput(
                               hint: 'Address details'.tr,
                               controller: controller.adreesdetailController,
-                              errorText: '',
+                              errorText: controller.addressdetailError,
+                               onchange: (p0) {
+                               controller.validateFields(
+                                    "address detail", p0);
+                             },   
                             ),
                             Gap(40),
                             Center(
