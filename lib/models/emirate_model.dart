@@ -9,7 +9,7 @@ class EmirateModel {
     return EmirateModel(
       id: json['id'],
       name: json['name'],
-      arname: json['ar_name'],
+      arname: json['ar_name']??'',
       createdat: json['created_at'],
     );
   }

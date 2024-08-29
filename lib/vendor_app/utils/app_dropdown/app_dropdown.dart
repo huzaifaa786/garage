@@ -12,20 +12,21 @@ import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class DropDownField<T> extends StatelessWidget {
-  DropDownField({
-    super.key,
-    required this.items,
-    this.hint,
-    this.selectedValue,
-    this.onChanged,
-    this.errorText,this.displayValue
-  });
+  DropDownField(
+      {super.key,
+      required this.items,
+      this.hint,
+      this.selectedValue,
+      this.onChanged,
+      this.errorText,
+      this.displayValue});
   final List<T> items;
   final String? hint;
   T? selectedValue;
   final ValueChanged<T?>? onChanged;
   final String Function(T)? displayValue;
   final String? errorText;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,7 +43,7 @@ class DropDownField<T> extends StatelessWidget {
                 title: hint!,
                 size: 12,
                 fontWeight: FontWeight.w400,
-                  color: AppColors.hint_text_color,
+                color: AppColors.hint_text_color,
                 // color: AppColors.black,
               ),
               items: items
@@ -86,7 +87,8 @@ class DropDownField<T> extends StatelessWidget {
                 icon: SvgPicture.asset(ImageConst.drop_down_icon),
               ),
               buttonStyleData: ButtonStyleData(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                 width: Get.width,
                 decoration: BoxDecoration(
                   color: AppColors.input_bg_color,

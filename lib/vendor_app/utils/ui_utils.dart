@@ -219,4 +219,56 @@ class UiUtilites {
       },
     );
   }
+
+  
+  static void showConfirmationDialog(bool intendedValue, String message,
+      {VoidCallback? onConfirm}) {
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Get.back();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                ),
+                child: Text(
+                  'No',
+                  style: TextStyle(color: Colors.red, fontSize: 16),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  onConfirm!();
+                  Get.back();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                ),
+                child: Text(
+                  'Yes',
+                  style: TextStyle(color: Colors.green, fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
 }

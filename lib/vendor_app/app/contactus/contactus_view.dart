@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -30,7 +32,7 @@ class _VContactusViewState extends State<VContactusView> {
                     children: [
                       Gap(40),
                       AppText(
-                        title: 'Contact Us',
+                        title: 'Contact Us',    
                         size: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -39,16 +41,28 @@ class _VContactusViewState extends State<VContactusView> {
                       Row(
                         children: [
                           ContactBox(
+                            ontap: () {
+                              controller.openEmail();
+                            },
                             icon: 'assets/images/mail.svg',
                           ),
                           ContactBox(
                             icon: 'assets/images/Instagram.svg',
+                            ontap: () {
+                              controller.openInstagram();
+                            },
                           ),
                           ContactBox(
                             icon: 'assets/icons/whatsapp_img.svg',
+                            ontap: () {
+                              controller.openWhatsApp();
+                            },
                           ),
                           ContactBox(
                             icon: 'assets/icons/phone.svg',
+                            ontap: () {
+                              controller.openPhone();
+                            },
                           )
                         ],
                       ),
