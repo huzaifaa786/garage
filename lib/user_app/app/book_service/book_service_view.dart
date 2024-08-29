@@ -61,7 +61,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                   ],
                 ),
                 child: BottomAppBar(
-                  height: Get.height * 0.135,
+                  height: 80,
                   child: Column(
                     children: [
                       Row(
@@ -136,8 +136,8 @@ class _BookServiceViewState extends State<BookServiceView> {
                               InkWell(
                                 onTap: () {},
                                 child: Container(
-                                  height: 65,
-                                  width: 65,
+                                  height: 45,
+                                  width: 45,
                                   // decoration: BoxDecoration(
                                   //   boxShadow: buttonShadow,
                                   //   // color: AppColors.primary,
@@ -176,7 +176,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                 child: Column(
                   children: [
                     Container(
-                      height: Get.height * 0.49,
+                      // height: Get.height * 0.49,
                       color: AppColors.white,
                       child: Column(
                         children: [
@@ -244,43 +244,34 @@ class _BookServiceViewState extends State<BookServiceView> {
                                     ),
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                Gap(10),
+                                Row(
                                   children: [
-                                    Gap(10),
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                            'assets/icons/clock.svg'),
-                                        Gap(5),
-                                        AppText(
-                                          title: '30 min',
-                                          fontWeight: FontWeight.w400,
-                                          size: 11,
-                                          color: AppColors.primary,
-                                        ),
-                                      ],
-                                    ),
-                                    Gap(30),
-                                    AppText(
-                                      title: 'Description',
-                                      fontWeight: FontWeight.w500,
-                                      size: 13,
-                                    ),
+                                    SvgPicture.asset('assets/icons/clock.svg'),
                                     Gap(5),
-                                    SizedBox(
-                                      width: Get.width * 0.75,
-                                      child: AppText(
-                                        title:
-                                            'We provide all car wash types and we make sure to take care of your car,We provide all car wash types and we make sure to take care of your car',
-                                        fontWeight: FontWeight.w400,
-                                        // maxLines: 4,
-                                        // overFlow: TextOverflow.ellipsis,
-                                        size: 11,
-                                        color: AppColors.grey,
-                                      ),
+                                    AppText(
+                                      title: '30 min',
+                                      fontWeight: FontWeight.w400,
+                                      size: 11,
+                                      color: AppColors.primary,
                                     ),
                                   ],
+                                ),
+                                Gap(30),
+                                AppText(
+                                  title: 'Description',
+                                  fontWeight: FontWeight.w500,
+                                  size: 13,
+                                ),
+                                Gap(5),
+                                AppText(
+                                  title:
+                                      'We provide all car wash types and we make sure to take care of your car,We provide all car wash types and we make sure to take care of your car',
+                                  fontWeight: FontWeight.w400,
+                                  // maxLines: 4,
+                                  //  overFlow: TextOverflow.ellipsis,
+                                  size: 11,
+                                  color: AppColors.grey,
                                 )
                               ],
                             ),
@@ -338,7 +329,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                crossAxisSpacing:6.0,
+                                crossAxisSpacing: 6.0,
                                 mainAxisSpacing: 6.0,
                               ),
                               itemCount: controller.services.length,
@@ -364,36 +355,139 @@ class _BookServiceViewState extends State<BookServiceView> {
                               size: 13,
                             ),
                             Gap(30),
-                            TimePickerSpinnerPopUp(
-                              mode: CupertinoDatePickerMode.time,
-                              initTime: DateTime.now(),
-                              minTime: DateTime.now()
-                                  .subtract(const Duration(days: 1)),
-                              maxTime:
-                                  DateTime.now().add(const Duration(days: 1)),
-                              confirmTextStyle: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.black),
-                              cancelTextStyle: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.black),
-                              minuteInterval: 1,
-                              use24hFormat: false,
-                              isCancelTextLeft: true,
-                              padding:
-                                  const EdgeInsets.fromLTRB(12, 10, 12, 10),
-                              cancelText: 'Cancel',
-                              confirmText: 'OK',
-                              enable: true,
-                              radius: 10,
-                              pressType: PressType.singlePress,
-                              timeFormat: 'HH:mm',
-                              locale: const Locale('en'),
-                              onChange: (dateTime) {
-                                // Implement your logic with selected dateTime
-                              },
+                            Row(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColors.lightPink),
+                                  child: TimePickerSpinnerPopUp(
+                                    mode: CupertinoDatePickerMode.time,
+                                    initTime: DateTime.now(),
+                                    minTime: DateTime.now()
+                                        .subtract(const Duration(days: 1)),
+                                    maxTime: DateTime.now()
+                                        .add(const Duration(days: 1)),
+                                    confirmTextStyle: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColors.black),
+                                    cancelTextStyle: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColors.black),
+                                    minuteInterval: 1,
+                                    use24hFormat: true,
+                                    isCancelTextLeft: true,
+                                    padding: const EdgeInsets.fromLTRB(
+                                        12, 10, 12, 10),
+                                    cancelText: 'Cancel',
+                                    confirmText: 'OK',
+                                    enable: true,
+                                    radius: 0,
+                                    pressType: PressType.singlePress,
+                                    timeFormat: 'HH:mm',
+                                    locale: const Locale('en'),
+                                    onChange: (dateTime) {
+                                      // Implement your logic with selected dateTime
+                                    },
+                                  ),
+                                ),
+                                Gap(5),
+                                Container(
+                                  height: 40,
+                                  width: 90,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(color: AppColors.black,width: 0.6),
+                                    color: AppColors.lightPink,
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 3),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.onServiceSelected('AM');
+                                          },
+                                          child: Container(
+                                            height: 27,
+                                            width: 38,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              border: Border.all(
+                                                color: controller
+                                                            .selectedService ==
+                                                        'AM'
+                                                    ? AppColors.primary
+                                                    : Colors.transparent,
+                                              ),
+                                              color:
+                                                  controller.selectedService ==
+                                                          'AM'
+                                                      ? AppColors.primary
+                                                      : AppColors.lightPink,
+                                            ),
+                                            child: Center(
+                                              child: AppText(
+                                                title: 'AM'.tr,
+                                                size: 10,
+                                                fontWeight: FontWeight.w500,
+                                                color: controller
+                                                            .selectedService ==
+                                                        'AM'
+                                                    ? AppColors.white
+                                                    : Colors.black,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.onServiceSelected('PM');
+                                          },
+                                          child: Container(
+                                            height: 27,
+                                            width: 38,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              border: Border.all(
+                                                color: controller
+                                                            .selectedService ==
+                                                        'PM'
+                                                    ? AppColors.primary
+                                                    : Colors.transparent,
+                                              ),
+                                              color:
+                                                  controller.selectedService ==
+                                                          'PM'
+                                                      ? AppColors.primary
+                                                      : AppColors.lightPink,
+                                            ),
+                                            child: Center(
+                                              child: AppText(
+                                                title: 'PM'.tr,
+                                                size: 10,
+                                                fontWeight: FontWeight.w500,
+                                                color: controller
+                                                            .selectedService ==
+                                                        'PM'
+                                                    ? AppColors.white
+                                                    : Colors.black,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             Gap(30),
                             AppText(
@@ -515,7 +609,6 @@ class _BookServiceViewState extends State<BookServiceView> {
                                     },
                                     iconPath: 'assets/icons/vehicle.svg',
                                     text: name,
-                                    
                                   );
                                 },
                               ),
