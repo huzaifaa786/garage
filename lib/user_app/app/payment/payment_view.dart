@@ -32,14 +32,7 @@ class PaymentView extends StatelessWidget {
               
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-<<<<<<< HEAD
               title: TopBar(title: 'Payment',showgarageicon: false,),
-=======
-              title: TopBar(
-                title: 'Payment',
-                showgarageicon: false,
-              ),
->>>>>>> d0d8d46b2b7ae914bd63ee6dd6e966aeaa77510b
             ),
           ),
         ),
