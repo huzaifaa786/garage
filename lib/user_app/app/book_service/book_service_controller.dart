@@ -3,6 +3,13 @@ import 'package:get/get.dart';
 class BookServiceController extends GetxController {
   static BookServiceController instance = Get.find();
 
+var selectedService = 'AM'; 
+
+void onServiceSelected(String service) {
+  selectedService = service;
+  update();
+}
+
    int carouselIndex = 0; 
 
   void updateCarouselIndex(int index) {
