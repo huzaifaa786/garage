@@ -32,7 +32,7 @@ class VEditprofileController extends GetxController {
   void onInit() async {
     super.onInit();
     isButtonClicked = false;
-    await garagedata();
+    // await garagedata();
     update();
   }
 

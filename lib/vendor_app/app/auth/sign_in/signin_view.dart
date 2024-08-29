@@ -110,7 +110,7 @@ class VSignInView extends StatelessWidget {
                                     title: 'Sign In',
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
-                                      controller.login();
+                                      //  controller.login();
 
                                     },
                                   ),

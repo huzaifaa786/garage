@@ -83,7 +83,7 @@ class VForgotOtpVerifyView extends StatelessWidget {
                                     title: 'Confirm',
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
-                                      controller.verifyOtp();
+                                      // controller.verifyOtp();
                                     },
                                   ),
                                 ],

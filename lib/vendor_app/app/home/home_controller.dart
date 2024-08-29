@@ -18,8 +18,8 @@ class VHomeController extends GetxController {
 @override
   void onInit() {
     // TODO: implement onInit
-    super.onInit();
-    garagedata();
+     super.onInit();
+    // garagedata();
   }
 GarageModel? garage;
 garagedata()async{
@@ -55,17 +55,18 @@ updateGarageStatus()async{
 
   // end //
   void toggleStatus(bool value) async{
-      if (garage != null) {
+      // if (garage != null) {
            showConfirmationDialog(value, value 
         ? "Are you sure you want to mark your garage as available?" 
         : "Are you sure you want to mark your garage as unavailable?", 
         onConfirm: () async {
-          await updateGarageStatus();
+           await updateGarageStatus();
           garage!.opened = value;
           update();
-        });
-      update(); 
-    }
+         }
+         );
+       update(); 
+    // }
   }
 
   double ratings = 0.0;
