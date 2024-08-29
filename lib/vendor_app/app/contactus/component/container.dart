@@ -6,34 +6,40 @@ class ContactBox extends StatelessWidget {
   const ContactBox({
     super.key,
     this.icon,
+    this.ontap
   });
   final icon;
+  final ontap;
+
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Container(
-        height: 60,
-        width: 60,
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: SvgPicture.asset(
-            icon,
-            color: AppColors.primary_color,
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+        onTap: ontap,
+        child: Container(
+          height: 60,
+          width: 60,
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: SvgPicture.asset(
+              icon,
+              color: AppColors.primary_color,
+            ),
           ),
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 4,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+              borderRadius: BorderRadius.circular(40.0),
+              color: AppColors.white_color),
         ),
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 1,
-                blurRadius: 4,
-                offset: Offset(0, 3), // changes position of shadow
-              ),
-            ],
-            borderRadius: BorderRadius.circular(40.0),
-            color: AppColors.white_color),
       ),
     );
   }

@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/vender_apis/add_product_apis/brands/get_brands_api.dart';
+import 'package:mobilegarage/apis/vender_apis/add_product_apis/categories/get_categories_api.dart';
+import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/get_emirates_apis/get_emirates_api.dart';
+import 'package:mobilegarage/models/brand_model.dart';
+import 'package:mobilegarage/models/category_model.dart';
+import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
@@ -19,6 +25,8 @@ class ProductFormController extends GetxController {
   TextEditingController serviceTypeName = TextEditingController();
   TextEditingController serviceTypePrice = TextEditingController();
   TextEditingController timeController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
 
   //* ADD Servie Type In list
   addExtras() {
@@ -74,16 +82,8 @@ class ProductFormController extends GetxController {
     update();
   }
 
-  //TODO: InputFields Controllers
-  TextEditingController serviceNameController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-
-  //TODO: DropDown Varible
-  String? selectedValue;
-
   //TODO: Error Variables
-  String serviceNameError = '';
+  String brandError = '';
   String categoryError = '';
   String priceError = '';
   String descriptionError = '';
@@ -91,26 +91,74 @@ class ProductFormController extends GetxController {
   String serviceTypePriceError = '';
   String timeError = '';
 
-  //TODO: DropDown ListItem
-  final List<String> items = [
-    "Car washing",
-    "Maintenance",
-    "Oil change",
-    "Road service"
-  ];
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    await getCategories();
+  }
+
+// categories dropdown
+  String categorysError = '';
+  CategoryModel? selectedCategory;
+  List<CategoryModel> categories = [];
+  int? selectedCategoryId;
+
+  getCategories() async {
+    var response = await VGetCategoriesApi.getCategories();
+    if (response.isNotEmpty) {
+      categories = (response['category'] as List<dynamic>)
+          .map((item) => CategoryModel.from(item as Map<String, dynamic>))
+          .toList();
+      brands.clear();
+      update();
+    }
+  }
+
+  void setSelectedCategory(CategoryModel? brands) async {
+    selectedCategory = brands;
+    selectedCategoryId = brands?.id;
+    selectedBrand = null;
+    selectedBrandId = null;
+    await getBrands();
+
+    update();
+  }
+
+// brands dropdown
+
+  BrandModel? selectedBrand;
+  List<BrandModel> brands = [];
+  int? selectedBrandId;
+
+  getBrands() async {
+    var response =
+        await VGetBrandsApi.getBrands(id: selectedCategoryId.toString());
+    if (response.isNotEmpty) {
+      brands = (response['brands'] as List<dynamic>)
+          .map((item) => BrandModel.from(item as Map<String, dynamic>))
+          .toList();
+      update();
+    }
+  }
+
+  void setSelectedBrands(BrandModel? brands) async {
+    selectedBrand = brands;
+    selectedBrandId = brands?.id;
+    update();
+  }
 
   //TODO: INPUT VALIDATIONS
   String validateFields(String fieldName, value) {
     switch (fieldName) {
-      case 'Service Name':
-        serviceNameError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
-        update();
-        return serviceNameError;
       case 'Category':
         categoryError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return categoryError;
+        case 'Brand':
+        brandError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return brandError;
       case 'Price':
         priceError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
@@ -144,16 +192,19 @@ class ProductFormController extends GetxController {
 
   //TODO: FORGOT VALIDATION
   Future<bool> validateForm() async {
-    final serviceNameErrorString =
-        validateFields('Service Name', serviceNameController.text);
-    final categoryErrorString = validateFields('Category', selectedValue);
+    final categoryErrorString = validateFields('Category', selectedCategoryId);
+    final brandErrorString = validateFields('Brand', selectedBrandId);
     final priceErrorString = validateFields('Price', priceController.text);
     final descriptionErrorString =
         validateFields('Description', descriptionController.text);
     final timeErrorString =
         validateFields('Time needed for service', timeController.text);
-    return serviceNameErrorString.isEmpty &&
-        categoryErrorString.isEmpty &&
+        if (images.isEmpty) {
+           UiUtilites.errorSnackbar('Error', "Images can't be empty");
+           return false;
+        }
+    return categoryErrorString.isEmpty &&
+    brandErrorString.isEmpty&&
         priceErrorString.isEmpty &&
         descriptionErrorString.isEmpty &&
         timeErrorString.isEmpty;
@@ -162,7 +213,7 @@ class ProductFormController extends GetxController {
   //TODO: Forgot Function
   addProduct() async {
     if (await validateForm()) {
-      Get.offAllNamed(AppRoutes.signin);
+      print('object');
     }
   }
 }
