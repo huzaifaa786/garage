@@ -71,7 +71,7 @@ class VSignUpController extends GetxController {
   List<EmirateModel> emirates = [];
   int? selectedEmirateId;
   getEmirates() async {
-    var response = await GetEmirates.getEmirats();
+    var response = await VGetEmirates.getEmirats();
     if (response.isNotEmpty) {
       emirates = (response['emirates'] as List<dynamic>)
           .map((item) => EmirateModel.from(item as Map<String, dynamic>))

@@ -18,6 +18,7 @@ import 'package:mobilegarage/vendor_app/app/product/products/component/button.da
 import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class VHomeView extends StatefulWidget {
   const VHomeView({super.key});
@@ -68,14 +69,15 @@ class _VHomeViewState extends State<VHomeView> {
                                   ),
                                 ),
                                 Positioned(
-                                    top: Get.height*0.17,
+                                    top: Get.height * 0.17,
                                     left: (MediaQuery.of(context).size.width -
                                             100) /
                                         2,
-                                    child: ClipRRect(borderRadius: BorderRadius.circular(50),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
                                       child: CachedNetworkImage(
                                         imageUrl: controller.garage!.logo!,
-                                        width:80,
+                                        width: 80,
                                         height: 80,
                                         fit: BoxFit.cover,
                                       ),
@@ -99,7 +101,8 @@ class _VHomeViewState extends State<VHomeView> {
                             ),
                             Gap(8),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
                               child: AppText(
                                 title: controller.garage!.description!,
                                 size: 12,
@@ -249,10 +252,18 @@ class _VHomeViewState extends State<VHomeView> {
                                           child: ReviewBox(
                                             icon: 'assets/images/power.png',
                                             text: 'Log Out',
-                                            ontap: ()async{
-                                                GetStorage box = GetStorage();
-                                        await box.remove('api_token');
-                                        Get.offAllNamed(AppRoutes.selectside);
+                                            ontap: () async {
+                                              UiUtilites.showConfirmationDialog(
+                                                false,
+                                                'Are you Sure that you want\n to log out ?',
+                                                onConfirm: () async {
+                                                  GetStorage box = GetStorage();
+                                                  await box.remove('api_token');
+                                                  controller.update();
+                                                  Get.offAllNamed(
+                                                      AppRoutes.selectside);
+                                                },
+                                              );
                                             },
                                           ),
                                         )

@@ -56,7 +56,7 @@ class _SelectsideViewState extends State<SelectsideView> {
                               title: 'Selct side..',
                               size: 30,
                               fontWeight: FontWeight.w600,
-                              color: const Color.fromARGB(255, 96, 3, 5),
+                             color: AppColors.heading_text_color,
                             ),
                             Gap(120),
                             ContainerSelect(

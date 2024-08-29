@@ -1,7 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/brand_model.dart';
+import 'package:mobilegarage/models/category_model.dart';
+import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/service_type_card.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/service_type_fields.dart';
@@ -16,7 +21,6 @@ import 'package:mobilegarage/vendor_app/utils/rich_text/product_rich_text.dart';
 
 class ProductFormView extends StatelessWidget {
   const ProductFormView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductFormController>(
@@ -44,30 +48,43 @@ class ProductFormView extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                     Gap(12),
-                    AppInputField(
-                      errorText: controller.serviceNameError,
-                      hint: 'Service Name',
-                      controller: controller.serviceNameController,
-                      onchange: (val) {
-                        controller.validateFields("Service Name", val);
-                      },
-                    ),
-                    Gap(12),
-                    DropDownField(
-                      items: controller.items,
+                    DropDownField<CategoryModel>(
+                      displayValue: (item) => item.name!,
+                      items: controller.categories,
                       hint: 'Category',
-                      selectedValue: controller.selectedValue,
+                      selectedValue: controller.selectedCategory,
                       onChanged: (value) {
-                        controller.selectedValue = value;
+                        controller.setSelectedCategory(value);
                         controller.update();
-                        controller.validateFields("Category", value);
+                        controller.validateFields(
+                            "Category", controller.selectedCategory?.name);
                       },
-                      errorText: controller.categoryError,
+                      errorText: controller.categorysError,
                     ),
                     Gap(12),
+                    controller.selectedCategoryId != null && controller.brands.isNotEmpty
+                        ? Column(
+                            children: [
+                              DropDownField<BrandModel>(
+                                displayValue: (item) => item.name!,
+                                items: controller.brands,
+                                hint: 'Brands',
+                                selectedValue: controller.selectedBrand,
+                                onChanged: (value) {
+                                  controller.setSelectedBrands(value);
+                                  controller.update();
+                                  controller.validateFields("Brand",
+                                      controller.selectedBrand?.name);
+                                },
+                                errorText: controller.brandError,
+                              ),
+                              Gap(12),
+                            ],
+                          )
+                        : Gap(0),
                     AppInputField(
                       errorText: controller.priceError,
-                      hint: 'Price',
+                      hint: 'Brand Price',
                       type: TextInputType.number,
                       controller: controller.priceController,
                       onchange: (val) {
@@ -87,7 +104,7 @@ class ProductFormView extends StatelessWidget {
                     Gap(12),
                     AppInputField(
                       errorText: controller.descriptionError,
-                      hint: 'Description',
+                      hint: 'Brand Description',
                       controller: controller.descriptionController,
                       onchange: (val) {
                         controller.validateFields("Description", val);
@@ -118,7 +135,7 @@ class ProductFormView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 14),
                       child: ProductRichText(
-                        title: 'Service type',
+                        title: 'Add options or types',
                         buttonText: '(Optional)',
                       ),
                     ),
@@ -160,7 +177,9 @@ class ProductFormView extends StatelessWidget {
                     AppButton(
                       title: 'Add product',
                       buttonColor: AppColors.primary_color,
-                      ontap: (){},
+                      ontap: () {
+                        controller.addProduct();
+                      },
                     ),
                     Gap(20),
                   ],

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -48,16 +48,29 @@ class _VBannerViewState extends State<VBannerView> {
                             ],
                           ),
                           Gap(10),
-                          RadioButton(value: 1, text: "3 Days for 30.00 AED"),
-                          RadioButton(value: 2, text: "5 Days for 50.00 AED"),
-                          RadioButton(value: 3, text: "7 Days for 65.00 AED"),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: controller.banners.length,
+                            itemBuilder: (context, index) {
+                              var banner = controller.banners[index];
+                              return RadioButton(
+                                  value: banner.id,
+                                  text: "${banner.duration}"
+                                      " for "
+                                      "${banner.cost}"
+                                      " AED");
+                            },
+                          ),
                           Gap(30),
                           AppButton(
                             title: 'Purchase',
                             buttonColor: controller.cover == null
                                 ? Colors.grey
                                 : AppColors.primary_color,
-                            ontap: controller.cover == null ? null : () {},
+                            ontap: controller.cover == null ? null : () {
+                              controller.storeBanner();
+                            },
                           ),
                         ],
                       ),
@@ -65,7 +78,6 @@ class _VBannerViewState extends State<VBannerView> {
                     Gap(20),
                   ],
                 ),
-            
               ),
             ));
   }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
@@ -13,6 +14,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
+import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
@@ -61,18 +63,12 @@ class SignupView extends StatelessWidget {
                                     color: AppColors.heading_text_color,
                                     fontFamily: 'Ibarra Real Nova',
                                   ),
-                            // AppText(
-                            //   title: 'Sign Up',
-                            //   size: 32,
-                            //   fontWeight: FontWeight.w400,
-                            //   color: AppColors.primarybg,
-                            //   fontFamily: 'Ibarra Real Nova',
-                            // ),
+                          
                             Gap(30),
                             MainInput(
                               hint: 'Name'.tr,
                               controller: controller.nameController,
-                              errorText: '',
+                              errorText: controller.nameError,
                             ),
                             Gap(20),
                             PhoneInputField(
@@ -80,15 +76,29 @@ class SignupView extends StatelessWidget {
                               onChanged: controller.onChanged,
                             ),
                             Gap(20),
-                            MainInputDropdown(
-                              hint: 'Emirate'.tr,
-                              controller: controller.emirateController,
-                              errorText: '',
-                              onchange: (value) {
-                                controller.emirateController.text = value;
-                                // controller.emirateValidation(value);
+                            // MainInputDropdown(
+                            //   hint: 'Emirate'.tr,
+                            //   controller: controller.emirateController,
+                            //   errorText: '',
+                            //   onchange: (value) {
+                            //     controller.emirateController.text = value;
+                            //     // controller.emirateValidation(value);
+                            //   },
+                            //   items: controller.city,
+                            // ),
+                              DropDownField<EmirateModel>(
+                                
+                            displayValue: (item) =>item.name! ,
+                              items: controller.emirates,
+                              hint: 'Emirate',
+                              selectedValue: controller.selectedEmirate,
+                              onChanged: (value) {
+                                controller.setSelectedEmirate(value);
+                                controller.update();
+                                // controller.validateFields(
+                                //     "Emirate", controller.selectedEmirate?.name);
                               },
-                              items: controller.city,
+                              errorText: controller.emirateError,
                             ),
                             Gap(20),
                             MainInput(
@@ -129,7 +139,7 @@ class SignupView extends StatelessWidget {
                               title: 'Sign Up',
                               txtweight: FontWeight.w600,
                               onTap: () {
-                                Get.toNamed(AppRoutes.cardetails);
+                                controller.register();
                               },
                             ),
                             Gap(40),
