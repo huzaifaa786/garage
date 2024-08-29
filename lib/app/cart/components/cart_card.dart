@@ -25,7 +25,7 @@ class CartCard extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.white,
           boxShadow: [
-            BoxShadow(color: AppColors.black.withOpacity(0.2), blurRadius: 4),
+            BoxShadow(color: AppColors.black.withOpacity(0.4), blurRadius: 4),
           ],
           borderRadius: BorderRadius.circular(8)),
       child: Wrap(

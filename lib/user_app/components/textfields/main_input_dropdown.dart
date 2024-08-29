@@ -73,10 +73,16 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                 : circularInputDecoration,
             child: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
-                hint: AppText(
-                  title: widget.hint,
-                  size: 11,
-                  fontWeight: FontWeight.w400,
+                
+                hint: Padding(
+                  padding: const EdgeInsets.only(left: 6.0),
+                  child: AppText(
+                  
+                    title: widget.hint,
+                    size: 13,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black.withOpacity(0.4),
+                  ),
                 ),
                 items: widget.items.map((DropdownItem item) {
                   return DropdownMenuItem<String>(

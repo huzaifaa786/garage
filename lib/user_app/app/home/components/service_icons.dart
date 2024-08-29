@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -10,13 +11,11 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 class ServicesIcons extends StatelessWidget {
   final String imageUrl;
   final String text;
-final ontap;
-  const ServicesIcons({
-    Key? key,
-    required this.imageUrl,
-    required this.text,
-    this.ontap
-  }) : super(key: key);
+  final String subText;
+  final ontap;
+  const ServicesIcons(
+      {Key? key, required this.imageUrl, required this.text, this.ontap,required this.subText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +49,7 @@ final ontap;
               ),
             ),
           ),
-          Gap(10),
+          Gap(5),
           Flexible(
             flex: 1,
             child: SizedBox(
@@ -58,7 +57,7 @@ final ontap;
               child: AppText(
                 title: text,
                 fontWeight: FontWeight.w500,
-                color: AppColors.primarybg,
+                color: AppColors.black,
                 size: 12.0,
                 textAlign: TextAlign.center,
                 overFlow: TextOverflow.ellipsis,
@@ -66,6 +65,32 @@ final ontap;
               ),
             ),
           ),
+          Gap(3),
+          Flexible(
+            flex: 1,
+            child: SizedBox(
+              // height: Get.height*0.2,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppText(
+                    title:subText ,
+                    // 'View more'
+                    size: 8,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primarybg,
+                    overFlow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  Gap(2),
+                  SvgPicture.asset(
+                    'assets/icons/arrow_right.svg',
+                    color: AppColors.primarybg,
+                  )
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

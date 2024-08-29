@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 class ServiceItem {
   final String imageUrl;
   final String text;
+  final String subText;
 
   ServiceItem({
     required this.imageUrl,
     required this.text,
+    required this.subText
   });
 }
 
@@ -49,38 +51,47 @@ class HomeController extends GetxController {
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Car wash',
+      subText: ''
     ),
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Oil change',
+      subText: ''
     ),
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Battery',
+      subText: ''
     ),
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Road Service',
+      subText: ''
     ),
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Maintenance',
+      subText: ''
     ),
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Car Warranty',
+      subText: ''
     ),
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Tyer Replacement',
+      subText: ''
     ),
     ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Oil change',
+      subText: ''
     ),
-     ServiceItem(
+    ServiceItem(
       imageUrl: 'https://dummyimage.com/70x70/000/fff',
       text: 'Oil change',
+      subText: ''
     ),
   ];
 

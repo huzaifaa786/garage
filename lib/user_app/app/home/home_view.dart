@@ -52,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
                     Get.toNamed(AppRoutes.search);
                   },
                   child: Padding(
-                   padding: const EdgeInsets.only(left: 40.0, right: 30.0),
+                    padding: const EdgeInsets.only(left: 40.0, right: 30.0),
                     child: IconInputField(
                       hasprefix: true,
                       hint: 'Search for garages, service ..'.tr,
@@ -66,7 +66,6 @@ class _HomeViewState extends State<HomeView> {
                 Gap(10),
                 CarouselSlider.builder(
                   itemCount: 5,
-                
                   itemBuilder: (context, index, realIndex) {
                     return BannerCard(
                       picture: 'https://dummyimage.com/70x70/000/fff',
@@ -76,7 +75,6 @@ class _HomeViewState extends State<HomeView> {
                     );
                   },
                   options: CarouselOptions(
-                    
                     scrollPhysics: BouncingScrollPhysics(),
                     height: Get.height * 0.28,
                     enableInfiniteScroll: true,
@@ -107,50 +105,51 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
                 Gap(30),
-         if (controller.hasServices) ...[
-         Padding(
-          padding: const EdgeInsets.only(left: 40.0, right: 30.0),
-           child: Row(
-             children: [
-               Gap(10),
-               AppText(
-                 title: 'Explore Services!',
-                 fontWeight: FontWeight.w600,
-                 size: 16.0,
-                 color: AppColors.darkprimary,
-               ),
-             ],
-           ),
-         ),
-         Gap(30),
-         Expanded(
-           child: GridView.builder(
-            padding: EdgeInsets.only(left: 40.0, right: 30.0),
-             shrinkWrap: true,
-             physics: BouncingScrollPhysics(),
-             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-               crossAxisCount: controller.itemCount,
-               crossAxisSpacing: 6.0,
-               mainAxisSpacing: 2.0,
-               mainAxisExtent: Get.height * 0.18,
-             ),
-             itemCount: controller.services.length,
-             itemBuilder: (context, index) {
-               final item = controller.services[index];
-               return ServicesIcons(
-                 imageUrl: item.imageUrl,
-                 text: item.text,
-                 ontap: () {
-                   Get.toNamed(AppRoutes.filterorder);
-                 },
-               );
-             },
-           ),
-         ),
-         Gap(40),
-                         ] else ...[
-         Gap(0),
-                         ]
+                if (controller.hasServices) ...[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40.0, right: 30.0),
+                    child: Row(
+                      children: [
+                        Gap(10),
+                        AppText(
+                          title: 'Explore Services!',
+                          fontWeight: FontWeight.w600,
+                          size: 16.0,
+                          color: AppColors.darkprimary,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gap(30),
+                  Expanded(
+                    child: GridView.builder(
+                      padding: EdgeInsets.only(left: 40.0, right: 30.0),
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: controller.itemCount,
+                        crossAxisSpacing: 6.0,
+                        mainAxisSpacing: 2.0,
+                        mainAxisExtent: Get.height * 0.18,
+                      ),
+                      itemCount: controller.services.length,
+                      itemBuilder: (context, index) {
+                        final item = controller.services[index];
+                        return ServicesIcons(
+                          imageUrl: item.imageUrl,
+                          text: item.text,
+                          subText: item.subText,
+                          ontap: () {
+                            Get.toNamed(AppRoutes.filterorder);
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  Gap(40),
+                ] else ...[
+                  Gap(0),
+                ]
               ],
             ),
           ),
