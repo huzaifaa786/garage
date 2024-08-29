@@ -109,7 +109,6 @@ class VSignupView extends StatelessWidget {
                             ),
                             const Gap(12),
                             AppPhoneInput(
-                              
                               onCountryChanged: controller.onCountryChanged,
                               errorText: controller.phoneNumberError,
                               onChanged: controller.phoneValidation,
@@ -170,15 +169,15 @@ class VSignupView extends StatelessWidget {
                             ),
                             const Gap(15),
                             DropDownField<EmirateModel>(
-                            displayValue: (item) =>item.name! ,
+                              displayValue: (item) => item.name!,
                               items: controller.emirates,
                               hint: 'Emirate',
                               selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
                                 controller.setSelectedEmirate(value);
                                 controller.update();
-                                controller.validateFields(
-                                    "Emirate", controller.selectedEmirate?.name);
+                                controller.validateFields("Emirate",
+                                    controller.selectedEmirateId.toString());
                               },
                               errorText: controller.emirateError,
                             ),

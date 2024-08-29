@@ -2,68 +2,150 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/countries.dart';
+import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/get_emirates_apis/get_emirates_api.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 
 class SignupController extends GetxController {
   static SignupController innstanse = Get.find();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  // TextEditingController emirateController = TextEditingController();
   TextEditingController adreesdetailController = TextEditingController();
-  // TextEditingController vechiledetailController = TextEditingController();
 
-///////////////////////////////////////
-  String phone1 = '';
-  String? completePhone;
-  bool isCompleteNumber = false;
-  onChanged(PhoneNumber phone) {
-    if (countries
-            .firstWhere((element) => element.code == phone.countryISOCode)
-            .maxLength ==
-        phone.number.length) {
-      phone1 = phone.number;
-      completePhone = phone.completeNumber;
-      isCompleteNumber = true;
-      update();
-    } else {
-      completePhone = '';
-      isCompleteNumber = false;
+// onint
+
+ @override
+  void onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    await getEmirates();
+  }
+
+  //TODO: DropDown Varible
+  EmirateModel? selectedEmirate;
+  List<EmirateModel> emirates = [];
+  int? selectedEmirateId;
+  getEmirates() async {
+    var response = await VGetEmirates.getEmirats();
+    if (response.isNotEmpty) {
+      emirates = (response['emirates'] as List<dynamic>)
+          .map((item) => EmirateModel.from(item as Map<String, dynamic>))
+          .toList();
+
       update();
     }
   }
- //TODO: Register Function
+
+  void setSelectedEmirate(EmirateModel? emirate) {
+    selectedEmirate = emirate;
+    selectedEmirateId = emirate?.id;
+    update();
+  }
+
+// phone 
+  PhoneNumber? checkphoneController;
+  String? completePhoneNumber;
+  Country? selectedCountry =
+      countries.firstWhere((country) => country.fullCountryCode == "971");
+
+  //TODO: Start Phone Validation
+  onCountryChanged(Country value) {
+    selectedCountry = value;
+    phoneController.clear();
+    update();
+    if (checkphoneController != null) phoneValidation(checkphoneController);
+  }
+
+  phoneValidation(phone) {
+    if (!isNumeric(phone.number)) {
+      phoneError = 'Use Numeric Variables';
+      update();
+      return phoneError;
+    } else if (phone.number.length < selectedCountry!.minLength ||
+        phone.number.length > selectedCountry!.maxLength) {
+      phoneError = 'Invalid Phone Number'.tr;
+      update();
+      return phoneError;
+    } else {
+      phoneError = '';
+    }
+    checkphoneController = phone;
+    update();
+    if (countries
+            .firstWhere((element) => element.code == phone!.countryISOCode)
+            .maxLength ==
+        phone!.number.length) {
+      completePhoneNumber = phone.completeNumber;
+      update();
+    } else {
+      completePhoneNumber = null;
+    }
+    return phoneError;
+  }
+
+
+  //TODO: Register Function
   register() async {
     if (await validateForm()) {
-      print('object');
-    }}
+      Get.toNamed(AppRoutes.cardetails);
+    }
+  }
 
- //TODO: Error Variables
+  //TODO: Error Variables
   String nameError = '';
+  String emirateError = '';
+  String phoneError = '';
+  String addressdetailError = '';
 
-String validateFields(String fieldName , value){
-  switch(fieldName){
-    case 'name':
-    nameError =Validators.emptyStringValidator(value, fieldName) ?? '';
-    update();
-    return nameError;
-     default:
+// input field validation 
+  String validateFields(String fieldName, value) {
+    switch (fieldName) {
+      case 'name':
+        nameError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return nameError;
+      case 'phone':
+        phoneError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return phoneError;
+      case 'Emirate':
+        emirateError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return emirateError;
+      case 'address detail':
+        addressdetailError =
+            Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return addressdetailError;
+      default:
         return '';
+    }
   }
-}
 
+// form validation
   Future<bool> validateForm() async {
-    final nameErrorString = validateFields('Name', nameController.text);
- return nameErrorString.isEmpty;
+    final nameErrorString = validateFields('name', nameController.text);
+    final phoneErrorString = validateFields('phone', phoneController.text);
+    final addressdetailErrorString =
+        validateFields('address detail', adreesdetailController.text);
 
+    if (selectedEmirateId == null) {
+      emirateError = 'Please select an emirate';
+      update();
+    } else {
+      emirateError = '';
+      update();
+    }
+    return nameErrorString.isEmpty &&
+        phoneErrorString.isEmpty &&
+        emirateError.isEmpty &&
+        addressdetailErrorString.isEmpty;
   }
+
 
 ///////////////
   // Position? currentPosition;
@@ -170,35 +252,7 @@ String validateFields(String fieldName , value){
   //   update();
   // }
 
-  @override
-  void onInit() async {
-    // TODO: implement onInit
-    super.onInit();
-    await getEmirates();
-  }
-
-  String emirateError = '';
-
-  //TODO: DropDown Varible
-  EmirateModel? selectedEmirate;
-  List<EmirateModel> emirates = [];
-  int? selectedEmirateId;
-  getEmirates() async {
-    var response = await VGetEmirates.getEmirats();
-    if (response.isNotEmpty) {
-      emirates = (response['emirates'] as List<dynamic>)
-          .map((item) => EmirateModel.from(item as Map<String, dynamic>))
-          .toList();
-
-      update();
-    }
-  }
-
-  void setSelectedEmirate(EmirateModel? emirate) {
-    selectedEmirate = emirate;
-    selectedEmirateId = emirate?.id;
-    update();
-  }
+ 
   // Check if Image is Selected
   // bool isImageSelected(String imageType) {
   //   switch (imageType) {

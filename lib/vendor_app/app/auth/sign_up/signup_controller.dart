@@ -125,7 +125,7 @@ class VSignUpController extends GetxController {
         return garageDescriptionError;
       case 'Emirate':
         emirateError =
-            Validators.emptyStringValidator(value ?? '', fieldName) ?? '';
+            Validators.emptyStringValidator(value , fieldName) ?? '';
         update();
         return emirateError;
       case 'Garage address detail':
@@ -160,9 +160,13 @@ class VSignUpController extends GetxController {
         validateFields('Garage name', garageNameController.text);
     final garageDescriptionErrorString =
         validateFields('Garage description', garageDescriptionController.text);
-    final emirateErrorString =
-        validateFields('Emirate', selectedEmirateId.toString());
-    print('$emirateErrorString 12222222222222222222222222222222222222222');
+   if (selectedEmirateId == null) {
+      emirateError = 'Please select an emirate';
+      update();
+    } else {
+      emirateError = '';
+      update();
+    }
     final garageAddressDetailErrorString = validateFields(
         'Garage address detail', garageDescriptionController.text);
 
@@ -203,7 +207,7 @@ class VSignUpController extends GetxController {
     }
     return nameErrorString.isEmpty &&
         emailErrorString.isEmpty &&
-        emirateErrorString.isEmpty &&
+        emirateError.isEmpty &&
         garageNameErrorString.isEmpty &&
         phoneNumberError.isEmpty &&
         garageDescriptionErrorString.isEmpty &&

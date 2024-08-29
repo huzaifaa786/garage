@@ -8,6 +8,7 @@ class AppColors {
   static Color white_color = const Color(0xffFFFFFF);
   static Color input_bg_color = const Color(0xFFF5F5F5);
   static const lightblue = Color(0xFF148EFF);
+  static const lightgrey = Color(0xFFF5F5F5);
 
   static Color black_color = const Color(0xFF000000);
   static Color hint_text_color = const Color(0xFF000000).withOpacity(0.6);
