@@ -258,7 +258,7 @@ class _VHomeViewState extends State<VHomeView> {
                                                 'Are you Sure that you want\n to log out ?',
                                                 onConfirm: () async {
                                                   GetStorage box = GetStorage();
-                                                  await box.remove('api_token');
+                                                  // await box.remove('api_token');
                                                   controller.update();
                                                   Get.offAllNamed(
                                                       AppRoutes.selectside);
