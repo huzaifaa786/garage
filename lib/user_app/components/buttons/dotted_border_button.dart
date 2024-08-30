@@ -17,7 +17,8 @@ class DottedBorderButton extends StatelessWidget {
       this.title,
       required this.imgselect,
       this.isImgSelected,
-      this.selectedimgpath,this.imgRemove});
+      this.selectedimgpath,
+      this.imgRemove});
   final title;
   final VoidCallback imgselect;
   final isImgSelected;
@@ -41,7 +42,7 @@ class DottedBorderButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             color: AppColors.lightprimary,
           ),
-          height: 55,
+          height: 50,
           child: Row(
             mainAxisAlignment: isImgSelected && selectedimgpath != null
                 ? MainAxisAlignment.spaceEvenly
@@ -62,7 +63,7 @@ class DottedBorderButton extends StatelessWidget {
                     top: 0,
                     right: 0,
                     child: GestureDetector(
-                      onTap: imgRemove,
+                        onTap: imgRemove,
                         child: Container(
                             height: 14,
                             width: 14,

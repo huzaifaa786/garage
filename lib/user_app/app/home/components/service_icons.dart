@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -39,14 +40,11 @@ class ServicesIcons extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                // height: 70,
-                // width: 70,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
+              child:AppNetworkImage(
+                assetPath: 'assets/images/tyre.png',
+
+
+              )
             ),
           ),
           Gap(5),
