@@ -44,7 +44,7 @@ class ServicesIcons extends StatelessWidget {
                 // height: 70,
                 // width: 70,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => CircularProgressIndicator(),
+               // placeholder: (context, url) => CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
@@ -57,7 +57,7 @@ class ServicesIcons extends StatelessWidget {
               child: AppText(
                 title: text,
                 fontWeight: FontWeight.w500,
-                color: AppColors.black,
+                color: AppColors.primarybg,
                 size: 12.0,
                 textAlign: TextAlign.center,
                 overFlow: TextOverflow.ellipsis,
@@ -82,11 +82,11 @@ class ServicesIcons extends StatelessWidget {
                     overFlow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
-                  Gap(2),
-                  SvgPicture.asset(
-                    'assets/icons/arrow_right.svg',
-                    color: AppColors.primarybg,
-                  )
+                  // Gap(2),
+                  // SvgPicture.asset(
+                  //   'assets/icons/arrow_right.svg',
+                  //   color: AppColors.primarybg,
+                  // )
                 ],
               ),
             ),

@@ -125,4 +125,15 @@ updateGarageStatus()async{
       ),
     );
   }
+
+
+
+//  /// use this function only for design ///
+  
+//   RxBool isSwitched = false.obs;
+
+//   void toggleStatuss(bool value) {
+//     isSwitched.value = value;
+//   }
+
 }
