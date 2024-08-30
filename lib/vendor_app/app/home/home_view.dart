@@ -48,8 +48,9 @@ class _VHomeViewState extends State<VHomeView> {
         ),
         body: SingleChildScrollView(
           child: SafeArea(
-            child: controller.garage != null
-                ? Column(
+            child: 
+             
+                Column(
                     children: [
                       Container(
                         height: Get.height * 0.5,
@@ -61,7 +62,10 @@ class _VHomeViewState extends State<VHomeView> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 29),
                                   child: CachedNetworkImage(
-                                    imageUrl: controller.garage!.banner!,
+                                    imageUrl: 
+                                     controller.garage != null
+                 ?
+                                    controller.garage!.banner!:'https://dummyimage.com/60x40/000/fff',
                                     width: MediaQuery.of(context).size.width,
                                     height: MediaQuery.of(context).size.height *
                                         0.235,
@@ -76,7 +80,10 @@ class _VHomeViewState extends State<VHomeView> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
                                       child: CachedNetworkImage(
-                                        imageUrl: controller.garage!.logo!,
+                                        imageUrl: 
+                                         controller.garage != null
+                 ?
+                                        controller.garage!.logo!:'https://dummyimage.com/60x40/000/fff',
                                         width: 80,
                                         height: 80,
                                         fit: BoxFit.cover,
@@ -89,7 +96,10 @@ class _VHomeViewState extends State<VHomeView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 AppText(
-                                  title: controller.garage!.name!,
+                                  title:
+                                   controller.garage != null
+                 ?
+                                   controller.garage!.name!:"street garage",
                                   size: 14,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primary_color,
@@ -104,7 +114,10 @@ class _VHomeViewState extends State<VHomeView> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 30),
                               child: AppText(
-                                title: controller.garage!.description!,
+                                title: 
+                                 controller.garage != null
+                 ?
+                                controller.garage!.description!:'description',
                                 size: 12,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey,
@@ -117,7 +130,8 @@ class _VHomeViewState extends State<VHomeView> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   TextSwitchButton(
-                                    value: controller.garage!.opened ?? false,
+                                    // value: controller.garage!.opened ?? false,
+                                    value: true,
                                     ontoggle: controller.toggleStatus,
                                   ),
                                 ],
@@ -133,7 +147,7 @@ class _VHomeViewState extends State<VHomeView> {
                                   icon: 'assets/images/calendar.svg',
                                   text: 'Edit unavailable dates ',
                                   width:
-                                      MediaQuery.of(context).size.width * 0.42,
+                                      MediaQuery.of(context).size.width * 0.43,
                                 ),
                                 Gap(10),
                                 EditButton(
@@ -258,7 +272,7 @@ class _VHomeViewState extends State<VHomeView> {
                                                 'Are you Sure that you want\n to log out ?',
                                                 onConfirm: () async {
                                                   GetStorage box = GetStorage();
-                                                  // await box.remove('api_token');
+                                                   await box.remove('api_token');
                                                   controller.update();
                                                   Get.offAllNamed(
                                                       AppRoutes.selectside);
@@ -278,7 +292,7 @@ class _VHomeViewState extends State<VHomeView> {
                       )
                     ],
                   )
-                : Container(),
+                  // : Container(),
           ),
         ),
       ),

@@ -15,30 +15,29 @@ class VHomeController extends GetxController {
     "Review 2"
   ];
 
-  @override
+@override
   void onInit() {
     // TODO: implement onInit
      super.onInit();
-    // garagedata();
+    //  garagedata();
   }
-
-  GarageModel? garage;
-  garagedata() async {
-    var response = await VGetGarageApi.getgarage();
-    if (response.isNotEmpty) {
-      garage = GarageModel.fromJson(response['garage']);
-      update();
-    }
-  }
-
-  updateGarageStatus() async {
-    var response = await VGarageStatusApi.updateGarrageStatus();
-    if (response.isNotEmpty) {
-      garage = GarageModel.fromJson(response['garage']);
-      update();
-    }
-  }
-
+GarageModel? garage;
+garagedata()async{
+  var response  = await  VGetGarageApi.getgarage();
+  print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+  print(response);
+  if(response.isNotEmpty){
+     garage = GarageModel.fromJson(response['garage']);
+     update();
+  } 
+}
+updateGarageStatus()async{
+  var response  = await  VGarageStatusApi.updateGarrageStatus();
+  if(response.isNotEmpty){
+     garage = GarageModel.fromJson(response['garage']);
+     update();
+  } 
+}
   // RATING ALERTDIALOG CODE HERE //
   String img = 'https://dummyimage.com/73x73/000/fff';
   TextEditingController nameController = TextEditingController();
@@ -57,20 +56,19 @@ class VHomeController extends GetxController {
   var status = GarageModel().obs;
 
   // end //
-  void toggleStatus(bool value) async {
-    if (garage != null) {
-      showConfirmationDialog(
-          value,
-          value
-              ? "Are you sure you want to mark your garage as available?"
-              : "Are you sure you want to mark your garage as unavailable?",
-          onConfirm: () async {
-        await updateGarageStatus();
-        garage!.opened = value;
-        update();
-      });
-      update();
-    }
+  void toggleStatus(bool value) async{
+       if (garage != null) {
+            showConfirmationDialog(value, value 
+        ? "Are you sure you want to mark your garage as available?" 
+        : "Are you sure you want to mark your garage as unavailable?", 
+        onConfirm: () async {
+           await updateGarageStatus();
+          garage!.opened = value;
+          update();
+         }
+         );
+       update(); 
+     }
   }
 
   double ratings = 0.0;
@@ -79,8 +77,7 @@ class VHomeController extends GetxController {
     update();
   }
 
-  void showConfirmationDialog(bool intendedValue, String message,
-      {VoidCallback? onConfirm}) {
+  void showConfirmationDialog(bool intendedValue, String message, {VoidCallback? onConfirm}) {
     Get.dialog(
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -109,7 +106,7 @@ class VHomeController extends GetxController {
               ),
               ElevatedButton(
                 onPressed: () {
-                  onConfirm!();
+                 onConfirm!();
                   Get.back();
                 },
                 style: ElevatedButton.styleFrom(

@@ -47,7 +47,10 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                               color: AppColors.primary_color.withOpacity(0.07),
                               image: DecorationImage(
                                   image: CachedNetworkImageProvider(
-                                    controller.garage!.banner!,
+                                   // controller.garage!.banner!,
+                                    controller.garage != null
+                 ?
+                                        controller.garage!.logo!:'https://dummyimage.com/60x40/000/fff',
                                   ),
                                   opacity: 0.5,
                                   fit: BoxFit.cover)),
@@ -126,7 +129,11 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                               color: AppColors.primary_color.withOpacity(0.07),
                               image: DecorationImage(
                                   image: CachedNetworkImageProvider(
-                                      controller.garage!.logo!),
+                                     // controller.garage!.logo!
+                                       controller.garage != null
+                 ?
+                                        controller.garage!.logo!:'https://dummyimage.com/60x40/000/fff',
+                                      ),
                                         opacity: 0.5,
                                   fit: BoxFit.cover)),
                           child: Column(

@@ -111,6 +111,7 @@ class VSignInView extends StatelessWidget {
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
                                       //  controller.login();
+                                       Get.toNamed(AppRoutes.vhome);
 
                                     },
                                   ),
