@@ -53,7 +53,7 @@ class _VHomeViewState extends State<VHomeView> {
                 Column(
                     children: [
                       Container(
-                        height: Get.height * 0.5,
+                        height: Get.height * 0.53,
                         decoration: BoxDecoration(color: AppColors.white_color),
                         child: Column(
                           children: [
@@ -73,7 +73,7 @@ class _VHomeViewState extends State<VHomeView> {
                                   ),
                                 ),
                                 Positioned(
-                                    top: Get.height * 0.17,
+                                    top: Get.height * 0.15,
                                     left: (MediaQuery.of(context).size.width -
                                             100) /
                                         2,
