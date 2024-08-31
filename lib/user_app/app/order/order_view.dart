@@ -35,11 +35,10 @@ class _OrderViewState extends State<OrderView> {
                   child: AppBar(
                     automaticallyImplyLeading: false,
                     scrolledUnderElevation: 0.0,
-                    
                     toolbarHeight: 95.0,
                     title: TopBar(
                       showicon: true,
-                        showgarageicon: false,
+                      showgarageicon: false,
                       title: 'Find Service',
                     ),
                   ),
@@ -47,7 +46,7 @@ class _OrderViewState extends State<OrderView> {
               ),
               body: SafeArea(
                 child: SingleChildScrollView(
-                  padding:EdgeInsets.only(right: 5,left: 5),
+                  padding: EdgeInsets.only(right: 5, left: 15),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -55,7 +54,6 @@ class _OrderViewState extends State<OrderView> {
                         SizedBox(
                           width: Get.width,
                           child: StepperListView(
-                            
                               shrinkWrap: true,
                               physics: BouncingScrollPhysics(),
                               showStepperInLast: true,
@@ -64,12 +62,12 @@ class _OrderViewState extends State<OrderView> {
                                 return PreferredSize(
                                     preferredSize: Size.fromRadius(5),
                                     child: Container(
-                                      height: 10,
-                                      width: 10,
+                                      height: 4,
+                                      width: 4,
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: AppColors.darkprimary),
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: AppColors.primarybg,
+                                      ),
                                     ));
                               },
                               stepContentWidget: (context, value) {

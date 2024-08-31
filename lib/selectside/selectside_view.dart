@@ -54,21 +54,21 @@ class _SelectsideViewState extends State<SelectsideView> {
                             Gap(30),
                             AppText(
                               title: 'Selct side..',
-                              size: 30,
+                              size: 28,
                               fontWeight: FontWeight.w600,
-                             color: AppColors.heading_text_color,
+                              color: AppColors.primarybg,
                             ),
                             Gap(120),
                             ContainerSelect(
-                              ontap: (){
-                                   Get.toNamed(AppRoutes.signup);
+                              ontap: () {
+                                Get.toNamed(AppRoutes.signup);
                               },
                               text: 'User',
                             ),
                             Gap(60),
                             ContainerSelect(
                               text: 'Garage Owner',
-                               ontap: (){
+                              ontap: () {
                                 Get.toNamed(AppRoutes.vsignup);
                               },
                             ),

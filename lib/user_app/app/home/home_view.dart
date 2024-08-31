@@ -10,6 +10,7 @@ import 'package:mobilegarage/user_app/app/home/components/service_icons.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 import 'package:mobilegarage/user_app/components/textfields/icon_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
@@ -43,89 +44,140 @@ class _HomeViewState extends State<HomeView> {
               },
             ),
           ),
-          body: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Get.toNamed(AppRoutes.search);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 30.0),
-                    child: IconInputField(
-                      hasprefix: true,
-                      hint: 'Search for garages, service ..'.tr,
-                      readOnly: false,
-                      onChange: (value) {
-                        Get.toNamed(AppRoutes.search);
-                      },
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.search);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40.0, right: 30.0),
+                      child: IconInputField(
+                        hasprefix: true,
+                        hint: 'Search for garages, service ..'.tr,
+                        readOnly: false,
+                        onChange: (value) {
+                          Get.toNamed(AppRoutes.search);
+                        },
+                      ),
                     ),
                   ),
-                ),
-                Gap(10),
-                CarouselSlider.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index, realIndex) {
-                    return BannerCard(
-                      picture: 'https://dummyimage.com/70x70/000/fff',
-                      onTap: () {
-                        print('object');
+                  Gap(10),
+                  // CarouselSlider.builder(
+                  //   itemCount: 5,
+                  //   itemBuilder: (context, index, realIndex) {
+                  //     return BannerCard(
+                  // picture: 'https://dummyimage.com/70x70/000/fff',
+                  // onTap: () {
+                  //   print('object');
+                  // },
+                  //     );
+                  //   },
+                  //   options: CarouselOptions(
+                  //     scrollPhysics: BouncingScrollPhysics(),
+                  //     height: Get.height * 0.28,
+                  //     enableInfiniteScroll: true,
+                  //     autoPlay: true,
+                  //     viewportFraction: 0.9,
+                  //     enlargeCenterPage: false,
+                  //     onPageChanged: (index, reason) {
+                  //       setState(() {
+                  //         i = index;
+                  //       });
+                  //     },
+                  //   ),
+                  // ),
+            
+                  /// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ///
+            
+                  CarouselSlider.builder(
+                    options: CarouselOptions(
+                      height: 190,
+                      enableInfiniteScroll: true,
+                      autoPlay: true,
+                      autoPlayCurve: Curves.ease,
+                      viewportFraction: 0.8,
+                      enlargeCenterPage: false,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          i = index;
+                        });
                       },
-                    );
-                  },
-                  options: CarouselOptions(
-                    scrollPhysics: BouncingScrollPhysics(),
-                    height: Get.height * 0.28,
-                    enableInfiniteScroll: true,
-                    autoPlay: true,
-                    viewportFraction: 0.9,
-                    enlargeCenterPage: false,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        i = index;
-                      });
+                    ),
+                    itemCount: 5,
+                    itemBuilder: (context, index, realIndex) {
+                      return BannerCard(
+                        assetPath: 'assets/images/home_crousal.png',
+                        // networkImage: 'assets/images/home_crousal.png',
+                        // picture: AppNetworkImage(
+                        //   assetPath: 'assets/images/home_crousal.png',
+                        //   height: 70,
+                        //   width: 70,
+                        // ),
+                        //'https://dummyimage.com/70x70/000/fff',
+                        onTap: () {
+                          print('object');
+                        },
+                      );
                     },
                   ),
-                ),
-                Gap(10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SmoothPageIndicator(
-                      controller: PageController(),
-                      count: 6,
-                      axisDirection: Axis.horizontal,
-                      effect: ExpandingDotsEffect(
-                          dotHeight: 5,
-                          dotWidth: 5,
-                          activeDotColor: AppColors.primary,
-                          dotColor: AppColors.lightprimary),
-                    ),
-                  ],
-                ),
-                Gap(30),
-                if (controller.hasServices) ...[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 30.0),
-                    child: Row(
-                      children: [
-                        Gap(10),
-                        AppText(
-                          title: 'Explore Services!',
-                          fontWeight: FontWeight.w600,
-                          size: 16.0,
-                          color: AppColors.darkprimary,
-                        ),
-                      ],
-                    ),
+                  Gap(10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SmoothPageIndicator(
+                        controller:
+                            PageController(initialPage: i, keepPage: true),
+                        count: 5,
+                        effect: ExpandingDotsEffect(
+                            activeDotColor: AppColors.primary,
+                            dotColor: AppColors.lightprimary,
+                            dotWidth: 5,
+                            dotHeight: 5),
+                      ),
+                    ],
                   ),
+                  // Gap(10),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     SmoothPageIndicator(
+                  //       controller: PageController(),
+                  //       count: 6,
+                  //       axisDirection: Axis.horizontal,
+                  //       effect: ExpandingDotsEffect(
+                  //           dotHeight: 5,
+                  //           dotWidth: 5,
+                  //           activeDotColor: AppColors.primary,
+                  //           dotColor: AppColors.lightprimary),
+                  //     ),
+                  //   ],
+                  // ),
                   Gap(30),
-                  Expanded(
-                    child: GridView.builder(
+                  if (controller.hasServices) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 40.0, right: 30.0),
+                      child: Row(
+                        children: [
+                          Gap(10),
+                          AppText(
+                            title: 'Explore Services!',
+                            fontWeight: FontWeight.w600,
+                            size: 16.0,
+                            color: AppColors.darkprimary,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Gap(30),
+                    GridView.builder(
                       padding: EdgeInsets.only(left: 40.0, right: 30.0),
                       shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
+                      physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: controller.itemCount,
                         crossAxisSpacing: 6.0,
@@ -145,12 +197,12 @@ class _HomeViewState extends State<HomeView> {
                         );
                       },
                     ),
-                  ),
-                  Gap(40),
-                ] else ...[
-                  Gap(0),
-                ]
-              ],
+                    Gap(40),
+                  ] else ...[
+                    Gap(0),
+                  ]
+                ],
+              ),
             ),
           ),
         );

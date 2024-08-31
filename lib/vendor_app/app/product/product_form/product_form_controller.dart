@@ -95,7 +95,7 @@ class ProductFormController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    await getCategories();
+    // await getCategories();
   }
 
 // categories dropdown
@@ -120,7 +120,7 @@ class ProductFormController extends GetxController {
     selectedCategoryId = brands?.id;
     selectedBrand = null;
     selectedBrandId = null;
-    await getBrands();
+    // await getBrands();
 
     update();
   }

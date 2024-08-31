@@ -63,7 +63,7 @@ class VSignUpController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    await getEmirates();
+   // await getEmirates();
   }
 
   //TODO: DropDown Varible

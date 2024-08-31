@@ -69,7 +69,7 @@ class _VBannerViewState extends State<VBannerView> {
                                 ? Colors.grey
                                 : AppColors.primary_color,
                             ontap: controller.cover == null ? null : () {
-                              controller.storeBanner();
+                              // controller.storeBanner();
                             },
                           ),
                         ],

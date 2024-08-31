@@ -30,13 +30,9 @@ class VSignInView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Image.asset(
-                      ImageConst.appLogo,
-                      width: 172,
-                      height: 108,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Image.asset(ImageConst.appLogo,
+                          width: 172, height: 108)),
                   Expanded(
                     child: Stack(
                       children: [
@@ -50,7 +46,8 @@ class VSignInView extends StatelessWidget {
                             height: Get.height,
                             color: AppColors.white_color,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 12),
                               child: Column(
                                 children: [
                                   const Gap(40),
@@ -77,7 +74,8 @@ class VSignInView extends StatelessWidget {
                                     obscure: controller.obscurePassword,
                                     controller: controller.passwordController,
                                     onchange: (val) {
-                                      controller.validateFields("password", val);
+                                      controller.validateFields(
+                                          "password", val);
                                     },
                                     hasSuffix: true,
                                     suffixWidget: InkWell(
@@ -110,8 +108,8 @@ class VSignInView extends StatelessWidget {
                                     title: 'Sign In',
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
-                                      controller.login();
-
+                                      //  controller.login();
+                                      Get.toNamed(AppRoutes.vhome);
                                     },
                                   ),
                                   const Gap(30),
@@ -127,7 +125,7 @@ class VSignInView extends StatelessWidget {
                             ),
                           ),
                         ),
-              
+
                         //* Triangle
                         Positioned(
                           left: Get.width * 0.2,

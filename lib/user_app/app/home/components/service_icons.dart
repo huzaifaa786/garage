@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -14,7 +15,11 @@ class ServicesIcons extends StatelessWidget {
   final String subText;
   final ontap;
   const ServicesIcons(
-      {Key? key, required this.imageUrl, required this.text, this.ontap,required this.subText})
+      {Key? key,
+      required this.imageUrl,
+      required this.text,
+      this.ontap,
+      required this.subText})
       : super(key: key);
 
   @override
@@ -38,16 +43,11 @@ class ServicesIcons extends StatelessWidget {
               // ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                // height: 70,
-                // width: 70,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
-            ),
+                borderRadius: BorderRadius.circular(10),
+                child: AppNetworkImage(
+                  assetPath: 'assets/images/car_washes.png',
+                )
+                ),
           ),
           Gap(5),
           Flexible(
@@ -57,7 +57,7 @@ class ServicesIcons extends StatelessWidget {
               child: AppText(
                 title: text,
                 fontWeight: FontWeight.w500,
-                color: AppColors.black,
+                color: AppColors.primarybg,
                 size: 12.0,
                 textAlign: TextAlign.center,
                 overFlow: TextOverflow.ellipsis,
@@ -74,7 +74,7 @@ class ServicesIcons extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppText(
-                    title:subText ,
+                    title: subText,
                     // 'View more'
                     size: 8,
                     fontWeight: FontWeight.w600,
@@ -82,11 +82,11 @@ class ServicesIcons extends StatelessWidget {
                     overFlow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
-                  Gap(2),
-                  SvgPicture.asset(
-                    'assets/icons/arrow_right.svg',
-                    color: AppColors.primarybg,
-                  )
+                  // Gap(2),
+                  // SvgPicture.asset(
+                  //   'assets/icons/arrow_right.svg',
+                  //   color: AppColors.primarybg,
+                  // )
                 ],
               ),
             ),

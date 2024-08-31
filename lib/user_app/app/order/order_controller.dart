@@ -39,12 +39,12 @@ class OrderController extends GetxController {
                           );
                         },
                         child: Container(
-                          height: 35,
-                          width: 35,
+                          height: 30,
+                          width: 30,
                           decoration: BoxDecoration(
-                            // color: AppColors.lightprimary,
-                            borderRadius: BorderRadius.circular(80),
-                          ),
+                              // color: AppColors.lightprimary,
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppColors.lightPink),
                           child: SvgPicture.asset(
                             'assets/icons/filter.svg',
                             fit: BoxFit.scaleDown,
@@ -52,11 +52,15 @@ class OrderController extends GetxController {
                         ),
                       ),
                       Gap(10),
-                      AppText(
-                        title: 'Filter By',
-                        fontWeight: FontWeight.w600,
-                        size: 16.0,
-                        color: AppColors.primary,
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: AppText(
+                          title: 'Filter By',
+                          fontWeight: FontWeight.w600,
+                          size: 16.0,
+                          color: AppColors.primary,
+                        ),
                       ),
                     ],
                   ),
@@ -79,7 +83,7 @@ class OrderController extends GetxController {
                             child: AppText(
                               title: '123.444444',
                               fontWeight: FontWeight.w600,
-                              size: 13.0,
+                              size: 10.0,
                               color: AppColors.primarybg,
                               overFlow: TextOverflow.ellipsis,
                               maxLines: 1,
@@ -113,8 +117,8 @@ class OrderController extends GetxController {
                   Gap(10),
                   Container(
                     decoration: BoxDecoration(),
-                    width: Get.width,
-                    height: Get.height * 0.2,
+                    width: Get.width * 0.99,
+                    height: Get.height * 0.18,
                     child: ListView.builder(
                       itemCount: 5,
                       scrollDirection: Axis.horizontal,
@@ -126,10 +130,9 @@ class OrderController extends GetxController {
                               right: 5, left: 5, top: 5, bottom: 15),
                           child: Center(
                             child: FilterProductCard(
-                              productname: 'item.text',
-                              imageUrl: 'https://dummyimage.com/70x70/000/fff',
+                              productname: 'Super car oil',
                               produstdiscription:
-                                  'dsfdsafdsfdsfsdfffsdfsdgsfgfdsdfsdfsdf sdf sdf sdf sdf sdf sdf',
+                                  'Car oil 700 ml best quality for all car types ',
                             ),
                           ),
                         );
@@ -142,7 +145,7 @@ class OrderController extends GetxController {
             id: '2'),
         StepperItemData(
             content: Padding(
-              padding: const EdgeInsets.only(left: 5, bottom: 50, right: 10),
+              padding: const EdgeInsets.only(left: 5, bottom: 50, right: 50),
               child: DottedBorderButton(
                 title: 'Upload service or product image'.tr,
                 imgselect: () => selectVehicleImage(),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -25,7 +26,8 @@ class GarageReviewCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
@@ -40,11 +42,10 @@ class GarageReviewCard extends StatelessWidget {
                   Gap(15),
                   ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: CachedNetworkImage(
-                        imageUrl: 'https://dummyimage.com/93x93/000/fff',
-                        height: 35,
-                        width: 35,
-                      )),
+                      child: AppNetworkImage(
+                        assetPath: 'assets/images/street_garage.png',
+                      )
+                      ),
                   Gap(10),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: Get.width * 0.53),

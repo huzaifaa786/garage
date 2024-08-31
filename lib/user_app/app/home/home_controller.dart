@@ -6,11 +6,8 @@ class ServiceItem {
   final String text;
   final String subText;
 
-  ServiceItem({
-    required this.imageUrl,
-    required this.text,
-    required this.subText
-  });
+  ServiceItem(
+      {required this.imageUrl, required this.text, required this.subText});
 }
 
 class ServiceCards {
@@ -49,52 +46,44 @@ class HomeController extends GetxController {
 
   var services = <ServiceItem>[
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Car wash',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Car wash',
+        subText: ''),
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Oil change',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Oil change',
+        subText: ''),
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Battery',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Battery',
+        subText: ''),
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Road Service',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Road Service',
+        subText: ''),
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Maintenance',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Maintenance',
+        subText: ''),
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Car Warranty',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Car Warranty',
+        subText: ''),
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Tyer Replacement',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Tyer Replacement',
+        subText: ''),
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Oil change',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Oil change',
+        subText: ''),
     ServiceItem(
-      imageUrl: 'https://dummyimage.com/70x70/000/fff',
-      text: 'Oil change',
-      subText: ''
-    ),
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Oil change',
+        subText: ''),
   ];
 
+  String? img = 'assets/images/home_crousal.png';
   // var servicesCards = <ServiceCards>[
   //   // ServiceCards(
   //   //     image: 'https://dummyimage.com/70x70/000/fff',
