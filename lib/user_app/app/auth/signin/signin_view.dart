@@ -57,13 +57,6 @@ class SigninView extends StatelessWidget {
                                           color: AppColors.heading_text_color,
                                           fontFamily: 'Ibarra Real Nova',
                                         ),
-                                        // AppText(
-                                        //   title: 'Sign In',
-                                        //   size: 32,
-                                        //   fontWeight: FontWeight.w400,
-                                        //   color: AppColors.primarybg,
-                                        //   fontFamily: 'Ibarra Real Nova',
-                                        // ),
                                         Gap(30),
                                         PhoneInputField(
                                           controller:
@@ -97,7 +90,8 @@ class SigninView extends StatelessWidget {
                                           title: 'Sign In',
                                           txtweight: FontWeight.w600,
                                           onTap: () {
-                                            Get.toNamed(AppRoutes.otp);
+                                            // Get.toNamed(AppRoutes.otp);
+                                            controller.verifyNumber();
                                           },
                                         ),
                                         Gap(40),

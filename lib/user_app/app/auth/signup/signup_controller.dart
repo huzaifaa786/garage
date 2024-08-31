@@ -274,7 +274,7 @@ GetStorage box =GetStorage();
     if (response.isNotEmpty) {
        box.write('api_token', response['user']['token']);
       Get.toNamed(AppRoutes.otp,
-          parameters: {'phone': completePhoneNumber.toString()});
+          parameters: {'phone': completePhoneNumber.toString(),'auth':'signup'});
       update();
     }
   }
