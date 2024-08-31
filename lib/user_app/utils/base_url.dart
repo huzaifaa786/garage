@@ -1,1 +1,1 @@
-const baseUrl = 'https://garage.nubesproperty.com/api/user';
+const baseUrl = 'https://garage.nubesproperty.com/api/users';

@@ -64,19 +64,17 @@ class SignupView extends StatelessWidget {
                               color: AppColors.heading_text_color,
                               fontFamily: 'Ibarra Real Nova',
                             ),
-
                             Gap(30),
                             MainInput(
                               hint: 'Name'.tr,
                               controller: controller.nameController,
                               errorText: controller.nameError,
-                             onchange: (p0) {
-                               controller.validateFields(
-                                    "name", p0);
-                             },   
+                              onchange: (p0) {
+                                controller.validateFields("name", p0);
+                              },
                             ),
                             Gap(20),
-                             AppPhoneInput(
+                            AppPhoneInput(
                               onCountryChanged: controller.onCountryChanged,
                               errorText: controller.phoneError,
                               onChanged: controller.phoneValidation,
@@ -90,10 +88,9 @@ class SignupView extends StatelessWidget {
                               selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
                                 controller.setSelectedEmirate(value);
-                                controller.validateFields(
-                                    "Emirate", controller.selectedEmirateId.toString());
+                                controller.validateFields("Emirate",
+                                    controller.selectedEmirateId.toString());
                                 controller.update();
-
                               },
                               errorText: controller.emirateError,
                             ),
@@ -102,10 +99,9 @@ class SignupView extends StatelessWidget {
                               hint: 'Address details'.tr,
                               controller: controller.adreesdetailController,
                               errorText: controller.addressdetailError,
-                               onchange: (p0) {
-                               controller.validateFields(
-                                    "address detail", p0);
-                             },   
+                              onchange: (p0) {
+                                controller.validateFields("address detail", p0);
+                              },
                             ),
                             Gap(40),
                             Center(

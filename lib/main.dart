@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/firebase_options.dart';
 import 'package:mobilegarage/splash/splash_binding.dart';
 import 'package:mobilegarage/splash/splash_view.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
@@ -11,8 +13,14 @@ import 'package:mobilegarage/routes/app_pages.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 void main()async {
    WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ).then((value) {
+    // Get.put(NotificationService());
+  });
   await LoadingHelper.init();
   await GetStorage.init();
+  
    EasyLoading.init();
   runApp(const MyApp());
 }
