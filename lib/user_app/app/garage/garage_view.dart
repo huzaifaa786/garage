@@ -40,23 +40,28 @@ class GarageView extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   clipBehavior: Clip.none,
                   children: [
-                    CachedNetworkImage(
-                      imageUrl: 'https://dummyimage.com/70x70/000/fff',
+                    AppNetworkImage(
+                      assetPath: 'assets/images/garage.png',
                       width: Get.width,
-                      height: Get.height * 0.3,
-                      fit: BoxFit.cover,
-                      placeholderFadeInDuration: Duration(milliseconds: 500),
-                      placeholder: (context, url) => Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.grey[100]!,
-                        child: Container(
-                          color: Colors.white,
-                          width: Get.width,
-                          height: Get.height * 0.3,
-                        ),
-                      ),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      height: Get.height * 0.2,
                     ),
+                    // CachedNetworkImage(
+                    //   imageUrl: 'https://dummyimage.com/70x70/000/fff',
+                    //   width: Get.width,
+                    //   height: Get.height * 0.3,
+                    //   fit: BoxFit.cover,
+                    //   placeholderFadeInDuration: Duration(milliseconds: 500),
+                    //   placeholder: (context, url) => Shimmer.fromColors(
+                    //     baseColor: Colors.grey[300]!,
+                    //     highlightColor: Colors.grey[100]!,
+                    //     child: Container(
+                    //       color: Colors.white,
+                    //       width: Get.width,
+                    //       height: Get.height * 0.3,
+                    //     ),
+                    //   ),
+                    //   errorWidget: (context, url, error) => Icon(Icons.error),
+                    // ),
                     Positioned(
                       bottom: -30,
                       child: Container(
@@ -209,41 +214,41 @@ class GarageView extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
               Gap(45),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                    maxWidth: Get.width * 0.88,
-                    minHeight: Get.height * 0.3,
-                    maxHeight: Get.height * 0.55),
-                child: GridView.builder(
-                  physics: BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 6.0,
-                    mainAxisSpacing: 18.0,
-                    mainAxisExtent: Get.height * 0.18,
-                  ),
-                  itemCount: controller.services.length,
-                  itemBuilder: (context, index) {
-                    final item = controller.services[index];
-                    bool iselected = controller.selectedindex == index;
-                    return GestureDetector(
-                      onTap: () {
-                        controller.selectindex(index);
-                      },
-                      // child: AnimatedOpacity(
-                      //   duration: Duration(milliseconds: 300),
-                      //   opacity: iselected ? 1.0 : 0.6,
-                      child: ServicesIcons(
-                        imageUrl: item.imageUrl,
-                        text: item.text,
-                        subText: item.subText,
-                      ),
-                      //  ),
-                    );
-                  },
+              // ConstrainedBox(
+              //   constraints: BoxConstraints(
+              //       maxWidth: Get.width * 0.88,
+              //       minHeight: Get.height * 0.3,
+              //       maxHeight: Get.height * 0.55),
+              GridView.builder(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 6.0,
+                  mainAxisSpacing: 18.0,
+                  mainAxisExtent: Get.height * 0.18,
                 ),
+                itemCount: controller.services.length,
+                itemBuilder: (context, index) {
+                  final item = controller.services[index];
+                  bool iselected = controller.selectedindex == index;
+                  return GestureDetector(
+                    onTap: () {
+                      controller.selectindex(index);
+                    },
+                    // child: AnimatedOpacity(
+                    //   duration: Duration(milliseconds: 300),
+                    //   opacity: iselected ? 1.0 : 0.6,
+                    child: ServicesIcons(
+                      imageUrl: item.imageUrl,
+                      text: item.text,
+                      subText: item.subText,
+                    ),
+                    //  ),
+                  );
+                },
               ),
+
               Gap(30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

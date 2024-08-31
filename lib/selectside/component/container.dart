@@ -33,7 +33,7 @@ class ContainerSelect extends StatelessWidget {
                 children: [
                   AppText(
                     title: text,
-                    size: 18,
+                    size: 16,
                     fontWeight: FontWeight.w600,
                     color: AppColors.primary_color,
                   ),

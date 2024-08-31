@@ -127,7 +127,7 @@ class OrderController extends GetxController {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(
-                              right: 5, left: 5, top: 5, bottom: 15),
+                              right: 5, left: 5, top: 5, bottom: 12),
                           child: Center(
                             child: FilterProductCard(
                               productname: 'Super car oil',

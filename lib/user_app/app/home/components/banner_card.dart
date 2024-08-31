@@ -53,9 +53,9 @@ class BannerCard extends StatelessWidget {
               ? BorderRadius.circular(0)
               : BorderRadius.circular(10),
           child: AppNetworkImage(
-            assetPath: 'assets/images/washing.png',
-            width: Get.width,
-          )),
+              assetPath: 'assets/images/washing.png',
+              width: Get.width,
+              height: Get.height * 0.125)),
     );
   }
 }
