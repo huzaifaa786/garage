@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/svg.dart';
@@ -89,11 +91,21 @@ class OtpView extends StatelessWidget {
                                   },
                                   onSubmit: (String verificationCode) {
                                     controller.otpCode = verificationCode;
-                                    print('object');
-                                    Get.toNamed(AppRoutes.main);
+                                    controller.verifyOtpCode();
                                   },
                                 ),
                                 Gap(33),
+                                GestureDetector(
+                                  onTap: () {
+                                    controller.verifyPhone();
+                                  },
+                                  child: AppText(
+                                    title: 'Resend',
+                                    color: AppColors.darkprimary,
+                                    size: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )
                               ])))))),
     );
   }

@@ -29,7 +29,7 @@ class SplashController extends GetxController {
     });
   }
   Future checkFirstSeen() async {
-    Get.offAllNamed(AppRoutes.bookservice);
+    Get.offAllNamed(AppRoutes.signup);
    
   }
 }    

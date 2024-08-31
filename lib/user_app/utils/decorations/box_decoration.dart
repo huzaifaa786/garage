@@ -15,6 +15,6 @@ var circularErrorInputDecoration = BoxDecoration(
     color: Colors.red,
   ),
   color: AppColors.white,
-  borderRadius: BorderRadius.circular(4),
+  borderRadius: BorderRadius.circular(34),
   // boxShadow: innerInputShadow,
 );

@@ -69,6 +69,9 @@ dependencies:
   time: ^2.1.4
   stepper_list_view: ^0.0.2
   dio: ^5.6.0
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.14.0
 
 
 
