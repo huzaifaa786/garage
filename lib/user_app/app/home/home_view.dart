@@ -64,7 +64,47 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 Gap(10),
+                // CarouselSlider.builder(
+                //   itemCount: 5,
+                //   itemBuilder: (context, index, realIndex) {
+                //     return BannerCard(
+                // picture: 'https://dummyimage.com/70x70/000/fff',
+                // onTap: () {
+                //   print('object');
+                // },
+                //     );
+                //   },
+                //   options: CarouselOptions(
+                //     scrollPhysics: BouncingScrollPhysics(),
+                //     height: Get.height * 0.28,
+                //     enableInfiniteScroll: true,
+                //     autoPlay: true,
+                //     viewportFraction: 0.9,
+                //     enlargeCenterPage: false,
+                //     onPageChanged: (index, reason) {
+                //       setState(() {
+                //         i = index;
+                //       });
+                //     },
+                //   ),
+                // ),
+
+                /// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ///
+
                 CarouselSlider.builder(
+                  options: CarouselOptions(
+                    height: 190,
+                    enableInfiniteScroll: true,
+                    autoPlay: true,
+                    autoPlayCurve: Curves.ease,
+                    viewportFraction: 0.8,
+                    enlargeCenterPage: true,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        i = index;
+                      });
+                    },
+                  ),
                   itemCount: 5,
                   itemBuilder: (context, index, realIndex) {
                     return BannerCard(
@@ -72,38 +112,27 @@ class _HomeViewState extends State<HomeView> {
                       onTap: () {
                         print('object');
                       },
+                      
                     );
                   },
-                  options: CarouselOptions(
-                    scrollPhysics: BouncingScrollPhysics(),
-                    height: Get.height * 0.28,
-                    enableInfiniteScroll: true,
-                    autoPlay: true,
-                    viewportFraction: 0.9,
-                    enlargeCenterPage: false,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        i = index;
-                      });
-                    },
-                  ),
                 ),
-                Gap(10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SmoothPageIndicator(
-                      controller: PageController(),
-                      count: 6,
-                      axisDirection: Axis.horizontal,
-                      effect: ExpandingDotsEffect(
-                          dotHeight: 5,
-                          dotWidth: 5,
-                          activeDotColor: AppColors.primary,
-                          dotColor: AppColors.lightprimary),
-                    ),
-                  ],
-                ),
+               Gap(10),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         SmoothPageIndicator(
+                            controller:
+                                PageController(initialPage: i, keepPage: true),
+                            count: 5,
+                            effect: ExpandingDotsEffect(
+                                activeDotColor: AppColors.primary,
+                                dotColor: AppColors.lightprimary,
+                                dotWidth: 5,
+                                dotHeight: 5),
+                          ),
+                       ],
+                     ),
+                
                 Gap(30),
                 if (controller.hasServices) ...[
                   Padding(
