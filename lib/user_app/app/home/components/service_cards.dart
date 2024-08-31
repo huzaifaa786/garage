@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -52,16 +53,14 @@ class ServiceCard extends StatelessWidget {
                   ),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-                  child: CachedNetworkImage(
-                    imageUrl: image,
-                    height: 80,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                ),
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(12)),
+                    child: AppNetworkImage(
+                      assetPath: 'assets/images/washing.png',
+                      width: double.infinity,
+                      height: 80,
+                    )
+                    ),
               ),
               Positioned(
                 top: 8,
@@ -75,17 +74,10 @@ class ServiceCard extends StatelessWidget {
                     ),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(60),
-                    child: CachedNetworkImage(
-                      imageUrl: 'https://dummyimage.com/70x70/d9c3d9/00000a',
-                      fit: BoxFit.cover,
-                      height: 26,
-                      width: 26,
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(60),
+                      child: AppNetworkImage(
+                        assetPath: 'assets/images/street_garage.png',
+                      )),
                 ),
               ),
             ],

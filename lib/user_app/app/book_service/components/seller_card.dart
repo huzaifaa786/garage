@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class SellerCard extends StatelessWidget {
@@ -40,13 +41,14 @@ class SellerCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(80),
-                  child: CachedNetworkImage(
-                    imageUrl: image,
+                  child: AppNetworkImage(
+                    assetPath: 'assets/images/street_garage.png',
+                    // imageUrl: image,
                     height: 50,
                     width: 50,
-                    fit: BoxFit.scaleDown,
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    // fit: BoxFit.scaleDown,
+                    // placeholder: (context, url) => CircularProgressIndicator(),
+                    // errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
                 Gap(10),

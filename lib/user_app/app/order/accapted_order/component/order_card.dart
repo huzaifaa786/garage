@@ -4,9 +4,14 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
+import 'package:get/utils.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:shimmer/shimmer.dart';
@@ -50,33 +55,21 @@ class _OrderCardState extends State<OrderCard> {
                     color: Colors.grey.withOpacity(0.3),
                     spreadRadius: 1,
                     blurRadius: 6,
-                    offset: Offset(2, 2),
+                    offset: const Offset(2, 2),
                   ),
                 ],
               ),
               child: Column(children: [
                 Row(
                   children: [
-                    ClipRRect(
-                      borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(13)),
-                      child: CachedNetworkImage(
-                        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-                        height: 170,
-                        width: Get.width * 0.57,
-                        fit: BoxFit.fill,
-                        placeholderFadeInDuration: Duration(milliseconds: 500),
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey[300]!,
-                          highlightColor: Colors.grey[100]!,
-                          child: Container(
-                            color: Colors.white,
-                            height: 170,
-                          ),
-                        ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
-                    ),
+                    const ClipRRect(
+                        borderRadius:
+                            BorderRadius.only(topLeft: Radius.circular(13)),
+                        child: AppNetworkImage(
+                          assetPath: 'assets/images/garage.png',
+                          width: 190,
+                          height: 173,
+                        )),
                     Flexible(
                       child: Column(
                         children: [
@@ -87,41 +80,32 @@ class _OrderCardState extends State<OrderCard> {
                             // width: 115,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(60)),
-                            child: ClipRRect(
-                              // borderRadius: BorderRadius.circular(60),
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(13)),
-                              child: CachedNetworkImage(
-                                // height: 72,
-
-                                imageUrl:
-                                    'https://dummyimage.com/97x72/000/fff',
-                                fit: BoxFit.cover,
-                                placeholderFadeInDuration:
-                                    Duration(milliseconds: 500),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
-                            ),
+                            child: const ClipRRect(
+                                // borderRadius: BorderRadius.circular(60),
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(13)),
+                                child: AppNetworkImage(
+                                  assetPath: 'assets/images/mobiloil.png',
+                                )),
                           ),
 
-                          AppText(
+                          const AppText(
                             title: 'Super car oil',
                             size: 11,
                             fontWeight: FontWeight.w600,
                           ),
-                          Gap(4),
-                          AppText(
+                          const Gap(4),
+                          const AppText(
                             title:
-                                'Car oil 700 ml best quality for all car types',
+                                'Car oil 700 ml best quality\n for all car types',
                             size: 9,
                             fontWeight: FontWeight.w400,
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             overFlow: TextOverflow.ellipsis,
                           ),
-                          Gap(4),
-                          Row(
+                          const Gap(4),
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               AppText(
@@ -132,14 +116,14 @@ class _OrderCardState extends State<OrderCard> {
                               ),
                             ],
                           ),
-                          Gap(4),
+                          const Gap(4),
                         ],
                       ),
                     ),
-                    Gap(4),
+                    const Gap(4),
                   ],
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 20, top: 13),
                   child: Row(
                     children: [
@@ -159,7 +143,7 @@ class _OrderCardState extends State<OrderCard> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 20, top: 6),
+                  padding: const EdgeInsets.only(left: 20, top: 6),
                   child: Row(
                     children: [
                       RatingBar.builder(
@@ -171,14 +155,15 @@ class _OrderCardState extends State<OrderCard> {
                         glow: false,
                         itemSize: 14,
                         unratedColor: Colors.grey,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+                        itemPadding:
+                            const EdgeInsets.symmetric(horizontal: 2.0),
                         itemBuilder: (context, _) =>
-                            Icon(Icons.star, color: Colors.yellow),
+                            const Icon(Icons.star, color: Colors.yellow),
                         onRatingUpdate: (rating) {
                           controller.updateRating(rating);
                         },
                       ),
-                      Gap(10),
+                      const Gap(10),
                       AppText(
                         title: controller.ratings.toString(),
                         size: 8.0,
@@ -188,19 +173,19 @@ class _OrderCardState extends State<OrderCard> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 20,
                     top: 7,
                   ),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.location_on_outlined,
                         size: 15,
                       ),
                       RichText(
                         textAlign: TextAlign.center,
-                        text: TextSpan(
+                        text: const TextSpan(
                           text: "Dubai",
                           style: TextStyle(
                               color: AppColors.black,
@@ -228,7 +213,7 @@ class _OrderCardState extends State<OrderCard> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 15, bottom: 12, left: 20),
+                  padding: const EdgeInsets.only(top: 15, bottom: 12, left: 20),
                   child: Row(
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -244,14 +229,14 @@ class _OrderCardState extends State<OrderCard> {
                                     Get.toNamed(AppRoutes.garage);
                                   },
                                   child: Container(
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         color: AppColors.lightprimary,
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(20),
                                             bottomLeft: Radius.circular(20))),
                                     height: Get.height * 0.05,
                                     width: Get.width * 0.65,
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'View garage',
                                         style: TextStyle(
@@ -263,7 +248,7 @@ class _OrderCardState extends State<OrderCard> {
                                   ),
                                 ),
                               ),
-                              Gap(13),
+                              const Gap(13),
                             ],
                           ),
                           Positioned(
@@ -288,7 +273,7 @@ class _OrderCardState extends State<OrderCard> {
                           ),
                         ],
                       ),
-                      Gap(17),
+                      const Gap(17),
                       // if (isSelected)
                       controller.isSelected
                           ? SvgPicture.asset(
@@ -297,24 +282,20 @@ class _OrderCardState extends State<OrderCard> {
                               width: 20,
                               color: AppColors.primary,
                             )
-                          : Text(''),
+                          : const Text(''),
                     ],
                   ),
                 )
               ]),
             ),
             Positioned(
-              top: 11, 
+              top: 11,
               left: 20,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(53),
-                child: CachedNetworkImage(
-                  imageUrl: controller.img,
-                  color: AppColors.grey,
-                  height: Get.height * 0.055,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(53),
+                  child: const AppNetworkImage(
+                    assetPath: 'assets/images/street_garage.png',
+                  )),
             ),
           ],
         ),

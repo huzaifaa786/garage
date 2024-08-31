@@ -71,7 +71,7 @@ class FilterProductCard extends StatelessWidget {
             child: AppText(
               title: produstdiscription!,
               fontWeight: FontWeight.w500,
-              size: 5.0,
+              size: 6.0,
               textAlign: TextAlign.center,
               overFlow: TextOverflow.ellipsis,
               maxLines: 2,

@@ -132,7 +132,7 @@ class OrderController extends GetxController {
                             child: FilterProductCard(
                               productname: 'Super car oil',
                               produstdiscription:
-                                  'Car oil 700 ml best quality\n for all car types ',
+                                  'Car oil 700 ml best quality for all car types ',
                             ),
                           ),
                         );

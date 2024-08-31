@@ -237,7 +237,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                                       size: 14,
                                     ),
                                     AppText(
-                                      title: '45' + ' AED',
+                                      title: '45' ' AED',
                                       fontWeight: FontWeight.w600,
                                       size: 14,
                                       color: AppColors.darkblue,
@@ -299,7 +299,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                             Gap(12),
                             SellerCard(
                               garageName: 'Street Garage',
-                              image: 'https://dummyimage.com/70x70/000/fff',
+                              image: 'assets/images/washing.png',
                               ontap: () {},
                             ),
                           ],
@@ -399,7 +399,8 @@ class _BookServiceViewState extends State<BookServiceView> {
                                   width: 90,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: AppColors.black,width: 0.6),
+                                    border: Border.all(
+                                        color: AppColors.black, width: 0.6),
                                     color: AppColors.lightPink,
                                   ),
                                   child: Padding(

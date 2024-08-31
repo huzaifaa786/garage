@@ -15,7 +15,11 @@ class ServicesIcons extends StatelessWidget {
   final String subText;
   final ontap;
   const ServicesIcons(
-      {Key? key, required this.imageUrl, required this.text, this.ontap,required this.subText})
+      {Key? key,
+      required this.imageUrl,
+      required this.text,
+      this.ontap,
+      required this.subText})
       : super(key: key);
 
   @override
@@ -39,13 +43,11 @@ class ServicesIcons extends StatelessWidget {
               // ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child:AppNetworkImage(
-                assetPath: 'assets/images/tyre.png',
-
-
-              )
-            ),
+                borderRadius: BorderRadius.circular(10),
+                child: AppNetworkImage(
+                  assetPath: 'assets/images/car_washes.png',
+                )
+                ),
           ),
           Gap(5),
           Flexible(
@@ -72,7 +74,7 @@ class ServicesIcons extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppText(
-                    title:subText ,
+                    title: subText,
                     // 'View more'
                     size: 8,
                     fontWeight: FontWeight.w600,
