@@ -13,6 +13,7 @@ import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_icons.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:shimmer/shimmer.dart';
@@ -70,18 +71,11 @@ class GarageView extends StatelessWidget {
                           ],
                         ),
                         child: ClipOval(
-                          child: CachedNetworkImage(
-                            height: Get.height * 0.1,
-                            width: Get.height * 0.1,
-                            imageUrl:
-                                'https://dummyimage.com/600x400/40d123/0dff00',
-                            fit: BoxFit.cover,
-                            placeholderFadeInDuration:
-                                Duration(milliseconds: 500),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
-                          ),
-                        ),
+                            child: AppNetworkImage(
+                          assetPath: 'assets/images/street_garage.png',
+                          height: Get.height * 0.088,
+                          width: Get.width * 0.2,
+                        )),
                       ),
                     ),
                   ]),
@@ -224,7 +218,6 @@ class GarageView extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    
                     crossAxisCount: 3,
                     crossAxisSpacing: 6.0,
                     mainAxisSpacing: 18.0,
@@ -241,12 +234,12 @@ class GarageView extends StatelessWidget {
                       // child: AnimatedOpacity(
                       //   duration: Duration(milliseconds: 300),
                       //   opacity: iselected ? 1.0 : 0.6,
-                        child: ServicesIcons(
-                          imageUrl: item.imageUrl,
-                          text: item.text,
-                          subText: item.subText,
-                        ),
-                    //  ),
+                      child: ServicesIcons(
+                        imageUrl: item.imageUrl,
+                        text: item.text,
+                        subText: item.subText,
+                      ),
+                      //  ),
                     );
                   },
                 ),
@@ -303,12 +296,15 @@ class GarageView extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 10, left: 3),
                       child: ServiceCard(
-                        image: 'https://dummyimage.com/70x70/000/fff',
-                        title: 'title',
+                        // image: 'https://dummyimage.com/70x70/000/fff',
+
+                        image: 'assets/images/street_garage.png',
+
+                        title: 'Hand\nwashing car',
                         onTap: () {
                           Get.toNamed(AppRoutes.bookservice);
                         },
-                        price: 'price',
+                        price: '30.50 AED',
                         time: '12 :61',
                       ),
                     ),

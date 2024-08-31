@@ -24,20 +24,20 @@ class ContainerSelect extends StatelessWidget {
             child: Container(
               height: 70,
               width: Get.width * 0.9,
+              decoration: BoxDecoration(
+                color: AppColors.light_red,
+                borderRadius: BorderRadius.circular(30),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppText(
                     title: text,
-                    size: 20,
+                    size: 18,
                     fontWeight: FontWeight.w600,
                     color: AppColors.primary_color,
                   ),
                 ],
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.light_red,
-                borderRadius: BorderRadius.circular(30),
               ),
             ),
           )

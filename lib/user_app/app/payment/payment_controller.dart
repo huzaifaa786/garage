@@ -19,7 +19,7 @@ class PaymentsController extends GetxController {
 
   List<Map<String, dynamic>> orders = [
     {
-      "productImage": "https://dummyimage.com/93x93/000/fff",
+      "productImage": "assetPath: 'assets/images/washing.png',",
       "clientImage": "https://dummyimage.com/20x20/000/fff",
       "client Name": "Street garage",
       "product": "Car super power battery",
@@ -31,7 +31,7 @@ class PaymentsController extends GetxController {
       "product_type": "self-service car wash",
     },
        {
-      "productImage": "https://dummyimage.com/93x93/000/fff",
+      "productImage": "assetPath: 'assets/images/battery.png',",
       "clientImage": "https://dummyimage.com/20x20/000/fff",
       "client Name": "Street garage",
       "product": "Car super power battery",
@@ -42,7 +42,7 @@ class PaymentsController extends GetxController {
       "Price": "230",
       "product_type": "self-service car wash",
     },   {
-      "productImage": "https://dummyimage.com/93x93/000/fff",
+      "productImage": "assetPath: 'assets/images/washing.png',",
       "clientImage": "https://dummyimage.com/20x20/000/fff",
       "client Name": "Street garage",
       "product": "Car super power battery",
@@ -53,7 +53,7 @@ class PaymentsController extends GetxController {
       "Price": "230",
       "product_type": "self-service car wash",
     },   {
-      "productImage": "https://dummyimage.com/93x93/000/fff",
+      "productImage": "assetPath: 'assets/images/battery.png',",
       "clientImage": "https://dummyimage.com/20x20/000/fff",
       "client Name": "Street garage",
       "product": "Car super power battery",

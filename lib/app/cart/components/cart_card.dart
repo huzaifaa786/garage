@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:input_quantity/input_quantity.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -40,9 +41,9 @@ class CartCard extends StatelessWidget {
                   height: Get.height * 0.12,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: CachedNetworkImage(
-                      imageUrl: orders!["productImage"].toString(),
-                      fit: BoxFit.cover,
+                    child: AppNetworkImage(
+                      assetPath: 'assets/images/battery.png',
+                      // fit: BoxFit.cover,
                     ),
                   ),
                 ),
