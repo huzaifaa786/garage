@@ -11,11 +11,15 @@ class BannerCard extends StatelessWidget {
     this.onTap,
     this.picture,
     this.isRectangle = false,
+      this.networkImage,
+       this.assetPath = '',
   });
 
   final onTap;
   final picture;
   final bool isRectangle;
+  final String? networkImage;
+  final String? assetPath;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,8 @@ class BannerCard extends StatelessWidget {
       child: ClipRRect(
         borderRadius: isRectangle ? BorderRadius.circular(0) : BorderRadius.circular(10),
         child: CachedNetworkImage(
-          imageUrl: picture,
+          imageUrl: networkImage.toString(),
+          
           width: isRectangle ? Get.width : Get.width * 0.9,
           fit: BoxFit.fitWidth,
           placeholderFadeInDuration: Duration(milliseconds: 500),
@@ -37,7 +42,8 @@ class BannerCard extends StatelessWidget {
               height: 60,
             ),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) =>
+          assetPath != '' ? Image.asset(assetPath!,fit: BoxFit.cover,) : Icon(Icons.error)
         ),
       ),
     );
