@@ -44,8 +44,7 @@ class GarageReviewCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       child: AppNetworkImage(
                         assetPath: 'assets/images/street_garage.png',
-                      )
-                      ),
+                      )),
                   Gap(10),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: Get.width * 0.53),

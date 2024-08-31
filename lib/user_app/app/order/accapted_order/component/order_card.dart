@@ -68,14 +68,15 @@ class _OrderCardState extends State<OrderCard> {
                         child: AppNetworkImage(
                           assetPath: 'assets/images/garage.png',
                           width: 190,
-                          height: 173,
+                          height: 153,
                         )),
                     Flexible(
                       child: Column(
                         children: [
                           //  Gap(4),
                           Container(
-                            height: 112,
+                            height: Get.height * 0.13,
+                            width: Get.width * 0.2,
 
                             // width: 115,
                             decoration: BoxDecoration(

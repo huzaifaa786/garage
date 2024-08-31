@@ -99,7 +99,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                                   Get.toNamed(AppRoutes.payments);
                                 },
                                 child: Container(
-                                  height: Get.height * 0.07,
+                                  height: Get.height * 0.06,
                                   width: Get.width * 0.4,
                                   // decoration: BoxDecoration(
                                   //   boxShadow: buttonShadow,
@@ -184,7 +184,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                             itemCount: 5,
                             itemBuilder: (context, index, realIndex) {
                               return BannerCard(
-                                picture: 'https://dummyimage.com/70x70/000/fff',
+                                picture: 'assets/images/washing.png',
                                 isRectangle: true,
                                 onTap: () {
                                   print('object');
