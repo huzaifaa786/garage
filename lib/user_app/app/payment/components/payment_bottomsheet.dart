@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
 import 'package:mobilegarage/user_app/app/payment/components/payment_checkout_card.dart';
 import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -152,9 +153,10 @@ class PaymentBottomsheet extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 20),
-                                    child: MainButton(
+                                    child: IconMainButton(
                                       buttonWidth: Get.width * 0.7,
                                       title: 'Checkout',
+                                      fontsize: 12,
                                       onTap: () {
                                         // UiUtilites.SuccessAlert(context);
                                         UiUtilites.successAlertDialog(

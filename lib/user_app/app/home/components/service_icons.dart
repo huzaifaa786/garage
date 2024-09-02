@@ -45,9 +45,8 @@ class ServicesIcons extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: AppNetworkImage(
-                  assetPath: 'assets/images/car_washes.png',
-                )
-                ),
+                  assetPath: 'assets/images/battery.png',
+                )),
           ),
           Gap(5),
           Flexible(
@@ -82,7 +81,7 @@ class ServicesIcons extends StatelessWidget {
                     overFlow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
-                  // Gap(2),
+                  Gap(2),
                   // SvgPicture.asset(
                   //   'assets/icons/arrow_right.svg',
                   //   color: AppColors.primarybg,

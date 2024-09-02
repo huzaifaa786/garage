@@ -59,8 +59,7 @@ class ServiceCard extends StatelessWidget {
                       assetPath: 'assets/images/washing.png',
                       width: double.infinity,
                       height: 80,
-                    )
-                    ),
+                    )),
               ),
               Positioned(
                 top: 8,
@@ -87,10 +86,10 @@ class ServiceCard extends StatelessWidget {
               left: 8.0,
               right: 8.0,
               top: 8.0,
-              bottom: 10.0,
+              bottom: 6.0,
             ),
             child: SizedBox(
-              width: Get.width * 0.18,
+              // width: Get.width * 0.18,
               child: AppText(
                 title: title,
                 fontWeight: FontWeight.w600,
@@ -100,25 +99,25 @@ class ServiceCard extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  "assets/icons/clock.svg",
-                  width: 9,
-                  height: 9,
-                ),
-                Gap(3),
-                AppText(
-                  title: time,
-                  color: AppColors.primary,
-                  size: 8,
-                  fontWeight: FontWeight.w400,
-                ),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 8.0),
+          //   child: Row(
+          //     children: [
+          //       SvgPicture.asset(
+          //         "assets/icons/clock.svg",
+          //         width: 9,
+          //         height: 9,
+          //       ),
+          //       Gap(3),
+          // AppText(
+          //   title: time,
+          //   color: AppColors.primary,
+          //   size: 8,
+          //   fontWeight: FontWeight.w400,
+          // ),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Row(

@@ -51,12 +51,23 @@ class GarageReviewCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppText(
-                          title: 'Street garage',
-                          size: 12,
-                          maxLines: 1,
-                          overFlow: TextOverflow.ellipsis,
-                          fontWeight: FontWeight.w600,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppText(
+                              title: 'Street garage',
+                              size: 12,
+                              maxLines: 1,
+                              overFlow: TextOverflow.ellipsis,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            AppText(
+                              title: '3h ago',
+                              size: 10,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.greybg,
+                            ),
+                          ],
                         ),
                         Gap(5),
                         Row(
@@ -89,12 +100,6 @@ class GarageReviewCard extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-              AppText(
-                title: '3h ago',
-                size: 10,
-                fontWeight: FontWeight.w600,
-                color: AppColors.greybg,
               ),
             ],
           ),

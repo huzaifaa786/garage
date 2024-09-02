@@ -185,6 +185,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                             itemBuilder: (context, index, realIndex) {
                               return BannerCard(
                                 picture: 'assets/images/washing.png',
+                                
                                 isRectangle: true,
                                 onTap: () {
                                   print('object');
