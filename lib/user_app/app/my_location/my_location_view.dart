@@ -35,6 +35,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                 toolbarHeight: 95.0,
                 title: TopBar(
                   title: "My Location",
+                  
                   showgarageicon: false,
                 ),
               ),
@@ -110,6 +111,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                         ),
                         Gap(20),
                         MainInput(
+                          height: Get.height * 0.073,
                           hint: 'Address details'.tr,
                           controller: controller.adreesdetailController,
                           errorText: '',
@@ -216,10 +218,12 @@ class _MyLocationViewState extends State<MyLocationView> {
                             ],
                           ),
                         ),
-                      Gap(96),
-                      MainButton(title: 'Save changes',),
-                      Gap(27),
-                        
+                        Gap(60),
+                        MainButton(
+                          title: 'Save changes',
+                          height: Get.height * 0.077,
+                        ),
+                        Gap(27),
                       ],
                     ),
                   ),

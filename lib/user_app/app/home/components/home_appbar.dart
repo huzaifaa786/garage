@@ -9,7 +9,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class HomeAppbar extends StatelessWidget {
-  const HomeAppbar({super.key,this.onNotificationtap});
+  const HomeAppbar({super.key, this.onNotificationtap});
   final onNotificationtap;
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class HomeAppbar extends StatelessWidget {
       children: [
         SvgPicture.asset(
           'assets/icons/home_logo.svg',
-          height: 37,
-          width: 143,
+          height: 30,
+          width: 130,
         ),
         Gap(45),
         Column(
@@ -28,12 +28,13 @@ class HomeAppbar extends StatelessWidget {
             Row(
               children: [
                 GestureDetector(
-                  onTap: onNotificationtap,
+                    onTap: onNotificationtap,
                     child: SvgPicture.asset('assets/icons/bell.svg')),
                 Gap(20),
-                GestureDetector(onTap: () {
-                  Get.toNamed(AppRoutes.chats_accounts);
-                },
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(AppRoutes.chats_accounts);
+                  },
                   child: Container(
                     height: 35,
                     width: 35,
@@ -41,7 +42,10 @@ class HomeAppbar extends StatelessWidget {
                       color: AppColors.lightprimary,
                       borderRadius: BorderRadius.circular(80),
                     ),
-                    child:SvgPicture.asset('assets/icons/chat.svg'),
+                    child: SvgPicture.asset(
+                      'assets/icons/chat.svg',
+                      color: AppColors.darkprimary,
+                    ),
                   ),
                 ),
               ],

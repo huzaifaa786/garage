@@ -36,7 +36,7 @@ class _BookServiceViewState extends State<BookServiceView> {
         builder: (controller) => Scaffold(
               backgroundColor: AppColors.grey.withOpacity(0.2),
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(95.0),
+                preferredSize: Size.fromHeight(70.0),
                 child: Container(
                   decoration: BoxDecoration(
                     boxShadow: [appbarShadow],

@@ -22,17 +22,19 @@ class PaymentView extends StatelessWidget {
     return GetBuilder<PaymentsController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],
             ),
             child: AppBar(
               automaticallyImplyLeading: false,
-              
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(title: 'Payment',showgarageicon: false,),
+              title: TopBar(
+                title: 'Payment',
+                showgarageicon: false,
+              ),
             ),
           ),
         ),
@@ -46,7 +48,7 @@ class PaymentView extends StatelessWidget {
                 Row(
                   children: [
                     AppText(
-                      title: 'Items ( ' + '2' + ' )',
+                      title: 'Items ( 2 )',
                       size: 12,
                       fontWeight: FontWeight.w600,
                     ),
@@ -130,12 +132,12 @@ class PaymentView extends StatelessWidget {
             color: AppColors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.25),
+                color: Colors.grey.withOpacity(0.1),
                 blurRadius: 4,
                 offset: Offset(4, 4),
               ),
               BoxShadow(
-                color: Colors.black.withOpacity(0.25),
+                color: Colors.grey.withOpacity(0.1),
                 blurRadius: 4,
                 offset: Offset(-4, -4),
               ),

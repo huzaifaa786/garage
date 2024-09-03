@@ -33,7 +33,7 @@ class _EditProfileViewState extends State<EditProfileView> {
     return GetBuilder<EditProfileController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],
@@ -57,11 +57,11 @@ class _EditProfileViewState extends State<EditProfileView> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Gap(52),
+                  Gap(8),
                   Stack(
                     children: [
                       CircleAvatar(
-                        radius: 55,
+                        radius: 50,
                         backgroundColor: Colors.grey[300],
                         backgroundImage: controller.cameraImage != null
                             ? FileImage(controller.cameraImage!)
@@ -72,8 +72,8 @@ class _EditProfileViewState extends State<EditProfileView> {
                                 child: CachedNetworkImage(
                                   imageUrl:
                                       'https://dummyimage.com/70x70/000/0011ff',
-                                  height: 110,
-                                  width: 106,
+                                  height: 100,
+                                  width: 100,
                                   fit: BoxFit.cover,
                                   placeholder: (context, url) =>
                                       CircularProgressIndicator(),
@@ -107,6 +107,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   ),
                   Gap(22),
                   MainInput(
+                    height: Get.height * 0.07,
                     hint: 'Name'.tr,
                     controller: controller.nameController,
                     errorText: '',
@@ -128,6 +129,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   ),
                   Gap(12),
                   MainInput(
+                    height: Get.height * 0.07,
                     hint: 'Email'.tr,
                     controller: controller.emailController,
                     errorText: '',
@@ -135,6 +137,7 @@ class _EditProfileViewState extends State<EditProfileView> {
 
                   Gap(22),
                   MainInput(
+                    height: Get.height * 0.07,
                     hint: '+971  User 2366718'.tr,
                     readOnly: true,
                     controller: controller.phoneController,
@@ -175,6 +178,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   MainButton(
                     title: 'Save changes',
                     buttonWidth: Get.width * 0.77,
+                    height: Get.height * 0.077,
                     onTap: () {
                       Get.back();
                     },

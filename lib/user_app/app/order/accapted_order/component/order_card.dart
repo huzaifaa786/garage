@@ -82,12 +82,13 @@ class _OrderCardState extends State<OrderCard> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(60)),
                             child: const ClipRRect(
-                                // borderRadius: BorderRadius.circular(60),
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(13)),
-                                child: AppNetworkImage(
-                                  assetPath: 'assets/images/mobiloil.png',
-                                )),
+                              // borderRadius: BorderRadius.circular(60),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(13)),
+                              child: AppNetworkImage(
+                                assetPath: 'assets/images/mobiloil.png',
+                              ),
+                            ),
                           ),
 
                           const AppText(
@@ -154,17 +155,15 @@ class _OrderCardState extends State<OrderCard> {
                         allowHalfRating: true,
                         itemCount: 5,
                         glow: false,
-                        itemSize: 14,
+                        itemSize: 12,
                         unratedColor: Colors.grey,
-                        itemPadding:
-                            const EdgeInsets.symmetric(horizontal: 2.0),
                         itemBuilder: (context, _) =>
                             const Icon(Icons.star, color: Colors.yellow),
                         onRatingUpdate: (rating) {
                           controller.updateRating(rating);
                         },
                       ),
-                      const Gap(10),
+                      const Gap(5),
                       AppText(
                         title: controller.ratings.toString(),
                         size: 8.0,
@@ -180,34 +179,43 @@ class _OrderCardState extends State<OrderCard> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(
-                        Icons.location_on_outlined,
-                        size: 15,
+                      SvgPicture.asset(
+                        'assets/icons/map_pin.svg',
+                        width: 11,
+                        height: 10,
+                        fit: BoxFit.scaleDown,
                       ),
-                      RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Dubai",
-                          style: TextStyle(
-                              color: AppColors.black,
-                              fontSize: 8,
-                              fontWeight: FontWeight.w500),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: "  ",
-                              style: TextStyle(
-                                  color: AppColors.grey,
-                                  fontSize: 8,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            TextSpan(
-                              text: "Zayed street , road 3452",
-                              style: TextStyle(
-                                  color: AppColors.grey,
-                                  fontSize: 8,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
+                      const Gap(3),
+                      // const Icon(
+                      //   Icons.map_,
+                      //   size: 15,
+                      // ),
+                      Flexible(
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: const TextSpan(
+                            text: "Dubai",
+                            style: TextStyle(
+                                color: AppColors.black,
+                                fontSize: 8,
+                                fontWeight: FontWeight.w500),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "  ",
+                                style: TextStyle(
+                                    color: AppColors.grey,
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              TextSpan(
+                                text: "Zayed street , road 3452",
+                                style: TextStyle(
+                                    color: AppColors.grey,
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -260,16 +268,20 @@ class _OrderCardState extends State<OrderCard> {
                                 print('object23');
                               },
                               child: Container(
-                                height: Get.height * 0.045,
-                                width: Get.width * 0.085,
-                                decoration: BoxDecoration(
-                                  color: AppColors.lightprimary,
-                                  borderRadius: BorderRadius.circular(80),
-                                ),
-                                child: Image.asset(
-                                  'assets/images/chat.png',
-                                ),
-                              ),
+                                  height: Get.height * 0.045,
+                                  width: Get.width * 0.085,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.lightprimary,
+                                    borderRadius: BorderRadius.circular(80),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    'assets/icons/chat.svg',
+                                    color: AppColors.primary,
+
+                                    // Image.asset(
+                                    //   'assets/images/chat.png',
+                                    // ),
+                                  )),
                             ),
                           ),
                         ],

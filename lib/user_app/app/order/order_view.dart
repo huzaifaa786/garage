@@ -27,7 +27,7 @@ class _OrderViewState extends State<OrderView> {
         autoRemove: false,
         builder: (controller) => Scaffold(
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(95.0),
+                preferredSize: Size.fromHeight(70),
                 child: Container(
                   decoration: BoxDecoration(
                     boxShadow: [appbarShadow],
@@ -75,19 +75,24 @@ class _OrderViewState extends State<OrderView> {
                               }),
                         ),
                         Gap(40),
-                        MainButton(
-                          title: 'Next',
-                          onTap: () {
-                            Get.toNamed(AppRoutes.acceptedorder);
-                            UiUtilites.successAlertDialog(
-                                context: context,
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.home);
-                                },
-                                title: 'Thank you!',
-                                description:
-                                    'A garage will accept your order from within 3-5 min.');
-                          },
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                          child: MainButton(
+                            title: 'Next',
+                            height: Get.height * 0.07,
+                            fontsize: 12,
+                            onTap: () {
+                              Get.toNamed(AppRoutes.acceptedorder);
+                              UiUtilites.successAlertDialog(
+                                  context: context,
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.home);
+                                  },
+                                  title: 'Thank you!',
+                                  description:
+                                      'A garage will accept your order from within 3-5 min.');
+                            },
+                          ),
                         ),
                         Gap(40),
                       ]),

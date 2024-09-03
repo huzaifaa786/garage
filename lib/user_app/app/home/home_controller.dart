@@ -39,11 +39,6 @@ class HomeController extends GetxController {
   bool get hasServices => services.isNotEmpty;
   int get itemCount => showAllItems ? services.length : 4;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
   var services = <ServiceItem>[
     ServiceItem(
         imageUrl: 'https://dummyimage.com/70x70/000/fff',
@@ -55,31 +50,31 @@ class HomeController extends GetxController {
         subText: ''),
     ServiceItem(
         imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Tyre Retations',
+        subText: ''),
+    ServiceItem(
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Road Assistance',
+        subText: ''),
+    ServiceItem(
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
+        text: 'Engine Diagnostic',
+        subText: ''),
+    ServiceItem(
+        imageUrl: 'https://dummyimage.com/70x70/000/fff',
         text: 'Battery',
         subText: ''),
     ServiceItem(
         imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Road Service',
+        text: 'Recovery',
         subText: ''),
     ServiceItem(
         imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Maintenance',
+        text: 'Air Conditioning',
         subText: ''),
     ServiceItem(
         imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Car Warranty',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Tyer Replacement',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Oil change',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Oil change',
+        text: 'Fuel Delivery',
         subText: ''),
   ];
 

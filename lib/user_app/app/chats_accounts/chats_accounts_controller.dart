@@ -9,7 +9,7 @@ class ChatsAccountsController extends GetxController {
       'onTab': () {
         Get.toNamed(AppRoutes.chatScreen);
       },
-      "imgurl": "https://dummyimage.com/61x61/000/fff",
+      'image': 'assets/images/street_garage.png',
       "messagetitle": "Street garage",
       "messageSubTitle": "oh hello ahmed, the batte ...",
       'newMessage': "3 New messages",
@@ -31,7 +31,6 @@ class ChatsAccountsController extends GetxController {
       "onTab": () {
         Get.toNamed(AppRoutes.chatScreen);
       },
-      "imgurl": "https://dummyimage.com/61x61/000/fff",
       "messagetitle": "Street garage",
       "messageSubTitle": "oh hello ahmed, the batte ...",
       'newMessage': " 3 days ago",

@@ -63,7 +63,7 @@ class GarageView extends StatelessWidget {
                     //   errorWidget: (context, url, error) => Icon(Icons.error),
                     // ),
                     Positioned(
-                      bottom: -30,
+                      bottom: -26,
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
@@ -78,8 +78,8 @@ class GarageView extends StatelessWidget {
                         child: ClipOval(
                             child: AppNetworkImage(
                           assetPath: 'assets/images/street_garage.png',
-                          height: Get.height * 0.088,
-                          width: Get.width * 0.2,
+                          height: Get.height * 0.08,
+                          width: Get.width * 0.16,
                         )),
                       ),
                     ),
@@ -184,7 +184,8 @@ class GarageView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(80),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
                             child: Row(
                               children: [
                                 Image.asset(
@@ -220,11 +221,12 @@ class GarageView extends StatelessWidget {
               //       minHeight: Get.height * 0.3,
               //       maxHeight: Get.height * 0.55),
               GridView.builder(
+                padding: EdgeInsets.only(left: 40.0, right: 30.0),
                 physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  crossAxisSpacing: 6.0,
+                  crossAxisSpacing: 1.0,
                   mainAxisSpacing: 18.0,
                   mainAxisExtent: Get.height * 0.18,
                 ),
@@ -243,6 +245,7 @@ class GarageView extends StatelessWidget {
                       imageUrl: item.imageUrl,
                       text: item.text,
                       subText: item.subText,
+                      
                     ),
                     //  ),
                   );
@@ -291,7 +294,7 @@ class GarageView extends StatelessWidget {
               Gap(30),
               SizedBox(
                 width: Get.width * 0.9,
-                height: Get.height * 0.25,
+                height: Get.height * 0.22,
                 child: ListView.builder(
                   itemCount: 4,
                   scrollDirection: Axis.horizontal,

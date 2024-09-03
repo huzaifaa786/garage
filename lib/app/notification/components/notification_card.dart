@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/notification/notification_controller.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -48,12 +49,18 @@ class NotificationCard extends StatelessWidget {
                                     )
                                   : ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
-                                      child: CachedNetworkImage(
-                                        imageUrl:
-                                            'https://dummyimage.com/93x93/000/fff',
-                                        height: 35,
-                                        width: 35,
-                                      )),
+                                      child: AppNetworkImage(
+                                        assetPath:
+                                            'assets/images/street_garage.png',
+                                            
+                                      ),
+                                      // child: CachedNetworkImage(
+                                      //   imageUrl:
+                                      //       'https://dummyimage.com/93x93/000/fff',
+                                      //   height: 35,
+                                      //   width: 35,
+                                      // ),
+                                    ),
                               Gap(10),
                               AppText(
                                 title: status == 'neworder'
@@ -82,8 +89,7 @@ class NotificationCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50),
                       child: AuthRichText(
-                        title:
-                            'Has been accepted your order!',
+                        title: 'Has been accepted your order!',
                         description: 'View_order',
                         titlesize: 12,
                         descriptiosize: 12,
@@ -111,7 +117,6 @@ class NotificationCard extends StatelessWidget {
                               verticalGap: 20,
                               activeIndex: controller.activestatus,
                               barThickness: 8,
-                              
                             ),
                           ),
                         ],

@@ -12,7 +12,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
-
 class AboutusView extends StatefulWidget {
   const AboutusView({super.key});
 
@@ -26,7 +25,7 @@ class _TermsConditionsViewState extends State<AboutusView> {
     return GetBuilder<AboutusController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],

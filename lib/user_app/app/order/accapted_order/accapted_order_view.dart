@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -59,18 +60,24 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
               Gap(6),
               OrderCard(),
               Gap(50),
-              MainButton(
-                title: 'Confirm',
-                btncolor: controller.isSelected
-                    ? AppColors.primary
-                    : AppColors.greybg,
-                onTap: () {
-                  controller.toggleSelection();
-                  if(controller.isSelected){
-                       Get.toNamed(AppRoutes.search_result);
-                  }
-              
-                },
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: MainButton(
+                  buttonWidth: Get.width * 0.8,
+                  height: Get.height * 0.07,
+                  title: 'Confirm',
+                  fontsize: 12,
+                  btncolor: controller.isSelected
+                      ? AppColors.primary
+                      : AppColors.greybg,
+                  onTap: () {
+                    controller.toggleSelection();
+                    if (controller.isSelected) {
+                      Get.toNamed(AppRoutes.search_result);
+                    }
+                  },
+                ),
               ),
             ],
           ),
