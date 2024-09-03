@@ -28,11 +28,11 @@ class _SaleViewState extends State<SaleView> {
               hasBgColor: false,
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(14.0),
+                        padding: EdgeInsets.all(12.0),
                         child: AppText(
                           title: '     *Select date to view sales',
                           size: 14,
@@ -100,15 +100,15 @@ class _SaleViewState extends State<SaleView> {
                       ),
                       onPageChanged: controller.onFormatChanged,
                       calendarFormat: controller.format,
-                      onFormatChanged: (CalendarFormat _format) {
+                      onFormatChanged: (CalendarFormat format) {
                         setState(() {
                           // _format == CalendarFormat.week
                           //     ? size = 0.59
                           //     : size = 0.319;
-                          _format == CalendarFormat.week
+                          format == CalendarFormat.week
                               ? controller.format1 = 'week'
                               : controller.format1 = 'month';
-                          controller.format = _format;
+                          controller.format = format;
                           // saleController.getSlaes();
                         });
                       },
@@ -116,15 +116,15 @@ class _SaleViewState extends State<SaleView> {
                       daysOfWeekVisible: true,
                     ),
                   ),
-                  Gap(10),
+                  const Gap(10),
                   Image.asset('assets/images/sale.png'),
-                  Gap(10),
-                  AppText(
+                  const Gap(10),
+                  const AppText(
                     title: 'Total sales',
                     size: 16,
                     fontWeight: FontWeight.w500,
                   ),
-                  Gap(20),
+                  const Gap(18),
                   Container(
                     height: 60,
                     width: Get.width * 0.65,
@@ -136,14 +136,14 @@ class _SaleViewState extends State<SaleView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppText(
-                          title: '00.00' + 'AED',
+                          title: '00.00' 'AED',
                           size: 20,
                           color: AppColors.primary_color,
                           fontWeight: FontWeight.w600,
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ));

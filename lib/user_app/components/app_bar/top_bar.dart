@@ -87,20 +87,18 @@ class TopBar extends StatelessWidget {
             ),
           ),
         ),
-        if(showstack)
-        Positioned(
-          top: 1,
-          right: 8,
-          child: Container(
-            height: 4,
-            width: 4,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.primary,
-            ),
-          ),
-        )
-       
+        // Positioned(
+        //   top: 1,
+        //   right: 8,
+        //   child: Container(
+        //     height: 4,
+        //     width: 4,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(10),
+        //       color: AppColors.primary,
+        //     ),
+        //   ),
+        // )
       ],
     );
   }

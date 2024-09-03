@@ -29,15 +29,16 @@ class ServiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width * 0.32,
+      margin: EdgeInsets.only(bottom: 4),
       // height: Get.height * 0.3 / 1.3,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            blurRadius: 4,
-            offset: Offset(0, 4),
+            color: Colors.grey.withOpacity(0.25),
+            blurRadius: 10,
+            offset: Offset(0, 3),
           ),
         ],
       ),
