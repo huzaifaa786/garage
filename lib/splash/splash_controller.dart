@@ -28,7 +28,6 @@ class SplashController extends GetxController {
       checkFirstSeen();
     });
   }
-
   Future checkFirstSeen() async {
     String? apiToken = box.read('api_token');
      if (apiToken != null) {
@@ -37,4 +36,4 @@ class SplashController extends GetxController {
         Get.offNamed(AppRoutes.search);
       }
   }
-}
+}    

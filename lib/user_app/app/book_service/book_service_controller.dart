@@ -26,8 +26,8 @@ void onServiceSelected(String service) {
 
   //! List for car names
   final List<String> carNames = [
-    'Mercedes-Benz',
-    'Mercedes-Benz SL-Class',
+    'white Mercedes 2022',
+    'Black Mercedes 2022',
     'Mercedes-Benz GLA-Class',
     'Mercedes-Benz EQC',
   ];

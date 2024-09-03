@@ -2,6 +2,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,7 @@ class BookServiceView extends StatefulWidget {
 }
 
 class _BookServiceViewState extends State<BookServiceView> {
+  int i = 0;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BookServiceController>(
@@ -181,9 +183,23 @@ class _BookServiceViewState extends State<BookServiceView> {
                       child: Column(
                         children: [
                           CarouselSlider.builder(
-                            itemCount: 5,
+                            options: CarouselOptions(
+                              height: 190,
+                              enableInfiniteScroll: true,
+                              autoPlay: true,
+                              autoPlayCurve: Curves.ease,
+                              viewportFraction: 0.8,
+                              enlargeCenterPage: false,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  i = index;
+                                });
+                              },
+                            ),
+                            itemCount: 3,
                             itemBuilder: (context, index, realIndex) {
                               return BannerCard(
+                                //  assetPath: 'assets/images/home_crousal.png',
                                 picture: 'assets/images/washing.png',
                                 isRectangle: true,
                                 onTap: () {
@@ -191,41 +207,31 @@ class _BookServiceViewState extends State<BookServiceView> {
                                 },
                               );
                             },
-                            options: CarouselOptions(
-                              height: Get.height * 0.28,
-                              enableInfiniteScroll: true,
-                              autoPlay: false,
-                              viewportFraction: 0.9,
-                              enlargeCenterPage: false,
-                              initialPage: controller.carouselIndex,
-                              onPageChanged: (index, reason) {
-                                setState(() {
-                                  controller.updateCarouselIndex(index);
-                                });
-                              },
-                            ),
                           ),
                           Gap(10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SmoothPageIndicator(
-                                controller: PageController(),
-                                count: 5,
-                                axisDirection: Axis.horizontal,
-                                effect: ColorTransitionEffect(
-                                    dotHeight: 5,
-                                    dotWidth: 5,
-                                    activeDotColor: AppColors.primary,
-                                    dotColor: AppColors.lightprimary),
+                                controller: PageController(
+                                    initialPage: i, keepPage: true),
+                                count: 3,
+                                effect: JumpingDotEffect(
+                                  activeDotColor: AppColors.primary,
+                                  dotColor: AppColors.lightprimary,
+                                  dotWidth: 5.0,
+                                  dotHeight: 5.0,
+                                  jumpScale: 0.7,
+                                ),
                               ),
                             ],
                           ),
                           Gap(11),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 45.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 45.0, vertical: 22),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   mainAxisAlignment:
@@ -281,7 +287,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                     ),
                     Gap(7),
                     Container(
-                      height: Get.height * 0.15,
+                      height: Get.height * 0.19,
                       width: Get.width,
                       color: AppColors.white,
                       child: Padding(
@@ -312,7 +318,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                       width: Get.width,
                       color: AppColors.white,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 45.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -330,7 +336,9 @@ class _BookServiceViewState extends State<BookServiceView> {
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 6.0,
-                                mainAxisSpacing: 6.0,
+                                mainAxisSpacing: 10.0,
+                                mainAxisExtent: 92,
+                                
                               ),
                               itemCount: controller.services.length,
                               itemBuilder: (context, index) {

@@ -19,24 +19,18 @@ class _ChatScreenViewState extends State<ChatScreenView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ChatScreenController>(
-      builder: (controller) => Scaffold(
-        resizeToAvoidBottomInset: true, 
-       appBar: AppBar(
-              toolbarHeight: Get.height * 0.12,
-              automaticallyImplyLeading: false,
-              title: ChatTopBar(
-                showicon: true,
-                title: "Street garage",
-              ),
-            ),
-        body: SingleChildScrollView(
+      autoRemove: false,
+      builder: (controller) => ChatAppbar(
+        hasIcon: true,
+        appBarTitle: 'Street garage',
+        hasBgColor: true,
+        child: SingleChildScrollView(
           child: Column(
             children: [
-             Gap(10),
+              Gap(10),
               Container(
-                height: Get.height * 0.75, // Adjust this to fit your chat messages
-                // Chat messages container
-                // ...
+                height: Get.height * 0.75,
+                // chat messages container
               ),
               Divider(
                 thickness: 2,

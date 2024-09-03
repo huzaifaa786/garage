@@ -3,6 +3,7 @@
 class ImageConst {
   ///images
   static const appLogo = "assets/images/logo.png";
+  static const appLogoSvg = "assets/icons/mobile_garagelogo.svg";
   static const home_ic = "assets/images/home_ic.png";
   static const success_ic = "assets/images/success.png";
 
@@ -13,3 +14,5 @@ class ImageConst {
   static const image_ic = "assets/icons/image_ic.svg";
   static const cancel_ic = "assets/icons/cross.svg";
 }
+
+  // mobile_garagelogo

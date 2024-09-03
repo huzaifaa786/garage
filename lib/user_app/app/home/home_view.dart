@@ -175,7 +175,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     Gap(30),
                     GridView.builder(
-                      padding: EdgeInsets.only(left: 40.0, right: 30.0),
+                      padding: EdgeInsets.only(left: 20.0, right: 20.0),
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
