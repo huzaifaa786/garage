@@ -29,16 +29,11 @@ class ServicesTypesCard extends StatelessWidget {
         color: AppColors.white,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
-          // BoxShadow(
-          //   color: Colors.black.withOpacity(0.25),
-          //   blurRadius: 4,
-          //   // offset: Offset(0, 4),
-          // ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.1), // lighter shadow color
-            blurRadius: 1, // higher blur radius for a softer shadow
-            offset: Offset(0, 5), // vertical offset
-            spreadRadius: 0, // slight spread to extend the shadow
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 1,
+            offset: Offset(0, 5),
+            spreadRadius: 0,
           ),
         ],
       ),
@@ -56,7 +51,6 @@ class ServicesTypesCard extends StatelessWidget {
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              
               children: [
                 Gap(15),
                 AppText(

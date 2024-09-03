@@ -46,6 +46,7 @@ class _SearchViewState extends State<SearchView> {
                 showicon: true,
                 title: 'Search',
                 showgarageicon: false,
+                 
               ),
             ),
           ),

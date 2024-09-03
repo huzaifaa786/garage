@@ -31,8 +31,10 @@ class VSignInView extends StatelessWidget {
                 children: [
                   Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child: Image.asset(ImageConst.appLogo,
-                          width: 172, height: 108)),
+                      // child: Image.asset(ImageConst.appLogo,
+                      //     width: 172, height: 108)
+                        child: SvgPicture.asset('assets/icons/mobile_garagelogo.svg',color:AppColors.white_color,height:  108,width: 172,),
+                          ),
                   Expanded(
                     child: Stack(
                       children: [

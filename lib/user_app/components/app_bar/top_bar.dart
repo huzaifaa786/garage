@@ -14,6 +14,7 @@ class TopBar extends StatelessWidget {
     this.showicon = true,
     this.showgarageicon = true,
     this.showtrailingicon = false,
+    this.showstack = false,
     this.textColor = AppColors.darkprimary,
   });
 
@@ -21,6 +22,7 @@ class TopBar extends StatelessWidget {
   final bool showicon;
   final bool showgarageicon;
   final bool showtrailingicon;
+  final bool showstack;
   final Color textColor;
 
   @override
