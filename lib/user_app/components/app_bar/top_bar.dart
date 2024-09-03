@@ -14,7 +14,7 @@ class TopBar extends StatelessWidget {
     this.showicon = true,
     this.showgarageicon = true,
     this.showtrailingicon = false,
-    this.showstack = true,
+    this.showstack = false,
     this.textColor = AppColors.darkprimary,
   });
 
