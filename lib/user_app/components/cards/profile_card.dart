@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/route_manager.dart';
 import 'package:mobilegarage/routes/app_pages.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -30,8 +32,8 @@ class ProfileCard extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 11),
-        height: Get.height * 0.14,
+        padding: const EdgeInsets.symmetric(horizontal: 11),
+        height: Get.height * 0.1,
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
@@ -60,28 +62,32 @@ class ProfileCard extends StatelessWidget {
                     //   ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(80),
-                      child: CachedNetworkImage(
-                        imageUrl: image,
-                        height: 70,
-                        width: 70,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      child: const AppNetworkImage(
+                        assetPath: 'assets/images/user_profile.png',
                       ),
+                      // child: CachedNetworkImage(
+                      //   imageUrl: image,
+                      //   height: 70,
+                      //   width: 70,
+                      //   fit: BoxFit.cover,
+                      //   placeholder: (context, url) =>
+                      //       CircularProgressIndicator(),
+                      //   errorWidget: (context, url, error) => Icon(Icons.error),
+                      // ),
                     ),
                     // ),
                     Positioned(
                         bottom: 0,
                         right: 0,
                         child: GestureDetector(
-                            onTap: () {
-                              Get.toNamed(AppRoutes.editprofile);
-                            },
-                            child: Image.asset('assets/images/edit.png'))),
+                          onTap: () {
+                            Get.toNamed(AppRoutes.editprofile);
+                          },
+                          // child: Image.asset('assets/images/edit.png')
+                        )),
                   ],
                 ),
-                Gap(10),
+                const Gap(10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -89,16 +95,16 @@ class ProfileCard extends StatelessWidget {
                     Text(
                       userName,
                       //'User38498990'
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 14,
                           //fontWeight: FontWeight.bold,
                           fontWeight: FontWeight.w500),
                     ),
-                    Gap(2),
+                    const Gap(2),
                     Text(
                       userName,
                       //'+971 0000 0000'
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                         color: AppColors.grey,
@@ -116,19 +122,19 @@ class ProfileCard extends StatelessWidget {
                     'image': 'https://dummyimage.com/70x70/000/0011ff',
                     'userName': 'User38498990',
                     'userNumber': '+971 0000 0000',
-                     'userEmail' : 'ahmed34@gmail.com'
+                    'userEmail': 'ahmed34@gmail.com'
                   },
                 );
               },
               child: Row(
                 children: [
-                  AppText(
+                  const AppText(
                     title: 'Edit',
                     color: AppColors.primary,
                     size: 12,
                     fontWeight: FontWeight.w500,
                   ),
-                  Gap(5),
+                  const Gap(5),
                   Container(
                     height: 20,
                     width: 20,

@@ -24,7 +24,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
     return GetBuilder<TermsConditionsController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],

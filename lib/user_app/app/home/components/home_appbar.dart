@@ -18,8 +18,8 @@ class HomeAppbar extends StatelessWidget {
       children: [
         SvgPicture.asset(
           'assets/icons/home_logo.svg',
-          height: 37,
-          width: 143,
+          height: 30,
+          width: 130,
         ),
         Gap(45),
         Column(

@@ -79,7 +79,7 @@ class GarageView extends StatelessWidget {
                             child: AppNetworkImage(
                           assetPath: 'assets/images/street_garage.png',
                           height: Get.height * 0.08,
-                          width: Get.width * 0.18,
+                          width: Get.width * 0.16,
                         )),
                       ),
                     ),
@@ -221,11 +221,12 @@ class GarageView extends StatelessWidget {
               //       minHeight: Get.height * 0.3,
               //       maxHeight: Get.height * 0.55),
               GridView.builder(
+                padding: EdgeInsets.only(left: 40.0, right: 30.0),
                 physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  crossAxisSpacing: 6.0,
+                  crossAxisSpacing: 1.0,
                   mainAxisSpacing: 18.0,
                   mainAxisExtent: Get.height * 0.18,
                 ),
@@ -244,6 +245,7 @@ class GarageView extends StatelessWidget {
                       imageUrl: item.imageUrl,
                       text: item.text,
                       subText: item.subText,
+                      
                     ),
                     //  ),
                   );

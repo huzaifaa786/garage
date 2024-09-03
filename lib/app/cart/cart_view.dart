@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/cart/cart_controller.dart';
 import 'package:mobilegarage/app/cart/components/cart_card.dart';
+import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.dart';
@@ -21,11 +22,11 @@ class CartView extends StatelessWidget {
       autoRemove: false,
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
-              boxShadow: [appbarShadow],
-            ),
+                // boxShadow: [appbarShadow],
+                ),
             child: AppBar(
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
@@ -44,7 +45,7 @@ class CartView extends StatelessWidget {
                 Row(
                   children: [
                     AppText(
-                      title: 'Items ( ' + '2' + ' )',
+                      title: 'Items ( 2 )',
                       size: 12,
                       fontWeight: FontWeight.w600,
                     ),
@@ -89,7 +90,7 @@ class CartView extends StatelessWidget {
           ),
         )),
         bottomNavigationBar: Container(
-          height: 100,
+          height: 90,
           decoration: BoxDecoration(
               border: Border.all(color: AppColors.grey.withOpacity(0.4))),
           child: Row(
@@ -112,8 +113,9 @@ class CartView extends StatelessWidget {
                   ),
                 ],
               ),
-              MainButton(
-                buttonWidth: Get.width * 0.5,
+              IconMainButton(
+                buttonWidth: Get.width * 0.4,
+                height: Get.height * 0.06,
                 title: 'Purchase',
               ),
             ],

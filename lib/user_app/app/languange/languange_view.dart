@@ -23,7 +23,7 @@ class _LanguangeViewState extends State<LanguangeView> {
     return GetBuilder<LanguagesController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: const Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],
@@ -32,7 +32,7 @@ class _LanguangeViewState extends State<LanguangeView> {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(
+              title: const TopBar(
                 showgarageicon: false,
                 showicon: true,
                 title: "Language",
@@ -42,7 +42,7 @@ class _LanguangeViewState extends State<LanguangeView> {
         ),
         body: SafeArea(
             child: Container(
-          padding: EdgeInsets.only(left: 40, right: 40, top: 30),
+          padding: const EdgeInsets.only(left: 40, right: 40, top: 30),
           child: Column(
             children: [
               InkWell(
@@ -69,8 +69,8 @@ class _LanguangeViewState extends State<LanguangeView> {
                               ? AppColors.black
                               : AppColors.black,
                         ),
-                        Gap(5),
-                        AppText(
+                        const Gap(5),
+                        const AppText(
                           title: 'Default',
                           size: 12,
                           fontWeight: FontWeight.w400,
@@ -95,7 +95,7 @@ class _LanguangeViewState extends State<LanguangeView> {
                   ],
                 ),
               ),
-              Gap(22),
+              const Gap(22),
               InkWell(
                 onTap: () async {
                   await controller.toggleplan(translateMethod.Arabic);
@@ -123,8 +123,8 @@ class _LanguangeViewState extends State<LanguangeView> {
                                 ? AppColors.black
                                 : AppColors.black,
                           ),
-                          Gap(5),
-                          AppText(
+                          const Gap(5),
+                          const AppText(
                             title: 'Arabic',
                             size: 12,
                             fontWeight: FontWeight.w400,

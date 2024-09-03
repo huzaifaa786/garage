@@ -57,14 +57,14 @@ class ServicesIcons extends StatelessWidget {
                 title: text,
                 fontWeight: FontWeight.w500,
                 color: AppColors.primarybg,
-                size: 12.0,
+                size: 10.0,
                 textAlign: TextAlign.center,
                 overFlow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
             ),
           ),
-          Gap(3),
+          Gap(1),
           Flexible(
             flex: 1,
             child: SizedBox(

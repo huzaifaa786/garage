@@ -7,7 +7,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
-
 class PromotionView extends StatefulWidget {
   const PromotionView({super.key});
 
@@ -22,7 +21,7 @@ class _PromotionViewState extends State<PromotionView> {
         autoRemove: false,
         builder: (controller) => Scaffold(
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(95.0),
+                preferredSize: const Size.fromHeight(70.0),
                 child: Container(
                   decoration: BoxDecoration(
                     boxShadow: [appbarShadow],
@@ -31,7 +30,7 @@ class _PromotionViewState extends State<PromotionView> {
                     automaticallyImplyLeading: false,
                     scrolledUnderElevation: 0.0,
                     toolbarHeight: 95.0,
-                    title: TopBar(
+                    title: const TopBar(
                       showicon: true,
                       showgarageicon: false,
                       title: "Promotion",
@@ -41,8 +40,8 @@ class _PromotionViewState extends State<PromotionView> {
               ),
               body: SafeArea(
                   child: Container(
-                padding: EdgeInsets.only(left: 46,  top: 40),
-                child: Column(
+                padding: const EdgeInsets.only(left: 46, top: 40),
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -60,28 +59,28 @@ class _PromotionViewState extends State<PromotionView> {
                       color: AppColors.primary,
                     ),
                     Gap(17),
-                      AppText(
+                    AppText(
                       title: 'Use Code H27 for 15% discount for first order! ',
                       size: 10,
                       fontWeight: FontWeight.w500,
                       color: AppColors.primary,
                     ),
                     Gap(17),
-                      AppText(
+                    AppText(
                       title: 'Use voucher AED for 30%',
                       size: 10,
                       fontWeight: FontWeight.w500,
                       color: AppColors.primary,
                     ),
                     Gap(17),
-                      AppText(
+                    AppText(
                       title: 'Use voucher AED for 30% ',
                       size: 10,
                       fontWeight: FontWeight.w500,
                       color: AppColors.primary,
                     ),
                     Gap(32),
-                     AppText(
+                    AppText(
                       title: 'New Promotion!',
                       size: 14,
                       fontWeight: FontWeight.w600,
@@ -95,21 +94,21 @@ class _PromotionViewState extends State<PromotionView> {
                       color: AppColors.primary,
                     ),
                     Gap(17),
-                      AppText(
+                    AppText(
                       title: 'Use Code H27 for 15% discount for first order! ',
                       size: 10,
                       fontWeight: FontWeight.w500,
                       color: AppColors.primary,
                     ),
                     Gap(17),
-                      AppText(
+                    AppText(
                       title: 'Use voucher AED for 30%',
                       size: 10,
                       fontWeight: FontWeight.w500,
                       color: AppColors.primary,
                     ),
                     Gap(17),
-                      AppText(
+                    AppText(
                       title: 'Use voucher AED for 30% ',
                       size: 10,
                       fontWeight: FontWeight.w500,

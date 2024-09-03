@@ -8,7 +8,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
-
 class FaqView extends StatefulWidget {
   const FaqView({super.key});
 
@@ -23,7 +22,7 @@ class _FaqViewState extends State<FaqView> {
       autoRemove: false,
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: const Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],
@@ -32,7 +31,7 @@ class _FaqViewState extends State<FaqView> {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(
+              title: const TopBar(
                 showicon: true,
                 showgarageicon: false,
                 title: "FAQ",
@@ -42,17 +41,18 @@ class _FaqViewState extends State<FaqView> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 54.0, vertical: 50.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 54.0, vertical: 50.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppText(
+                const AppText(
                   title: 'Popular questions?',
                   size: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.darkprimary,
                 ),
-                Gap(28),
+                const Gap(28),
                 Expanded(
                   child: ListView.builder(
                     padding: EdgeInsets.zero,

@@ -73,11 +73,9 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                 : circularInputDecoration,
             child: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
-                
                 hint: Padding(
                   padding: const EdgeInsets.only(left: 6.0),
                   child: AppText(
-                  
                     title: widget.hint,
                     size: 13,
                     fontWeight: FontWeight.w400,
@@ -96,7 +94,7 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                                 ? AppColors.white_color
                                 : AppColors.black,
                           ),
-                        Gap(8),
+                        const Gap(8),
                         Text(
                           item.title,
                           style: TextStyle(
@@ -136,7 +134,7 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
                   }).toList();
                 },
                 menuItemStyleData: MenuItemStyleData(
-                  height: 60,
+                  height: 55,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   selectedMenuItemBuilder: (context, child) =>
                       Container(color: AppColors.primary_color, child: child),
@@ -169,7 +167,7 @@ class _MainInputDropdownState extends State<MainInputDropdown> {
           ),
           if (widget.errorText?.isNotEmpty ?? false)
             Padding(
-              padding: EdgeInsets.only(top: 4, left: 16, right: 16),
+              padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
               child: AppText(
                 title: widget.errorText!,
                 color: AppColors.primary_color,

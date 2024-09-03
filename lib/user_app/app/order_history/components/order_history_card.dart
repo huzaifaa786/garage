@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -44,7 +45,7 @@ class OrderHistoryCard extends StatelessWidget {
                   Gap(3),
                   AppText(
                     title: "Tracking Number  (${orders!['TrackingNumber']})",
-                    color: AppColors.darkprimary,
+                    color: AppColors.primary_color,
                     size: 10,
                     fontWeight: FontWeight.w400,
                   ),
@@ -59,17 +60,20 @@ class OrderHistoryCard extends StatelessWidget {
                     height: 98.0,
                     decoration: BoxDecoration(
                       color: Color(0xff7c94b6),
-                      image: DecorationImage(
-                        image: NetworkImage(
-                          orders!["productImage"].toString(),
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                      // image: DecorationImage(
+                      //   image: NetworkImage(
+                      //     orders!["productImage"].toString(),
+                      //   ),
+                      //   fit: BoxFit.cover,
+                      // ),
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       border: Border.all(
                         color: AppColors.grey.shade100,
                         width: 3.0,
                       ),
+                    ),
+                    child: AppNetworkImage(
+                      assetPath: 'assets/images/battery.png',
                     ),
                   ),
                   Gap(10),
@@ -100,7 +104,7 @@ class OrderHistoryCard extends StatelessWidget {
                             title: orders!["client Name"].toString(),
                             fontWeight: FontWeight.w600,
                             size: 12,
-                            color: AppColors.darkprimary,
+                            color: AppColors.primary,
                           ),
                         ],
                       ),

@@ -27,7 +27,7 @@ class _OrderViewState extends State<OrderView> {
         autoRemove: false,
         builder: (controller) => Scaffold(
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(95.0),
+                preferredSize: Size.fromHeight(70),
                 child: Container(
                   decoration: BoxDecoration(
                     boxShadow: [appbarShadow],
