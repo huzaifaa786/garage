@@ -29,7 +29,11 @@ class SplashController extends GetxController {
     });
   }
   Future checkFirstSeen() async {
-    Get.offAllNamed(AppRoutes.selectlang);
-   
+    String? apiToken = box.read('api_token');
+     if (apiToken != null) {
+        Get.offNamed(AppRoutes.main);
+      } else {
+        Get.offNamed(AppRoutes.selectside);
+      }
   }
 }    

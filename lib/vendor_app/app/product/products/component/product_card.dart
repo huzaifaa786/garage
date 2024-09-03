@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/button.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/products_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
@@ -14,7 +15,7 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
-    this.img = 'https://dummyimage.com/50x47/000/fff',
+    this.img = 'assets/images/washing.png',
     this.price,
   });
   final img;
@@ -30,7 +31,7 @@ class ProductCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             color: AppColors.white_color,
             boxShadow: [
-              BoxShadow(
+              const BoxShadow(
                 color: Colors.grey,
                 blurRadius: 4,
               ),
@@ -47,29 +48,33 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: CachedNetworkImage(
-                      imageUrl: controller.image?.isEmpty ?? true
-                          ? img
-                          : controller.image.toString(),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(10),
+                      // child: CachedNetworkImage(
+                      //   imageUrl: controller.image?.isEmpty ?? true
+                      //       ? img
+                      //       : controller.image.toString(),
+                      //   placeholder: (context, url) =>
+                      //       const CircularProgressIndicator(),
+                      //   errorWidget: (context, url, error) =>
+                      //       const Icon(Icons.error),
+                      //   fit: BoxFit.cover,
+                      // ),
+                      child: AppNetworkImage(
+                        assetPath: 'assets/images/black_tyre.png',
+                        width: Get.width,
+                      )),
                 ),
-                Gap(10),
+                const Gap(10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
+                    const AppText(
                       title: 'Car Tyre',
                       size: 14,
                       fontWeight: FontWeight.w600,
                     ),
                     AppText(
-                      title: price+' AED',
+                      title: price + ' AED',
                       size: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.lightblue,
@@ -78,7 +83,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         EdittButton(
-                            ontap: () {
+                          ontap: () {
                             Get.toNamed(AppRoutes.vproduct_form_view);
                           },
                           icon: 'assets/images/edit.svg',
@@ -86,7 +91,7 @@ class ProductCard extends StatelessWidget {
                           text: 'Edit',
                           color: AppColors.light_red,
                         ),
-                        Gap(12),
+                        const Gap(12),
                         EdittButton(
                           icon: 'assets/images/delete.svg',
                           width: Get.width * 0.22,

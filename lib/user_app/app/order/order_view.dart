@@ -60,10 +60,10 @@ class _OrderViewState extends State<OrderView> {
                               stepperData: controller.stepperData,
                               stepAvatar: (_, data) {
                                 return PreferredSize(
-                                    preferredSize: Size.fromRadius(5),
+                                    preferredSize: Size.fromRadius(3),
                                     child: Container(
-                                      height: 4,
-                                      width: 4,
+                                      height: 6,
+                                      width: 6,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: AppColors.primarybg,

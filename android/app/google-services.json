@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "457022457516",
+    "project_id": "garage-67679",
+    "storage_bucket": "garage-67679.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457022457516:android:d82102f158303da3e80109",
+        "android_client_info": {
+          "package_name": "com.tritec.m"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl1FsCqYfDAncFFFtf_VLMrjAWSepRNZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457022457516:android:c8841049ab5cf1c8e80109",
+        "android_client_info": {
+          "package_name": "com.tritec.mobilegarage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl1FsCqYfDAncFFFtf_VLMrjAWSepRNZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
