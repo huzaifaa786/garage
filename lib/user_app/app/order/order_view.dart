@@ -57,18 +57,23 @@ class _OrderViewState extends State<OrderView> {
                               shrinkWrap: true,
                               physics: BouncingScrollPhysics(),
                               showStepperInLast: true,
+                              stepperThemeData: StepperThemeData(
+                                lineColor: AppColors.primary,
+                                lineWidth: 1,
+                              ),
                               stepperData: controller.stepperData,
                               stepAvatar: (_, data) {
                                 return PreferredSize(
-                                    preferredSize: Size.fromRadius(3),
-                                    child: Container(
-                                      height: 6,
-                                      width: 6,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: AppColors.primarybg,
-                                      ),
-                                    ));
+                                  preferredSize: Size.fromRadius(3),
+                                  child: Container(
+                                    height: 6,
+                                    width: 6,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColors.primarybg,
+                                    ),
+                                  ),
+                                );
                               },
                               stepContentWidget: (context, value) {
                                 return value.content;

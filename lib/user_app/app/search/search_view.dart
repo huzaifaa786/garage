@@ -13,7 +13,6 @@ import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/cards/bottomsheet_container.dart';
 
-
 import 'package:mobilegarage/user_app/components/textfields/icon_inputfield.dart';
 import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -34,7 +33,7 @@ class _SearchViewState extends State<SearchView> {
     return GetBuilder<SearchScreenController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: Size.fromHeight(.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],
@@ -61,40 +60,38 @@ class _SearchViewState extends State<SearchView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconInputField(
-                      width: Get.width * 0.7,
-                      hasprefix: true,
-                      hint: 'street,garages'.tr,
-                      readOnly: false,
-                      onChange: (value) {
-                        Get.toNamed(AppRoutes.search);
-                      },
+                    Flexible(
+                      child: IconInputField(
+                        hasprefix: true,
+                        hint: 'street,garages'.tr,
+                        readOnly: false,
+                        onChange: (value) {
+                          Get.toNamed(AppRoutes.search);
+                        },
+                      ),
                     ),
+                    Gap(20),
                     GestureDetector(
                       onTap: () {
                         Get.bottomSheet(FilterBottomsheet(),
                             isScrollControlled: true);
                       },
                       child: Container(
-                          height: 37,
-                          width: 37,
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.lightPink,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(
-                                      0.2), // Adjust opacity as needed
-                                  blurRadius: 6.0,
-                                )
-                              ]),
-                          child: SvgPicture.asset(
-                            "assets/icons/filter.svg",
-                            height: 1,
-                            width: 1,
-                            alignment: Alignment.center,
-                          )),
+                        height: 36,
+                        width: 36,
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.lightPink,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 6.0,
+                            ),
+                          ],
+                        ),
+                        child: SvgPicture.asset("assets/icons/filter.svg"),
+                      ),
                     ),
                   ],
                 ),
@@ -140,8 +137,8 @@ class _SearchViewState extends State<SearchView> {
                         childAspectRatio: 0.82),
                     itemBuilder: (context, index) {
                       return ServiceCard(
-                           image: "https://dummyimage.com/90x90/d9c3d9/00000a",
-                              // image:    " https://dummyimage.com/132x99/000/fff",
+                          image: "https://dummyimage.com/90x90/d9c3d9/00000a",
+                          // image:    " https://dummyimage.com/132x99/000/fff",
                           time: "30 min",
                           title: "1223",
                           onTap: () {},
