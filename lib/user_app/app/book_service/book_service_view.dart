@@ -48,6 +48,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                     title: TopBar(
                       title: 'Street Garage',
                       showtrailingicon: true,
+                      showstack: false,
                     ),
                   ),
                 ),
