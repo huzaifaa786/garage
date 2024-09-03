@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
@@ -37,7 +38,8 @@ class SignupView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset('assets/images/splash_logo.png'),
+             // Image.asset('assets/images/splash_logo.png'),
+             SvgPicture.asset('assets/icons/mobile_garagelogo.svg',color:AppColors.white,height:  162,width: 293,),
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(

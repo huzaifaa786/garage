@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,41 +22,42 @@ class _ChatScreenViewState extends State<ChatScreenView> {
   Widget build(BuildContext context) {
     return GetBuilder<ChatScreenController>(
       autoRemove: false,
-      builder: (controller) => ChatAppbar(
-        hasIcon: true,
-        appBarTitle: 'Street garage',
-        hasBgColor: true,
-        child: SingleChildScrollView(
+      builder: (controller) => Scaffold(
+        body: ChatAppbar(
+          hasIcon: true,
+          appBarTitle: 'Street garage',
+          hasBgColor: true,
           child: Column(
             children: [
-              Gap(10),
-              Container(
-                height: Get.height * 0.75,
-                // chat messages container
-              ),
-              Divider(
-                thickness: 2,
-                color: AppColors.grey.shade100,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
-                height: 60,
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    SvgPicture.asset("assets/icons/Group 473.svg"),
-                    ChatInputField(
-                      obscure: false,
-                      readOnly: false,
-                      suffiximage: "assets/icons/sent_icon.svg",
-                    ),
-                    SvgPicture.asset("assets/icons/location.svg"),
-                  ],
+              Flexible(
+                child: Container(
+                  height: Get.height * 0.75,
                 ),
               ),
             ],
+          ),
+        ),
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset("assets/icons/Group 473.svg"),
+                Gap(8),
+                Flexible(
+                  child: ChatInputField(
+                    obscure: false,
+                    readOnly: false,
+                    suffiximage: "assets/icons/sent_icon.svg",
+                  ),
+                ),
+                Gap(8),
+                SvgPicture.asset("assets/icons/location.svg"),
+              ],
+            ),
           ),
         ),
       ),

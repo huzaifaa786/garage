@@ -38,10 +38,6 @@ class ChatInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: Get.height * 0.09,
-
-      //// Adjusted height (Get.height * 0.07 instead of Get.height * 7)
-      width: Get.width * 0.6,
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: AppColors.grey.withOpacity(0.4)),
         borderRadius: BorderRadius.circular(30),
@@ -67,13 +63,15 @@ class ChatInputField extends StatelessWidget {
         decoration: InputDecoration(
           fillColor: AppColors.borderlightgrey,
           filled: true,
+          contentPadding: EdgeInsets.symmetric(horizontal: 12),
 
-          suffix: GestureDetector(
+          suffixIcon: GestureDetector(
             onTap: () {},
             child: SvgPicture.asset(
               suffiximage.toString(),
-              height: 25,
-              width: 25,
+              height: 20,
+              width: 20,
+              fit: BoxFit.scaleDown,
             ),
           ),
           border: OutlineInputBorder(
