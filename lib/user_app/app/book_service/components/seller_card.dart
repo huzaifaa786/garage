@@ -27,7 +27,7 @@ class SellerCard extends StatelessWidget {
       onTap: ontap,
       child: Container(
         padding: EdgeInsets.only(left: 11, right: 24),
-        height: Get.height * 0.07,
+        height: Get.height * 0.09,
         width: Get.width * 0.8,
         decoration: BoxDecoration(
           color: AppColors.lightgrey,

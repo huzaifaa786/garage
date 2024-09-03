@@ -55,7 +55,8 @@ class BannerCard extends StatelessWidget {
           child: AppNetworkImage(
             assetPath: 'assets/images/washing.png',
             width: Get.width,
-          )),
+          )
+          ),
     );
   }
 }

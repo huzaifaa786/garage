@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -22,6 +20,7 @@ class ChatInputField extends StatelessWidget {
     this.ontap,
     this.suffiximage,
   });
+
   final ValueChanged<String>? onChange;
   final VoidCallback? ontap;
   final TextEditingController? controller;
@@ -39,7 +38,9 @@ class ChatInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.height * 7,
+      // height: Get.height * 0.09,
+
+      //// Adjusted height (Get.height * 0.07 instead of Get.height * 7)
       width: Get.width * 0.6,
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: AppColors.grey.withOpacity(0.4)),
@@ -64,9 +65,9 @@ class ChatInputField extends StatelessWidget {
           fontWeight: FontWeight.w400,
         ),
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           fillColor: AppColors.borderlightgrey,
           filled: true,
+
           suffix: GestureDetector(
             onTap: () {},
             child: SvgPicture.asset(
@@ -85,6 +86,8 @@ class ChatInputField extends StatelessWidget {
             fontSize: 13,
             fontWeight: FontWeight.w400,
           ),
+          // Center the text vertically
+          alignLabelWithHint: true,
         ),
       ),
     );

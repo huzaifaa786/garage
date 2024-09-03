@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:mobilegarage/splash/splash_controller.dart';
@@ -19,9 +20,15 @@ class SplashView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                ImageConst.appLogo,
-              )
+              // Image.asset(
+              //   ImageConst.appLogo,
+              // )
+              SvgPicture.asset(
+                ImageConst.appLogoSvg,
+                height: 162,
+                width: 269,
+                color: AppColors.white_color,
+              ),
             ],
           ),
         ),

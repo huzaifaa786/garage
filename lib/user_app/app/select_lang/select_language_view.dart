@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_controller.dart';
@@ -31,7 +32,8 @@ class SelectLanguageView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset('assets/images/splash_logo.png'),
+             // Image.asset('assets/images/splash_logo.png'),
+             SvgPicture.asset('assets/icons/mobile_garagelogo.svg',color:AppColors.white,height:  162,width: 293,),
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
@@ -56,7 +58,8 @@ class SelectLanguageView extends StatelessWidget {
                               textAlign: TextAlign.center,
                               size: 32,
                               fontWeight: FontWeight.w600,
-                               color: AppColors.heading_text_color,
+                              // color: AppColors.heading_text_color,
+                              color: AppColors.darkprimary,
                             ),
                             Gap(Get.height * 0.09),
                             Padding(
