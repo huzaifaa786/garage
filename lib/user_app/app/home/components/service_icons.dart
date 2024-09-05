@@ -46,6 +46,7 @@ class ServicesIcons extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: AppNetworkImage(
                   assetPath: 'assets/images/car_washes.png',
+                  networkImage: '',
                 )
                 ),
           ),
