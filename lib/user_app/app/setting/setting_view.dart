@@ -13,7 +13,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
-
 class SettingView extends StatefulWidget {
   const SettingView({super.key});
 
@@ -27,7 +26,7 @@ class _SettingViewState extends State<SettingView> {
     return GetBuilder<SettingController>(
         builder: (controller) => Scaffold(
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(95.0),
+                preferredSize: const Size.fromHeight(70.0),
                 child: Container(
                   decoration: BoxDecoration(
                     boxShadow: [appbarShadow],
@@ -36,7 +35,7 @@ class _SettingViewState extends State<SettingView> {
                     automaticallyImplyLeading: false,
                     scrolledUnderElevation: 0.0,
                     toolbarHeight: 95.0,
-                    title: TopBar(
+                    title: const TopBar(
                       showicon: true,
                       showgarageicon: false,
                       title: "Settings",
@@ -47,7 +46,7 @@ class _SettingViewState extends State<SettingView> {
               backgroundColor: AppColors.grey.withOpacity(0.1),
               body: SafeArea(
                   child: Container(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   left: 44,
                   right: 44,
                   top: 40,
@@ -66,7 +65,7 @@ class _SettingViewState extends State<SettingView> {
                           ontap: () {
                             Get.toNamed(AppRoutes.aboutus);
                           }),
-                      Gap(23),
+                      const Gap(23),
                       AllProfileCard(
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
@@ -78,7 +77,7 @@ class _SettingViewState extends State<SettingView> {
                           ontap: () {
                             Get.toNamed(AppRoutes.promotion);
                           }),
-                      Gap(23),
+                      const Gap(23),
                       AllProfileCard(
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
@@ -90,7 +89,7 @@ class _SettingViewState extends State<SettingView> {
                           ontap: () {
                             Get.toNamed(AppRoutes.faq);
                           }),
-                      Gap(23),
+                      const Gap(23),
                       AllProfileCard(
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
@@ -102,7 +101,7 @@ class _SettingViewState extends State<SettingView> {
                           ontap: () {
                             Get.toNamed(AppRoutes.termscondition);
                           }),
-                      Gap(23),
+                      const Gap(23),
                       AllProfileCard(
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
@@ -112,21 +111,24 @@ class _SettingViewState extends State<SettingView> {
                           image: 'assets/icons/local.svg',
                           text2: '',
                           ontap: () {
-                             Get.toNamed(AppRoutes.privacy);
+                            Get.toNamed(AppRoutes.privacy);
                           }),
-                      Gap(28),
-                      AppText(
+                      const Gap(28),
+                      const AppText(
                         title: 'Contact us',
                         size: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,
                       ),
-                      Gap(11),
+                      const Gap(11),
+                      // SvgPicture.asset(
+                      //   'assets/icons/mobile_garage.svg',
+                      // ),
                       Image.asset(
                         'assets/images/mobile_garage.png',
                         // height: 150,
                       ),
-                      Gap(22),
+                      const Gap(22),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -139,7 +141,6 @@ class _SettingViewState extends State<SettingView> {
                             ontap: () {},
                           ),
                           SocialMediaButton(
-                            
                             image: 'assets/icons/whatsapp_img.svg',
                             ontap: () {},
                           ),
@@ -149,7 +150,7 @@ class _SettingViewState extends State<SettingView> {
                           ),
                         ],
                       ),
-                      Gap(40),
+                      const Gap(40),
                     ],
                   ),
                 ),

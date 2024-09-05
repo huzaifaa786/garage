@@ -10,7 +10,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
-
 class PrivacyView extends StatefulWidget {
   const PrivacyView({super.key});
 
@@ -24,7 +23,7 @@ class _TermsConditionsViewState extends State<PrivacyView> {
     return GetBuilder<PrivacyController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],

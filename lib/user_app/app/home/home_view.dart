@@ -52,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
                       Get.toNamed(AppRoutes.search);
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 40.0, right: 30.0),
+                      padding: const EdgeInsets.only(left: 40.0, right: 40.0),
                       child: IconInputField(
                         hasprefix: true,
                         hint: 'Search for garages, service ..'.tr,
@@ -88,9 +88,9 @@ class _HomeViewState extends State<HomeView> {
                   //     },
                   //   ),
                   // ),
-            
+
                   /// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ///
-            
+
                   CarouselSlider.builder(
                     options: CarouselOptions(
                       height: 190,
@@ -172,14 +172,14 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     Gap(30),
                     GridView.builder(
-                      padding: EdgeInsets.only(left: 40.0, right: 30.0),
+                      padding: EdgeInsets.only(left: 20.0, right: 20.0),
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: controller.itemCount,
-                        crossAxisSpacing: 6.0,
-                        mainAxisSpacing: 2.0,
-                        mainAxisExtent: Get.height * 0.18,
+                        crossAxisSpacing: 9.0,
+                        mainAxisSpacing: 1.0,
+                        mainAxisExtent: Get.height * 0.21,
                       ),
                       itemCount: controller.services.length,
                       itemBuilder: (context, index) {

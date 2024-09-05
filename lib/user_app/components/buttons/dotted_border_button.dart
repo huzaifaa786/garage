@@ -42,7 +42,7 @@ class DottedBorderButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             color: AppColors.lightprimary,
           ),
-          height: 50,
+          height: 47,
           child: Row(
             mainAxisAlignment: isImgSelected && selectedimgpath != null
                 ? MainAxisAlignment.spaceEvenly

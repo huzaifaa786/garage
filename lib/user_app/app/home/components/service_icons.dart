@@ -45,51 +45,42 @@ class ServicesIcons extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: AppNetworkImage(
-                  assetPath: 'assets/images/car_washes.png',
-                  networkImage: '',
-                )
-                ),
+                  assetPath: 'assets/images/battery.png',
+                )),
           ),
           Gap(5),
-          Flexible(
-            flex: 1,
-            child: SizedBox(
-              height: Get.height * 0.2,
-              child: AppText(
-                title: text,
-                fontWeight: FontWeight.w500,
-                color: AppColors.primarybg,
-                size: 12.0,
-                textAlign: TextAlign.center,
-                overFlow: TextOverflow.ellipsis,
-                maxLines: 2,
-              ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 6),
+            child: AppText(
+              title: text,
+              fontWeight: FontWeight.w500,
+              color: AppColors.primarybg,
+              size: 10.0,
+              textAlign: TextAlign.center,
+              overFlow: TextOverflow.ellipsis,
+              maxLines: 2,
             ),
           ),
-          Gap(3),
+          Gap(1),
           Flexible(
             flex: 1,
-            child: SizedBox(
-              // height: Get.height*0.2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppText(
-                    title: subText,
-                    // 'View more'
-                    size: 8,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.primarybg,
-                    overFlow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                  // Gap(2),
-                  // SvgPicture.asset(
-                  //   'assets/icons/arrow_right.svg',
-                  //   color: AppColors.primarybg,
-                  // )
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AppText(
+                  title: subText,
+                  size: 8,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primarybg,
+                  overFlow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+                Gap(2),
+                // SvgPicture.asset(
+                //   'assets/icons/arrow_right.svg',
+                //   color: AppColors.primarybg,
+                // )
+              ],
             ),
           )
         ],

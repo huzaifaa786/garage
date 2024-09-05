@@ -33,6 +33,7 @@ class _VChatViewState extends State<VChatView> {
                   ),
                 ],
               ),
-            ));
+            )
+            );
   }
 }

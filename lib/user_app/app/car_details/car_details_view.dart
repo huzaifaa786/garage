@@ -42,7 +42,13 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Image.asset('assets/images/splash_logo.png'),
+                    // Image.asset('assets/images/splash_logo.png'),
+                    SvgPicture.asset(
+                      'assets/icons/mobile_garagelogo.svg',
+                      color: AppColors.white,
+                      height: 162,
+                      width: 293,
+                    ),
                     Expanded(
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
@@ -101,16 +107,16 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    // if (index != 0)
-                                                    AppText(
-                                                      title: index == 0
-                                                          ? 'Vehicle Details'
-                                                          : 'Vehicle ${index + 1}',
-                                                      // 'Vehicle ${index + 1}',
-                                                      size: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
+                                                    if (index != 0)
+                                                      AppText(
+                                                        title: index == 0
+                                                            ? 'Vehicle Details'
+                                                            : 'Vehicle ${index + 1}',
+                                                        // 'Vehicle ${index + 1}',
+                                                        size: 14,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
                                                     if (index != 0)
                                                       GestureDetector(
                                                         onTap: () => controller

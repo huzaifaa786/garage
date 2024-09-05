@@ -30,7 +30,7 @@ class _MyCarsViewState extends State<MyCarsView> {
         builder: (controllers) => Scaffold(
               // backgroundColor: AppColors.grey.shade200,
               appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(95.0),
+                  preferredSize: Size.fromHeight(70.0),
                   child: Container(
                     decoration: BoxDecoration(
                       boxShadow: [appbarShadow],
@@ -53,38 +53,45 @@ class _MyCarsViewState extends State<MyCarsView> {
                       Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 20,
+                            ),
                             decoration: BoxDecoration(color: AppColors.white),
                             child: Column(
                               children: [
-                                Gap(47),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SvgPicture.asset(
-                                      "assets/icons/cars.svg",
-                                      height: 17,
-                                      width: 17,
-                                    ),
-                                    Gap(6),
-                                    Text(
-                                      "Marked as default",
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Gap(7),
-                                    Text(
-                                      "white Mercedes 2022",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.grey,
+                                Gap(40),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/icons/cars.svg",
+                                        height: 17,
+                                        width: 17,
                                       ),
-                                    ),
-                                  ],
+                                      Gap(6),
+                                      Text(
+                                        "Marked as default",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Gap(7),
+                                      Text(
+                                        "white Mercedes 2022",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.grey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 ListView.builder(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 20),
                                     shrinkWrap: true,
                                     physics: BouncingScrollPhysics(),
                                     itemCount: controllers.radioButton.length,
@@ -138,22 +145,32 @@ class _MyCarsViewState extends State<MyCarsView> {
                                       ],
                                     ),
                                     Gap(20),
-                                    MainInput(
-                                      hint: 'Vehicle information'.tr,
-                                      controller:
-                                          section['vehicleDetailController'],
-                                      errorText: '',
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0),
+                                      child: MainInput(
+                                        height: Get.height * 0.07,
+                                        hint: 'Vehicle information'.tr,
+                                        controller:
+                                            section['vehicleDetailController'],
+                                        errorText: '',
+                                      ),
                                     ),
                                     Gap(20),
-                                    DottedBorderButton(
-                                      title: 'Upload vehicle photo'.tr,
-                                      imgselect: () =>
-                                          controllers.selectVehicleImage(index),
-                                      isImgSelected:
-                                          controllers.isImageSelected(index),
-                                      selectedimgpath: section['vehicleImage'],
-                                      imgRemove: () =>
-                                          controllers.removeVehicleImage(index),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20),
+                                      child: DottedBorderButton(
+                                        title: 'Upload vehicle photo'.tr,
+                                        imgselect: () => controllers
+                                            .selectVehicleImage(index),
+                                        isImgSelected:
+                                            controllers.isImageSelected(index),
+                                        selectedimgpath:
+                                            section['vehicleImage'],
+                                        imgRemove: () => controllers
+                                            .removeVehicleImage(index),
+                                      ),
                                     ),
                                     Gap(10),
                                   ],
@@ -162,53 +179,71 @@ class _MyCarsViewState extends State<MyCarsView> {
                             ),
                           ),
                           Gap(28),
-                          GestureDetector(
-                            onTap: controllers.addVehicleSection,
-                            child: Container(
-                              height: Get.height * 0.1 / 1.3,
-                              width: Get.width * 0.8,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: AppColors.lightprimary,
-                              ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 30.0),
+                            child: GestureDetector(
+                              onTap: controllers.addVehicleSection,
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      height: 20,
-                                      width: 20,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          color: AppColors.primary),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.add,
-                                          color: AppColors.white,
-                                          size: 15,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: Container(
+                                  height: Get.height * 0.07,
+                                  width: Get.width * 0.8,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: AppColors.lightprimary,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 25),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: 20,
+                                          width: 20,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              color: AppColors.primary),
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.add,
+                                              color: AppColors.white,
+                                              size: 15,
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                        Gap(10),
+                                        AppText(
+                                          title: 'Add another vehicle',
+                                          color: AppColors.primary,
+                                          size: 11,
+                                          fontWeight: FontWeight.w500,
+                                        )
+                                      ],
                                     ),
-                                    Gap(10),
-                                    AppText(
-                                      title: 'Add another vehicle',
-                                      color: AppColors.primary,
-                                      size: 11,
-                                      fontWeight: FontWeight.w500,
-                                    )
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           Gap(28),
-                         
-                          MainButton(title: 'Save Changes',onTap: () {
-                            UiUtilites.DeleteSuccessAlert(context, () {}, () {});
-                          },),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 45.0,
+                            ),
+                            child: MainButton(
+                              height: Get.height * 0.07,
+                              title: 'Save Changes',
+                              onTap: () {
+                                UiUtilites.DeleteSuccessAlert(
+                                    context, () {}, () {});
+                              },
+                            ),
+                          ),
                           Gap(15),
                         ],
                       ),

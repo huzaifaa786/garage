@@ -25,7 +25,7 @@ class OrderController extends GetxController {
   List<StepperItemData> get stepperData => [
         StepperItemData(
             content: Padding(
-              padding: const EdgeInsets.only(left: 15, bottom: 30),
+              padding: const EdgeInsets.only(left: 15, bottom: 12),
               child: Column(
                 children: [
                   Row(

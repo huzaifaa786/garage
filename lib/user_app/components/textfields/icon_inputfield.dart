@@ -48,8 +48,7 @@ class IconInputField extends StatelessWidget {
         onChange;
       },
       child: Container(
-        height: height,
-        width: width,
+        height: Get.height * 0.06,
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: AppColors.grey.withOpacity(0.4)),
           borderRadius: BorderRadius.circular(60),
@@ -79,11 +78,11 @@ class IconInputField extends StatelessWidget {
             prefixIcon: hasprefix
                 ? Padding(
                     padding: const EdgeInsets.only(
-                        left: 30.0, right: 20.0, top: 12.0, bottom: 12.0),
+                        left: 30.0, right: 20.0, top: 14.0, bottom: 14.0),
                     child: SvgPicture.asset(
                       prefixIcon ?? 'assets/icons/search.svg',
-                      height: 24,
-                      width: 24,
+                      height: 16,
+                      width: 16,
                     ),
                   )
                 : null,
@@ -94,7 +93,7 @@ class IconInputField extends StatelessWidget {
             hintText: hint,
             hintStyle: TextStyle(
               color: AppColors.grey,
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: FontWeight.w400,
             ),
           ),

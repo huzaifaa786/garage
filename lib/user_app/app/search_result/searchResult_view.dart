@@ -30,7 +30,7 @@ class _SearchresultViewState extends State<SearchresultView> {
     return GetBuilder<SearchResultController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: [appbarShadow],
@@ -72,10 +72,10 @@ class _SearchresultViewState extends State<SearchresultView> {
                   color: AppColors.lightgrey,
                   child: TableCalendar(
                     availableGestures: AvailableGestures.horizontalSwipe,
-                    firstDay: 
-                    // controller.selectedService!='quickService'
-                    // ?
-                    DateTime.utc(2023, 1, 1),
+                    firstDay:
+                        // controller.selectedService!='quickService'
+                        // ?
+                        DateTime.utc(2023, 1, 1),
                     // :DateTime.now(),
                     lastDay: DateTime.now(),
                     focusedDay: DateTime.now(),
@@ -223,23 +223,26 @@ class _SearchresultViewState extends State<SearchresultView> {
                                           constraints: BoxConstraints(
                                               maxWidth: Get.width * 0.46),
                                           child: Row(
-                                            
                                             children: [
                                               AppText(
-                                                title: controller.currentAddress,
+                                                title:
+                                                    controller.currentAddress,
                                                 size: 10,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ],
                                           ),
                                         ),
-                                        Gap(30),
-                                        SizedBox(width: 20,),
-                                        
-                                  Row(mainAxisAlignment: MainAxisAlignment.end,
+                                  Gap(30),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(right: 20.0),
+                                        padding:
+                                            const EdgeInsets.only(right: 20.0),
                                         child: SvgPicture.asset(
                                           "assets/icons/arrow_right.svg",
                                           color: AppColors.primarybg,
@@ -258,11 +261,15 @@ class _SearchresultViewState extends State<SearchresultView> {
                   ),
                 ),
                 Gap(30),
-                MainButton(
-                  title: 'Payment',
-                  onTap: () {
-                    Get.toNamed(AppRoutes.payments);
-                  },
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: MainButton(
+                    height: Get.height * 0.077,
+                    title: 'Payment',
+                    onTap: () {
+                      Get.toNamed(AppRoutes.payments);
+                    },
+                  ),
                 ),
                 Gap(50),
               ],

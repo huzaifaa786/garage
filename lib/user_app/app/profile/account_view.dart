@@ -28,16 +28,16 @@ class _AccountViewState extends State<AccountView> {
       autoRemove: false,
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(95.0),
+          preferredSize: const Size.fromHeight(70.0),
           child: Container(
-            decoration: BoxDecoration(
-              boxShadow: [appbarShadow],
-            ),
+            decoration: const BoxDecoration(
+                // boxShadow: [appbarShadow],
+                ),
             child: AppBar(
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(
+              title: const TopBar(
                 showgarageicon: false,
                 showicon: true,
                 title: "Profile",
@@ -48,10 +48,10 @@ class _AccountViewState extends State<AccountView> {
         backgroundColor: AppColors.grey.withOpacity(0.1),
         body: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               left: 44,
               right: 44,
-              top: 56,
+              top: 30,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -73,44 +73,48 @@ class _AccountViewState extends State<AccountView> {
                       );
                     },
                   ),
-                  Gap(23),
+                  const Gap(23),
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       color: AppColors.lightprimary,
-                      text: 'Dubai',textColor: AppColors.black,
+                      text: 'Dubai',
+                      textColor: AppColors.black,
                       image: 'assets/icons/map_pin.svg',
                       text2: 'zayed street , house3564 ,....',
                       ontap: () {
                         Get.toNamed(AppRoutes.my_location);
                       }),
-                  Gap(15),
+                  const Gap(15),
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       color: AppColors.lightprimary,
-                      text: 'My cars',textColor: AppColors.black,
+                      text: 'My cars',
+                      textColor: AppColors.black,
                       image: 'assets/icons/car.svg',
                       text2: '',
                       ontap: () {
                         Get.toNamed(AppRoutes.my_cars);
                       }),
 
-                  Gap(15),
+                  const Gap(15),
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       color: AppColors.lightprimary,
-                      text: 'Language',textColor: AppColors.black,
+                      text: 'Language',
+                      textColor: AppColors.black,
                       image: 'assets/icons/language.svg',
                       text2: 'English',
                       ontap: () {
                         Get.toNamed(AppRoutes.language);
                       }),
-                  Gap(15),
+                  const Gap(15),
                   AllProfileCard(
                     color: AppColors.lightprimary,
-                    text: 'Settings',textColor: AppColors.black,
+                    text: 'Settings',
+                    textColor: AppColors.black,
                     image: 'assets/icons/setting.svg',
                     ontap: () {
                       Get.toNamed(AppRoutes.setting);
@@ -119,12 +123,13 @@ class _AccountViewState extends State<AccountView> {
                     height: Get.height * 0.08,
                     width: Get.width * 0.8,
                   ),
-                  Gap(15),
+                  const Gap(15),
                   AllProfileCard(
-                    color: AppColors.lightprimary,
+                      color: AppColors.lightprimary,
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
-                      text: 'Orders history',textColor: AppColors.black,
+                      text: 'Orders history',
+                      textColor: AppColors.black,
                       image: 'assets/icons/order.svg',
                       text2: '12 items',
                       ontap: () {
@@ -137,16 +142,17 @@ class _AccountViewState extends State<AccountView> {
                   //     image: 'assets/icons/mail.svg',
                   //     text2: 'mobilegarage1@gmail.com',
                   //     ontap: () {}),
-                  Gap(53),
+                  const Gap(30),
                   LogoutButton(
                     image: 'assets/icons/log-out.svg',
                     title: 'Log out',
                     buttonWidth: Get.width * 0.77,
+                    height: Get.height * 0.07,
                     onTap: () {
                       UiUtilites.logoutSuccessAlert(context, () {}, () {});
                     },
                   ),
-                  Gap(25),
+                  const Gap(25),
                 ],
               ),
             ),

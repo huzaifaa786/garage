@@ -14,6 +14,7 @@ class TopBar extends StatelessWidget {
     this.showicon = true,
     this.showgarageicon = true,
     this.showtrailingicon = false,
+    this.showstack = false,
     this.textColor = AppColors.darkprimary,
   });
 
@@ -21,67 +22,84 @@ class TopBar extends StatelessWidget {
   final bool showicon;
   final bool showgarageicon;
   final bool showtrailingicon;
+  final bool showstack;
   final Color textColor;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.only(left: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            showicon
-                ? GestureDetector(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: SvgPicture.asset(
-                      'assets/icons/backarrow.svg',
+    return Stack(
+      children: [
+        Container(
+          child: Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                showicon
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/backarrow.svg',
+                          color: textColor,
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+                Row(
+                  children: [
+                    AppText(
+                      title: '$title',
+                      size: 16,
+                      fontWeight: FontWeight.w600,
                       color: textColor,
                     ),
-                  )
-                : const SizedBox.shrink(),
-            Row(
-              children: [
-                AppText(
-                  title: '$title',
-                  size: 16,
-                  fontWeight: FontWeight.w600,
-                  color: textColor,
+                    Gap(5),
+                    if (showgarageicon)
+                      SvgPicture.asset('assets/icons/authorizegarage.svg')
+                  ],
                 ),
-                Gap(5),
-                if (showgarageicon)
-                  SvgPicture.asset('assets/icons/authorizegarage.svg')
+                if (showtrailingicon)
+                  Row(
+                    children: [
+                      Container(
+                        height: 35,
+                        width: 35,
+                        decoration: BoxDecoration(
+                          color: AppColors.lightprimary,
+                          borderRadius: BorderRadius.circular(80),
+                        ),
+                        child: SvgPicture.asset(
+                          'assets/icons/cart_new.svg',
+                          color: AppColors.primarybg,
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                      Gap(10),
+                    ],
+                  )
+                else
+                  AppText(
+                    title: '*****',
+                    color: Colors.transparent,
+                  ),
               ],
             ),
-            if (showtrailingicon)
-              Row(
-                children: [
-                  Container(
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                      color: AppColors.lightprimary,
-                      borderRadius: BorderRadius.circular(80),
-                    ),
-                    child: SvgPicture.asset(
-                      'assets/icons/cart.svg',
-                      color: AppColors.primarybg,
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ),
-                  Gap(10),
-                ],
-              )
-            else
-              AppText(
-                title: '*****',
-                color: Colors.transparent,
-              ),
-          ],
+          ),
         ),
-      ),
+        // Positioned(
+        //   top: 1,
+        //   right: 8,
+        //   child: Container(
+        //     height: 4,
+        //     width: 4,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(10),
+        //       color: AppColors.primary,
+        //     ),
+        //   ),
+        // )
+      ],
     );
   }
 }

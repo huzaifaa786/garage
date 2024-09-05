@@ -11,7 +11,7 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
 class RadioCard extends StatelessWidget {
-  RadioCard({
+  const RadioCard({
     super.key,
     this.addCars,
     this.groupValue,
@@ -36,7 +36,7 @@ class RadioCard extends StatelessWidget {
             margin: EdgeInsets.only(top: 8, bottom: 8),
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             height: Get.height * 0.1 / 1.3,
-            width: Get.width * 0.7,
+            width: Get.width * 0.66,
             decoration: BoxDecoration(
                 color: isSelected
                     ? AppColors.lightprimary
@@ -51,7 +51,8 @@ class RadioCard extends StatelessWidget {
                 ),
                 AppText(
                   title: addCars["radioTitle"],
-                  size: 12,
+                  color: isSelected ? AppColors.primary : AppColors.darkprimary,
+                  size: 10,
                   fontWeight: FontWeight.w500,
                 ),
                 Radio<String>(
@@ -59,6 +60,7 @@ class RadioCard extends StatelessWidget {
                   value: value,
                   groupValue: groupValue,
                   onChanged: onChanged,
+                
                 ),
               ],
             ),

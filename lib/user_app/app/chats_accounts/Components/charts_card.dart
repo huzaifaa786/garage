@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class ChartsCard extends StatefulWidget {
-  ChartsCard({super.key, this.item});
+  const ChartsCard({super.key, this.item});
   final item;
 
   @override
@@ -38,19 +39,26 @@ class _ChartsCardState extends State<ChartsCard> {
               height: 54.0,
               decoration: BoxDecoration(
                 color: Color(0xff7c94b6),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://dummyimage.com/61x61/000/fff',
-                  ),
-                  fit: BoxFit.cover,
-                ),
+                // image: DecorationImage(
+                //   image: NetworkImage(
+                //     'https://dummyimage.com/61x61/000/fff',
+                //   ),
+                //   fit: BoxFit.cover,
+                // ),
                 borderRadius: BorderRadius.all(Radius.circular(50.0)),
                 border: Border.all(
                   color: AppColors.grey.shade100,
                   width: 3.0,
                 ),
               ),
+              child: ClipOval(
+                  child: AppNetworkImage(
+                assetPath: 'assets/images/street_garage.png',
+                height: Get.height * 0.08,
+                width: Get.width * 0.18,
+              )),
             ),
+
             // GestureDetector(
             //     onTap: () {
             //       Get.toNamed(AppRoutes.chatScreen);
