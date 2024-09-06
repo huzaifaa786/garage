@@ -8,6 +8,7 @@ import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/brand_name_model.dart';
 import 'package:mobilegarage/models/vehicle_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -343,13 +344,16 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                   child: MainButton(
                                     title: 'Continue',
                                     txtweight: FontWeight.w600,
-                                    onTap: () async {
-                                      bool isValid =
-                                          await controller.validateCarForm();
-                                      if (isValid) {
-                                        controller.registerUser();
-                                      }
-                                    },
+                                    onTap: () {
+                                      Get.toNamed(AppRoutes.otp);
+                                    }
+                                    //  async {
+                                    //   bool isValid =
+                                    //       await controller.validateCarForm();
+                                    //   if (isValid) {
+                                    //     controller.registerUser();
+                                      // }
+                                    // },
                                   ),
                                 ),
                                 Gap(20),
