@@ -81,7 +81,7 @@ class VForgotPasswordView extends StatelessWidget {
                                     title: 'Confirm',
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
-                                      // controller.forgot();
+                                       controller.forgot();
                                     },
                                   ),
                                 ],

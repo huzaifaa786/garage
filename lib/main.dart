@@ -23,6 +23,7 @@ void main()async {
    EasyLoading.init();
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -39,8 +40,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       builder: EasyLoading.init(),
       initialBinding: SplashBinding(),
-              home: const SplashView(),
-              getPages: AppPages.pages,
+      home: const SplashView(),
+      getPages: AppPages.pages,
     );
   }
 }
+
