@@ -75,7 +75,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                           Get.offAllNamed(AppRoutes.selectlang);
                         },
                       ),
-                      Gap(5),
+                      Gap(25),
                     ],
                   ),
                 ),
