@@ -22,14 +22,19 @@ class AppNetworkImage extends StatelessWidget {
       height: height,
       width: width,
       fit: BoxFit.cover,
+      
       placeholderFadeInDuration: Duration(milliseconds: 500),
       placeholder: (context, url) => Shimmer.fromColors(
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,
         child: Container(color: Colors.white, width: width, height: height),
       ),
-      errorWidget: (context, url, error) =>
-          assetPath != '' ? Image.asset(assetPath!,fit: BoxFit.cover,) : Icon(Icons.error),
+      errorWidget: (context, url, error) => assetPath != ''
+          ? Image.asset(
+              assetPath!,
+              fit: BoxFit.cover,
+            )
+          : Icon(Icons.error),
     );
   }
 }

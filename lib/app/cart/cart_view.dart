@@ -31,7 +31,7 @@ class CartView extends StatelessWidget {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(title: 'Cart'),
+              title: TopBar(title: 'Cart',showgarageicon: false,),
             ),
           ),
         ),
