@@ -13,11 +13,6 @@ import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 
 class UiUtilites {
-
-  
-
-
-
 //   static UploadphotoAlert(
 //     context,
 //     title1,
@@ -131,7 +126,7 @@ class UiUtilites {
       context: context,
       builder: (BuildContext context) {
         return BackdropFilter(
-         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: AlertDialog(
             backgroundColor: AppColors.white,
             surfaceTintColor: AppColors.white,
@@ -168,7 +163,8 @@ class UiUtilites {
                     child: Text(
                       'Are you Sure that \nyou want to log out?'.tr,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Gap(20),
@@ -223,7 +219,8 @@ class UiUtilites {
                                 'Yes'.tr,
                                 style: TextStyle(
                                     fontSize: 18.0,
-                                    color: AppColors.lightgreen, // Green text for "Yes"
+                                    color: AppColors
+                                        .lightgreen, // Green text for "Yes"
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -241,19 +238,12 @@ class UiUtilites {
     );
   }
 
-
-
-
-
-
-
-
-    static DeleteSuccessAlert(context, ontap, ontapno) {
+  static DeleteSuccessAlert(context, ontap, ontapno) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
         return BackdropFilter(
-         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: AlertDialog(
             backgroundColor: AppColors.white,
             surfaceTintColor: AppColors.white,
@@ -290,7 +280,8 @@ class UiUtilites {
                     child: Text(
                       'Are you Sure that you want to delete'.tr,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
                     ),
                   ),
                   Padding(
@@ -298,15 +289,21 @@ class UiUtilites {
                     child: Text(
                       '“White mercedes 2022” '.tr,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500,color: AppColors.primary),
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.primary),
                     ),
                   ),
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
                     child: Text(
                       'from your cars?'.tr,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500,),
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   Gap(20),
@@ -361,7 +358,8 @@ class UiUtilites {
                                 'Yes'.tr,
                                 style: TextStyle(
                                     fontSize: 18.0,
-                                    color: AppColors.lightgreen, // Green text for "Yes"
+                                    color: AppColors
+                                        .lightgreen, // Green text for "Yes"
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -536,7 +534,7 @@ class UiUtilites {
                         height: Get.height * 0.05,
                         width: Get.width * 0.4,
                         decoration: BoxDecoration(
-                          color: AppColors.lightprimary,
+                          color: AppColors.lightPink,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         child: Row(
@@ -566,11 +564,10 @@ class UiUtilites {
     );
   }
 
-
   //  add vender dialog use in user app //
   // **************************** //
 
-    static successAlertDialog(
+  static successAlertDialog(
       {required context,
       required onTap,
       required title,

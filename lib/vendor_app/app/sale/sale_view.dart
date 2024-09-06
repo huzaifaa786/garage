@@ -5,9 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/sale/sale_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:table_calendar/table_calendar.dart';
 

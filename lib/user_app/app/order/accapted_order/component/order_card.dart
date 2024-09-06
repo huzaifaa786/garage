@@ -239,7 +239,7 @@ class _OrderCardState extends State<OrderCard> {
                                   },
                                   child: Container(
                                     decoration: const BoxDecoration(
-                                        color: AppColors.lightprimary,
+                                        color: AppColors.lightPink,
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(20),
                                             bottomLeft: Radius.circular(20))),
@@ -271,7 +271,7 @@ class _OrderCardState extends State<OrderCard> {
                                   height: Get.height * 0.045,
                                   width: Get.width * 0.085,
                                   decoration: BoxDecoration(
-                                    color: AppColors.lightprimary,
+                                    color: AppColors.lightPink,
                                     borderRadius: BorderRadius.circular(80),
                                   ),
                                   child: SvgPicture.asset(

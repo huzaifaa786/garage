@@ -4,8 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -26,8 +27,7 @@ class CoverPickerr extends StatelessWidget {
           child: DottedBorder(
             borderType: BorderType.RRect,
             strokeWidth: 1.0,
-            color: controller.cover != null &&
-                    controller.cover!.path.isNotEmpty
+            color: controller.cover != null && controller.cover!.path.isNotEmpty
                 ? AppColors.green_color
                 : AppColors.primary_color,
             dashPattern: const <double>[4, 2],
@@ -35,8 +35,7 @@ class CoverPickerr extends StatelessWidget {
             radius: const Radius.circular(5),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(5)),
-              child: controller.cover == null ||
-                      controller.cover!.path.isEmpty
+              child: controller.cover == null || controller.cover!.path.isEmpty
                   ? Container(
                       height: 160,
                       width: Get.width,
@@ -68,7 +67,7 @@ class CoverPickerr extends StatelessWidget {
                   : Image.file(
                       controller.cover!,
                       height: 160,
-                      fit:BoxFit.cover,
+                      fit: BoxFit.cover,
                       width: Get.width,
                     ),
             ),

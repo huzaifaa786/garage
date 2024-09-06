@@ -37,7 +37,7 @@ class AppRoutes {
   static const payments = '/payments';
   static const filterorder = '/filterorder';
 
-   static const search_result = '/search_result';
+  static const search_result = '/search_result';
 
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
@@ -77,7 +77,7 @@ class AppRoutes {
   static const veditprofile = '/veditprofile';
   static const vcontactus = '/vcontactus';
 
-  static const vavaliabledate = '/vavaliabledate';
+  static const vunavaliabledate = '/vaunavaliabledate';
   static const vsale = '/vsale';
   static const vlanguage = '/vlanguage';
 

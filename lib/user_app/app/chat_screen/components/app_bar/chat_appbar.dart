@@ -2,7 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ChatAppbar extends StatelessWidget {
@@ -28,7 +29,8 @@ class ChatAppbar extends StatelessWidget {
       backgroundColor:
           hasBgColor ? AppColors.divider_color : AppColors.white_color,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight + 20), // Adjust height if needed
+        preferredSize: const Size.fromHeight(
+            kToolbarHeight + 20), // Adjust height if needed
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
@@ -50,45 +52,47 @@ class ChatAppbar extends StatelessWidget {
               children: [
                 if (hasIcon == true)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0), // Add some padding for better alignment
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical:
+                            12.0), // Add some padding for better alignment
                     child: InkWell(
                       onTap: () {
                         Get.back();
                       },
                       child: Icon(
                         Icons.arrow_back,
-                        color: AppColors.appbar_title_color,
+                        color: AppColors.darkprimary,
                       ),
                     ),
                   ),
-                ClipRRect(
-             
-          child: AppNetworkImage(
-            assetPath: 'assets/images/street_garage.png',
-           // width: Get.width,
-           height: 53,
-           width: 53,
-          )
-                  // borderRadius: BorderRadius.circular(30),
-                  // child: CachedNetworkImage(
-                  //   imageUrl: "https://dummyimage.com/61x61/000/fff",
-                  //   width: 40, 
-                  //   height: 40, 
-                  // ),
-                ),
-                SizedBox(width: 12),
+                const ClipRRect(
+                    child: AppNetworkImage(
+                  assetPath: 'assets/images/street_garage.png',
+                  // width: Get.width,
+                  height: 53,
+                  width: 53,
+                )
+                    // borderRadius: BorderRadius.circular(30),
+                    // child: CachedNetworkImage(
+                    //   imageUrl: "https://dummyimage.com/61x61/000/fff",
+                    //   width: 40,
+                    //   height: 40,
+                    // ),
+                    ),
+                const SizedBox(width: 12),
                 AppText(
                   title: '$appBarTitle',
                   size: 16,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.appbar_title_color,
+                  color: AppColors.darkprimary,
                 ),
                 if (hasIcon == true)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.arrow_back,
-                      color: Colors.transparent, 
+                      color: Colors.transparent,
                     ),
                   ),
               ],

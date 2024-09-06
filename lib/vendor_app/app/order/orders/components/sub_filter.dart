@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class SubFilterView extends StatelessWidget {
@@ -34,17 +35,17 @@ class SubFilterView extends StatelessWidget {
                           : AppColors.white_color,
                       borderRadius: BorderRadius.only(
                         bottomLeft: index == 0
-                            ? Radius.circular(5)
-                            : Radius.circular(0),
+                            ? const Radius.circular(5)
+                            : const Radius.circular(0),
                         topLeft: index == 0
-                            ? Radius.circular(5)
-                            : Radius.circular(0),
+                            ? const Radius.circular(5)
+                            : const Radius.circular(0),
                         bottomRight: index == 1
-                            ? Radius.circular(5)
-                            : Radius.circular(0),
+                            ? const Radius.circular(5)
+                            : const Radius.circular(0),
                         topRight: index == 1
-                            ? Radius.circular(5)
-                            : Radius.circular(0),
+                            ? const Radius.circular(5)
+                            : const Radius.circular(0),
                       )),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),

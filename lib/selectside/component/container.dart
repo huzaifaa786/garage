@@ -2,7 +2,8 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ContainerSelect extends StatelessWidget {

@@ -8,13 +8,14 @@ import 'package:mobilegarage/components/buttons/google_button.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/permission.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/image_selection_tile.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/inputfiled_title.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/profile_and_cover_picker.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/signup_triangle.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/signup_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
@@ -41,7 +42,12 @@ class VSignupView extends StatelessWidget {
                   //   width: 172,
                   //   height: 108,
                   // ),
-                child: SvgPicture.asset('assets/icons/mobile_garagelogo.svg',color:AppColors.white_color,height:  108,width: 172,),
+                  child: SvgPicture.asset(
+                    'assets/icons/mobile_garagelogo.svg',
+                    color: AppColors.white_color,
+                    height: 108,
+                    width: 172,
+                  ),
                 ),
                 Stack(
                   children: [
@@ -176,9 +182,9 @@ class VSignupView extends StatelessWidget {
                               selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
                                 controller.setSelectedEmirate(value);
-                                controller.update();
                                 controller.validateFields("Emirate",
                                     controller.selectedEmirateId.toString());
+                                controller.update();
                               },
                               errorText: controller.emirateError,
                             ),
@@ -254,8 +260,7 @@ class VSignupView extends StatelessWidget {
                               title: 'Sign Up',
                               buttonColor: AppColors.primary_color,
                               ontap: () {
-                                // controller.register();
-                                  Get.offNamed(AppRoutes.vhome);
+                                controller.register();
                               },
                             ),
                             const Gap(12),

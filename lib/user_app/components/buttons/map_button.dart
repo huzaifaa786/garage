@@ -12,7 +12,7 @@ class GoogleMapButton extends StatelessWidget {
     this.buttonWidth = 0.90,
     this.buttonHeight = 60.0,
     this.fontSize = 12.0,
-    this.color = AppColors.lightprimary,
+    this.color = AppColors.lightPink,
     this.borderColor = AppColors.grey,
     this.widgetsColor = AppColors.primary,
     this.hasIcon = true,

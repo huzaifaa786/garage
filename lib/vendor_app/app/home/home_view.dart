@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/edit_button.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/home_appbar.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/main_box.dart';
@@ -15,7 +16,7 @@ import 'package:mobilegarage/vendor_app/app/home/components/reviewcard.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/switch_button.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -138,7 +139,6 @@ class _VHomeViewState extends State<VHomeView> {
                                     value: controller.isSwitched.value,
                                     ontoggle: (value) {
                                       controller.toggleStatuss(value);
-
                                     },
                                   )),
                             ],
@@ -148,13 +148,12 @@ class _VHomeViewState extends State<VHomeView> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            EdittButton(
+                            EditButton(
                               ontap: () {
-                                Get.toNamed(AppRoutes.vavaliabledate);
+                                Get.toNamed(AppRoutes.vunavaliabledate);
                               },
                               icon: 'assets/images/calendar.svg',
-                              text: 'Edit unavailable dates ',
-                              width: MediaQuery.of(context).size.width * 0.43,
+                              text: 'Edit unavailable dates',
                             ),
                             Gap(10),
                             EditButton(
@@ -165,8 +164,7 @@ class _VHomeViewState extends State<VHomeView> {
                                 });
                               },
                               icon: 'assets/images/edit.svg',
-                              text: 'Edit profit',
-                              width: MediaQuery.of(context).size.width * 0.30,
+                              text: 'Edit profile',
                             ),
                           ],
                         ),
@@ -379,7 +377,7 @@ class _VHomeViewState extends State<VHomeView> {
                 ]),
               ),
             ))
-      // : Container(),
+        // : Container(),
         );
   }
 

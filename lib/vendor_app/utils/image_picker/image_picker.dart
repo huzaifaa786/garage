@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ImageSelectorApi {
@@ -23,9 +24,9 @@ class ImageSelectorApi {
   }
 
   Future<List<File>> selectMultipleImages() async {
-    final List<XFile>? pickedFiles = await picker.pickMultiImage();
+    final List<XFile> pickedFiles = await picker.pickMultiImage();
 
-    if (pickedFiles != null && pickedFiles.isNotEmpty) {
+    if (pickedFiles.isNotEmpty) {
       return pickedFiles.map((file) => File(file.path)).toList();
     } else {
       UiUtilites.errorSnackbar('Image selection failed'.tr,

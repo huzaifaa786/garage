@@ -6,8 +6,9 @@ import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/chat/chat_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ChatCard extends StatelessWidget {
@@ -39,7 +40,7 @@ class ChatCard extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Gap(6),
+                      const Gap(6),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -56,29 +57,29 @@ class ChatCard extends StatelessWidget {
                                     ? img
                                     : controller.image.toString(),
                                 placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
+                                    const CircularProgressIndicator(),
                                 errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                                    const Icon(Icons.error),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                          Gap(8),
+                          const Gap(8),
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Gap(6),
+                                const Gap(6),
                                 AppText(
                                   title: name,
                                   fontWeight: FontWeight.w600,
                                   size: 14,
                                 ),
-                                Gap(10),
+                                const Gap(10),
                                 Row(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: Get.width * 0.5,
-                                      child: Flexible(
+                                      child: const Flexible(
                                         child: AppText(
                                           maxLines: 1,
                                           overFlow: TextOverflow.ellipsis,
@@ -107,8 +108,8 @@ class ChatCard extends StatelessWidget {
                           color: AppColors.lightblue,
                         ),
                       ),
-                      Gap(5),
-                      AppText(
+                      const Gap(5),
+                      const AppText(
                         title: '3 days ago',
                         size: 11,
                         fontWeight: FontWeight.w500,

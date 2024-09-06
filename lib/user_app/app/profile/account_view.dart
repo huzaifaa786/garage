@@ -77,7 +77,7 @@ class _AccountViewState extends State<AccountView> {
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
-                      color: AppColors.lightprimary,
+                      color: AppColors.lightPink,
                       text: 'Dubai',
                       textColor: AppColors.black,
                       image: 'assets/icons/map_pin.svg',
@@ -89,7 +89,7 @@ class _AccountViewState extends State<AccountView> {
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
-                      color: AppColors.lightprimary,
+                      color: AppColors.lightPink,
                       text: 'My cars',
                       textColor: AppColors.black,
                       image: 'assets/icons/car.svg',
@@ -102,7 +102,7 @@ class _AccountViewState extends State<AccountView> {
                   AllProfileCard(
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
-                      color: AppColors.lightprimary,
+                      color: AppColors.lightPink,
                       text: 'Language',
                       textColor: AppColors.black,
                       image: 'assets/icons/language.svg',
@@ -112,7 +112,7 @@ class _AccountViewState extends State<AccountView> {
                       }),
                   const Gap(15),
                   AllProfileCard(
-                    color: AppColors.lightprimary,
+                    color: AppColors.lightPink,
                     text: 'Settings',
                     textColor: AppColors.black,
                     image: 'assets/icons/setting.svg',
@@ -125,7 +125,7 @@ class _AccountViewState extends State<AccountView> {
                   ),
                   const Gap(15),
                   AllProfileCard(
-                      color: AppColors.lightprimary,
+                      color: AppColors.lightPink,
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       text: 'Orders history',

@@ -4,10 +4,11 @@ import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_in/components/signin_triangle.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_in/signin_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
@@ -30,11 +31,16 @@ class VSignInView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      // child: Image.asset(ImageConst.appLogo,
-                      //     width: 172, height: 108)
-                        child: SvgPicture.asset('assets/icons/mobile_garagelogo.svg',color:AppColors.white_color,height:  108,width: 172,),
-                          ),
+                    padding: const EdgeInsets.only(top: 10),
+                    // child: Image.asset(ImageConst.appLogo,
+                    //     width: 172, height: 108)
+                    child: SvgPicture.asset(
+                      'assets/icons/mobile_garagelogo.svg',
+                      color: AppColors.white_color,
+                      height: 108,
+                      width: 172,
+                    ),
+                  ),
                   Expanded(
                     child: Stack(
                       children: [
@@ -110,8 +116,7 @@ class VSignInView extends StatelessWidget {
                                     title: 'Sign In',
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
-                                        controller.login();
-                                      Get.toNamed(AppRoutes.vhome);
+                                      controller.login();
                                     },
                                   ),
                                   const Gap(30),

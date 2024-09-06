@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class ProductRichText extends StatelessWidget {
   const ProductRichText({super.key, this.title, this.buttonText, this.onTap});
@@ -20,7 +20,7 @@ class ProductRichText extends StatelessWidget {
               fontWeight: FontWeight.w600),
           children: <TextSpan>[
             TextSpan(
-                text: ' ' + '$buttonText',
+                text: ' ' '$buttonText',
                 style: GoogleFonts.inter(
                     color: AppColors.hint_text_color,
                     fontSize: 10,

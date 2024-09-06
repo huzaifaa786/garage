@@ -2,7 +2,8 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class LanguageSelecter extends StatelessWidget {
@@ -23,6 +24,10 @@ class LanguageSelecter extends StatelessWidget {
           child: Container(
             height: 70,
             width: Get.width * 0.9,
+            decoration: BoxDecoration(
+              color: AppColors.light_red,
+              borderRadius: BorderRadius.circular(30),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -33,10 +38,6 @@ class LanguageSelecter extends StatelessWidget {
                   color: AppColors.primary_color,
                 ),
               ],
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.light_red,
-              borderRadius: BorderRadius.circular(30),
             ),
           ),
         )

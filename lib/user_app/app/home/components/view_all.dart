@@ -56,7 +56,7 @@ class _ViewMoreState extends State<ViewMore> {
       child: Container(
         height: 30,
         decoration: BoxDecoration(
-          color: AppColors.lightprimary,
+          color: AppColors.lightPink,
           border: Border.all(color: AppColors.primaryborder, width: 1),
           borderRadius: BorderRadius.circular(40),
         ),

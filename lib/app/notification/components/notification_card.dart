@@ -52,7 +52,6 @@ class NotificationCard extends StatelessWidget {
                                       child: AppNetworkImage(
                                         assetPath:
                                             'assets/images/street_garage.png',
-                                            
                                       ),
                                       // child: CachedNetworkImage(
                                       //   imageUrl:
@@ -77,7 +76,7 @@ class NotificationCard extends StatelessWidget {
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(
-                                color: AppColors.lightprimary,
+                                color: AppColors.lightPink,
                                 borderRadius: BorderRadius.circular(80),
                               ),
                               child: Image.asset('assets/images/chat.png'),
