@@ -169,16 +169,16 @@ class VSignupView extends StatelessWidget {
                               },
                             ),
                             const Gap(15),
-                            DropDownField<EmirateModel>(
+                             DropDownField<EmirateModel>(
                               displayValue: (item) => item.name!,
                               items: controller.emirates,
                               hint: 'Emirate',
                               selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
                                 controller.setSelectedEmirate(value);
-                                controller.update();
                                 controller.validateFields("Emirate",
                                     controller.selectedEmirateId.toString());
+                                controller.update();
                               },
                               errorText: controller.emirateError,
                             ),
@@ -254,8 +254,7 @@ class VSignupView extends StatelessWidget {
                               title: 'Sign Up',
                               buttonColor: AppColors.primary_color,
                               ontap: () {
-                                // controller.register();
-                                  Get.offNamed(AppRoutes.vhome);
+                                 controller.register();
                               },
                             ),
                             const Gap(12),

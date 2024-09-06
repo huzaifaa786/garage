@@ -57,6 +57,8 @@ class VSignInController extends GetxController {
           email: emailController.text, password: passwordController.text);
       if (response.isNotEmpty) {
         box.write('api_token', response['garage']['token']);
+        box.write('user_type', 'vendor');
+
         Get.offAllNamed(AppRoutes.vhome);
       }
     }
