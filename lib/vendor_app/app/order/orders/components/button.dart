@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
-
-
 
 class AcceptedButton extends StatelessWidget {
   const AcceptedButton({

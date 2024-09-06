@@ -4,17 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ChangePassword extends StatelessWidget {
-  const ChangePassword({
-    super.key,
-    this.icon,
-    this.text,
-    this.ontap,
-    this.langtext =''
-  });
+  const ChangePassword(
+      {super.key, this.icon, this.text, this.ontap, this.langtext = ''});
   final icon;
   final text;
   final ontap;
@@ -52,10 +48,10 @@ class ChangePassword extends StatelessWidget {
                       color: AppColors.black_color,
                       fontWeight: FontWeight.w500,
                     ),
-                     AppText(
+                    AppText(
                       title: '  ' + langtext,
                       size: 10,
-                      color: Color.fromARGB(255, 196, 195, 195),
+                      color: const Color.fromARGB(255, 196, 195, 195),
                       fontWeight: FontWeight.w500,
                     )
                   ],

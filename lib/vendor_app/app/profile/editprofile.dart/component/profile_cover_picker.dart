@@ -5,8 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -47,10 +48,10 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                               color: AppColors.primary_color.withOpacity(0.07),
                               image: DecorationImage(
                                   image: CachedNetworkImageProvider(
-                                   // controller.garage!.banner!,
+                                    // controller.garage!.banner!,
                                     controller.garage != null
-                 ?
-                                        controller.garage!.logo!:'https://dummyimage.com/60x40/000/fff',
+                                        ? controller.garage!.logo!
+                                        : 'https://dummyimage.com/60x40/000/fff',
                                   ),
                                   opacity: 0.5,
                                   fit: BoxFit.cover)),
@@ -60,7 +61,10 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SvgPicture.asset(ImageConst.image_ic,height: 13,),
+                                  SvgPicture.asset(
+                                    ImageConst.image_ic,
+                                    height: 13,
+                                  ),
                                   const Gap(4),
                                   AppText(
                                     title: ConstantStrings.upload_garage_banner,
@@ -129,17 +133,20 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                               color: AppColors.primary_color.withOpacity(0.07),
                               image: DecorationImage(
                                   image: CachedNetworkImageProvider(
-                                     // controller.garage!.logo!
-                                       controller.garage != null
-                 ?
-                                        controller.garage!.logo!:'https://dummyimage.com/60x40/000/fff',
-                                      ),
-                                        opacity: 0.5,
+                                    // controller.garage!.logo!
+                                    controller.garage != null
+                                        ? controller.garage!.logo!
+                                        : 'https://dummyimage.com/60x40/000/fff',
+                                  ),
+                                  opacity: 0.5,
                                   fit: BoxFit.cover)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SvgPicture.asset(ImageConst.image_ic,height: 12,),
+                              SvgPicture.asset(
+                                ImageConst.image_ic,
+                                height: 12,
+                              ),
                               const Gap(2),
                               AppText(
                                 title: ConstantStrings.upload_logo,

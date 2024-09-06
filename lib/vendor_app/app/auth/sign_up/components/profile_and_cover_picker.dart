@@ -4,8 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/signup_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -108,35 +109,36 @@ class ProfileAndCoverPicker extends StatelessWidget {
                 radius: const Radius.circular(35),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(35)),
-                  child: controller.logo == null || controller.logo!.path.isEmpty
-                      ? Container(
-                          height: 70,
-                          width: 70,
-                          color: AppColors.primary_color.withOpacity(0.07),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(ImageConst.image_ic),
-                              const Gap(2),
-                              AppText(
-                                title: ConstantStrings.upload_logo,
-                                size: 8,
-                                color: AppColors.primary_color,
+                  child:
+                      controller.logo == null || controller.logo!.path.isEmpty
+                          ? Container(
+                              height: 70,
+                              width: 70,
+                              color: AppColors.primary_color.withOpacity(0.07),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(ImageConst.image_ic),
+                                  const Gap(2),
+                                  AppText(
+                                    title: ConstantStrings.upload_logo,
+                                    size: 8,
+                                    color: AppColors.primary_color,
+                                  ),
+                                  const Gap(2),
+                                  AppText(
+                                    title: ConstantStrings.seventy_square,
+                                    size: 8,
+                                    color: AppColors.hint_text_color,
+                                  ),
+                                ],
                               ),
-                              const Gap(2),
-                              AppText(
-                                title: ConstantStrings.seventy_square,
-                                size: 8,
-                                color: AppColors.hint_text_color,
-                              ),
-                            ],
-                          ),
-                        )
-                      : Image.file(
-                          controller.logo!,
-                          height: 70,
-                          width: 70,
-                        ),
+                            )
+                          : Image.file(
+                              controller.logo!,
+                              height: 70,
+                              width: 70,
+                            ),
                 ),
               ),
             ),

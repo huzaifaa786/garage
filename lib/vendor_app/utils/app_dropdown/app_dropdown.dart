@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
@@ -73,6 +74,7 @@ class DropDownField<T> extends StatelessWidget {
                       title: displayValue!(item),
                       size: 14,
                       fontWeight: FontWeight.w400,
+                      color: AppColors.black_color.withOpacity(0.4),
                     ),
                   );
                 }).toList();
@@ -87,7 +89,7 @@ class DropDownField<T> extends StatelessWidget {
               ),
               buttonStyleData: ButtonStyleData(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
                 width: Get.width,
                 decoration: BoxDecoration(
                   color: AppColors.input_bg_color,
@@ -110,7 +112,7 @@ class DropDownField<T> extends StatelessWidget {
         ),
         if (errorText!.isNotEmpty)
           Padding(
-            padding: EdgeInsets.only(top: 4, left: 16, right: 16),
+            padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
             child: AppText(
               title: errorText!,
               color: AppColors.primary_color,

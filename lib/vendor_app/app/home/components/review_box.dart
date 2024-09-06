@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ReviewBox extends StatelessWidget {
@@ -23,6 +24,10 @@ class ReviewBox extends StatelessWidget {
         child: Container(
           height: 40,
           width: Get.width * 0.5,
+          decoration: BoxDecoration(
+            color: AppColors.light_red,
+            borderRadius: BorderRadius.circular(50),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -36,10 +41,6 @@ class ReviewBox extends StatelessWidget {
                 )
               ],
             ),
-          ),
-          decoration: BoxDecoration(
-            color: AppColors.light_red,
-            borderRadius: BorderRadius.circular(50),
           ),
         ),
       ),

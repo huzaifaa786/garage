@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
 
 var circularInputDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(45),
@@ -12,12 +11,11 @@ var circularErrorInputDecoration = BoxDecoration(
   // boxShadow: innerInputShadow
 );
 
-BoxDecoration appBoxDecotration({List<BoxShadow>? innerShadow,Color? color}) {
+BoxDecoration appBoxDecotration({List<BoxShadow>? innerShadow, Color? color}) {
   return BoxDecoration(
-    borderRadius: BorderRadius.circular(45),
-    boxShadow: innerShadow,
-    color: color 
-  );
+      borderRadius: BorderRadius.circular(45),
+      boxShadow: innerShadow,
+      color: color);
 }
 
 // BoxDecoration radioButtonDecoration(bool selected) {
