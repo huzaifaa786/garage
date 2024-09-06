@@ -24,12 +24,12 @@ class VHomeController extends GetxController {
     "Review 2"
   ];
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    garagedata();
-  }
+  // @override
+  // void onInit() {
+  //   // TODO: implement onInit
+  //   super.onInit();
+  //   garagedata();
+  // }
 
   pickImageFromGallery(String imageName) async {
     final imageSelectorApi = ImageSelectorApi();
@@ -130,7 +130,7 @@ class VHomeController extends GetxController {
         title: Text(
           message,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         actions: [
           Row(
@@ -145,7 +145,7 @@ class VHomeController extends GetxController {
                   elevation: 0,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
-                child: Text(
+                child: const Text(
                   'No',
                   style: TextStyle(color: Colors.red, fontSize: 16),
                 ),
@@ -160,7 +160,7 @@ class VHomeController extends GetxController {
                   elevation: 0,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
-                child: Text(
+                child: const Text(
                   'Yes',
                   style: TextStyle(color: Colors.green, fontSize: 16),
                 ),
@@ -175,11 +175,10 @@ class VHomeController extends GetxController {
 
 
 //  /// use this function only for design ///
-  
+
   RxBool isSwitched = false.obs;
 
   void toggleStatuss(bool value) {
     isSwitched.value = value;
   }
-
 }

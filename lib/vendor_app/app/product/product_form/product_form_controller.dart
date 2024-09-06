@@ -92,12 +92,12 @@ class ProductFormController extends GetxController {
   String serviceTypePriceError = '';
   String timeError = '';
 
-  @override
-  void onInit() async {
-    // TODO: implement onInit
-    super.onInit();
-    await getCategories();
-  }
+  // @override
+  // void onInit() async {
+  //   // TODO: implement onInit
+  //   super.onInit();
+  //   await getCategories();
+  // }
 
 // categories dropdown
   String categorysError = '';

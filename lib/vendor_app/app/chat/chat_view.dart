@@ -17,23 +17,22 @@ class _VChatViewState extends State<VChatView> {
   Widget build(BuildContext context) {
     return GetBuilder<VChatController>(
         autoRemove: false,
-        builder: (controller) => AppLayout(
+        builder: (controller) => const AppLayout(
               appBarTitle: 'Chat',
               hasBgColor: true,
               child: Column(
                 children: [
                   ChatCard(
-                    name: 'sdsdfd',
+                    name: 'Mohammed',
                   ),
-                   ChatCard(
-                    name: 'sdsdfd',
+                  ChatCard(
+                    name: 'Ahmed52',
                   ),
-                   ChatCard(
-                    name: 'sdsdfd',
+                  ChatCard(
+                    name: 'Ahmed alhagiry',
                   ),
                 ],
               ),
-            )
-            );
+            ));
   }
 }

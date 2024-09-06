@@ -25,7 +25,7 @@ class EdittButton extends StatelessWidget {
     return InkWell(
       onTap: ontap,
       child: Container(
-        // padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         width: width,
         decoration: BoxDecoration(
           color: AppColors.light_red,
