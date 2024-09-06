@@ -11,8 +11,9 @@ import 'package:mobilegarage/splash/splash_view.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/routes/app_pages.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-void main()async {
-   WidgetsFlutterBinding.ensureInitialized();
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   //  await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // ).then((value) {
@@ -20,10 +21,11 @@ void main()async {
   // });
   await LoadingHelper.init();
   await GetStorage.init();
-  
-   EasyLoading.init();
+
+  EasyLoading.init();
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -40,8 +42,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       builder: EasyLoading.init(),
       initialBinding: SplashBinding(),
-              home: const SplashView(),
-              getPages: AppPages.pages,
+      home: const SplashView(),
+      getPages: AppPages.pages,
     );
   }
 }
+

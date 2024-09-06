@@ -115,35 +115,35 @@ class _VHomeViewState extends State<VHomeView> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextSwitchButton(
-                                // value: controller.garage!.opened ?? false,
-                                value: true,
-                                ontoggle: controller.toggleStatus,
-                              ),
-                            ],
-                          ),
-                        ),
-
                         // Padding(
                         //   padding: const EdgeInsets.all(8.0),
                         //   child: Row(
                         //     mainAxisAlignment: MainAxisAlignment.center,
                         //     children: [
-                        //       Obx(() => TextSwitchButton(
-                        //             value: controller.isSwitched.value,
-                        //             ontoggle: (value) {
-                        //               controller.toggleStatuss(value);
-
-                        //             },
-                        //           )),
+                        //       TextSwitchButton(
+                        //          value: controller.garage!.opened ?? false,
+                        //         //  value: true,
+                        //         ontoggle: controller.toggleStatus,
+                        //       ),
                         //     ],
                         //   ),
                         // ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Obx(() => TextSwitchButton(
+                                    value: controller.isSwitched.value,
+                                    ontoggle: (value) {
+                                      controller.toggleStatuss(value);
+
+                                    },
+                                  )),
+                            ],
+                          ),
+                        ),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -161,7 +161,7 @@ class _VHomeViewState extends State<VHomeView> {
                               ontap: () {
                                 Get.toNamed(AppRoutes.veditprofile)!
                                     .then((onValue) {
-                                  // controller.garagedata();
+                                  controller.garagedata();
                                 });
                               },
                               icon: 'assets/images/edit.svg',
@@ -379,7 +379,7 @@ class _VHomeViewState extends State<VHomeView> {
                 ]),
               ),
             ))
-        // : Container(),
+      // : Container(),
         );
   }
 

@@ -19,7 +19,7 @@ class VHomeController extends GetxController {
   void onInit() {
     // TODO: implement onInit
      super.onInit();
-    //  garagedata();
+      garagedata();
   }
 GarageModel? garage;
 garagedata()async{
@@ -130,10 +130,10 @@ updateGarageStatus()async{
 
 //  /// use this function only for design ///
   
-//   RxBool isSwitched = false.obs;
+  RxBool isSwitched = false.obs;
 
-//   void toggleStatuss(bool value) {
-//     isSwitched.value = value;
-//   }
+  void toggleStatuss(bool value) {
+    isSwitched.value = value;
+  }
 
 }
