@@ -6,7 +6,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
-import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/service_type_card.dart';
@@ -56,9 +55,9 @@ class ProductFormView extends StatelessWidget {
                       selectedValue: controller.selectedCategory,
                       onChanged: (value) {
                         controller.setSelectedCategory(value);
+                        controller.validateFields("Category",
+                            controller.selectedCategoryId.toString());
                         controller.update();
-                        controller.validateFields(
-                            "Category", controller.selectedCategory?.name);
                       },
                       errorText: controller.categorysError,
                     ),
@@ -74,17 +73,14 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedBrand,
                                 onChanged: (value) {
                                   controller.setSelectedBrands(value);
+                                  controller.validateFields("Brand",
+                                      controller.selectedBrandId.toString());
                                   controller.update();
-                                  controller.validateFields(
-                                      "Brand", controller.selectedBrand?.name);
                                 },
                                 errorText: controller.brandError,
                               ),
                               Gap(12),
-                            ],
-                          )
-                        : Gap(0),
-                    AppInputField(
+                               AppInputField(
                       errorText: controller.priceError,
                       hint: 'Brand Price',
                       type: TextInputType.number,
@@ -112,6 +108,10 @@ class ProductFormView extends StatelessWidget {
                         controller.validateFields("Description", val);
                       },
                     ),
+                            ],
+                          )
+                        : Gap(0),
+                   
                     Gap(12),
                     AppInputField(
                       errorText: controller.timeError,
@@ -167,8 +167,8 @@ class ProductFormView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final item = controller.serviceTypeList[index];
                         return ServiceTypeCard(
-                          name: item['service_type_name'],
-                          price: item['service_type_price'].toString(),
+                          name: item['type'],
+                          price: item['price'].toString(),
                           onRemoveTap: () {
                             controller.removeExtra(index);
                           },
