@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
@@ -110,7 +111,7 @@ class DropDownField<T> extends StatelessWidget {
         ),
         if (errorText!.isNotEmpty)
           Padding(
-            padding: EdgeInsets.only(top: 4, left: 16, right: 16),
+            padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
             child: AppText(
               title: errorText!,
               color: AppColors.primary_color,

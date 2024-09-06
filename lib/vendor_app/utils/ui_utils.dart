@@ -7,8 +7,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
@@ -192,7 +192,7 @@ class UiUtilites {
                         size: 14,
                         fontWeight: FontWeight.w700,
                         textAlign: TextAlign.center,
-                        color: AppColors.appbar_title_color,
+                        color: AppColors.darkprimary,
                       ),
                       Gap(10),
                       AppText(
@@ -220,7 +220,6 @@ class UiUtilites {
     );
   }
 
-  
   static void showConfirmationDialog(bool intendedValue, String message,
       {VoidCallback? onConfirm}) {
     Get.dialog(
@@ -270,5 +269,4 @@ class UiUtilites {
       ),
     );
   }
-
 }

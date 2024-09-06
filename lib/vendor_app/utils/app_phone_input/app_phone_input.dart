@@ -7,7 +7,8 @@ import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class AppPhoneInput extends StatelessWidget {

@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_controller.dart';
 import 'package:mobilegarage/vendor_app/app/banner/component/cover_picker.dart';
 import 'package:mobilegarage/vendor_app/app/banner/component/radio_button.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class VBannerView extends StatefulWidget {
@@ -68,9 +69,11 @@ class _VBannerViewState extends State<VBannerView> {
                             buttonColor: controller.cover == null
                                 ? Colors.grey
                                 : AppColors.primary_color,
-                            ontap: controller.cover == null ? null : () {
-                               controller.storeBanner();
-                            },
+                            ontap: controller.cover == null
+                                ? null
+                                : () {
+                                    controller.storeBanner();
+                                  },
                           ),
                         ],
                       ),

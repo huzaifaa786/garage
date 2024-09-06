@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class FilterView extends StatelessWidget {
@@ -16,7 +17,7 @@ class FilterView extends StatelessWidget {
         width: Get.width,
         decoration: BoxDecoration(
           color: AppColors.white_color,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(15),
             bottomRight: Radius.circular(15),
           ),

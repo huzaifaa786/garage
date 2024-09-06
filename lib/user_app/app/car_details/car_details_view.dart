@@ -300,7 +300,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                     width: Get.width * 0.6,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      color: AppColors.lightprimary,
+                                      color: AppColors.lightPink,
                                     ),
                                     child: Padding(
                                       padding:

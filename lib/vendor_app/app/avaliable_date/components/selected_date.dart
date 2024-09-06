@@ -5,11 +5,14 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class SelectedDate extends StatelessWidget {
+  const SelectedDate({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AvaliableDateController>(
@@ -22,7 +25,7 @@ class SelectedDate extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: Get.width*0.63,
+                    width: Get.width * 0.63,
                     height: 40,
                     decoration: BoxDecoration(
                         color: AppColors.light_red,
@@ -38,7 +41,7 @@ class SelectedDate extends StatelessWidget {
                             size: 12,
                             fontWeight: FontWeight.w600,
                           ),
-                          Gap(10),
+                          const Gap(10),
                           AppText(
                             title: DateFormat('d MMMM yyyy').format(date),
                             color: AppColors.primary_color,
@@ -47,7 +50,7 @@ class SelectedDate extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Gap(13),
+                  const Gap(13),
                   Container(
                     height: 50,
                     width: 50,

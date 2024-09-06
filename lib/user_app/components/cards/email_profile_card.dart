@@ -12,15 +12,15 @@ class EmailProfileCard extends StatelessWidget {
     required this.image,
     required this.ontap,
     required this.text2,
-       required this.height,
+    required this.height,
     required this.width,
   });
   final String text;
   final String image;
   final String text2;
   final VoidCallback ontap;
-    final height;
-  final  width;
+  final height;
+  final width;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,8 @@ class EmailProfileCard extends StatelessWidget {
       onTap: ontap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 11),
-         height: height,
+        height: height,
         width: width,
-       
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: AppColors.white),
@@ -39,19 +38,19 @@ class EmailProfileCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-             Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    color: AppColors.lightprimary,
-                    borderRadius: BorderRadius.circular(80),
-                  ),
-                  child: SvgPicture.asset(
-                    image,
-                    color: AppColors.primarybg,
-                    fit: BoxFit.scaleDown,
-                  ),
-                ),
+            Container(
+              height: 35,
+              width: 35,
+              decoration: BoxDecoration(
+                color: AppColors.lightPink,
+                borderRadius: BorderRadius.circular(80),
+              ),
+              child: SvgPicture.asset(
+                image,
+                color: AppColors.primarybg,
+                fit: BoxFit.scaleDown,
+              ),
+            ),
             Gap(10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +58,10 @@ class EmailProfileCard extends StatelessWidget {
               children: [
                 Text(
                   text,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500,color: AppColors.primary),
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.primary),
                 ),
                 Gap(5),
                 Text(

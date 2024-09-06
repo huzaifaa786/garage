@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class LanguageOption extends StatelessWidget {
   final String languageName;
@@ -9,13 +9,13 @@ class LanguageOption extends StatelessWidget {
   final ValueChanged<int?> onChanged;
 
   const LanguageOption({
-    Key? key,
+    super.key,
     required this.languageName,
     required this.languageDescription,
     required this.value,
     required this.groupValue,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +32,12 @@ class LanguageOption extends StatelessWidget {
             children: [
               Text(
                 languageName,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ),
               Text(
                 languageDescription,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey),

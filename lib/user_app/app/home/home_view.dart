@@ -132,7 +132,7 @@ class _HomeViewState extends State<HomeView> {
                         count: 5,
                         effect: ExpandingDotsEffect(
                             activeDotColor: AppColors.primary,
-                            dotColor: AppColors.lightprimary,
+                            dotColor: AppColors.lightPink,
                             dotWidth: 5,
                             dotHeight: 5),
                       ),

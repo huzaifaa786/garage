@@ -12,8 +12,7 @@ class DateLocationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.lightprimary,
-          borderRadius: BorderRadius.circular(10)),
+          color: AppColors.lightPink, borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Row(
@@ -29,7 +28,7 @@ class DateLocationCard extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: AppColors.primarybg,
               ),
-            ) ,
+            ),
           ],
         ),
       ),

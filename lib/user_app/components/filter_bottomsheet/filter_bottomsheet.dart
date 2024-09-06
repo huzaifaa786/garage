@@ -10,9 +10,9 @@ class FilterBottomsheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
@@ -26,22 +26,22 @@ class FilterBottomsheet extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Gap(40),
-                  AppText(
+                  const Gap(40),
+                  const AppText(
                     title: 'Filter By',
                     size: 14,
                     fontWeight: FontWeight.w600,
                   ),
-                  Divider(
+                  const Divider(
                     color: AppColors.lightgrey,
                   ),
-                  Gap(10),
+                  const Gap(10),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             AppText(
                               title: 'Sort',
@@ -50,7 +50,7 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Gap(5),
+                        const Gap(5),
                         Row(
                           children: [
                             Container(
@@ -61,15 +61,15 @@ class FilterBottomsheet extends StatelessWidget {
                                 color: AppColors.black,
                               ),
                             ),
-                            Gap(5),
-                            AppText(
+                            const Gap(5),
+                            const AppText(
                               title: 'Price',
                               size: 12,
                               fontWeight: FontWeight.w500,
                             ),
                           ],
                         ),
-                        Gap(5),
+                        const Gap(5),
                         Row(
                           children: [
                             FilterBottomsheetContainer(
@@ -79,7 +79,7 @@ class FilterBottomsheet extends StatelessWidget {
                               index: 0,
                               group: 'price',
                             ),
-                            Gap(10),
+                            const Gap(10),
                             FilterBottomsheetContainer(
                               height: 31,
                               width: 103,
@@ -89,7 +89,7 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Gap(15),
+                        const Gap(15),
                         Row(
                           children: [
                             Container(
@@ -100,15 +100,15 @@ class FilterBottomsheet extends StatelessWidget {
                                 color: AppColors.black,
                               ),
                             ),
-                            Gap(5),
-                            AppText(
+                            const Gap(5),
+                            const AppText(
                               title: 'The closest',
                               size: 12,
                               fontWeight: FontWeight.w500,
                             ),
                           ],
                         ),
-                        Gap(5),
+                        const Gap(5),
                         Row(
                           children: [
                             FilterBottomsheetContainer(
@@ -118,7 +118,7 @@ class FilterBottomsheet extends StatelessWidget {
                               index: 0,
                               group: 'closest',
                             ),
-                            Gap(10),
+                            const Gap(10),
                             FilterBottomsheetContainer(
                               height: 31,
                               width: 103,
@@ -128,7 +128,7 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Gap(15),
+                        const Gap(15),
                         Row(
                           children: [
                             Container(
@@ -139,15 +139,15 @@ class FilterBottomsheet extends StatelessWidget {
                                 color: AppColors.black,
                               ),
                             ),
-                            Gap(5),
-                            AppText(
+                            const Gap(5),
+                            const AppText(
                               title: 'Rating',
                               size: 12,
                               fontWeight: FontWeight.w500,
                             ),
                           ],
                         ),
-                        Gap(5),
+                        const Gap(5),
                         Row(
                           children: [
                             FilterBottomsheetContainer(
@@ -157,7 +157,7 @@ class FilterBottomsheet extends StatelessWidget {
                               index: 0,
                               group: 'rating',
                             ),
-                            Gap(10),
+                            const Gap(10),
                             FilterBottomsheetContainer(
                               height: 31,
                               width: 103,
@@ -167,12 +167,12 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Gap(11),
-                        Divider(
+                        const Gap(11),
+                        const Divider(
                           color: AppColors.lightgrey,
                         ),
-                        Gap(11),
-                        Row(
+                        const Gap(11),
+                        const Row(
                           children: [
                             AppText(
                               title: 'Filter',
@@ -181,7 +181,7 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Gap(5),
+                        const Gap(5),
                         Row(
                           children: [
                             Container(
@@ -192,15 +192,15 @@ class FilterBottomsheet extends StatelessWidget {
                                 color: AppColors.black,
                               ),
                             ),
-                            Gap(5),
-                            AppText(
+                            const Gap(5),
+                            const AppText(
                               title: 'Results',
                               size: 12,
                               fontWeight: FontWeight.w500,
                             ),
                           ],
                         ),
-                        Gap(5),
+                        const Gap(5),
                         Row(
                           children: [
                             FilterBottomsheetContainer(
@@ -210,7 +210,7 @@ class FilterBottomsheet extends StatelessWidget {
                               index: 0,
                               group: 'results',
                             ),
-                            Gap(10),
+                            const Gap(10),
                             FilterBottomsheetContainer(
                               height: 31,
                               width: 103,
@@ -218,7 +218,7 @@ class FilterBottomsheet extends StatelessWidget {
                               index: 1,
                               group: 'results',
                             ),
-                            Gap(10),
+                            const Gap(10),
                             FilterBottomsheetContainer(
                               height: 31,
                               width: 103,
@@ -228,7 +228,7 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Gap(10),
+                        const Gap(10),
                         FilterBottomsheetContainer(
                           height: 31,
                           width: 103,
@@ -236,11 +236,11 @@ class FilterBottomsheet extends StatelessWidget {
                           index: 3,
                           group: 'results',
                         ),
-                        Gap(11),
-                        Divider(
+                        const Gap(11),
+                        const Divider(
                           color: AppColors.lightgrey,
                         ),
-                        Gap(11),
+                        const Gap(11),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -253,7 +253,7 @@ class FilterBottomsheet extends StatelessWidget {
                                   color: AppColors.lightPink,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
-                                child: Center(
+                                child: const Center(
                                   child: AppText(
                                     title: 'Reset',
                                     size: 12,
@@ -263,7 +263,7 @@ class FilterBottomsheet extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Gap(10),
+                            const Gap(10),
                             GestureDetector(
                               onTap: () {},
                               child: Container(
@@ -273,7 +273,7 @@ class FilterBottomsheet extends StatelessWidget {
                                   color: AppColors.primary,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
-                                child: Center(
+                                child: const Center(
                                   child: AppText(
                                     title: 'Apply',
                                     size: 12,
@@ -285,7 +285,7 @@ class FilterBottomsheet extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Gap(15),
+                        const Gap(15),
                       ],
                     ),
                   ),
@@ -294,6 +294,5 @@ class FilterBottomsheet extends StatelessWidget {
             ),
           ],
         ));
-      
   }
 }
