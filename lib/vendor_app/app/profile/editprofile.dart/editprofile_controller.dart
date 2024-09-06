@@ -29,6 +29,7 @@ class VEditprofileController extends GetxController {
     Get.back();
   }
 
+  @override
   void onInit() async {
     super.onInit();
     isButtonClicked = false;
@@ -41,9 +42,8 @@ class VEditprofileController extends GetxController {
     var response = await VGetGarageApi.getgarage();
     if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response['garage']);
-      garageDescriptionController.text=garage!.description!;
+      garageDescriptionController.text = garage!.description!;
       update();
-
     }
   }
 

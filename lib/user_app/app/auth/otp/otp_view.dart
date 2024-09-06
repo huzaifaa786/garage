@@ -89,13 +89,13 @@ class OtpView extends StatelessWidget {
                       },
                       onSubmit: (String verificationCode) {
                         controller.otpCode = verificationCode;
-                        // controller.verifyOtpCode();
+                         controller.verifyOtpCode();
                       },
                     ),
                     Gap(33),
                     GestureDetector(
                       onTap: () {
-                        // controller.verifyPhone();
+                         controller.verifyPhone();
                         Get.offAllNamed(AppRoutes.main);
                       },
                       child: AppText(

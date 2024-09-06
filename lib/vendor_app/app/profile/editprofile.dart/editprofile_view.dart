@@ -60,12 +60,12 @@ class _VEditprofileViewState extends State<VEditprofileView> {
         body: SingleChildScrollView(
           child: SafeArea(
               child:
-                  // controller.garage != null
-                  //     ?
+                   controller.garage != null
+                       ?
                   Column(
             children: [
               Container(
-                // height: Get.height * 0.6,
+               height: Get.height * 0.6,
                 decoration: BoxDecoration(color: AppColors.white_color),
                 child: Padding(
                   padding: const EdgeInsets.all(25.0),
@@ -111,7 +111,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               )
                             : Gap(1),
                         ontap: () {
-                          // controller.onSaveChanges();
+                           controller.onSaveChanges();
                         },
                       )
                     ],
@@ -185,7 +185,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
               )
             ],
           )
-              // : Gap(0),
+               : Gap(0),
               ),
         ),
       ),
