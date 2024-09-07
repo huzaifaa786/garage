@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/edit_button.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/home_appbar.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/main_box.dart';
@@ -14,8 +15,6 @@ import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/reviewcard.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/switch_button.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
-import 'package:mobilegarage/vendor_app/app/product/products/component/button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -35,6 +34,7 @@ class _VHomeViewState extends State<VHomeView> {
         builder: (controller) => Scaffold(
             backgroundColor: const Color.fromARGB(255, 224, 223, 223),
             appBar: AppBar(
+              toolbarHeight: 70,
               scrolledUnderElevation: 0,
               automaticallyImplyLeading: false,
               title: HomeAppbar(
@@ -50,11 +50,11 @@ class _VHomeViewState extends State<VHomeView> {
               child: SafeArea(
                 child: Column(children: [
                   Container(
-                    height: Get.height * 0.53,
                     decoration: BoxDecoration(color: AppColors.white_color),
                     child: Column(
                       children: [
                         Stack(
+                          clipBehavior: Clip.none,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(bottom: 29),
@@ -69,7 +69,7 @@ class _VHomeViewState extends State<VHomeView> {
                               ),
                             ),
                             Positioned(
-                                top: Get.height * 0.15,
+                                bottom: 8,
                                 left:
                                     (MediaQuery.of(context).size.width - 100) /
                                         2,
@@ -120,41 +120,31 @@ class _VHomeViewState extends State<VHomeView> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              TextSwitchButton(
-                                // value: controller.garage!.opened ?? false,
-                                value: true,
-                                ontoggle: controller.toggleStatus,
-                              ),
+                              Obx(() => TextSwitchButton(
+                                    value: controller.isSwitched.value,
+                                    ontoggle: (value) {
+                                      controller.toggleStatus(value);
+                                      UiUtilites.showConfirmationDialog(
+                                        true,
+                                        'Are you sure you want to toggle the garage status?',
+                                        onConfirm: () {
+                                          controller.updateGarageStatus();
+                                        },
+                                      );
+                                    },
+                                  )),
                             ],
                           ),
                         ),
-
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [
-                        //       Obx(() => TextSwitchButton(
-                        //             value: controller.isSwitched.value,
-                        //             ontoggle: (value) {
-                        //               controller.toggleStatuss(value);
-
-                        //             },
-                        //           )),
-                        //     ],
-                        //   ),
-                        // ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            EdittButton(
+                            EditButton(
                               ontap: () {
-                                Get.toNamed(AppRoutes.vavaliabledate);
+                                Get.toNamed(AppRoutes.vunavaliabledate);
                               },
                               icon: 'assets/images/calendar.svg',
-                              text: 'Edit unavailable dates ',
-                              width: MediaQuery.of(context).size.width * 0.43,
+                              text: 'Edit unavailable dates',
                             ),
                             Gap(10),
                             EditButton(
@@ -164,12 +154,12 @@ class _VHomeViewState extends State<VHomeView> {
                                   // controller.garagedata();
                                 });
                               },
-                              icon: 'assets/images/edit.svg',
-                              text: 'Edit profit',
-                              width: MediaQuery.of(context).size.width * 0.30,
+                              icon: 'assets/icons/edit.svg',
+                              text: 'Edit profile',
                             ),
                           ],
                         ),
+                        Gap(20),
                       ],
                     ),
                   ),

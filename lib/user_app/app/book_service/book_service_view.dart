@@ -219,7 +219,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                                 count: 3,
                                 effect: JumpingDotEffect(
                                   activeDotColor: AppColors.primary,
-                                  dotColor: AppColors.lightprimary,
+                                  dotColor: AppColors.lightPink,
                                   dotWidth: 5.0,
                                   dotHeight: 5.0,
                                   jumpScale: 0.7,
@@ -339,7 +339,6 @@ class _BookServiceViewState extends State<BookServiceView> {
                                 crossAxisSpacing: 6.0,
                                 mainAxisSpacing: 10.0,
                                 mainAxisExtent: 92,
-                                
                               ),
                               itemCount: controller.services.length,
                               itemBuilder: (context, index) {
@@ -397,9 +396,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                                     pressType: PressType.singlePress,
                                     timeFormat: 'HH:mm',
                                     locale: const Locale('en'),
-                                    onChange: (dateTime) {
-                                      
-                                    },
+                                    onChange: (dateTime) {},
                                   ),
                                 ),
                                 Gap(5),

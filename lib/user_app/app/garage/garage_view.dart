@@ -140,7 +140,7 @@ class GarageView extends StatelessWidget {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: AppColors.lightprimary,
+                                    color: AppColors.lightPink,
                                     borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(20),
                                         bottomLeft: Radius.circular(20))),
@@ -183,7 +183,7 @@ class GarageView extends StatelessWidget {
                           child: Container(
                             height: Get.height * 0.045,
                             decoration: BoxDecoration(
-                              color: AppColors.lightprimary,
+                              color: AppColors.lightPink,
                               borderRadius: BorderRadius.circular(80),
                             ),
                             child: Padding(
@@ -263,7 +263,7 @@ class GarageView extends StatelessWidget {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: AppColors.lightprimary,
+                            color: AppColors.lightPink,
                             borderRadius: BorderRadius.circular(20)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(

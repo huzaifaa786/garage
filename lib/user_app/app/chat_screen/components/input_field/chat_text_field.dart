@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class ChatInputField extends StatelessWidget {
@@ -55,15 +54,15 @@ class ChatInputField extends StatelessWidget {
                 ? AutovalidateMode.disabled
                 : AutovalidateMode.onUserInteraction),
         keyboardType: type,
-        style: TextStyle(
-          color: AppColors.grey,
+        style: const TextStyle(
+          color: AppColors.black,
           fontSize: 11,
           fontWeight: FontWeight.w400,
         ),
         decoration: InputDecoration(
           fillColor: AppColors.borderlightgrey,
           filled: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 12),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12),
 
           suffixIcon: GestureDetector(
             onTap: () {},
@@ -79,7 +78,7 @@ class ChatInputField extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
           hintText: hint,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: AppColors.grey,
             fontSize: 13,
             fontWeight: FontWeight.w400,

@@ -23,7 +23,7 @@ class _VProductsViewState extends State<VProductsView> {
               appBarTitle: 'Edit products & services',
               hasBgColor: false,
               child: Padding(
-                padding: const EdgeInsets.only(left: 30,right: 30),
+                padding: const EdgeInsets.only(left: 30, right: 30),
                 child: Column(
                   children: [
                     Gap(13),

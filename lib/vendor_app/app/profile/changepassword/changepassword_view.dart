@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepassword_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -63,9 +64,9 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                     hint: 'Old Password',
                     obscure: controller.obscureOldPassword,
                     controller: controller.oldpasswordController,
-                    onchange: (val) {
-                      controller.validateFields("old_password", val);
-                    },
+                    // onchange: (val) {
+                    //   controller.validateFields("old_password", val);
+                    // },
                     hasSuffix: true,
                     suffixWidget: InkWell(
                       onTap: controller.oldPasswordToggle,
@@ -86,9 +87,9 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                     hint: 'Password',
                     obscure: controller.obscurePassword,
                     controller: controller.passwordController,
-                    onchange: (val) {
-                      controller.validateFields("password", val);
-                    },
+                    // onchange: (val) {
+                    //   controller.validateFields("password", val);
+                    // },
                     hasSuffix: true,
                     suffixWidget: InkWell(
                       onTap: controller.passwordToggle,
@@ -109,9 +110,9 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                     hint: 'Confirm Password',
                     obscure: controller.cobscurePassword,
                     controller: controller.confirmPasswordController,
-                    onchange: (val) {
-                      controller.validateFields("confirm_password", val);
-                    },
+                    // onchange: (val) {
+                    //   controller.validateFields("confirm_password", val);
+                    // },
                     hasSuffix: true,
                     suffixWidget: InkWell(
                       onTap: controller.confirmPasswordToggle,
@@ -133,22 +134,23 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                         ? AppColors.divider_color
                         : AppColors.primary_color,
                     ontap: () {
-                      controller.onSaveChanges();
+                      // controller.onSaveChanges();
                     },
                   ),
                   Gap(20),
-                  controller.isButtonClicked
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            AppText(
-                              title: 'Password changed successfully ',
-                              color: AppColors.green_color,
-                            ),
-                            SvgPicture.asset('assets/images/checkcircle.svg'),
-                          ],
-                        )
-                      : Gap(1)
+                  // controller.isButtonClicked
+                  //     ?
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     AppText(
+                  //       title: 'Password changed successfully ',
+                  //       color: AppColors.green_color,
+                  //     ),
+                  //     SvgPicture.asset('assets/images/checkcircle.svg'),
+                  //   ],
+                  // )
+                  // : Gap(1)
                 ],
               ),
             )),

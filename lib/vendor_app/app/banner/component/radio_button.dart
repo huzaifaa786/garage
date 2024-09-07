@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_controller.dart';
 
 class RadioButton extends StatelessWidget {
@@ -22,7 +23,7 @@ class RadioButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(30.0),
               border: Border.all(
                 color: controller.selectedValue == value
-                    ? Colors.red
+                    ? AppColors.primary_color
                     : Colors.grey,
                 width: 1.0,
               ),
@@ -36,16 +37,16 @@ class RadioButton extends StatelessWidget {
                 }
               },
               title: Text(
-                '   '+text,
+                '   ' + text,
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
                   color: controller.selectedValue == value
-                      ? Colors.red
+                      ? AppColors.primary_color
                       : Colors.black,
                 ),
               ),
-              activeColor: Colors.red,
+              activeColor: AppColors.primary_color,
             ),
           );
         },

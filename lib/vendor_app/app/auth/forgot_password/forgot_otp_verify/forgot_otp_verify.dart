@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/forgot_password/components/back_button.dart';
 import 'package:mobilegarage/vendor_app/app/auth/forgot_password/components/otp_pin_field.dart';
 import 'package:mobilegarage/vendor_app/app/auth/forgot_password/forgot_password_controller.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_in/components/signin_triangle.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -60,7 +61,7 @@ class VForgotOtpVerifyView extends StatelessWidget {
                                     color: AppColors.heading_text_color,
                                     fontFamily: 'Ibarra Real Nova',
                                   ),
-                                  Gap(6),
+                                  const Gap(6),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 25),
@@ -72,13 +73,13 @@ class VForgotOtpVerifyView extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
-                                  Gap(50),
+                                  const Gap(50),
                                   AppOtpPinField(
                                     controller: controller.otpController,
                                     onChange: controller.onChange,
                                     onComplete: controller.onComplete,
                                   ),
-                                  Gap(50),
+                                  const Gap(50),
                                   AppButton(
                                     title: 'Confirm',
                                     buttonColor: AppColors.primary_color,
@@ -105,7 +106,7 @@ class VForgotOtpVerifyView extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BackIConButton(),
+        bottomNavigationBar: const BackIConButton(),
       ),
     );
   }

@@ -440,7 +440,7 @@ class AppPages {
       binding: VEditprofileBinding(),
     ),
     GetPage(
-      name: AppRoutes.vavaliabledate,
+      name: AppRoutes.vunavaliabledate,
       page: () => const AvaliableDateView(),
       binding: AvaliableDateBinding(),
     ),

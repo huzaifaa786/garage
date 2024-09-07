@@ -6,8 +6,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class Reviewcard extends StatelessWidget {
@@ -46,7 +47,7 @@ class Reviewcard extends StatelessWidget {
                               color: AppColors.lightblue,
                             ),
                           ),
-                          Gap(6),
+                          const Gap(6),
                           Container(
                             height: 47,
                             width: 50,
@@ -60,14 +61,14 @@ class Reviewcard extends StatelessWidget {
                                     ? img
                                     : controller.image.toString(),
                                 placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
+                                    const CircularProgressIndicator(),
                                 errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                                    const Icon(Icons.error),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                          Gap(8),
+                          const Gap(8),
                           Flexible(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +78,7 @@ class Reviewcard extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   size: 12,
                                 ),
-                                Gap(10),
+                                const Gap(10),
                                 Row(
                                   children: [
                                     RatingBar.builder(
@@ -89,15 +90,16 @@ class Reviewcard extends StatelessWidget {
                                       glow: false,
                                       itemSize: 14,
                                       unratedColor: Colors.grey,
-                                      itemPadding:
-                                          EdgeInsets.symmetric(horizontal: 2.0),
-                                      itemBuilder: (context, _) =>
-                                          Icon(Icons.star, color: Colors.yellow),
+                                      itemPadding: const EdgeInsets.symmetric(
+                                          horizontal: 2.0),
+                                      itemBuilder: (context, _) => const Icon(
+                                          Icons.star,
+                                          color: Colors.yellow),
                                       onRatingUpdate: (rating) {
                                         controller.updateRating(rating);
                                       },
                                     ),
-                                    Gap(10),
+                                    const Gap(10),
                                     AppText(
                                       title: controller.ratings.toString(),
                                       size: 8.0,
@@ -105,7 +107,7 @@ class Reviewcard extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                AppText(
+                                const AppText(
                                   maxLines: 2,
                                   title:
                                       'this battery is very good, and the delivery is fast .',
@@ -113,7 +115,7 @@ class Reviewcard extends StatelessWidget {
                               ],
                             ),
                           ),
-                          AppText(
+                          const AppText(
                             title: '3h ago',
                             color: Colors.grey,
                             size: 12,
@@ -122,14 +124,13 @@ class Reviewcard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    
                   ],
                 ),
-                Gap(20),
-                 Divider(
-                        color: const Color.fromARGB(255, 209, 208, 208),
-                        thickness: 1.0,
-                      ),
+                const Gap(20),
+                const Divider(
+                  color: Color.fromARGB(255, 209, 208, 208),
+                  thickness: 1.0,
+                ),
               ],
             ),
           ),

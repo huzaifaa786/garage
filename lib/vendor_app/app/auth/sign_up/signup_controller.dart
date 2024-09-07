@@ -59,12 +59,12 @@ class VSignUpController extends GetxController {
   String confirmPasswordError = '';
   String garageDescriptionError = '';
 
-  @override
-  void onInit() async {
-    // TODO: implement onInit
-    super.onInit();
-   // await getEmirates();
-  }
+  // @override
+  // void onInit() async {
+  //   // TODO: implement onInit
+  //   super.onInit();
+  //   await getEmirates();
+  // }
 
   //TODO: DropDown Varible
   EmirateModel? selectedEmirate;
@@ -81,9 +81,9 @@ class VSignUpController extends GetxController {
     }
   }
 
-  void setSelectedEmirate(EmirateModel? emirate) {
-    selectedEmirate = emirate;
-    selectedEmirateId = emirate?.id;
+  void setSelectedEmirate(EmirateModel? Brand) {
+    selectedEmirate = Brand;
+    selectedEmirateId = Brand?.id;
     update();
   }
 
@@ -124,8 +124,7 @@ class VSignUpController extends GetxController {
         update();
         return garageDescriptionError;
       case 'Emirate':
-        emirateError =
-            Validators.emptyStringValidator(value , fieldName) ?? '';
+        emirateError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return emirateError;
       case 'Garage address detail':
@@ -160,7 +159,7 @@ class VSignUpController extends GetxController {
         validateFields('Garage name', garageNameController.text);
     final garageDescriptionErrorString =
         validateFields('Garage description', garageDescriptionController.text);
-   if (selectedEmirateId == null) {
+    if (selectedEmirateId == null) {
       emirateError = 'Please select an emirate';
       update();
     } else {
@@ -323,6 +322,14 @@ class VSignUpController extends GetxController {
       );
       if (response.isNotEmpty) {
         box.write('api_token', response['garage']['token']);
+        box.write('user_type', 'vendor');
+        print(response['garage']['token']);
+        UiUtilites.successAlertDialog(
+          context: Get.context,
+          onTap: () {},
+          title: 'sdfsdfsf',
+          description: 'sdfsdfsdfs',
+        );
         resetfields();
       }
     }
@@ -338,7 +345,7 @@ class VSignUpController extends GetxController {
     confirmPasswordController.clear();
     phoneNumberController.clear();
     selectedEmirate = null;
-    
+
     logo = null;
     cover = null;
     idCardFrontSide = null;

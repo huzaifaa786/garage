@@ -29,10 +29,11 @@ class VEditprofileController extends GetxController {
     Get.back();
   }
 
+  @override
   void onInit() async {
     super.onInit();
     isButtonClicked = false;
-    // await garagedata();
+    await garagedata();
     update();
   }
 
@@ -41,13 +42,11 @@ class VEditprofileController extends GetxController {
     var response = await VGetGarageApi.getgarage();
     if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response['garage']);
-      garageDescriptionController.text=garage!.description!;
+      garageDescriptionController.text = garage!.description!;
       update();
-
     }
   }
 
-  //
   File? logo;
   File? cover;
   //

@@ -6,8 +6,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class NotificationCard extends StatelessWidget {
@@ -44,7 +45,7 @@ class NotificationCard extends StatelessWidget {
                         color: AppColors.lightblue,
                       ),
                     ),
-                    Gap(6),
+                    const Gap(6),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -61,14 +62,14 @@ class NotificationCard extends StatelessWidget {
                                   ? img
                                   : controller.image.toString(),
                               placeholder: (context, url) =>
-                                  CircularProgressIndicator(),
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                                  const Icon(Icons.error),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        Gap(8),
+                        const Gap(8),
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -77,7 +78,7 @@ class NotificationCard extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 size: 12,
                               ),
-                              Gap(10),
+                              const Gap(10),
                               Row(
                                 children: [
                                   RatingBar.builder(
@@ -89,15 +90,16 @@ class NotificationCard extends StatelessWidget {
                                     glow: false,
                                     itemSize: 14,
                                     unratedColor: Colors.grey,
-                                    itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 2.0),
-                                    itemBuilder: (context, _) =>
-                                        Icon(Icons.star, color: Colors.yellow),
+                                    itemPadding: const EdgeInsets.symmetric(
+                                        horizontal: 2.0),
+                                    itemBuilder: (context, _) => const Icon(
+                                        Icons.star,
+                                        color: Colors.yellow),
                                     onRatingUpdate: (rating) {
                                       controller.updateRating(rating);
                                     },
                                   ),
-                                  Gap(10),
+                                  const Gap(10),
                                   AppText(
                                     title: controller.ratings.toString(),
                                     size: 8.0,
@@ -110,7 +112,7 @@ class NotificationCard extends StatelessWidget {
                                 size: 11,
                                 fontWeight: FontWeight.w600,
                               ),
-                              Row(
+                              const Row(
                                 children: [
                                   AppText(
                                     title: 'or reject order',
@@ -125,8 +127,8 @@ class NotificationCard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Gap(6),
-                              AppText(
+                              const Gap(6),
+                              const AppText(
                                 title: 'now',
                                 size: 11,
                               )

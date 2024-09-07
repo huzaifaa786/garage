@@ -13,17 +13,17 @@ import 'package:mobilegarage/routes/app_pages.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 void main()async {
    WidgetsFlutterBinding.ensureInitialized();
-  //  await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // ).then((value) {
-  //   // Get.put(NotificationService());
-  // });
+   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ).then((value) {
+    // Get.put(NotificationService());
+  });
   await LoadingHelper.init();
   await GetStorage.init();
-  
    EasyLoading.init();
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -40,8 +40,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       builder: EasyLoading.init(),
       initialBinding: SplashBinding(),
-              home: const SplashView(),
-              getPages: AppPages.pages,
+      home: const SplashView(),
+      getPages: AppPages.pages,
     );
   }
 }
+
+

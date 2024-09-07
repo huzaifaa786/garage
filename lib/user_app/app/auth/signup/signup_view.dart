@@ -38,8 +38,13 @@ class SignupView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-             // Image.asset('assets/images/splash_logo.png'),
-             SvgPicture.asset('assets/icons/mobile_garagelogo.svg',color:AppColors.white,height:  162,width: 293,),
+              // Image.asset('assets/images/splash_logo.png'),
+              SvgPicture.asset(
+                'assets/icons/mobile_garagelogo.svg',
+                color: AppColors.white,
+                height: 162,
+                width: 293,
+              ),
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
@@ -139,7 +144,7 @@ class SignupView extends StatelessWidget {
                               txtweight: FontWeight.w600,
                               onTap: () {
                                 // controller.register();
-                                Get.toNamed(AppRoutes.main);
+                                Get.toNamed(AppRoutes.cardetails);
                               },
                             ),
                             Gap(40),

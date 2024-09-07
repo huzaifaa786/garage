@@ -4,29 +4,30 @@ import 'package:url_launcher/url_launcher.dart';
 
 class VContactusController extends GetxController {
   static VContactusController instance = Get.find();
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    getContacts();
-  }
-  getContacts()async{
-    var response = await VContactUsApi.getContacts();
-    if (response.isNotEmpty) {
-       var contact = response['contacts'];
-      email = contact['email'] ?? '';
-      phoneNo = contact['phone_no'] ?? '';
-      whatsappNo = contact['whatsapp_no'] ?? '';
-      instagram = contact['instagram_handle'] ?? '';
-      update();
-    }
-  }
-    String email = '';
+  // @override
+  // void onInit() {
+  //   // TODO: implement onInit
+  //   super.onInit();
+  //   getContacts();
+  // }
+  // getContacts() async {
+  //   var response = await VContactUsApi.getContacts();
+  //   if (response.isNotEmpty) {
+  //     var contact = response['contacts'];
+  //     email = contact['email'] ?? '';
+  //     phoneNo = contact['phone_no'] ?? '';
+  //     whatsappNo = contact['whatsapp_no'] ?? '';
+  //     instagram = contact['instagram_handle'] ?? '';
+  //     update();
+  //   }
+  // }
+
+  String email = '';
   String phoneNo = '';
   String whatsappNo = '';
   String instagram = '';
 
- void openEmail() async {
+  void openEmail() async {
     final uri = Uri(scheme: 'mailto', path: email);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);

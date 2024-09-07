@@ -38,9 +38,8 @@ class RadioCard extends StatelessWidget {
             height: Get.height * 0.1 / 1.3,
             width: Get.width * 0.66,
             decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.lightprimary
-                    : AppColors.grey.shade200,
+                color:
+                    isSelected ? AppColors.lightPink : AppColors.grey.shade200,
                 borderRadius: BorderRadius.circular(50)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,7 +59,6 @@ class RadioCard extends StatelessWidget {
                   value: value,
                   groupValue: groupValue,
                   onChanged: onChanged,
-                
                 ),
               ],
             ),

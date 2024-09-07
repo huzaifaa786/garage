@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_controller.dart';
 import 'package:mobilegarage/vendor_app/app/banner/component/cover_picker.dart';
 import 'package:mobilegarage/vendor_app/app/banner/component/radio_button.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class VBannerView extends StatefulWidget {
@@ -51,15 +52,19 @@ class _VBannerViewState extends State<VBannerView> {
                           ListView.builder(
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
-                            itemCount: controller.banners.length,
+                            itemCount: 1,
+                            //  controller.banners.length,
                             itemBuilder: (context, index) {
-                              var banner = controller.banners[index];
+                              // var banner = controller.banners[index];
                               return RadioButton(
-                                  value: banner.id,
-                                  text: "${banner.duration}"
-                                      " for "
-                                      "${banner.cost}"
-                                      " AED");
+                                  value: 1,
+                                  //  banner.id,
+                                  text: "3 Days for 30.00 AED"
+                                  //  "${banner.duration}"
+                                  // " for "
+                                  // "${banner.cost}"
+                                  // " AED"
+                                  );
                             },
                           ),
                           Gap(30),
@@ -68,9 +73,12 @@ class _VBannerViewState extends State<VBannerView> {
                             buttonColor: controller.cover == null
                                 ? Colors.grey
                                 : AppColors.primary_color,
-                            ontap: controller.cover == null ? null : () {
-                              // controller.storeBanner();
-                            },
+                            // ontap:
+                            // controller.cover == null
+                            //     ? null
+                            //     : () {
+                            //         controller.storeBanner();
+                            //       },
                           ),
                         ],
                       ),
