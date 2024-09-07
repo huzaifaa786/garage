@@ -21,11 +21,16 @@ class TextSwitchButton extends StatelessWidget {
     final controller = ValueNotifier<bool>(false);
     return Row(
       children: [
-        AppText(
-          title: value ? "Garage Open" : "Garage Busy",
-          size: 11,
-          fontWeight: FontWeight.w500,
-          color: value ? Colors.green : Colors.grey,
+        ValueListenableBuilder<bool>(
+          valueListenable: controller,
+          builder: (context, switchValue, _) {
+            return AppText(
+              title: switchValue ? "Garage Open" : "Garage Busy",
+              size: 11,
+              fontWeight: FontWeight.w500,
+              color: switchValue ? AppColors.green_color : AppColors.grey,
+            );
+          },
         ),
         const Gap(6),
         AdvancedSwitch(

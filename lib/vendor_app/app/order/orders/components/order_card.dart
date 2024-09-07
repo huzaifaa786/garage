@@ -163,9 +163,10 @@ class OrderCard extends StatelessWidget {
                               child: Image.asset('assets/images/chat.png')),
                         ),
                         GestureDetector(
-                          onTap: () => controller.makePhoneCall(
-                            controller.phoneNumber ?? '+923154704013',
-                          ),
+                          // onTap: () =>
+                          // controller.makePhoneCall(
+                          //   controller.phoneNumber ?? '+923154704013',
+                          // ),
                           child: Container(
                               width: 35,
                               height: 35,

@@ -74,12 +74,14 @@ class ProductCard extends StatelessWidget {
                       size: 14,
                       fontWeight: FontWeight.w600,
                     ),
+                    const Gap(8.0),
                     AppText(
                       title: price + ' AED',
                       size: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.lightblue,
                     ),
+                    const Gap(8.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

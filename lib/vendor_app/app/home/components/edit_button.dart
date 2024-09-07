@@ -28,7 +28,7 @@ class EditButton extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: AppColors.light_red,
-          border: Border.all(color: AppColors.primary_color),
+          border: Border.all(color: AppColors.primary),
           borderRadius: BorderRadius.circular(50),
         ),
         child: Padding(
@@ -37,12 +37,13 @@ class EditButton extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 icon,
-                height: 13,
+                height: 15,
+                color: AppColors.primary,
               ),
               AppText(
                 title: '  ' + text,
                 size: 10,
-                color: AppColors.primary_color,
+                color: AppColors.primary,
                 fontWeight: FontWeight.w500,
               )
             ],
