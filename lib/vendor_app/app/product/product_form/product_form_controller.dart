@@ -76,7 +76,7 @@ class ProductFormController extends GetxController {
       update();
     }
   }
-
+  
   removeSelectedImages(int index) {
     images.removeAt(index);
     Get.back();
