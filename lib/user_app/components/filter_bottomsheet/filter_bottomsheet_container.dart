@@ -10,20 +10,20 @@ class FilterBottomsheetContainer extends StatelessWidget {
     required this.text,
     required this.index,
     required this.group,
-    required this.height,
-    required this.width,
+    // required this.height,
+    // required this.width,
   });
 
   final String text;
   final int index;
-  final String group; 
-  final double height;
-  final double width;
-final SearchScreenController controller = Get.put(SearchScreenController());
+  final String group;
+  // final double height;
+  // final double width;
+  final SearchScreenController controller = Get.put(SearchScreenController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchScreenController>(
-        init: controller,
+      init: controller,
       builder: (controller) {
         int selectedIndex;
         switch (group) {
@@ -60,22 +60,26 @@ final SearchScreenController controller = Get.put(SearchScreenController());
                 break;
             }
           },
-          child: Container(
-            height: height,
-            width: width,
-            decoration: BoxDecoration(
-              color: selectedIndex == index
-                  ? AppColors.primary
-                  : Colors.white,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: AppColors.primary),
-            ),
-            child: Center(
-              child: AppText(
-                title: text,
-                size: 10,
-                fontWeight: FontWeight.w500,
-                color: selectedIndex == index ? Colors.white : Colors.black,
+          child: Expanded(
+            child: Flexible(
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                // height: height,
+                // width: width,
+                decoration: BoxDecoration(
+                  color:
+                      selectedIndex == index ? AppColors.primary : Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: AppColors.primary),
+                ),
+                child: Center(
+                  child: AppText(
+                    title: text,
+                    size: 10,
+                    fontWeight: FontWeight.w500,
+                    color: selectedIndex == index ? Colors.white : Colors.black,
+                  ),
+                ),
               ),
             ),
           ),

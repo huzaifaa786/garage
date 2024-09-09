@@ -25,17 +25,17 @@ class ProfileAndCoverPickerr extends StatelessWidget {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(12)),
               onTap: () {
-                // controller.pickImageFromGallery('cover');
+                 controller.pickImageFromGallery('cover');
               },
               child: DottedBorder(
                 borderType: BorderType.RRect,
                 strokeWidth: 1.0,
                 color:
-                    // controller.cover != null &&
-                    //         controller.cover!.path.isNotEmpty
-                    // ?
-                    //  AppColors.green_color
-                    // :
+                     controller.cover != null &&
+                            controller.cover!.path.isNotEmpty
+                   ?
+                      AppColors.green_color
+                     :
                     AppColors.primary_color,
                 dashPattern: const <double>[4, 2],
                 padding: const EdgeInsets.all(0),
@@ -43,9 +43,9 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                 child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     child:
-                        //  controller.cover == null ||
-                        //         controller.cover!.path.isEmpty
-                        //     ?
+                          controller.cover == null ||
+                                controller.cover!.path.isEmpty
+                           ?
                         Container(
                       height: 160,
                       width: Get.width,
@@ -90,11 +90,11 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                         ],
                       ),
                     )
-                    // : Image.file(
-                    //     controller.cover!,
-                    //     height: 160,
-                    //     width: Get.width,
-                    //   ),
+                    : Image.file(
+                        controller.cover!,
+                        height: 160,
+                        width: Get.width,
+                      ),
                     ),
               ),
             ),
@@ -117,7 +117,7 @@ class ProfileAndCoverPickerr extends StatelessWidget {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(35)),
               onTap: () {
-                // controller.pickImageFromGallery('logo');
+                 controller.pickImageFromGallery('logo');
               },
               // child: DottedBorder(
               //   borderType: BorderType.RRect,

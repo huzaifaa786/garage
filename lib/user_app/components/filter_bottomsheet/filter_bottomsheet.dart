@@ -73,16 +73,16 @@ class FilterBottomsheet extends StatelessWidget {
                         Row(
                           children: [
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 103,
+                              //  height: 31,
+                              // width: 103,
                               text: 'From low to high',
                               index: 0,
                               group: 'price',
                             ),
                             const Gap(10),
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 103,
+                              // height: 31,
+                              // width: 103,
                               text: 'From high to low',
                               index: 1,
                               group: 'price',
@@ -93,8 +93,8 @@ class FilterBottomsheet extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              height: 5,
-                              width: 5,
+                              // height: 5,
+                              // width: 5,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColors.black,
@@ -112,16 +112,16 @@ class FilterBottomsheet extends StatelessWidget {
                         Row(
                           children: [
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 190,
+                              // height: 31,
+                              // width: 190,
                               text: 'From the closest to the furthest',
                               index: 0,
                               group: 'closest',
                             ),
                             const Gap(10),
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 103,
+                              // height: 31,
+                              // width: 103,
                               text: 'Random',
                               index: 1,
                               group: 'closest',
@@ -151,16 +151,16 @@ class FilterBottomsheet extends StatelessWidget {
                         Row(
                           children: [
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 103,
+                              // height: 31,
+                              // width: 103,
                               text: 'From high to low',
                               index: 0,
                               group: 'rating',
                             ),
                             const Gap(10),
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 103,
+                              // height: 31,
+                              // width: 103,
                               text: 'From low to high',
                               index: 1,
                               group: 'rating',
@@ -204,24 +204,24 @@ class FilterBottomsheet extends StatelessWidget {
                         Row(
                           children: [
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 70,
+                              // height: 31,
+                              // width: 70,
                               text: 'All',
                               index: 0,
                               group: 'results',
                             ),
                             const Gap(10),
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 103,
+                              // height: 31,
+                              // width: 103,
                               text: 'Garages',
                               index: 1,
                               group: 'results',
                             ),
                             const Gap(10),
                             FilterBottomsheetContainer(
-                              height: 31,
-                              width: 103,
+                              // height: 31,
+                              // width: 103,
                               text: 'Only services',
                               index: 2,
                               group: 'results',
@@ -230,8 +230,8 @@ class FilterBottomsheet extends StatelessWidget {
                         ),
                         const Gap(10),
                         FilterBottomsheetContainer(
-                          height: 31,
-                          width: 103,
+                          // height: 31,
+                          // width: 103,
                           text: 'Only products',
                           index: 3,
                           group: 'results',

@@ -31,55 +31,57 @@ class _VBannerViewState extends State<VBannerView> {
               hasShadow: false,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    CoverPickerr(),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Gap(20),
-                              AppText(
-                                title: 'Select',
-                                size: 13,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ],
-                          ),
-                          Gap(10),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            itemCount: controller.banners.length,
-                            itemBuilder: (context, index) {
-                              var banner = controller.banners[index];
-                              return RadioButton(
-                                  value: banner.id,
-                                  text: "${banner.duration}"
-                                      " for "
-                                      "${banner.cost}"
-                                      " AED");
-                            },
-                          ),
-                          Gap(30),
-                          AppButton(
-                            title: 'Purchase',
-                            buttonColor: controller.cover == null
-                                ? Colors.grey
-                                : AppColors.primary_color,
-                            ontap: controller.cover == null
-                                ? null
-                                : () {
-                                    controller.storeBanner();
-                                  },
-                          ),
-                        ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      CoverPickerr(),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Gap(20),
+                                AppText(
+                                  title: 'Select',
+                                  size: 13,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ],
+                            ),
+                            Gap(10),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: controller.banners.length,
+                              itemBuilder: (context, index) {
+                                var banner = controller.banners[index];
+                                return RadioButton(
+                                    value: banner.id,
+                                    text: "${banner.duration}"
+                                        " for "
+                                        "${banner.cost}"
+                                        " AED");
+                              },
+                            ),
+                            Gap(30),
+                            AppButton(
+                              title: 'Purchase',
+                              buttonColor: controller.cover == null
+                                  ? Colors.grey
+                                  : AppColors.primary_color,
+                              ontap: controller.cover == null
+                                  ? null
+                                  : () {
+                                      controller.storeBanner();
+                                    },
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Gap(20),
-                  ],
+                      Gap(20),
+                    ],
+                  ),
                 ),
               ),
             ));
