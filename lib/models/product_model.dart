@@ -1,17 +1,18 @@
+import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/product_attachment.dart';
 import 'package:mobilegarage/models/product_image.dart';
 
-class Product {
+class ProductModel {
   int id;
-  int brands;
+  
   int brandId;
   int garageId;
   int categoryId;
   String serviceMinute;
   List<ProductImage> images;
   List<ProductAttachment> productAttachment;
-
-  Product({
+BrandModel brands;
+  ProductModel({
     required this.id,
     required this.brands,
     required this.brandId,
@@ -22,10 +23,10 @@ class Product {
     required this.productAttachment,
   });
 
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
       id: json['id'],
-      brands: json['brands'],
+      brands: BrandModel.from(json['brands']), 
       brandId: json['brand_id'],
       garageId: json['garage_id'],
       categoryId: json['category_id'],

@@ -47,7 +47,10 @@ class _AccountViewState extends State<AccountView> {
         ),
         backgroundColor: AppColors.grey.withOpacity(0.1),
         body: SafeArea(
-          child: Container(
+          child:
+          controller.user!= null
+          
+          ? Container(
             padding: const EdgeInsets.only(
               left: 44,
               right: 44,
@@ -57,18 +60,16 @@ class _AccountViewState extends State<AccountView> {
               child: Column(
                 children: [
                   ProfileCard(
-                    image: 'https://dummyimage.com/70x70/000/0011ff',
-                    userName: 'User38498990',
-                    userNumber: 'User38498990',
+                    userName: controller.user!.name.toString(),
                     userEmail: 'ahmed34@gmail.com',
                     ontap: () {
                       Get.toNamed(
                         AppRoutes.editprofile,
                         arguments: {
                           'image': 'https://dummyimage.com/70x70/000/0011ff',
-                          'userName': 'User38498990',
-                          'userNumber': '+971 0000 0000',
-                          'userEmail': 'ahmed34@gmail.com',
+                          'userName': controller.user!.name,
+                          'userNumber': controller.user!.phone,
+                          'userEmail': controller.user!.email,
                         },
                       );
                     },
@@ -78,10 +79,10 @@ class _AccountViewState extends State<AccountView> {
                       height: Get.height * 0.08,
                       width: Get.width * 0.8,
                       color: AppColors.lightPink,
-                      text: 'Dubai',
+                      text: controller.user!.emirate.toString(),
                       textColor: AppColors.black,
                       image: 'assets/icons/map_pin.svg',
-                      text2: 'zayed street , house3564 ,....',
+                      text2: controller.user!.addressDetail.toString(),
                       ontap: () {
                         Get.toNamed(AppRoutes.my_location);
                       }),
@@ -157,7 +158,7 @@ class _AccountViewState extends State<AccountView> {
                 ],
               ),
             ),
-          ),
+          ):Text('')
         ),
       ),
     );

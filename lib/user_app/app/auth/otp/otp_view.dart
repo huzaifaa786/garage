@@ -96,7 +96,6 @@ class OtpView extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                          controller.verifyPhone();
-                        Get.offAllNamed(AppRoutes.main);
                       },
                       child: AppText(
                         title: 'Resend',

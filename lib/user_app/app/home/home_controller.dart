@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
 import 'package:mobilegarage/models/user_model/banner_model.dart';
 
@@ -28,8 +29,6 @@ class ServiceCards {
 
 class HomeController extends GetxController {
   static HomeController instance = Get.find();
-
-  
 
   bool _showAllItems = false;
 
@@ -82,7 +81,7 @@ class HomeController extends GetxController {
         subText: ''),
   ];
 
-  String? img = 'assets/images/home_crousal.png';
+  // String? img = 'assets/images/home_crousal.png';
   // var servicesCards = <ServiceCards>[
   //   // ServiceCards(
   //   //     image: 'https://dummyimage.com/70x70/000/fff',
@@ -116,19 +115,32 @@ class HomeController extends GetxController {
   //   //     onTap: () {}),
   // ];
 
-   final BannersApi = HomeApi();
-   List<BannerModel>? banners = [];
-
-    Future<void> getBanners() async {
-    var response = await BannersApi.getbanners();
-    if (response.isNotEmpty) {
-      var bannerList = response['response'] as List<dynamic>;
-
-      banners = bannerList
-          .map<BannerModel>((bannerJson) => BannerModel.fromJson(bannerJson))
-          .toList();
-    }
-    update();
+  final BannersApi = HomeApi();
+  List<BannerModel>? banners = [];
+  GetStorage box = GetStorage();
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getBanners();
   }
 
+  Future<void> getBanners() async {
+    String? apiToken = box.read('api_token');
+    print('fggggggggggggggggggggggggggggggggggg');
+    print(apiToken);
+    if (apiToken != null) {
+      var response = await BannersApi.getbanners();
+      print('response ****************************');
+      print(response);
+      if (response.isNotEmpty) {
+        var bannerList = response['vehiclebrandnames'] as List<dynamic>;
+
+        banners = bannerList
+            .map<BannerModel>((bannerJson) => BannerModel.fromJson(bannerJson))
+            .toList();
+      }
+      update();
+    }
+  }
 }

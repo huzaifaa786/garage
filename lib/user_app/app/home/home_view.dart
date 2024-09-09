@@ -89,8 +89,9 @@ class _HomeViewState extends State<HomeView> {
                   //   ),
                   // ),
 
-                  /// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ///
-
+                  //  controller.banners!.isEmpty?
+                  //  Center(child: Text('no banners available'))
+                  //  :
                   CarouselSlider.builder(
                     options: CarouselOptions(
                       height: 190,
@@ -105,11 +106,13 @@ class _HomeViewState extends State<HomeView> {
                         });
                       },
                     ),
-                    itemCount: 5,
+                    itemCount: controller.banners!.length,
                     itemBuilder: (context, index, realIndex) {
                       return BannerCard(
-                        assetPath: 'assets/images/home_crousal.png',
-                        // networkImage: 'assets/images/home_crousal.png',
+                        //  assetPath: 'assets/images/home_crousal.png',
+                        networkImage: controller.banners![index].image,
+
+                        //  networkImage: 'assets/images/home_crousal.png',
                         // picture: AppNetworkImage(
                         //   assetPath: 'assets/images/home_crousal.png',
                         //   height: 70,
@@ -122,20 +125,23 @@ class _HomeViewState extends State<HomeView> {
                       );
                     },
                   ),
+
                   Gap(10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SmoothPageIndicator(
-                        controller:
-                            PageController(initialPage: i, keepPage: true),
-                        count: 5,
-                        effect: ExpandingDotsEffect(
-                            activeDotColor: AppColors.primary,
-                            dotColor: AppColors.lightPink,
-                            dotWidth: 5,
-                            dotHeight: 5),
-                      ),
+                      controller.banners!.isEmpty
+                          ? Container()
+                          : SmoothPageIndicator(
+                              controller: PageController(
+                                  initialPage: i, keepPage: true),
+                              count: controller.banners!.length,
+                              effect: ExpandingDotsEffect(
+                                  activeDotColor: AppColors.primary,
+                                  dotColor: AppColors.lightPink,
+                                  dotWidth: 5,
+                                  dotHeight: 5),
+                            ),
                     ],
                   ),
                   // Gap(10),
