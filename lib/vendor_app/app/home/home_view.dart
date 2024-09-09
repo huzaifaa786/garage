@@ -151,7 +151,7 @@ class _VHomeViewState extends State<VHomeView> {
                               ontap: () {
                                 Get.toNamed(AppRoutes.veditprofile)!
                                     .then((onValue) {
-                                  // controller.garagedata();
+                                  controller.garagedata();
                                 });
                               },
                               icon: 'assets/icons/edit.svg',
