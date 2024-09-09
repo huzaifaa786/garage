@@ -59,12 +59,12 @@ class VSignUpController extends GetxController {
   String confirmPasswordError = '';
   String garageDescriptionError = '';
 
-  // @override
-  // void onInit() async {
-  //   // TODO: implement onInit
-  //   super.onInit();
-  //   await getEmirates();
-  // }
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    await getEmirates();
+  }
 
   //TODO: DropDown Varible
   EmirateModel? selectedEmirate;
@@ -330,6 +330,7 @@ class VSignUpController extends GetxController {
           title: 'sdfsdfsf',
           description: 'sdfsdfsdfs',
         );
+        Get.offAllNamed(AppRoutes.vhome);
         resetfields();
       }
     }

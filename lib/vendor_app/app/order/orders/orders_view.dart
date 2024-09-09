@@ -22,9 +22,15 @@ class VOrdersView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              FilterView(),
-              if (controller.selectedIndex == 0) ...[Gap(12), SubFilterView()],
-              OrderCard(name: 'ali',number: '3435435435352',),
+              const FilterView(),
+              if (controller.selectedIndex == 0) ...[
+                const Gap(12),
+                const SubFilterView()
+              ],
+              const OrderCard(
+                name: 'ali',
+                number: '3435435435352',
+              ),
             ],
           ),
         ),

@@ -143,7 +143,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                         ],
                       ),
                       const Gap(13),
-                      SelectedDate(),
+                      const SelectedDate(),
                       const Gap(20),
                       AppButton(
                         buttonWidth: 0.8,
@@ -164,7 +164,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                               )
                             : const Gap(1),
                         ontap: () {
-                          // controller.onconfirm();
+                          controller.onconfirm();
                         },
                       )
                     ],

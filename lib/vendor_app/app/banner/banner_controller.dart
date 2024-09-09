@@ -24,7 +24,7 @@ class VBannerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // getDayAndPrice();
+    getDayAndPrice();
     update();
   }
 

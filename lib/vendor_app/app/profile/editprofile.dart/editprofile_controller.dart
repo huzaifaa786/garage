@@ -29,13 +29,13 @@ class VEditprofileController extends GetxController {
     Get.back();
   }
 
-  // @override
-  // void onInit() async {
-  //   super.onInit();
-  //   isButtonClicked = false;
-  //   await garagedata();
-  //   update();
-  // }
+  @override
+  void onInit() async {
+    super.onInit();
+    isButtonClicked = false;
+    await garagedata();
+    update();
+  }
 
   GarageModel? garage;
   garagedata() async {

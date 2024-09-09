@@ -52,19 +52,15 @@ class _VBannerViewState extends State<VBannerView> {
                           ListView.builder(
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
-                            itemCount: 1,
-                            //  controller.banners.length,
+                            itemCount: controller.banners.length,
                             itemBuilder: (context, index) {
-                              // var banner = controller.banners[index];
+                              var banner = controller.banners[index];
                               return RadioButton(
-                                  value: 1,
-                                  //  banner.id,
-                                  text: "3 Days for 30.00 AED"
-                                  //  "${banner.duration}"
-                                  // " for "
-                                  // "${banner.cost}"
-                                  // " AED"
-                                  );
+                                  value: banner.id,
+                                  text: "${banner.duration}"
+                                      " for "
+                                      "${banner.cost}"
+                                      " AED");
                             },
                           ),
                           Gap(30),
@@ -73,12 +69,11 @@ class _VBannerViewState extends State<VBannerView> {
                             buttonColor: controller.cover == null
                                 ? Colors.grey
                                 : AppColors.primary_color,
-                            // ontap:
-                            // controller.cover == null
-                            //     ? null
-                            //     : () {
-                            //         controller.storeBanner();
-                            //       },
+                            ontap: controller.cover == null
+                                ? null
+                                : () {
+                                    controller.storeBanner();
+                                  },
                           ),
                         ],
                       ),
