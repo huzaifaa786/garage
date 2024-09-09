@@ -325,11 +325,12 @@ class VSignUpController extends GetxController {
         box.write('user_type', 'vendor');
         print(response['garage']['token']);
         UiUtilites.successAlertDialog(
-          context:Get.context,
+          context: Get.context,
           onTap: () {},
           title: 'sdfsdfsf',
           description: 'sdfsdfsdfs',
         );
+        Get.offAllNamed(AppRoutes.vhome);
         resetfields();
       }
     }

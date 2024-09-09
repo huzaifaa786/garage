@@ -100,7 +100,7 @@ class ProfileCard extends StatelessWidget {
                     height: 20,
                     width: 20,
                     decoration: BoxDecoration(
-                      color: AppColors.lightprimary,
+                      color: AppColors.lightPink,
                       borderRadius: BorderRadius.circular(80),
                     ),
                     child: SvgPicture.asset(

@@ -192,7 +192,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                   width: Get.width * 0.8,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
-                                    color: AppColors.lightprimary,
+                                    color: AppColors.lightPink,
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(

@@ -1,14 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_controller.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/components/app_bar/chat_appbar.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/components/input_field/chat_text_field.dart';
-import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class ChatScreenView extends StatefulWidget {
   const ChatScreenView({super.key});
@@ -51,6 +49,7 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                   child: ChatInputField(
                     obscure: false,
                     readOnly: false,
+                    
                     suffiximage: "assets/icons/sent_icon.svg",
                   ),
                 ),

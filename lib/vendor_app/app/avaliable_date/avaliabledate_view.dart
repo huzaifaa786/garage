@@ -3,12 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/components/selected_date.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class AvaliableDateView extends StatefulWidget {
@@ -25,14 +26,14 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
       autoRemove: false,
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
+          preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Container(
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.2),
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                   blurRadius: 6,
                   spreadRadius: 1,
                 ),
@@ -40,7 +41,6 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
             ),
             child: AppBar(
               centerTitle: true,
-              
               title: AppText(
                 title: 'Edit unavailable dates',
                 size: 16,
@@ -57,7 +57,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
           child: SafeArea(
             child: Column(
               children: [
-                Gap(10),
+                const Gap(10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -67,7 +67,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                     )
                   ],
                 ),
-                Gap(24),
+                const Gap(24),
                 Container(
                   decoration: BoxDecoration(
                       color: AppColors.light_red,
@@ -102,14 +102,14 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                       ),
                       headerStyle: HeaderStyle(
                         leftChevronIcon: Container(
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Icon(
                             Icons.chevron_left,
                             color: AppColors.primary_color,
                           ),
                         ),
                         rightChevronIcon: Container(
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Icon(
                             Icons.chevron_right,
                             color: AppColors.primary_color,
@@ -142,33 +142,31 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                           ),
                         ],
                       ),
-                      Gap(13),
-                      SelectedDate(),
-                      Gap(20),
-
-                     AppButton(
-                      buttonWidth: 0.8,
-                          title: controller.isButtonClicked
-                              ? 'Confirm'
-                              : 'Confirm',
-                          titleColor: controller.isButtonClicked
-                              ? AppColors.green_color
-                              : AppColors.white_color,
-                          buttonColor: controller.isButtonClicked
-                              ? AppColors.divider_color
-                              : AppColors.primary_color,
-                          suffixWidget: controller.isButtonClicked
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  child: SvgPicture.asset(
-                                      'assets/images/checkcircle.svg'),
-                                )
-                              : Gap(1),
-                          ontap: () {
-                            // controller.onconfirm();
-                          },
-                        )
+                      const Gap(13),
+                      const SelectedDate(),
+                      const Gap(20),
+                      AppButton(
+                        buttonWidth: 0.8,
+                        title:
+                            controller.isButtonClicked ? 'Confirm' : 'Confirm',
+                        titleColor: controller.isButtonClicked
+                            ? AppColors.green_color
+                            : AppColors.white_color,
+                        buttonColor: controller.isButtonClicked
+                            ? AppColors.divider_color
+                            : AppColors.primary_color,
+                        suffixWidget: controller.isButtonClicked
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: SvgPicture.asset(
+                                    'assets/images/checkcircle.svg'),
+                              )
+                            : const Gap(1),
+                        ontap: () {
+                          controller.onconfirm();
+                        },
+                      )
                     ],
                   ),
                 )

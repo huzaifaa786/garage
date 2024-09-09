@@ -34,8 +34,8 @@ class OtpController extends GetxController {
   int? resendtoken;
   String verificationid = "";
 
-  FirebaseAuth auth = FirebaseAuth.instance;
-  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  // FirebaseAuth auth = FirebaseAuth.instance;
+  // FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   verifyPhone() async {
     LoadingHelper.show();
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -82,9 +82,9 @@ class OtpController extends GetxController {
         verificationId: verificationid,
         smsCode: otpCode,
       );
-      await auth.signInWithCredential(credential);
+      // await auth.signInWithCredential(credential);
 
-      var response;
+      Map<String, dynamic> response;
       if (authmethod == 'signin') {
         response = await LoginVerifyApi.verifyNumber(phone: phone);
       } else {

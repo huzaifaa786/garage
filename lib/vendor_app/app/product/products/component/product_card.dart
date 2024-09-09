@@ -5,21 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/button.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/products_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
+  ProductCard({
     super.key,
     this.img = 'assets/images/washing.png',
     this.price,
+    this.products,
   });
   final img;
   final price;
+  CategoryModel? products;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,7 @@ class ProductCard extends StatelessWidget {
                       //   fit: BoxFit.cover,
                       // ),
                       child: AppNetworkImage(
-                        assetPath: 'assets/images/black_tyre.png',
+                        assetPath: products!.image,
                         width: Get.width,
                       )),
                 ),
@@ -68,17 +72,19 @@ class ProductCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText(
-                      title: 'Car Tyre',
+                    AppText(
+                      title: products!.name.toString(),
                       size: 14,
                       fontWeight: FontWeight.w600,
                     ),
+                    const Gap(8.0),
                     AppText(
-                      title: price + ' AED',
+                      // title: products!.product[].productAttachment[].price + ' AED',
                       size: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.lightblue,
                     ),
+                    const Gap(8.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

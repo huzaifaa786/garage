@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/forgot_password/components/back_button.dart';
 import 'package:mobilegarage/vendor_app/app/auth/forgot_password/forgot_password_controller.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_in/components/signin_triangle.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
@@ -60,14 +61,14 @@ class VForgotPasswordView extends StatelessWidget {
                                     color: AppColors.heading_text_color,
                                     fontFamily: 'Ibarra Real Nova',
                                   ),
-                                  Gap(6),
+                                  const Gap(6),
                                   AppText(
                                     title: 'Enter your registered Email',
                                     size: 12,
                                     color: AppColors.hint_text_color,
                                     fontWeight: FontWeight.w300,
                                   ),
-                                  Gap(50),
+                                  const Gap(50),
                                   AppInputField(
                                     errorText: controller.emailError,
                                     hint: 'Email',
@@ -81,7 +82,7 @@ class VForgotPasswordView extends StatelessWidget {
                                     title: 'Confirm',
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
-                                       controller.forgot();
+                                      controller.forgot();
                                     },
                                   ),
                                 ],
@@ -103,7 +104,7 @@ class VForgotPasswordView extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BackIConButton(),
+        bottomNavigationBar: const BackIConButton(),
       ),
     );
   }

@@ -4,7 +4,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class GoogleButton extends StatelessWidget {
@@ -40,8 +41,7 @@ class GoogleButton extends StatelessWidget {
                 image: DecorationImage(
                     image: AssetImage('assets/images/map_image.png'),
                     fit: BoxFit.cover,
-                    opacity: 0.5
-                    )),
+                    opacity: 0.5)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(

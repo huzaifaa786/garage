@@ -112,6 +112,7 @@ GetStorage box =GetStorage();
     }
   }
 
+
   //TODO: Error Variables
   String nameError = '';
   String emirateError = '';
@@ -166,7 +167,7 @@ GetStorage box =GetStorage();
 ///////////////////////////      CAR DETAIL DATA                           //////////////////////////////////////////
 ///////////////////////////      CAR DETAIL DATA                           //////////////////////////////////////////
 
-// slecr vehicle drop down
+// select vehicle drop down
 
   List<VehicleModel> vehilcles = [];
   int? selectedVehicleId;

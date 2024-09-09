@@ -70,7 +70,7 @@ class ServiceCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(60),
                     border: Border.all(
                       width: 2,
-                      color: AppColors.lightprimary,
+                      color: AppColors.lightPink,
                     ),
                   ),
                   child: ClipRRect(

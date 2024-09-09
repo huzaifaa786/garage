@@ -40,7 +40,7 @@ class DottedBorderButton extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: AppColors.lightprimary,
+            color: AppColors.lightPink,
           ),
           height: 47,
           child: Row(

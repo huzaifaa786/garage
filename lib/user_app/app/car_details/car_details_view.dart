@@ -8,6 +8,7 @@ import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/brand_name_model.dart';
 import 'package:mobilegarage/models/vehicle_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -300,7 +301,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                     width: Get.width * 0.6,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      color: AppColors.lightprimary,
+                                      color: AppColors.lightPink,
                                     ),
                                     child: Padding(
                                       padding:
@@ -343,7 +344,10 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                   child: MainButton(
                                     title: 'Continue',
                                     txtweight: FontWeight.w600,
-                                    onTap: () async {
+                                    // onTap: () {
+                                    //   Get.toNamed(AppRoutes.otp);
+                                    // }
+                                   onTap:   ()async {
                                       bool isValid =
                                           await controller.validateCarForm();
                                       if (isValid) {

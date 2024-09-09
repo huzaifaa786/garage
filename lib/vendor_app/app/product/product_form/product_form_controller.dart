@@ -1,16 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/vender_apis/add_product_apis/add_product_api.dart';
 import 'package:mobilegarage/apis/vender_apis/add_product_apis/brands/get_brands_api.dart';
 import 'package:mobilegarage/apis/vender_apis/add_product_apis/categories/get_categories_api.dart';
-import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/get_emirates_apis/get_emirates_api.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
-import 'package:mobilegarage/models/emirate_model.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -19,7 +16,7 @@ class ProductFormController extends GetxController {
   static ProductFormController instance = Get.find();
   GetStorage box = GetStorage();
   List<File> images = [];
-
+  List<String> base64Images = [];
   //TODO: SERVICE TYPE VARIABLE AND FUNCTION
   List<Map<String, dynamic>> serviceTypeList = [];
   TextEditingController serviceTypeName = TextEditingController();
@@ -27,6 +24,8 @@ class ProductFormController extends GetxController {
   TextEditingController timeController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+
+  List<Map<String, String>> options = [];
 
   //* ADD Servie Type In list
   addExtras() {
@@ -38,8 +37,8 @@ class ProductFormController extends GetxController {
     if (serviceTypeNameErrorString.isEmpty &&
         serviceTypePriceErrorString.isEmpty) {
       serviceTypeList.add({
-        'service_type_name': serviceTypeName.text,
-        'service_type_price': serviceTypePrice.text,
+        'type': serviceTypeName.text,
+        'price': serviceTypePrice.text,
       });
       serviceTypeName.clear();
       serviceTypePrice.clear();
@@ -95,7 +94,7 @@ class ProductFormController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    // await getCategories();
+    await getCategories();
   }
 
 // categories dropdown
@@ -108,7 +107,7 @@ class ProductFormController extends GetxController {
     var response = await VGetCategoriesApi.getCategories();
     if (response.isNotEmpty) {
       categories = (response['category'] as List<dynamic>)
-          .map((item) => CategoryModel.from(item as Map<String, dynamic>))
+          .map((item) => CategoryModel.fromJson(item as Map<String, dynamic>))
           .toList();
       brands.clear();
       update();
@@ -120,8 +119,9 @@ class ProductFormController extends GetxController {
     selectedCategoryId = brands?.id;
     selectedBrand = null;
     selectedBrandId = null;
-    // await getBrands();
-
+    priceController.clear();
+    descriptionController.clear();
+    await getBrands();
     update();
   }
 
@@ -145,6 +145,8 @@ class ProductFormController extends GetxController {
   void setSelectedBrands(BrandModel? brands) async {
     selectedBrand = brands;
     selectedBrandId = brands?.id;
+    priceController.text = brands!.price.toString();
+    descriptionController.text = brands.description.toString();
     update();
   }
 
@@ -155,7 +157,7 @@ class ProductFormController extends GetxController {
         categoryError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return categoryError;
-        case 'Brand':
+      case 'Brand':
         brandError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return brandError;
@@ -192,19 +194,32 @@ class ProductFormController extends GetxController {
 
   //TODO: FORGOT VALIDATION
   Future<bool> validateForm() async {
-    final categoryErrorString = validateFields('Category', selectedCategoryId);
-    final brandErrorString = validateFields('Brand', selectedBrandId);
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select an category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+    if (selectedBrandId == null) {
+      brandError = 'Please select an brand';
+      update();
+    } else {
+      brandError = '';
+      update();
+    }
+
     final priceErrorString = validateFields('Price', priceController.text);
     final descriptionErrorString =
         validateFields('Description', descriptionController.text);
     final timeErrorString =
         validateFields('Time needed for service', timeController.text);
-        if (images.isEmpty) {
-           UiUtilites.errorSnackbar('Error', "Images can't be empty");
-           return false;
-        }
-    return categoryErrorString.isEmpty &&
-    brandErrorString.isEmpty&&
+    if (images.isEmpty) {
+      UiUtilites.errorSnackbar('Error', "Images can't be empty");
+      return false;
+    }
+    return categoryError.isEmpty &&
+        brandError.isEmpty &&
         priceErrorString.isEmpty &&
         descriptionErrorString.isEmpty &&
         timeErrorString.isEmpty;
@@ -213,7 +228,25 @@ class ProductFormController extends GetxController {
   //TODO: Forgot Function
   addProduct() async {
     if (await validateForm()) {
-      print('object');
+      base64Images = [];
+      update();
+      if (images.isNotEmpty) {
+        for (File imageFile in images) {
+          List<int> imageBytes = await imageFile.readAsBytes();
+          String base64Image = base64Encode(imageBytes);
+          base64Images.add(base64Image);
+        }
+      }
+      var response = await VAddProductApi.addProduct(
+        categoryid: selectedCategoryId.toString(),
+        brandid: selectedBrandId.toString(),
+        time: timeController.text.toString(),
+        images: base64Images,
+        options: serviceTypeList,
+      );
+      update();
+      UiUtilites.successSnackbar('Product added successfully', 'Congrats');
+      Get.back();
     }
   }
 }

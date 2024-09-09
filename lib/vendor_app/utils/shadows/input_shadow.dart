@@ -1,6 +1,6 @@
 //! INNER INPUT SHADOW
 import 'package:flutter/cupertino.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 var innerInputShadow = [
   BoxShadow(color: AppColors.primary_color),

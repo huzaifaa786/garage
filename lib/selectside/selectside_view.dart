@@ -60,7 +60,7 @@ class _SelectsideViewState extends State<SelectsideView> {
                           child: Column(children: [
                             Gap(30),
                             AppText(
-                              title: 'Selct side..',
+                              title: 'Select side..',
                               size: 28,
                               fontWeight: FontWeight.w600,
                               // color: AppColors.primarybg,

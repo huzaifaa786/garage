@@ -147,7 +147,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   height: 37,
                   width: MediaQuery.of(context).size.width * 0.5,
                   decoration: BoxDecoration(
-                    color: AppColors.lightprimary,
+                    color: AppColors.lightPink,
                     borderRadius: BorderRadius.circular(80),
                   ),
                   child: GestureDetector(

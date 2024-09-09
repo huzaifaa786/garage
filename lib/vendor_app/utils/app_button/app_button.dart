@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/box_decorations/box_decorations.dart';
 
 class AppButton extends StatelessWidget {
-  AppButton({
+  const AppButton({
     super.key,
     this.height = 50,
     this.buttonWidth = 1.0,
@@ -40,7 +41,8 @@ class AppButton extends StatelessWidget {
       child: Container(
         height: height,
         width: Get.width * buttonWidth,
-        decoration: appBoxDecotration(innerShadow: boxShadow, color: buttonColor),
+        decoration:
+            appBoxDecotration(innerShadow: boxShadow, color: buttonColor),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(

@@ -31,6 +31,7 @@ class SplashController extends GetxController {
 
   Future checkFirstSeen() async {
     String? apiToken = box.read('api_token');
+<<<<<<< HEAD
     String? usertype = box.read('user_type');
     print('fggggggggggggggggggg');
     print(usertype);
@@ -39,9 +40,12 @@ class SplashController extends GetxController {
     if (apiToken == null) {
       Get.offNamed(AppRoutes.selectside);
     } else if (usertype == 'vendor') {
+=======
+    if (apiToken != null) {
+>>>>>>> bc08dcb3ec04e6cf9525c9351807e207585aca26
       Get.offNamed(AppRoutes.vhome);
     } else {
-      Get.offNamed(AppRoutes.main);
+      Get.offNamed(AppRoutes.selectlang);
     }
   }
 }

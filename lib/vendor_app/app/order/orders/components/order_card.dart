@@ -9,10 +9,11 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/button.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/location.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
+
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class OrderCard extends StatelessWidget {
@@ -162,9 +163,10 @@ class OrderCard extends StatelessWidget {
                               child: Image.asset('assets/images/chat.png')),
                         ),
                         GestureDetector(
-                          onTap: () => controller.makePhoneCall(
-                            controller.phoneNumber ?? '+923154704013',
-                          ),
+                          // onTap: () =>
+                          // controller.makePhoneCall(
+                          //   controller.phoneNumber ?? '+923154704013',
+                          // ),
                           child: Container(
                               width: 35,
                               height: 35,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
+import 'package:mobilegarage/models/user_model/banner_model.dart';
 
 class ServiceItem {
   final String imageUrl;
@@ -26,6 +28,8 @@ class ServiceCards {
 
 class HomeController extends GetxController {
   static HomeController instance = Get.find();
+
+  
 
   bool _showAllItems = false;
 
@@ -111,4 +115,20 @@ class HomeController extends GetxController {
   //   //     price: '',
   //   //     onTap: () {}),
   // ];
+
+   final BannersApi = HomeApi();
+   List<BannerModel>? banners = [];
+
+    Future<void> getBanners() async {
+    var response = await BannersApi.getbanners();
+    if (response.isNotEmpty) {
+      var bannerList = response['response'] as List<dynamic>;
+
+      banners = bannerList
+          .map<BannerModel>((bannerJson) => BannerModel.fromJson(bannerJson))
+          .toList();
+    }
+    update();
+  }
+
 }

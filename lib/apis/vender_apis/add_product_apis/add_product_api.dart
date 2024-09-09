@@ -6,10 +6,8 @@ class VAddProductApi {
     List<String>? images,
     String? categoryid,
     String? brandid,
-    String? brandprice,
-    String? branddescription,
     String? time,
-    List<Map<String, String>>? options,
+    List<Map<String, dynamic>>? options,
   }) async {
     String url = '$vbaseUrl/store/product';
 
@@ -17,10 +15,8 @@ class VAddProductApi {
       "images": images,
       "category_id": categoryid,
       "brand_id": brandid,
-      "images": brandprice,
-      "images": branddescription,
       "service_minute": time,
-      "images": options,
+      "include": options,
     };
     var response = await DioService.post(url: url, data: data);
     return response;

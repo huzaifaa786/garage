@@ -35,7 +35,6 @@ class _MyLocationViewState extends State<MyLocationView> {
                 toolbarHeight: 95.0,
                 title: TopBar(
                   title: "My Location",
-                  
                   showgarageicon: false,
                 ),
               ),
@@ -51,7 +50,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                         height: 35,
                         width: 35,
                         decoration: BoxDecoration(
-                          color: AppColors.lightprimary,
+                          color: AppColors.lightPink,
                           borderRadius: BorderRadius.circular(80),
                         ),
                         child: SvgPicture.asset(
@@ -180,7 +179,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                                             height: 35,
                                             width: 35,
                                             decoration: BoxDecoration(
-                                              color: AppColors.lightprimary,
+                                              color: AppColors.lightPink,
                                               borderRadius:
                                                   BorderRadius.circular(80),
                                             ),

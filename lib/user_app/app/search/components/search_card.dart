@@ -89,7 +89,7 @@ class SearchCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(60),
                       border: Border.all(
                         width: 2,
-                        color: AppColors.lightprimary,
+                        color: AppColors.lightPink,
                       ),
                     ),
                     child: ClipRRect(
@@ -185,7 +185,7 @@ class SearchCard extends StatelessWidget {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: AppColors.lightprimary,
+                                      color: AppColors.lightPink,
                                       borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(20),
                                           bottomLeft: Radius.circular(20))),
@@ -217,7 +217,7 @@ class SearchCard extends StatelessWidget {
                                 height: Get.height * 0.045,
                                 width: Get.width * 0.085,
                                 decoration: BoxDecoration(
-                                  color: AppColors.lightprimary,
+                                  color: AppColors.lightPink,
                                   borderRadius: BorderRadius.circular(80),
                                 ),
                                 child: SvgPicture.asset(

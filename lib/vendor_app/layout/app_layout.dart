@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/vendor_app/utils/app_colors/app_colors.dart';
-import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
+import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class AppLayout extends StatelessWidget {
   const AppLayout({
@@ -25,16 +25,18 @@ class AppLayout extends StatelessWidget {
       backgroundColor:
           hasBgColor ? AppColors.divider_color : AppColors.white_color,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
+        preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
-            boxShadow: hasShadow ? [
-              BoxShadow(
-                color: AppColors.black_color.withOpacity(0.2),
-                blurRadius: 4,
-              ),
-            ]: null,
+            boxShadow: hasShadow
+                ? [
+                    BoxShadow(
+                      color: AppColors.black_color.withOpacity(0.2),
+                      blurRadius: 4,
+                    ),
+                  ]
+                : null,
           ),
           child: AppBar(
             automaticallyImplyLeading: false,
@@ -52,7 +54,7 @@ class AppLayout extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Icon(
                         Icons.arrow_back,
-                        color: AppColors.appbar_title_color,
+                        color: AppColors.darkprimary,
                       ),
                     ),
                   ),
@@ -60,11 +62,11 @@ class AppLayout extends StatelessWidget {
                   title: '$appBarTitle',
                   size: 15,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.appbar_title_color,
+                  color: AppColors.darkprimary,
                 ),
                 if (hasIcon == true)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.arrow_back,
                       color: Colors.transparent,

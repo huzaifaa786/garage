@@ -10,10 +10,11 @@ class VContactusController extends GetxController {
     super.onInit();
     getContacts();
   }
-  getContacts()async{
+
+  getContacts() async {
     var response = await VContactUsApi.getContacts();
     if (response.isNotEmpty) {
-       var contact = response['contacts'];
+      var contact = response['contacts'];
       email = contact['email'] ?? '';
       phoneNo = contact['phone_no'] ?? '';
       whatsappNo = contact['whatsapp_no'] ?? '';
@@ -21,12 +22,13 @@ class VContactusController extends GetxController {
       update();
     }
   }
-    String email = '';
+
+  String email = '';
   String phoneNo = '';
   String whatsappNo = '';
   String instagram = '';
 
- void openEmail() async {
+  void openEmail() async {
     final uri = Uri(scheme: 'mailto', path: email);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);

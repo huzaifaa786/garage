@@ -7,7 +7,6 @@ import 'package:mobilegarage/vendor_app/app/language/components/language_card.da
 import 'package:mobilegarage/vendor_app/app/language/language_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 
-
 class VLanguageView extends StatefulWidget {
   const VLanguageView({super.key});
 
@@ -25,7 +24,7 @@ class _VLanguageViewState extends State<VLanguageView> {
         hasBgColor: true,
         child: Column(
           children: [
-            Gap(9),
+            const Gap(9),
             LanguageOption(
               languageName: 'English (United States)',
               languageDescription: 'Default'.tr,
@@ -37,7 +36,7 @@ class _VLanguageViewState extends State<VLanguageView> {
                 });
               },
             ),
-            Gap(22),
+            const Gap(22),
             LanguageOption(
               languageName: 'العربية',
               languageDescription: 'Arabic',
