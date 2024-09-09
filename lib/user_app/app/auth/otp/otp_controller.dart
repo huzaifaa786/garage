@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,7 +8,6 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class OtpController extends GetxController {
@@ -30,12 +30,12 @@ class OtpController extends GetxController {
 GetStorage box = GetStorage();
 //----------------otp sign-up/ sign-in--------
   RxString? last2;
-  // String? completePhone;
+  String? completePhone;
   int? resendtoken;
   String verificationid = "";
 
-  // FirebaseAuth auth = FirebaseAuth.instance;
-  // FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   verifyPhone() async {
     LoadingHelper.show();
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -82,7 +82,7 @@ GetStorage box = GetStorage();
         verificationId: verificationid,
         smsCode: otpCode,
       );
-      // await auth.signInWithCredential(credential);
+      await auth.signInWithCredential(credential);
 
       Map<String, dynamic> response;
       if (authmethod == 'signin') {
@@ -105,6 +105,7 @@ GetStorage box = GetStorage();
           return;
         }
   box.write('api_token', response['user']['token']);
+   box.write('number_verified', 'true');
         Get.offAllNamed(AppRoutes.main);
         LoadingHelper.dismiss();
         UiUtilites.successSnackbar(

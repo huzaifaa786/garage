@@ -344,9 +344,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                   child: MainButton(
                                     title: 'Continue',
                                     txtweight: FontWeight.w600,
-                                    // onTap: () {
-                                    //   Get.toNamed(AppRoutes.otp);
-                                    // }
+                                   
                                    onTap:   ()async {
                                       bool isValid =
                                           await controller.validateCarForm();

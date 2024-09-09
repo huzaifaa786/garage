@@ -273,7 +273,8 @@ GetStorage box =GetStorage();
       includes: formattedVehicleSections,
     );
     if (response.isNotEmpty) {
-       box.write('api_token', response['user']['token']);
+      //  box.write('api_token', response['user']['token']);
+      //  box.write('number_verified', 'false');
       Get.toNamed(AppRoutes.otp,
           parameters: {'phone': completePhoneNumber.toString(),'auth':'signup'});
       update();
