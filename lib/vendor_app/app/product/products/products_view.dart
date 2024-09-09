@@ -26,35 +26,17 @@ class _VProductsViewState extends State<VProductsView> {
                 ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  // itemCount: controller.,
+                  itemCount: controller.categories.length,
                   itemBuilder: (context, index) {
-                    return null;
+                    return ListView.builder(
+                      itemBuilder: (BuildContext context, int index) {
+                        final item = controller.categories[index];
+                        return ProductCard();
+                      },
+                    );
                   },
                 )
               ],
-            )
-
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 30, right: 30),
-            //   child: Column(
-            //     children: [
-            //       const Gap(13),
-            //       Row(
-            //         children: [
-            //           Image.asset('assets/images/waashcar.png'),
-            //           AppText(
-            //             title: controller.getProducts(),
-            //             size: 15,
-            //             fontWeight: FontWeight.w600,
-            //           )
-            //         ],
-            //       ),
-            //       const ProductCard(
-            //         price: '400',
-            //       )
-            //     ],
-            //   ),
-            // ),
-            ));
+            )));
   }
 }
