@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/user_app/app/change_phonenumber/change_phonenumber_controller.dart';
+import 'package:mobilegarage/user_app/app/profile/change_phonenumber/change_phonenumber_controller.dart';
 
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -10,7 +10,7 @@ import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-
+import 'package:mobilegarage/vendor_app/utils/app_phone_input/app_phone_input.dart';
 
 class ChangePhonenumberView extends StatefulWidget {
   const ChangePhonenumberView({super.key});
@@ -65,21 +65,23 @@ class _ChangePhonenumberViewState extends State<ChangePhonenumberView> {
                         color: AppColors.black.withOpacity(0.4),
                       ),
                       Gap(48),
-                      MainInput(
-                        hint: '+971  0000 0000'.tr,
-                        // readOnly: true,
+                      AppPhoneInput(
+                        onCountryChanged: controller.onCountryChanged,
+                        errorText: controller.phoneError,
+                        onChanged: controller.phoneValidation,
                         controller: controller.phoneController,
-                        errorText: '',
-                        onchange: (value) {
-                          print('Current input: $value');
-                        },
                       ),
                       Gap(83),
                       MainButton(
                         title: 'Save changes',
                         buttonWidth: Get.width * 0.77,
                         onTap: () {
-                          Get.toNamed(AppRoutes.otp);
+                          Get.toNamed(
+                            AppRoutes.otp,
+                            arguments: {
+                              'phone': controller.user!.phone,
+                            },
+                          );
                         },
                       ),
                     ],

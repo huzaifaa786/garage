@@ -1,20 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_controller.dart';
-import 'package:mobilegarage/user_app/components/app_bar/icon_top_bar.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
-import 'package:mobilegarage/user_app/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 
-import 'package:mobilegarage/user_app/components/textfields/phone_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -51,141 +47,140 @@ class _EditProfileViewState extends State<EditProfileView> {
           ),
         ),
         body: SafeArea(
-            child: Center(
-          child: Padding(
-            padding: EdgeInsets.only(left: 46, right: 46),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Gap(8),
-                  Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundColor: Colors.grey[300],
-                        backgroundImage: controller.cameraImage != null
-                            ? FileImage(controller.cameraImage!)
-                            : null,
-                        child: controller.cameraImage == null
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(80),
-                                child: CachedNetworkImage(
-                                  imageUrl:
-                                      'https://dummyimage.com/70x70/000/0011ff',
-                                  height: 100,
-                                  width: 100,
-                                  fit: BoxFit.cover,
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
-                                ),
-                              )
-                            : null,
+            child: Padding(
+          padding: EdgeInsets.only(left: 46, right: 46),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Gap(15),
+                Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.grey[300],
+                      backgroundImage: controller.profilepic != null
+                          ? FileImage(controller.profilepic!)
+                          : null,
+                      child: controller.profilepic == null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(80),
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    'https://dummyimage.com/70x70/000/0011ff',
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                            )
+                          : null,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.pickImageFromGallery('profilepic');
+                        },
+                        child: Image.asset('assets/images/camera.png'),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.selectCameraImage();
-                          },
-                          child: Image.asset('assets/images/camera.png'),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Gap(20),
-                  Row(
+                    ),
+                  ],
+                ),
+                Gap(20),
+                Row(
+                  children: [
+                    AppText(
+                      title: 'My information',
+                      size: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ],
+                ),
+                Gap(22),
+                MainInput(
+                  height: Get.height * 0.07,
+                  hint: 'Name'.tr,
+                  controller: controller.nameController,
+                  errorText: '',
+                ),
+                Gap(12),
+                Padding(
+                  padding: EdgeInsets.only(left: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       AppText(
-                        title: 'My information',
-                        size: 14,
+                        title: '(Optional)',
+                        size: 10,
                         fontWeight: FontWeight.w500,
+                        color: AppColors.grey,
                       ),
                     ],
                   ),
-                  Gap(22),
-                  MainInput(
-                    height: Get.height * 0.07,
-                    hint: 'Name'.tr,
-                    controller: controller.nameController,
-                    errorText: '',
+                ),
+                Gap(12),
+                MainInput(
+                  height: Get.height * 0.07,
+                  hint: 'Email'.tr,
+                  controller: controller.emailController,
+                  errorText: '',
+                ),
+
+                Gap(22),
+                MainInput(
+                  height: Get.height * 0.07,
+                  hint: 'Phone number'.tr,
+                  
+                  readOnly: true,
+                  controller: controller.phoneController,
+                  errorText: '',
+                  onchange: (value) {
+                    print('Current input: $value');
+                  },
+                ),
+                Gap(22),
+                Container(
+                  height: 37,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  decoration: BoxDecoration(
+                    color: AppColors.lightPink,
+                    borderRadius: BorderRadius.circular(80),
                   ),
-                  Gap(12),
-                  Padding(
-                    padding: EdgeInsets.only(left: 25),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.changephonenumber);
+                    },
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppText(
-                          title: '(Optional)',
-                          size: 10,
+                          title: 'Change phone number',
+                          size: 12,
                           fontWeight: FontWeight.w500,
-                          color: AppColors.grey,
+                          color: AppColors.primary,
                         ),
+                        Gap(2),
+                        SvgPicture.asset('assets/icons/arrow-left.svg'),
                       ],
                     ),
                   ),
-                  Gap(12),
-                  MainInput(
-                    height: Get.height * 0.07,
-                    hint: 'Email'.tr,
-                    controller: controller.emailController,
-                    errorText: '',
-                  ),
-
-                  Gap(22),
-                  MainInput(
-                    height: Get.height * 0.07,
-                    hint: '+971  User 2366718'.tr,
-                    readOnly: true,
-                    controller: controller.phoneController,
-                    errorText: '',
-                    onchange: (value) {
-                      print('Current input: $value');
-                    },
-                  ),
-                  Gap(22),
-                  Container(
-                    height: 37,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    decoration: BoxDecoration(
-                      color: AppColors.lightPink,
-                      borderRadius: BorderRadius.circular(80),
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.toNamed(AppRoutes.changephonenumber);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AppText(
-                            title: 'Change phone number',
-                            size: 12,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.primary,
-                          ),
-                          Gap(2),
-                          SvgPicture.asset('assets/icons/arrow-left.svg'),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Gap(50),
-                  // Gap(88),
-                  MainButton(
-                    title: 'Save changes',
-                    buttonWidth: Get.width * 0.77,
-                    height: Get.height * 0.077,
-                    onTap: () {
-                      Get.back();
-                    },
-                  ),
-                  Gap(20),
-                ],
-              ),
+                ),
+                Gap(50),
+                // Gap(88),
+                MainButton(
+                  title: 'Save changes',
+                  buttonWidth: Get.width * 0.77,
+                  height: Get.height * 0.077,
+                  onTap: () {
+                    controller.onSaveChanges();
+                  },
+                ),
+                Gap(20),
+              ],
             ),
           ),
         )),

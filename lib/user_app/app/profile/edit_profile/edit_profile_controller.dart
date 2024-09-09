@@ -1,20 +1,26 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl_phone_field/countries.dart';
-import 'package:intl_phone_field/phone_number.dart';
+import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
+import 'package:mobilegarage/models/user_model.dart';
+import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 
 class EditProfileController extends GetxController {
   static EditProfileController instance = Get.find();
   TextEditingController phoneController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  File? cameraImage;
+  var isButtonClicked = false;
+  UserModel? user;
+  File? profilepic;
+  String? base64pic;
+
   final picker = ImagePicker();
 
   @override
@@ -32,15 +38,40 @@ class EditProfileController extends GetxController {
     }
   }
 
-  selectCameraImage() async {
-    final pickedFile = await picker.pickImage(
-      source: ImageSource.gallery,
+  void onSaveChanges() async {
+    var response = await EditProfileApi.editProfile(
+      username: nameController.text,
+      profileimage: base64pic,
     );
+    if (response.isNotEmpty) {
+      user = UserModel.fromJson(response['user']);
+      isButtonClicked = true;
+    }
+    update();
+    Get.back();
+  }
 
-    if (pickedFile != null) {
-      // return File(pickedFile.path);
-      cameraImage = File(pickedFile.path);
-      update();
+  pickImageFromGallery(String imageName) async {
+    final imageSelectorApi = ImageSelectorApi();
+
+    final pickedImage = await imageSelectorApi.selectImageForCropper();
+    if (pickedImage != null) {
+      CroppedFile? croppedImage = await ImageCropper().cropImage(
+        sourcePath: pickedImage.path,
+        uiSettings:
+            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+      );
+      if (croppedImage != null && croppedImage.path.isNotEmpty) {
+        String base64Image = base64Encode(await croppedImage.readAsBytes());
+
+        switch (imageName) {
+          case 'profilepic': // Fix here
+            profilepic = File(croppedImage.path);
+            base64pic = base64Image;
+            update(); // Force update
+            break;
+        }
+      }
     }
   }
 }
