@@ -4,15 +4,15 @@ class BrandModel {
   int? vehicletypeid;
   String? name;
   String? price;
+  String? image;
   String? description;
-  String? createdat;
 
   BrandModel({
     required this.id,
     this.vehicletypeid,
     this.categoryid,
-    this.createdat,
     this.name,
+    this.image,
     this.description,
     this.price,
   });
@@ -23,8 +23,8 @@ class BrandModel {
       vehicletypeid: json['vehicletype_id'] ?? 0,
       price: json['price'],
       description: json['description'],
+      image: json['image'],
       name: json['name'],
-      createdat: json['created_at'],
     );
   }
 }

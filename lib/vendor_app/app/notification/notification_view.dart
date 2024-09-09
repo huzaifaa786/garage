@@ -18,13 +18,13 @@ class _VNotificationViewState extends State<VNotificationView> {
   Widget build(BuildContext context) {
     return GetBuilder<VNotificationController>(
       autoRemove: false,
-      builder: (controller) => AppLayout(
+      builder: (controller) => const AppLayout(
           appBarTitle: 'Notification',
           hasBgColor: true,
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

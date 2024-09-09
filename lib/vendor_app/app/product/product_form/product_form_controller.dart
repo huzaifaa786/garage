@@ -76,7 +76,7 @@ class ProductFormController extends GetxController {
       update();
     }
   }
-  
+
   removeSelectedImages(int index) {
     images.removeAt(index);
     Get.back();
@@ -92,12 +92,12 @@ class ProductFormController extends GetxController {
   String serviceTypePriceError = '';
   String timeError = '';
 
-  // @override
-  // void onInit() async {
-  //   // TODO: implement onInit
-  //   super.onInit();
-  //   await getCategories();
-  // }
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    await getCategories();
+  }
 
 // categories dropdown
   String categorysError = '';
@@ -109,7 +109,7 @@ class ProductFormController extends GetxController {
     var response = await VGetCategoriesApi.getCategories();
     if (response.isNotEmpty) {
       categories = (response['category'] as List<dynamic>)
-          .map((item) => CategoryModel.from(item as Map<String, dynamic>))
+          .map((item) => CategoryModel.fromJson(item as Map<String, dynamic>))
           .toList();
       brands.clear();
       update();

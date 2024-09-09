@@ -4,23 +4,24 @@ import 'package:url_launcher/url_launcher.dart';
 
 class VContactusController extends GetxController {
   static VContactusController instance = Get.find();
-  // @override
-  // void onInit() {
-  //   // TODO: implement onInit
-  //   super.onInit();
-  //   getContacts();
-  // }
-  // getContacts() async {
-  //   var response = await VContactUsApi.getContacts();
-  //   if (response.isNotEmpty) {
-  //     var contact = response['contacts'];
-  //     email = contact['email'] ?? '';
-  //     phoneNo = contact['phone_no'] ?? '';
-  //     whatsappNo = contact['whatsapp_no'] ?? '';
-  //     instagram = contact['instagram_handle'] ?? '';
-  //     update();
-  //   }
-  // }
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getContacts();
+  }
+
+  getContacts() async {
+    var response = await VContactUsApi.getContacts();
+    if (response.isNotEmpty) {
+      var contact = response['contacts'];
+      email = contact['email'] ?? '';
+      phoneNo = contact['phone_no'] ?? '';
+      whatsappNo = contact['whatsapp_no'] ?? '';
+      instagram = contact['instagram_handle'] ?? '';
+      update();
+    }
+  }
 
   String email = '';
   String phoneNo = '';
