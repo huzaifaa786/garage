@@ -85,17 +85,17 @@ class OtpView extends StatelessWidget {
                           fontSize: 15,
                           fontWeight: FontWeight.w600),
                       onCodeChanged: (String code) {
-                        //  controller.otpCode = code;
+                         controller.otpCode = code;
                       },
                       onSubmit: (String verificationCode) {
-                        // controller.otpCode = verificationCode;
-                        //  controller.verifyOtpCode();
+                         controller.otpCode = verificationCode;
+                          controller.verifyOtpCode();
                       },
                     ),
                     Gap(33),
                     GestureDetector(
                       onTap: () {
-                        // controller.verifyPhone();
+                         controller.verifyPhone();
                         Get.offAllNamed(AppRoutes.main);
                       },
                       child: AppText(
