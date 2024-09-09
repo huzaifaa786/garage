@@ -42,26 +42,26 @@ class _VContactusViewState extends State<VContactusView> {
                         children: [
                           ContactBox(
                             ontap: () {
-                              // controller.openEmail();
+                              controller.openEmail();
                             },
                             icon: 'assets/images/mail.svg',
                           ),
                           ContactBox(
                             icon: 'assets/images/Instagram.svg',
                             ontap: () {
-                              // controller.openInstagram();
+                              controller.openInstagram();
                             },
                           ),
                           ContactBox(
                             icon: 'assets/icons/whatsapp_img.svg',
                             ontap: () {
-                              // controller.openWhatsApp();
+                              controller.openWhatsApp();
                             },
                           ),
                           ContactBox(
                             icon: 'assets/icons/phone.svg',
                             ontap: () {
-                              // controller.openPhone();
+                              controller.openPhone();
                             },
                           )
                         ],

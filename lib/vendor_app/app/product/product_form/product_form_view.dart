@@ -17,7 +17,6 @@ import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/rich_text/product_rich_text.dart';
-
 class ProductFormView extends StatelessWidget {
   const ProductFormView({super.key});
   @override

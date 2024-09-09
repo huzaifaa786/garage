@@ -24,12 +24,12 @@ class VHomeController extends GetxController {
     "Review 2"
   ];
 
-  // @override
-  // void onInit() {
-  //   // TODO: implement onInit
-  //   super.onInit();
-  //   garagedata();
-  // }
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    garagedata();
+  }
 
   pickImageFromGallery(String imageName) async {
     final imageSelectorApi = ImageSelectorApi();

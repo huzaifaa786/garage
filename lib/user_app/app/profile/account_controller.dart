@@ -1,16 +1,22 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
+import 'package:mobilegarage/models/user_model.dart';
 
 class AccountController extends GetxController {
   static AccountController instance = Get.find();
-  
 
-  //   void updateProfile(String name, String number) {
-  //   userName.value = name;
-  //   userNumber.value = number;
-  //   update(); // This will trigger GetBuilder to rebuild widgets using this controller
-  // }
- 
-  
+
+  void onInit() {
+    super.onInit();
+    userdata();
+  }
+
+  UserModel? user;
+  userdata() async {
+    var response = await EditProfileApi.getuser();
+    if (response.isNotEmpty) {
+      user = UserModel.fromJson(response['user']);
+      update();
+    }
+  }
 }

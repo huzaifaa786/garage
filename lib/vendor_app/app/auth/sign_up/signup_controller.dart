@@ -330,6 +330,7 @@ class VSignUpController extends GetxController {
           title: 'sdfsdfsf',
           description: 'sdfsdfsdfs',
         );
+        Get.offAllNamed(AppRoutes.vhome);
         resetfields();
       }
     }

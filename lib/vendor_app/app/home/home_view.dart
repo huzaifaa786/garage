@@ -151,7 +151,7 @@ class _VHomeViewState extends State<VHomeView> {
                               ontap: () {
                                 Get.toNamed(AppRoutes.veditprofile)!
                                     .then((onValue) {
-                                  // controller.garagedata();
+                                  controller.garagedata();
                                 });
                               },
                               icon: 'assets/icons/edit.svg',
@@ -352,6 +352,8 @@ class _VHomeViewState extends State<VHomeView> {
                                           onConfirm: () async {
                                             GetStorage box = GetStorage();
                                             await box.remove('api_token');
+                                            await box.remove('user_type');
+
                                             controller.update();
                                             Get.offAllNamed(
                                                 AppRoutes.selectside);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/product_card.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/products_controller.dart';
@@ -20,29 +19,24 @@ class _VProductsViewState extends State<VProductsView> {
     return GetBuilder<VProductsController>(
         autoRemove: false,
         builder: (controller) => AppLayout(
-              appBarTitle: 'Edit products & services',
-              hasBgColor: false,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30),
-                child: Column(
-                  children: [
-                    Gap(13),
-                    Row(
-                      children: [
-                        Image.asset('assets/images/waashcar.png'),
-                        AppText(
-                          title: '   Car wash',
-                          size: 15,
-                          fontWeight: FontWeight.w600,
-                        )
-                      ],
-                    ),
-                    ProductCard(
-                      price: '400',
-                    )
-                  ],
-                ),
-              ),
-            ));
+            appBarTitle: 'Edit products & services',
+            hasBgColor: false,
+            child: Column(
+              children: [
+                ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: controller.categories.length,
+                  itemBuilder: (context, index) {
+                    return ListView.builder(
+                      itemBuilder: (BuildContext context, int index) {
+                        final item = controller.categories[index];
+                        return ProductCard();
+                      },
+                    );
+                  },
+                )
+              ],
+            )));
   }
 }
