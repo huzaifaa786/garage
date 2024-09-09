@@ -32,8 +32,16 @@ class SigninView extends StatelessWidget {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                       // Image.asset('assets/images/splash_logo.png'),
-                       SvgPicture.asset('assets/icons/mobile_garagelogo.svg',color:AppColors.white,height:  162,width: 293,),
+                        // Image.asset('assets/images/splash_logo.png'),
+                        Padding(
+                            padding: EdgeInsets.only(top: 30,bottom: 20),
+                          child: SvgPicture.asset(
+                            'assets/icons/mobile_garagelogo.svg',
+                            color: AppColors.white,
+                            height: 100,
+                            width: 207,
+                          ),
+                        ),
                         Expanded(
                             child: ClipRRect(
                                 borderRadius: BorderRadius.only(
@@ -93,7 +101,7 @@ class SigninView extends StatelessWidget {
                                           txtweight: FontWeight.w600,
                                           onTap: () {
                                             Get.toNamed(AppRoutes.otp);
-                                            //  controller.verifyNumber();
+                                            controller.verifyNumber();
                                           },
                                         ),
                                         Gap(40),
