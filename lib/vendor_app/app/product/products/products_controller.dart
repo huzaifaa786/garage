@@ -6,15 +6,14 @@ class VProductsController extends GetxController {
 
   String? image;
 
-  @override
-  void onInit() async {
-    // TODO: implement onInit
-    super.onInit();
-    await getProducts();
-  }
+  // @override
+  // void onInit() async {
+  //   // TODO: implement onInit
+  //   super.onInit();
+  //   await getProducts();
+  // }
 
   getProducts() async {
     var response = await VGetProductsApi.getProducts();
-
   }
 }
