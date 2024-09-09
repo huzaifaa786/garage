@@ -15,6 +15,6 @@ class VProductsController extends GetxController {
 
   getProducts() async {
     var response = await VGetProductsApi.getProducts();
-    
+
   }
 }
