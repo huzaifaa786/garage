@@ -138,7 +138,6 @@ class _VHomeViewState extends State<VHomeView> {
                                     value: controller.isSwitched.value,
                                     ontoggle: (value) {
                                       controller.toggleStatuss(value);
-
                                     },
                                   )),
                             ],
@@ -362,6 +361,8 @@ class _VHomeViewState extends State<VHomeView> {
                                           onConfirm: () async {
                                             GetStorage box = GetStorage();
                                             await box.remove('api_token');
+                                            await box.remove('user_type');
+
                                             controller.update();
                                             Get.offAllNamed(
                                                 AppRoutes.selectside);
@@ -379,7 +380,7 @@ class _VHomeViewState extends State<VHomeView> {
                 ]),
               ),
             ))
-      // : Container(),
+        // : Container(),
         );
   }
 

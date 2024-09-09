@@ -15,14 +15,12 @@ class ProfileCard extends StatelessWidget {
   const ProfileCard({
     super.key,
     required this.userName,
-    required this.userNumber,
     required this.userEmail,
     this.image,
     required this.ontap,
   });
 
   final String userName;
-  final String userNumber;
   final String userEmail;
   final image;
   final VoidCallback ontap;
@@ -51,42 +49,15 @@ class ProfileCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Stack(
-                  children: [
-                    // Container(
-                    //   height: 63,
-                    //   width: 64,
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(45),
-                    //     color: AppColors.primary,
-                    //   ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(80),
-                      child: const AppNetworkImage(
-                        assetPath: 'assets/images/user_profile.png',
-                      ),
-                      // child: CachedNetworkImage(
-                      //   imageUrl: image,
-                      //   height: 70,
-                      //   width: 70,
-                      //   fit: BoxFit.cover,
-                      //   placeholder: (context, url) =>
-                      //       CircularProgressIndicator(),
-                      //   errorWidget: (context, url, error) => Icon(Icons.error),
-                      // ),
-                    ),
-                    // ),
-                    Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.editprofile);
-                          },
-                          // child: Image.asset('assets/images/edit.png')
-                        )),
-                  ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(80),
+                  child: const AppNetworkImage(
+                    assetPath: 'assets/images/user_profile.png',
+                  ),
+                
                 ),
+                // ),
+             
                 const Gap(10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,17 +86,7 @@ class ProfileCard extends StatelessWidget {
               ],
             ),
             GestureDetector(
-              onTap: () {
-                Get.toNamed(
-                  AppRoutes.editprofile,
-                  arguments: {
-                    'image': 'https://dummyimage.com/70x70/000/0011ff',
-                    'userName': 'User38498990',
-                    'userNumber': '+971 0000 0000',
-                    'userEmail': 'ahmed34@gmail.com'
-                  },
-                );
-              },
+              onTap: ontap,
               child: Row(
                 children: [
                   const AppText(

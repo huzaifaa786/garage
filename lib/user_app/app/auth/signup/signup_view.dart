@@ -139,7 +139,6 @@ class SignupView extends StatelessWidget {
                               txtweight: FontWeight.w600,
                               onTap: () {
                                  controller.register();
-                                Get.toNamed(AppRoutes.main);
                               },
                             ),
                             Gap(40),

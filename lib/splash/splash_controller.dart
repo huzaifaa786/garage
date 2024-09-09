@@ -32,6 +32,7 @@ class SplashController extends GetxController {
   Future checkFirstSeen() async {
     String? apiToken = box.read('api_token');
     String? usertype = box.read('user_type');
+    print('fggggggggggggggggggg');
     print(usertype);
     print(apiToken);
 

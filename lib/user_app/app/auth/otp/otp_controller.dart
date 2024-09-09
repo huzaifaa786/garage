@@ -27,7 +27,7 @@ class OtpController extends GetxController {
   String? authmethod = '';
 
   String otpCode = '';
-GetStorage box = GetStorage();
+  GetStorage box = GetStorage();
 //----------------otp sign-up/ sign-in--------
   RxString? last2;
   // String? completePhone;
@@ -104,7 +104,7 @@ GetStorage box = GetStorage();
           );
           return;
         }
-  box.write('api_token', response['user']['token']);
+        box.write('api_token', response['user']['token']);
         Get.offAllNamed(AppRoutes.main);
         LoadingHelper.dismiss();
         UiUtilites.successSnackbar(
