@@ -260,7 +260,8 @@ class VSignupView extends StatelessWidget {
                               title: 'Sign Up',
                               buttonColor: AppColors.primary_color,
                               ontap: () {
-                                // Get.offAllNamed(AppRoutes.vhome);
+                                
+                                Get.offAllNamed(AppRoutes.vhome);
                                 controller.register();
                               },
                             ),

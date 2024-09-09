@@ -26,8 +26,8 @@ class SplashView extends StatelessWidget {
               // )
               SvgPicture.asset(
                 ImageConst.appLogoSvg,
-                height: 162,
-                width: 269,
+                height: 100,
+                width: 207,
                 color: AppColors.white_color,
               ),
             ],
