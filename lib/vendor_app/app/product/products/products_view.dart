@@ -27,6 +27,7 @@ class _VProductsViewState extends State<VProductsView> {
                 child: Column(
                   children: [
                     Gap(13),
+                    
                     Row(
                       children: [
                         Image.asset('assets/images/waashcar.png'),
