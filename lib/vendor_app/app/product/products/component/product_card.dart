@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/category_model.dart';
+import 'package:mobilegarage/models/product_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -13,22 +12,21 @@ import 'package:mobilegarage/vendor_app/app/product/products/component/button.da
 import 'package:mobilegarage/vendor_app/app/product/products/products_controller.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ProductCard extends StatelessWidget {
   ProductCard({
     super.key,
-    this.img = 'assets/images/washing.png',
-    this.price,
+    
     this.products,
+    this.ondeltap
   });
-  final img;
-  final price;
-  CategoryModel? products;
 
+  ProductModel? products;
+final ondeltap;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<VProductsController>(
-      builder: (controller) => Padding(
+    return  Padding(
         padding: const EdgeInsets.only(top: 13),
         child: Container(
           decoration: BoxDecoration(
@@ -53,18 +51,8 @@ class ProductCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      // child: CachedNetworkImage(
-                      //   imageUrl: controller.image?.isEmpty ?? true
-                      //       ? img
-                      //       : controller.image.toString(),
-                      //   placeholder: (context, url) =>
-                      //       const CircularProgressIndicator(),
-                      //   errorWidget: (context, url, error) =>
-                      //       const Icon(Icons.error),
-                      //   fit: BoxFit.cover,
-                      // ),
                       child: AppNetworkImage(
-                        assetPath: products!.image,
+                        assetPath: products!.images.first.imageUrl,
                         width: Get.width,
                       )),
                 ),
@@ -73,13 +61,19 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      title: products!.name.toString(),
+                      title: products!.brands.name.toString(),
                       size: 14,
                       fontWeight: FontWeight.w600,
                     ),
-                    const Gap(8.0),
+                    const Gap(6.0),
                     AppText(
-                      // title: products!.product[].productAttachment[].price + ' AED',
+                      title: products!.brands.description.toString(),
+                      size: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    const Gap(6.0),
+                    AppText(
+                      title: products!.brands.price.toString() + ' AED',
                       size: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.lightblue,
@@ -99,6 +93,19 @@ class ProductCard extends StatelessWidget {
                         ),
                         const Gap(12),
                         EdittButton(
+                          ontap: () {
+                            UiUtilites.confirmAlertDialog(
+                              title:
+                                  'Are you sure you want to delete this Product?',
+                              context: Get.context,
+                              onCancelTap: () {
+                                Get.back();
+                              },
+                              onConfirmTap: ondeltap,
+                              cancelText: 'No'.tr,
+                              confirmText: 'Yes'.tr,
+                            );
+                          },
                           icon: 'assets/images/delete.svg',
                           width: Get.width * 0.22,
                           text: 'Delete',
@@ -112,7 +119,7 @@ class ProductCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
+    
   }
 }
