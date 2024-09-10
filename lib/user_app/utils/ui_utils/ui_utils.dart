@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
@@ -205,7 +206,7 @@ class UiUtilites {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            Get.back();
+                            Get.toNamed(AppRoutes.signup);
                           },
                           child: Container(
                             height: 50,

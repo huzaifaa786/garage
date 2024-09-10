@@ -92,7 +92,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                       "Garage description", val);
                                 },
                               ),
-                              Gap(30),
+                              Gap(16),
                               AppButton(
                                 title: controller.isButtonClicked
                                     ? 'Changes saved successfully'

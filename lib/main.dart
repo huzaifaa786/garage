@@ -24,7 +24,7 @@ void main()async {
   });
   await LoadingHelper.init();
   await GetStorage.init();
-   EasyLoading.init();
+  EasyLoading.init();
   runApp(const MyApp());
   Stripe.publishableKey =
       "pk_test_51NjyPoKj8kRF1XiuJAv5r6UPr91km5JqWugq5FWvrfUDtOcew75SLLnk09zXOWM3RjmxebIg5vB845xYtUFI16ck00mbTgntzu";

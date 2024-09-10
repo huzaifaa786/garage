@@ -150,7 +150,8 @@ class _AccountViewState extends State<AccountView> {
                     buttonWidth: Get.width * 0.77,
                     height: Get.height * 0.07,
                     onTap: () {
-                      UiUtilites.logoutSuccessAlert(context, () {}, () {});
+                      UiUtilites.logoutSuccessAlert(context,
+                     () {}, () {});
                     },
                   ),
                   const Gap(25),
