@@ -56,11 +56,13 @@ class _VBannerViewState extends State<VBannerView> {
                             itemBuilder: (context, index) {
                               var banner = controller.banners[index];
                               return RadioButton(
-                                  value: banner.id,
-                                  text: "${banner.duration}"
-                                      " for "
-                                      "${banner.cost}"
-                                      " AED");
+                                value: banner.id,
+                                text: "${banner.duration}"
+                                    " for "
+                                    "${banner.cost}"
+                                    " AED",
+                                cost: double.parse(banner.cost.toString()),
+                              );
                             },
                           ),
                           Gap(30),
@@ -72,7 +74,7 @@ class _VBannerViewState extends State<VBannerView> {
                             ontap: controller.cover == null
                                 ? null
                                 : () {
-                                    controller.storeBanner();
+                                    controller.makePayment(context, controller.selectedBannerCost!);
                                   },
                           ),
                         ],
