@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
+import 'package:mobilegarage/models/product_model.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/service_type_card.dart';
@@ -19,7 +20,9 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/rich_text/product_rich_text.dart';
 class ProductFormView extends StatelessWidget {
   const ProductFormView({super.key});
+
   @override
+
   Widget build(BuildContext context) {
     return GetBuilder<ProductFormController>(
       autoRemove: false,
