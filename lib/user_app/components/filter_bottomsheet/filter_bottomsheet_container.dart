@@ -60,26 +60,21 @@ class FilterBottomsheetContainer extends StatelessWidget {
                 break;
             }
           },
-          child: Expanded(
-            child: Flexible(
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                // height: height,
-                // width: width,
-                decoration: BoxDecoration(
-                  color:
-                      selectedIndex == index ? AppColors.primary : Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: AppColors.primary),
-                ),
-                child: Center(
-                  child: AppText(
-                    title: text,
-                    size: 10,
-                    fontWeight: FontWeight.w500,
-                    color: selectedIndex == index ? Colors.white : Colors.black,
-                  ),
-                ),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            // height: height,
+            // width: width,
+            decoration: BoxDecoration(
+              color: selectedIndex == index ? AppColors.primary : Colors.white,
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(color: AppColors.primary),
+            ),
+            child: Center(
+              child: AppText(
+                title: text,
+                size: 10,
+                fontWeight: FontWeight.w500,
+                color: selectedIndex == index ? Colors.white : Colors.black,
               ),
             ),
           ),
