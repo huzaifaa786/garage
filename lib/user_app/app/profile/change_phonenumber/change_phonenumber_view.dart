@@ -76,12 +76,10 @@ class _ChangePhonenumberViewState extends State<ChangePhonenumberView> {
                         title: 'Save changes',
                         buttonWidth: Get.width * 0.77,
                         onTap: () {
-                          Get.toNamed(
-                            AppRoutes.otp,
-                            arguments: {
-                              'phone': controller.user!.phone,
-                            },
-                          );
+                          
+                          Get.toNamed(AppRoutes.otp, arguments: {
+                            'phone': controller.user!.phone,
+                          });
                         },
                       ),
                     ],

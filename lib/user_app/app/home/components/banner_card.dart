@@ -44,8 +44,8 @@ class BannerCard extends StatelessWidget {
               height: 60,
             ),
           ),
-          errorWidget: (context, url, error) =>
-          assetPath != '' ? Image.asset(assetPath!,fit: BoxFit.cover,) : Icon(Icons.error)
+          //errorWidget: (context, url, error) =>
+         // assetPath != '' ? Image.asset(assetPath!,fit: BoxFit.cover,) : Icon(Icons.error)
         ),
       ),
         

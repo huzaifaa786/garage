@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
 import 'package:mobilegarage/models/user_model/banner_model.dart';
+import 'package:mobilegarage/models/user_model/services_model.dart';
 
 class ServiceItem {
   final String imageUrl;
@@ -116,30 +117,52 @@ class HomeController extends GetxController {
   // ];
 
   final BannersApi = HomeApi();
-  List<BannerModel>? banners = [];
+  final servicesApi = HomeApi();
+  List<BannerModel> banners = [];
+  List<ServicesModel> servicesList = [];
   GetStorage box = GetStorage();
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     getBanners();
+    getServices();
+  }
+
+  int currentIndex = 0;
+
+  void updateIndex(int index) {
+    currentIndex = index;
+    print(currentIndex);
+    update();
   }
 
   Future<void> getBanners() async {
     String? apiToken = box.read('api_token');
-    print('fggggggggggggggggggggggggggggggggggg');
+    print('gvvbubcubbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
     print(apiToken);
-    if (apiToken != null) {
-      var response = await BannersApi.getbanners();
-      print('response ****************************');
-      print(response);
-      if (response.isNotEmpty) {
-        var bannerList = response['vehiclebrandnames'] as List<dynamic>;
+    var response = await BannersApi.getbanners();
+    if (response.isNotEmpty) {
+      var bannerList = response['banners'] as List<dynamic>;
 
-        banners = bannerList
-            .map<BannerModel>((bannerJson) => BannerModel.fromJson(bannerJson))
-            .toList();
-      }
+      banners = bannerList
+          .map<BannerModel>((bannerJson) => BannerModel.fromJson(bannerJson))
+          .toList();
+      print('bannersssssssssssssssssssssssssssssssssssssss');
+      print(banners.length);
+    }
+    update();
+  }
+
+  getServices() async {
+    var response = await servicesApi.getServices();
+    if (response.isNotEmpty) {
+      servicesList = (response['services'] as List<dynamic>)
+          .map((item) => ServicesModel.fromJson(item as Map<String, dynamic>))
+          .toList();
+
+      // brands.clear();
       update();
     }
   }

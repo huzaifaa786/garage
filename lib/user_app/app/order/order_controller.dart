@@ -22,6 +22,9 @@ class OrderController extends GetxController {
   TextEditingController priceController = TextEditingController();
   TextEditingController serviceController = TextEditingController();
 
+  double start = 30.0; 
+  double end = 50.0; 
+
   List<StepperItemData> get stepperData => [
         StepperItemData(
             content: Padding(
@@ -158,6 +161,7 @@ class OrderController extends GetxController {
         StepperItemData(
             content: Padding(
               padding: const EdgeInsets.only(left: 10),
+              /// this thsi this /// 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
