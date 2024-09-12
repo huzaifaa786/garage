@@ -105,6 +105,10 @@ class OtpController extends GetxController {
           return;
         }
         box.write('api_token', response['user']['token']);
+        box.write('number_verified', 'true');
+
+       box.write('user_type', 'user');
+
         Get.offAllNamed(AppRoutes.main);
         LoadingHelper.dismiss();
         UiUtilites.successSnackbar(

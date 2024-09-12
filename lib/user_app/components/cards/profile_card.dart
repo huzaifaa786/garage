@@ -15,13 +15,13 @@ class ProfileCard extends StatelessWidget {
   const ProfileCard({
     super.key,
     required this.userName,
-    required this.userEmail,
+    required this.userphone,
     this.image,
     required this.ontap,
   });
 
   final String userName;
-  final String userEmail;
+  final String userphone;
   final image;
   final VoidCallback ontap;
 
@@ -73,7 +73,7 @@ class ProfileCard extends StatelessWidget {
                     ),
                     const Gap(2),
                     Text(
-                      userName,
+                      userphone,
                       //'+971 0000 0000'
                       style: const TextStyle(
                         fontSize: 12,

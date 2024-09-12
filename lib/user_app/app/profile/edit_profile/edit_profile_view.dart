@@ -66,7 +66,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                               borderRadius: BorderRadius.circular(80),
                               child: CachedNetworkImage(
                                 imageUrl:
-                                    'https://dummyimage.com/70x70/000/0011ff',
+                                   controller.img.toString(),
                                 height: 100,
                                 width: 100,
                                 fit: BoxFit.cover,
