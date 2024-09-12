@@ -16,7 +16,9 @@ class EditProfileController extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  String? img;
   var isButtonClicked = false;
+
   UserModel? user;
   File? profilepic;
   String? base64pic;
@@ -32,6 +34,8 @@ class EditProfileController extends GetxController {
   void receiveArguments() {
     var args = Get.arguments;
     if (args != null) {
+      img = args['image'] ?? '';
+
       nameController.text = args['userName'] ?? '';
       phoneController.text = args['userNumber'] ?? '';
       emailController.text = args['userEmail'] ?? '';
@@ -41,7 +45,9 @@ class EditProfileController extends GetxController {
   void onSaveChanges() async {
     var response = await EditProfileApi.editProfile(
       username: nameController.text,
+      
       profileimage: base64pic,
+      phone: phoneController.text,
     );
     if (response.isNotEmpty) {
       user = UserModel.fromJson(response['user']);
@@ -49,6 +55,7 @@ class EditProfileController extends GetxController {
     }
     update();
     Get.back();
+
   }
 
   pickImageFromGallery(String imageName) async {

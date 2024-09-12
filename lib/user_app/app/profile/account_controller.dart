@@ -5,11 +5,10 @@ import 'package:mobilegarage/models/user_model.dart';
 class AccountController extends GetxController {
   static AccountController instance = Get.find();
 
-
-  void onInit() {
-    super.onInit();
-    userdata();
-  }
+  // void onInit() {
+  //   super.onInit();
+  //   userdata();
+  // }
 
   UserModel? user;
   userdata() async {

@@ -4,7 +4,7 @@ class UserModel {
   String? phone;
   String? emirate;
   String? email;
-
+  String? image;
   String? addressDetail;
   String? createdAt;
 
@@ -16,6 +16,7 @@ class UserModel {
     this.email,
     this.addressDetail,
     this.createdAt,
+    this.image,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -27,6 +28,8 @@ class UserModel {
       emirate: json['emirate'],
       addressDetail: json['address'],
       createdAt: json['created_at'],
+      image: json['image'],
+
     );
   }
 
