@@ -33,7 +33,6 @@ class _AccountViewState extends State<AccountView> {
           preferredSize: const Size.fromHeight(70.0),
           child: Container(
             decoration: const BoxDecoration(
-                // boxShadow: [appbarShadow],
                 ),
             child: AppBar(
               automaticallyImplyLeading: false,
