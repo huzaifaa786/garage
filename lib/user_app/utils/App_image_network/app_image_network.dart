@@ -22,7 +22,6 @@ class AppNetworkImage extends StatelessWidget {
       height: height,
       width: width,
       fit: BoxFit.cover,
-      
       placeholderFadeInDuration: Duration(milliseconds: 500),
       placeholder: (context, url) => Shimmer.fromColors(
         baseColor: Colors.grey[300]!,

@@ -205,9 +205,7 @@ class UiUtilites {
                       ),
                       Expanded(
                         child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.signup);
-                          },
+                          onTap: ontap,
                           child: Container(
                             height: 50,
                             decoration: BoxDecoration(

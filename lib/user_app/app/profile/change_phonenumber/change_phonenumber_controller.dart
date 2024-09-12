@@ -6,6 +6,8 @@ import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
 import 'package:mobilegarage/models/user_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/helper/validators.dart';
 
 class ChangePhonenumberController extends GetxController {
   static ChangePhonenumberController instance = Get.find();
@@ -54,15 +56,41 @@ class ChangePhonenumberController extends GetxController {
     return phoneError;
   }
 
-  UserModel? user;
-  void onSaveChanges() async {
-    var response = await EditProfileApi.editProfile(
-      phone: phoneController.text
-    );
-    if (response.isNotEmpty) {
-      user = UserModel.fromJson(response['user']);
+  changeNumber() async {
+    if (await validateForm()) {
+      Get.toNamed(AppRoutes.otp, parameters: {
+        'phone':completePhoneNumber.toString(),
+        'auth': 'changeNumber'
+      });
     }
-    update();
-    Get.back();
   }
+
+  // input field validation
+  String validateFields(String fieldName, value) {
+    switch (fieldName) {
+      case 'phone':
+        phoneError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return phoneError;
+      default:
+        return '';
+    }
+  }
+// form validation
+
+  Future<bool> validateForm() async {
+    final phoneErrorString = validateFields('phone', phoneController.text);
+    return phoneErrorString.isEmpty;
+  }
+
+  // UserModel? user;
+  // void onSaveChanges() async {
+  //   var response =
+  //       await EditProfileApi.editProfile(phone: phoneController.text);
+  //   if (response.isNotEmpty) {
+  //     user = UserModel.fromJson(response['user']);
+  //   }
+  //   update();
+  //   Get.back();
+  // }
 }

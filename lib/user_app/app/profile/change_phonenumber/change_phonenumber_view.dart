@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/profile/change_phonenumber/change_phonenumber_controller.dart';
-
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
-import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
@@ -44,45 +42,45 @@ class _ChangePhonenumberViewState extends State<ChangePhonenumberView> {
                 ),
               ),
               body: SafeArea(
-                  child: SizedBox(
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 35),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Gap(70),
-                      AppText(
-                        title: 'Enter your new phone number'.tr,
-                        size: 12,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.black.withOpacity(0.4),
-                      ),
-                      AppText(
-                        title: 'to continue'.tr,
-                        size: 12,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.black.withOpacity(0.4),
-                      ),
-                      Gap(48),
-                      AppPhoneInput(
-                        onCountryChanged: controller.onCountryChanged,
-                        errorText: controller.phoneError,
-                        onChanged: controller.phoneValidation,
-                        controller: controller.phoneController,
-                      ),
-                      Gap(83),
-                      MainButton(
-                        title: 'Save changes',
-                        buttonWidth: Get.width * 0.77,
-                        onTap: () {
-                          
-                          Get.toNamed(AppRoutes.otp, arguments: {
-                            'phone': controller.user!.phone,
-                          });
-                        },
-                      ),
-                    ],
+                  child: SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 35),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Gap(70),
+                        AppText(
+                          title: 'Enter your new phone number'.tr,
+                          size: 12,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.black.withOpacity(0.4),
+                        ),
+                        AppText(
+                          title: 'to continue'.tr,
+                          size: 12,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.black.withOpacity(0.4),
+                        ),
+                        Gap(48),
+                        AppPhoneInput(
+                          onCountryChanged: controller.onCountryChanged,
+                          errorText: controller.phoneError,
+                          onChanged: controller.phoneValidation,
+                          controller: controller.phoneController,
+                        ),
+                        Gap(83),
+                        MainButton(
+                          title: 'Save changes',
+                          buttonWidth: Get.width * 0.77,
+                          onTap: () {
+                            controller.changeNumber();
+                         
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               )),
