@@ -100,16 +100,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                           textAlign: TextAlign.start,
                         ),
                         Gap(29),
-                        // MainInputDropdown(
-                        //   hint: 'Emirate'.tr,
-                        //   controller: controller.emirateController,
-                        //   errorText: '',
-                        //   onchange: (value) {
-                        //     controller.emirateController.text = value;
-                        //     // controller.emirateValidation(value);
-                        //   },
-                        //   items: controller.city,
-                        // ),
+                       
                         DropDownField<EmirateModel>(
                           displayValue: (item) => item.name!,
                           items: controller.emirates,

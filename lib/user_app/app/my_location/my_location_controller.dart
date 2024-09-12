@@ -1,14 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
+import 'package:mobilegarage/apis/user_apis/my_location_apis/update_location_api.dart';
 import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/get_emirates_apis/get_emirates_api.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/models/user_model.dart';
 import 'package:mobilegarage/user_app/helper/validators.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
+import 'package:geocoding/geocoding.dart';
 
 class MyLocationController extends GetxController {
   static MyLocationController inatance = Get.find();
@@ -40,9 +41,18 @@ class MyLocationController extends GetxController {
   //TODO: Register Function
   updateLocation() async {
     if (await validateForm()) {
-      print('object');
+      var response = await UpdateLocationApi.updateLocation(
+          lat: lat.toString(),
+          lng: lng.toString(),
+          emirateId: selectedemirateName.toString(),
+          addressdetail: adreesdetailController.text);
+      if (response.isNotEmpty) {
+        user = UserModel.fromJson(response['user']);
+        update();
+      }
     }
   }
+
   //TODO: Error Variables
 
   String emirateError = '';
@@ -109,11 +119,26 @@ class MyLocationController extends GetxController {
     await userdata();
   }
 
+  Future<void> getPlaceName(double latitude, double longitude) async {
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(latitude, longitude);
+    if (placemarks.isNotEmpty) {
+      Placemark place = placemarks.first;
+      currentAddress =
+          '${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}';
+    }
+    update();
+  }
+
   UserModel? user;
   userdata() async {
     var response = await EditProfileApi.getuser();
     if (response.isNotEmpty) {
       user = UserModel.fromJson(response['user']);
+      adreesdetailController.text = user!.addressDetail.toString();
+      lat = double.tryParse(user!.lat!);
+      lng = double.tryParse(user!.lng!);
+      getPlaceName(lat!, lng!);
       update();
     }
   }
