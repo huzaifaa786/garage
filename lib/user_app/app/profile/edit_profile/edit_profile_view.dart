@@ -65,8 +65,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(80),
                               child: CachedNetworkImage(
-                                imageUrl:
-                                   controller.img.toString(),
+                                imageUrl: controller.img.toString(),
                                 height: 100,
                                 width: 100,
                                 fit: BoxFit.cover,
@@ -108,36 +107,41 @@ class _EditProfileViewState extends State<EditProfileView> {
                   errorText: '',
                 ),
                 Gap(12),
-                Padding(
-                  padding: EdgeInsets.only(left: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      AppText(
-                        title: '(Optional)',
-                        size: 10,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.grey,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          AppText(
+                            title: '(Optional)',
+                            size: 10,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.grey,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                Gap(12),
-                MainInput(
-                  height: Get.height * 0.07,
-                  hint: 'Email'.tr,
-                  controller: controller.emailController,
-                  errorText: '',
+                    ),
+                    Gap(12),
+                    MainInput(
+                      height: Get.height * 0.07,
+                      hint: 'Email'.tr,
+                      controller: controller.emailController,
+                      errorText: '',
+                    ),
+                  ],
                 ),
 
                 Gap(22),
                 MainInput(
                   height: Get.height * 0.07,
                   hint: 'Phone number'.tr,
-                  
                   readOnly: true,
                   controller: controller.phoneController,
                   errorText: '',
+                  
                   onchange: (value) {
                     print('Current input: $value');
                   },

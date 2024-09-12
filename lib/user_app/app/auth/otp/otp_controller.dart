@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/login_verify_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/phone_verify_api.dart';
+import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -87,9 +88,14 @@ class OtpController extends GetxController {
       Map<String, dynamic> response;
       if (authmethod == 'signin') {
         response = await LoginVerifyApi.verifyNumber(phone: phone);
-      } else {
+      } else  if(authmethod == 'signup'){
         response = await phoneOtpApi.registerUserWithOtp(phone: phone);
       }
+      else{
+           response =
+        await EditProfileApi.editProfile(phone: phone);
+      }
+
       if (response.isNotEmpty) {
         // Check if the response indicates that the account has been banned
         if (response['error'] == true &&

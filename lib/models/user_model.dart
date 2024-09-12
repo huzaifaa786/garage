@@ -4,9 +4,12 @@ class UserModel {
   String? phone;
   String? emirate;
   String? email;
-
+  String? image;
   String? addressDetail;
   String? createdAt;
+  String? lat;
+  String? lng;
+
 
   UserModel({
     required this.id,
@@ -16,6 +19,8 @@ class UserModel {
     this.email,
     this.addressDetail,
     this.createdAt,
+    this.image,
+    this.lat,this.lng
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -27,6 +32,11 @@ class UserModel {
       emirate: json['emirate'],
       addressDetail: json['address'],
       createdAt: json['created_at'],
+      image: json['image'],
+      lat: json['lat'],
+      lng: json['lng'],
+
+
     );
   }
 

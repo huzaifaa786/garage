@@ -6,16 +6,16 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart'; // Import this package
+import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
-import 'package:mobilegarage/user_app/components/buttons/map_button.dart';
-import 'package:mobilegarage/user_app/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input_dropdown.dart';
 import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 
 class MyLocationView extends StatefulWidget {
   const MyLocationView({super.key});
@@ -40,7 +40,9 @@ class _MyLocationViewState extends State<MyLocationView> {
               ),
               body: SafeArea(
                   child: SingleChildScrollView(
-                      child: Column(
+                      child:
+                      controller.user!=null
+                       ?Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +63,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                       ),
                       Gap(10),
                       AppText(
-                        title: "Dubai",
+                        title: controller.user!.emirate.toString(),
                         size: 14,
                         fontWeight: FontWeight.w500,
                         overFlow: TextOverflow.ellipsis,
@@ -70,7 +72,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                       ConstrainedBox(
                         constraints: BoxConstraints(maxWidth: Get.width * 0.44),
                         child: AppText(
-                          title: "zayed street , house3564",
+                          title: controller.user!.addressDetail.toString(),
                           size: 14,
                           color: AppColors.grey.shade500,
                           fontWeight: FontWeight.w400,
@@ -98,22 +100,26 @@ class _MyLocationViewState extends State<MyLocationView> {
                           textAlign: TextAlign.start,
                         ),
                         Gap(29),
-                        MainInputDropdown(
-                          hint: 'Emirate'.tr,
-                          controller: controller.emirateController,
-                          errorText: '',
-                          onchange: (value) {
-                            controller.emirateController.text = value;
-                            // controller.emirateValidation(value);
+                       
+                        DropDownField<EmirateModel>(
+                          displayValue: (item) => item.name!,
+                          items: controller.emirates,
+                          hint: 'Emirate',
+                          selectedValue: controller.selectedEmirate,
+                          onChanged: (value) {
+                            controller.setSelectedEmirate(value);
+                            controller.validateFields("Emirate",
+                                controller.selectedEmirateId.toString());
+                            controller.update();
                           },
-                          items: controller.city,
+                          errorText: controller.emirateError,
                         ),
                         Gap(20),
                         MainInput(
                           height: Get.height * 0.073,
                           hint: 'Address details'.tr,
                           controller: controller.adreesdetailController,
-                          errorText: '',
+                          errorText:controller.addressdetailError,
                         ),
                         Gap(20),
                         GestureDetector(
@@ -219,6 +225,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                         ),
                         Gap(60),
                         MainButton(
+                          onTap: () => controller.updateLocation(),
                           title: 'Save changes',
                           height: Get.height * 0.077,
                         ),
@@ -227,7 +234,9 @@ class _MyLocationViewState extends State<MyLocationView> {
                     ),
                   ),
                 ],
-              ))),
+              ):Text('')
+              )
+              ),
             ));
   }
 }

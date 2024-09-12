@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/setting/setting_controller.dart';
-
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/social_media_button.dart';
@@ -134,7 +132,9 @@ class _SettingViewState extends State<SettingView> {
                         children: [
                           SocialMediaButton(
                             image: 'assets/icons/mail_bold.svg',
-                            ontap: () {},
+                            ontap: () {
+                              
+                            },
                           ),
                           SocialMediaButton(
                             image: 'assets/icons/Instagram.svg',

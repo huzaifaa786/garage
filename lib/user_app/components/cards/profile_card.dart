@@ -16,13 +16,13 @@ class ProfileCard extends StatelessWidget {
     super.key,
     required this.userName,
     required this.userphone,
-    this.image,
+   required this.image,
     required this.ontap,
   });
 
   final String userName;
   final String userphone;
-  final image;
+ final String image;
   final VoidCallback ontap;
 
   @override
@@ -51,13 +51,11 @@ class ProfileCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(80),
-                  child: const AppNetworkImage(
+                  child:  AppNetworkImage(
                     assetPath: 'assets/images/user_profile.png',
+                    networkImage: image,
                   ),
-                
                 ),
-                // ),
-             
                 const Gap(10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,16 +63,13 @@ class ProfileCard extends StatelessWidget {
                   children: [
                     Text(
                       userName,
-                      //'User38498990'
                       style: const TextStyle(
                           fontSize: 14,
-                          //fontWeight: FontWeight.bold,
                           fontWeight: FontWeight.w500),
                     ),
                     const Gap(2),
                     Text(
                       userphone,
-                      //'+971 0000 0000'
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
