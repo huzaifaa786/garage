@@ -32,6 +32,7 @@ class AppColors {
   static const borderlightgrey = Color(0xFFF5F5F5);
   static const greybg = Color(0xFFB3B3B3);
   static const orange = Color(0xFFFFB800);
+  static const darkGrey = Color(0xFFC9C9C9);
   static const lightgreysettingCard = Color(0xfff0f0f0);
 
   //* APP GRADIENTS
