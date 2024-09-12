@@ -22,7 +22,7 @@ class OrderController extends GetxController {
   TextEditingController priceController = TextEditingController();
   TextEditingController serviceController = TextEditingController();
 
-  double start = 30.0; 
+  double start = 0.0; 
   double end = 50.0; 
 
   List<StepperItemData> get stepperData => [
