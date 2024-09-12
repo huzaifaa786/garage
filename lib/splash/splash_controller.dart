@@ -31,21 +31,11 @@ class SplashController extends GetxController {
 
   Future checkFirstSeen() async {
     String? apiToken = box.read('api_token');
-    String? usertype = box.read('user_type');
-    String? user_verified = box.read('number_verified');
-
-    if (apiToken == null) {
-      Get.offNamed(AppRoutes.selectside);
+    if (apiToken != null) {
+      
+      Get.offNamed(AppRoutes.main);
     } else {
-      if (usertype == 'vendor') {
-        Get.offNamed(AppRoutes.vhome);
-      } else {
-        if (user_verified == 'true') {
-          Get.offNamed(AppRoutes.main);
-        } else {
-          Get.offNamed(AppRoutes.signin);
-        }
-      }
+      Get.offNamed(AppRoutes.selectside);
     }
   }
 }
