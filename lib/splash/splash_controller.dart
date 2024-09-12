@@ -35,7 +35,7 @@ class SplashController extends GetxController {
       
       Get.offNamed(AppRoutes.main);
     } else {
-      Get.offNamed(AppRoutes.selectside);
+      Get.offNamed(AppRoutes.my_cars);
     }
   }
 }
