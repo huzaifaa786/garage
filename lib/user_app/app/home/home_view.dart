@@ -22,8 +22,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  int i = 0;
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -64,54 +62,69 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Gap(10),
-                  if(controller.banners.isNotEmpty)
-                  CarouselSlider.builder(
-                    options: CarouselOptions(
-                      height: 190,
-                      enableInfiniteScroll: true,
-                      autoPlay: true,
-                      autoPlayCurve: Curves.ease,
-                      viewportFraction: 0.8,
-                      enlargeCenterPage: false,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          i = index;
-                        });
+                  if (controller.banners.isNotEmpty)
+                    CarouselSlider.builder(
+                      options: CarouselOptions(
+                        height: 190,
+                        enableInfiniteScroll: true,
+                        autoPlay: true,
+                        autoPlayCurve: Curves.ease,
+                        viewportFraction: 0.8,
+                        enlargeCenterPage: false,
+                        onPageChanged: (index, reason) {
+                          controller.updateIndex(index); 
+                        },
+                      ),
+                      itemCount: controller.banners.length,
+                      itemBuilder: (context, index, realIndex) {
+                        return BannerCard(
+                          networkImage: controller.banners[index].image,
+                          onTap: () {
+                            print('object');
+                          },
+                        );
                       },
                     ),
-                    itemCount: controller.banners.length,
-                    itemBuilder: (context, index, realIndex) {
-                      return BannerCard(
-                        
-                        networkImage: controller.banners[index].image,
-                        
-                        onTap: () {
-                          print('object');
-                        },
-                      );
-                    },
-                  ),
                   Gap(10),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+
+                  //     controller.banners.isEmpty
+                  //         ? Container()
+                  //         : SmoothPageIndicator(
+                  //             controller: PageController(
+                  //                 initialPage: i, keepPage: true),
+
+                  //             count: controller.banners.length,
+                  //             effect: ExpandingDotsEffect(
+                  //                 activeDotColor: AppColors.primary,
+                  //                 dotColor: AppColors.lightPink,
+                  //                 dotWidth: 5,
+                  //                 dotHeight: 5),
+                  //           ),
+                  //   ],
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      controller.banners.isEmpty
-                          ? Container()
-                          : SmoothPageIndicator(
-                              controller: PageController(
-                                  initialPage: i, keepPage: true),
-                                  
-                              count: controller.banners!.length,
-                          
-                              effect: ExpandingDotsEffect(
-                                  activeDotColor: AppColors.primary,
-                                  dotColor: AppColors.lightPink,
-                                  dotWidth: 5,
-                                  dotHeight: 5),
-                            ),
-                            
-                    ],
+                    children: List.generate(controller.banners.length, (index) {
+                      return AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        margin: EdgeInsets.symmetric(horizontal: 4.0),
+                        height: 6.0,
+                        width: controller.currentIndex == index ? 20.0 : 6.0,
+                        decoration: BoxDecoration(
+                          color: controller.currentIndex == index
+                              ? AppColors.primary
+                              : AppColors.lightPink,
+                          borderRadius: controller.currentIndex == index
+                              ? BorderRadius.circular(10.0)
+                              : BorderRadius.circular(50.0),
+                        ),
+                      );
+                    }),
                   ),
+
                   Gap(30),
                   if (controller.hasServices) ...[
                     Padding(
@@ -134,7 +147,7 @@ class _HomeViewState extends State<HomeView> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:4,
+                        crossAxisCount: 4,
                         crossAxisSpacing: 9.0,
                         mainAxisSpacing: 1.0,
                         mainAxisExtent: Get.height * 0.21,
@@ -145,8 +158,8 @@ class _HomeViewState extends State<HomeView> {
                         return ServicesIcons(
                           imageUrl: item.image,
                           text: item.name,
-                          
-                         // showSubtext: false,
+
+                          // showSubtext: false,
                           ontap: () {
                             Get.toNamed(AppRoutes.filterorder);
                           },
@@ -154,7 +167,7 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                     Gap(40),
-                  // ] else ...[
+                    // ] else ...[
                     Gap(0),
                   ]
                 ],

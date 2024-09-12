@@ -121,6 +121,7 @@ class HomeController extends GetxController {
   List<BannerModel> banners = [];
   List<ServicesModel> servicesList = [];
   GetStorage box = GetStorage();
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -129,7 +130,18 @@ class HomeController extends GetxController {
     getServices();
   }
 
+  int currentIndex = 0;
+
+  void updateIndex(int index) {
+    currentIndex = index;
+    print(currentIndex);
+    update();
+  }
+
   Future<void> getBanners() async {
+    String? apiToken = box.read('api_token');
+    print('gvvbubcubbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
+    print(apiToken);
     var response = await BannersApi.getbanners();
     if (response.isNotEmpty) {
       var bannerList = response['banners'] as List<dynamic>;

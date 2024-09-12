@@ -11,7 +11,7 @@ class HomeApi {
       // 'banner_price_id': selectedday,
   //  };
 
-    //! Make the POST request using ApiService
+    //! Make the Get request using ApiService
     var response = await DioService.get(url: url);
     return response;
   }

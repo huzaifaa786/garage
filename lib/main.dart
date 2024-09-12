@@ -15,6 +15,7 @@ import 'package:mobilegarage/routes/app_pages.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 void main()async {
    WidgetsFlutterBinding.ensureInitialized();
    await Firebase.initializeApp(
