@@ -12,7 +12,6 @@ import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/b
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/profile_cover_picker.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';

@@ -8,6 +8,7 @@ import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/brands/g
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/categories/get_categories_api.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
+import 'package:mobilegarage/models/product_model.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -95,7 +96,9 @@ class ProductFormController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     await getCategories();
+    Get.parameters['product'];
   }
+    ProductModel? product;
 
 // categories dropdown
   String categorysError = '';

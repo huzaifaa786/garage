@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/profile/account_controller.dart';
-import 'package:mobilegarage/user_app/components/app_bar/icon_top_bar.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-
 import 'package:mobilegarage/user_app/components/buttons/logout_button.dart';
 import 'package:mobilegarage/user_app/components/cards/all_profile_card.dart';
-import 'package:mobilegarage/user_app/components/cards/email_profile_card.dart';
 import 'package:mobilegarage/user_app/components/cards/profile_card.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
 class AccountView extends StatefulWidget {
@@ -61,12 +57,12 @@ class _AccountViewState extends State<AccountView> {
                 children: [
                   ProfileCard(
                     userName: controller.user!.name.toString(),
-                    userEmail: 'ahmed34@gmail.com',
+                    userphone: controller.user!.phone.toString(),
                     ontap: () {
                       Get.toNamed(
                         AppRoutes.editprofile,
                         arguments: {
-                          'image': 'https://dummyimage.com/70x70/000/0011ff',
+                          'image': 'https://dummyimage.com/60x60/ede4ed/fff',
                           'userName': controller.user!.name,
                           'userNumber': controller.user!.phone,
                           'userEmail': controller.user!.email,

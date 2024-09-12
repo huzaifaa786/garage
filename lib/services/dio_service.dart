@@ -27,7 +27,8 @@ class DioService {
       Response response = await _dio.post(url!,
           data: data,
           options: Options(
-            validateStatus: (status) => [200, 201, 400, 422,500].contains(status),
+            validateStatus: (status) =>
+                [200, 201, 400, 422, 500].contains(status),
           ));
       log(response.toString());
       return _handleResponse(response);
@@ -48,20 +49,16 @@ class DioService {
       _setHeaders();
       log(url!.toString());
       Response response = await _dio.get(url,
-          queryParameters: data,
+          // queryParameters: data,
           options: Options(
             validateStatus: (status) => [200, 201, 400, 422].contains(status),
           ));
       print(response);
       log(response.toString());
 
-      return _handleResponse(
-        response,
-      );
+      return _handleResponse(response);
     } catch (e) {
-      _handleError(
-        e: e,
-      );
+      _handleError(e: e);
       return {};
     }
   }

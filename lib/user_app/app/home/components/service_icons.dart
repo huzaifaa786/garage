@@ -12,14 +12,16 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 class ServicesIcons extends StatelessWidget {
   final String imageUrl;
   final String text;
-  final String subText;
+  final String? subText;
+  final bool showSubtext;
   final ontap;
   const ServicesIcons(
       {Key? key,
+       this.showSubtext = false,
       required this.imageUrl,
       required this.text,
       this.ontap,
-      required this.subText})
+       this.subText})
       : super(key: key);
 
   @override
@@ -67,8 +69,11 @@ class ServicesIcons extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                if(showSubtext)
                 AppText(
-                  title: subText,
+                  
+                  title: subText!,
+                  
                   size: 8,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primarybg,

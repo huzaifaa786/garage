@@ -7,11 +7,11 @@ class RadioButton extends StatelessWidget {
   const RadioButton({
     super.key,
     this.value,
-    this.text,
+    this.text,this.cost
   });
   final value;
   final text;
-
+ final double? cost; 
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,8 +32,8 @@ class RadioButton extends StatelessWidget {
               value: value,
               groupValue: controller.selectedValue,
               onChanged: (int? newValue) {
-                if (newValue != null) {
-                  controller.updateSelectedValue(newValue);
+                if (newValue != null&& cost != null) {
+                  controller.updateSelectedValue(newValue,cost!);
                 }
               },
               title: Text(
