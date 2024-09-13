@@ -43,38 +43,36 @@ class RadioCard extends StatelessWidget {
                 color:
                     isSelected ? AppColors.lightPink : AppColors.grey.shade200,
                 borderRadius: BorderRadius.circular(50)),
-            child: Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: AppNetworkImage(
-                      networkImage: userVehicles!.image.toString(),
-                      height: 50,
-                      width: 50,
-                    ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: AppNetworkImage(
+                    networkImage: userVehicles!.image.toString(),
+                    height: 50,
+                    width: 50,
                   ),
-                  AppText(
-                    title: 'userVehicles!.vehicle_info.toString()',
-                    color: isSelected ? AppColors.primary : AppColors.darkprimary,
-                    size: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  AppText(
-                    title: userVehicles!.year_of_manufacture.toString(),
-                    color: isSelected ? AppColors.primary : AppColors.darkprimary,
-                    size: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  Radio<String>(
-                    fillColor: WidgetStatePropertyAll(AppColors.primary),
-                    value: value,
-                    groupValue: groupValue,
-                    onChanged: onChanged,
-                  ),
-                ],
-              ),
+                ),
+                AppText(
+                  title: userVehicles!.vehicle_info.toString(),
+                  color: isSelected ? AppColors.primary : AppColors.darkprimary,
+                  size: 10,
+                  fontWeight: FontWeight.w500,
+                ),
+                AppText(
+                  title: userVehicles!.year_of_manufacture.toString(),
+                  color: isSelected ? AppColors.primary : AppColors.darkprimary,
+                  size: 10,
+                  fontWeight: FontWeight.w500,
+                ),
+                Radio<String>(
+                  fillColor: WidgetStatePropertyAll(AppColors.primary),
+                  value: value,
+                  groupValue: groupValue,
+                  onChanged: onChanged,
+                ),
+              ],
             ),
           ),
         ),
