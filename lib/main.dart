@@ -34,7 +34,6 @@ void main()async {
   HttpOverrides.global = MyHttpOverrides();
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
