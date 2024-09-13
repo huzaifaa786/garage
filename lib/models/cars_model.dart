@@ -3,7 +3,7 @@ class UserVehicles {
   final int id;
   final String? vehicletype_id;
   final vehicleBrand? vehiclebrand_id;
-  final  vehiclebrandname? vehiclebrandname_id;
+  final vehiclebrandname? vehiclebrandname_id;
   final int? year_of_manufacture;
   final String? vehicle_info;
   final String? image;
@@ -26,15 +26,15 @@ class UserVehicles {
   factory UserVehicles.fromJson(Map<String, dynamic> json) {
     return UserVehicles(
       id: json['id'],
-      userId: json['userId'],
+      userId: json['userId'] ?? "",
       vehicletype_id: json['vehicletype_id'],
       vehiclebrandname_id: json['vehiclebrandname_id'] != null
-          ? vehiclebrandname.fromJson(json['vehiclebrand_id']) 
-          : null, 
+          ? vehiclebrandname.fromJson(json['vehiclebrand_id'])
+          : null,
       vehiclebrand_id: json['vehiclebrand_id'] != null
-          ? vehicleBrand.fromJson(json['vehiclebrand_id']) 
-          : null, 
-      year_of_manufacture: json['year_of_manufacture'], 
+          ? vehicleBrand.fromJson(json['vehiclebrand_id'])
+          : null,
+      year_of_manufacture: json['year_of_manufacture'],
       vehicle_info: json['vehicle_info'],
       image: json['image'],
       createdAt: json['createdAt'],
@@ -68,6 +68,7 @@ class vehicleBrand {
     );
   }
 }
+
 class vehiclebrandname {
   final int id;
   final String vehicletype_id;
@@ -87,10 +88,9 @@ class vehiclebrandname {
     return vehiclebrandname(
       id: json['id'],
       name: json['name'],
-      vehicletype_id:json ['vehicletype_id'],
+      vehicletype_id: json['vehicletype_id'],
       createdAt: json['createdAt'],
       updatedAt: json['updatedAt'],
     );
   }
 }
-

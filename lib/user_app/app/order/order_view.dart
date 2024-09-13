@@ -160,18 +160,17 @@ class _OrderViewState extends State<OrderView> {
                             ListView.builder(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: controller.carNames.length,
+                              itemCount: controller.vehiclesList.length,
                               itemBuilder: (context, index) {
-                                final name = controller.carNames[index];
+                                final vehical = controller.vehiclesList[index];
                                 return VehicleListTile(
-                                  value: name,
-                                  groupValue: controller.selectedCarName,
-                                  onChanged: (value) {
-                                    controller.selectCar(value!);
-                                  },
-                                  iconPath: 'assets/icons/vehicle.svg',
-                                  text: name,
-                                );
+                                    value: vehical.id.toString(),
+                                    groupValue: vehical.id.toString(),
+                                    onChanged: (value) {
+                                      controller.selectCar(value!);
+                                    },
+                                    iconPath: 'assets/icons/vehicle.svg',
+                                    text: vehical.vehicle_info!);
                               },
                             ),
                             Gap(30),
