@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/models/user_vehicles.dart';
+import 'package:mobilegarage/models/brand_model.dart';
+import 'package:mobilegarage/models/brand_name_model.dart';
+import 'package:mobilegarage/models/vehicle_model.dart';
 import 'package:mobilegarage/user_app/app/my_cars/components/radio_card.dart';
 import 'package:mobilegarage/user_app/app/my_cars/my_cars_controllers.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -16,6 +17,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
+import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 
 class MyCarsView extends StatefulWidget {
   const MyCarsView({super.key});
@@ -28,7 +30,7 @@ class _MyCarsViewState extends State<MyCarsView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MyCarsControllers>(
-        builder: (controllers) => Scaffold(
+        builder: (controller) => Scaffold(
               // backgroundColor: AppColors.grey.shade200,
               appBar: PreferredSize(
                   preferredSize: Size.fromHeight(70.0),
@@ -61,60 +63,70 @@ class _MyCarsViewState extends State<MyCarsView> {
                             child: Column(
                               children: [
                                 Gap(40),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 20.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        "assets/icons/cars.svg",
-                                        height: 17,
-                                        width: 17,
-                                      ),
-                                      Gap(6),
-                                      Text(
-                                        "Marked as default",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Gap(7),
-                                      Text(
-                                        "white Mercedes 2022",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.grey,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                ListView.builder(
+                                // Padding(
+                                //   padding: const EdgeInsets.only(right: 20.0),
+                                //   child: Row(
+                                //     mainAxisAlignment: MainAxisAlignment.center,
+                                //     children: [
+                                //       SvgPicture.asset(
+                                //         "assets/icons/cars.svg",
+                                //         height: 17,
+                                //         width: 17,
+                                //       ),
+                                //       Gap(6),
+                                //       Text(
+                                //         "Marked as default",
+                                //         style: TextStyle(
+                                //             fontSize: 10,
+                                //             fontWeight: FontWeight.w500),
+                                //       ),
+                                //       Gap(7),
+                                //       Text(
+                                //         "white Mercedes 2022",
+                                //         style: TextStyle(
+                                //           fontSize: 10,
+                                //           fontWeight: FontWeight.w500,
+                                //           color: AppColors.grey,
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
+                                controller.uservehicles!.isNotEmpty
+                               ? ListView.builder(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 20),
                                     shrinkWrap: true,
                                     physics: BouncingScrollPhysics(),
-                                    itemCount: controllers.uservehicles!.length,
+                                    itemCount: controller.uservehicles!.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      final addCars =
-                                         
-                                           controllers.uservehicles![index];
+                                      final vehicle =
+                                          controller.uservehicles![index];
                                       return RadioCard(
-                                        userVehicles: addCars,
-                                        value:addCars.id.toString(),
-                                        groupValue: controllers.selectedValue,
-                                        onChanged: (value) {
-                                        controllers.selectedValue= value;
-                                          controllers.update();
+                                        ondeletetap: () {
+                                          UiUtilites.DeleteAlert(
+                                              context, vehicle.vehicle_info,
+                                              () {
+                                            controller
+                                                .deleteVehicles(vehicle.id);
+                                                  Navigator.of(context).pop();
+                                          }, () {
+                                            Navigator.of(context).pop();
+                                          });
                                         },
-                                        addCars: addCars,
-                                      isSelected:controllers.selectedValue== addCars.id.toString(),
-                                        // isSelected: controllers.selectedValue ==
-                                        //     addCars["id"].toString(),
+                                        userVehicles: vehicle,
+                                        value: vehicle.id.toString(),
+                                        groupValue: controller.selectedValue,
+                                        onChanged: (value) {
+                                          controller.selectedValue = value;
+                                          controller.update();
+                                        },
+                                        addCars: vehicle,
+                                        isSelected: controller.selectedValue ==
+                                            vehicle.id.toString(),
                                       );
-                                    }),
+                                    }):Text('No Car found'),
                               ],
                             ),
                           ),
@@ -123,70 +135,217 @@ class _MyCarsViewState extends State<MyCarsView> {
                             color: AppColors.grey.shade200,
                             thickness: 15,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 34),
-                            child: Column(
-                              children: controllers.vehicleSections
-                                  .asMap()
-                                  .entries
-                                  .map((entry) {
-                                int index = entry.key;
-                                var section = entry.value;
-                                return Column(
-                                  key: ValueKey(index),
-                                  children: [
-                                    Gap(25),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                          Gap(20),
+                          if (controller.vehicleSections.isNotEmpty)
+                            AppText(
+                              title: 'Add Car details',
+                              size: 26,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.heading_text_color,
+                              fontFamily: 'Ibarra Real Nova',
+                            ),
+                          Column(
+                            children: controller.vehicleSections
+                                .asMap()
+                                .entries
+                                .map((entry) {
+                              int index = entry.key;
+                              var section = entry.value;
+                              var errors =
+                                  controller.sectionErrors[index] ?? {};
+                              return Column(
+                                key: ValueKey(index),
+                                children: [
+                                  if (index != 0)
+                                    Divider(
+                                      thickness: 14,
+                                      color: AppColors.grey.shade100,
+                                    ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 35,
+                                    ),
+                                    child: Column(
+                                      key: ValueKey(index),
                                       children: [
-                                        AppText(
-                                          title: 'Fill info',
-                                          size: 14,
-                                          fontWeight: FontWeight.w600,
+                                        Gap(28),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 22),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              if (index != 0)
+                                                AppText(
+                                                  title: index == 0
+                                                      ? 'Vehicle Details'
+                                                      : 'Vehicle ${index + 1}',
+                                                  size: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              if (index != 0)
+                                                GestureDetector(
+                                                  onTap: () => controller
+                                                      .removeVehicleSection(
+                                                          index),
+                                                  child: Row(
+                                                    children: [
+                                                      SvgPicture.asset(
+                                                        "assets/icons/delete.svg",
+                                                        color:
+                                                            AppColors.primarybg,
+                                                      ),
+                                                      AppText(
+                                                        title: "Delete",
+                                                        size: 10,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color:
+                                                            AppColors.primarybg,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
                                         ),
+                                        Gap(36),
+                                        DropDownField<VehicleModel>(
+                                          displayValue: (item) => item.name!,
+                                          items: controller.vehilcles,
+                                          hint: 'Type of vehicle',
+                                          selectedValue:
+                                              section['vehicletype_id'],
+                                          onChanged: (value) {
+                                            controller.setSelectedVehicle(
+                                                index, value);
+                                            controller.validateCarFields(
+                                                "vehicletype",
+                                                controller.selectedVehicleId
+                                                    .toString());
+                                            controller.update();
+                                          },
+                                          errorText:
+                                              errors['vehicletype'] ?? '',
+                                        ),
+                                        Gap(20),
+                                        section['vehicletype_id'] != null &&
+                                                controller.vehilcles.isNotEmpty
+                                            ? Column(
+                                                children: [
+                                                  DropDownField<BrandModel>(
+                                                    displayValue: (item) =>
+                                                        item.name!,
+                                                    items:
+                                                        section['brands'] ?? [],
+                                                    hint: 'Car brand',
+                                                    selectedValue: section[
+                                                        'vehiclebrand_id'],
+                                                    onChanged: (value) {
+                                                      controller
+                                                          .setSelectedVehicleBrand(
+                                                              index, value);
+                                                      controller.validateCarFields(
+                                                          "vehiclebrand",
+                                                          controller
+                                                              .selectedVehiclebrandId
+                                                              .toString());
+                                                      controller.update();
+                                                    },
+                                                    errorText: errors[
+                                                            'vehiclebrand'] ??
+                                                        '',
+                                                  ),
+                                                  Gap(20),
+                                                ],
+                                              )
+                                            : Gap(0),
+                                        section['vehiclebrand_id'] != null &&
+                                                section['brandnames'] != null
+                                            ? Column(
+                                                children: [
+                                                  DropDownField<BrandNameModel>(
+                                                    displayValue: (item) =>
+                                                        item.name!,
+                                                    items:
+                                                        section['brandnames'] ??
+                                                            [],
+                                                    hint: 'Brand name',
+                                                    selectedValue: section[
+                                                        'vehiclebrandname_id'],
+                                                    onChanged: (value) {
+                                                      controller
+                                                          .setSelectedBrandName(
+                                                              index, value);
+                                                      controller.validateCarFields(
+                                                          "vehiclebrandname",
+                                                          controller
+                                                              .selectedbrandNameId
+                                                              .toString());
+                                                      controller.update();
+                                                    },
+                                                    errorText: errors[
+                                                            'vehiclebrandname'] ??
+                                                        '',
+                                                  ),
+                                                  Gap(27),
+                                                ],
+                                              )
+                                            : Gap(0),
+                                        MainInput(
+                                          hint: 'Year of manufacture',
+                                          controller: controller
+                                                  .yearOfManufactureControllers[
+                                              index],
+                                          onchange: (p0) {
+                                            section['year_of_manufacture'] = p0;
+                                            controller.update();
+
+                                            errors['year_of_manufacture'] ?? '';
+                                            controller.update();
+                                          },
+                                          errorText:
+                                              errors['year_of_manufacture'] ??
+                                                  '',
+                                        ),
+                                        Gap(27),
+                                        MainInput(
+                                          hint: 'Car information',
+                                          controller: controller
+                                              .carInfoControllers[index],
+                                          onchange: (value) {
+                                            section['vehicle_info'] = value;
+                                            controller.update();
+                                          },
+                                          errorText:
+                                              errors['vehicle_info'] ?? '',
+                                        ),
+                                        Gap(42),
+                                        DottedBorderButton(
+                                          title: 'Upload vehicle photo'.tr,
+                                          imgselect: () => controller
+                                              .selectVehicleImage(index),
+                                          isImgSelected:
+                                              controller.isImageSelected(index),
+                                          selectedimgpath: section['image'],
+                                          imgRemove: () => controller
+                                              .removeVehicleImage(index),
+                                        ),
+                                        Gap(37),
                                       ],
                                     ),
-                                    Gap(20),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20.0),
-                                      child: MainInput(
-                                        height: Get.height * 0.07,
-                                        hint: 'Vehicle information'.tr,
-                                        controller:
-                                            section['vehicleDetailController'],
-                                        errorText: '',
-                                      ),
-                                    ),
-                                    Gap(20),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20),
-                                      child: DottedBorderButton(
-                                        title: 'Upload vehicle photo'.tr,
-                                        imgselect: () => controllers
-                                            .selectVehicleImage(index),
-                                        isImgSelected:
-                                            controllers.isImageSelected(index),
-                                        selectedimgpath:
-                                            section['vehicleImage'],
-                                        imgRemove: () => controllers
-                                            .removeVehicleImage(index),
-                                      ),
-                                    ),
-                                    Gap(10),
-                                  ],
-                                );
-                              }).toList(),
-                            ),
+                                  ),
+                                ],
+                              );
+                            }).toList(),
                           ),
                           Gap(28),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 30.0),
                             child: GestureDetector(
-                              onTap: controllers.addVehicleSection,
+                              onTap: controller.addVehicleSection,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20.0),
@@ -242,8 +401,9 @@ class _MyCarsViewState extends State<MyCarsView> {
                               height: Get.height * 0.07,
                               title: 'Save Changes',
                               onTap: () {
-                                UiUtilites.DeleteSuccessAlert(
-                                    context, () {}, () {});
+                                controller.addvehicle();
+                                // UiUtilites.DeleteSuccessAlert(
+                                //     context, () {}, () {});
                               },
                             ),
                           ),
