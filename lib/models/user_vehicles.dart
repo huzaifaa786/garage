@@ -17,10 +17,10 @@ class UserVehicles {
     required this.vehiclebrand_id,
     required this.vehiclebrandname_id,
     required this.year_of_manufacture,
-    required this.vehicle_info,
-    required this.image,
-    required this.createdAt,
-    required this.updatedAt,
+     this.vehicle_info,
+     this.image,
+     this.createdAt,
+     this.updatedAt,
   });
 
   factory UserVehicles.fromJson(Map<String, dynamic> json) {
@@ -51,11 +51,11 @@ class vehicleBrand {
   final String? updatedAt;
 
   vehicleBrand({
-    required this.id,
-    required this.name,
-    required this.icon,
-    required this.createdAt,
-    required this.updatedAt,
+   required this.id,
+   this.name,
+   this.icon,
+   this.createdAt,
+     this.updatedAt,
   });
 
   factory vehicleBrand.fromJson(Map<String, dynamic> json) {
@@ -79,8 +79,8 @@ class vehiclebrandname {
     required this.id,
     required this.name,
     required this.vehicletype_id,
-    required this.createdAt,
-    required this.updatedAt,
+     this.createdAt,
+     this.updatedAt,
   });
 
   factory vehiclebrandname.fromJson(Map<String, dynamic> json) {
