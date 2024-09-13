@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/my_cars_apis/my_cars_api.dart';
-import 'package:mobilegarage/services/uservehicles_service.dart';
+import 'package:mobilegarage/models/user_vehicles.dart';
 
 class MyCarsControllers extends GetxController {
   static MyCarsControllers instance = Get.find();
@@ -11,31 +12,45 @@ class MyCarsControllers extends GetxController {
 
   List<Map<String, dynamic>> vehicleSections = [];
 
-  Future<void> fetchUserVehicles(int userId) async {
-    try {
-      isLoading = true;
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+
+    super.onInit();
+    await fetchUserVehicles();
+  }
+
+  List<UserVehicles>? uservehicles = [];
+  Future<void> fetchUserVehicles() async {
+    var response = await UserVehiclesService.getUserVehicles();
+    if (response.isNotEmpty) {
+      print('object');
+      print('${uservehicles!.length}nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
+      uservehicles = (response['user_vehicles'] as List<dynamic>)
+          .map((item) => UserVehicles.fromJson(item as Map<String, dynamic>))
+          .toList();
       update();
-
-      var response = await UserVehiclesService.getUserVehicles();
-
-      if (response['data'] != null) {
-        List<dynamic> vehicleData = response['data'];
-
-        vehicleSections.clear();
-        for (var vehicle in vehicleData) {
-          vehicleSections.add({
-            'vehicleDetailController': TextEditingController(),
-            'selectedVehicle': vehicle['name'] ?? 'Unknown Vehicle',
-            'vehicleImage': vehicle['image'] ?? '',
-          });
-        }
-      }
-    } catch (e) {
-      print('Error fetching user vehicles: $e');
-    } finally {
-      isLoading = false;
-      update();
+      print(
+          '${uservehicles!.length}llllllllllllllllllllllllllllllllllllllllll');
     }
+    //   if (response['data'] != null) {
+    //     List<dynamic> vehicleData = response['data'];
+
+    //     vehicleSections.clear();
+    //     for (var vehicle in vehicleData) {
+    //       vehicleSections.add({
+    //         'vehicleDetailController': TextEditingController(),
+    //         'selectedVehicle': vehicle['name'] ?? 'Unknown Vehicle',
+    //         'vehicleImage': vehicle['image'] ?? '',
+    //       });
+    //     }
+    //   }
+    // } catch (e) {
+    //   print('Error fetching user vehicles: $e');
+    // } finally {
+    //   isLoading = false;
+    //   update();
+    // }
   }
 
   void addVehicleSection() {
@@ -93,5 +108,3 @@ class MyCarsControllers extends GetxController {
     },
   ];
 }
-//
- 

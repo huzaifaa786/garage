@@ -1,5 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
 class UserVehicles {
-  final int userId;
+  final int? userId;
   final int id;
   final String? vehicletype_id;
   final vehicleBrand? vehiclebrand_id;
@@ -12,21 +14,21 @@ class UserVehicles {
 
   UserVehicles({
     required this.id,
-    required this.userId,
-    required this.vehicletype_id,
-    required this.vehiclebrand_id,
-    required this.vehiclebrandname_id,
-    required this.year_of_manufacture,
-    required this.vehicle_info,
-    required this.image,
-    required this.createdAt,
-    required this.updatedAt,
+     this.userId,
+     this.vehicletype_id,
+     this.vehiclebrand_id,
+     this.vehiclebrandname_id,
+     this.year_of_manufacture,
+     this.vehicle_info,
+     this.image,
+     this.createdAt,
+     this.updatedAt,
   });
 
   factory UserVehicles.fromJson(Map<String, dynamic> json) {
     return UserVehicles(
       id: json['id'],
-      userId: json['userId'] ?? "",
+      userId: json['userId'] != null ?json['userId']:null,
       vehicletype_id: json['vehicletype_id'],
       vehiclebrandname_id: json['vehiclebrandname_id'] != null
           ? vehiclebrandname.fromJson(json['vehiclebrand_id'])
@@ -51,11 +53,11 @@ class vehicleBrand {
   final String? updatedAt;
 
   vehicleBrand({
-    required this.id,
-    required this.name,
-    required this.icon,
-    required this.createdAt,
-    required this.updatedAt,
+   required this.id,
+   this.name,
+   this.icon,
+   this.createdAt,
+     this.updatedAt,
   });
 
   factory vehicleBrand.fromJson(Map<String, dynamic> json) {
@@ -80,8 +82,8 @@ class vehiclebrandname {
     required this.id,
     required this.name,
     required this.vehicletype_id,
-    required this.createdAt,
-    required this.updatedAt,
+     this.createdAt,
+     this.updatedAt,
   });
 
   factory vehiclebrandname.fromJson(Map<String, dynamic> json) {

@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/user_app/app/my_cars/components/radio_card.dart';
 import 'package:mobilegarage/user_app/app/my_cars/my_cars_controllers.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -94,22 +95,25 @@ class _MyCarsViewState extends State<MyCarsView> {
                                         horizontal: 20, vertical: 20),
                                     shrinkWrap: true,
                                     physics: BouncingScrollPhysics(),
-                                    itemCount: controllers.radioButton.length,
+                                    itemCount: controllers.uservehicles!.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       final addCars =
-                                          controllers.radioButton[index];
+                                          //  controllers.radioButton[index];
+                                           controllers.uservehicles![index];
                                       return RadioCard(
-                                        value: addCars["id"].toString(),
-                                        groupValue: controllers.selectedValue
+                                        userVehicles: controllers.uservehicles![index],
+                                        value: controllers.uservehicles.toString(),
+                                        groupValue: controllers.uservehicles
                                             .toString(),
                                         onChanged: (value) {
-                                          controllers.selectedValue = value;
+                                          controllers.uservehicles= value;
                                           controllers.update();
                                         },
                                         addCars: addCars,
-                                        isSelected: controllers.selectedValue ==
-                                            addCars["id"].toString(),
+                                      isSelected:controllers.uservehicles!
+                                        // isSelected: controllers.selectedValue ==
+                                        //     addCars["id"].toString(),
                                       );
                                     }),
                               ],

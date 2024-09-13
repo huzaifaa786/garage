@@ -23,6 +23,7 @@ class SplashController extends GetxController {
     initscreen();
   }
 
+
   void initscreen() async {
     await Future.delayed(const Duration(seconds: 3), () {
       checkFirstSeen();
@@ -30,6 +31,13 @@ class SplashController extends GetxController {
   }
 
   Future checkFirstSeen() async {
+    // String? apiToken = box.read('api_token');
+    // if (apiToken != null) {
+
+    //   Get.offNamed(AppRoutes.main);
+    // } else {
+    //   Get.offNamed(AppRoutes.my_cars);
+    // }
     String? apiToken = box.read('api_token');
     String? usertype = box.read('user_type');
     String? user_verified = box.read('number_verified');
@@ -47,7 +55,5 @@ class SplashController extends GetxController {
         }
       }
     }
-
-    
   }
 }
