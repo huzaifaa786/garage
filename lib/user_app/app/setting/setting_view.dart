@@ -133,20 +133,29 @@ class _SettingViewState extends State<SettingView> {
                           SocialMediaButton(
                             image: 'assets/icons/mail_bold.svg',
                             ontap: () {
-                              
+                              controller.openEmail();
                             },
                           ),
                           SocialMediaButton(
                             image: 'assets/icons/Instagram.svg',
-                            ontap: () {},
+                            ontap: () {
+                              controller.openInstagram();
+
+                            },
                           ),
                           SocialMediaButton(
                             image: 'assets/icons/whatsapp_img.svg',
-                            ontap: () {},
+                            ontap: () {
+                              controller.openWhatsApp();
+
+                            },
                           ),
                           SocialMediaButton(
                             image: 'assets/icons/phone.svg',
-                            ontap: () {},
+                            ontap: () {
+                              controller.openPhone();
+
+                            },
                           ),
                         ],
                       ),
