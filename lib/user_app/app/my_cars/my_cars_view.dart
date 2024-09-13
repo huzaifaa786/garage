@@ -63,36 +63,37 @@ class _MyCarsViewState extends State<MyCarsView> {
                             child: Column(
                               children: [
                                 Gap(40),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 20.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        "assets/icons/cars.svg",
-                                        height: 17,
-                                        width: 17,
-                                      ),
-                                      Gap(6),
-                                      Text(
-                                        "Marked as default",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Gap(7),
-                                      Text(
-                                        "white Mercedes 2022",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.grey,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                ListView.builder(
+                                // Padding(
+                                //   padding: const EdgeInsets.only(right: 20.0),
+                                //   child: Row(
+                                //     mainAxisAlignment: MainAxisAlignment.center,
+                                //     children: [
+                                //       SvgPicture.asset(
+                                //         "assets/icons/cars.svg",
+                                //         height: 17,
+                                //         width: 17,
+                                //       ),
+                                //       Gap(6),
+                                //       Text(
+                                //         "Marked as default",
+                                //         style: TextStyle(
+                                //             fontSize: 10,
+                                //             fontWeight: FontWeight.w500),
+                                //       ),
+                                //       Gap(7),
+                                //       Text(
+                                //         "white Mercedes 2022",
+                                //         style: TextStyle(
+                                //           fontSize: 10,
+                                //           fontWeight: FontWeight.w500,
+                                //           color: AppColors.grey,
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
+                                controller.uservehicles!.isNotEmpty
+                               ? ListView.builder(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 20),
                                     shrinkWrap: true,
@@ -100,23 +101,32 @@ class _MyCarsViewState extends State<MyCarsView> {
                                     itemCount: controller.uservehicles!.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      final addCars =
+                                      final vehicle =
                                           controller.uservehicles![index];
                                       return RadioCard(
-                                        userVehicles: addCars,
-                                        value: addCars.id.toString(),
+                                        ondeletetap: () {
+                                          UiUtilites.DeleteAlert(
+                                              context, vehicle.vehicle_info,
+                                              () {
+                                            controller
+                                                .deleteVehicles(vehicle.id);
+                                                  Navigator.of(context).pop();
+                                          }, () {
+                                            Navigator.of(context).pop();
+                                          });
+                                        },
+                                        userVehicles: vehicle,
+                                        value: vehicle.id.toString(),
                                         groupValue: controller.selectedValue,
                                         onChanged: (value) {
                                           controller.selectedValue = value;
                                           controller.update();
                                         },
-                                        addCars: addCars,
+                                        addCars: vehicle,
                                         isSelected: controller.selectedValue ==
-                                            addCars.id.toString(),
-                                        // isSelected: controller.selectedValue ==
-                                        //     addCars["id"].toString(),
+                                            vehicle.id.toString(),
                                       );
-                                    }),
+                                    }):Text('No Car found'),
                               ],
                             ),
                           ),
@@ -125,73 +135,15 @@ class _MyCarsViewState extends State<MyCarsView> {
                             color: AppColors.grey.shade200,
                             thickness: 15,
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(horizontal: 34),
-                          //   child: Column(
-                          //     children: controller.vehicleSections
-                          //         .asMap()
-                          //         .entries
-                          //         .map((entry) {
-                          //       int index = entry.key;
-                          //       var section = entry.value;
-                          //       return Column(
-                          //         key: ValueKey(index),
-                          //         children: [
-                          //           Gap(25),
-                          //           Row(
-                          //             mainAxisAlignment:
-                          //                 MainAxisAlignment.spaceBetween,
-                          //             children: [
-                          //               AppText(
-                          //                 title: 'Fill info',
-                          //                 size: 14,
-                          //                 fontWeight: FontWeight.w600,
-                          //               ),
-                          //             ],
-                          //           ),
-                          //           Gap(20),
-                          //           Padding(
-                          //             padding: const EdgeInsets.symmetric(
-                          //                 horizontal: 20.0),
-                          //             child: MainInput(
-                          //               height: Get.height * 0.07,
-                          //               hint: 'Vehicle information'.tr,
-                          //               controller:
-                          //                   section['vehicleDetailController'],
-                          //               errorText: '',
-                          //             ),
-                          //           ),
-                          //           Gap(20),
-                          //           Padding(
-                          //             padding: const EdgeInsets.symmetric(
-                          //                 horizontal: 20),
-                          //             child: DottedBorderButton(
-                          //               title: 'Upload vehicle photo'.tr,
-                          //               imgselect: () => controller
-                          //                   .selectVehicleImage(index),
-                          //               isImgSelected:
-                          //                   controller.isImageSelected(index),
-                          //               selectedimgpath:
-                          //                   section['vehicleImage'],
-                          //               imgRemove: () => controller
-                          //                   .removeVehicleImage(index),
-                          //             ),
-                          //           ),
-                          //           Gap(10),
-                          //         ],
-                          //       );
-                          //     }).toList(),
-                          //   ),
-                          // ),
                           Gap(20),
-                          if(controller.vehicleSections.isNotEmpty)
-                          AppText(
-                            title: 'Add Car details',
-                            size: 26,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.heading_text_color,
-                            fontFamily: 'Ibarra Real Nova',
-                          ),
+                          if (controller.vehicleSections.isNotEmpty)
+                            AppText(
+                              title: 'Add Car details',
+                              size: 26,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.heading_text_color,
+                              fontFamily: 'Ibarra Real Nova',
+                            ),
                           Column(
                             children: controller.vehicleSections
                                 .asMap()
@@ -229,7 +181,6 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                   title: index == 0
                                                       ? 'Vehicle Details'
                                                       : 'Vehicle ${index + 1}',
-                                                  // 'Vehicle ${index + 1}',
                                                   size: 14,
                                                   fontWeight: FontWeight.w500,
                                                 ),

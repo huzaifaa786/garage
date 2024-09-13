@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/car_brand_name_api/get_brand_name_api.dart';
@@ -21,14 +19,9 @@ import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 class MyCarsControllers extends GetxController {
   static MyCarsControllers instance = Get.find();
 
-  // bool isLoading = false;
-
-  // List<Map<String, dynamic>> vehicleSections = [];
-
   @override
   void onInit() async {
     // TODO: implement onInit
-
     super.onInit();
     await getVehicles();
     await fetchUserVehicles();
@@ -44,85 +37,9 @@ class MyCarsControllers extends GetxController {
           .toList();
       update();
     }
-
-    //   if (response['data'] != null) {
-    //     List<dynamic> vehicleData = response['data'];
-
-    //     vehicleSections.clear();
-    //     for (var vehicle in vehicleData) {
-    //       vehicleSections.add({
-    //         'vehicleDetailController': TextEditingController(),
-    //         'selectedVehicle': vehicle['name'] ?? 'Unknown Vehicle',
-    //         'vehicleImage': vehicle['image'] ?? '',
-    //       });
-    //     }
-    //   }
-    // } catch (e) {
-    //   print('Error fetching user vehicles: $e');
-    // } finally {
-    //   isLoading = false;
-    //   update();
-    // }
   }
 
-  // List<Map<String, dynamic>> vehicleSections = [];
-  // addVehicleSection() async {
-  //   vehicleSections.add({
-  //     'vehicletype_id': null,
-  //     'vehiclebrand_id': null,
-  //     'vehiclebrandname_id': null,
-  //     'year_of_manufacture': '',
-  //     'vehicle_info': '',
-  //     'image': null,
-  //   });
-  //   update();
-  // }
-
-  // void removeVehicleSection(int index) {
-  //   vehicleSections.removeAt(index);
-  //   update();
-  // }
-
-  // void removeVehicleImage(int index) {
-  //   vehicleSections[index]['vehicleImage'] = null;
-  //   update();
-  // }
-
-  // void selectVehicle(int index, String vehicleName) {
-  //   vehicleSections[index]['selectedVehicle'] = vehicleName;
-  //   update();
-  // }
-
-  // Future<void> selectVehicleImage(int index) async {
-  //   final pickedFile =
-  //       await ImagePicker().pickImage(source: ImageSource.gallery);
-  //   if (pickedFile != null) {
-  //     vehicleSections[index]['vehicleImage'] = pickedFile.path;
-  //     update();
-  //   } else {
-  //     print('No image selected.');
-  //   }
-  // }
-
-  // bool isImageSelected(int index) {
-  //   return vehicleSections[index]['vehicleImage'] != null;
-  // }
-
   String? selectedValue;
-  // List<Map<String, dynamic>> radioButton = [
-  //   {
-  //     "id": "1",
-  //     "imageUrl": "https://dummyimage.com/50x50/000/fff",
-  //     "radioTitle": "white Mercedes 2022",
-  //     "deleteOnTap": () {},
-  //   },
-  //   {
-  //     "id": "2",
-  //     "imageUrl": "https://dummyimage.com/50x50/000/fff",
-  //     "radioTitle": "white Mercedes 2022",
-  //     "deleteOnTap": () {},
-  //   },
-  // ];
 
   addvehicle() async {
     List<Map<String, dynamic>> formattedVehicleSections =
@@ -178,7 +95,6 @@ class MyCarsControllers extends GetxController {
   }
 
 // slecr brand  drop down
-
   int? selectedVehiclebrandId;
   getBrands(int index) async {
     var response = await GetCarBrandApi.getBrands(
@@ -204,7 +120,6 @@ class MyCarsControllers extends GetxController {
   }
 
 // slecr brand name drop down
-
   int? selectedbrandNameId;
   getBrandName(int index) async {
     var response = await GetCarBrandNameApi.getVechilesBrandName(
@@ -226,6 +141,7 @@ class MyCarsControllers extends GetxController {
     update();
   }
 
+////////
   final Map<int, TextEditingController> yearOfManufactureControllers = {};
   final Map<int, TextEditingController> carInfoControllers = {};
 
@@ -397,13 +313,15 @@ class MyCarsControllers extends GetxController {
       update();
     }
   }
+
   deleteVehicles(id) async {
     var response = await DeleteVehiclesApi.deleteVehicles(id);
     if (response.isNotEmpty) {
       fetchUserVehicles();
+      UiUtilites.successSnackbar('Car deleted successfully', 'Success');
+      update();
     }
   }
-
 
   Future<void> selectVehicleImage(int index) async {
     final pickedFile =

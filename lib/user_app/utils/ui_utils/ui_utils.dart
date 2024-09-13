@@ -376,30 +376,12 @@ class UiUtilites {
     );
   }
 
-  // static successSnackbar(String message, String title) {
-  //   Get.snackbar(
-  //     title.tr,
-  //     message.tr,
-  //     backgroundColor: AppColors.white,
-  //     colorText: AppColors.darkprimary,
-  //     duration: const Duration(seconds: 2),
-  //     snackPosition: SnackPosition.BOTTOM,
-  //   );
-  // }
-
-  // static showBottomSheet(container) {
-  //   Get.bottomSheet(container);
-  // }
   static DeleteAlert(context, carName, yesOnTap, noOnTap) {
     return showDialog(
         context: context,
         builder: (
           BuildContext context,
         ) {
-          // Future.delayed(Duration(seconds: 5), () {
-          //   Get.back();
-          // });
-
           return AlertDialog(
               content: Wrap(children: [
             Column(
@@ -428,6 +410,7 @@ class UiUtilites {
                     ),
                     SizedBox(height: 20.0),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           width: Get.width * 0.3,
@@ -439,15 +422,13 @@ class UiUtilites {
                                     BorderSide(color: AppColors.grey.shade200)),
                           ),
                           child: Center(
-                              child: Expanded(
-                            child: GestureDetector(
-                              onTap: noOnTap,
-                              child: Text(
-                                "No",
-                                style: TextStyle(color: AppColors.red),
-                              ),
-                            ),
-                          )),
+                              child: GestureDetector(
+                                onTap: noOnTap,
+                                child: Text(
+                                  "No",
+                                  style: TextStyle(color: AppColors.red),
+                                ),
+                              )),
                         ),
                         Container(
                           width: Get.width * 0.3,
@@ -458,15 +439,13 @@ class UiUtilites {
                             ),
                           ),
                           child: Center(
-                              child: Expanded(
-                            child: GestureDetector(
-                              onTap: yesOnTap,
-                              child: Text(
-                                "Yes",
-                                style: TextStyle(color: Colors.green),
-                              ),
-                            ),
-                          )),
+                              child: GestureDetector(
+                                onTap: yesOnTap,
+                                child: Text(
+                                  "Yes",
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                              )),
                         ),
                       ],
                     )
