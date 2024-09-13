@@ -14,22 +14,22 @@ class UserVehicles {
 
   UserVehicles({
     required this.id,
-     this.userId,
-     this.vehicletype_id,
-     this.vehiclebrand_id,
-     this.vehiclebrandname_id,
-     this.year_of_manufacture,
-     this.vehicle_info,
-     this.image,
-     this.createdAt,
-     this.updatedAt,
+    this.userId,
+    this.vehicletype_id,
+    this.vehiclebrand_id,
+    this.vehiclebrandname_id,
+    this.year_of_manufacture,
+    this.vehicle_info,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory UserVehicles.fromJson(Map<String, dynamic> json) {
     return UserVehicles(
       id: json['id'],
-      userId: json['userId'] != null ?json['userId']:null,
-      vehicletype_id: json['vehicletype_id'],
+      userId: json['userId'] != null ? json['userId'] : null,
+      vehicletype_id: json['vehicletype_id'].toString(),
       vehiclebrandname_id: json['vehiclebrandname_id'] != null
           ? vehiclebrandname.fromJson(json['vehiclebrand_id'])
           : null,
@@ -53,11 +53,11 @@ class vehicleBrand {
   final String? updatedAt;
 
   vehicleBrand({
-   required this.id,
-   this.name,
-   this.icon,
-   this.createdAt,
-     this.updatedAt,
+    required this.id,
+    this.name,
+    this.icon,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory vehicleBrand.fromJson(Map<String, dynamic> json) {
@@ -82,8 +82,8 @@ class vehiclebrandname {
     required this.id,
     required this.name,
     required this.vehicletype_id,
-     this.createdAt,
-     this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory vehiclebrandname.fromJson(Map<String, dynamic> json) {

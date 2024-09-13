@@ -285,6 +285,7 @@ class _OrderViewState extends State<OrderView> {
                         //       }),
                         // ),
                         Gap(40),
+
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 30.0),
                           child: MainButton(
