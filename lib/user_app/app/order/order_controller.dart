@@ -8,15 +8,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/filter_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
 
 import 'package:mobilegarage/models/user_vehicles.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/order/components/vehicle_listTile.dart';
 import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
 import 'package:mobilegarage/user_app/components/cards/filter_product_card.dart';
 import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 import 'package:stepper_list_view/stepper_list_view.dart';
 
 class OrderController extends GetxController {
@@ -386,5 +389,25 @@ class OrderController extends GetxController {
     vehicleImage = null;
     vehicleImageBase64 = null;
     update(); // This will trigger a UI update to reflect the changes
+  }
+
+  // filter api
+  filterorder() async {
+    var response = await FilterOrderApi.filterOrder(
+      startprice: start.toString(),
+      endprice: end.toString(),
+    );
+    if (response.isNotEmpty) {
+      print('object');
+
+      Get.toNamed(AppRoutes.acceptedorder);
+      UiUtilites.successAlertDialog(
+          context: Get.context,
+          onTap: () {
+            Get.toNamed(AppRoutes.main);
+          },
+          title: 'Thank you!',
+          description: 'A garage will accept your order from within 3-5 min.');
+    }
   }
 }
