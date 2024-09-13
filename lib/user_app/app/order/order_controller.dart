@@ -9,7 +9,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
-import 'package:mobilegarage/user_app/app/home/home_controller.dart';
+
+import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/user_app/app/order/components/vehicle_listTile.dart';
 import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
 import 'package:mobilegarage/user_app/components/cards/filter_product_card.dart';
@@ -25,20 +26,26 @@ class OrderController extends GetxController {
 
   double start = 0.0;
   double end = 50.0;
-   
-  // List<> ordervehiclesList = [];
-   final ordervehiclesapi =  OrderVehiclesApi();
-  // getvehicles() async {
-  //   var response = await ordervehiclesapi.getvehicles();
-  //   if (response.isNotEmpty) {
-  //     ordervehiclesList = (response['user_vehicles'] as List<dynamic>)
-  //         .map((item) => ServicesModel.fromJson(item as Map<String, dynamic>))
-  //         .toList();
 
-  //     // brands.clear();
-  //     update();
-  //   }
-  // }
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getvehicles();
+  }
+
+  List<UserVehicles> vehiclesList = [];
+  final ordervehiclesapi = OrderVehiclesApi();
+  getvehicles() async {
+    var response = await ordervehiclesapi.getvehicles();
+    if (response.isNotEmpty) {
+      vehiclesList = (response['user_vehicles'] as List<dynamic>)
+          .map((item) => UserVehicles.fromJson(item as Map<String, dynamic>))
+          .toList();
+
+      update();
+    }
+  }
 
   List<StepperItemData> get stepperData => [
         StepperItemData(
@@ -322,7 +329,7 @@ class OrderController extends GetxController {
             id: '5')
       ];
 
-  String selectedCarName = 'Mercedes-Benz';
+  String selectedCarName = '';
   //! Method to select a car
   void selectCar(String carName) {
     selectedCarName = carName;
