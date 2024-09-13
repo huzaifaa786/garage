@@ -29,6 +29,7 @@ class UserVehicles {
       this.vehicle_type});
 
   factory UserVehicles.fromJson(Map<String, dynamic> json) {
+  
     return UserVehicles(
       id: json['id'].toString(),
       userId: json['userId'].toString(),
