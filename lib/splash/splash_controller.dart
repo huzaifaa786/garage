@@ -23,6 +23,7 @@ class SplashController extends GetxController {
     initscreen();
   }
 
+
   void initscreen() async {
     await Future.delayed(const Duration(seconds: 3), () {
       checkFirstSeen();
