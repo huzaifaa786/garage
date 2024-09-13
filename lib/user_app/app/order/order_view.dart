@@ -13,7 +13,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
-import 'package:stepper_list_view/stepper_list_view.dart';
 
 class OrderView extends StatefulWidget {
   const OrderView({super.key});
@@ -169,8 +168,8 @@ class _OrderViewState extends State<OrderView> {
                                     onChanged: (value) {
                                       controller.selectCar(value!);
                                     },
-                                    iconPath: 'assets/icons/vehicle.svg',
-                                    text: vehical.vehicle_info!);
+                                    iconPath: vehical.image!.toString(),
+                                    text: vehical.vehicle_type!.name.toString());
                               },
                             ),
                             Gap(30),
@@ -229,7 +228,7 @@ class _OrderViewState extends State<OrderView> {
                               children: [
                                 Radio<String>(
                                   value:
-                                      'Send to all garages', // Updated to match the correct value
+                                      'Send to all garages', 
                                   groupValue: controller.selectedgarageName,
                                   onChanged: (value) {
                                     controller.selectGarage(value!);
@@ -293,15 +292,7 @@ class _OrderViewState extends State<OrderView> {
                             height: Get.height * 0.07,
                             fontsize: 12,
                             onTap: () {
-                              Get.toNamed(AppRoutes.acceptedorder);
-                              UiUtilites.successAlertDialog(
-                                  context: context,
-                                  onTap: () {
-                                    Get.toNamed(AppRoutes.home);
-                                  },
-                                  title: 'Thank you!',
-                                  description:
-                                      'A garage will accept your order from within 3-5 min.');
+                              controller.filterorder();
                             },
                           ),
                         ),
