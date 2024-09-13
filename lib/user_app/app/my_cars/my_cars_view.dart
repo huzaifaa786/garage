@@ -99,19 +99,18 @@ class _MyCarsViewState extends State<MyCarsView> {
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       final addCars =
-                                          //  controllers.radioButton[index];
+                                         
                                            controllers.uservehicles![index];
                                       return RadioCard(
-                                        userVehicles: controllers.uservehicles![index],
-                                        value: controllers.uservehicles.toString(),
-                                        groupValue: controllers.uservehicles
-                                            .toString(),
+                                        userVehicles: addCars,
+                                        value:addCars.id.toString(),
+                                        groupValue: controllers.selectedValue,
                                         onChanged: (value) {
-                                          controllers.uservehicles= value;
+                                        controllers.selectedValue= value;
                                           controllers.update();
                                         },
                                         addCars: addCars,
-                                      isSelected:controllers.uservehicles!
+                                      isSelected:controllers.selectedValue== addCars.id.toString(),
                                         // isSelected: controllers.selectedValue ==
                                         //     addCars["id"].toString(),
                                       );
