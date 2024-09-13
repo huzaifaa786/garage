@@ -51,13 +51,13 @@ class RadioCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: AppNetworkImage(
-                    networkImage: userVehicles!.vehicle_type!.icon.toString(),
+                    networkImage: userVehicles!.image.toString(),
                     height: 50,
                     width: 50,
                   ),
                 ),
                 AppText(
-                  title: userVehicles!.vehicle_type!.name.toString(),
+                  title: userVehicles!.vehicle_info.toString(),
                   color: isSelected ? AppColors.primary : AppColors.darkprimary,
                   size: 10,
                   fontWeight: FontWeight.w500,
