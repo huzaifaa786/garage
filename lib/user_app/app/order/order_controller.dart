@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 import 'package:mobilegarage/user_app/app/order/components/vehicle_listTile.dart';
 import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
@@ -22,8 +23,22 @@ class OrderController extends GetxController {
   TextEditingController priceController = TextEditingController();
   TextEditingController serviceController = TextEditingController();
 
-  double start = 0.0; 
-  double end = 50.0; 
+  double start = 0.0;
+  double end = 50.0;
+   
+  // List<> ordervehiclesList = [];
+   final ordervehiclesapi =  OrderVehiclesApi();
+  // getvehicles() async {
+  //   var response = await ordervehiclesapi.getvehicles();
+  //   if (response.isNotEmpty) {
+  //     ordervehiclesList = (response['user_vehicles'] as List<dynamic>)
+  //         .map((item) => ServicesModel.fromJson(item as Map<String, dynamic>))
+  //         .toList();
+
+  //     // brands.clear();
+  //     update();
+  //   }
+  // }
 
   List<StepperItemData> get stepperData => [
         StepperItemData(
@@ -161,7 +176,8 @@ class OrderController extends GetxController {
         StepperItemData(
             content: Padding(
               padding: const EdgeInsets.only(left: 10),
-              /// this thsi this /// 
+
+              /// this thsi this ///
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
