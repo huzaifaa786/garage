@@ -168,8 +168,8 @@ class _OrderViewState extends State<OrderView> {
                                     onChanged: (value) {
                                       controller.selectCar(value!);
                                     },
-                                    iconPath: vehical.vehicle_type!.icon.toString(),
-                                    text: vehical.vehicle_info!);
+                                    iconPath: vehical.image!.toString(),
+                                    text: vehical.vehicle_type!.name.toString());
                               },
                             ),
                             Gap(30),
