@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/user_apis/delete_apis/delete_api.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -74,6 +75,7 @@ class RadioCard extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
+            
             UiUtilites.DeleteAlert(
                 context, "White mercedes 2022", addCars["deleteOnTap"], () {
               Navigator.of(context).pop();

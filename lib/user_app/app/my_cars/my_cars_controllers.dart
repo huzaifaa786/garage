@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobilegarage/apis/user_apis/delete_apis/delete_api.dart';
 import 'package:mobilegarage/apis/user_apis/my_cars_apis/my_cars_api.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
 
@@ -24,14 +25,10 @@ class MyCarsControllers extends GetxController {
   Future<void> fetchUserVehicles() async {
     var response = await UserVehiclesService.getUserVehicles();
     if (response.isNotEmpty) {
-      print('object');
-      print('${uservehicles!.length}nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
       uservehicles = (response['user_vehicles'] as List<dynamic>)
           .map((item) => UserVehicles.fromJson(item as Map<String, dynamic>))
           .toList();
       update();
-      print(
-          '${uservehicles!.length}llllllllllllllllllllllllllllllllllllllllll');
     }
     //   if (response['data'] != null) {
     //     List<dynamic> vehicleData = response['data'];
@@ -76,6 +73,13 @@ class MyCarsControllers extends GetxController {
     vehicleSections[index]['selectedVehicle'] = vehicleName;
     update();
   }
+  deleteVehicles(id) async {
+    var response = await DeleteVehiclesApi.deleteVehicles(id);
+    if (response.isNotEmpty) {
+      fetchUserVehicles();
+    }
+  }
+
 
   Future<void> selectVehicleImage(int index) async {
     final pickedFile =
@@ -92,19 +96,19 @@ class MyCarsControllers extends GetxController {
     return vehicleSections[index]['vehicleImage'] != null;
   }
 
-  String? selectedValue;
-  List<Map<String, dynamic>> radioButton = [
-    {
-      "id": "1",
-      "imageUrl": "https://dummyimage.com/50x50/000/fff",
-      "radioTitle": "white Mercedes 2022",
-      "deleteOnTap": () {},
-    },
-    {
-      "id": "2",
-      "imageUrl": "https://dummyimage.com/50x50/000/fff",
-      "radioTitle": "white Mercedes 2022",
-      "deleteOnTap": () {},
-    },
-  ];
+   String? selectedValue;
+  // List<Map<String, dynamic>> radioButton = [
+  //   {
+  //     "id": "1",
+  //     "imageUrl": "https://dummyimage.com/50x50/000/fff",
+  //     "radioTitle": "white Mercedes 2022",
+  //     "deleteOnTap": () {},
+  //   },
+  //   {
+  //     "id": "2",
+  //     "imageUrl": "https://dummyimage.com/50x50/000/fff",
+  //     "radioTitle": "white Mercedes 2022",
+  //     "deleteOnTap": () {},
+  //   },
+  // ];
 }
