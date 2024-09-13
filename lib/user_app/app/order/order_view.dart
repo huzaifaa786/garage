@@ -13,7 +13,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
-import 'package:stepper_list_view/stepper_list_view.dart';
 
 class OrderView extends StatefulWidget {
   const OrderView({super.key});
@@ -293,15 +292,7 @@ class _OrderViewState extends State<OrderView> {
                             height: Get.height * 0.07,
                             fontsize: 12,
                             onTap: () {
-                              Get.toNamed(AppRoutes.acceptedorder);
-                              UiUtilites.successAlertDialog(
-                                  context: context,
-                                  onTap: () {
-                                    Get.toNamed(AppRoutes.home);
-                                  },
-                                  title: 'Thank you!',
-                                  description:
-                                      'A garage will accept your order from within 3-5 min.');
+                              controller.filterorder();
                             },
                           ),
                         ),
