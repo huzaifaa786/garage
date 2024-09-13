@@ -104,25 +104,20 @@ class _OrderViewState extends State<OrderView> {
                               controller.end.toStringAsFixed(2) +
                               " AED",
                           style: TextStyle(
-                            fontSize: 10.0, 
+                            fontSize: 10.0,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         Gap(10),
                         SliderTheme(
                           data: SliderTheme.of(context).copyWith(
-                            activeTrackColor:
-                                AppColors.primary, 
-                            inactiveTrackColor: AppColors
-                                .darkGrey, 
-                            trackHeight:
-                                1.0, 
-                            thumbShape: RoundSliderThumbShape(
-                                enabledThumbRadius: 10.0
-                                ), 
-                            overlayShape: RoundSliderOverlayShape(
-                                overlayRadius:
-                                    10.0), 
+                            activeTrackColor: AppColors.primary,
+                            inactiveTrackColor: AppColors.darkGrey,
+                            trackHeight: 1.0,
+                            thumbShape:
+                                RoundSliderThumbShape(enabledThumbRadius: 10.0),
+                            overlayShape:
+                                RoundSliderOverlayShape(overlayRadius: 10.0),
                           ),
                           child: RangeSlider(
                             values:
