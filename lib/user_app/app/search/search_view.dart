@@ -2,12 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
-
 import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';

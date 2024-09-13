@@ -24,17 +24,15 @@ class _AccountViewState extends State<AccountView> {
     return GetBuilder<AccountController>(
       autoRemove: false,
       initState: (state) {
-         Future.delayed(Duration(milliseconds: 100), () {
-            state.controller!.userdata();
-          });
+        Future.delayed(Duration(milliseconds: 100), () {
+          state.controller!.userdata();
+        });
       },
       builder: (controller) => Scaffold(
-        
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70.0),
           child: Container(
             decoration: const BoxDecoration(
-                // boxShadow: [appbarShadow],
                 ),
             child: AppBar(
               automaticallyImplyLeading: false,
@@ -93,7 +91,9 @@ class _AccountViewState extends State<AccountView> {
                               image: 'assets/icons/map_pin.svg',
                               text2: controller.user!.addressDetail.toString(),
                               ontap: () {
-                                Get.toNamed(AppRoutes.my_location);
+                                Get.toNamed(AppRoutes.my_location)!.then((value) {
+                                  controller.userdata();
+                                },);
                               }),
                           const Gap(15),
                           AllProfileCard(
