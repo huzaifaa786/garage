@@ -168,8 +168,8 @@ class _OrderViewState extends State<OrderView> {
                                     onChanged: (value) {
                                       controller.selectCar(value!);
                                     },
-                                    iconPath: 'assets/icons/vehicle.svg',
-                                    text: vehical.vehicle_info!);
+                                    iconPath: vehical.image!.toString(),
+                                    text: vehical.vehicle_type!.name.toString());
                               },
                             ),
                             Gap(30),
@@ -228,7 +228,7 @@ class _OrderViewState extends State<OrderView> {
                               children: [
                                 Radio<String>(
                                   value:
-                                      'Send to all garages', // Updated to match the correct value
+                                      'Send to all garages', 
                                   groupValue: controller.selectedgarageName,
                                   onChanged: (value) {
                                     controller.selectGarage(value!);

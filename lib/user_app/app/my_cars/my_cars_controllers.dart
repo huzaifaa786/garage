@@ -9,6 +9,7 @@ import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/car_brand_name
 import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/car_brands_api/get_Car_Brand_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/vechiles_api/get_vechile_api.dart';
 import 'package:mobilegarage/apis/user_apis/my_cars_apis/add_vehicle_api.dart';
+import 'package:mobilegarage/apis/user_apis/delete_apis/delete_api.dart';
 import 'package:mobilegarage/apis/user_apis/my_cars_apis/my_cars_api.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/brand_name_model.dart';
@@ -38,14 +39,10 @@ class MyCarsControllers extends GetxController {
   Future<void> fetchUserVehicles() async {
     var response = await UserVehiclesService.getUserVehicles();
     if (response.isNotEmpty) {
-      print('object');
-      print('${uservehicles!.length}nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
       uservehicles = (response['user_vehicles'] as List<dynamic>)
           .map((item) => UserVehicles.fromJson(item as Map<String, dynamic>))
           .toList();
       update();
-      print(
-          '${uservehicles!.length}llllllllllllllllllllllllllllllllllllllllll');
     }
 
     //   if (response['data'] != null) {
@@ -400,6 +397,13 @@ class MyCarsControllers extends GetxController {
       update();
     }
   }
+  deleteVehicles(id) async {
+    var response = await DeleteVehiclesApi.deleteVehicles(id);
+    if (response.isNotEmpty) {
+      fetchUserVehicles();
+    }
+  }
+
 
   Future<void> selectVehicleImage(int index) async {
     final pickedFile =
