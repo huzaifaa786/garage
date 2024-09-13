@@ -229,12 +229,16 @@ class FilterBottomsheet extends StatelessWidget {
                           ],
                         ),
                         const Gap(10),
-                        FilterBottomsheetContainer(
-                          // height: 31,
-                          // width: 103,
-                          text: 'Only products',
-                          index: 3,
-                          group: 'results',
+                        Row(
+                          children: [
+                            FilterBottomsheetContainer(
+                              // height: 31,
+                              // width: 103,
+                              text: 'Only products',
+                              index: 3,
+                              group: 'results',
+                            ),
+                          ],
                         ),
                         const Gap(11),
                         const Divider(
