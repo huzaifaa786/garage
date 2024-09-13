@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/my_cars_apis/my_cars_api.dart';
-import 'package:mobilegarage/services/dio_service.dart';
-import 'package:mobilegarage/services/uservehicles_service.dart';
-import 'package:mobilegarage/user_app/utils/base_url.dart';
+import 'package:mobilegarage/models/user_vehicles.dart';
 
 class MyCarsControllers extends GetxController {
   static MyCarsControllers instance = Get.find();
@@ -14,7 +12,7 @@ class MyCarsControllers extends GetxController {
   bool isLoading = false;
    
 
-  List<Map<String, dynamic>> vehicleSections = [];
+  List<Map<String, dynamic >> vehicleSections = [];
   
 @override
   void onInit() async{
@@ -22,6 +20,7 @@ class MyCarsControllers extends GetxController {
    await fetchUserVehicles();
     super.onInit();
   }
+  List<UserVehicles>? uservehicles;
   Future<void> fetchUserVehicles() async {
     // try {
     //   isLoading = true;
@@ -30,6 +29,7 @@ class MyCarsControllers extends GetxController {
       var response = await UserVehiclesService.getUserVehicles();
 if(response.isNotEmpty){
   print('object');
+  
 }
     //   if (response['data'] != null) {
     //     List<dynamic> vehicleData = response['data'];
