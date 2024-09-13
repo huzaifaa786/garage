@@ -51,7 +51,7 @@ class RadioCard extends StatelessWidget {
                   child: CachedNetworkImage(imageUrl: userVehicles!.image.toString()),
                 ),
                 AppText(
-                  title: addCars["radioTitle"],
+                  title: userVehicles!.vehiclebrandname_id.toString(),
                   color: isSelected ? AppColors.primary : AppColors.darkprimary,
                   size: 10,
                   fontWeight: FontWeight.w500,
