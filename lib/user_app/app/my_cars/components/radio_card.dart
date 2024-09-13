@@ -7,18 +7,20 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
+import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
 class RadioCard extends StatelessWidget {
-   RadioCard({
+  RadioCard({
     super.key,
     this.addCars,
     this.groupValue,
     this.onChanged,
     this.value,
-    this.isSelected,this.userVehicles,
+    this.isSelected,
+    this.userVehicles,
   });
   final addCars;
   final value;
@@ -48,10 +50,14 @@ class RadioCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(30),
-                  child: CachedNetworkImage(imageUrl: userVehicles!.image.toString()),
+                  child: AppNetworkImage(
+                    networkImage: userVehicles!.vehicle_type!.icon.toString(),
+                    height: 50,
+                    width: 50,
+                  ),
                 ),
                 AppText(
-                  title: userVehicles!.vehiclebrandname_id.toString(),
+                  title: userVehicles!.vehicle_type!.name.toString(),
                   color: isSelected ? AppColors.primary : AppColors.darkprimary,
                   size: 10,
                   fontWeight: FontWeight.w500,
