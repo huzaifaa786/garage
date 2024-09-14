@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -27,6 +28,7 @@ class TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return Stack(
       children: [
         Container(
@@ -40,10 +42,15 @@ class TopBar extends StatelessWidget {
                         onTap: () {
                           Get.back();
                         },
-                        child: SvgPicture.asset(
-                          'assets/icons/backarrow.svg',
-                          color: textColor,
-                        ),
+                        child: box.read('locale') != 'ar'
+                            ? SvgPicture.asset(
+                                'assets/icons/backarrow.svg',
+                                color: textColor,
+                              )
+                            : SvgPicture.asset(
+                                'assets/icons/backarrow_right.svg',
+                                color: textColor,
+                              ),
                       )
                     : const SizedBox.shrink(),
                 Row(
