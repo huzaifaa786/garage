@@ -56,14 +56,16 @@ class RadioCard extends StatelessWidget {
                     ),
                   ),
                   AppText(
-                    title: 'userVehicles!.vehicle_info.toString()',
-                    color: isSelected ? AppColors.primary : AppColors.darkprimary,
+                    title: userVehicles!.vehicle_info.toString(),
+                    color:
+                        isSelected ? AppColors.primary : AppColors.darkprimary,
                     size: 10,
                     fontWeight: FontWeight.w500,
                   ),
                   AppText(
                     title: userVehicles!.year_of_manufacture.toString(),
-                    color: isSelected ? AppColors.primary : AppColors.darkprimary,
+                    color:
+                        isSelected ? AppColors.primary : AppColors.darkprimary,
                     size: 10,
                     fontWeight: FontWeight.w500,
                   ),
