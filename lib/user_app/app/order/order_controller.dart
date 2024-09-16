@@ -408,7 +408,9 @@ class OrderController extends GetxController {
           onTap: () {
             Get.toNamed(AppRoutes.main);
           },
+          
           title: 'Thank you!',
+          buttontitle: 'Back to home',
           description: 'A garage will accept your order from within 3-5 min.');
     }
   }

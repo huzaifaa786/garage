@@ -329,6 +329,9 @@ class VSignUpController extends GetxController {
           onTap: () {},
           title: 'sdfsdfsf',
           description: 'sdfsdfsdfs',
+
+
+          buttontitle: 'ok'
         );
         Get.offAllNamed(AppRoutes.vhome);
         resetfields();

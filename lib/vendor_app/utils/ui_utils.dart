@@ -168,7 +168,9 @@ class UiUtilites {
       {required context,
       required onTap,
       required title,
-      required description}) {
+      required buttontitle,
+      required description
+      }) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -206,7 +208,7 @@ class UiUtilites {
                       Gap(20),
                       AppButton(
                         height: 45,
-                        title: 'Back to dashboard',
+                        title: '$buttontitle',
                         buttonColor: AppColors.primary_color.withOpacity(0.1),
                         titleColor: AppColors.primary_color,
                         ontap: onTap,
