@@ -98,11 +98,20 @@ class ProductFormController extends GetxController {
   //TODO: Error Variables
   String brandError = '';
   String categoryError = '';
+  String priceError = '';
+
+  // battery errors
   String producttypeError = '';
   String originError = '';
   String ampereError = '';
   String voltageError = '';
-  String priceError = '';
+// tyre errors
+  String widthError = '';
+  String heightError = '';
+  String sizeError = '';
+  String speedratingError = '';
+  String tyreoriginError = '';
+  String patterenError = '';
 
   @override
   void onInit() async {
@@ -418,7 +427,30 @@ class ProductFormController extends GetxController {
         voltageError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return voltageError;
-
+      case 'width':
+        widthError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return widthError;
+      case 'height':
+        heightError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return heightError;
+      case 'size':
+        sizeError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return sizeError;
+      case 'speed rating':
+        speedratingError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return speedratingError;
+      case 'tyre origin':
+        tyreoriginError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return tyreoriginError;
+      case 'patteren':
+        patterenError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return patterenError;
       default:
         return '';
     }
@@ -426,6 +458,19 @@ class ProductFormController extends GetxController {
 
   //TODO: FORGOT VALIDATION
   Future<bool> validateForm() async {
+    switch (selectedCategoryId.toString()) {
+      case '5': // Battery category validation
+        return validateBatteryForm();
+      case '6': // Tyre category validation
+        return validateTyreForm();
+      default:
+        categoryError = 'Please select a valid category';
+        update();
+        return false;
+    }
+  }
+
+  Future<bool> validateBatteryForm() async {
     if (selectedCategoryId == null) {
       categoryError = 'Please select an category';
       update();
@@ -485,64 +530,138 @@ class ProductFormController extends GetxController {
         originError.isEmpty;
   }
 
+  Future<bool> validateTyreForm() async {
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+    //
+    if (selectedBrandId == null) {
+      brandError = 'Please select brand';
+      update();
+    } else {
+      brandError = '';
+      update();
+    }
+    //
+    if (selectedwidth == null) {
+      widthError = 'Please select tyre width';
+      update();
+    } else {
+      widthError = '';
+      update();
+    }
+
+    //
+    if (selectedheightId == null) {
+      heightError = 'Please select tyre height';
+      update();
+    } else {
+      heightError = '';
+      update();
+    }
+    //
+    if (selectedsizeId == null) {
+      sizeError = 'Please select tyre size';
+      update();
+    } else {
+      sizeError = '';
+      update();
+    } //
+    if (selectedSpeedRatingId == null) {
+      speedratingError = 'Please select an tyre speed rating';
+      update();
+    } else {
+      speedratingError = '';
+      update();
+    }
+    if (selectedtyreoriginId == null) {
+      tyreoriginError = 'Please select an tyre origin';
+      update();
+    } else {
+      tyreoriginError = '';
+      update();
+    }
+    if (selectedpatterenId == null) {
+      patterenError = 'Please select an tyre patteren';
+      update();
+    } else {
+      patterenError = '';
+      update();
+    }
+    final priceErrorString = validateFields('Price', priceController.text);
+
+    return categoryError.isEmpty &&
+        brandError.isEmpty &&
+        priceErrorString.isEmpty &&
+        widthError.isEmpty &&
+        heightError.isEmpty &&
+        sizeError.isEmpty &&
+        tyreoriginError.isEmpty &&
+        patterenError.isEmpty &&
+        speedratingError.isEmpty;
+  }
+
   //TODO: Forgot Function
   addProduct() async {
-    // if (await validateForm()) {
-    base64Images = [];
-    update();
-    if (images.isNotEmpty) {
-      for (File imageFile in images) {
-        List<int> imageBytes = await imageFile.readAsBytes();
-        String base64Image = base64Encode(imageBytes);
-        base64Images.add(base64Image);
+    if (await validateForm()) {
+      base64Images = [];
+      update();
+      if (images.isNotEmpty) {
+        for (File imageFile in images) {
+          List<int> imageBytes = await imageFile.readAsBytes();
+          String base64Image = base64Encode(imageBytes);
+          base64Images.add(base64Image);
+        }
+      }
+      String categoryId = selectedCategoryId.toString();
+      var response;
+
+      switch (categoryId) {
+        case '5':
+          response = await VAddProductApi.addBatteryProduct(
+            categoryid: selectedCategoryId.toString(),
+            brandid: selectedBrandId.toString(),
+            producttypeid: selectedProducttypeId.toString(),
+            originid: selectedbatteryOriginId.toString(),
+            ampereid: selectedampereId.toString(),
+            voltageid: selectedvoltageId.toString(),
+            price: priceController.text,
+            description: descriptionController.text,
+            images: base64Images,
+          );
+          update();
+          break;
+        case '6':
+          response = await VAddProductApi.addTyreProduct(
+            categoryid: selectedCategoryId.toString(),
+            brandid: selectedBrandId.toString(),
+            widthid: selectedwidthId.toString(),
+            heightid: selectedheightId.toString(),
+            sizeid: selectedsizeId.toString(),
+            speedratingid: selectedSpeedRatingId.toString(),
+            price: priceController.text,
+            originid: selectedtyreoriginId.toString(),
+            patterenid: selectedpatterenId.toString(),
+            images: base64Images,
+          );
+          update();
+
+          break;
+        default:
+          print('Unknown category id');
+          break;
+      }
+
+      if (response.isNotEmpty) {
+        update();
+        UiUtilites.successSnackbar('Product added successfully', 'Congrats');
+        Get.back();
       }
     }
-    String categoryId = selectedCategoryId.toString();
-    var response;
-
-    switch (categoryId) {
-      case '5':
-        response = await VAddProductApi.addBatteryProduct(
-          categoryid: selectedCategoryId.toString(),
-          brandid: selectedBrandId.toString(),
-          producttypeid: selectedProducttypeId.toString(),
-          originid: selectedbatteryOriginId.toString(),
-          ampereid: selectedampereId.toString(),
-          voltageid: selectedvoltageId.toString(),
-          price: priceController.text,
-          description: descriptionController.text,
-          images: base64Images,
-        );
-        update();
-        break;
-      case '6':
-        response = await VAddProductApi.addTyreProduct(
-          categoryid: selectedCategoryId.toString(),
-          brandid: selectedBrandId.toString(),
-          widthid: selectedwidthId.toString(),
-          heightid: selectedheightId.toString(),
-          sizeid: selectedsizeId.toString(),
-          speedratingid: selectedSpeedRatingId.toString(),
-          price: priceController.text,
-          originid: selectedtyreoriginId.toString(),
-          patterenid: selectedpatterenId.toString(),
-          images: base64Images,
-
-        );
-        update();
-
-        break;
-      default:
-        print('Unknown category id');
-        break;
-    }
-
-    if (response.isNotEmpty) {
-      update();
-      UiUtilites.successSnackbar('Product added successfully', 'Congrats');
-      Get.back();
-    }
-    // }
   }
 
   // add brand

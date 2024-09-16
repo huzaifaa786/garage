@@ -46,11 +46,8 @@ class VAddProductApi {
     String? patterenid,
     String? price,
     String? speedratingid,
-
-    // String? time,
-    // List<Map<String, dynamic>>? options,
   }) async {
-    String url = '$vbaseUrl/add/battery';
+    String url = '$vbaseUrl/add/tyer';
 
     var data = {
       "images": images,

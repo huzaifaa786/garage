@@ -181,7 +181,7 @@ class ProductFormView extends StatelessWidget {
                                       controller.selectedwidthId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.producttypeError,
+                                errorText: controller.widthError,
                               ),
                               Gap(20),
                               DropDownField<TyreHeightModel>(
@@ -191,13 +191,11 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedheight,
                                 onChanged: (value) {
                                   controller.setSelectedheight(value);
-                                  controller.validateFields(
-                                      "height",
-                                      controller.selectedheightId
-                                          .toString());
+                                  controller.validateFields("height",
+                                      controller.selectedheightId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.originError,
+                                errorText: controller.heightError,
                               ),
                               Gap(20),
                               DropDownField<TyreSizeModel>(
@@ -211,7 +209,7 @@ class ProductFormView extends StatelessWidget {
                                       controller.selectedsizeId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.ampereError,
+                                errorText: controller.sizeError,
                               ),
                               Gap(20),
                               DropDownField<TyreSpeedRatingModel>(
@@ -221,11 +219,13 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedSpeedRating,
                                 onChanged: (value) {
                                   controller.setSelectedSpeedRating(value);
-                                  controller.validateFields("speed rating",
-                                      controller.selectedSpeedRatingId.toString());
+                                  controller.validateFields(
+                                      "speed rating",
+                                      controller.selectedSpeedRatingId
+                                          .toString());
                                   controller.update();
                                 },
-                                errorText: controller.voltageError,
+                                errorText: controller.speedratingError,
                               ),
                               Gap(20),
                               DropDownField<TyrePatternModel>(
@@ -239,7 +239,7 @@ class ProductFormView extends StatelessWidget {
                                       controller.selectedpatterenId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.voltageError,
+                                errorText: controller.patterenError,
                               ),
                               Gap(20),
                               DropDownField<TyreOriginModel>(
@@ -249,11 +249,13 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedtyreorigin,
                                 onChanged: (value) {
                                   controller.setSelectedTyreOrigin(value);
-                                  controller.validateFields("tyre origin",
-                                      controller.selectedtyreoriginId.toString());
+                                  controller.validateFields(
+                                      "tyre origin",
+                                      controller.selectedtyreoriginId
+                                          .toString());
                                   controller.update();
                                 },
-                                errorText: controller.voltageError,
+                                errorText: controller.tyreoriginError,
                               ),
                               Gap(20),
                             ],
