@@ -7,6 +7,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
+import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
@@ -267,6 +269,146 @@ class UiUtilites {
           ),
         ],
       ),
+    );
+  }
+
+  static void AddProductDialog(BuildContext context,
+      TextEditingController nameController, VoidCallback? onsubmit) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(45),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'Add new',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.close),
+                      color: AppColors.darkGrey,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: AppText(
+                    title: 'Enter name',
+                    size: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.darkGrey,
+                  ),
+                ),
+                Gap(8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: MainInput(
+                    controller: nameController,
+                    errorText: '',
+                    hint: 'product name',
+                  ),
+                ),
+                Gap(30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: MainButton(
+                    title: 'Submit',
+                    onTap: onsubmit,
+                  ),
+                ),
+                Gap(15)
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  static void ProductPendingDialog(
+    BuildContext context,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.of(context).pop();
+        });
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(45),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.close),
+                      color: AppColors.darkGrey,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppText(
+                      title: 'Pending Approval',
+                      size: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ],
+                ),
+                Gap(30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 35),
+                  child: MainButton(
+                    title: 'Done',
+                    textcolor: AppColors.red,
+                    btncolor: AppColors.lightPink,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+                Gap(15)
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

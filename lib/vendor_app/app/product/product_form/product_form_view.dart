@@ -2,27 +2,35 @@
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/battery_models/ampere_model.dart';
+import 'package:mobilegarage/models/battery_models/origin_model.dart';
+import 'package:mobilegarage/models/battery_models/product_type_model.dart';
+import 'package:mobilegarage/models/battery_models/voltage_model.dart';
+import 'package:mobilegarage/models/product_detail_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
-import 'package:mobilegarage/models/product_model.dart';
+import 'package:mobilegarage/models/tyre_models/height_model.dart';
+import 'package:mobilegarage/models/tyre_models/origin_model.dart';
+import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
+import 'package:mobilegarage/models/tyre_models/size_model.dart';
+import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
+import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
-import 'package:mobilegarage/vendor_app/app/product/product_form/components/service_type_card.dart';
-import 'package:mobilegarage/vendor_app/app/product/product_form/components/service_type_fields.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
+import 'package:mobilegarage/vendor_app/utils/app_dropdown/dropdown_with_add.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
-import 'package:mobilegarage/vendor_app/utils/rich_text/product_rich_text.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
+
 class ProductFormView extends StatelessWidget {
   const ProductFormView({super.key});
 
   @override
-
   Widget build(BuildContext context) {
     return GetBuilder<ProductFormController>(
       autoRemove: false,
@@ -62,28 +70,198 @@ class ProductFormView extends StatelessWidget {
                       },
                       errorText: controller.categorysError,
                     ),
-                    Gap(12),
+                    Gap(20),
+                    DropDownWithAdd<BrandModel>(
+                      displayValue: (item) => item.name!,
+                      items: controller.brands,
+                      hint: 'Brands Name',
+                      selectedValue: controller.selectedBrand,
+                      onChanged: (value) {
+                        controller.setSelectedBrands(value);
+                        controller.validateFields(
+                            "Brand", controller.selectedBrandId.toString());
+                        controller.update();
+                      },
+                      errorText: controller.brandError,
+                      onAddPressed: () {
+                        UiUtilites.AddProductDialog(
+                          context,
+                          controller.nameController,
+                          () {
+                            controller.addBrand();
+                          },
+                        );
+                      },
+                    ),
                     controller.selectedCategoryId != null &&
-                            controller.brands.isNotEmpty
+                            controller.brands.isNotEmpty &&
+                            controller.selectedCategoryId == 5
                         ? Column(
                             children: [
-                              DropDownField<BrandModel>(
+                              Gap(20),
+                              DropDownField<BatteryProductTypeModel>(
                                 displayValue: (item) => item.name!,
-                                items: controller.brands,
-                                hint: 'Brands',
-                                selectedValue: controller.selectedBrand,
+                                items: controller.producttypes,
+                                hint: 'Product type',
+                                selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
-                                  controller.setSelectedBrands(value);
-                                  controller.validateFields("Brand",
+                                  controller.setSelectedproducttype(value);
+                                  controller.validateFields("producttype",
                                       controller.selectedBrandId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.brandError,
+                                errorText: controller.producttypeError,
                               ),
-                              Gap(12),
-                               AppInputField(
+                              Gap(20),
+                              DropDownField<BatteryOriginModel>(
+                                displayValue: (item) => item.origin!,
+                                items: controller.batteryOrigins,
+                                hint: 'Origin',
+                                selectedValue: controller.selectedbatteryOrigin,
+                                onChanged: (value) {
+                                  controller.setSelectedBatteryOrigin(value);
+                                  controller.validateFields(
+                                      "origin",
+                                      controller.selectedbatteryOriginId
+                                          .toString());
+                                  controller.update();
+                                },
+                                errorText: controller.originError,
+                              ),
+                              Gap(20),
+                              DropDownField<BatteryAmpereModel>(
+                                displayValue: (item) => item.ampere!,
+                                items: controller.batteryAmperes,
+                                hint: 'Battery Ampere',
+                                selectedValue: controller.selectedampere,
+                                onChanged: (value) {
+                                  controller.setSelectedBatteryAmpere(value);
+                                  controller.validateFields("ampere",
+                                      controller.selectedampereId.toString());
+                                  controller.update();
+                                },
+                                errorText: controller.ampereError,
+                              ),
+                              Gap(20),
+                              DropDownField<BatteryVoltageModel>(
+                                displayValue: (item) => item.voltage!,
+                                items: controller.batteryVoltages,
+                                hint: 'Battery Voltage',
+                                selectedValue: controller.selectedvoltage,
+                                onChanged: (value) {
+                                  controller.setSelectedBatteryvoltage(value);
+                                  controller.validateFields("voltage",
+                                      controller.selectedvoltageId.toString());
+                                  controller.update();
+                                },
+                                errorText: controller.voltageError,
+                              ),
+                              Gap(20),
+                              AppInputField(
+                                errorText: '',
+                                hint: 'Description (optional)',
+                                controller: controller.descriptionController,
+                              ),
+                            ],
+                          )
+                        : Text(''),
+                    controller.selectedCategoryId != null &&
+                            controller.brands.isNotEmpty &&
+                            controller.selectedCategoryId == 6
+                        ? Column(
+                            children: [
+                              DropDownField<TyreWidthModel>(
+                                displayValue: (item) => item.width!,
+                                items: controller.tyrewidths,
+                                hint: 'Tyer width',
+                                selectedValue: controller.selectedwidth,
+                                onChanged: (value) {
+                                  controller.setSelectedWidth(value);
+                                  controller.validateFields("width",
+                                      controller.selectedwidthId.toString());
+                                  controller.update();
+                                },
+                                errorText: controller.producttypeError,
+                              ),
+                              Gap(20),
+                              DropDownField<TyreHeightModel>(
+                                displayValue: (item) => item.height!,
+                                items: controller.tyreheights,
+                                hint: 'Tyer height',
+                                selectedValue: controller.selectedheight,
+                                onChanged: (value) {
+                                  controller.setSelectedheight(value);
+                                  controller.validateFields(
+                                      "height",
+                                      controller.selectedheightId
+                                          .toString());
+                                  controller.update();
+                                },
+                                errorText: controller.originError,
+                              ),
+                              Gap(20),
+                              DropDownField<TyreSizeModel>(
+                                displayValue: (item) => item.size!,
+                                items: controller.tyresizes,
+                                hint: 'Wheel size',
+                                selectedValue: controller.selectedsize,
+                                onChanged: (value) {
+                                  controller.setSelectedSize(value);
+                                  controller.validateFields("size",
+                                      controller.selectedsizeId.toString());
+                                  controller.update();
+                                },
+                                errorText: controller.ampereError,
+                              ),
+                              Gap(20),
+                              DropDownField<TyreSpeedRatingModel>(
+                                displayValue: (item) => item.speedrating!,
+                                items: controller.tyreSpeedRatings,
+                                hint: 'Speed rating',
+                                selectedValue: controller.selectedSpeedRating,
+                                onChanged: (value) {
+                                  controller.setSelectedSpeedRating(value);
+                                  controller.validateFields("speed rating",
+                                      controller.selectedSpeedRatingId.toString());
+                                  controller.update();
+                                },
+                                errorText: controller.voltageError,
+                              ),
+                              Gap(20),
+                              DropDownField<TyrePatternModel>(
+                                displayValue: (item) => item.pattern!,
+                                items: controller.tyrepattterens,
+                                hint: 'Pattern',
+                                selectedValue: controller.selectedpatteren,
+                                onChanged: (value) {
+                                  controller.setSelectedPatteren(value);
+                                  controller.validateFields("patteren",
+                                      controller.selectedpatterenId.toString());
+                                  controller.update();
+                                },
+                                errorText: controller.voltageError,
+                              ),
+                              Gap(20),
+                              DropDownField<TyreOriginModel>(
+                                displayValue: (item) => item.origin!,
+                                items: controller.tyreorigins,
+                                hint: 'Origin',
+                                selectedValue: controller.selectedtyreorigin,
+                                onChanged: (value) {
+                                  controller.setSelectedTyreOrigin(value);
+                                  controller.validateFields("tyre origin",
+                                      controller.selectedtyreoriginId.toString());
+                                  controller.update();
+                                },
+                                errorText: controller.voltageError,
+                              ),
+                              Gap(20),
+                            ],
+                          )
+                        : Text(''),
+                    AppInputField(
                       errorText: controller.priceError,
-                      hint: 'Brand Price',
+                      hint: 'Price',
                       type: TextInputType.number,
                       controller: controller.priceController,
                       onchange: (val) {
@@ -99,82 +277,6 @@ class ProductFormView extends StatelessWidget {
                           color: AppColors.primary_color,
                         ),
                       ),
-                    ),
-                    Gap(12),
-                    AppInputField(
-                      errorText: controller.descriptionError,
-                      hint: 'Brand Description',
-                      controller: controller.descriptionController,
-                      onchange: (val) {
-                        controller.validateFields("Description", val);
-                      },
-                    ),
-                            ],
-                          )
-                        : Gap(0),
-                   
-                    Gap(12),
-                    AppInputField(
-                      errorText: controller.timeError,
-                      hint: 'Time needed for service',
-                      type: TextInputType.number,
-                      controller: controller.timeController,
-                      onchange: (val) {
-                        controller.validateFields(
-                            "Time needed for service", val);
-                      },
-                      hasSuffix: true,
-                      suffixWidget: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: AppText(
-                          title: 'Min',
-                          size: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primary_color,
-                        ),
-                      ),
-                    ),
-                    Gap(12),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
-                      child: ProductRichText(
-                        title: 'Add options or types',
-                        buttonText: '(Optional)',
-                      ),
-                    ),
-                    Gap(12),
-                    ServiceTypeFields(
-                      visible: true,
-                      nameLabel: 'Name'.tr,
-                      priceLabel: 'Price'.tr,
-                      priceInputType: TextInputType.number,
-                      nameController: controller.serviceTypeName,
-                      priceController: controller.serviceTypePrice,
-                      nameError: controller.serviceTypeError,
-                      priceError: controller.serviceTypePriceError,
-                      onchange1: (val) {
-                        controller.validateFields("Service Type", val);
-                      },
-                      onchange2: (val) {
-                        controller.validateFields("Service Type Price", val);
-                      },
-                      ontap: controller.addExtras,
-                    ),
-                    Gap(12),
-                    ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: controller.serviceTypeList.length,
-                      itemBuilder: (context, index) {
-                        final item = controller.serviceTypeList[index];
-                        return ServiceTypeCard(
-                          name: item['type'],
-                          price: item['price'].toString(),
-                          onRemoveTap: () {
-                            controller.removeExtra(index);
-                          },
-                        );
-                      },
                     ),
                     Gap(30),
                     AppButton(
