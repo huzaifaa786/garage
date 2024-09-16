@@ -57,7 +57,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                         children: [
                           Container(
                             padding: EdgeInsets.symmetric(
-                              horizontal: 20,
+                              horizontal: 16,
                             ),
                             decoration: BoxDecoration(color: AppColors.white),
                             child: Column(

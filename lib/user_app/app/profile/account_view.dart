@@ -21,6 +21,7 @@ class AccountView extends StatefulWidget {
 class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return GetBuilder<AccountController>(
       autoRemove: false,
       initState: (state) {
@@ -32,8 +33,7 @@ class _AccountViewState extends State<AccountView> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70.0),
           child: Container(
-            decoration: const BoxDecoration(
-                ),
+            decoration: const BoxDecoration(),
             child: AppBar(
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
@@ -91,9 +91,11 @@ class _AccountViewState extends State<AccountView> {
                               image: 'assets/icons/map_pin.svg',
                               text2: controller.user!.addressDetail.toString(),
                               ontap: () {
-                                Get.toNamed(AppRoutes.my_location)!.then((value) {
-                                  controller.userdata();
-                                },);
+                                Get.toNamed(AppRoutes.my_location)!.then(
+                                  (value) {
+                                    controller.userdata();
+                                  },
+                                );
                               }),
                           const Gap(15),
                           AllProfileCard(
@@ -154,7 +156,10 @@ class _AccountViewState extends State<AccountView> {
                           //     ontap: () {}),
                           const Gap(30),
                           LogoutButton(
-                            image: 'assets/icons/log-out.svg',
+                            image: 
+                             box.read('locale') != 'ar'?
+                            'assets/icons/log-out.svg'
+                            :'assets/icons/log_outleft.svg',
                             title: 'Log out',
                             buttonWidth: Get.width * 0.77,
                             height: Get.height * 0.07,

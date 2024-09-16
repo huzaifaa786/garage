@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -30,6 +31,7 @@ class AllProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: Get.width),
       child: GestureDetector(
@@ -75,7 +77,6 @@ class AllProfileCard extends StatelessWidget {
                     constraints: BoxConstraints(maxWidth: Get.width * 0.29),
                     child: AppText(
                       title: text2,
-                      
                       size: 10,
                       fontWeight: FontWeight.w400,
                       overFlow: TextOverflow.ellipsis,
@@ -83,8 +84,14 @@ class AllProfileCard extends StatelessWidget {
                   ),
                 ],
               ),
+              box.read('locale') != 'ar'?
               SvgPicture.asset(
                 'assets/icons/arrow_right.svg',
+                height: 20,
+                width: 20,
+              )
+             : SvgPicture.asset(
+                'assets/icons/arrow_leftside.svg',
                 height: 20,
                 width: 20,
               ),
