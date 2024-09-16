@@ -3,7 +3,7 @@ import 'package:mobilegarage/vendor_app/utils/vender_base_url.dart';
 
 class VGetCategoriesApi {
   static Future<Map<String, dynamic>> getCategories() async {
-    String url = '$vbaseUrl/category';
+    String url = '$vbaseUrl/services';
     var response = await DioService.get(url: url);
     return response;
   }
