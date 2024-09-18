@@ -7,7 +7,8 @@ import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
 import 'package:mobilegarage/models/battery_models/voltage_model.dart';
-import 'package:mobilegarage/models/product_detail_model.dart';
+import 'package:mobilegarage/models/oil_models/product_type_model.dart';
+import 'package:mobilegarage/models/oil_models/volume_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/models/tyre_models/height_model.dart';
@@ -16,6 +17,7 @@ import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
 import 'package:mobilegarage/models/tyre_models/size_model.dart';
 import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
+import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_controller.dart';
@@ -70,32 +72,35 @@ class ProductFormView extends StatelessWidget {
                       },
                       errorText: controller.categorysError,
                     ),
-                    Gap(20),
-                    DropDownWithAdd<BrandModel>(
-                      displayValue: (item) => item.name!,
-                      items: controller.brands,
-                      hint: 'Brands Name',
-                      selectedValue: controller.selectedBrand,
-                      onChanged: (value) {
-                        controller.setSelectedBrands(value);
-                        controller.validateFields(
-                            "Brand", controller.selectedBrandId.toString());
-                        controller.update();
-                      },
-                      errorText: controller.brandError,
-                      onAddPressed: () {
-                        UiUtilites.AddProductDialog(
-                          context,
-                          controller.nameController,
-                          () {
-                            controller.addBrand();
-                          },
-                        );
-                      },
-                    ),
-                    controller.selectedCategoryId != null &&
-                            controller.brands.isNotEmpty &&
-                            controller.selectedCategoryId == 5
+                    if (![4, 7].contains(controller.selectedCategoryId))
+                      Column(
+                        children: [
+                          Gap(20),
+                          DropDownWithAdd<BrandModel>(
+                            displayValue: (item) => item.name!,
+                            items: controller.brands,
+                            hint: 'Brands Name',
+                            selectedValue: controller.selectedBrand,
+                            onChanged: (value) {
+                              controller.setSelectedBrands(value);
+                              controller.validateFields("Brand",
+                                  controller.selectedBrandId.toString());
+                              controller.update();
+                            },
+                            errorText: controller.brandError,
+                            onAddPressed: () {
+                              UiUtilites.AddProductDialog(
+                                context,
+                                controller.nameController,
+                                () {
+                                  controller.addBrand();
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    controller.selectedCategoryId == 6
                         ? Column(
                             children: [
                               Gap(20),
@@ -156,18 +161,10 @@ class ProductFormView extends StatelessWidget {
                                 },
                                 errorText: controller.voltageError,
                               ),
-                              Gap(20),
-                              AppInputField(
-                                errorText: '',
-                                hint: 'Description (optional)',
-                                controller: controller.descriptionController,
-                              ),
                             ],
                           )
                         : Text(''),
-                    controller.selectedCategoryId != null &&
-                            controller.brands.isNotEmpty &&
-                            controller.selectedCategoryId == 6
+                    controller.selectedCategoryId == 3
                         ? Column(
                             children: [
                               DropDownField<TyreWidthModel>(
@@ -261,37 +258,245 @@ class ProductFormView extends StatelessWidget {
                             ],
                           )
                         : Text(''),
-                    AppInputField(
-                      errorText: controller.priceError,
-                      hint: 'Price',
-                      type: TextInputType.number,
-                      controller: controller.priceController,
-                      onchange: (val) {
-                        controller.validateFields("Price", val);
-                      },
-                      hasSuffix: true,
-                      suffixWidget: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: AppText(
-                          title: 'AED',
-                          size: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primary_color,
+                    controller.selectedCategoryId == 2
+                        ? Column(
+                            children: [
+                              DropDownField<OilProductTTypeModel>(
+                                displayValue: (item) => item.producttype!,
+                                items: controller.oilproductTypes,
+                                hint: 'Product type',
+                                selectedValue:
+                                    controller.selectedoilproductType,
+                                onChanged: (value) {
+                                  controller.setSelectedOilproducttype(value);
+                                  controller.validateFields(
+                                      "product type",
+                                      controller.selectedoilproductTypeId
+                                          .toString());
+                                  controller.update();
+                                },
+                                errorText: controller.oilproductTypeError,
+                              ),
+                              Gap(20),
+                              DropDownField<OilVolumeModel>(
+                                displayValue: (item) => item.volume!,
+                                items: controller.oilVolumes,
+                                hint: 'Liquid volume litter',
+                                selectedValue: controller.selectedvolume,
+                                onChanged: (value) {
+                                  controller.setSelectedVolume(value);
+                                  controller.validateFields("volume",
+                                      controller.selectedVolumeId.toString());
+                                  controller.update();
+                                },
+                                errorText: controller.volumeError,
+                              ),
+                              Gap(20),
+                            ],
+                          )
+                        : Text(''),
+                    if (![3, 4, 7].contains(controller.selectedCategoryId))
+                      Column(
+                        children: [
+                          AppInputField(
+                            errorText: controller.selectedCategoryId != 6
+                                ? controller.descriptionError
+                                : '',
+                            hint: 'Description',
+                            controller: controller.descriptionController,
+                            onchange: (val) {
+                              controller.selectedCategoryId != 6
+                                  ? controller.validateFields("Price", val)
+                                  : print('no validation needed');
+                            },
+                          ),
+                          Gap(20),
+                        ],
+                      ),
+                    if (![4, 7].contains(controller.selectedCategoryId))
+                      AppInputField(
+                        errorText: controller.priceError,
+                        hint: 'Price',
+                        type: TextInputType.number,
+                        controller: controller.priceController,
+                        onchange: (val) {
+                          controller.validateFields("Price", val);
+                        },
+                        hasSuffix: true,
+                        suffixWidget: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: AppText(
+                            title: 'AED',
+                            size: 14,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.primary_color,
+                          ),
                         ),
                       ),
-                    ),
-                    Gap(30),
-                    AppButton(
-                      title: 'Add product',
-                      buttonColor: AppColors.primary_color,
-                      ontap: () {
-                        controller.addProduct();
-                      },
-                    ),
-                    Gap(20),
                   ],
                 ),
-              )
+              ),
+              if ([2, 4, 7].contains(controller.selectedCategoryId))
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  itemCount: controller.itemCount,
+                  itemBuilder: (context, index) {
+                    var priceError = controller.getPriceError(index);
+                    var timeError = controller.getTimeError(index);
+                    return Column(
+                      children: [
+                        Divider(
+                          thickness: 14,
+                          color: AppColors.grey.shade100,
+                        ),
+                        Gap(28),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 22),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 12,
+                                width: 12,
+                                decoration: BoxDecoration(
+                                    color: AppColors.black,
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
+                              Gap(10),
+                              AppText(
+                                title: controller.getTitle(index),
+                                size: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Gap(26),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 22),
+                          child: MainInput(
+                            hint: 'Description (optional)',
+                            onchange: (p0) {
+                              switch (
+                                  controller.selectedCategoryId.toString()) {
+                                case '2':
+                                  controller.oilextras[index].description = p0;
+                                  break;
+                                case '4':
+                                  controller.roadAssistanceExtras[index]
+                                      .description = p0;
+                                  break;
+                                case '7':
+                                  controller.recoveryExtras[index].description =
+                                      p0;
+                                  break;
+                                default:
+                                  print('Not showing for other categories');
+                                  break;
+                              }
+                              controller.update();
+                            },
+                            errorText: '',
+                          ),
+                        ),
+                        Gap(20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 22),
+                          child: AppInputField(
+                            hint: 'Price',
+                            type: TextInputType.number,
+                            errorText: priceError,
+                            onchange: (val) {
+                              switch (
+                                  controller.selectedCategoryId.toString()) {
+                                case '2':
+                                  controller.oilextras[index].price = val;
+                                  break;
+                                case '4':
+                                  controller.roadAssistanceExtras[index].price =
+                                      val;
+                                  break;
+                                case '7':
+                                  controller.recoveryExtras[index].price = val;
+                                  break;
+                                default:
+                                  print('Not showing for other categories');
+                                  break;
+                              }
+
+                              controller.update();
+                            },
+                            hasSuffix: true,
+                            suffixWidget: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: AppText(
+                                title: 'AED',
+                                size: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primary_color,
+                              ),
+                            ),
+                          ),
+                        ),
+                        if ([4, 7].contains(controller.selectedCategoryId))
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 22),
+                            child: Column(
+                              children: [
+                                Gap(20),
+                                AppInputField(
+                                  errorText: timeError,
+                                  hint: 'Time',
+                                  type: TextInputType.number,
+                                  onchange: (val) {
+                                    switch (controller.selectedCategoryId
+                                        .toString()) {
+                                      case '4':
+                                        controller.roadAssistanceExtras[index]
+                                            .time = val;
+                                        break;
+                                      case '7':
+                                        controller.roadAssistanceExtras[index].time =
+                                            val;
+                                        break;
+                                      default:
+                                        print(
+                                            'Not showing for other categories');
+                                        break;
+                                    }
+                                    controller.update();
+                                  },
+                                  hasSuffix: true,
+                                  suffixWidget: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    child: AppText(
+                                      title: 'Min',
+                                      size: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.primary_color,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        Gap(26),
+                      ],
+                    );
+                  },
+                ),
+              Gap(40),
+              AppButton(
+                buttonWidth: 0.85,
+                title: 'Add product',
+                buttonColor: AppColors.primary_color,
+                ontap: () {
+                  controller.addProduct();
+                },
+              ),
+              Gap(30),
             ],
           ),
         ),
