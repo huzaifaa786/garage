@@ -72,7 +72,7 @@ class ProductFormView extends StatelessWidget {
                       },
                       errorText: controller.categorysError,
                     ),
-                    if (![4, 7].contains(controller.selectedCategoryId))
+                    if (![4, 7, 9].contains(controller.selectedCategoryId))
                       Column(
                         children: [
                           Gap(20),
@@ -295,7 +295,7 @@ class ProductFormView extends StatelessWidget {
                             ],
                           )
                         : Text(''),
-                    if (![3, 4, 7].contains(controller.selectedCategoryId))
+                    if (![3, 4, 7, 9].contains(controller.selectedCategoryId))
                       Column(
                         children: [
                           AppInputField(
@@ -313,7 +313,7 @@ class ProductFormView extends StatelessWidget {
                           Gap(20),
                         ],
                       ),
-                    if (![4, 7].contains(controller.selectedCategoryId))
+                    if (![4, 7, 9].contains(controller.selectedCategoryId))
                       AppInputField(
                         errorText: controller.priceError,
                         hint: 'Price',
@@ -336,7 +336,7 @@ class ProductFormView extends StatelessWidget {
                   ],
                 ),
               ),
-              if ([2, 4, 7].contains(controller.selectedCategoryId))
+              if ([2, 4, 7, 9].contains(controller.selectedCategoryId))
                 ListView.builder(
                   shrinkWrap: true,
                   physics: BouncingScrollPhysics(),
@@ -391,6 +391,9 @@ class ProductFormView extends StatelessWidget {
                                   controller.recoveryExtras[index].description =
                                       p0;
                                   break;
+                                case '9':
+                                  controller.fuelExtras[index].description = p0;
+                                  break;
                                 default:
                                   print('Not showing for other categories');
                                   break;
@@ -420,6 +423,9 @@ class ProductFormView extends StatelessWidget {
                                 case '7':
                                   controller.recoveryExtras[index].price = val;
                                   break;
+                                case '9':
+                                  controller.fuelExtras[index].price = val;
+                                  break;
                                 default:
                                   print('Not showing for other categories');
                                   break;
@@ -439,7 +445,7 @@ class ProductFormView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if ([4, 7].contains(controller.selectedCategoryId))
+                        if ([4, 7, 9].contains(controller.selectedCategoryId))
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 22),
                             child: Column(
@@ -457,8 +463,11 @@ class ProductFormView extends StatelessWidget {
                                             .time = val;
                                         break;
                                       case '7':
-                                        controller.roadAssistanceExtras[index].time =
-                                            val;
+                                        controller.roadAssistanceExtras[index]
+                                            .time = val;
+                                        break;
+                                      case '9':
+                                        controller.fuelExtras[index].time = val;
                                         break;
                                       default:
                                         print(

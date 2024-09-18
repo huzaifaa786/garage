@@ -12,6 +12,7 @@ import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
 import 'package:mobilegarage/models/battery_models/voltage_model.dart';
+import 'package:mobilegarage/models/fuel_models/fuel_extra_model.dart';
 import 'package:mobilegarage/models/oil_models/extra_model.dart';
 import 'package:mobilegarage/models/oil_models/product_type_model.dart';
 import 'package:mobilegarage/models/oil_models/volume_model.dart';
@@ -102,11 +103,8 @@ class ProductFormController extends GetxController {
 
   @override
   void onInit() async {
-    // TODO: implement onInit
     super.onInit();
     await getCategories();
-    await initializeTextControllers();
-    addVehicleSection();
   }
 
   ProductModel? product;
@@ -328,12 +326,12 @@ class ProductFormController extends GetxController {
   ///////////////////////////                                        ////////////////////////////////////
 
   List<RecoveryExtraModel> recoveryExtras = [];
-  
+
 /////////////////////////////                                        ////////////////////////////////////
-  ///////////////////////////            Recovery  data                   ////////////////////////////////////
+  ///////////////////////////            fuel  data                   ////////////////////////////////////
   ///////////////////////////                                        ////////////////////////////////////
 
-  // List<RecoveryExtraModel> recoveryExtras = [];
+  List<FuelExtraModel> fuelExtras = [];
 
   // product detail
   getProductDetails() async {
@@ -461,6 +459,16 @@ class ProductFormController extends GetxController {
             update();
           }
           break;
+        case '9':
+          // Map fuel  extras
+          if (response['productDetails']['service_extra'] != null) {
+            fuelExtras =
+                (response['productDetails']['service_extra'] as List<dynamic>)
+                    .map((item) => FuelExtraModel.from(item))
+                    .toList();
+            update();
+          }
+          break;
         default:
           print('Unknown category ids');
           break;
@@ -533,6 +541,7 @@ class ProductFormController extends GetxController {
         patterenError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return patterenError;
+
       default:
         return '';
     }
@@ -551,6 +560,8 @@ class ProductFormController extends GetxController {
         return validateRoadAssistanceForm();
       case '7': // recovery category validation
         return validateRecoveryForm();
+      case '9': // fuel category validation
+        return validateFuelForm();
       default:
         categoryError = 'Please select a valid category';
         update();
@@ -830,6 +841,44 @@ class ProductFormController extends GetxController {
         recoveryextratimeErrors.isEmpty;
   }
 
+  Map<int, String> fuelextrapriceErrors = {};
+  Map<int, String> fuelextratimeErrors = {};
+  Future<bool> validateFuelForm() async {
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+
+    //
+    fuelextrapriceErrors.clear();
+
+    for (int i = 0; i < fuelExtras.length; i++) {
+      var extra = fuelExtras[i];
+      if (extra.price == null || extra.price!.isEmpty) {
+        fuelextrapriceErrors[i] = 'Extra Price is required';
+      } else {
+        fuelextrapriceErrors.remove(i);
+      }
+    }
+    //
+    fuelextratimeErrors.clear();
+
+    for (int i = 0; i < fuelExtras.length; i++) {
+      var extra = fuelExtras[i];
+      if (extra.time == null || extra.time!.isEmpty) {
+        fuelextratimeErrors[i] = 'Extra Time is required';
+      } else {
+        fuelextratimeErrors.remove(i);
+      }
+    }
+    return categoryError.isEmpty &&
+        fuelextrapriceErrors.isEmpty &&
+        fuelextratimeErrors.isEmpty;
+  }
+
   //TODO: Forgot Function
   addProduct() async {
     if (await validateForm()) {
@@ -942,6 +991,27 @@ class ProductFormController extends GetxController {
           update();
           break;
 
+        case '9':
+          List<Map<String, dynamic>> includes = fuelExtras.where((extra) {
+            return extra.price != null &&
+                extra.description != null &&
+                extra.time != null;
+          }).map((extra) {
+            return {
+              "category_extra_id": extra.id,
+              "description": extra.description ?? '',
+              "time": extra.time ?? '',
+              "price": extra.price ?? '',
+            };
+          }).toList();
+          response = await VAddProductApi.addRecoveryProduct(
+            categoryid: selectedCategoryId.toString(),
+            includes: includes,
+            images: base64Images,
+          );
+          update();
+          break;
+
         default:
           print('Unknown category id');
           break;
@@ -972,36 +1042,6 @@ class ProductFormController extends GetxController {
     }
   }
 
-  //
-  List<Map<String, dynamic>> vehicleSections = [];
-
-  addVehicleSection() async {
-    vehicleSections.add({
-      'category_extra_id': '',
-      'description': '',
-      'price': '',
-    });
-    initializeTextControllers();
-    update();
-  }
-
-  Map<int, Map<String, String>> sectionErrors = {};
-  ////////
-  final Map<int, TextEditingController> extradescriptionControllers = {};
-  final Map<int, TextEditingController> extrapricControllers = {};
-
-  initializeTextControllers() {
-    final controller = Get.find<ProductFormController>();
-    extradescriptionControllers.clear(); // Clear existing controllers
-    extrapricControllers.clear(); // Clear existing controllers
-    for (int i = 0; i < controller.vehicleSections.length; i++) {
-      extradescriptionControllers[i] = TextEditingController(
-          text: controller.vehicleSections[i]['description'] as String? ?? '');
-      extrapricControllers[i] = TextEditingController(
-          text: controller.vehicleSections[i]['price'] as String? ?? '');
-    }
-  }
-
   int get itemCount {
     switch (selectedCategoryId) {
       case 2:
@@ -1010,6 +1050,8 @@ class ProductFormController extends GetxController {
         return roadAssistanceExtras.length;
       case 7:
         return recoveryExtras.length;
+      case 9:
+        return fuelExtras.length;
       default:
         return 0;
     }
@@ -1022,8 +1064,9 @@ class ProductFormController extends GetxController {
       case 4:
         return roadextrapriceErrors[index] ?? '';
       case 7:
-        return recoveryextrapriceErrors[index] ??
-            ''; // or some other default value
+        return recoveryextrapriceErrors[index] ?? '';
+      case 9:
+        return fuelextrapriceErrors[index] ?? '';
       default:
         return '';
     }
@@ -1035,6 +1078,8 @@ class ProductFormController extends GetxController {
         return roadextratimeErrors[index] ?? '';
       case 7:
         return recoveryextratimeErrors[index] ?? '';
+      case 9:
+        return fuelextratimeErrors[index] ?? '';
       default:
         return '';
     }
@@ -1048,8 +1093,10 @@ class ProductFormController extends GetxController {
         return roadAssistanceExtras[index].name.toString();
       case 7:
         return recoveryExtras[index].name.toString();
+      case 9:
+        return fuelExtras[index].name.toString();
       default:
-        return ''; // or some other default value
+        return '';
     }
   }
 }
