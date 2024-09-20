@@ -144,7 +144,7 @@ class _HomeViewState extends State<HomeView> {
                     Gap(30),
                     GridView.builder(
                       padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                      shrinkWrap: true,
+                      shrinkWrap: true,                                
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
@@ -158,7 +158,6 @@ class _HomeViewState extends State<HomeView> {
                         return ServicesIcons(
                           imageUrl: item.image,
                           text: item.name,
-
                           // showSubtext: false,
                           ontap: () {
                             Get.toNamed(AppRoutes.filterorder);
