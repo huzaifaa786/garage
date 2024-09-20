@@ -44,11 +44,9 @@ class ServicesIcons extends StatelessWidget {
               //   ),
               // ],
             ),
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: AppNetworkImage(
-                  assetPath: 'assets/images/battery.png',
-                )),
+            child: AppNetworkImage(
+              networkImage: imageUrl,
+            ),
           ),
           Gap(5),
           Container(
