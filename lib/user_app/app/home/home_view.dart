@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -72,7 +75,7 @@ class _HomeViewState extends State<HomeView> {
                         viewportFraction: 0.8,
                         enlargeCenterPage: false,
                         onPageChanged: (index, reason) {
-                          controller.updateIndex(index); 
+                          controller.updateIndex(index);
                         },
                       ),
                       itemCount: controller.banners.length,
@@ -154,14 +157,20 @@ class _HomeViewState extends State<HomeView> {
                       ),
                       itemCount: controller.servicesList.length,
                       itemBuilder: (context, index) {
-                        final item = controller.servicesList[index];
+                        var item = controller.servicesList[index];
                         return ServicesIcons(
                           imageUrl: item.image,
                           text: item.name,
 
                           // showSubtext: false,
                           ontap: () {
-                            Get.toNamed(AppRoutes.filterorder);
+                            Get.toNamed(
+                              AppRoutes.filterorder,
+                              parameters: {
+                                'categoryId':
+                                    controller.servicesList[index].toString()
+                              },
+                            );
                           },
                         );
                       },
