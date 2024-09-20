@@ -12,10 +12,16 @@ import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
 import 'package:mobilegarage/models/battery_models/voltage_model.dart';
+import 'package:mobilegarage/models/fuel_models/fuel_extra_model.dart';
+import 'package:mobilegarage/models/oil_models/extra_model.dart';
+import 'package:mobilegarage/models/oil_models/product_type_model.dart';
+import 'package:mobilegarage/models/oil_models/volume_model.dart';
 import 'package:mobilegarage/models/product_detail_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/models/product_model.dart';
+import 'package:mobilegarage/models/recovery_models/recovery_extra_model.dart';
+import 'package:mobilegarage/models/road_assistance_models/road_extra_model.dart';
 import 'package:mobilegarage/models/tyre_models/height_model.dart';
 import 'package:mobilegarage/models/tyre_models/origin_model.dart';
 import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
@@ -39,30 +45,6 @@ class ProductFormController extends GetxController {
   TextEditingController priceController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  List<Map<String, String>> options = [];
-
-  //* ADD Servie Type In list
-  // addExtras() {
-  //   final serviceTypeNameErrorString =
-  //       validateFields("Service Type", serviceTypeName.text);
-  //   final serviceTypePriceErrorString =
-  //       validateFields("Service Type Price", serviceTypePrice.text);
-
-  //   if (serviceTypeNameErrorString.isEmpty &&
-  //       serviceTypePriceErrorString.isEmpty) {
-  //     serviceTypeList.add({
-  //       'type': serviceTypeName.text,
-  //       'price': serviceTypePrice.text,
-  //     });
-  //     serviceTypeName.clear();
-  //     serviceTypePrice.clear();
-  //     update();
-  //   }
-  //   FocusScope.of(Get.context!).unfocus();
-  //   update();
-  // }
-
-  //* Remove Service Type Item From list
   void removeExtra(int index) {
     UiUtilites.confirmAlertDialog(
       title: 'Are you sure you want to delete this Service Type?',
@@ -99,12 +81,14 @@ class ProductFormController extends GetxController {
   String brandError = '';
   String categoryError = '';
   String priceError = '';
+  String descriptionError = '';
 
   // battery errors
   String producttypeError = '';
   String originError = '';
   String ampereError = '';
   String voltageError = '';
+
 // tyre errors
   String widthError = '';
   String heightError = '';
@@ -113,9 +97,12 @@ class ProductFormController extends GetxController {
   String tyreoriginError = '';
   String patterenError = '';
 
+// oil errors
+  String oilproductTypeError = '';
+  String volumeError = '';
+
   @override
   void onInit() async {
-    // TODO: implement onInit
     super.onInit();
     await getCategories();
   }
@@ -145,8 +132,9 @@ class ProductFormController extends GetxController {
     selectedCategoryId = category?.id;
 
     clearbatterymodels();
-
-    await getBrands();
+    if (selectedCategoryId != 7) {
+      await getBrands();
+    }
 
     await getProductDetails();
 
@@ -290,7 +278,8 @@ class ProductFormController extends GetxController {
     selectedSpeedRating = rating;
     selectedSpeedRatingId = rating?.id;
     update();
-  } //
+  }
+  //
 
   List<TyrePatternModel> tyrepattterens = [];
   TyrePatternModel? selectedpatteren;
@@ -301,7 +290,50 @@ class ProductFormController extends GetxController {
     update();
   }
 
-  // battery detail
+  /////////////////////////////                                        ////////////////////////////////////
+  ///////////////////////////            Oil data                   ////////////////////////////////////
+  ///////////////////////////                                        ////////////////////////////////////
+
+  List<OilProductTTypeModel> oilproductTypes = [];
+  OilProductTTypeModel? selectedoilproductType;
+  int? selectedoilproductTypeId;
+  void setSelectedOilproducttype(OilProductTTypeModel? productType) async {
+    selectedoilproductType = productType;
+    selectedoilproductTypeId = productType?.id;
+    update();
+  }
+
+  //
+  List<OilVolumeModel> oilVolumes = [];
+  OilVolumeModel? selectedvolume;
+  int? selectedVolumeId;
+  void setSelectedVolume(OilVolumeModel? volume) async {
+    selectedvolume = volume;
+    selectedVolumeId = volume?.id;
+    update();
+  }
+
+  List<OilExtraModel> oilextras = [];
+
+  /////////////////////////////                                        ////////////////////////////////////
+  ///////////////////////////            Road Assistance  data                   ////////////////////////////////////
+  ///////////////////////////                                        ////////////////////////////////////
+
+  List<RoadAssistanceExtraModel> roadAssistanceExtras = [];
+
+/////////////////////////////                                        ////////////////////////////////////
+  ///////////////////////////            Recovery  data                   ////////////////////////////////////
+  ///////////////////////////                                        ////////////////////////////////////
+
+  List<RecoveryExtraModel> recoveryExtras = [];
+
+/////////////////////////////                                        ////////////////////////////////////
+  ///////////////////////////            fuel  data                   ////////////////////////////////////
+  ///////////////////////////                                        ////////////////////////////////////
+
+  List<FuelExtraModel> fuelExtras = [];
+
+  // product detail
   getProductDetails() async {
     var response = await VProductDetailApi.getProductDetails(
         id: selectedCategoryId.toString());
@@ -309,7 +341,7 @@ class ProductFormController extends GetxController {
       productdetails = ProductDetailModel.from(response['productDetails']);
       String categoryId = selectedCategoryId.toString();
       switch (categoryId) {
-        case '5':
+        case '6':
           // Map battery product types
           if (response['productDetails']['battery_product_type'] != null) {
             producttypes = (response['productDetails']['battery_product_type']
@@ -340,7 +372,7 @@ class ProductFormController extends GetxController {
           }
           update();
           break;
-        case '6':
+        case '3':
           // Map tyre widths types
           if (response['productDetails']['tyer_width'] != null) {
             tyrewidths =
@@ -385,8 +417,60 @@ class ProductFormController extends GetxController {
           update();
 
           break;
+        case '2':
+          // Map oil product types
+          if (response['productDetails']['oil_product_type'] != null) {
+            oilproductTypes = (response['productDetails']['oil_product_type']
+                    as List<dynamic>)
+                .map((item) => OilProductTTypeModel.from(item))
+                .toList();
+          }
+          // Map oil volumes
+          if (response['productDetails']['oil_volume'] != null) {
+            oilVolumes =
+                (response['productDetails']['oil_volume'] as List<dynamic>)
+                    .map((item) => OilVolumeModel.from(item))
+                    .toList();
+          }
+          // Map oil extras
+          if (response['productDetails']['service_extra'] != null) {
+            oilextras =
+                (response['productDetails']['service_extra'] as List<dynamic>)
+                    .map((item) => OilExtraModel.from(item))
+                    .toList();
+          }
+          break;
+        case '4':
+          // Map road assistance  extras
+          if (response['productDetails']['service_extra'] != null) {
+            roadAssistanceExtras =
+                (response['productDetails']['service_extra'] as List<dynamic>)
+                    .map((item) => RoadAssistanceExtraModel.from(item))
+                    .toList();
+          }
+          break;
+        case '7':
+          // Map road assistance  extras
+          if (response['productDetails']['service_extra'] != null) {
+            recoveryExtras =
+                (response['productDetails']['service_extra'] as List<dynamic>)
+                    .map((item) => RecoveryExtraModel.from(item))
+                    .toList();
+            update();
+          }
+          break;
+        case '9':
+          // Map fuel  extras
+          if (response['productDetails']['service_extra'] != null) {
+            fuelExtras =
+                (response['productDetails']['service_extra'] as List<dynamic>)
+                    .map((item) => FuelExtraModel.from(item))
+                    .toList();
+            update();
+          }
+          break;
         default:
-          print('Unknown category id');
+          print('Unknown category ids');
           break;
       }
     }
@@ -407,7 +491,11 @@ class ProductFormController extends GetxController {
         priceError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return priceError;
-
+      case 'description':
+        descriptionError =
+            Validators.emptyStringValidator(value, fieldName) ?? '';
+        update();
+        return descriptionError;
       case 'producttype':
         producttypeError =
             Validators.emptyStringValidator(value, fieldName) ?? '';
@@ -453,6 +541,7 @@ class ProductFormController extends GetxController {
         patterenError = Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return patterenError;
+
       default:
         return '';
     }
@@ -461,10 +550,18 @@ class ProductFormController extends GetxController {
   //TODO: FORGOT VALIDATION
   Future<bool> validateForm() async {
     switch (selectedCategoryId.toString()) {
-      case '5': // Battery category validation
+      case '6': // Battery category validation
         return validateBatteryForm();
-      case '6': // Tyre category validation
+      case '3': // Tyre category validation
         return validateTyreForm();
+      case '2': // oil category validation
+        return validateOilForm();
+      case '4': // raod assistance category validation
+        return validateRoadAssistanceForm();
+      case '7': // recovery category validation
+        return validateRecoveryForm();
+      case '9': // fuel category validation
+        return validateFuelForm();
       default:
         categoryError = 'Please select a valid category';
         update();
@@ -607,6 +704,181 @@ class ProductFormController extends GetxController {
         speedratingError.isEmpty;
   }
 
+  Map<int, String> oilextrapriceErrors = {};
+
+  Future<bool> validateOilForm() async {
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+    //
+    if (selectedBrandId == null) {
+      brandError = 'Please select brand';
+      update();
+    } else {
+      brandError = '';
+      update();
+    }
+    //
+    if (selectedoilproductType == null) {
+      oilproductTypeError = 'Please select oil product type';
+      update();
+    } else {
+      oilproductTypeError = '';
+      update();
+    }
+
+    //
+    if (selectedVolumeId == null) {
+      volumeError = 'Please select oil volume';
+      update();
+    } else {
+      volumeError = '';
+      update();
+    }
+    //
+    oilextrapriceErrors.clear();
+    final priceErrorString = validateFields('Price', priceController.text);
+    final descriptionErrorString =
+        validateFields('description', descriptionController.text);
+    // Validate Oil Extras
+    for (int i = 0; i < oilextras.length; i++) {
+      var extra = oilextras[i];
+      if (extra.price == null || extra.price!.isEmpty) {
+        oilextrapriceErrors[i] = 'Extra Price is required';
+      } else {
+        oilextrapriceErrors.remove(i);
+      }
+    }
+    return categoryError.isEmpty &&
+        brandError.isEmpty &&
+        priceErrorString.isEmpty &&
+        descriptionErrorString.isEmpty &&
+        widthError.isEmpty &&
+        heightError.isEmpty &&
+        sizeError.isEmpty &&
+        tyreoriginError.isEmpty &&
+        patterenError.isEmpty &&
+        oilextrapriceErrors.isEmpty &&
+        speedratingError.isEmpty;
+  }
+
+  Map<int, String> roadextrapriceErrors = {};
+  Map<int, String> roadextratimeErrors = {};
+  Future<bool> validateRoadAssistanceForm() async {
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+
+    //
+    roadextrapriceErrors.clear();
+    for (int i = 0; i < roadAssistanceExtras.length; i++) {
+      var extra = roadAssistanceExtras[i];
+      if (extra.price == null || extra.price!.isEmpty) {
+        roadextrapriceErrors[i] = 'Extra Price is required';
+      } else {
+        roadextrapriceErrors.remove(i);
+      }
+    }
+    //
+    roadextratimeErrors.clear();
+
+    for (int i = 0; i < roadAssistanceExtras.length; i++) {
+      var extra = roadAssistanceExtras[i];
+      if (extra.time == null || extra.time!.isEmpty) {
+        roadextratimeErrors[i] = 'Extra Time is required';
+      } else {
+        roadextratimeErrors.remove(i);
+      }
+    }
+    return categoryError.isEmpty &&
+        roadextrapriceErrors.isEmpty &&
+        roadextratimeErrors.isEmpty;
+  }
+
+  Map<int, String> recoveryextrapriceErrors = {};
+  Map<int, String> recoveryextratimeErrors = {};
+  Future<bool> validateRecoveryForm() async {
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+
+    //
+    recoveryextrapriceErrors.clear();
+
+    for (int i = 0; i < recoveryExtras.length; i++) {
+      var extra = recoveryExtras[i];
+      if (extra.price == null || extra.price!.isEmpty) {
+        recoveryextrapriceErrors[i] = 'Extra Price is required';
+      } else {
+        recoveryextrapriceErrors.remove(i);
+      }
+    }
+    //
+    recoveryextratimeErrors.clear();
+
+    for (int i = 0; i < recoveryExtras.length; i++) {
+      var extra = recoveryExtras[i];
+      if (extra.time == null || extra.time!.isEmpty) {
+        recoveryextratimeErrors[i] = 'Extra Time is required';
+      } else {
+        recoveryextratimeErrors.remove(i);
+      }
+    }
+    return categoryError.isEmpty &&
+        recoveryextrapriceErrors.isEmpty &&
+        recoveryextratimeErrors.isEmpty;
+  }
+
+  Map<int, String> fuelextrapriceErrors = {};
+  Map<int, String> fuelextratimeErrors = {};
+  Future<bool> validateFuelForm() async {
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+
+    //
+    fuelextrapriceErrors.clear();
+
+    for (int i = 0; i < fuelExtras.length; i++) {
+      var extra = fuelExtras[i];
+      if (extra.price == null || extra.price!.isEmpty) {
+        fuelextrapriceErrors[i] = 'Extra Price is required';
+      } else {
+        fuelextrapriceErrors.remove(i);
+      }
+    }
+    //
+    fuelextratimeErrors.clear();
+
+    for (int i = 0; i < fuelExtras.length; i++) {
+      var extra = fuelExtras[i];
+      if (extra.time == null || extra.time!.isEmpty) {
+        fuelextratimeErrors[i] = 'Extra Time is required';
+      } else {
+        fuelextratimeErrors.remove(i);
+      }
+    }
+    return categoryError.isEmpty &&
+        fuelextrapriceErrors.isEmpty &&
+        fuelextratimeErrors.isEmpty;
+  }
+
   //TODO: Forgot Function
   addProduct() async {
     if (await validateForm()) {
@@ -623,7 +895,7 @@ class ProductFormController extends GetxController {
       var response;
 
       switch (categoryId) {
-        case '5':
+        case '6':
           response = await VAddProductApi.addBatteryProduct(
             categoryid: selectedCategoryId.toString(),
             brandid: selectedBrandId.toString(),
@@ -637,7 +909,7 @@ class ProductFormController extends GetxController {
           );
           update();
           break;
-        case '6':
+        case '3':
           response = await VAddProductApi.addTyreProduct(
             categoryid: selectedCategoryId.toString(),
             brandid: selectedBrandId.toString(),
@@ -653,6 +925,93 @@ class ProductFormController extends GetxController {
           update();
 
           break;
+        case '2':
+          List<Map<String, dynamic>> includes = oilextras.where((extra) {
+            return extra.price != null && extra.description != null;
+          }).map((extra) {
+            return {
+              "category_extra_id": extra.id,
+              "description": extra.description ?? '',
+              "price": extra.price ?? '',
+            };
+          }).toList();
+          response = await VAddProductApi.addOilProduct(
+            categoryid: selectedCategoryId.toString(),
+            brandid: selectedBrandId.toString(),
+            price: priceController.text,
+            description: descriptionController.text,
+            producttypeid: selectedoilproductTypeId.toString(),
+            volumeid: selectedVolumeId.toString(),
+            includes: includes,
+            images: base64Images,
+          );
+          update();
+
+          break;
+        case '4':
+          List<Map<String, dynamic>> includes =
+              roadAssistanceExtras.where((extra) {
+            return extra.price != null &&
+                extra.description != null &&
+                extra.time != null;
+          }).map((extra) {
+            return {
+              "category_extra_id": extra.id,
+              "description": extra.description ?? '',
+              "time": extra.time ?? '',
+              "price": extra.price ?? '',
+            };
+          }).toList();
+          response = await VAddProductApi.addRoadAssistanceProduct(
+            categoryid: selectedCategoryId.toString(),
+            includes: includes,
+            images: base64Images,
+          );
+          update();
+
+          break;
+        case '7':
+          List<Map<String, dynamic>> includes = recoveryExtras.where((extra) {
+            return extra.price != null &&
+                extra.description != null &&
+                extra.time != null;
+          }).map((extra) {
+            return {
+              "category_extra_id": extra.id,
+              "description": extra.description ?? '',
+              "time": extra.time ?? '',
+              "price": extra.price ?? '',
+            };
+          }).toList();
+          response = await VAddProductApi.addRecoveryProduct(
+            categoryid: selectedCategoryId.toString(),
+            includes: includes,
+            images: base64Images,
+          );
+          update();
+          break;
+
+        case '9':
+          List<Map<String, dynamic>> includes = fuelExtras.where((extra) {
+            return extra.price != null &&
+                extra.description != null &&
+                extra.time != null;
+          }).map((extra) {
+            return {
+              "category_extra_id": extra.id,
+              "description": extra.description ?? '',
+              "time": extra.time ?? '',
+              "price": extra.price ?? '',
+            };
+          }).toList();
+          response = await VAddProductApi.addRecoveryProduct(
+            categoryid: selectedCategoryId.toString(),
+            includes: includes,
+            images: base64Images,
+          );
+          update();
+          break;
+
         default:
           print('Unknown category id');
           break;
@@ -680,6 +1039,64 @@ class ProductFormController extends GetxController {
       update();
       Get.back();
       UiUtilites.ProductPendingDialog(Get.context!);
+    }
+  }
+
+  int get itemCount {
+    switch (selectedCategoryId) {
+      case 2:
+        return oilextras.length;
+      case 4:
+        return roadAssistanceExtras.length;
+      case 7:
+        return recoveryExtras.length;
+      case 9:
+        return fuelExtras.length;
+      default:
+        return 0;
+    }
+  }
+
+  String getPriceError(int index) {
+    switch (selectedCategoryId) {
+      case 2:
+        return oilextrapriceErrors[index] ?? '';
+      case 4:
+        return roadextrapriceErrors[index] ?? '';
+      case 7:
+        return recoveryextrapriceErrors[index] ?? '';
+      case 9:
+        return fuelextrapriceErrors[index] ?? '';
+      default:
+        return '';
+    }
+  }
+
+  String getTimeError(int index) {
+    switch (selectedCategoryId) {
+      case 4:
+        return roadextratimeErrors[index] ?? '';
+      case 7:
+        return recoveryextratimeErrors[index] ?? '';
+      case 9:
+        return fuelextratimeErrors[index] ?? '';
+      default:
+        return '';
+    }
+  }
+
+  String getTitle(int index) {
+    switch (selectedCategoryId) {
+      case 2:
+        return oilextras[index].name.toString();
+      case 4:
+        return roadAssistanceExtras[index].name.toString();
+      case 7:
+        return recoveryExtras[index].name.toString();
+      case 9:
+        return fuelExtras[index].name.toString();
+      default:
+        return '';
     }
   }
 }
