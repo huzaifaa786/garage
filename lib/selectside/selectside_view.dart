@@ -9,6 +9,7 @@ import 'package:mobilegarage/selectside/component/container.dart';
 import 'package:mobilegarage/selectside/selectside_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 
 class SelectsideView extends StatefulWidget {
   const SelectsideView({super.key});
@@ -22,10 +23,7 @@ class _SelectsideViewState extends State<SelectsideView> {
   Widget build(BuildContext context) {
     return GetBuilder<SelectSideController>(
       builder: (controller) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.primarybg,
-          toolbarHeight: 20,
-        ),
+        backgroundColor: AppColors.primarybg,
         body: SafeArea(
             child: Container(
           height: Get.height,
@@ -36,10 +34,10 @@ class _SelectsideViewState extends State<SelectsideView> {
             children: [
               // Image.asset('assets/images/splash_logo.png'),
               Padding(
-              padding: EdgeInsets.only(top: 30,bottom: 20),
-               child: SvgPicture.asset('assets/icons/mobile_garagelogo.svg',height: 100,
-                  width: 207,),
-             ),
+                padding: EdgeInsets.only(top: 30, bottom: 20),
+                child: SvgPicture.asset(ImageConst.appLogoSvg,
+                    height: 100, width: 207, color: AppColors.white_color),
+              ),
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(

@@ -31,7 +31,7 @@ class VSignInView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10,bottom: 10),
                     // child: Image.asset(ImageConst.appLogo,
                     //     width: 172, height: 108)
                     child: SvgPicture.asset(
