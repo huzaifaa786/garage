@@ -282,7 +282,7 @@ class ProductFormController extends GetxController {
     selectedtyreoriginId = origin?.id;
     update();
   } //
-
+  
   List<TyreSpeedRatingModel> tyreSpeedRatings = [];
   TyreSpeedRatingModel? selectedSpeedRating;
   int? selectedSpeedRatingId;
@@ -440,11 +440,13 @@ class ProductFormController extends GetxController {
         update();
         return sizeError;
       case 'speed rating':
-        speedratingError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        speedratingError =
+            Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return speedratingError;
       case 'tyre origin':
-        tyreoriginError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        tyreoriginError =
+            Validators.emptyStringValidator(value, fieldName) ?? '';
         update();
         return tyreoriginError;
       case 'patteren':
