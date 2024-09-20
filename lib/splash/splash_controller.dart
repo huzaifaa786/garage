@@ -49,7 +49,7 @@ class SplashController extends GetxController {
         Get.offNamed(AppRoutes.vhome);
       } else {
         if (user_verified == 'true') {
-          Get.offNamed(AppRoutes.main);
+          Get.offNamed(AppRoutes.home);
         } else {
           Get.offNamed(AppRoutes.signin);
         }
