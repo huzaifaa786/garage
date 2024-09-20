@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/filter_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
+import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/product_vehicles.dart';
 
 import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
@@ -29,11 +31,14 @@ class OrderController extends GetxController {
 
   double start = 0.0;
   double end = 50.0;
+   String? categoryId;
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    categoryId = Get.parameters['categoryId'] ?? '';
+
     getvehicles();
   }
 
@@ -412,6 +417,13 @@ class OrderController extends GetxController {
           title: 'Thank you!',
           buttontitle: 'Back to home',
           description: 'A garage will accept your order from within 3-5 min.');
+    }
+  }
+   productDetails() async {
+    var response = await productDetailsApi.productDetails(id: categoryId.toString());
+    if (response.isNotEmpty) {
+      print('ok! that sounds nice tell me more');
+      update();
     }
   }
 }

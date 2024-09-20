@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -28,7 +29,6 @@ void main()async {
   runApp(const MyApp());
   Stripe.publishableKey =
       "pk_test_51NjyPoKj8kRF1XiuJAv5r6UPr91km5JqWugq5FWvrfUDtOcew75SLLnk09zXOWM3RjmxebIg5vB845xYtUFI16ck00mbTgntzu";
-
   await dotenv.load(fileName: "assets/.env");
   HttpOverrides.global = MyHttpOverrides();
 }

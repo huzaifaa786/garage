@@ -42,7 +42,7 @@ class TopBar extends StatelessWidget {
                         onTap: () {
                           Get.back();
                         },
-                        child: box.read('locale') != 'ar'
+                        child: box.read('locale') == 'ar'
                             ? SvgPicture.asset(
                                 'assets/icons/backarrow.svg',
                                 color: textColor,
