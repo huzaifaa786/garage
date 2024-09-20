@@ -2,12 +2,13 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/get_products_api.dart';
 import 'package:mobilegarage/apis/vender_apis/products/delete_product_apis/delete_product_api.dart';
 import 'package:mobilegarage/models/category_model.dart';
+import 'package:mobilegarage/models/product_model.dart';
 
 class VProductsController extends GetxController {
   static VProductsController instance = Get.find();
 
-  String? image;
-  List<CategoryModel> categories = [];
+  // String? image;
+  List<ProductModel> products = [];
 
   @override
   void onInit() async {
@@ -26,10 +27,10 @@ class VProductsController extends GetxController {
   getProducts() async {
     var response = await VGetProductsApi.getProducts();
     if (response.isNotEmpty) {
-      // categories = [];
+     
 
-      categories = (response['categories'] as List<dynamic>)
-          .map((item) => CategoryModel.fromJson(item))
+      products = (response['products'] as List<dynamic>)
+          .map((item) => ProductModel.fromJson(item))
           .toList();
     }
     update();
