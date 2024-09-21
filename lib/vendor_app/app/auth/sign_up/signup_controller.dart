@@ -256,10 +256,12 @@ class VSignUpController extends GetxController {
   String? base64IdCardBackSide;
   String? base64UploadLicense;
   //TODO: IMAGE PICKER
+
   pickImageFromGallery(String imageName) async {
     final imageSelectorApi = ImageSelectorApi();
 
     final pickedImage = await imageSelectorApi.selectImageForCropper();
+
     if (pickedImage != null) {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
@@ -300,6 +302,7 @@ class VSignUpController extends GetxController {
   }
 
   //TODO: Register Function
+
   register() async {
     if (await validateForm()) {
       var response = await VSignupApi.registerapi(
@@ -324,15 +327,13 @@ class VSignUpController extends GetxController {
         box.write('user_type', 'vendor');
         print(response['garage']['token']);
         UiUtilites.successAlertDialog(
-          context: Get.context,
-          onTap: () {},
-          title: 'sdfsdfsf',
-          description: 'sdfsdfsdfs',
-
-
-          buttontitle: 'ok'
-        );
+            context: Get.context,
+            onTap: () {},
+            title: 'sdfsdfsf',
+            description: 'sdfsdfsdfs',
+            buttontitle: 'ok');
         Get.offAllNamed(AppRoutes.vhome);
+
         resetfields();
       }
     }

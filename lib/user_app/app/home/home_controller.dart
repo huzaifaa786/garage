@@ -143,6 +143,8 @@ class HomeController extends GetxController {
     print('gvvbubcubbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
     print(apiToken);
     var response = await BannersApi.getbanners();
+    print('bannerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+    print(response);
     if (response.isNotEmpty) {
       var bannerList = response['banners'] as List<dynamic>;
 
