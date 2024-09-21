@@ -52,7 +52,7 @@ final ondeltap;
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: AppNetworkImage(
-                        assetPath: products!.images.first.imageUrl,
+                        assetPath: products!.images!.first.imageUrl,
                         width: Get.width,
                       )),
                 ),
@@ -61,19 +61,19 @@ final ondeltap;
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      title: products!.brands.name.toString(),
+                      title: products!.brands!.name.toString(),
                       size: 14,
                       fontWeight: FontWeight.w600,
                     ),
                     const Gap(6.0),
                     AppText(
-                      title: products!.brands.description.toString(),
+                      title: products!.brands!.description.toString(),
                       size: 12,
                       fontWeight: FontWeight.w500,
                     ),
                     const Gap(6.0),
                     AppText(
-                      title: products!.brands.price.toString() + ' AED',
+                      title: products!.brands!.price.toString() + ' AED',
                       size: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.lightblue,

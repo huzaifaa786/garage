@@ -72,7 +72,8 @@ class ProductFormView extends StatelessWidget {
                       },
                       errorText: controller.categorysError,
                     ),
-                    if (![4, 7, 9].contains(controller.selectedCategoryId))
+                    if (![4, 7, 9, 1, 8]
+                        .contains(controller.selectedCategoryId))
                       Column(
                         children: [
                           Gap(20),
@@ -111,8 +112,10 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
                                   controller.setSelectedproducttype(value);
-                                  controller.validateFields("producttype",
-                                      controller.selectedBrandId.toString());
+                                  controller.validateFields(
+                                      "producttype",
+                                      controller.selectedProducttypeId
+                                          .toString());
                                   controller.update();
                                 },
                                 errorText: controller.producttypeError,
@@ -163,10 +166,11 @@ class ProductFormView extends StatelessWidget {
                               ),
                             ],
                           )
-                        : Text(''),
+                        : Gap(0),
                     controller.selectedCategoryId == 3
                         ? Column(
                             children: [
+                              Gap(20),
                               DropDownField<TyreWidthModel>(
                                 displayValue: (item) => item.width!,
                                 items: controller.tyrewidths,
@@ -254,13 +258,13 @@ class ProductFormView extends StatelessWidget {
                                 },
                                 errorText: controller.tyreoriginError,
                               ),
-                              Gap(20),
                             ],
                           )
-                        : Text(''),
+                        : Gap(0),
                     controller.selectedCategoryId == 2
                         ? Column(
                             children: [
+                              Gap(20),
                               DropDownField<OilProductTTypeModel>(
                                 displayValue: (item) => item.producttype!,
                                 items: controller.oilproductTypes,
@@ -291,18 +295,23 @@ class ProductFormView extends StatelessWidget {
                                 },
                                 errorText: controller.volumeError,
                               ),
-                              Gap(20),
                             ],
                           )
-                        : Text(''),
-                    if (![3, 4, 7, 9].contains(controller.selectedCategoryId))
+                        : Gap(0),
+                    if (![7, 9, 4, 1, 8]
+                        .contains(controller.selectedCategoryId))
+                      Gap(20),
+                    if (![3, 4, 7, 9, 1, 8]
+                        .contains(controller.selectedCategoryId))
                       Column(
                         children: [
                           AppInputField(
                             errorText: controller.selectedCategoryId != 6
                                 ? controller.descriptionError
                                 : '',
-                            hint: 'Description',
+                            hint: controller.selectedCategoryId == 2
+                                ? 'Description'
+                                : 'Description (optional)',
                             controller: controller.descriptionController,
                             onchange: (val) {
                               controller.selectedCategoryId != 6
@@ -313,7 +322,8 @@ class ProductFormView extends StatelessWidget {
                           Gap(20),
                         ],
                       ),
-                    if (![4, 7, 9].contains(controller.selectedCategoryId))
+                    if (![4, 7, 9, 1, 8]
+                        .contains(controller.selectedCategoryId))
                       AppInputField(
                         errorText: controller.priceError,
                         hint: 'Price',
@@ -336,7 +346,7 @@ class ProductFormView extends StatelessWidget {
                   ],
                 ),
               ),
-              if ([2, 4, 7, 9].contains(controller.selectedCategoryId))
+              if ([2, 4, 7, 9, 1, 8].contains(controller.selectedCategoryId))
                 ListView.builder(
                   shrinkWrap: true,
                   physics: BouncingScrollPhysics(),
@@ -344,12 +354,18 @@ class ProductFormView extends StatelessWidget {
                   itemBuilder: (context, index) {
                     var priceError = controller.getPriceError(index);
                     var timeError = controller.getTimeError(index);
+                    var descriptionError =
+                        controller.acextradescriptionErrors[index] ?? '';
                     return Column(
                       children: [
-                        Divider(
-                          thickness: 14,
-                          color: AppColors.grey.shade100,
-                        ),
+                        if (![7, 9, 4, 1]
+                                .contains(controller.selectedCategoryId) ||
+                            index != 0)
+                          if (controller.selectedCategoryId != 8)
+                            Divider(
+                              thickness: 7,
+                              color: AppColors.grey.shade100,
+                            ),
                         Gap(28),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -376,7 +392,9 @@ class ProductFormView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 22),
                           child: MainInput(
-                            hint: 'Description (optional)',
+                            hint: controller.selectedCategoryId == 8
+                                ? 'Description'
+                                : 'Description (optional)',
                             onchange: (p0) {
                               switch (
                                   controller.selectedCategoryId.toString()) {
@@ -394,58 +412,82 @@ class ProductFormView extends StatelessWidget {
                                 case '9':
                                   controller.fuelExtras[index].description = p0;
                                   break;
+                                case '1':
+                                  controller.carwashExtras[index].description =
+                                      p0;
+                                  break;
+                                case '8':
+                                  controller.acExtras[index].description = p0;
+                                  break;
                                 default:
                                   print('Not showing for other categories');
                                   break;
                               }
                               controller.update();
                             },
-                            errorText: '',
+                            errorText: controller.selectedCategoryId == 8
+                                ? descriptionError
+                                : '',
                           ),
                         ),
-                        Gap(20),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 22),
-                          child: AppInputField(
-                            hint: 'Price',
-                            type: TextInputType.number,
-                            errorText: priceError,
-                            onchange: (val) {
-                              switch (
-                                  controller.selectedCategoryId.toString()) {
-                                case '2':
-                                  controller.oilextras[index].price = val;
-                                  break;
-                                case '4':
-                                  controller.roadAssistanceExtras[index].price =
-                                      val;
-                                  break;
-                                case '7':
-                                  controller.recoveryExtras[index].price = val;
-                                  break;
-                                case '9':
-                                  controller.fuelExtras[index].price = val;
-                                  break;
-                                default:
-                                  print('Not showing for other categories');
-                                  break;
-                              }
+                        if (controller.selectedCategoryId != 8)
+                          Column(
+                            children: [
+                              Gap(20),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 22),
+                                child: AppInputField(
+                                  hint: 'Price',
+                                  type: TextInputType.number,
+                                  errorText: priceError,
+                                  onchange: (val) {
+                                    switch (controller.selectedCategoryId
+                                        .toString()) {
+                                      case '2':
+                                        controller.oilextras[index].price = val;
+                                        break;
+                                      case '4':
+                                        controller.roadAssistanceExtras[index]
+                                            .price = val;
+                                        break;
+                                      case '7':
+                                        controller.recoveryExtras[index].price =
+                                            val;
+                                        break;
+                                      case '9':
+                                        controller.fuelExtras[index].price =
+                                            val;
+                                        break;
+                                      case '1':
+                                        controller.carwashExtras[index].price =
+                                            val;
+                                        break;
+                                      default:
+                                        print(
+                                            'Not showing for other categories');
+                                        break;
+                                    }
 
-                              controller.update();
-                            },
-                            hasSuffix: true,
-                            suffixWidget: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              child: AppText(
-                                title: 'AED',
-                                size: 14,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.primary_color,
+                                    controller.update();
+                                  },
+                                  hasSuffix: true,
+                                  suffixWidget: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    child: AppText(
+                                      title: 'AED',
+                                      size: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.primary_color,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ),
-                        if ([4, 7, 9].contains(controller.selectedCategoryId))
+                        if ([4, 7, 9, 1]
+                            .contains(controller.selectedCategoryId))
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 22),
                             child: Column(
@@ -468,6 +510,10 @@ class ProductFormView extends StatelessWidget {
                                         break;
                                       case '9':
                                         controller.fuelExtras[index].time = val;
+                                        break;
+                                      case '1':
+                                        controller.carwashExtras[index].time =
+                                            val;
                                         break;
                                       default:
                                         print(
@@ -496,9 +542,42 @@ class ProductFormView extends StatelessWidget {
                     );
                   },
                 ),
+              if (controller.selectedCategoryId == 8)
+                Column(
+                  children: [
+                    Divider(
+                      thickness: 7,
+                      color: AppColors.grey.shade100,
+                    ),
+                    Gap(25),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: AppInputField(
+                        errorText: controller.priceError,
+                        hint: 'Price',
+                        type: TextInputType.number,
+                        controller: controller.priceController,
+                        onchange: (val) {
+                          controller.validateFields("Price", val);
+                        },
+                        hasSuffix: true,
+                        suffixWidget: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: AppText(
+                            title: 'AED',
+                            size: 14,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.primary_color,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gap(20)
+                  ],
+                ),
               Gap(40),
               AppButton(
-                buttonWidth: 0.85,
+                buttonWidth: 0.8,
                 title: 'Add product',
                 buttonColor: AppColors.primary_color,
                 ontap: () {

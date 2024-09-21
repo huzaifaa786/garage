@@ -140,5 +140,37 @@ class VAddProductApi {
     return response;
   }
 
+//
+  static Future<Map<String, dynamic>> addCarWashProduct({
+    List<String>? images,
+    String? categoryid,
+    required List<Map<String, dynamic>> includes,
+  }) async {
+    String url = '$vbaseUrl/store/car/wash';
+
+    var data = {
+      "images": images,
+      "category_id": categoryid,
+      "carwashextras": includes,
+    };
+    var response = await DioService.post(url: url, data: data);
+    return response;
+  }
+// //
+  static Future<Map<String, dynamic>> addAcProduct({
+    List<String>? images,
+    String? categoryid,
+    required List<Map<String, dynamic>> includes,
+  }) async {
+    String url = '$vbaseUrl/store/ac-service';
+
+    var data = {
+      "images": images,
+      "category_id": categoryid,
+      "fueldatas": includes,
+    };
+    var response = await DioService.post(url: url, data: data);
+    return response;
+  }
 
 }
