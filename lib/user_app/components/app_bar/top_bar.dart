@@ -43,14 +43,15 @@ class TopBar extends StatelessWidget {
                           Get.back();
                         },
                         child: box.read('locale') == 'ar'
-                            ? SvgPicture.asset(
-                                'assets/icons/backarrow.svg',
+                        ?SvgPicture.asset(
+                                'assets/icons/backarrow_right.svg',
                                 color: textColor,
                               )
                             : SvgPicture.asset(
-                                'assets/icons/backarrow_right.svg',
+                                'assets/icons/backarrow.svg',
                                 color: textColor,
-                              ),
+                              )
+                            
                       )
                     : const SizedBox.shrink(),
                 Row(

@@ -72,7 +72,7 @@ class _HomeViewState extends State<HomeView> {
                         viewportFraction: 0.8,
                         enlargeCenterPage: false,
                         onPageChanged: (index, reason) {
-                          controller.updateIndex(index); 
+                          controller.updateIndex(index);
                         },
                       ),
                       itemCount: controller.banners.length,
@@ -144,7 +144,7 @@ class _HomeViewState extends State<HomeView> {
                     Gap(30),
                     GridView.builder(
                       padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                      shrinkWrap: true,                                
+                      shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
