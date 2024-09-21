@@ -17,8 +17,8 @@ class CategoryModel {
       id: json['id'],
       name: json['name'],
       image: json['image'],
-      product: json['product'] != null
-          ? (json['product'] as List)
+      product: json['products'] != null
+          ? (json['products'] as List)
               .map((item) => ProductModel.fromJson(item))
               .toList()
           : null,

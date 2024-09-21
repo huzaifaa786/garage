@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/vendor_app/app/product/products/component/product_card.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/products_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 
@@ -25,10 +26,10 @@ class _VProductsViewState extends State<VProductsView> {
                   ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: controller.products.length,
+                    itemCount: controller.categoriess.length,
                     itemBuilder: (context, index) {
-                      var category = controller.products[index].category;
-                      var product = controller.products[index];
+                      var categoryies = controller.categoriess[index];
+                      // var product = controller.products[index];
 
                       return Padding(
                         padding: const EdgeInsets.symmetric(
@@ -40,7 +41,7 @@ class _VProductsViewState extends State<VProductsView> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 10),
                               child: AppText(
-                                title: category!.name.toString(),
+                                title: categoryies.name.toString(),
                                 size: 14,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -49,19 +50,19 @@ class _VProductsViewState extends State<VProductsView> {
                             ListView.builder(
                                 physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
-                                // itemCount: category.product!.length,
-                                itemCount: 2,
+                                itemCount: categoryies.product!.length,
+                                // itemCount: 2,
                                 itemBuilder: (context, index) {
-                                  // final product = category.product![index];
-                                  // return ProductCard(
-                                  //   products: product,
-                                  //   ondeltap: () {
-                                  //     controller.deleteProduct(product.id);
-                                  //     Get.back();
-                                  //     controller.update();
-                                  //   },
-                                  // );
-                                  return Text('data');
+                                  final product = categoryies.product![index];
+                                  return ProductCard(
+                                    products: product,
+                                    ondeltap: () {
+                                      controller.deleteProduct(product.id);
+                                      Get.back();
+                                      controller.update();
+                                    },
+                                  );
+                                  // return Text('data');
                                 }),
                           ],
                         ),

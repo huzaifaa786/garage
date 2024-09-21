@@ -8,7 +8,9 @@ class VProductsController extends GetxController {
   static VProductsController instance = Get.find();
 
   // String? image;
-  List<ProductModel> products = [];
+  // List<ProductModel> products = [];
+  List<CategoryModel> categoriess = [];
+
 
   @override
   void onInit() async {
@@ -29,8 +31,8 @@ class VProductsController extends GetxController {
     if (response.isNotEmpty) {
      
 
-      products = (response['products'] as List<dynamic>)
-          .map((item) => ProductModel.fromJson(item))
+      categoriess = (response['products'] as List<dynamic>)
+          .map((item) => CategoryModel.fromJson(item))
           .toList();
     }
     update();

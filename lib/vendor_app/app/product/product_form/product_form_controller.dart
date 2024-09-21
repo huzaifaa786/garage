@@ -21,7 +21,6 @@ import 'package:mobilegarage/models/oil_models/volume_model.dart';
 import 'package:mobilegarage/models/product_detail_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
-import 'package:mobilegarage/models/product_model.dart';
 import 'package:mobilegarage/models/recovery_models/recovery_extra_model.dart';
 import 'package:mobilegarage/models/road_assistance_models/road_extra_model.dart';
 import 'package:mobilegarage/models/tyre_models/height_model.dart';
@@ -85,6 +84,7 @@ class ProductFormController extends GetxController {
   String categoryError = '';
   String priceError = '';
   String descriptionError = '';
+  String imagesError = '';
 
   // battery errors
   String producttypeError = '';
@@ -109,7 +109,6 @@ class ProductFormController extends GetxController {
     super.onInit();
     await getCategories();
   }
-
 
 // categories dropdown
   String categorysError = '';
@@ -269,7 +268,7 @@ class ProductFormController extends GetxController {
     selectedtyreoriginId = origin?.id;
     update();
   } //
-  
+
   List<TyreSpeedRatingModel> tyreSpeedRatings = [];
   TyreSpeedRatingModel? selectedSpeedRating;
   int? selectedSpeedRatingId;
@@ -580,6 +579,8 @@ class ProductFormController extends GetxController {
 
   //TODO: FORGOT VALIDATION
   Future<bool> validateForm() async {
+    validateImages();
+
     switch (selectedCategoryId.toString()) {
       case '6': // Battery category validation
         return validateBatteryForm();
@@ -603,7 +604,18 @@ class ProductFormController extends GetxController {
         return false;
     }
   }
+ Future<bool> validateImages() async {
+    if (images.isEmpty) {
+      imagesError = 'Please select an images';
+      UiUtilites.errorSnackbar('Error', 'Please select an images');
+      update();
+    } else {
+      imagesError = '';
+      update();
+    }
 
+    return images.isEmpty;
+  }
   Future<bool> validateBatteryForm() async {
     if (selectedCategoryId == null) {
       categoryError = 'Please select an category';
@@ -652,7 +664,7 @@ class ProductFormController extends GetxController {
       voltageError = '';
       update();
     }
-
+   
     final priceErrorString = validateFields('Price', priceController.text);
 
     return categoryError.isEmpty &&
@@ -664,7 +676,10 @@ class ProductFormController extends GetxController {
         originError.isEmpty;
   }
 
+ 
+
   Future<bool> validateTyreForm() async {
+   
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -742,6 +757,7 @@ class ProductFormController extends GetxController {
   Map<int, String> oilextrapriceErrors = {};
 
   Future<bool> validateOilForm() async {
+   
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -804,6 +820,7 @@ class ProductFormController extends GetxController {
   Map<int, String> roadextrapriceErrors = {};
   Map<int, String> roadextratimeErrors = {};
   Future<bool> validateRoadAssistanceForm() async {
+   
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -841,6 +858,7 @@ class ProductFormController extends GetxController {
   Map<int, String> recoveryextrapriceErrors = {};
   Map<int, String> recoveryextratimeErrors = {};
   Future<bool> validateRecoveryForm() async {
+    
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -879,6 +897,7 @@ class ProductFormController extends GetxController {
   Map<int, String> fuelextrapriceErrors = {};
   Map<int, String> fuelextratimeErrors = {};
   Future<bool> validateFuelForm() async {
+    
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -917,6 +936,7 @@ class ProductFormController extends GetxController {
   Map<int, String> carWashextrapriceErrors = {};
   Map<int, String> carWashextratimeErrors = {};
   Future<bool> validateCarWashForm() async {
+   
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -954,6 +974,7 @@ class ProductFormController extends GetxController {
 
   Map<int, String> acextradescriptionErrors = {};
   Future<bool> validateAcForm() async {
+   
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
