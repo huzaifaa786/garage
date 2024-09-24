@@ -270,7 +270,7 @@ class ProductFormController extends GetxController {
     selectedtyreoriginId = origin?.id;
     update();
   } //
-  
+
   List<TyreSpeedRatingModel> tyreSpeedRatings = [];
   TyreSpeedRatingModel? selectedSpeedRating;
   int? selectedSpeedRatingId;
