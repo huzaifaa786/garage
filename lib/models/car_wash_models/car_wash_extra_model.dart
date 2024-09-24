@@ -1,6 +1,6 @@
 class CarWashExtraModel {
-  int id;
-  int categoryId;
+  int? id;
+  int ?categoryId;
   String? name;
   String? description;
   String? price;
@@ -8,8 +8,8 @@ class CarWashExtraModel {
   String? createdAt;
 
   CarWashExtraModel(
-      {required this.id,
-      required this.categoryId,
+      { this.id,
+       this.categoryId,
       this.name,
       this.description,
       this.price,
@@ -18,10 +18,10 @@ class CarWashExtraModel {
 
   factory CarWashExtraModel.from(Map<String, dynamic> json) {
     return CarWashExtraModel(
-      id: json['id'],
-      categoryId: json['category_id'],
-      name: json['name'],
-      createdAt: json['created_at'],
+      id: json['id']??0,
+      categoryId: json['category_id']??0,
+      name: json['name']??'',
+      createdAt: json['created_at']??'',
     );
   }
 }

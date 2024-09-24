@@ -16,9 +16,9 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main()async {
-   WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp(
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((value) {
     // Get.put(NotificationService());
@@ -60,6 +60,6 @@ class MyHttpOverrides extends HttpOverrides {
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
       ..badCertificateCallback =
-          (X509Certificate cert, String  dhost, int port) => true;
+          (X509Certificate cert, String dhost, int port) => true;
   }
 }

@@ -99,6 +99,8 @@ import 'package:mobilegarage/vendor_app/app/notification/notification_binding.da
 import 'package:mobilegarage/vendor_app/app/notification/notification_view.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_binding.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_view.dart';
+import 'package:mobilegarage/vendor_app/app/product/edit_product/edit_product_binding.dart';
+import 'package:mobilegarage/vendor_app/app/product/edit_product/edit_product_view.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_binding.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_view.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/products_binding.dart';
@@ -467,7 +469,7 @@ class AppPages {
 
     GetPage(
       name: AppRoutes.vproductlist,
-      page: () => const VProductsView(),
+      page: () =>  VProductsView(),
       binding: VProductsBinding(),
     ),
     GetPage(
@@ -499,6 +501,12 @@ class AppPages {
       name: AppRoutes.search_result,
       page: () => const SearchresultView(),
       binding: SearchResultBinding(),
+     
+    ),
+    GetPage(
+      name: AppRoutes.edit_product,
+      page: () => const EditProductView(),
+      binding: EditProductBinding(),
      
     ),
   ];

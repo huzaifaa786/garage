@@ -19,8 +19,8 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
-import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_controller.dart';
+import 'package:mobilegarage/vendor_app/app/product/edit_product/components/edit_product_images_picker.dart';
+import 'package:mobilegarage/vendor_app/app/product/edit_product/edit_product_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
@@ -29,22 +29,22 @@ import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dar
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
-class ProductFormView extends StatelessWidget {
-  const ProductFormView({super.key});
+class EditProductView extends StatelessWidget {
+  const EditProductView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductFormController>(
+    return GetBuilder<EditProductController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: 'Add Product or Service',
+        appBarTitle: 'Edit product',
         child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: ProductImagesPicker(),
+                child: EditProductImagesPicker(),
               ),
               Divider(color: AppColors.divider_color, thickness: 10),
               Padding(
@@ -53,12 +53,26 @@ class ProductFormView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText(
-                      title: 'Fill Info',
-                      size: 14,
-                      fontWeight: FontWeight.w600,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: AppText(
+                        title: 'Edit info.',
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                    Gap(12),
+                    Gap(10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: AppText(
+                        title:
+                            '(Note : prices will not be edited unless approved from the owner.)',
+                        size: 11,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                    Gap(17),
                     DropDownField<CategoryModel>(
                       displayValue: (item) => item.name!,
                       items: controller.categories,
@@ -66,11 +80,12 @@ class ProductFormView extends StatelessWidget {
                       selectedValue: controller.selectedCategory,
                       onChanged: (value) {
                         controller.setSelectedCategory(value);
-                        controller.validateFields("Category",
-                            controller.selectedCategoryId.toString());
+                        // controller.validateFields("Category",
+                        //     controller.selectedCategoryId.toString());
                         controller.update();
                       },
-                      errorText: controller.categorysError,
+                      // errorText: controller.categorysError,
+                      errorText: '',
                     ),
                     if (![4, 7, 9, 1, 8]
                         .contains(controller.selectedCategoryId))
@@ -84,11 +99,12 @@ class ProductFormView extends StatelessWidget {
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
-                              controller.validateFields("Brand",
-                                  controller.selectedBrandId.toString());
+                              // controller.validateFields("Brand",
+                              //     controller.selectedBrandId.toString());
                               controller.update();
                             },
-                            errorText: controller.brandError,
+                            // errorText: controller.brandError,
+                            errorText: '',
                             onAddPressed: () {
                               UiUtilites.AddProductDialog(
                                 context,
@@ -112,13 +128,14 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
                                   controller.setSelectedproducttype(value);
-                                  controller.validateFields(
-                                      "producttype",
-                                      controller.selectedProducttypeId
-                                          .toString());
+                                  // controller.validateFields(
+                                  //     "producttype",
+                                  //     controller.selectedProducttypeId
+                                  //         .toString());
                                   controller.update();
                                 },
-                                errorText: controller.producttypeError,
+                                // errorText: controller.producttypeError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<BatteryOriginModel>(
@@ -128,13 +145,14 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedbatteryOrigin,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryOrigin(value);
-                                  controller.validateFields(
-                                      "origin",
-                                      controller.selectedbatteryOriginId
-                                          .toString());
+                                  // controller.validateFields(
+                                  //     "origin",
+                                  //     controller.selectedbatteryOriginId
+                                  //         .toString());
                                   controller.update();
                                 },
-                                errorText: controller.originError,
+                                // errorText: controller.originError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<BatteryAmpereModel>(
@@ -144,11 +162,12 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedampere,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryAmpere(value);
-                                  controller.validateFields("ampere",
-                                      controller.selectedampereId.toString());
+                                  // controller.validateFields("ampere",
+                                  //     controller.selectedampereId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.ampereError,
+                                // errorText: controller.ampereError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<BatteryVoltageModel>(
@@ -158,11 +177,12 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedvoltage,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryvoltage(value);
-                                  controller.validateFields("voltage",
-                                      controller.selectedvoltageId.toString());
+                                  // controller.validateFields("voltage",
+                                  //     controller.selectedvoltageId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.voltageError,
+                                // errorText: controller.voltageError,
+                                errorText: '',
                               ),
                             ],
                           )
@@ -178,11 +198,12 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedwidth,
                                 onChanged: (value) {
                                   controller.setSelectedWidth(value);
-                                  controller.validateFields("width",
-                                      controller.selectedwidthId.toString());
+                                  // controller.validateFields("width",
+                                  //     controller.selectedwidthId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.widthError,
+                                // errorText: controller.widthError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyreHeightModel>(
@@ -192,11 +213,12 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedheight,
                                 onChanged: (value) {
                                   controller.setSelectedheight(value);
-                                  controller.validateFields("height",
-                                      controller.selectedheightId.toString());
+                                  // controller.validateFields("height",
+                                  //     controller.selectedheightId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.heightError,
+                                // errorText: controller.heightError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyreSizeModel>(
@@ -206,11 +228,12 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedsize,
                                 onChanged: (value) {
                                   controller.setSelectedSize(value);
-                                  controller.validateFields("size",
-                                      controller.selectedsizeId.toString());
+                                  // controller.validateFields("size",
+                                  //     controller.selectedsizeId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.sizeError,
+                                // errorText: controller.sizeError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyreSpeedRatingModel>(
@@ -220,13 +243,14 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedSpeedRating,
                                 onChanged: (value) {
                                   controller.setSelectedSpeedRating(value);
-                                  controller.validateFields(
-                                      "speed rating",
-                                      controller.selectedSpeedRatingId
-                                          .toString());
+                                  // controller.validateFields(
+                                  //     "speed rating",
+                                  //     controller.selectedSpeedRatingId
+                                  //         .toString());
                                   controller.update();
                                 },
-                                errorText: controller.speedratingError,
+                                // errorText: controller.speedratingError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyrePatternModel>(
@@ -236,11 +260,12 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedpatteren,
                                 onChanged: (value) {
                                   controller.setSelectedPatteren(value);
-                                  controller.validateFields("patteren",
-                                      controller.selectedpatterenId.toString());
+                                  // controller.validateFields("patteren",
+                                  //     controller.selectedpatterenId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.patterenError,
+                                // errorText: controller.patterenError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyreOriginModel>(
@@ -250,13 +275,14 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedtyreorigin,
                                 onChanged: (value) {
                                   controller.setSelectedTyreOrigin(value);
-                                  controller.validateFields(
-                                      "tyre origin",
-                                      controller.selectedtyreoriginId
-                                          .toString());
+                                  // controller.validateFields(
+                                  //     "tyre origin",
+                                  //     controller.selectedtyreoriginId
+                                  //         .toString());
                                   controller.update();
                                 },
-                                errorText: controller.tyreoriginError,
+                                // errorText: controller.tyreoriginError,
+                                errorText: '',
                               ),
                             ],
                           )
@@ -273,13 +299,14 @@ class ProductFormView extends StatelessWidget {
                                     controller.selectedoilproductType,
                                 onChanged: (value) {
                                   controller.setSelectedOilproducttype(value);
-                                  controller.validateFields(
-                                      "product type",
-                                      controller.selectedoilproductTypeId
-                                          .toString());
+                                  // controller.validateFields(
+                                  //     "product type",
+                                  //     controller.selectedoilproductTypeId
+                                  //         .toString());
                                   controller.update();
                                 },
-                                errorText: controller.oilproductTypeError,
+                                // errorText: controller.oilproductTypeError,
+                                errorText: '',
                               ),
                               Gap(20),
                               DropDownField<OilVolumeModel>(
@@ -289,11 +316,12 @@ class ProductFormView extends StatelessWidget {
                                 selectedValue: controller.selectedvolume,
                                 onChanged: (value) {
                                   controller.setSelectedVolume(value);
-                                  controller.validateFields("volume",
-                                      controller.selectedVolumeId.toString());
+                                  // controller.validateFields("volume",
+                                  //     controller.selectedVolumeId.toString());
                                   controller.update();
                                 },
-                                errorText: controller.volumeError,
+                                // errorText: controller.volumeError,
+                                errorText: '',
                               ),
                             ],
                           )
@@ -306,17 +334,18 @@ class ProductFormView extends StatelessWidget {
                       Column(
                         children: [
                           AppInputField(
-                            errorText: controller.selectedCategoryId != 6
-                                ? controller.descriptionError
-                                : '',
+                            // errorText: controller.selectedCategoryId != 6
+                            //     ? controller.descriptionError
+                            //     : '',
+                            errorText: '',
                             hint: controller.selectedCategoryId == 2
                                 ? 'Description'
                                 : 'Description (optional)',
                             controller: controller.descriptionController,
                             onchange: (val) {
-                              controller.selectedCategoryId != 6
-                                  ? controller.validateFields("Price", val)
-                                  : print('no validation needed');
+                              // controller.selectedCategoryId != 6
+                              //     ? controller.validateFields("Price", val)
+                              //     : print('no validation needed');
                             },
                           ),
                           Gap(20),
@@ -325,12 +354,13 @@ class ProductFormView extends StatelessWidget {
                     if (![4, 7, 9, 1, 8]
                         .contains(controller.selectedCategoryId))
                       AppInputField(
-                        errorText: controller.priceError,
+                        // errorText: controller.priceError,
+                        errorText: '',
                         hint: 'Price',
                         type: TextInputType.number,
                         controller: controller.priceController,
                         onchange: (val) {
-                          controller.validateFields("Price", val);
+                          // controller.validateFields("Price", val);
                         },
                         hasSuffix: true,
                         suffixWidget: Padding(
@@ -352,10 +382,38 @@ class ProductFormView extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   itemCount: controller.itemCount,
                   itemBuilder: (context, index) {
-                    var priceError = controller.getPriceError(index);
-                    var timeError = controller.getTimeError(index);
-                    var descriptionError =
-                        controller.acextradescriptionErrors[index] ?? '';
+                    // var priceError = controller.getPriceError(index);
+                    // var timeError = controller.getTimeError(index);
+                    // var descriptionError =
+                    //     controller.acextradescriptionErrors[index] ?? '';
+                    TextEditingController descriptionController =
+                        TextEditingController();
+
+                    switch (controller.selectedCategoryId) {
+                      // case 2:
+                      //   descriptionController.text = controller.oilextras[index].description ?? '';
+                      //   break;
+                      // case 4:
+                      //   descriptionController.text = controller.roadAssistanceExtras[index].description ?? '';
+                      //   break;
+                      case 7:
+                        descriptionController.text =
+                            controller.recoveryExtras[index].description ?? '';
+                        break;
+                      // case 9:
+                      //   descriptionController.text = controller.fuelExtras[index].description ?? '';
+                      //   break;
+                      // case 1:
+                      //   descriptionController.text = controller.carwashExtras[index].description ?? '';
+                      //   break;
+                      // case 8:
+                      //   descriptionController.text = controller.acExtras[index].description ?? '';
+                      //   break;
+                      default:
+                        descriptionController.text = '';
+                        break;
+                    }
+
                     return Column(
                       children: [
                         if (![7, 9, 4, 1]
@@ -392,6 +450,7 @@ class ProductFormView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 22),
                           child: MainInput(
+                            controller: descriptionController,
                             hint: controller.selectedCategoryId == 8
                                 ? 'Description'
                                 : 'Description (optional)',
@@ -425,9 +484,10 @@ class ProductFormView extends StatelessWidget {
                               }
                               controller.update();
                             },
-                            errorText: controller.selectedCategoryId == 8
-                                ? descriptionError
-                                : '',
+                            // errorText: controller.selectedCategoryId == 8
+                            //     ? descriptionError
+                            //     : '',
+                            errorText: '',
                           ),
                         ),
                         if (controller.selectedCategoryId != 8)
@@ -440,7 +500,8 @@ class ProductFormView extends StatelessWidget {
                                 child: AppInputField(
                                   hint: 'Price',
                                   type: TextInputType.number,
-                                  errorText: priceError,
+                                  // errorText: priceError,
+                                  errorText: '',
                                   onchange: (val) {
                                     switch (controller.selectedCategoryId
                                         .toString()) {
@@ -468,6 +529,7 @@ class ProductFormView extends StatelessWidget {
                                             'Not showing for other categories');
                                         break;
                                     }
+
                                     controller.update();
                                   },
                                   hasSuffix: true,
@@ -493,17 +555,18 @@ class ProductFormView extends StatelessWidget {
                               children: [
                                 Gap(20),
                                 AppInputField(
-                                  errorText: timeError,
+                                  // errorText: timeError,
+                                  errorText: '',
                                   hint: 'Time',
                                   type: TextInputType.number,
                                   onchange: (val) {
                                     switch (controller.selectedCategoryId
                                         .toString()) {
-                                      case '7':
-                                        controller.recoveryExtras[index]
+                                      case '4':
+                                        controller.roadAssistanceExtras[index]
                                             .time = val;
                                         break;
-                                      case '4':
+                                      case '7':
                                         controller.roadAssistanceExtras[index]
                                             .time = val;
                                         break;
@@ -552,12 +615,13 @@ class ProductFormView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32),
                       child: AppInputField(
-                        errorText: controller.priceError,
+                        // errorText: controller.priceError,
+                        errorText: '',
                         hint: 'Price',
                         type: TextInputType.number,
                         controller: controller.priceController,
                         onchange: (val) {
-                          controller.validateFields("Price", val);
+                          // controller.validateFields("Price", val);
                         },
                         hasSuffix: true,
                         suffixWidget: Padding(
@@ -577,10 +641,10 @@ class ProductFormView extends StatelessWidget {
               Gap(40),
               AppButton(
                 buttonWidth: 0.8,
-                title: 'Add product',
+                title: 'Edit product',
                 buttonColor: AppColors.primary_color,
                 ontap: () {
-                  controller.addProduct();
+                  controller.editProduct();
                 },
               ),
               Gap(30),

@@ -1,14 +1,14 @@
 class AcExtraModel {
-  int id;
-  int categoryId;
+  int? id;
+  int? categoryId;
   String? name;
   String? description;
 
   String? createdAt;
 
   AcExtraModel({
-    required this.id,
-    required this.categoryId,
+    this.id,
+    this.categoryId,
     this.name,
     this.description,
     this.createdAt,
@@ -16,10 +16,10 @@ class AcExtraModel {
 
   factory AcExtraModel.from(Map<String, dynamic> json) {
     return AcExtraModel(
-      id: json['id'],
-      categoryId: json['category_id'],
-      name: json['name'],
-      createdAt: json['created_at'],
+      id: json['id'] ?? 0,
+      categoryId: json['category_id'] ?? 0,
+      name: json['name'] ?? '',
+      createdAt: json['created_at'] ?? '',
     );
   }
 }
