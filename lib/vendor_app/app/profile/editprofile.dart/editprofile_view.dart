@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/routes/app_routes.dart';   
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/button.dart';
@@ -118,10 +118,8 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                           ),
                         ),
                       ),
-                      Gap(0),
                       Gap(13),
                       Container(
-                        height: Get.height * 0.5,
                         decoration: BoxDecoration(color: AppColors.white_color),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),

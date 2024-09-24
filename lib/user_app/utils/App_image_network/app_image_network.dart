@@ -11,19 +11,20 @@ class AppNetworkImage extends StatelessWidget {
     this.height = 42.0,
     this.width = 42.0,
     this.assetPath = '',
+    this.fit = BoxFit.contain,
   });
   final String? networkImage;
   final double? height;
   final double? width;
   final String? assetPath;
-
+  final fit;
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: networkImage.toString(),
       height: height,
       width: width,
-      fit: BoxFit.contain,
+      fit: fit,
       placeholderFadeInDuration: Duration(milliseconds: 500),
       placeholder: (context, url) => Shimmer.fromColors(
         baseColor: Colors.grey[300]!,

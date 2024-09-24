@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/product_model.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/button.dart';
@@ -12,10 +11,12 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ProductCard extends StatelessWidget {
-  ProductCard({super.key, this.products, this.ondeltap});
+  ProductCard({super.key, this.product, this.ondeltap,this.oneditTap});
 
-  ProductModel? products;
+  ProductModel? product;
   final ondeltap;
+  final oneditTap;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,37 +36,33 @@ class ProductCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              Container(
-                height: 100,
-                width: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: AppNetworkImage(
-                      networkImage: products!.images!.first.imageUrl,
-                      assetPath: 'assets/images/battery.png',
-                    )),
-              ),
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(13),
+                  child: AppNetworkImage(
+                    networkImage: product!.images!.first.imageUrl,
+                    assetPath: 'assets/images/battery.png',
+                    height: 90,
+                    width: 90,
+                    fit: BoxFit.cover,
+                  )),
               const Gap(10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppText(
-                    title: products!.description!.toString(),
+                    title: product!.description!.toString(),
                     size: 14,
                     fontWeight: FontWeight.w600,
                   ),
+                  // const Gap(6.0),
+                  // AppText(
+                  //   title: products!.description.toString(),
+                  //   size: 12,
+                  //   fontWeight: FontWeight.w500,
+                  // ),
                   const Gap(6.0),
                   AppText(
-                    title: products!.brands!.description.toString(),
-                    size: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const Gap(6.0),
-                  AppText(
-                    title: products!.price.toString() + ' AED',
+                    title: product!.price.toString() + ' AED',
                     size: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.lightblue,
@@ -75,9 +72,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       EdittButton(
-                        ontap: () {
-                          Get.toNamed(AppRoutes.vproduct_form_view);
-                        },
+                        ontap: oneditTap,
                         icon: 'assets/images/edit.svg',
                         width: Get.width * 0.22,
                         text: 'Edit',

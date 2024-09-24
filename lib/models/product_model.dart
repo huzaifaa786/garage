@@ -1,11 +1,19 @@
+import 'package:mobilegarage/models/ac_models/ac_extra_model.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
 import 'package:mobilegarage/models/battery_models/voltage_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
+import 'package:mobilegarage/models/car_wash_models/car_wash_extra_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
+import 'package:mobilegarage/models/fuel_models/fuel_extra_model.dart';
+import 'package:mobilegarage/models/oil_models/extra_model.dart';
+import 'package:mobilegarage/models/oil_models/product_type_model.dart';
+import 'package:mobilegarage/models/oil_models/volume_model.dart';
 import 'package:mobilegarage/models/product_attachment.dart';
 import 'package:mobilegarage/models/product_image.dart';
+import 'package:mobilegarage/models/recovery_models/recovery_extra_model.dart';
+import 'package:mobilegarage/models/road_assistance_models/road_extra_model.dart';
 import 'package:mobilegarage/models/tyre_models/height_model.dart';
 import 'package:mobilegarage/models/tyre_models/origin_model.dart';
 import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
@@ -54,6 +62,24 @@ class ProductModel {
   TyreSizeModel? tyreSize;
   TyreSpeedRatingModel? tyreSpeed;
 //
+  OilProductTTypeModel? oilproducttType;
+  OilVolumeModel? oilVolume;
+  List<OilExtraModel>? oilextra = [];
+//
+  List<RecoveryExtraModel>? recoveryextra = [];
+
+//
+  List<FuelExtraModel>? fuelextra = [];
+
+//
+  List<RoadAssistanceExtraModel>? roadextra = [];
+
+//
+  List<CarWashExtraModel>? carwashextra = [];
+
+//
+  List<AcExtraModel>? acextra = [];
+
 
   ProductModel({
     required this.id,
@@ -92,6 +118,14 @@ class ProductModel {
     this.tyrewidthId,
     this.updatedat,
     this.category,
+    this.acextra,
+    this.carwashextra,
+    this.fuelextra,
+    this.oilVolume,
+    this.oilextra,
+    this.oilproducttType,
+    this.recoveryextra,
+    this.roadextra,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -102,8 +136,8 @@ class ProductModel {
       garageId: json['garage_id'].toString(),
       categoryId: json['category_id'].toString(),
       serviceMinute: json['service_minute'] ?? '',
-      images: json['images'] != null
-          ? (json['images'] as List)
+      images: json['product_images'] != null
+          ? (json['product_images'] as List)
               .map((item) => ProductImage.fromJson(item))
               .toList()
           : null,
@@ -160,6 +194,42 @@ class ProductModel {
           : null,
       category: json['category'] != null
           ? CategoryModel.fromJson(json['category'])
+          : null,
+      oilproducttType: json['oil_product_type'] != null
+          ? OilProductTTypeModel.from(json['oil_product_type'])
+          : null,
+      oilVolume: json['oil_volume'] != null
+          ? OilVolumeModel.from(json['oil_volume'])
+          : null,
+      oilextra: json['product_extra'] != null
+          ? (json['product_extra'] as List)
+              .map((item) => OilExtraModel.from(item))
+              .toList()
+          : null,
+      recoveryextra: json['product_extra'] != null
+          ? (json['product_extra'] as List)
+              .map((item) => RecoveryExtraModel.from(item))
+              .toList()
+          : null,
+      fuelextra: json['product_extra'] != null
+          ? (json['product_extra'] as List)
+              .map((item) => FuelExtraModel.from(item))
+              .toList()
+          : null,
+      roadextra: json['product_extra'] != null
+          ? (json['product_extra'] as List)
+              .map((item) => RoadAssistanceExtraModel.from(item))
+              .toList()
+          : null,
+      carwashextra: json['product_extra'] != null
+          ? (json['product_extra'] as List)
+              .map((item) => CarWashExtraModel.from(item))
+              .toList()
+          : null,
+      acextra: json['product_extra'] != null
+          ? (json['product_extra'] as List)
+              .map((item) => AcExtraModel.from(item))
+              .toList()
           : null,
     );
   }

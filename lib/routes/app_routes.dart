@@ -36,8 +36,8 @@ class AppRoutes {
   static const bookservice = '/bookservice';
   static const payments = '/payments';
   static const filterorder = '/filterorder';
-
   static const search_result = '/search_result';
+  static const edit_product = '/edit_product';
 
   // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';

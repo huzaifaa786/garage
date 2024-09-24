@@ -1,12 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/product_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/product_card.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/products_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 
 class VProductsView extends StatefulWidget {
-  const VProductsView({super.key});
+  VProductsView({super.key, this.product});
+  ProductModel? product;
 
   @override
   State<VProductsView> createState() => _VProductsViewState();
@@ -51,18 +56,22 @@ class _VProductsViewState extends State<VProductsView> {
                                 physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: categoryies.product!.length,
-                                // itemCount: 2,
                                 itemBuilder: (context, index) {
                                   final product = categoryies.product![index];
                                   return ProductCard(
-                                    products: product,
+                                    product: product,
                                     ondeltap: () {
                                       controller.deleteProduct(product.id);
                                       Get.back();
                                       controller.update();
                                     },
+                                    oneditTap: () {
+                                      Get.toNamed(
+                                        AppRoutes.edit_product,
+                                        arguments: product,
+                                      );
+                                    },
                                   );
-                                  // return Text('data');
                                 }),
                           ],
                         ),
