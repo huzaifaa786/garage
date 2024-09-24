@@ -8,10 +8,12 @@ import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/product_
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/brands/add_brand_api.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/brands/get_brands_api.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/categories/get_categories_api.dart';
+import 'package:mobilegarage/models/ac_models/ac_extra_model.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
 import 'package:mobilegarage/models/battery_models/voltage_model.dart';
+import 'package:mobilegarage/models/car_wash_models/car_wash_extra_model.dart';
 import 'package:mobilegarage/models/fuel_models/fuel_extra_model.dart';
 import 'package:mobilegarage/models/oil_models/extra_model.dart';
 import 'package:mobilegarage/models/oil_models/product_type_model.dart';
@@ -19,7 +21,6 @@ import 'package:mobilegarage/models/oil_models/volume_model.dart';
 import 'package:mobilegarage/models/product_detail_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
-import 'package:mobilegarage/models/product_model.dart';
 import 'package:mobilegarage/models/recovery_models/recovery_extra_model.dart';
 import 'package:mobilegarage/models/road_assistance_models/road_extra_model.dart';
 import 'package:mobilegarage/models/tyre_models/height_model.dart';
@@ -28,6 +29,7 @@ import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
 import 'package:mobilegarage/models/tyre_models/size_model.dart';
 import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -82,6 +84,7 @@ class ProductFormController extends GetxController {
   String categoryError = '';
   String priceError = '';
   String descriptionError = '';
+  String imagesError = '';
 
   // battery errors
   String producttypeError = '';
@@ -107,8 +110,6 @@ class ProductFormController extends GetxController {
     await getCategories();
   }
 
-  ProductModel? product;
-
 // categories dropdown
   String categorysError = '';
   CategoryModel? selectedCategory;
@@ -122,22 +123,19 @@ class ProductFormController extends GetxController {
           .map((item) => CategoryModel.fromJson(item as Map<String, dynamic>))
           .toList();
 
-      clearbatterycomponents();
+      await setSelectedCategory(
+          categories.firstWhere((category) => category.id == 6));
       update();
     }
   }
 
-  void setSelectedCategory(CategoryModel? category) async {
+  setSelectedCategory(CategoryModel? category) async {
     selectedCategory = category;
     selectedCategoryId = category?.id;
-
     clearbatterymodels();
-    if (selectedCategoryId != 7) {
-      await getBrands();
-    }
-
+    clearbatterycomponents();
+    if (selectedCategoryId != null) await getBrands();
     await getProductDetails();
-
     update();
   }
 
@@ -327,11 +325,23 @@ class ProductFormController extends GetxController {
 
   List<RecoveryExtraModel> recoveryExtras = [];
 
-/////////////////////////////                                        ////////////////////////////////////
+  /////////////////////////////                                        ////////////////////////////////////
   ///////////////////////////            fuel  data                   ////////////////////////////////////
   ///////////////////////////                                        ////////////////////////////////////
 
   List<FuelExtraModel> fuelExtras = [];
+
+  /////////////////////////////                                        ////////////////////////////////////
+  ///////////////////////////            car wash  data                   ////////////////////////////////////
+  ///////////////////////////                                        ////////////////////////////////////
+
+  List<CarWashExtraModel> carwashExtras = [];
+
+/////////////////////////////                                        ////////////////////////////////////
+  ///////////////////////////            ac  data                   ////////////////////////////////////
+  ///////////////////////////                                        ////////////////////////////////////
+
+  List<AcExtraModel> acExtras = [];
 
   // product detail
   getProductDetails() async {
@@ -469,8 +479,28 @@ class ProductFormController extends GetxController {
             update();
           }
           break;
+        case '1':
+          // Map car wash  extras
+          if (response['productDetails']['service_extra'] != null) {
+            carwashExtras =
+                (response['productDetails']['service_extra'] as List<dynamic>)
+                    .map((item) => CarWashExtraModel.from(item))
+                    .toList();
+            update();
+          }
+          break;
+        case '8':
+          // Map ac  extras
+          if (response['productDetails']['service_extra'] != null) {
+            acExtras =
+                (response['productDetails']['service_extra'] as List<dynamic>)
+                    .map((item) => AcExtraModel.from(item))
+                    .toList();
+            update();
+          }
+          break;
         default:
-          print('Unknown category ids');
+          print('Unknown category ids to map data');
           break;
       }
     }
@@ -549,6 +579,8 @@ class ProductFormController extends GetxController {
 
   //TODO: FORGOT VALIDATION
   Future<bool> validateForm() async {
+    validateImages();
+
     switch (selectedCategoryId.toString()) {
       case '6': // Battery category validation
         return validateBatteryForm();
@@ -562,13 +594,28 @@ class ProductFormController extends GetxController {
         return validateRecoveryForm();
       case '9': // fuel category validation
         return validateFuelForm();
+      case '1': // car wash category validation
+        return validateCarWashForm();
+      case '8': // car wash category validation
+        return validateAcForm();
       default:
         categoryError = 'Please select a valid category';
         update();
         return false;
     }
   }
+ Future<bool> validateImages() async {
+    if (images.isEmpty) {
+      imagesError = 'Please select an images';
+      UiUtilites.errorSnackbar('Error', 'Please select an images');
+      update();
+    } else {
+      imagesError = '';
+      update();
+    }
 
+    return images.isEmpty;
+  }
   Future<bool> validateBatteryForm() async {
     if (selectedCategoryId == null) {
       categoryError = 'Please select an category';
@@ -617,7 +664,7 @@ class ProductFormController extends GetxController {
       voltageError = '';
       update();
     }
-
+   
     final priceErrorString = validateFields('Price', priceController.text);
 
     return categoryError.isEmpty &&
@@ -629,7 +676,10 @@ class ProductFormController extends GetxController {
         originError.isEmpty;
   }
 
+ 
+
   Future<bool> validateTyreForm() async {
+   
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -707,6 +757,7 @@ class ProductFormController extends GetxController {
   Map<int, String> oilextrapriceErrors = {};
 
   Future<bool> validateOilForm() async {
+   
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -769,6 +820,7 @@ class ProductFormController extends GetxController {
   Map<int, String> roadextrapriceErrors = {};
   Map<int, String> roadextratimeErrors = {};
   Future<bool> validateRoadAssistanceForm() async {
+   
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -806,6 +858,7 @@ class ProductFormController extends GetxController {
   Map<int, String> recoveryextrapriceErrors = {};
   Map<int, String> recoveryextratimeErrors = {};
   Future<bool> validateRecoveryForm() async {
+    
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -844,6 +897,7 @@ class ProductFormController extends GetxController {
   Map<int, String> fuelextrapriceErrors = {};
   Map<int, String> fuelextratimeErrors = {};
   Future<bool> validateFuelForm() async {
+    
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
       update();
@@ -877,6 +931,75 @@ class ProductFormController extends GetxController {
     return categoryError.isEmpty &&
         fuelextrapriceErrors.isEmpty &&
         fuelextratimeErrors.isEmpty;
+  }
+
+  Map<int, String> carWashextrapriceErrors = {};
+  Map<int, String> carWashextratimeErrors = {};
+  Future<bool> validateCarWashForm() async {
+   
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+
+    //
+    carWashextrapriceErrors.clear();
+
+    for (int i = 0; i < carwashExtras.length; i++) {
+      var extra = carwashExtras[i];
+      if (extra.price == null || extra.price!.isEmpty) {
+        carWashextrapriceErrors[i] = 'Extra Price is required';
+      } else {
+        carWashextrapriceErrors.remove(i);
+      }
+    }
+    //
+    carWashextratimeErrors.clear();
+
+    for (int i = 0; i < carwashExtras.length; i++) {
+      var extra = carwashExtras[i];
+      if (extra.time == null || extra.time!.isEmpty) {
+        carWashextratimeErrors[i] = 'Extra Time is required';
+      } else {
+        carWashextratimeErrors.remove(i);
+      }
+    }
+    return categoryError.isEmpty &&
+        carWashextrapriceErrors.isEmpty &&
+        carWashextratimeErrors.isEmpty;
+  }
+
+  Map<int, String> acextradescriptionErrors = {};
+  Future<bool> validateAcForm() async {
+   
+    if (selectedCategoryId == null) {
+      categoryError = 'Please select category';
+      update();
+    } else {
+      categoryError = '';
+      update();
+    }
+    final priceErrorString = validateFields('Price', priceController.text);
+
+    //
+    acextradescriptionErrors.clear();
+
+    for (int i = 0; i < acExtras.length; i++) {
+      var extra = acExtras[i];
+      if (extra.description == null) {
+        acextradescriptionErrors[i] = 'Extra description is required';
+      } else {
+        acextradescriptionErrors.remove(i);
+      }
+    }
+    //
+
+    return categoryError.isEmpty &&
+        acextradescriptionErrors.isEmpty &&
+        priceErrorString.isEmpty;
   }
 
   //TODO: Forgot Function
@@ -1011,6 +1134,43 @@ class ProductFormController extends GetxController {
           );
           update();
           break;
+        case '1':
+          List<Map<String, dynamic>> includes = carwashExtras.where((extra) {
+            return extra.price != null &&
+                extra.description != null &&
+                extra.time != null;
+          }).map((extra) {
+            return {
+              "category_extra_id": extra.id,
+              "description": extra.description ?? '',
+              "time": extra.time ?? '',
+              "price": extra.price ?? '',
+            };
+          }).toList();
+          response = await VAddProductApi.addCarWashProduct(
+            categoryid: selectedCategoryId.toString(),
+            includes: includes,
+            images: base64Images,
+          );
+          update();
+          break;
+
+        case '8':
+          List<Map<String, dynamic>> includes = acExtras.where((extra) {
+            return extra.description != null;
+          }).map((extra) {
+            return {
+              "category_extra_id": extra.id,
+              "description": extra.description ?? '',
+            };
+          }).toList();
+          response = await VAddProductApi.addAcProduct(
+            categoryid: selectedCategoryId.toString(),
+            includes: includes,
+            images: base64Images,
+          );
+          update();
+          break;
 
         default:
           print('Unknown category id');
@@ -1018,14 +1178,21 @@ class ProductFormController extends GetxController {
       }
 
       if (response.isNotEmpty) {
+        UiUtilites.successAlertDialog(
+            buttontitle: 'Back to dashboard',
+            context: Get.context,
+            description:
+                'Your product / service has been\n added successfully!',
+            onTap: () {
+              Get.offAllNamed(AppRoutes.vhome);
+            },
+            title: 'Done!');
         update();
-        UiUtilites.successSnackbar('Product added successfully', 'Congrats');
-        Get.back();
       }
     }
   }
 
-  // add brand
+  // add brand apis
   TextEditingController nameController = TextEditingController();
 
   addBrand() async {
@@ -1052,6 +1219,10 @@ class ProductFormController extends GetxController {
         return recoveryExtras.length;
       case 9:
         return fuelExtras.length;
+      case 1:
+        return carwashExtras.length;
+      case 8:
+        return acExtras.length;
       default:
         return 0;
     }
@@ -1067,6 +1238,8 @@ class ProductFormController extends GetxController {
         return recoveryextrapriceErrors[index] ?? '';
       case 9:
         return fuelextrapriceErrors[index] ?? '';
+      case 1:
+        return carWashextrapriceErrors[index] ?? '';
       default:
         return '';
     }
@@ -1080,6 +1253,8 @@ class ProductFormController extends GetxController {
         return recoveryextratimeErrors[index] ?? '';
       case 9:
         return fuelextratimeErrors[index] ?? '';
+      case 1:
+        return carWashextratimeErrors[index] ?? '';
       default:
         return '';
     }
@@ -1095,6 +1270,10 @@ class ProductFormController extends GetxController {
         return recoveryExtras[index].name.toString();
       case 9:
         return fuelExtras[index].name.toString();
+      case 1:
+        return carwashExtras[index].name.toString();
+      case 8:
+        return acExtras[index].name.toString();
       default:
         return '';
     }

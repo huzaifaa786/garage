@@ -17,6 +17,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
+import 'package:mobilegarage/vendor_app/utils/text_style.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
@@ -63,7 +64,11 @@ class _SearchViewState extends State<SearchView> {
                         hasprefix: true,
                         hint: 'street,garages'.tr,
                         readOnly: false,
-                        onChange: (value) {
+                        onChange: (text) {
+                           controller.filterPosts(
+                                query: text,
+                                category:
+                                    text);
                           Get.toNamed(AppRoutes.search);
                         },
                       ),
@@ -102,27 +107,41 @@ class _SearchViewState extends State<SearchView> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                controller.filteredPosts.isNotEmpty?
                 ListView.builder(
-                  itemCount: controller.searchCards.length,
+                  itemCount: controller.filteredPosts.length,
                   shrinkWrap: true,
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
-                    final item = controller.searchCards[index];
+                    final item = controller.filteredPosts[index];
                     return Padding(
                       padding: EdgeInsets.only(top: 15),
                       child: SearchCard(
-                        image: item.image,
-                        title: item.title,
-                        logoimage: 'https://dummyimage.com/70x70/d9c3d9/00000a',
+                        image: item.banner,
+                        title: item.name,
+                        logoimage:item.logo,
+                        //  'https://dummyimage.com/70x70/d9c3d9/00000a'
                         onTap: () {
                           UiUtilites.SuccessAlert(context);
                         },
-                        price: item.price,
+                        price: '',
                         services: '14 services',
                       ),
                     );
                   },
-                ),
+                )
+                : SizedBox(
+                                height: Get.height * 0.6,
+                                child: Center(
+                                  child: Text(
+                                    "No resultm found!".tr,
+                                    style: TextStyles.customTextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.darkblue),
+                                  ),
+                                ),
+                              ),
                 Gap(20),
                 GridView.builder(
                     itemCount: 4,

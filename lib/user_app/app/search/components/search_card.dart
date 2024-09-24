@@ -65,20 +65,20 @@ class SearchCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(12)),
-                    child: AppNetworkImage(
-                      assetPath: 'assets/images/car_fueling.png',
-                      height: Get.height * 0.15,
-                      width: Get.width,
-                      // fit: BoxFit.cover,
-                    ),
-                    // child: CachedNetworkImage(
-                    //   imageUrl: image!,
+                    // child: AppNetworkImage(
+                    //   assetPath: 'assets/images/car_fueling.png',
                     //   height: Get.height * 0.15,
-                    //   width: double.infinity,
-                    //   fit: BoxFit.cover,
-                    //   placeholder: (context, url) => CircularProgressIndicator(),
-                    //   errorWidget: (context, url, error) => Icon(Icons.error),
+                    //   width: Get.width,
+                    //   // fit: BoxFit.cover,
                     // ),
+                    child: CachedNetworkImage(
+                      imageUrl: image.toString(),
+                      height: Get.height * 0.15,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
                   ),
                 ),
                 Positioned(
@@ -94,19 +94,19 @@ class SearchCard extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(60),
-                      child: AppNetworkImage(
-                        assetPath: 'assets/images/car_fueling.png',
-                        // fit: BoxFit.cover,
-                      ),
-                      // child: CachedNetworkImage(
-                      //   imageUrl: logoimage!,
-                      //   fit: BoxFit.cover,
-                      //   height: 26,
-                      //   width: 26,
-                      //   placeholder: (context, url) =>
-                      //       CircularProgressIndicator(),
-                      //   errorWidget: (context, url, error) => Icon(Icons.error),
+                      // child: AppNetworkImage(
+                      //   assetPath: 'assets/images/car_fueling.png',
+                      //   // fit: BoxFit.cover,
                       // ),
+                      child: CachedNetworkImage(
+                        imageUrl: logoimage.toString(),
+                        fit: BoxFit.cover,
+                        height: 26,
+                        width: 26,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
                     ),
                   ),
                 ),

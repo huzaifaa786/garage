@@ -26,9 +26,11 @@ class _VProductsViewState extends State<VProductsView> {
                   ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: controller.categories.length,
+                    itemCount: controller.categoriess.length,
                     itemBuilder: (context, index) {
-                      final category = controller.categories[index];
+                      var categoryies = controller.categoriess[index];
+                      // var product = controller.products[index];
+
                       return Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 10),
@@ -39,7 +41,7 @@ class _VProductsViewState extends State<VProductsView> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 10),
                               child: AppText(
-                                title: category.name.toString(),
+                                title: categoryies.name.toString(),
                                 size: 14,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -48,9 +50,10 @@ class _VProductsViewState extends State<VProductsView> {
                             ListView.builder(
                                 physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: category.product!.length,
+                                itemCount: categoryies.product!.length,
+                                // itemCount: 2,
                                 itemBuilder: (context, index) {
-                                  final product = category.product![index];
+                                  final product = categoryies.product![index];
                                   return ProductCard(
                                     products: product,
                                     ondeltap: () {
@@ -59,6 +62,7 @@ class _VProductsViewState extends State<VProductsView> {
                                       controller.update();
                                     },
                                   );
+                                  // return Text('data');
                                 }),
                           ],
                         ),
