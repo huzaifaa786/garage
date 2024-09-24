@@ -160,7 +160,13 @@ class _HomeViewState extends State<HomeView> {
                           text: item.name,
                           // showSubtext: false,
                           ontap: () {
-                            Get.toNamed(AppRoutes.filterorder);
+                            Get.toNamed(
+                              AppRoutes.filterorder,
+                              parameters: {
+                                'categoryId':
+                                    item.id.toString()
+                              },
+                            );
                           },
                         );
                       },
