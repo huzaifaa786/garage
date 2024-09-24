@@ -125,7 +125,8 @@ class _SearchViewState extends State<SearchView> {
                           UiUtilites.SuccessAlert(context);
                         },
                         price: '',
-                        services: '14 services',
+                        services: controller.filteredPosts.length.toString()+ " services",
+                        // '14 services'
                       ),
                     );
                   },
@@ -134,7 +135,7 @@ class _SearchViewState extends State<SearchView> {
                                 height: Get.height * 0.6,
                                 child: Center(
                                   child: Text(
-                                    "No resultm found!".tr,
+                                    "No result found!".tr,
                                     style: TextStyles.customTextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
