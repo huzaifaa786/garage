@@ -421,7 +421,7 @@ class _OrderViewState extends State<OrderView> {
                                 ),
                               ),
 
-      Gap(20),
+                              Gap(20),
 
                               if ([4, 7, 9]
                                   .contains(controller.selectedCategoryId))
