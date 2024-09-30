@@ -43,11 +43,11 @@ class ProductModel {
   String? createdat;
   String? updatedat;
   String? serviceMinute;
-
+          
   List<ProductImage>? images;
-
+                       
   List<ProductAttachment>? productAttachment;
-
+                        
   BrandModel? brands;
   CategoryModel? category;
   BatteryProductTypeModel? batteryProductType;
