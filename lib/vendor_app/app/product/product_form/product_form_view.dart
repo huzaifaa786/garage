@@ -53,12 +53,28 @@ class ProductFormView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText(
-                      title: 'Fill Info',
-                      size: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
+                     Padding(
+                       padding:
+                     EdgeInsets.symmetric(horizontal: 20, ),
+               
+                       child: AppText(
+                        title: 'Fill Info',
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                                           ),
+                     ),
                     Gap(12),
+                     Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: AppText(
+                        title:
+                            '(Note : prices will be final and if you ever need to change the price contact the owner.)',
+                        size: 11,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                    Gap(20),
                     DropDownField<CategoryModel>(
                       displayValue: (item) => item.name!,
                       items: controller.categories,
@@ -301,7 +317,7 @@ class ProductFormView extends StatelessWidget {
                     if (![7, 9, 4, 1, 8]
                         .contains(controller.selectedCategoryId))
                       Gap(20),
-                    if (![3, 4, 7, 9, 1, 8]
+                    if (![4, 7, 9, 1, 8]
                         .contains(controller.selectedCategoryId))
                       Column(
                         children: [
@@ -358,10 +374,9 @@ class ProductFormView extends StatelessWidget {
                         controller.acextradescriptionErrors[index] ?? '';
                     return Column(
                       children: [
-                        if (![7, 9, 4, 1]
+                        if (![7, 9, 4, 1,8]
                                 .contains(controller.selectedCategoryId) ||
                             index != 0)
-                          if (controller.selectedCategoryId != 8)
                             Divider(
                               thickness: 7,
                               color: AppColors.grey.shade100,
@@ -430,7 +445,6 @@ class ProductFormView extends StatelessWidget {
                                 : '',
                           ),
                         ),
-                        if (controller.selectedCategoryId != 8)
                           Column(
                             children: [
                               Gap(20),
@@ -461,6 +475,10 @@ class ProductFormView extends StatelessWidget {
                                         break;
                                       case '1':
                                         controller.carwashExtras[index].price =
+                                            val;
+                                        break;
+                                         case '8':
+                                        controller.acExtras[index].price =
                                             val;
                                         break;
                                       default:
@@ -541,39 +559,39 @@ class ProductFormView extends StatelessWidget {
                     );
                   },
                 ),
-              if (controller.selectedCategoryId == 8)
-                Column(
-                  children: [
-                    Divider(
-                      thickness: 7,
-                      color: AppColors.grey.shade100,
-                    ),
-                    Gap(25),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: AppInputField(
-                        errorText: controller.priceError,
-                        hint: 'Price',
-                        type: TextInputType.number,
-                        controller: controller.priceController,
-                        onchange: (val) {
-                          controller.validateFields("Price", val);
-                        },
-                        hasSuffix: true,
-                        suffixWidget: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: AppText(
-                            title: 'AED',
-                            size: 14,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primary_color,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Gap(20)
-                  ],
-                ),
+              // if (controller.selectedCategoryId == 8)
+              //   Column(
+              //     children: [
+              //       Divider(
+              //         thickness: 7,
+              //         color: AppColors.grey.shade100,
+              //       ),
+              //       Gap(25),
+              //       Padding(
+              //         padding: const EdgeInsets.symmetric(horizontal: 32),
+              //         child: AppInputField(
+              //           errorText: controller.priceError,
+              //           hint: 'Price',
+              //           type: TextInputType.number,
+              //           controller: controller.priceController,
+              //           onchange: (val) {
+              //             controller.validateFields("Price", val);
+              //           },
+              //           hasSuffix: true,
+              //           suffixWidget: Padding(
+              //             padding: const EdgeInsets.symmetric(vertical: 16),
+              //             child: AppText(
+              //               title: 'AED',
+              //               size: 14,
+              //               fontWeight: FontWeight.w600,
+              //               color: AppColors.primary_color,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       Gap(20)
+              //     ],
+              //   ),
               Gap(40),
               AppButton(
                 buttonWidth: 0.8,

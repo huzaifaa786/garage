@@ -1,14 +1,13 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/add_product_api.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/product_detail_apis/product_detail_api.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/brands/add_brand_api.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/brands/get_brands_api.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/categories/get_categories_api.dart';
+import 'package:mobilegarage/apis/vender_apis/products/delete_product_image/delete_product_image.dart';
 import 'package:mobilegarage/apis/vender_apis/products/edit_products_apis/edit_products_api.dart';
 import 'package:mobilegarage/models/ac_models/ac_extra_model.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
@@ -89,6 +88,19 @@ class EditProductController extends GetxController {
     update();
   }
 
+  deleteimage(imageId, productId) async {
+    var response = await VDeleteProductImageApi.deleteImage(
+        productid: productId, imageid: imageId);
+    if (response.isNotEmpty) {
+      update();
+      Get.offAllNamed(AppRoutes.vhome);
+      UiUtilites.successSnackbar('Image deleted Successfully', 'Success');
+    } else {
+      update();
+      Get.back();
+    }
+  }
+
   storeProductImagesToImagesList(ProductModel product) {
     if (product.images != null && product.images!.isNotEmpty) {
       images.clear();
@@ -139,6 +151,7 @@ class EditProductController extends GetxController {
           category.id == int.parse(product!.categoryId.toString())));
       update();
     }
+    print('${product!.id}dddddddddddddddddddd');
   }
 
 // categories dropdown
@@ -436,6 +449,8 @@ class EditProductController extends GetxController {
         case '3':
           await storeProductImagesToImagesList(product!);
           priceController.text = product!.price.toString();
+          descriptionController.text = product!.description.toString();
+
           // Map tyre widths types
           if (response['productDetails']['tyer_width'] != null) {
             tyrewidths =
@@ -501,7 +516,7 @@ class EditProductController extends GetxController {
 
           // Map oil product types
           if (response['productDetails']['oil_product_type'] != null) {
-            oilproductTypes = (response['productDetails']['oil_product_type']
+            oilproductTypes = (response['productDetails']['oil_p  roduct_type']
                     as List<dynamic>)
                 .map((item) => OilProductTTypeModel.from(item))
                 .toList();
@@ -602,12 +617,28 @@ class EditProductController extends GetxController {
     switch (categoryId) {
       case '6':
         response = await VEditProductApi.editBatteryProduct(
-          productid: selectedCategoryId.toString(),
+          productid: product!.id.toString(),
           brandid: selectedBrandId.toString(),
           producttypeid: selectedProducttypeId.toString(),
           originid: selectedbatteryOriginId.toString(),
           ampereid: selectedampereId.toString(),
           voltageid: selectedvoltageId.toString(),
+          price: priceController.text,
+          description: descriptionController.text,
+          images: base64Images,
+        );
+        update();
+        break;
+      case '3':
+        response = await VEditProductApi.editTyreProduct(
+          productid: product!.id.toString(),
+          brandid: selectedBrandId.toString(),
+          heightid: selectedheightId.toString(),
+          widthid: selectedwidthId.toString(),
+          originid: selectedtyreoriginId.toString(),
+          sizeid: selectedsizeId.toString(),
+          patterenid: selectedpatterenId.toString(),
+          speedratingid: selectedSpeedRatingId.toString(),
           price: priceController.text,
           description: descriptionController.text,
           images: base64Images,
@@ -625,7 +656,7 @@ class EditProductController extends GetxController {
           context: Get.context,
           description: 'Your product / service has been\n added successfully!',
           onTap: () {
-            Get.offAllNamed(AppRoutes.vhome);
+            Get.offAllNamed(AppRoutes.vproductlist);
           },
           title: 'Done!');
       update();

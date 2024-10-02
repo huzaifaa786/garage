@@ -44,6 +44,7 @@ class VAddProductApi {
     String? originid,
     String? patterenid,
     String? price,
+    String? description,
     String? speedratingid,
   }) async {
     String url = '$vbaseUrl/add/tyer';
@@ -59,6 +60,7 @@ class VAddProductApi {
       "tyer_origin_id": originid,
       "price": price,
       "tyer_pattren_id": patterenid,
+      "description":description,
     };
     var response = await DioService.post(url: url, data: data);
     return response;

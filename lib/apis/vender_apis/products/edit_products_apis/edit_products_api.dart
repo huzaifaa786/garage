@@ -12,12 +12,11 @@ class VEditProductApi {
     String? voltageid,
     String? price,
     String? description,
-
   }) async {
     String url = '$vbaseUrl/batteries/update';
 
     var data = {
-      "images": images,
+      if (images != null && images.isNotEmpty) "images": images,
       "id": productid,
       "brand_id": brandid,
       "producttype_id": producttypeid,
@@ -32,9 +31,9 @@ class VEditProductApi {
   }
 
   //
-  static Future<Map<String, dynamic>> addTyreProduct({
+  static Future<Map<String, dynamic>> editTyreProduct({
     List<String>? images,
-    String? categoryid,
+    String? productid,
     String? brandid,
     String? widthid,
     String? heightid,
@@ -42,13 +41,14 @@ class VEditProductApi {
     String? originid,
     String? patterenid,
     String? price,
+    String? description,
     String? speedratingid,
   }) async {
-    String url = '$vbaseUrl/add/tyer';
+    String url = '$vbaseUrl/tyres/update';
 
     var data = {
-      "images": images,
-      "category_id": categoryid,
+      if (images != null && images.isNotEmpty) "images": images,
+      "id": productid,
       "brand_id": brandid,
       "tyer_width_id": widthid,
       "tyer_height_id": heightid,
@@ -56,6 +56,7 @@ class VEditProductApi {
       "tyer_speed_rating_id": speedratingid,
       "tyer_origin_id": originid,
       "price": price,
+      "description": description,
       "tyer_pattren_id": patterenid,
     };
     var response = await DioService.post(url: url, data: data);
@@ -105,6 +106,7 @@ class VEditProductApi {
     var response = await DioService.post(url: url, data: data);
     return response;
   }
+
 //
   static Future<Map<String, dynamic>> addRecoveryProduct({
     List<String>? images,
@@ -121,6 +123,7 @@ class VEditProductApi {
     var response = await DioService.post(url: url, data: data);
     return response;
   }
+
 //
   static Future<Map<String, dynamic>> addFuelProduct({
     List<String>? images,
@@ -154,6 +157,7 @@ class VEditProductApi {
     var response = await DioService.post(url: url, data: data);
     return response;
   }
+
 // //
   static Future<Map<String, dynamic>> addAcProduct({
     List<String>? images,
@@ -170,5 +174,4 @@ class VEditProductApi {
     var response = await DioService.post(url: url, data: data);
     return response;
   }
-
 }

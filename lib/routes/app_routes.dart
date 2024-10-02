@@ -85,4 +85,6 @@ class AppRoutes {
   static const vnotification = '/vnotification';
   static const vchat = '/vchat';
   static const vmap = '/vmap';
+  static const vtradinglicense = '/vtradinglicense';
+
 }

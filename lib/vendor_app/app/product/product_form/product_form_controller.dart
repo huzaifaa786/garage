@@ -108,7 +108,6 @@ class ProductFormController extends GetxController {
   void onInit() async {
     super.onInit();
     await getCategories();
-    
   }
 
 // categories dropdown
@@ -620,7 +619,6 @@ class ProductFormController extends GetxController {
       update();
       return true;
     }
-
   }
 
   Future<bool> validateBatteryForm() async {
@@ -972,6 +970,8 @@ class ProductFormController extends GetxController {
   }
 
   Map<int, String> acextradescriptionErrors = {};
+  Map<int, String> acextrapriceErrors = {};
+
   Future<bool> validateAcForm() async {
     if (selectedCategoryId == null) {
       categoryError = 'Please select category';
@@ -980,11 +980,11 @@ class ProductFormController extends GetxController {
       categoryError = '';
       update();
     }
-    final priceErrorString = validateFields('Price', priceController.text);
+    // final priceErrorString = validateFields('Price', priceController.text);
 
     //
     acextradescriptionErrors.clear();
-
+    acextrapriceErrors.clear();
     for (int i = 0; i < acExtras.length; i++) {
       var extra = acExtras[i];
       if (extra.description == null) {
@@ -994,10 +994,16 @@ class ProductFormController extends GetxController {
       }
     }
     //
-
-    return categoryError.isEmpty &&
-        acextradescriptionErrors.isEmpty &&
-        priceErrorString.isEmpty;
+    for (int i = 0; i < acExtras.length; i++) {
+      var extra = acExtras[i];
+      if (extra.price == null) {
+        acextrapriceErrors[i] = 'Extra price is required';
+      } else {
+        acextrapriceErrors.remove(i);
+      }
+    }
+    return categoryError.isEmpty && acextradescriptionErrors.isEmpty;
+    // priceErrorString.isEmpty;
   }
 
   //TODO: Forgot Function
@@ -1032,17 +1038,17 @@ class ProductFormController extends GetxController {
           break;
         case '3':
           response = await VAddProductApi.addTyreProduct(
-            categoryid: selectedCategoryId.toString(),
-            brandid: selectedBrandId.toString(),
-            widthid: selectedwidthId.toString(),
-            heightid: selectedheightId.toString(),
-            sizeid: selectedsizeId.toString(),
-            speedratingid: selectedSpeedRatingId.toString(),
-            price: priceController.text,
-            originid: selectedtyreoriginId.toString(),
-            patterenid: selectedpatterenId.toString(),
-            images: base64Images,
-          );
+              categoryid: selectedCategoryId.toString(),
+              brandid: selectedBrandId.toString(),
+              widthid: selectedwidthId.toString(),
+              heightid: selectedheightId.toString(),
+              sizeid: selectedsizeId.toString(),
+              speedratingid: selectedSpeedRatingId.toString(),
+              price: priceController.text,
+              originid: selectedtyreoriginId.toString(),
+              patterenid: selectedpatterenId.toString(),
+              images: base64Images,
+              description: descriptionController.text);
           update();
 
           break;
@@ -1160,6 +1166,7 @@ class ProductFormController extends GetxController {
             return {
               "category_extra_id": extra.id,
               "description": extra.description ?? '',
+              "price": extra.price ?? '',
             };
           }).toList();
           response = await VAddProductApi.addAcProduct(
@@ -1238,6 +1245,8 @@ class ProductFormController extends GetxController {
         return fuelextrapriceErrors[index] ?? '';
       case 1:
         return carWashextrapriceErrors[index] ?? '';
+         case 8:
+        return acextrapriceErrors[index] ?? '';
       default:
         return '';
     }

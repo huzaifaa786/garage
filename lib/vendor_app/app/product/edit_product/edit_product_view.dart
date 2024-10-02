@@ -329,7 +329,7 @@ class EditProductView extends StatelessWidget {
                     if (![7, 9, 4, 1, 8]
                         .contains(controller.selectedCategoryId))
                       Gap(20),
-                    if (![3, 4, 7, 9, 1, 8]
+                    if (![ 4, 7, 9, 1, 8]
                         .contains(controller.selectedCategoryId))
                       Column(
                         children: [
@@ -357,6 +357,7 @@ class EditProductView extends StatelessWidget {
                         // errorText: controller.priceError,
                         errorText: '',
                         hint: 'Price',
+                        readOnly: true,
                         type: TextInputType.number,
                         controller: controller.priceController,
                         onchange: (val) {

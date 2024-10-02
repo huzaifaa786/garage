@@ -138,6 +138,25 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                   ],
                                 ),
                               ),
+                               ChangePassword(
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.vtradinglicense);
+                                },
+                                icon: 'assets/icons/license.svg',
+                                text: 'Edit or add new trading license',
+                              ), ChangePassword(
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.vchangepassword);
+                                },
+                                icon: 'assets/icons/license.svg',
+                                text: 'Edit or add new owner ID',
+                              ), ChangePassword(
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.vchangepassword);
+                                },
+                                icon: 'assets/icons/Timeclock.svg',
+                                text: 'Open time and close time',
+                              ),
                               ChangePassword(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vchangepassword);

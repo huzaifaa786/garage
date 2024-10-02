@@ -110,7 +110,8 @@ class EditProductImagesPicker extends StatelessWidget {
                                             height: 60,
                                             width: 60,
                                             fit: BoxFit.cover,
-                                            assetPath: 'assets/images/battery.png',
+                                            assetPath:
+                                                'assets/images/battery.png',
                                           ),
                                         ),
                                       ),
@@ -125,8 +126,8 @@ class EditProductImagesPicker extends StatelessWidget {
                                                 Get.back();
                                               },
                                               onConfirmTap: () {
-                                                controller
-                                                    .removeSelectedImages(i);
+                                                controller.deleteimage(controller.product!.images![i].id.toString(),
+                                                    controller.product!.id.toString());
                                               },
                                               title:
                                                   'Are you sure you want to delete this Image?',

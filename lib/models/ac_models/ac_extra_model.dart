@@ -3,6 +3,7 @@ class AcExtraModel {
   int? categoryId;
   String? name;
   String? description;
+  String? price;
 
   String? createdAt;
 
@@ -12,6 +13,7 @@ class AcExtraModel {
     this.name,
     this.description,
     this.createdAt,
+    this.price
   });
 
   factory AcExtraModel.from(Map<String, dynamic> json) {

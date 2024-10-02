@@ -69,7 +69,9 @@ class _VProductsViewState extends State<VProductsView> {
                                       Get.toNamed(
                                         AppRoutes.edit_product,
                                         arguments: product,
-                                      );
+                                      )!.then((value) {
+                                        controller.getProducts();
+                                      },);
                                     },
                                   );
                                 }),
