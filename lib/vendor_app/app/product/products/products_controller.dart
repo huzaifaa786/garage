@@ -17,6 +17,7 @@ class VProductsController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     await getProducts();
+    
   }
 
   deleteProduct(id) async {

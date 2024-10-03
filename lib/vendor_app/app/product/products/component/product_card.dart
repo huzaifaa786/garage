@@ -46,61 +46,64 @@ class ProductCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   )),
               const Gap(10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppText(
-                    title: product!.description!.toString(),
-                    size: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  // const Gap(6.0),
-                  // AppText(
-                  //   title: products!.description.toString(),
-                  //   size: 12,
-                  //   fontWeight: FontWeight.w500,
-                  // ),
-                  const Gap(6.0),
-                  AppText(
-                    title: product!.price.toString() + ' AED',
-                    size: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.lightblue,
-                  ),
-                  const Gap(8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      EdittButton(
-                        ontap: oneditTap,
-                        icon: 'assets/images/edit.svg',
-                        width: Get.width * 0.22,
-                        text: 'Edit',
-                        color: AppColors.light_red,
-                      ),
-                      const Gap(12),
-                      EdittButton(
-                        ontap: () {
-                          UiUtilites.confirmAlertDialog(
-                            title:
-                                'Are you sure you want to delete this Product?',
-                            context: Get.context,
-                            onCancelTap: () {
-                              Get.back();
-                            },
-                            onConfirmTap: ondeltap,
-                            cancelText: 'No'.tr,
-                            confirmText: 'Yes'.tr,
-                          );
-                        },
-                        icon: 'assets/images/delete.svg',
-                        width: Get.width * 0.22,
-                        text: 'Delete',
-                        color: AppColors.light_red,
-                      )
-                    ],
-                  )
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppText(
+                      title: product!.description!.toString(),
+                      size: 14,
+                      fontWeight: FontWeight.w600,
+                      maxLines: 2,
+                    ),
+                    // const Gap(6.0),
+                    // AppText(
+                    //   title: products!.description.toString(),
+                    //   size: 12,
+                    //   fontWeight: FontWeight.w500,
+                    // ),
+                    const Gap(6.0),
+                    AppText(
+                      title: product!.price.toString() + ' AED',
+                      size: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.lightblue,
+                    ),
+                    const Gap(8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        EdittButton(
+                          ontap: oneditTap,
+                          icon: 'assets/images/edit.svg',
+                          width: Get.width * 0.22,
+                          text: 'Edit',
+                          color: AppColors.light_red,
+                        ),
+                        const Gap(12),
+                        EdittButton(
+                          ontap: () {
+                            UiUtilites.confirmAlertDialog(
+                              title:
+                                  'Are you sure you want to delete this Product?',
+                              context: Get.context,
+                              onCancelTap: () {
+                                Get.back();
+                              },
+                              onConfirmTap: ondeltap,
+                              cancelText: 'No'.tr,
+                              confirmText: 'Yes'.tr,
+                            );
+                          },
+                          icon: 'assets/images/delete.svg',
+                          width: Get.width * 0.22,
+                          text: 'Delete',
+                          color: AppColors.light_red,
+                        )
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),

@@ -1,6 +1,6 @@
 class RecoveryExtraModel {
   int? id;
-  int ?categoryId;
+  int? categoryId;
   String? name;
   String? description;
   String? price;
@@ -8,8 +8,8 @@ class RecoveryExtraModel {
   String? createdAt;
 
   RecoveryExtraModel(
-      { this.id,
-       this.categoryId,
+      {this.id,
+      this.categoryId,
       this.name,
       this.description,
       this.price,
@@ -18,10 +18,13 @@ class RecoveryExtraModel {
 
   factory RecoveryExtraModel.from(Map<String, dynamic> json) {
     return RecoveryExtraModel(
-      id: json['id']??0,
-      categoryId: json['category_id']??0,
-      name: json['name']??'',
-      createdAt: json['created_at']??'',
+      id: json['id'] ?? 0,
+      categoryId: json['category_extra_id'] ?? 0,
+      name: json['category_extra']['name'] ?? '',
+      time: json['time'] ?? '',
+      description: json['description'] ?? '',
+      price: json['price'] ?? '',
+      createdAt: json['created_at'] ?? '',
     );
   }
 }

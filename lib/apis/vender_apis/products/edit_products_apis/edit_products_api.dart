@@ -64,8 +64,9 @@ class VEditProductApi {
   }
 
   //
-  static Future<Map<String, dynamic>> addOilProduct({
+  static Future<Map<String, dynamic>> editOilProduct({
     List<String>? images,
+    String? productid,
     String? categoryid,
     String? brandid,
     String? producttypeid,
@@ -74,10 +75,11 @@ class VEditProductApi {
     String? description,
     required List<Map<String, dynamic>> includes,
   }) async {
-    String url = '$vbaseUrl/add/oil/lubricant';
+    String url = '$vbaseUrl/oillubricants/update';
 
     var data = {
-      "images": images,
+      if (images != null && images.isNotEmpty) "images": images,
+      "id": productid,
       "category_id": categoryid,
       "brand_id": brandid,
       "oil_product_type_id": producttypeid,
@@ -91,16 +93,16 @@ class VEditProductApi {
   }
 
   //
-  static Future<Map<String, dynamic>> addRoadAssistanceProduct({
+  static Future<Map<String, dynamic>> editRoadAssistanceProduct({
     List<String>? images,
-    String? categoryid,
+    String? productid,
     required List<Map<String, dynamic>> includes,
   }) async {
-    String url = '$vbaseUrl/store/road/assitance';
+    String url = '$vbaseUrl/roadassistance/update';
 
     var data = {
-      "images": images,
-      "category_id": categoryid,
+   if (images != null && images.isNotEmpty)   "images": images,
+      "id": productid,
       "fueldatas": includes,
     };
     var response = await DioService.post(url: url, data: data);
@@ -108,33 +110,16 @@ class VEditProductApi {
   }
 
 //
-  static Future<Map<String, dynamic>> addRecoveryProduct({
+  static Future<Map<String, dynamic>> editRecoveryProduct({
     List<String>? images,
-    String? categoryid,
+    String? productid,
     required List<Map<String, dynamic>> includes,
   }) async {
-    String url = '$vbaseUrl/store/recovery/service';
+    String url = '$vbaseUrl/recoveryservices/update';
 
     var data = {
-      "images": images,
-      "category_id": categoryid,
-      "recoveryextra_extra": includes,
-    };
-    var response = await DioService.post(url: url, data: data);
-    return response;
-  }
-
-//
-  static Future<Map<String, dynamic>> addFuelProduct({
-    List<String>? images,
-    String? categoryid,
-    required List<Map<String, dynamic>> includes,
-  }) async {
-    String url = '$vbaseUrl/store/fuel';
-
-    var data = {
-      "images": images,
-      "category_id": categoryid,
+   if (images != null && images.isNotEmpty)   "images": images,
+      "id": productid,
       "fueldatas": includes,
     };
     var response = await DioService.post(url: url, data: data);
@@ -142,16 +127,33 @@ class VEditProductApi {
   }
 
 //
-  static Future<Map<String, dynamic>> addCarWashProduct({
+  static Future<Map<String, dynamic>> editFuelProduct({
     List<String>? images,
-    String? categoryid,
+    String? productid,
     required List<Map<String, dynamic>> includes,
   }) async {
-    String url = '$vbaseUrl/store/car/wash';
+    String url = '$vbaseUrl/fuelservices/update';
 
     var data = {
-      "images": images,
-      "category_id": categoryid,
+    if (images != null && images.isNotEmpty)  "images": images,
+      "id": productid,
+      "fueldatas": includes,
+    };
+    var response = await DioService.post(url: url, data: data);
+    return response;
+  }
+
+//
+  static Future<Map<String, dynamic>> editCarWashProduct({
+    List<String>? images,
+    String? productid,
+    required List<Map<String, dynamic>> includes,
+  }) async {
+    String url = '$vbaseUrl/carwash/update';
+
+    var data = {
+     if (images != null && images.isNotEmpty) "images": images,
+      "id": productid,
       "carwashextras": includes,
     };
     var response = await DioService.post(url: url, data: data);
@@ -159,16 +161,16 @@ class VEditProductApi {
   }
 
 // //
-  static Future<Map<String, dynamic>> addAcProduct({
+  static Future<Map<String, dynamic>> editAcProduct({
     List<String>? images,
-    String? categoryid,
+    String? productid,
     required List<Map<String, dynamic>> includes,
   }) async {
-    String url = '$vbaseUrl/store/ac-service';
+    String url = '$vbaseUrl/acservice/update';
 
     var data = {
-      "images": images,
-      "category_id": categoryid,
+   if (images != null && images.isNotEmpty)   "images": images,
+      "id": productid,
       "fueldatas": includes,
     };
     var response = await DioService.post(url: url, data: data);

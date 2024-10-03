@@ -114,30 +114,10 @@ class EditProductController extends GetxController {
     }
   }
 
-//   //TODO: Error Variables
-//   String brandError = '';
-//   String categoryError = '';
-//   String priceError = '';
-//   String descriptionError = '';
-//   String imagesError = '';
-
-//   // battery errors
-//   String producttypeError = '';
-//   String originError = '';
-//   String ampereError = '';
-//   String voltageError = '';
-
-// // tyre errors
-//   String widthError = '';
-//   String heightError = '';
-//   String sizeError = '';
-//   String speedratingError = '';
-//   String tyreoriginError = '';
-//   String patterenError = '';
-
-// // oil errors
-//   String oilproductTypeError = '';
-//   String volumeError = '';
+  Map<int, TextEditingController> extraIds = {};
+  Map<int, TextEditingController> extraDescriptions = {};
+  Map<int, TextEditingController> extraprices = {};
+  Map<int, TextEditingController> extratimes = {};
 
   ProductModel? product;
   @override
@@ -149,9 +129,87 @@ class EditProductController extends GetxController {
       product = Get.arguments as ProductModel;
       await setSelectedCategory(categories.firstWhere((category) =>
           category.id == int.parse(product!.categoryId.toString())));
-      update();
     }
-    print('${product!.id}dddddddddddddddddddd');
+    await storeExtras();
+    update();
+  }
+
+  storeExtras() {
+    switch (product!.categoryId) {
+      case '2':
+        for (var extra in product!.oilextra ?? []) {
+          extraDescriptions[extra.id!] =
+              TextEditingController(text: extra.description ?? '');
+          extraprices[extra.id!] =
+              TextEditingController(text: extra.price ?? '');
+          extraIds[extra.id!] =
+              TextEditingController(text: extra.categoryId.toString());
+        }
+        break;
+
+      case '7':
+        for (var extra in product!.recoveryextra ?? []) {
+          extraDescriptions[extra.id!] =
+              TextEditingController(text: extra.description ?? '');
+          print('object${extraDescriptions.length}');
+          extraprices[extra.id!] =
+              TextEditingController(text: extra.price ?? '');
+          extraIds[extra.id!] =
+              TextEditingController(text: extra.categoryId.toString());
+          extratimes[extra.id!] =
+              TextEditingController(text: extra.time.toString());
+        }
+        break;
+      case '9':
+        for (var extra in product!.fuelextra ?? []) {
+          extraDescriptions[extra.id!] =
+              TextEditingController(text: extra.description ?? '');
+          extraprices[extra.id!] =
+              TextEditingController(text: extra.price ?? '');
+          extraIds[extra.id!] =
+              TextEditingController(text: extra.categoryId.toString());
+          extratimes[extra.id!] =
+              TextEditingController(text: extra.time.toString());
+        }
+        break;
+      case '4':
+        for (var extra in product!.roadextra ?? []) {
+          extraDescriptions[extra.id!] =
+              TextEditingController(text: extra.description ?? '');
+          extraprices[extra.id!] =
+              TextEditingController(text: extra.price ?? '');
+          extraIds[extra.id!] =
+              TextEditingController(text: extra.categoryId.toString());
+          extratimes[extra.id!] =
+              TextEditingController(text: extra.time.toString());
+        }
+        break;
+      case '1':
+        for (var extra in product!.carwashextra ?? []) {
+          extraDescriptions[extra.id!] =
+              TextEditingController(text: extra.description ?? '');
+          extraprices[extra.id!] =
+              TextEditingController(text: extra.price ?? '');
+          extraIds[extra.id!] =
+              TextEditingController(text: extra.categoryId.toString());
+          extratimes[extra.id!] =
+              TextEditingController(text: extra.time.toString());
+        }
+        break;
+      case '8':
+        for (var extra in product!.acextra ?? []) {
+          extraDescriptions[extra.ixd!] =
+              TextEditingController(text: extra.description ?? '');
+          extraprices[extra.id!] =
+              TextEditingController(text: extra.price ?? '');
+          extraIds[extra.id!] =
+              TextEditingController(text: extra.categoryId.toString());
+        }
+        break;
+      default: // Handle unknown or undefined categories
+        print('Unknown category: ${product!.categoryId}');
+        break;
+    }
   }
 
 // categories dropdown
@@ -176,7 +234,7 @@ class EditProductController extends GetxController {
     selectedCategoryId = brand?.id;
     clearbatterymodels();
     clearbatterycomponents();
-    if (![7].contains(selectedCategoryId)) {
+    if (![7, 9, 4, 1,8].contains(selectedCategoryId)) {
       await getBrands();
     }
     await getProductDetails();
@@ -516,7 +574,7 @@ class EditProductController extends GetxController {
 
           // Map oil product types
           if (response['productDetails']['oil_product_type'] != null) {
-            oilproductTypes = (response['productDetails']['oil_p  roduct_type']
+            oilproductTypes = (response['productDetails']['oil_product_type']
                     as List<dynamic>)
                 .map((item) => OilProductTTypeModel.from(item))
                 .toList();
@@ -543,6 +601,8 @@ class EditProductController extends GetxController {
           }
           break;
         case '4':
+          await storeProductImagesToImagesList(product!);
+
           // Map road assistance  extras
           if (response['productDetails']['service_extra'] != null) {
             roadAssistanceExtras =
@@ -552,6 +612,7 @@ class EditProductController extends GetxController {
           }
           break;
         case '7':
+          await storeProductImagesToImagesList(product!);
 
           // Map recovery  extras
           if (response['productDetails']['service_extra'] != null) {
@@ -563,6 +624,8 @@ class EditProductController extends GetxController {
           }
           break;
         case '9':
+          await storeProductImagesToImagesList(product!);
+
           // Map fuel  extras
           if (response['productDetails']['service_extra'] != null) {
             fuelExtras =
@@ -573,6 +636,8 @@ class EditProductController extends GetxController {
           }
           break;
         case '1':
+          await storeProductImagesToImagesList(product!);
+
           // Map car wash  extras
           if (response['productDetails']['service_extra'] != null) {
             carwashExtras =
@@ -583,6 +648,8 @@ class EditProductController extends GetxController {
           }
           break;
         case '8':
+          await storeProductImagesToImagesList(product!);
+
           // Map ac  extras
           if (response['productDetails']['service_extra'] != null) {
             acExtras =
@@ -601,7 +668,6 @@ class EditProductController extends GetxController {
 
   // TODO: edit product  Function
   editProduct() async {
-    // if (await validateForm()) {
     base64Images = [];
     update();
     if (newimages.isNotEmpty) {
@@ -645,6 +711,189 @@ class EditProductController extends GetxController {
         );
         update();
         break;
+      case '2':
+        List<Map<String, dynamic>> includes = extraDescriptions.keys
+            .map((key) {
+              final description = extraDescriptions[key]?.text ?? '';
+              final price = extraprices[key]?.text ?? '';
+              final categoryextraId = extraIds[key]?.text ?? '';
+
+              if (description.isNotEmpty && price.isNotEmpty) {
+                return {
+                  "category_extra_id": categoryextraId,
+                  "description": description,
+                  "price": price,
+                };
+              } else {
+                return null;
+              }
+            })
+            .where((item) => item != null)
+            .toList()
+            .cast<Map<String, dynamic>>();
+
+        response = await VEditProductApi.editOilProduct(
+          categoryid: selectedCategoryId!.toString(),
+          brandid: selectedBrandId.toString(),
+          productid: product!.id.toString(),
+          producttypeid: selectedoilproductTypeId.toString(),
+          volumeid: selectedVolumeId.toString(),
+          price: priceController.text,
+          description: descriptionController.text,
+          images: base64Images,
+          includes: includes,
+        );
+        update();
+        break;
+      case '7':
+        List<Map<String, dynamic>> includes = extraDescriptions.keys
+            .map((key) {
+              final description = extraDescriptions[key]?.text ?? '';
+              final price = extraprices[key]?.text ?? '';
+              final categoryextraId = extraIds[key]?.text ?? '';
+              final time = extratimes[key]?.text ?? '';
+
+              if (description.isNotEmpty && price.isNotEmpty) {
+                return {
+                  "category_extra_id": categoryextraId,
+                  "description": description,
+                  "time": time,
+                  "price": price,
+                };
+              } else {
+                return null;
+              }
+            })
+            .where((item) => item != null)
+            .toList()
+            .cast<Map<String, dynamic>>();
+
+        response = await VEditProductApi.editRecoveryProduct(
+          productid: product!.id.toString(),
+          images: base64Images,
+          includes: includes,
+        );
+        update();
+        break;
+      case '9':
+        List<Map<String, dynamic>> includes = extraDescriptions.keys
+            .map((key) {
+              final description = extraDescriptions[key]?.text ?? '';
+              final price = extraprices[key]?.text ?? '';
+              final categoryextraId = extraIds[key]?.text ?? '';
+              final time = extratimes[key]?.text ?? '';
+
+              if (description.isNotEmpty && price.isNotEmpty) {
+                return {
+                  "category_extra_id": categoryextraId,
+                  "description": description,
+                  "time": time,
+                  "price": price,
+                };
+              } else {
+                return null;
+              }
+            })
+            .where((item) => item != null)
+            .toList()
+            .cast<Map<String, dynamic>>();
+
+        response = await VEditProductApi.editFuelProduct(
+          productid: product!.id.toString(),
+          images: base64Images,
+          includes: includes,
+        );
+        update();
+        break;
+      case '4':
+        List<Map<String, dynamic>> includes = extraDescriptions.keys
+            .map((key) {
+              final description = extraDescriptions[key]?.text ?? '';
+              final price = extraprices[key]?.text ?? '';
+              final categoryextraId = extraIds[key]?.text ?? '';
+              final time = extratimes[key]?.text ?? '';
+
+              if (description.isNotEmpty && price.isNotEmpty) {
+                return {
+                  "category_extra_id": categoryextraId,
+                  "description": description,
+                  "time": time,
+                  "price": price,
+                };
+              } else {
+                return null;
+              }
+            })
+            .where((item) => item != null)
+            .toList()
+            .cast<Map<String, dynamic>>();
+
+        response = await VEditProductApi.editRoadAssistanceProduct(
+          productid: product!.id.toString(),
+          images: base64Images,
+          includes: includes,
+        );
+        update();
+        break;
+      case '1':
+        List<Map<String, dynamic>> includes = extraDescriptions.keys
+            .map((key) {
+              final description = extraDescriptions[key]?.text ?? '';
+              final price = extraprices[key]?.text ?? '';
+              final categoryextraId = extraIds[key]?.text ?? '';
+              final time = extratimes[key]?.text ?? '';
+
+              if (description.isNotEmpty && price.isNotEmpty) {
+                return {
+                  "category_extra_id": categoryextraId,
+                  "description": description,
+                  "time": time,
+                  "price": price,
+                };
+              } else {
+                return null;
+              }
+            })
+            .where((item) => item != null)
+            .toList()
+            .cast<Map<String, dynamic>>();
+
+        response = await VEditProductApi.editCarWashProduct(
+          productid: product!.id.toString(),
+          images: base64Images,
+          includes: includes,
+        );
+        update();
+        break;
+      case '8':
+        List<Map<String, dynamic>> includes = extraDescriptions.keys
+            .map((key) {
+              final description = extraDescriptions[key]?.text ?? '';
+              final price = extraprices[key]?.text ?? '';
+              final categoryextraId = extraIds[key]?.text ?? '';
+
+              if (description.isNotEmpty && price.isNotEmpty) {
+                return {
+                  "category_extra_id": categoryextraId,
+                  "description": description,
+                  "price": price,
+                };
+              } else {
+                return null;
+              }
+            })
+            .where((item) => item != null)
+            .toList()
+            .cast<Map<String, dynamic>>();
+
+        response = await VEditProductApi.editAcProduct(
+          productid: product!.id.toString(),
+          images: base64Images,
+          includes: includes,
+        );
+        update();
+        break;
+
       default:
         print('Unknown brand id');
         break;
@@ -684,17 +933,17 @@ class EditProductController extends GetxController {
   int get itemCount {
     switch (selectedCategoryId) {
       case 2:
-        return oilextras.length;
+        return product!.oilextra!.length;
       case 4:
-        return roadAssistanceExtras.length;
+        return product!.roadextra!.length;
       case 7:
-        return recoveryExtras.length;
+        return product!.recoveryextra!.length;
       case 9:
-        return fuelExtras.length;
+        return product!.fuelextra!.length;
       case 1:
-        return carwashExtras.length;
+        return product!.carwashextra!.length;
       case 8:
-        return acExtras.length;
+        return product!.acextra!.length;
       default:
         return 0;
     }
@@ -703,683 +952,19 @@ class EditProductController extends GetxController {
   String getTitle(int index) {
     switch (selectedCategoryId) {
       case 2:
-        return oilextras[index].name.toString();
+        return product!.oilextra![index].name.toString();
       case 4:
-        return roadAssistanceExtras[index].name.toString();
+        return product!.roadextra![index].name.toString();
       case 7:
-        return recoveryExtras[index].name.toString();
+        return product!.recoveryextra![index].name.toString();
       case 9:
-        return fuelExtras[index].name.toString();
+        return product!.fuelextra![index].name.toString();
       case 1:
-        return carwashExtras[index].name.toString();
+        return product!.carwashextra![index].name.toString();
       case 8:
-        return acExtras[index].name.toString();
+        return product!.acextra![index].name.toString();
       default:
         return '';
     }
   }
-
-  // String getPriceError(int index) {
-  //   switch (selectedCategoryId) {
-  //     case 2:
-  //       return oilextrapriceErrors[index] ?? '';
-  //     case 4:
-  //       return roadextrapriceErrors[index] ?? '';
-  //     case 7:
-  //       return recoveryextrapriceErrors[index] ?? '';
-  //     case 9:
-  //       return fuelextrapriceErrors[index] ?? '';
-  //     case 1:
-  //       return carWashextrapriceErrors[index] ?? '';
-  //     default:
-  //       return '';
-  //   }
-  // }
-
-  // String getTimeError(int index) {
-  //   switch (selectedCategoryId) {
-  //     case 4:
-  //       return roadextratimeErrors[index] ?? '';
-  //     case 7:
-  //       return recoveryextratimeErrors[index] ?? '';
-  //     case 9:
-  //       return fuelextratimeErrors[index] ?? '';
-  //     case 1:
-  //       return carWashextratimeErrors[index] ?? '';
-  //     default:
-  //       return '';
-  //   }
-  // }
-  // //TODO: INPUT VALIDATIONS
-  // String validateFields(String fieldName, value) {
-  //   switch (fieldName) {
-  //     case 'Category':
-  //       categoryError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return categoryError;
-  //     case 'Brand':
-  //       brandError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return brandError;
-  //     case 'Price':
-  //       priceError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return priceError;
-  //     case 'description':
-  //       descriptionError =
-  //           Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return descriptionError;
-  //     case 'producttype':
-  //       producttypeError =
-  //           Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return producttypeError;
-
-  //     case 'origin':
-  //       originError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return originError;
-
-  //     case 'ampere':
-  //       ampereError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return ampereError;
-  //     case 'voltage':
-  //       voltageError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return voltageError;
-  //     case 'width':
-  //       widthError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return widthError;
-  //     case 'height':
-  //       heightError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return heightError;
-  //     case 'size':
-  //       sizeError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return sizeError;
-  //     case 'speed rating':
-  //       speedratingError =
-  //           Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return speedratingError;
-  //     case 'tyre origin':
-  //       tyreoriginError =
-  //           Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return tyreoriginError;
-  //     case 'patteren':
-  //       patterenError = Validators.emptyStringValidator(value, fieldName) ?? '';
-  //       update();
-  //       return patterenError;
-
-  //     default:
-  //       return '';
-  //   }
-  // }
-
-  //TODO: FORGOT VALIDATION
-  // Future<bool> validateForm() async {
-  //   bool imagesValid = await validateImages();
-  //   if (!imagesValid) {
-  //     return false; // Stop if image validation fails
-  //   }
-
-  //   switch (selectedCategoryId.toString()) {
-  //     case '6': // Battery brand validation
-  //       return validateBatteryForm();
-  //     case '3': // Tyre brand validation
-  //       return validateTyreForm();
-  //     case '2': // oil brand validation
-  //       return validateOilForm();
-  //     case '4': // raod assistance brand validation
-  //       return validateRoadAssistanceForm();
-  //     case '7': // recovery brand validation
-  //       return validateRecoveryForm();
-  //     case '9': // fuel brand validation
-  //       return validateFuelForm();
-  //     case '1': // car wash brand validation
-  //       return validateCarWashForm();
-  //     case '8': // car wash brand validation
-  //       return validateAcForm();
-  //     default:
-  //       categoryError = 'Please select a valid brand';
-  //       update();
-  //       return false;
-  //   }
-  // }
-
-  // Future<bool> validateImages() async {
-  //   if (images.isEmpty) {
-  //     imagesError = 'Please select an images';
-  //     UiUtilites.errorSnackbar('Error', 'Please select an images');
-  //     update();
-  //     return false;
-  //   } else {
-  //     imagesError = '';
-  //     update();
-  //     return true;
-  //   }
-  // }
-
-  // Future<bool> validateBatteryForm() async {
-  //   if (selectedCategoryId == null) {
-  //     categoryError = 'Please select an brand';
-  //     update();
-  //   } else {
-  //     categoryError = '';
-  //     update();
-  //   }
-  //   //
-  //   if (selectedBrandId == null) {
-  //     brandError = 'Please select an brand';
-  //     update();
-  //   } else {
-  //     brandError = '';
-  //     update();
-  //   }
-  //   //
-  //   if (selectedProducttypeId == null) {
-  //     producttypeError = 'Please select an product tpye';
-  //     update();
-  //   } else {
-  //     producttypeError = '';
-  //     update();
-  //   }
-
-  //   //
-  //   if (selectedbatteryOriginId == null) {
-  //     originError = 'Please select an battery origin';
-  //     update();
-  //   } else {
-  //     originError = '';
-  //     update();
-  //   }
-  //   //
-  //   if (selectedampereId == null) {
-  //     ampereError = 'Please select an battery ampere';
-  //     update();
-  //   } else {
-  //     ampereError = '';
-  //     update();
-  //   } //
-  //   if (selectedvoltageId == null) {
-  //     voltageError = 'Please select an battery voltage';
-  //     update();
-  //   } else {
-  //     voltageError = '';
-  //     update();
-  //   }
-
-  //   final priceErrorString = validateFields('Price', priceController.text);
-
-  //   return categoryError.isEmpty &&
-  //       brandError.isEmpty &&
-  //       priceErrorString.isEmpty &&
-  //       producttypeError.isEmpty &&
-  //       ampereError.isEmpty &&
-  //       voltageError.isEmpty &&
-  //       originError.isEmpty;
-  // }
-
-  // Future<bool> validateTyreForm() async {
-  //   if (selectedCategoryId == null) {
-  //     categoryError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     categoryError = '';
-  //     update();
-  //   }
-  //   //
-  //   if (selectedBrandId == null) {
-  //     brandError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     brandError = '';
-  //     update();
-  //   }
-  //   //
-  //   if (selectedwidth == null) {
-  //     widthError = 'Please select tyre width';
-  //     update();
-  //   } else {
-  //     widthError = '';
-  //     update();
-  //   }
-
-  //   //
-  //   if (selectedheightId == null) {
-  //     heightError = 'Please select tyre height';
-  //     update();
-  //   } else {
-  //     heightError = '';
-  //     update();
-  //   }
-  //   //
-  //   if (selectedsizeId == null) {
-  //     sizeError = 'Please select tyre size';
-  //     update();
-  //   } else {
-  //     sizeError = '';
-  //     update();
-  //   } //
-  //   if (selectedSpeedRatingId == null) {
-  //     speedratingError = 'Please select an tyre speed rating';
-  //     update();
-  //   } else {
-  //     speedratingError = '';
-  //     update();
-  //   }
-  //   if (selectedtyreoriginId == null) {
-  //     tyreoriginError = 'Please select an tyre origin';
-  //     update();
-  //   } else {
-  //     tyreoriginError = '';
-  //     update();
-  //   }
-  //   if (selectedpatterenId == null) {
-  //     patterenError = 'Please select an tyre patteren';
-  //     update();
-  //   } else {
-  //     patterenError = '';
-  //     update();
-  //   }
-  //   final priceErrorString = validateFields('Price', priceController.text);
-
-  //   return categoryError.isEmpty &&
-  //       brandError.isEmpty &&
-  //       priceErrorString.isEmpty &&
-  //       widthError.isEmpty &&
-  //       heightError.isEmpty &&
-  //       sizeError.isEmpty &&
-  //       tyreoriginError.isEmpty &&
-  //       patterenError.isEmpty &&
-  //       speedratingError.isEmpty;
-  // }
-
-  // Map<int, String> oilextrapriceErrors = {};
-
-  // Future<bool> validateOilForm() async {
-  //   if (selectedCategoryId == null) {
-  //     categoryError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     categoryError = '';
-  //     update();
-  //   }
-  //   //
-  //   if (selectedBrandId == null) {
-  //     brandError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     brandError = '';
-  //     update();
-  //   }
-  //   //
-  //   if (selectedoilproductType == null) {
-  //     oilproductTypeError = 'Please select oil product type';
-  //     update();
-  //   } else {
-  //     oilproductTypeError = '';
-  //     update();
-  //   }
-
-  //   //
-  //   if (selectedVolumeId == null) {
-  //     volumeError = 'Please select oil volume';
-  //     update();
-  //   } else {
-  //     volumeError = '';
-  //     update();
-  //   }
-  //   //
-  //   oilextrapriceErrors.clear();
-  //   final priceErrorString = validateFields('Price', priceController.text);
-  //   final descriptionErrorString =
-  //       validateFields('description', descriptionController.text);
-  //   // Validate Oil Extras
-  //   for (int i = 0; i < oilextras.length; i++) {
-  //     var extra = oilextras[i];
-  //     if (extra.price == null || extra.price!.isEmpty) {
-  //       oilextrapriceErrors[i] = 'Extra Price is required';
-  //     } else {
-  //       oilextrapriceErrors.remove(i);
-  //     }
-  //   }
-  //   return categoryError.isEmpty &&
-  //       brandError.isEmpty &&
-  //       priceErrorString.isEmpty &&
-  //       descriptionErrorString.isEmpty &&
-  //       widthError.isEmpty &&
-  //       heightError.isEmpty &&
-  //       sizeError.isEmpty &&
-  //       tyreoriginError.isEmpty &&
-  //       patterenError.isEmpty &&
-  //       oilextrapriceErrors.isEmpty &&
-  //       speedratingError.isEmpty;
-  // }
-
-  // Map<int, String> roadextrapriceErrors = {};
-  // Map<int, String> roadextratimeErrors = {};
-  // Future<bool> validateRoadAssistanceForm() async {
-  //   if (selectedCategoryId == null) {
-  //     categoryError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     categoryError = '';
-  //     update();
-  //   }
-
-  //   //
-  //   roadextrapriceErrors.clear();
-  //   for (int i = 0; i < roadAssistanceExtras.length; i++) {
-  //     var extra = roadAssistanceExtras[i];
-  //     if (extra.price == null || extra.price!.isEmpty) {
-  //       roadextrapriceErrors[i] = 'Extra Price is required';
-  //     } else {
-  //       roadextrapriceErrors.remove(i);
-  //     }
-  //   }
-  //   //
-  //   roadextratimeErrors.clear();
-
-  //   for (int i = 0; i < roadAssistanceExtras.length; i++) {
-  //     var extra = roadAssistanceExtras[i];
-  //     if (extra.time == null || extra.time!.isEmpty) {
-  //       roadextratimeErrors[i] = 'Extra Time is required';
-  //     } else {
-  //       roadextratimeErrors.remove(i);
-  //     }
-  //   }
-  //   return categoryError.isEmpty &&
-  //       roadextrapriceErrors.isEmpty &&
-  //       roadextratimeErrors.isEmpty;
-  // }
-
-  // Map<int, String> recoveryextrapriceErrors = {};
-  // Map<int, String> recoveryextratimeErrors = {};
-  // Future<bool> validateRecoveryForm() async {
-  //   if (selectedCategoryId == null) {
-  //     categoryError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     categoryError = '';
-  //     update();
-  //   }
-
-  //   //
-  //   recoveryextrapriceErrors.clear();
-
-  //   for (int i = 0; i < recoveryExtras.length; i++) {
-  //     var extra = recoveryExtras[i];
-  //     if (extra.price == null || extra.price!.isEmpty) {
-  //       recoveryextrapriceErrors[i] = 'Extra Price is required';
-  //     } else {
-  //       recoveryextrapriceErrors.remove(i);
-  //     }
-  //   }
-  //   //
-  //   recoveryextratimeErrors.clear();
-
-  //   for (int i = 0; i < recoveryExtras.length; i++) {
-  //     var extra = recoveryExtras[i];
-  //     if (extra.time == null || extra.time!.isEmpty) {
-  //       recoveryextratimeErrors[i] = 'Extra Time is required';
-  //     } else {
-  //       recoveryextratimeErrors.remove(i);
-  //     }
-  //   }
-  //   return categoryError.isEmpty &&
-  //       recoveryextrapriceErrors.isEmpty &&
-  //       recoveryextratimeErrors.isEmpty;
-  // }
-
-  // Map<int, String> fuelextrapriceErrors = {};
-  // Map<int, String> fuelextratimeErrors = {};
-  // Future<bool> validateFuelForm() async {
-  //   if (selectedCategoryId == null) {
-  //     categoryError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     categoryError = '';
-  //     update();
-  //   }
-
-  //   //
-  //   fuelextrapriceErrors.clear();
-
-  //   for (int i = 0; i < fuelExtras.length; i++) {
-  //     var extra = fuelExtras[i];
-  //     if (extra.price == null || extra.price!.isEmpty) {
-  //       fuelextrapriceErrors[i] = 'Extra Price is required';
-  //     } else {
-  //       fuelextrapriceErrors.remove(i);
-  //     }
-  //   }
-  //   //
-  //   fuelextratimeErrors.clear();
-
-  //   for (int i = 0; i < fuelExtras.length; i++) {
-  //     var extra = fuelExtras[i];
-  //     if (extra.time == null || extra.time!.isEmpty) {
-  //       fuelextratimeErrors[i] = 'Extra Time is required';
-  //     } else {
-  //       fuelextratimeErrors.remove(i);
-  //     }
-  //   }
-  //   return categoryError.isEmpty &&
-  //       fuelextrapriceErrors.isEmpty &&
-  //       fuelextratimeErrors.isEmpty;
-  // }
-
-  // Map<int, String> carWashextrapriceErrors = {};
-  // Map<int, String> carWashextratimeErrors = {};
-  // Future<bool> validateCarWashForm() async {
-  //   if (selectedCategoryId == null) {
-  //     categoryError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     categoryError = '';
-  //     update();
-  //   }
-
-  //   //
-  //   carWashextrapriceErrors.clear();
-
-  //   for (int i = 0; i < carwashExtras.length; i++) {
-  //     var extra = carwashExtras[i];
-  //     if (extra.price == null || extra.price!.isEmpty) {
-  //       carWashextrapriceErrors[i] = 'Extra Price is required';
-  //     } else {
-  //       carWashextrapriceErrors.remove(i);
-  //     }
-  //   }
-  //   //
-  //   carWashextratimeErrors.clear();
-
-  //   for (int i = 0; i < carwashExtras.length; i++) {
-  //     var extra = carwashExtras[i];
-  //     if (extra.time == null || extra.time!.isEmpty) {
-  //       carWashextratimeErrors[i] = 'Extra Time is required';
-  //     } else {
-  //       carWashextratimeErrors.remove(i);
-  //     }
-  //   }
-  //   return categoryError.isEmpty &&
-  //       carWashextrapriceErrors.isEmpty &&
-  //       carWashextratimeErrors.isEmpty;
-  // }
-
-  // Map<int, String> acextradescriptionErrors = {};
-  // Future<bool> validateAcForm() async {
-  //   if (selectedCategoryId == null) {
-  //     categoryError = 'Please select brand';
-  //     update();
-  //   } else {
-  //     categoryError = '';
-  //     update();
-  //   }
-  //   final priceErrorString = validateFields('Price', priceController.text);
-
-  //   //
-  //   acextradescriptionErrors.clear();
-
-  //   for (int i = 0; i < acExtras.length; i++) {
-  //     var extra = acExtras[i];
-  //     if (extra.description == null) {
-  //       acextradescriptionErrors[i] = 'Extra description is required';
-  //     } else {
-  //       acextradescriptionErrors.remove(i);
-  //     }
-  //   }
-  //   //
-
-  //   return categoryError.isEmpty &&
-  //       acextradescriptionErrors.isEmpty &&
-  //       priceErrorString.isEmpty;
-  // }
-//
-
-  // case '3':
-  //   response = await VAddProductApi.addTyreProduct(
-  //     categoryid: selectedCategoryId.toString(),
-  //     brandid: selectedBrandId.toString(),
-  //     widthid: selectedwidthId.toString(),
-  //     heightid: selectedheightId.toString(),
-  //     sizeid: selectedsizeId.toString(),
-  //     speedratingid: selectedSpeedRatingId.toString(),
-  //     price: priceController.text,
-  //     originid: selectedtyreoriginId.toString(),
-  //     patterenid: selectedpatterenId.toString(),
-  //     images: base64Images,
-  //   );
-  //   update();
-
-  //   break;
-  // case '2':
-  //   List<Map<String, dynamic>> includes = oilextras.where((extra) {
-  //     return extra.price != null && extra.description != null;
-  //   }).map((extra) {
-  //     return {
-  //       "category_extra_id": extra.id,
-  //       "description": extra.description ?? '',
-  //       "price": extra.price ?? '',
-  //     };
-  //   }).toList();
-  //   response = await VAddProductApi.addOilProduct(
-  //     categoryid: selectedCategoryId.toString(),
-  //     brandid: selectedBrandId.toString(),
-  //     price: priceController.text,
-  //     description: descriptionController.text,
-  //     producttypeid: selectedoilproductTypeId.toString(),
-  //     volumeid: selectedVolumeId.toString(),
-  //     includes: includes,
-  //     images: base64Images,
-  //   );
-  //   update();
-
-  //   break;
-  // case '4':
-  //   List<Map<String, dynamic>> includes =
-  //       roadAssistanceExtras.where((extra) {
-  //     return extra.price != null &&
-  //         extra.description != null &&
-  //         extra.time != null;
-  //   }).map((extra) {
-  //     return {
-  //       "category_extra_id": extra.id,
-  //       "description": extra.description ?? '',
-  //       "time": extra.time ?? '',
-  //       "price": extra.price ?? '',
-  //     };
-  //   }).toList();
-  //   response = await VAddProductApi.addRoadAssistanceProduct(
-  //     categoryid: selectedCategoryId.toString(),
-  //     includes: includes,
-  //     images: base64Images,
-  //   );
-  //   update();
-
-  //   break;
-  // case '7':
-  //   List<Map<String, dynamic>> includes = recoveryExtras.where((extra) {
-  //     return extra.price != null &&
-  //         extra.description != null &&
-  //         extra.time != null;
-  //   }).map((extra) {
-  //     return {
-  //       "category_extra_id": extra.id,
-  //       "description": extra.description ?? '',
-  //       "time": extra.time ?? '',
-  //       "price": extra.price ?? '',
-  //     };
-  //   }).toList();
-  //   response = await VAddProductApi.addRecoveryProduct(
-  //     categoryid: selectedCategoryId.toString(),
-  //     includes: includes,
-  //     images: base64Images,
-  //   );
-  //   update();
-  //   break;
-
-  // case '9':
-  //   List<Map<String, dynamic>> includes = fuelExtras.where((extra) {
-  //     return extra.price != null &&
-  //         extra.description != null &&
-  //         extra.time != null;
-  //   }).map((extra) {
-  //     return {
-  //       "category_extra_id": extra.id,
-  //       "description": extra.description ?? '',
-  //       "time": extra.time ?? '',
-  //       "price": extra.price ?? '',
-  //     };
-  //   }).toList();
-  //   response = await VAddProductApi.addRecoveryProduct(
-  //     categoryid: selectedCategoryId.toString(),
-  //     includes: includes,
-  //     images: base64Images,
-  //   );
-  //   update();
-  //   break;
-  // case '1':
-  //   List<Map<String, dynamic>> includes = carwashExtras.where((extra) {
-  //     return extra.price != null &&
-  //         extra.description != null &&
-  //         extra.time != null;
-  //   }).map((extra) {
-  //     return {
-  //       "category_extra_id": extra.id,
-  //       "description": extra.description ?? '',
-  //       "time": extra.time ?? '',
-  //       "price": extra.price ?? '',
-  //     };
-  //   }).toList();
-  //   response = await VAddProductApi.addCarWashProduct(
-  //     categoryid: selectedCategoryId.toString(),
-  //     includes: includes,
-  //     images: base64Images,
-  //   );
-  //   update();
-  //   break;
-
-  // case '8':
-  //   List<Map<String, dynamic>> includes = acExtras.where((extra) {
-  //     return extra.description != null;
-  //   }).map((extra) {
-  //     return {
-  //       "category_extra_id": extra.id,
-  //       "description": extra.description ?? '',
-  //     };
-  //   }).toList();
-  //   response = await VAddProductApi.addAcProduct(
-  //     categoryid: selectedCategoryId.toString(),
-  //     includes: includes,
-  //     images: base64Images,
-  //   );
-  //   update();
-  //   break;
 }
