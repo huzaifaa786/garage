@@ -7,7 +7,7 @@ class LoginVerifyApi {
   }) async {
     //* URL
     String url = '$baseUrl/login';
-    
+
     var data = {
       'phone': phone,
     };

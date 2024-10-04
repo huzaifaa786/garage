@@ -111,6 +111,8 @@ import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_view.dart';
 import 'package:mobilegarage/vendor_app/app/profile/owner_id/owner_id_binding.dart';
 import 'package:mobilegarage/vendor_app/app/profile/owner_id/owner_id_view.dart';
+import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timings_bindings.dart';
+import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timings_view.dart';
 import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_binding.dart';
 import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_view.dart';
 import 'package:mobilegarage/vendor_app/app/sale/sale_binding.dart';
@@ -523,6 +525,11 @@ class AppPages {
       name: AppRoutes.vownerid,
       page: () => const OwnerIdView(),
       binding: OwnerIdBinding(),
+     ),
+     GetPage(
+      name: AppRoutes.vgarage_timings,
+      page: () => const GarageTimingsView(),
+      binding: GarageTimingsBindings(),
      
     ),
   ];

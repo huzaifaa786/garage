@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/routes/app_routes.dart';   
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/button.dart';
@@ -118,7 +118,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                           ),
                         ),
                       ),
-                      Gap(13),
+                      Gap(12),
                       Container(
                         decoration: BoxDecoration(color: AppColors.white_color),
                         child: Padding(
@@ -138,21 +138,23 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                   ],
                                 ),
                               ),
-                               ChangePassword(
+                              ChangePassword(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vtradinglicense);
                                 },
                                 icon: 'assets/icons/license.svg',
                                 text: 'Edit or add new trading license',
-                              ), ChangePassword(
+                              ),
+                              ChangePassword(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vownerid);
                                 },
                                 icon: 'assets/icons/license.svg',
                                 text: 'Edit or add new owner ID',
-                              ), ChangePassword(
+                              ),
+                              ChangePassword(
                                 ontap: () {
-                                  Get.toNamed(AppRoutes.vchangepassword);
+                                  Get.toNamed(AppRoutes.vgarage_timings);
                                 },
                                 icon: 'assets/icons/Timeclock.svg',
                                 text: 'Open time and close time',
