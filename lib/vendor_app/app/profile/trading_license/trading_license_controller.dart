@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:mobilegarage/apis/vender_apis/edit_profile_apis/update_trading_license_api.dart';
+import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
+import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
-class TradingLicenseController extends GetxController{
-  static TradingLicenseController instanse =Get.find();
-    File? logo;
-  File? cover;
-  //
-  String? base64Logo;
-  String? base64Cover;
+class TradingLicenseController extends GetxController {
+  static TradingLicenseController instanse = Get.find();
+  File? license;
+  String? base64license;
 
   pickImageFromGallery(String imageName) async {
     final imageSelectorApi = ImageSelectorApi();
@@ -27,23 +27,58 @@ class TradingLicenseController extends GetxController{
         String base64Image = base64Encode(await croppedImage.readAsBytes());
 
         switch (imageName) {
-          case 'logo':
-            logo = File(croppedImage.path);
-            base64Logo = base64Image;
+          case 'upload_license':
+            license = File(croppedImage.path);
+            base64license = base64Image;
             update();
             break;
-          case 'cover':
-            cover = File(croppedImage.path);
-            base64Cover = base64Image;
-            update();
-
           default:
             break;
         }
       } else {
+        print('error');
+        update();
         return null;
       }
     }
   }
-  
+
+  void removeLicenseImage() {
+    license = null;
+    base64license = null;
+    update();
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    garagedata();
+    update();
+  }
+
+  GarageModel? garage;
+  garagedata() async {
+    var response = await VGetGarageApi.getgarage();
+    if (response.isNotEmpty) {
+      garage = GarageModel.fromJson(response['garage']);
+      update();
+    }
+  }
+
+  updatelicense() async {
+    if (base64license == null) {
+      UiUtilites.errorSnackbar('Error', 'Please select license image');
+      return;
+    }
+    var response = await VUpdateLicenseApi.updateLicense(base64license);
+    if (response.isNotEmpty) {
+      garagedata();
+      garage = GarageModel.fromJson(response['garage']);
+      UiUtilites.successSnackbar('License updated successfully', 'Success');
+      Get.back();
+
+      update();
+    }
+  }
 }

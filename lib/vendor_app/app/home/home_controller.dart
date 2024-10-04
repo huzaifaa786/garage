@@ -66,9 +66,7 @@ class VHomeController extends GetxController {
   GarageModel? garage;
   garagedata() async {
     var response = await VGetGarageApi.getgarage();
-    print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-    print(response);
-    if (response.isNotEmpty) {
+        if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response['garage']);
       update();
     }

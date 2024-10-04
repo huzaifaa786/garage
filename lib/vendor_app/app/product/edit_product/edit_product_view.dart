@@ -80,11 +80,8 @@ class EditProductView extends StatelessWidget {
                       selectedValue: controller.selectedCategory,
                       onChanged: (value) {
                         controller.setSelectedCategory(value);
-                        // controller.validateFields("Category",
-                        //     controller.selectedCategoryId.toString());
-                        controller.update();
+                       controller.update();
                       },
-                      // errorText: controller.categorysError,
                       errorText: '',
                     ),
                     if (![4, 7, 9, 1, 8]
@@ -99,11 +96,8 @@ class EditProductView extends StatelessWidget {
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
-                              // controller.validateFields("Brand",
-                              //     controller.selectedBrandId.toString());
-                              controller.update();
+                           controller.update();
                             },
-                            // errorText: controller.brandError,
                             errorText: '',
                             onAddPressed: () {
                               UiUtilites.AddProductDialog(
@@ -128,13 +122,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
                                   controller.setSelectedproducttype(value);
-                                  // controller.validateFields(
-                                  //     "producttype",
-                                  //     controller.selectedProducttypeId
-                                  //         .toString());
-                                  controller.update();
+                               controller.update();
                                 },
-                                // errorText: controller.producttypeError,
                                 errorText: '',
                               ),
                               Gap(20),
@@ -145,13 +134,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedbatteryOrigin,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryOrigin(value);
-                                  // controller.validateFields(
-                                  //     "origin",
-                                  //     controller.selectedbatteryOriginId
-                                  //         .toString());
-                                  controller.update();
+                                 controller.update();
                                 },
-                                // errorText: controller.originError,
                                 errorText: '',
                               ),
                               Gap(20),
@@ -162,11 +146,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedampere,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryAmpere(value);
-                                  // controller.validateFields("ampere",
-                                  //     controller.selectedampereId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.ampereError,
                                 errorText: '',
                               ),
                               Gap(20),
@@ -177,11 +158,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedvoltage,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryvoltage(value);
-                                  // controller.validateFields("voltage",
-                                  //     controller.selectedvoltageId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.voltageError,
                                 errorText: '',
                               ),
                             ],
@@ -198,11 +176,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedwidth,
                                 onChanged: (value) {
                                   controller.setSelectedWidth(value);
-                                  // controller.validateFields("width",
-                                  //     controller.selectedwidthId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.widthError,
                                 errorText: '',
                               ),
                               Gap(20),
@@ -213,11 +188,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedheight,
                                 onChanged: (value) {
                                   controller.setSelectedheight(value);
-                                  // controller.validateFields("height",
-                                  //     controller.selectedheightId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.heightError,
                                 errorText: '',
                               ),
                               Gap(20),
@@ -228,11 +200,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedsize,
                                 onChanged: (value) {
                                   controller.setSelectedSize(value);
-                                  // controller.validateFields("size",
-                                  //     controller.selectedsizeId.toString());
-                                  controller.update();
+                                 controller.update();
                                 },
-                                // errorText: controller.sizeError,
                                 errorText: '',
                               ),
                               Gap(20),
@@ -256,11 +225,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedpatteren,
                                 onChanged: (value) {
                                   controller.setSelectedPatteren(value);
-                                  // controller.validateFields("patteren",
-                                  //     controller.selectedpatterenId.toString());
-                                  controller.update();
+                                 controller.update();
                                 },
-                                // errorText: controller.patterenError,
                                 errorText: '',
                               ),
                               Gap(20),
@@ -271,13 +237,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedtyreorigin,
                                 onChanged: (value) {
                                   controller.setSelectedTyreOrigin(value);
-                                  // controller.validateFields(
-                                  //     "tyre origin",
-                                  //     controller.selectedtyreoriginId
-                                  //         .toString());
                                   controller.update();
                                 },
-                                // errorText: controller.tyreoriginError,
                                 errorText: '',
                               ),
                             ],
@@ -295,13 +256,8 @@ class EditProductView extends StatelessWidget {
                                     controller.selectedoilproductType,
                                 onChanged: (value) {
                                   controller.setSelectedOilproducttype(value);
-                                  // controller.validateFields(
-                                  //     "product type",
-                                  //     controller.selectedoilproductTypeId
-                                  //         .toString());
-                                  controller.update();
+                                 controller.update();
                                 },
-                                // errorText: controller.oilproductTypeError,
                                 errorText: '',
                               ),
                               Gap(20),
@@ -312,11 +268,8 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedvolume,
                                 onChanged: (value) {
                                   controller.setSelectedVolume(value);
-                                  // controller.validateFields("volume",
-                                  //     controller.selectedVolumeId.toString());
-                                  controller.update();
+                                   controller.update();
                                 },
-                                // errorText: controller.volumeError,
                                 errorText: '',
                               ),
                             ],
@@ -330,18 +283,12 @@ class EditProductView extends StatelessWidget {
                       Column(
                         children: [
                           AppInputField(
-                            // errorText: controller.selectedCategoryId != 6
-                            //     ? controller.descriptionError
-                            //     : '',
                             errorText: '',
                             hint: controller.selectedCategoryId == 2
                                 ? 'Description'
                                 : 'Description (optional)',
                             controller: controller.descriptionController,
                             onchange: (val) {
-                              // controller.selectedCategoryId != 6
-                              //     ? controller.validateFields("Price", val)
-                              //     : print('no validation needed');
                             },
                           ),
                           Gap(20),
