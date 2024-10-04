@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobilegarage/apis/user_apis/categories/user_get_categories_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/filter_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/product_vehicles.dart';
@@ -83,8 +84,8 @@ class OrderController extends GetxController {
   String volumeError = '';
 
   @override
-  getCategories() async {
-    var response = await VGetCategoriesApi.getCategories();
+  getUserCategories() async {
+    var response = await UserGetCategoriesApi.getUserCategories(id: categoryId);
     if (response.isNotEmpty) {
       categories = (response['servicedetail'] as List<dynamic>)
           .map((item) => CategoryModel.fromJson(item as Map<String, dynamic>))
@@ -135,12 +136,12 @@ class OrderController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     categoryId = Get.parameters['categoryId'] ?? '';
-
-    await productDetails();
+    await getUserCategories();
+    // await productDetails();
     // await getBrands();
 
     update();
-    getvehicles();
+    // getvehicles();
   }
 
   List<UserVehicles> vehiclesList = [];

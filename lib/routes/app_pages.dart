@@ -109,6 +109,8 @@ import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepasswor
 import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepassword_view.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_binding.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_view.dart';
+import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timings_bindings.dart';
+import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timings_view.dart';
 import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_binding.dart';
 import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_view.dart';
 import 'package:mobilegarage/vendor_app/app/sale/sale_binding.dart';
@@ -515,6 +517,13 @@ class AppPages {
       name: AppRoutes.vtradinglicense,
       page: () => const TradingLicenseView(),
       binding: TradingLicenseBinding(),
+     
+    ),
+
+     GetPage(
+      name: AppRoutes.vgarage_timings,
+      page: () => const GarageTimingsView(),
+      binding: GarageTimingsBindings(),
      
     ),
   ];

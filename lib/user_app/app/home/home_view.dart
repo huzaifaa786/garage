@@ -12,7 +12,6 @@ import 'package:mobilegarage/user_app/components/textfields/icon_inputfield.dart
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

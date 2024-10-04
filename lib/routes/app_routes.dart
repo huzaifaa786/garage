@@ -76,6 +76,7 @@ class AppRoutes {
 
   static const veditprofile = '/veditprofile';
   static const vcontactus = '/vcontactus';
+  static const vgarage_timings = '/vgarage_timings';
 
   static const vunavaliabledate = '/vaunavaliabledate';
   static const vsale = '/vsale';
@@ -86,5 +87,4 @@ class AppRoutes {
   static const vchat = '/vchat';
   static const vmap = '/vmap';
   static const vtradinglicense = '/vtradinglicense';
-
 }
