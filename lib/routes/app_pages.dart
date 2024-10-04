@@ -109,6 +109,8 @@ import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepasswor
 import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepassword_view.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_binding.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_view.dart';
+import 'package:mobilegarage/vendor_app/app/profile/owner_id/owner_id_binding.dart';
+import 'package:mobilegarage/vendor_app/app/profile/owner_id/owner_id_view.dart';
 import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_binding.dart';
 import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_view.dart';
 import 'package:mobilegarage/vendor_app/app/sale/sale_binding.dart';
@@ -515,6 +517,12 @@ class AppPages {
       name: AppRoutes.vtradinglicense,
       page: () => const TradingLicenseView(),
       binding: TradingLicenseBinding(),
+     
+    ),
+     GetPage(
+      name: AppRoutes.vownerid,
+      page: () => const OwnerIdView(),
+      binding: OwnerIdBinding(),
      
     ),
   ];

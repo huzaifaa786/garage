@@ -146,7 +146,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                 text: 'Edit or add new trading license',
                               ), ChangePassword(
                                 ontap: () {
-                                  Get.toNamed(AppRoutes.vchangepassword);
+                                  Get.toNamed(AppRoutes.vownerid);
                                 },
                                 icon: 'assets/icons/license.svg',
                                 text: 'Edit or add new owner ID',
