@@ -1,12 +1,8 @@
-// ignore_for_file: avoid_print, prefer_const_constructors
+// ignore_for_file: avoid_print, prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -37,18 +33,9 @@ import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
 import 'package:mobilegarage/models/tyre_models/size_model.dart';
 import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
-
 import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
-import 'package:mobilegarage/user_app/app/order/components/vehicle_listTile.dart';
-import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
-import 'package:mobilegarage/user_app/components/cards/filter_product_card.dart';
-import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
-import 'package:mobilegarage/user_app/helper/validators.dart';
-import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
-import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
-import 'package:stepper_list_view/stepper_list_view.dart';
 
 class OrderController extends GetxController {
   static OrderController instance = Get.find();
@@ -99,7 +86,7 @@ class OrderController extends GetxController {
   getCategories() async {
     var response = await VGetCategoriesApi.getCategories();
     if (response.isNotEmpty) {
-      categories = (response['allservices'] as List<dynamic>)
+      categories = (response['servicedetail'] as List<dynamic>)
           .map((item) => CategoryModel.fromJson(item as Map<String, dynamic>))
           .toList();
 
@@ -143,6 +130,7 @@ class OrderController extends GetxController {
     selectedvoltageId = null;
   }
 
+  @override
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
@@ -928,292 +916,3 @@ class OrderController extends GetxController {
     }
   }
 }
-
-
-
-
-
-
-
-//
- // List<StepperItemData> get stepperData => [
-  //       StepperItemData(
-  //           content: Padding(
-  //             padding: const EdgeInsets.only(left: 15, bottom: 12),
-  //             child: Column(
-  //               children: [
-  //                 Row(
-  //                   mainAxisAlignment: MainAxisAlignment.start,
-  //                   children: [
-  //                     GestureDetector(
-  //                       onTap: () {
-  //                         Get.bottomSheet(
-  //                           FilterBottomsheet(),
-  //                           isScrollControlled: true,
-  //                         );
-  //                       },
-  //                       child: Container(
-  //                         height: 30,
-  //                         width: 30,
-  //                         decoration: BoxDecoration(
-  //                             // color: AppColors.lightprimary,
-  //                             borderRadius: BorderRadius.circular(50),
-  //                             color: AppColors.lightPink),
-  //                         child: SvgPicture.asset(
-  //                           'assets/icons/filter.svg',
-  //                           fit: BoxFit.scaleDown,
-  //                         ),
-  //                       ),
-  //                     ),
-  //                     Gap(10),
-  //                     Container(
-  //                       decoration: BoxDecoration(
-  //                           borderRadius: BorderRadius.circular(30)),
-  //                       child: AppText(
-  //                         title: 'Filter By',
-  //                         fontWeight: FontWeight.w600,
-  //                         size: 16.0,
-  //                         color: AppColors.primary,
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //                 Gap(5),
-  //                 Row(
-  //                   mainAxisAlignment: MainAxisAlignment.start,
-  //                   children: [
-  //                     Gap(18),
-  //                     AppText(
-  //                       title: 'Approximate price '.tr,
-  //                       fontWeight: FontWeight.w400,
-  //                       size: 10.0,
-  //                       color: AppColors.black.withOpacity(0.8),
-  //                     ),
-  //                     Row(
-  //                       children: [
-  //                         ConstrainedBox(
-  //                           constraints:
-  //                               BoxConstraints(maxWidth: Get.width * 0.35),
-  //                           child: AppText(
-  //                             title: '123.444444',
-  //                             fontWeight: FontWeight.w600,
-  //                             size: 10.0,
-  //                             color: AppColors.primarybg,
-  //                             overFlow: TextOverflow.ellipsis,
-  //                             maxLines: 1,
-  //                           ),
-  //                         ),
-  //                         AppText(
-  //                           title: ' AED'.tr,
-  //                           fontWeight: FontWeight.w600,
-  //                           size: 13.0,
-  //                           color: AppColors.primarybg,
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //           id: '1'),
-  //       StepperItemData(
-  //           content: Padding(
-  //             padding: const EdgeInsets.only(left: 15, bottom: 30),
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: [
-  //                 AppText(
-  //                   title: 'All brands',
-  //                   size: 12,
-  //                   fontWeight: FontWeight.w600,
-  //                 ),
-  //                 Gap(10),
-  //                 Container(
-  //                   decoration: BoxDecoration(),
-  //                   width: Get.width * 0.99,
-  //                   height: Get.height * 0.18,
-  //                   child: ListView.builder(
-  //                     itemCount: 5,
-  //                     scrollDirection: Axis.horizontal,
-  //                     shrinkWrap: true,
-  //                     physics: BouncingScrollPhysics(),
-  //                     itemBuilder: (context, index) {
-  //                       return Padding(
-  //                         padding: const EdgeInsets.only(
-  //                             right: 5, left: 5, top: 5, bottom: 12),
-  //                         child: Center(
-  //                           child: FilterProductCard(
-  //                             productname: 'Super car oil',
-  //                             produstdiscription:
-  //                                 'Car oil 700 ml best quality for all car types ',
-  //                           ),
-  //                         ),
-  //                       );
-  //                     },
-  //                   ),
-  //                 )
-  //               ],
-  //             ),
-  //           ),
-  //           id: '2'),
-  //       StepperItemData(
-  //           content: Padding(
-  //             padding: const EdgeInsets.only(left: 5, bottom: 50, right: 50),
-  //             child: DottedBorderButton(
-  //               title: 'Upload service or product image'.tr,
-  //               imgselect: () => selectVehicleImage(),
-  //               isImgSelected: isImageSelected(),
-  //               selectedimgpath: vehicleImage,
-  //               imgRemove: () => removeVehicleImage(),
-  //             ),
-  //           ),
-  //           id: '3'),
-  //       StepperItemData(
-  //           content: Padding(
-  //             padding: const EdgeInsets.only(left: 10),
-
-  //             /// this thsi this ///
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: [
-  //                 Row(
-  //                   children: [
-  //                     SvgPicture.asset('assets/icons/vehicle.svg'),
-  //                     Gap(8),
-  //                     AppText(
-  //                       title: 'Choose your vehicle ',
-  //                       fontWeight: FontWeight.w600,
-  //                       size: 12,
-  //                     ),
-  //                   ],
-  //                 ),
-  //                 Gap(8),
-  //                 ListView.builder(
-  //                   shrinkWrap: true,
-  //                   physics: NeverScrollableScrollPhysics(),
-  //                   itemCount: carNames.length,
-  //                   itemBuilder: (context, index) {
-  //                     final name = carNames[index];
-  //                     return VehicleListTile(
-  //                       value: name,
-  //                       groupValue: selectedCarName,
-  //                       onChanged: (value) {
-  //                         selectCar(value!);
-  //                       },
-  //                       iconPath: 'assets/icons/vehicle.svg',
-  //                       text: name,
-  //                     );
-  //                   },
-  //                 ),
-  //                 Gap(30),
-  //               ],
-  //             ),
-  //           ),
-  //           id: '4'),
-  //       StepperItemData(
-  //           content: Padding(
-  //             padding: const EdgeInsets.only(left: 10),
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: [
-  //                 Row(
-  //                   children: [
-  //                     SvgPicture.asset(
-  //                       'assets/icons/garage_logo.svg',
-  //                       height: 30,
-  //                       width: 30,
-  //                     ),
-  //                     Gap(5),
-  //                     AppText(
-  //                       title: 'What do you prefer?',
-  //                       fontWeight: FontWeight.w600,
-  //                       size: 12,
-  //                     ),
-  //                   ],
-  //                 ),
-                  // Gap(8),
-                  // SizedBox(
-                  //   child: ListView.builder(
-                  //     shrinkWrap: true,
-                  //     physics: NeverScrollableScrollPhysics(),
-                  //     itemCount: garageNames.length,
-                  //     itemBuilder: (context, index) {
-                  //       final name = garageNames[index];
-                  //       return VehicleListTile(
-                  //         value: name,
-                  //         groupValue: selectedgarageName,
-                  // onChanged: (value) {
-                  //   selectGarage(value!);
-                  // },
-                  //         iconPath: 'assets/icons/garage_logo.svg',
-
-                  //         text: name,
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
-
-  //                 Row(
-  //                   children: [
-  //                     Radio<String>(
-  //                       value: 'Select garage',
-  //                       groupValue: selectedgarageName,
-  //                       onChanged: (value) {
-  //                         selectGarage(value!);
-  //                       },
-  //                       fillColor:
-  //                           MaterialStatePropertyAll(AppColors.primarybg),
-  //                     ),
-  //                     SvgPicture.asset(
-  //                       'assets/icons/garage_logo.svg',
-  //                       color: AppColors.primarybg,
-  //                       height: 20,
-  //                       width: 20,
-  //                     ),
-  //                     Gap(10),
-  //                     Text(
-  //                       'Select garage',
-  //                       style: TextStyle(
-  //                         fontSize: 12,
-  //                         fontWeight: FontWeight.w600,
-  //                         color: AppColors.primarybg,
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //                 Gap(22),
-  //                 Row(
-  //                   children: [
-  //                     Radio<String>(
-  //                       value:
-  //                           'Send to all garages', // Updated to match the correct value
-  //                       groupValue: selectedgarageName,
-  //                       onChanged: (value) {
-  //                         selectGarage(value!);
-  //                       },
-  //                       fillColor:
-  //                           MaterialStatePropertyAll(AppColors.primarybg),
-  //                     ),
-  //                     Image.asset(
-  //                       'assets/images/all_garage.png',
-  //                       color: AppColors.primarybg,
-  //                       height: 30,
-  //                       width: 30,
-  //                     ),
-  //                     Gap(10),
-  //                     Text(
-  //                       'Send to all garages',
-  //                       style: TextStyle(
-  //                         fontSize: 12,
-  //                         fontWeight: FontWeight.w600,
-  //                         color: AppColors.primarybg,
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //           id: '5')
-  //     ];
