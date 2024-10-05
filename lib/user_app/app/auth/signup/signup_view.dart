@@ -8,8 +8,6 @@ import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
-import 'package:mobilegarage/user_app/components/textfields/main_input_dropdown.dart';
-import 'package:mobilegarage/user_app/components/textfields/phone_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';

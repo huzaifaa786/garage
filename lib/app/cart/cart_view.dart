@@ -7,11 +7,9 @@ import 'package:mobilegarage/app/cart/cart_controller.dart';
 import 'package:mobilegarage/app/cart/components/cart_card.dart';
 import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
 class CartView extends StatelessWidget {
   const CartView({super.key});
@@ -31,7 +29,10 @@ class CartView extends StatelessWidget {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(title: 'Cart',showgarageicon: false,),
+              title: TopBar(
+                title: 'Cart',
+                showgarageicon: false,
+              ),
             ),
           ),
         ),
