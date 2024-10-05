@@ -174,9 +174,9 @@ class VHomeController extends GetxController {
 
 //  /// use this function only for design ///
 
-  RxBool isSwitched = false.obs;
+  var isSwitched = false;
 
   void toggleStatuss(bool value) {
-    isSwitched.value = value;
+    isSwitched = value;
   }
 }

@@ -4,14 +4,10 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_controller.dart';
 
 class RadioButton extends StatelessWidget {
-  const RadioButton({
-    super.key,
-    this.value,
-    this.text,this.cost
-  });
-  final value;
+  const RadioButton({super.key, required this.value, this.text, this.cost});
+  final int value;
   final text;
- final double? cost; 
+  final double? cost;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,8 +28,8 @@ class RadioButton extends StatelessWidget {
               value: value,
               groupValue: controller.selectedValue,
               onChanged: (int? newValue) {
-                if (newValue != null&& cost != null) {
-                  controller.updateSelectedValue(newValue,cost!);
+                if (newValue != null && cost != null) {
+                  controller.updateSelectedValue(newValue, cost!);
                 }
               },
               title: Text(

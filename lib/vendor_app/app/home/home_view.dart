@@ -120,8 +120,8 @@ class _VHomeViewState extends State<VHomeView> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Obx(() => TextSwitchButton(
-                                    value: controller.isSwitched.value,
+                            TextSwitchButton(
+                                    value: controller.isSwitched,
                                     ontoggle: (value) {
                                       controller.toggleStatus(value);
                                       UiUtilites.showConfirmationDialog(
@@ -132,7 +132,7 @@ class _VHomeViewState extends State<VHomeView> {
                                         },
                                       );
                                     },
-                                  )),
+                                  ),
                             ],
                           ),
                         ),
