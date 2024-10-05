@@ -124,7 +124,6 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getBanners();
     getServices();
@@ -134,25 +133,17 @@ class HomeController extends GetxController {
 
   void updateIndex(int index) {
     currentIndex = index;
-    print(currentIndex);
     update();
   }
 
   Future<void> getBanners() async {
-    String? apiToken = box.read('api_token');
-    print('gvvbubcubbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
-    print(apiToken);
     var response = await BannersApi.getbanners();
-    print('bannerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-    print(response);
     if (response.isNotEmpty) {
       var bannerList = response['banners'] as List<dynamic>;
 
       banners = bannerList
           .map<BannerModel>((bannerJson) => BannerModel.fromJson(bannerJson))
           .toList();
-      print('bannersssssssssssssssssssssssssssssssssssssss');
-      print(banners.length);
     }
     update();
   }
@@ -164,7 +155,6 @@ class HomeController extends GetxController {
           .map((item) => ServicesModel.fromJson(item as Map<String, dynamic>))
           .toList();
 
-      // brands.clear();
       update();
     }
   }

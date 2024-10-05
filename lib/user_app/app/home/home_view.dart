@@ -74,7 +74,6 @@ class _HomeViewState extends State<HomeView> {
                         return BannerCard(
                           networkImage: controller.banners[index].image,
                           onTap: () {
-                            print('object');
                           },
                         );
                       },
