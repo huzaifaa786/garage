@@ -1,133 +1,82 @@
+// ignore_for_file: dead_code
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timings_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 
-class GarageTimingsView extends StatefulWidget {
+class GarageTimingsView extends StatelessWidget {
   const GarageTimingsView({super.key});
 
   @override
-  State<GarageTimingsView> createState() => _GarageTimingsViewState();
-}
-
-class _GarageTimingsViewState extends State<GarageTimingsView> {
-  List<bool> isSelectedOpenFrom = [true, false];
-  List<bool> isSelectedOpenTo = [true, false];
-
-  List<bool> isSelectedOpenClosedFrom = [true, false];
-  List<bool> isSelectedOpenClosedTo = [true, false];
-
-  TimeOfDay _selectedTimeOpenFrom = const TimeOfDay(hour: 10, minute: 0);
-  TimeOfDay _selectedTimeOpenTo = const TimeOfDay(hour: 10, minute: 0);
-  TimeOfDay _selectedTimeOpenClosedFrom = const TimeOfDay(hour: 10, minute: 0);
-  TimeOfDay _selectedTimeOpenClosedTo = const TimeOfDay(hour: 10, minute: 0);
-
-  bool _isButtonPressed = false;
-
-  @override
   Widget build(BuildContext context) {
-    return AppLayout(
-      appBarTitle: "Open time & close time",
-      child: SizedBox(
-        width: Get.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const AppText(
-                    title: 'Morning period',
-                    size: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  const Gap(20.0),
-                  const AppText(
-                    title: 'Open from',
-                    size: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const Gap(8),
-                  buildTimeRow(
-                      'From', _selectedTimeOpenFrom, isSelectedOpenFrom),
-                  const Gap(20.0),
-                  const AppText(
-                    title: 'To',
-                    size: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const Gap(8),
-                  buildTimeRow('To', _selectedTimeOpenTo, isSelectedOpenTo),
-                ],
-              ),
-            ),
-            Divider(
-              thickness: 6,
-              color: AppColors.divider_color,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const AppText(
-                    title: 'Night period',
-                    size: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  const Gap(20.0),
-                  const AppText(
-                    title: 'Open from',
-                    size: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const Gap(8),
-                  buildTimeRow('From', _selectedTimeOpenClosedFrom,
-                      isSelectedOpenClosedFrom),
-                  const Gap(20.0),
-                  const AppText(
-                    title: 'To',
-                    size: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const Gap(8),
-                  buildTimeRow(
-                      'To', _selectedTimeOpenClosedTo, isSelectedOpenClosedTo),
-                ],
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 40.0, vertical: 50.0),
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _isButtonPressed = !_isButtonPressed;
-                  });
-                },
-                child: AppButton(
-                  buttonColor:
-                      _isButtonPressed ? AppColors.grey : AppColors.primary,
-                  title: 'Save changes',
-                  textColor:
-                      _isButtonPressed ? AppColors.primary : AppColors.white,
+    return GetBuilder<GarageTimingsController>(
+      autoRemove: false,
+      builder: (controller) {
+        bool isButtonPressed = false;
+        String successMessage = '';
+
+        return AppLayout(
+          appBarTitle: "Open time & close time",
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildTimeSection(
+                  "Morning period",
+                  controller.selectedTimeOpenFrom,
+                  controller.selectedTimeOpenTo,
+                  (fromTime, toTime) {
+                    controller.selectedTimeOpenFrom = fromTime;
+                    controller.selectedTimeOpenTo = toTime;
+                    controller.update(); // Update the state
+                  },
                 ),
-              ),
-            ),
-            _isButtonPressed
-                ? Row(
+                Divider(thickness: 6, color: AppColors.divider_color),
+                _buildTimeSection(
+                  "Night period",
+                  controller.selectedTimeClosedFrom,
+                  controller.selectedTimeClosedTo,
+                  (fromTime, toTime) {
+                    controller.selectedTimeClosedFrom = fromTime;
+                    controller.selectedTimeClosedTo = toTime;
+                    controller.update(); // Update the state
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40.0, vertical: 50.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      controller.onSaveChanges(() {
+                        isButtonPressed = true;
+                        successMessage = 'Changes have been saved successfully';
+                        Future.delayed(const Duration(seconds: 2), () {
+                          isButtonPressed = false;
+                          controller.update();
+                        });
+                      });
+                    },
+                    child: AppButton(
+                      buttonColor:
+                          isButtonPressed ? AppColors.grey : AppColors.primary,
+                      title: 'Save changes',
+                      textColor:
+                          isButtonPressed ? AppColors.primary : AppColors.white,
+                    ),
+                  ),
+                ),
+                if (isButtonPressed)
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppText(
-                        title: 'Changes has been saved successfully',
+                        title: successMessage,
                         color: AppColors.green_color,
                         size: 12,
                         fontWeight: FontWeight.w500,
@@ -135,53 +84,77 @@ class _GarageTimingsViewState extends State<GarageTimingsView> {
                       const Gap(5),
                       SvgPicture.asset('assets/images/checkcircle.svg'),
                     ],
-                  )
-                : const SizedBox(),
-          ],
-        ),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildTimeSection(String title, TimeOfDay fromTime, TimeOfDay toTime,
+      Function(TimeOfDay, TimeOfDay) onTimesSelected) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppText(
+            title: title,
+            size: 16,
+            fontWeight: FontWeight.w600,
+          ),
+          const Gap(20.0),
+          const AppText(
+            title: 'Open from',
+            size: 14,
+            fontWeight: FontWeight.w500,
+          ),
+          const Gap(8),
+          buildTimeRow('From', fromTime, onTimesSelected, true),
+          const Gap(20.0),
+          const AppText(
+            title: 'To',
+            size: 14,
+            fontWeight: FontWeight.w500,
+          ),
+          const Gap(8),
+          buildTimeRow('To', toTime, onTimesSelected, false),
+        ],
       ),
     );
   }
 
-  Widget buildTimeRow(
-      String label, TimeOfDay selectedTime, List<bool> isSelected) {
+  Widget buildTimeRow(String label, TimeOfDay selectedTime,
+      Function(TimeOfDay, TimeOfDay) onTimesSelected, bool isFromTime) {
     return Row(
       children: [
         Flexible(
           flex: 3,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            decoration: BoxDecoration(
-              color: AppColors.grey[100],
-              borderRadius: BorderRadius.circular(3),
-            ),
-            child: Center(
-              child: GestureDetector(
-                onTap: () async {
-                  final TimeOfDay? newTime = await showTimePicker(
-                    context: context,
-                    initialTime: selectedTime,
-                  );
-                  if (newTime != null) {
-                    setState(() {
-                      if (label == 'From') {
-                        if (isSelected == isSelectedOpenFrom) {
-                          _selectedTimeOpenFrom = newTime;
-                        } else if (isSelected == isSelectedOpenClosedFrom) {
-                          _selectedTimeOpenClosedFrom = newTime;
-                        }
-                      } else {
-                        if (isSelected == isSelectedOpenTo) {
-                          _selectedTimeOpenTo = newTime;
-                        } else if (isSelected == isSelectedOpenClosedTo) {
-                          _selectedTimeOpenClosedTo = newTime;
-                        }
-                      }
-                    });
-                  }
-                },
+          child: GestureDetector(
+            onTap: () async {
+              final TimeOfDay? newTime = await showTimePicker(
+                context: Get.context!,
+                initialTime: selectedTime,
+              );
+              if (newTime != null) {
+                if (isFromTime) {
+                  onTimesSelected(newTime, selectedTime);
+                } else {
+                  onTimesSelected(selectedTime, newTime);
+                }
+              }
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              decoration: BoxDecoration(
+                color: AppColors.grey[100],
+                borderRadius: BorderRadius.circular(3),
+              ),
+              child: Center(
                 child: Text(
-                  selectedTime.format(context), // format the time
+                  selectedTime.format(Get.context!),
                   style: const TextStyle(
                     color: AppColors.black,
                     fontSize: 10,
@@ -204,63 +177,32 @@ class _GarageTimingsViewState extends State<GarageTimingsView> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isSelected[0] = true;
-                      isSelected[1] = false;
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(4)),
-                      color: isSelected[0]
-                          ? AppColors.primary
-                          : Colors.transparent,
-                    ),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-                    child: Text(
-                      "AM",
-                      style: TextStyle(
-                        fontSize: 8,
-                        fontWeight: FontWeight.w500,
-                        color:
-                            isSelected[0] ? AppColors.white : AppColors.black,
-                      ),
-                    ),
-                  ),
-                ),
+                _buildAmPmButton('AM', selectedTime.period == DayPeriod.am),
                 const Gap(5),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isSelected[0] = false;
-                      isSelected[1] = true;
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(4)),
-                      color: isSelected[1]
-                          ? AppColors.primary
-                          : Colors.transparent,
-                    ),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-                    child: AppText(
-                      title: 'PM',
-                      size: 8,
-                      fontWeight: FontWeight.w500,
-                      color: isSelected[1] ? AppColors.white : AppColors.black,
-                    ),
-                  ),
-                ),
+                _buildAmPmButton('PM', selectedTime.period == DayPeriod.pm),
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildAmPmButton(String label, bool isSelected) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        color: isSelected ? AppColors.primary : Colors.transparent,
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 8,
+          fontWeight: FontWeight.w500,
+          color: isSelected ? AppColors.white : AppColors.black,
+        ),
+      ),
     );
   }
 }
