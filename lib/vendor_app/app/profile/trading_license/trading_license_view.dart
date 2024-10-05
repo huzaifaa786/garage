@@ -23,65 +23,67 @@ class TradingLicenseView extends StatelessWidget {
             ? AppLayout(
                 appBarTitle: 'Trading License',
                 hasBgColor: false,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 40),
-                      child: Row(
-                        children: [
-                          Expanded(child: LicenseImagePickerr()),
-                          if (controller.license != null) Gap(15),
-                          if (controller.license != null)
-                            InkWell(
-                              onTap: () {
-                                controller.removeLicenseImage();
-                              },
-                              child: SvgPicture.asset(
-                                'assets/icons/delete.svg',
-                                height: 17,
-                                width: 17,
-                              ),
-                            )
-                        ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 40),
+                        child: Row(
+                          children: [
+                            Expanded(child: LicenseImagePickerr()),
+                            if (controller.license != null) Gap(15),
+                            if (controller.license != null)
+                              InkWell(
+                                onTap: () {
+                                  controller.removeLicenseImage();
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/icons/delete.svg',
+                                  height: 17,
+                                  width: 17,
+                                ),
+                              )
+                          ],
+                        ),
                       ),
-                    ),
-                    Divider(
-                      thickness: 6,
-                      color: AppColors.grey.shade200,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 40),
-                      child: AppText(
-                        title: 'Add New Trading License',
-                        size: 14,
-                        fontWeight: FontWeight.w600,
+                      Divider(
+                        thickness: 6,
+                        color: AppColors.grey.shade200,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 40),
+                        child: AppText(
+                          title: 'Add New Trading License',
+                          size: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                      child: ImageSelectionTile(
-                        title: 'Upload license',
-                        onTap: () {
-                          controller.pickImageFromGallery('upload_license');
-                        },
-                        isSelected: controller.license != null &&
-                            controller.license!.path.isNotEmpty,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 40,
+                        ),
+                        child: ImageSelectionTile(
+                          title: 'Upload license',
+                          onTap: () {
+                            controller.pickImageFromGallery('upload_license');
+                          },
+                          isSelected: controller.license != null &&
+                              controller.license!.path.isNotEmpty,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 50),
-                      child: MainButton(
-                        title: 'Confirm',
-                        onTap: () {
-                          controller.updatelicense();
-                        },
-                      ),
-                    )
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 50),
+                        child: MainButton(
+                          title: 'Confirm',
+                          onTap: () {
+                            controller.updatelicense();
+                          },
+                        ),
+                      )
+                    ],
+                  ),
                 ))
             : Text(''));
   }

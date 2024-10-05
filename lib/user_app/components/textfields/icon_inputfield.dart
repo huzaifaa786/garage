@@ -24,8 +24,11 @@ class IconInputField extends StatelessWidget {
     this.ontap,
     this.width,
     this.height = 55,
+    this.onsubmit,
   });
   final ValueChanged<String>? onChange;
+  final ValueChanged<String>? onsubmit;
+
   final VoidCallback? ontap;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -59,6 +62,7 @@ class IconInputField extends StatelessWidget {
           obscureText: obscure,
           controller: controller,
           onChanged: onChange,
+          onFieldSubmitted: onsubmit,
           validator: validator,
           onTap: ontap,
           autovalidateMode: autovalidateMode ??

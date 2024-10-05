@@ -11,6 +11,7 @@ import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class VBannerController extends GetxController {
   static VBannerController instance = Get.find();
@@ -41,6 +42,11 @@ class VBannerController extends GetxController {
       List<dynamic> bannerList = response['bannerprice'];
       banners = bannerList.map((banner) => BannerModel.from(banner)).toList();
     }
+      selectedBannerCost = banners[0].cost;
+      print('aaaaaaaaaaaaaaaaaaaaaaaaaaa$selectedBannerCost');
+      selectedValue = banners[0].id;
+      print('vvvvvvvvvvvvvvvvvvvvvvvvvvv$selectedValue');
+
     update();
   }
 
@@ -51,8 +57,9 @@ class VBannerController extends GetxController {
         intent: paymentID.toString());
     if (response.isNotEmpty) {
       update();
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(Duration(seconds: 1), () {
         Get.back();
+        UiUtilites.successSnackbar('Banner added successfully', 'Success');
       });
     }
   }

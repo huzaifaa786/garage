@@ -1,7 +1,7 @@
 class BannerModel {
   int id;
   String? duration;
-  String? cost;
+  double?   cost;
   String? createdat;
 
   BannerModel({required this.id, this.cost, this.createdat, this.duration});
@@ -9,10 +9,8 @@ class BannerModel {
     return BannerModel(
       id: json['id'],
       duration: json['duration'],
-      cost: json['cost'],
+      cost: double.parse(json['cost']),
       createdat: json['created_at'],
     );
   }
 }
-
-

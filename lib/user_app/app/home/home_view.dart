@@ -44,20 +44,15 @@ class _HomeViewState extends State<HomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.search);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                      child: IconInputField(
-                        hasprefix: true,
-                        hint: 'Search for garages, service ..'.tr,
-                        readOnly: false,
-                        onChange: (value) {
-                          Get.toNamed(AppRoutes.search);
-                        },
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40.0, right: 40.0),
+                    child: IconInputField(
+                      hasprefix: true,
+                      hint: 'Search for garages, service ..'.tr,
+                      readOnly: false,
+                      onsubmit: (value) {
+                        Get.toNamed(AppRoutes.search);
+                      },
                     ),
                   ),
                   Gap(10),
@@ -161,10 +156,7 @@ class _HomeViewState extends State<HomeView> {
                           ontap: () {
                             Get.toNamed(
                               AppRoutes.filterorder,
-                              parameters: {
-                                'categoryId':
-                                    item.id.toString()
-                              },
+                              parameters: {'categoryId': item.id.toString()},
                             );
                           },
                         );
