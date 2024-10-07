@@ -30,16 +30,16 @@ import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 
-class OrderView extends StatefulWidget {
-  const OrderView({super.key});
+class FilterServiceView extends StatefulWidget {
+  const FilterServiceView({super.key});
 
   @override
-  State<OrderView> createState() => _OrderViewState();
+  State<FilterServiceView> createState() => _FilterServiceViewState();
 }
 
 int activeStep = 0;
 
-class _OrderViewState extends State<OrderView> {
+class _FilterServiceViewState extends State<FilterServiceView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FilterServiceController>(
@@ -147,204 +147,191 @@ class _OrderViewState extends State<OrderView> {
                         max: 80.0,
                       ),
                     ),
-                    // if (![4, 7, 9].contains(controller.selectedCategoryId))
-                    // Column(
-                    //   children: [
-                    //     Gap(20),
-                    //     DropDownField<BrandModel>(
-                    //       displayValue: (item) => item.name!,
-                    //       items: controller.brands,
-                    //       hint: 'Brands Name',
-                    //       selectedValue: controller.selectedBrand,
-                    //       onChanged: (value) {
-                    //         controller.setSelectedBrands(value);
-                    //         controller.update();
-                    //       },
-                    //       errorText: '',
-                    //     ),
-                    //     Gap(20),
-                    //     DropDownField<BatteryProductTypeModel>(
-                    //       displayValue: (item) => item.name!,
-                    //       items: controller.producttypes,
-                    //       hint: 'Product type',
-                    //       selectedValue: controller.selectedproducttype,
-                    //       onChanged: (value) {
-                    //         controller.setSelectedproducttype(value);
+                    // if (![4, 7, 9]
+                    //     .contains(int.parse(controller.categoryId.toString())))
+                      Column(
+                        children: [
+                          Gap(30),
+                          DropDownField<BrandModel>(
+                            displayValue: (item) => item.name!,
+                            items: controller.brands,
+                            hint: 'Brands Name',
+                            selectedValue: controller.selectedBrand,
+                            onChanged: (value) {
+                              controller.setSelectedBrands(value);
+                              controller.update();
+                            },
+                            errorText: '',
+                          ),
+                        ],
+                      ),
+                    controller.categoryId == '6'
+                        ? Column(
+                            children: [
+                              Gap(20),
+                              DropDownField<BatteryProductTypeModel>(
+                                displayValue: (item) => item.name!,
+                                items: controller.producttypes,
+                                hint: 'Product type',
+                                selectedValue: controller.selectedproducttype,
+                                onChanged: (value) {
+                                  controller.setSelectedproducttype(value);
 
-                    //         controller.update();
-                    //       },
-                    //       errorText: '',
-                    //     ),
-                    //     Gap(20),
-                    //     DropDownField<BatteryOriginModel>(
-                    //       displayValue: (item) => item.origin!,
-                    //       items: controller.batteryOrigins,
-                    //       hint: 'Origin',
-                    //       selectedValue: controller.selectedbatteryOrigin,
-                    //       onChanged: (value) {
-                    //         controller.setSelectedBatteryOrigin(value);
-                    //         controller.update();
-                    //       },
-                    //       errorText: '',
-                    //     ),
-                    //     Gap(20),
-                    //     DropDownField<BatteryAmpereModel>(
-                    //       displayValue: (item) => item.ampere!,
-                    //       items: controller.batteryAmperes,
-                    //       hint: 'Battery Ampere',
-                    //       selectedValue: controller.selectedampere,
-                    //       onChanged: (value) {
-                    //         controller.setSelectedBatteryAmpere(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<BatteryOriginModel>(
+                                displayValue: (item) => item.origin!,
+                                items: controller.batteryOrigins,
+                                hint: 'Origin',
+                                selectedValue: controller.selectedbatteryOrigin,
+                                onChanged: (value) {
+                                  controller.setSelectedBatteryOrigin(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<BatteryAmpereModel>(
+                                displayValue: (item) => item.ampere!,
+                                items: controller.batteryAmperes,
+                                hint: 'Battery Ampere',
+                                selectedValue: controller.selectedampere,
+                                onChanged: (value) {
+                                  controller.setSelectedBatteryAmpere(value);
 
-                    //         controller.update();
-                    //       },
-                    //       errorText: '',
-                    //     ),
-                    //     Gap(20),
-                    //     DropDownField<BatteryVoltageModel>(
-                    //       displayValue: (item) => item.voltage!,
-                    //       items: controller.batteryVoltages,
-                    //       hint: 'Battery Voltage',
-                    //       selectedValue: controller.selectedvoltage,
-                    //       onChanged: (value) {
-                    //         controller.setSelectedBatteryvoltage(value);
-                    //         controller.update();
-                    //       },
-                    //       errorText: '',
-                    //     ),
-                    //   ],
-                    // ),
-
-                    // controller.selectedCategoryId == 3
-                    //     ? Column(
-                    //         children: [
-                    //           DropDownField<TyreWidthModel>(
-                    //             displayValue: (item) => item.width!,
-                    //             items: controller.tyrewidths,
-                    //             hint: 'Tyer width',
-                    //             selectedValue: controller.selectedwidth,
-                    //             onChanged: (value) {
-                    //               controller.setSelectedWidth(value);
-                    //               // controller.validateFields("width",
-                    //               // controller.selectedwidthId.toString());
-                    //               controller.update();
-                    //             },
-                    //             errorText: '',
-                    //           ),
-                    //           Gap(20),
-                    //           DropDownField<TyreHeightModel>(
-                    //             displayValue: (item) => item.height!,
-                    //             items: controller.tyreheights,
-                    //             hint: 'Tyer height',
-                    //             selectedValue: controller.selectedheight,
-                    //             onChanged: (value) {
-                    //               controller.setSelectedheight(value);
-                    //               // controller.validateFields("height",
-                    //               // controller.selectedheightId.toString());
-                    //               controller.update();
-                    //             },
-                    //             errorText: controller.heightError,
-                    //           ),
-                    //           Gap(20),
-                    //           DropDownField<TyreSizeModel>(
-                    //             displayValue: (item) => item.size!,
-                    //             items: controller.tyresizes,
-                    //             hint: 'Wheel size',
-                    //             selectedValue: controller.selectedsize,
-                    //             onChanged: (value) {
-                    //               controller.setSelectedSize(value);
-                    //               // controller.validateFields("size",
-                    //               // controller.selectedsizeId.toString());
-                    //               controller.update();
-                    //             },
-                    //             errorText: controller.sizeError,
-                    //           ),
-                    //           Gap(20),
-                    //           DropDownField<TyreSpeedRatingModel>(
-                    //             displayValue: (item) => item.speedrating!,
-                    //             items: controller.tyreSpeedRatings,
-                    //             hint: 'Speed rating',
-                    //             selectedValue: controller.selectedSpeedRating,
-                    //             onChanged: (value) {
-                    //               controller.setSelectedSpeedRating(value);
-                    //               // controller.validateFields(
-                    //               // "speed rating",
-                    //               // controller.selectedSpeedRatingId
-                    //               // .toString());
-                    //               controller.update();
-                    //             },
-                    //             errorText: controller.speedratingError,
-                    //           ),
-                    //           Gap(20),
-                    //           DropDownField<TyrePatternModel>(
-                    //             displayValue: (item) => item.pattern!,
-                    //             items: controller.tyrepattterens,
-                    //             hint: 'Pattern',
-                    //             selectedValue: controller.selectedpatteren,
-                    //             onChanged: (value) {
-                    //               controller.setSelectedPatteren(value);
-                    //               // controller.validateFields("patteren",
-                    //               // controller.selectedpatterenId.toString());
-                    //               controller.update();
-                    //             },
-                    //             errorText: controller.patterenError,
-                    //           ),
-                    //           DropDownField<TyreOriginModel>(
-                    //             displayValue: (item) => item.origin!,
-                    //             items: controller.tyreorigins,
-                    //             hint: 'Origin',
-                    //             selectedValue: controller.selectedtyreorigin,
-                    //             onChanged: (value) {
-                    //               controller.setSelectedTyreOrigin(value);
-                    //               // controller.validateFields(
-                    //               // "tyre origin",
-                    //               // controller.selectedtyreoriginId
-                    //               // .toString());
-                    //               controller.update();
-                    //             },
-                    //             errorText: controller.tyreoriginError,
-                    //           ),
-                    //           Gap(20),
-                    //         ],
-                    //       )
-                    //     : Text(''),
-                    // controller.selectedCategoryId == 2
-                    //     ? Column(
-                    //         children: [
-                    //           DropDownField<OilProductTTypeModel>(
-                    //             displayValue: (item) => item.producttype!,
-                    //             items: controller.oilproductTypes,
-                    //             hint: 'Product type',
-                    //             selectedValue:
-                    //                 controller.selectedoilproductType,
-                    //             onChanged: (value) {
-                    //               controller.setSelectedOilproducttype(value);
-                    //               // controller.validateFields(
-                    //               // "product type",
-                    //               // controller.selectedoilproductTypeId
-                    //               // .toString());
-                    //               controller.update();
-                    //             },
-                    //             errorText: controller.oilproductTypeError,
-                    //           ),
-                    //           Gap(20),
-                    //           DropDownField<OilVolumeModel>(
-                    //             displayValue: (item) => item.volume!,
-                    //             items: controller.oilVolumes,
-                    //             hint: 'Liquid volume litter',
-                    //             selectedValue: controller.selectedvolume,
-                    //             onChanged: (value) {
-                    //               controller.setSelectedVolume(value);
-                    //               // controller.validateFields("volume",
-                    //               // controller.selectedVolumeId.toString());
-                    //               controller.update();
-                    //             },
-                    //             errorText: controller.volumeError,
-                    //           ),
-                    //           Gap(20),
-                    //         ],
-                    //       )
-                    //     : Text(''),
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<BatteryVoltageModel>(
+                                displayValue: (item) => item.voltage!,
+                                items: controller.batteryVoltages,
+                                hint: 'Battery Voltage',
+                                selectedValue: controller.selectedvoltage,
+                                onChanged: (value) {
+                                  controller.setSelectedBatteryvoltage(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                            ],
+                          )
+                        : Gap(0),
+                    controller.categoryId == '3'
+                        ? Column(
+                            children: [
+                              Gap(20),
+                              DropDownField<TyreWidthModel>(
+                                displayValue: (item) => item.width!,
+                                items: controller.tyrewidths,
+                                hint: 'Tyer width',
+                                selectedValue: controller.selectedwidth,
+                                onChanged: (value) {
+                                  controller.setSelectedWidth(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<TyreHeightModel>(
+                                displayValue: (item) => item.height!,
+                                items: controller.tyreheights,
+                                hint: 'Tyer height',
+                                selectedValue: controller.selectedheight,
+                                onChanged: (value) {
+                                  controller.setSelectedheight(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<TyreSizeModel>(
+                                displayValue: (item) => item.size!,
+                                items: controller.tyresizes,
+                                hint: 'Wheel size',
+                                selectedValue: controller.selectedsize,
+                                onChanged: (value) {
+                                  controller.setSelectedSize(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<TyreSpeedRatingModel>(
+                                displayValue: (item) => item.speedrating!,
+                                items: controller.tyreSpeedRatings,
+                                hint: 'Speed rating',
+                                selectedValue: controller.selectedSpeedRating,
+                                onChanged: (value) {
+                                  controller.setSelectedSpeedRating(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<TyrePatternModel>(
+                                displayValue: (item) => item.pattern!,
+                                items: controller.tyrepattterens,
+                                hint: 'Pattern',
+                                selectedValue: controller.selectedpatteren,
+                                onChanged: (value) {
+                                  controller.setSelectedPatteren(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<TyreOriginModel>(
+                                displayValue: (item) => item.origin!,
+                                items: controller.tyreorigins,
+                                hint: 'Origin',
+                                selectedValue: controller.selectedtyreorigin,
+                                onChanged: (value) {
+                                  controller.setSelectedTyreOrigin(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                            ],
+                          )
+                        : Text(''),
+                    controller.categoryId == '2'
+                        ? Column(
+                            children: [
+                              DropDownField<OilProductTTypeModel>(
+                                displayValue: (item) => item.producttype!,
+                                items: controller.oilproductTypes,
+                                hint: 'Product type',
+                                selectedValue:
+                                    controller.selectedoilproductType,
+                                onChanged: (value) {
+                                  controller.setSelectedOilproducttype(value);
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                              DropDownField<OilVolumeModel>(
+                                displayValue: (item) => item.volume!,
+                                items: controller.oilVolumes,
+                                hint: 'Liquid volume litter',
+                                selectedValue: controller.selectedvolume,
+                                onChanged: (value) {
+                                  controller.setSelectedVolume(value);
+                                 
+                                  controller.update();
+                                },
+                                errorText: '',
+                              ),
+                              Gap(20),
+                            ],
+                          )
+                        : Text(''),
                     // if (![3, 4, 7, 9].contains(controller.selectedCategoryId))
                     //   Column(
                     //     children: [
@@ -502,7 +489,7 @@ class _OrderViewState extends State<OrderView> {
                             final vehical = controller.vehiclesList[index];
                             return VehicleListTile(
                                 value: vehical.id.toString(),
-                                groupValue: vehical.id.toString(),
+                                groupValue: controller.selectedCarName,
                                 onChanged: (value) {
                                   controller.selectCar(value!);
                                 },

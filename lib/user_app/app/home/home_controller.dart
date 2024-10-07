@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
@@ -14,73 +13,73 @@ class ServiceItem {
       {required this.imageUrl, required this.text, required this.subText});
 }
 
-class ServiceCards {
-  final String image;
-  final String title;
-  final String price;
-  final VoidCallback onTap;
+// class ServiceCards {
+//   final String image;
+//   final String title;
+//   final String price;
+//   final VoidCallback onTap;
 
-  ServiceCards({
-    required this.image,
-    required this.title,
-    required this.price,
-    required this.onTap,
-  });
-}
+//   ServiceCards({
+//     required this.image,
+//     required this.title,
+//     required this.price,
+//     required this.onTap,
+//   });
+// }
 
 class HomeController extends GetxController {
   static HomeController instance = Get.find();
 
-  bool _showAllItems = false;
+  // bool _showAllItems = false;
 
-  bool get showAllItems => _showAllItems;
+  // bool get showAllItems => _showAllItems;
 
-  void toggleView() {
-    _showAllItems = !_showAllItems;
-    update();
-  }
+  // void toggleView() {
+  //   _showAllItems = !_showAllItems;
+  //   update();
+  // }
 
-  bool get hasServices => services.isNotEmpty;
-  int get itemCount => showAllItems ? services.length : 4;
+  // bool get hasServices => services.isNotEmpty;
+  // int get itemCount => showAllItems ? services.length : 4;
 
-  var services = <ServiceItem>[
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Car wash',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Oil change',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Tyre Retations',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Road Assistance',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Engine Diagnostic',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Battery',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Recovery',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Air Conditioning',
-        subText: ''),
-    ServiceItem(
-        imageUrl: 'https://dummyimage.com/70x70/000/fff',
-        text: 'Fuel Delivery',
-        subText: ''),
-  ];
+  // var services = <ServiceItem>[
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Car wash',
+  //       subText: ''),
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Oil change',
+  //       subText: ''),
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Tyre Retations',
+  //       subText: ''),
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Road Assistance',
+  //       subText: ''),
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Engine Diagnostic',
+  //       subText: ''),
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Battery',
+  //       subText: ''),
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Recovery',
+  //       subText: ''),
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Air Conditioning',
+  //       subText: ''),
+  //   ServiceItem(
+  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
+  //       text: 'Fuel Delivery',
+  //       subText: ''),
+  // ];
 
   // String? img = 'assets/images/home_crousal.png';
   // var servicesCards = <ServiceCards>[

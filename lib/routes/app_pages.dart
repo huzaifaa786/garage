@@ -39,10 +39,10 @@ import 'package:mobilegarage/user_app/app/my_cars/my_cars_binding.dart';
 import 'package:mobilegarage/user_app/app/my_cars/my_cars_view.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_binding.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_view.dart';
-import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_binding.dart';
-import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_view.dart';
-import 'package:mobilegarage/user_app/app/order/order_binding.dart';
-import 'package:mobilegarage/user_app/app/order/order_view.dart';
+import 'package:mobilegarage/user_app/app/filter_service/accapted_order/accapted_order_binding.dart';
+import 'package:mobilegarage/user_app/app/filter_service/accapted_order/accapted_order_view.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_binding.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/user_app/app/order_history/order_history_binding.dart';
@@ -243,8 +243,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.orders,
-      page: () => const OrderView(),
-      binding: OrderBinding(),
+      page: () => const FilterServiceView(),
+      binding: FilterServiceBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
@@ -366,8 +366,8 @@ class AppPages {
     ),
      GetPage(
       name: AppRoutes.filterorder,
-      page: () => OrderView(),
-      binding: OrderBinding(),
+      page: () => FilterServiceView(),
+      binding: FilterServiceBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),

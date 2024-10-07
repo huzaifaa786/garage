@@ -25,7 +25,7 @@ class ProductDetailModel {
       image: json['image'],
       name: json['name'],
       //  batteryProductTypes: json['battery_product_type'] != null
-      //     ? List<BatteryProductTypeModel>.from(json['battery_product_type']
+      //     ? List<BatteryProductTypeModel>.from(json['batctery_product_type']
       //         .map((x) => BatteryProductTypeModel.from(x)))
       //     : [],
       // batteryOrigins: json['battery_origin'] != null
