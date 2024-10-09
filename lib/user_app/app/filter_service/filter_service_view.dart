@@ -8,6 +8,7 @@ import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
 import 'package:mobilegarage/models/battery_models/voltage_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
+import 'package:mobilegarage/models/oil_models/extra_model.dart';
 import 'package:mobilegarage/models/oil_models/product_type_model.dart';
 import 'package:mobilegarage/models/oil_models/volume_model.dart';
 import 'package:mobilegarage/models/tyre_models/height_model.dart';
@@ -16,19 +17,15 @@ import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
 import 'package:mobilegarage/models/tyre_models/size_model.dart';
 import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/filter_service/components/vehicle_listTile.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
-import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
-import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 
 class FilterServiceView extends StatefulWidget {
   const FilterServiceView({super.key});
@@ -127,6 +124,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         inactiveTrackColor: AppColors.darkGrey,
                         trackHeight: 1.0,
                         thumbShape:
+                        
                             RoundSliderThumbShape(enabledThumbRadius: 10.0),
                         overlayShape:
                             RoundSliderOverlayShape(overlayRadius: 10.0),
@@ -144,11 +142,11 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           });
                         },
                         min: 0.0,
-                        max: 80.0,
+                        max: 1000.0,
                       ),
                     ),
-                    // if (![4, 7, 9]
-                    //     .contains(int.parse(controller.categoryId.toString())))
+                    if (![4, 7, 9, 8, 1]
+                        .contains(int.parse(controller.categoryId.toString())))
                       Column(
                         children: [
                           Gap(30),
@@ -165,6 +163,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           ),
                         ],
                       ),
+                   
                     controller.categoryId == '6'
                         ? Column(
                             children: [
@@ -323,144 +322,34 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                                 selectedValue: controller.selectedvolume,
                                 onChanged: (value) {
                                   controller.setSelectedVolume(value);
-                                 
+
                                   controller.update();
                                 },
                                 errorText: '',
                               ),
-                              Gap(20),
                             ],
                           )
-                        : Text(''),
-                    // if (![3, 4, 7, 9].contains(controller.selectedCategoryId))
-                    //   Column(
-                    //     children: [
-                    //       AppInputField(
-                    //         errorText: controller.selectedCategoryId != 6
-                    //             ? controller.descriptionError
-                    //             : '',
-                    //         hint: 'Description',
-                    //         controller: controller.descriptionController,
-                    //         onchange: (val) {
-                    //           controller.selectedCategoryId != 6;
-                    // ? controller.validateFields("Price", val)
-                    // : print('no validation needed');
-                    //         },
-                    //       ),
-                    //       Gap(20),
-                    //     ],
-                    //   ),
-                    // if (![4, 7, 9].contains(controller.selectedCategoryId))
-                    //   AppInputField(
-                    //     errorText: controller.priceError,
-                    //     hint: 'Price',
-                    //     type: TextInputType.number,
-                    //     controller: controller.priceController,
-                    //     onchange: (val) {
-                    //       // controller.validateFields("Price", val);
-                    //     },
-                    //     hasSuffix: true,
-                    //     suffixWidget: Padding(
-                    //       padding: const EdgeInsets.symmetric(vertical: 16),
-                    //       child: AppText(
-                    //         title: 'AED',
-                    //         size: 14,
-                    //         fontWeight: FontWeight.w600,
-                    //         color: AppColors.primary_color,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // if ([2, 4, 7, 9].contains(controller.selectedCategoryId))
-                    //   ListView.builder(
-                    //       shrinkWrap: true,
-                    //       physics: BouncingScrollPhysics(),
-                    //       itemCount: controller.itemCount,
-                    //       itemBuilder: (context, index) {
-                    //         // var priceError = controller.getPriceError(index);
-                    //         var timeError = controller.getTimeError(index);
-                    //         return Column(children: [
-                    //           Divider(
-                    //             thickness: 14,
-                    //             color: AppColors.grey.shade100,
-                    //           ),
-                    //           Gap(28),
-                    //           Padding(
-                    //             padding:
-                    //                 const EdgeInsets.symmetric(horizontal: 22),
-                    //             child: Row(
-                    //               mainAxisAlignment: MainAxisAlignment.start,
-                    //               children: [
-                    //                 Container(
-                    //                   height: 12,
-                    //                   width: 12,
-                    //                   decoration: BoxDecoration(
-                    //                       color: AppColors.black,
-                    //                       borderRadius:
-                    //                           BorderRadius.circular(12)),
-                    //                 ),
-                    //                 Gap(10),
-                    //                 AppText(
-                    //                   title: controller.getTitle(index),
-                    //                   size: 14,
-                    //                   fontWeight: FontWeight.w500,
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //           ),
-                    //           Gap(20),
-                    //           if ([4, 7, 9]
-                    //               .contains(controller.selectedCategoryId))
-                    //             Padding(
-                    //               padding: const EdgeInsets.symmetric(
-                    //                   horizontal: 22),
-                    //               child: Column(
-                    //                 children: [
-                    //                   Gap(20),
-                    //                   AppInputField(
-                    //                     errorText: timeError,
-                    //                     hint: 'Time',
-                    //                     type: TextInputType.number,
-                    //                     onchange: (val) {
-                    //                       switch (controller.selectedCategoryId
-                    //                           .toString()) {
-                    //                         case '4':
-                    //                           controller
-                    //                               .roadAssistanceExtras[index]
-                    //                               .time = val;
-                    //                           break;
-                    //                         case '7':
-                    //                           controller
-                    //                               .roadAssistanceExtras[index]
-                    //                               .time = val;
-                    //                           break;
-                    //                         case '9':
-                    //                           controller
-                    //                               .fuelExtras[index].time = val;
-                    //                           break;
-                    //                         default:
-                    //                           print(
-                    //                               'Not showing for other categories');
-                    //                           break;
-                    //                       }
-                    //                       controller.update();
-                    //                     },
-                    //                     hasSuffix: true,
-                    //                     suffixWidget: Padding(
-                    //                       padding: const EdgeInsets.symmetric(
-                    //                           vertical: 16),
-                    //                       child: AppText(
-                    //                         title: 'Min',
-                    //                         size: 14,
-                    //                         fontWeight: FontWeight.w600,
-                    //                         color: AppColors.primary_color,
-                    //                       ),
-                    //                     ),
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //         ]);
-                    //       }),
+                        : Gap(0),
+                         if ([4, 7, 9, 8, 1, 2]
+                        .contains(int.parse(controller.categoryId.toString())))
+                      Column(
+                        children: [
+                          Gap(20),
+
+                          DropDownField<OilExtraModel>(
+                            displayValue: (item) => item.name!,
+                            items: controller.oilextras,
+                            hint: 'Extra  Name',
+                            selectedValue: controller.selectedexra,
+                            onChanged: (value) {
+                              controller.setSelectedExtra(value);
+                              controller.update();
+                            },
+                            errorText: '',
+                          ),
+                        ],
+                      ),
+                   
                     Gap(36),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

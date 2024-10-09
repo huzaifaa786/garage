@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
-import 'package:mobilegarage/user_app/app/filter_service/accapted_order/accapted_order_controller.dart';
 import 'package:mobilegarage/user_app/app/filter_service/accapted_order/component/order_card.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -22,43 +22,56 @@ class AccaptedOrderView extends StatefulWidget {
 class _AccaptedOrderViewState extends State<AccaptedOrderView> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AccaptedOrderController>(
+    return GetBuilder<FilterServiceController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
         appBarTitle: 'Accepted Orders',
         hasBgColor: false,
         hasShadow: true,
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  AppText(
-                    title: 'Select garage',
-                    size: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ],
+              Gap(30),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppText(
+                      title: 'Select garage',
+                      size: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ],
+                ),
               ),
               Gap(7),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  AppText(
-                    title: '(12) garages',
-                    size: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.darkprimary,
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppText(
+                      title: '(${controller.garages.length.toString()})'+' garages',
+                      size: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.darkprimary,
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 10),
-              Gap(6),
-              OrderCard(),
+              ListView.builder( 
+                shrinkWrap: true,
+                physics: BouncingScrollPhysics(),
+                itemCount: controller.garages.length,
+                itemBuilder: (context, index) {
+                  return  OrderCard(
+                    garage: controller.garages[index],
+                  );
+                },
+              ),
               Gap(50),
               Padding(
                 padding:

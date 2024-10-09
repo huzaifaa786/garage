@@ -1,3 +1,5 @@
+import 'package:mobilegarage/models/product_model.dart';
+
 class GarageModel {
   int? id;
   String? banner;
@@ -15,26 +17,27 @@ class GarageModel {
   int? emirateId;
   String? address;
   DateTime? createdAt;
-bool? opened;
-  GarageModel({
-    this.id,
-    this.banner,
-    this.logo,
-    this.ownerName,
-    this.name,
-    this.email,
-    this.idFront,
-    this.idBack,
-    this.license,
-    this.description,
-    this.phone,
-    this.lat,
-    this.lng,
-    this.emirateId,
-    this.address,
-    this.createdAt,
-    this.opened
-  });
+  bool? opened;
+  List<ProductModel>? products = [];
+
+  GarageModel(
+      {this.id,
+      this.banner,
+      this.logo,
+      this.ownerName,
+      this.name,
+      this.email,
+      this.idFront,
+      this.idBack,
+      this.license,
+      this.description,
+      this.phone,
+      this.lat,
+      this.lng,
+      this.emirateId,
+      this.address,
+      this.createdAt,
+      this.opened,this.products});
 
   factory GarageModel.fromJson(Map<String, dynamic> json) {
     return GarageModel(
@@ -54,9 +57,13 @@ bool? opened;
       emirateId: json['emirate_id'],
       address: json['address'],
       opened: json['opened'],
-
       createdAt: json['created_at'] != null
           ? DateTime.parse(json['created_at'])
+          : null,
+          products: json['products'] != null
+          ? (json['products'] as List)
+              .map((item) => ProductModel.fromJson(item))
+              .toList()
           : null,
     );
   }

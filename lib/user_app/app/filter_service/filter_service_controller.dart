@@ -24,6 +24,7 @@ import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/car_wash_models/car_wash_extra_model.dart';
 import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/models/fuel_models/fuel_extra_model.dart';
+import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/oil_models/extra_model.dart';
 import 'package:mobilegarage/models/oil_models/product_type_model.dart';
 import 'package:mobilegarage/models/oil_models/volume_model.dart';
@@ -186,18 +187,18 @@ class FilterServiceController extends GetxController {
         case '4':
           // Map road assistance  extras
           if (response['servicedetail']['service_extra'] != null) {
-            roadAssistanceExtras =
+            oilextras =
                 (response['servicedetail']['service_extra'] as List<dynamic>)
-                    .map((item) => RoadAssistanceExtraModel.from(item))
+                    .map((item) => OilExtraModel.from(item))
                     .toList();
           }
           break;
         case '7':
           // Map road assistance  extras
           if (response['servicedetail']['service_extra'] != null) {
-            recoveryExtras =
+            oilextras =
                 (response['servicedetail']['service_extra'] as List<dynamic>)
-                    .map((item) => RecoveryExtraModel.from(item))
+                    .map((item) => OilExtraModel.from(item))
                     .toList();
             update();
           }
@@ -205,9 +206,9 @@ class FilterServiceController extends GetxController {
         case '9':
           // Map fuel  extras
           if (response['servicedetail']['service_extra'] != null) {
-            fuelExtras =
+            oilextras =
                 (response['servicedetail']['service_extra'] as List<dynamic>)
-                    .map((item) => FuelExtraModel.from(item))
+                    .map((item) => OilExtraModel.from(item))
                     .toList();
             update();
           }
@@ -215,9 +216,9 @@ class FilterServiceController extends GetxController {
         case '1':
           // Map car wash  extras
           if (response['servicedetail']['service_extra'] != null) {
-            carwashExtras =
+            oilextras =
                 (response['servicedetail']['service_extra'] as List<dynamic>)
-                    .map((item) => CarWashExtraModel.from(item))
+                    .map((item) => OilExtraModel.from(item))
                     .toList();
             update();
           }
@@ -225,9 +226,9 @@ class FilterServiceController extends GetxController {
         case '8':
           // Map ac  extras
           if (response['servicedetail']['service_extra'] != null) {
-            acExtras =
+            oilextras =
                 (response['servicedetail']['service_extra'] as List<dynamic>)
-                    .map((item) => AcExtraModel.from(item))
+                    .map((item) => OilExtraModel.from(item))
                     .toList();
             update();
           }
@@ -368,37 +369,45 @@ class FilterServiceController extends GetxController {
     update();
   }
 
-  List<OilExtraModel> oilextras = [];
+  //  all model have same data so i am passing all extra data in one oil extra model
 
+  List<OilExtraModel> oilextras = [];
+  OilExtraModel? selectedexra;
+  int? selectedExtraId;
+  void setSelectedExtra(OilExtraModel? volume) async {
+    selectedexra = volume;
+    selectedExtraId = volume?.id;
+    update();
+  }
   /////////////////////////////                                        ////////////////////////////////////
   ///////////////////////////            Road Assistance  data                   ////////////////////////////////////
   ///////////////////////////                                        ////////////////////////////////////
 
-  List<RoadAssistanceExtraModel> roadAssistanceExtras = [];
+  // List<RoadAssistanceExtraModel> roadAssistanceExtras = [];
 
 /////////////////////////////                                        ////////////////////////////////////
   ///////////////////////////            Recovery  data                   ////////////////////////////////////
   ///////////////////////////                                        ////////////////////////////////////
 
-  List<RecoveryExtraModel> recoveryExtras = [];
+  // List<RecoveryExtraModel> recoveryExtras = [];
 
   /////////////////////////////                                        ////////////////////////////////////
   ///////////////////////////            fuel  data                   ////////////////////////////////////
   ///////////////////////////                                        ////////////////////////////////////
 
-  List<FuelExtraModel> fuelExtras = [];
+  // List<FuelExtraModel> fuelExtras = [];
 
   /////////////////////////////                                        ////////////////////////////////////
   ///////////////////////////            car wash  data                   ////////////////////////////////////
   ///////////////////////////                                        ////////////////////////////////////
 
-  List<CarWashExtraModel> carwashExtras = [];
+  // List<CarWashExtraModel> carwashExtras = [];
 
 /////////////////////////////                                        ////////////////////////////////////
   ///////////////////////////            ac  data                   ////////////////////////////////////
   ///////////////////////////                                        ////////////////////////////////////
 
-  List<AcExtraModel> acExtras = [];
+  // List<AcExtraModel> acExtras = [];
 
   // void setSelectedCategory(CategoryModel? category) async {
   //   selectedCategory = category;
@@ -507,13 +516,73 @@ class FilterServiceController extends GetxController {
   // filter api
 
   filterorder() async {
-    var response = await FilterOrderApi.filterOrder(
-      startprice: start.toString(),
-      endprice: end.toString(),
-    );
-    if (response.isNotEmpty) {
-      print('object');
+    var response;
 
+    switch (categoryId) {
+      case '6':
+        response = await FilterOrderApi.filterBatteryOrder(
+          startprice: start.toString(),
+          endprice: end.toString(),
+          brandid: selectedBrandId.toString(),
+          categoryid: categoryId.toString(),
+          originid: selectedbatteryOriginId.toString(),
+          ampereid: selectedampereId.toString(),
+          productid: selectedProducttypeId.toString(),
+          voltageid: selectedvoltageId.toString(),
+        );
+        update();
+        break;
+      case '3':
+        response = await FilterOrderApi.filterTyreOrder(
+          startprice: start.toString(),
+          endprice: end.toString(),
+          brandid: selectedBrandId.toString(),
+          categoryid: categoryId.toString(),
+          widthid: selectedwidthId.toString(),
+          heightid: selectedheightId.toString(),
+          sizeid: selectedsizeId.toString(),
+          originid: selectedtyreoriginId.toString(),
+          patterenid: selectedpatterenId.toString(),
+          speedratingid: selectedSpeedRatingId.toString(),
+        );
+        update();
+
+        break;
+      case '2':
+        response = await FilterOrderApi.filterOilOrder(
+          startprice: start.toString(),
+          endprice: end.toString(),
+          brandid: selectedBrandId.toString(),
+          categoryid: categoryId.toString(),
+          productid: selectedoilproductTypeId.toString(),
+          voilumeid: selectedVolumeId.toString(),
+          extraid: selectedExtraId.toString(),
+        );
+        update();
+        break;
+
+      case '1':
+      case '4':
+      case '7':
+      case '8':
+      case '9':
+        response = await FilterOrderApi.filterexraOrder(
+          startprice: start.toString(),
+          endprice: end.toString(),
+          categoryextraid: selectedExtraId.toString(),
+          categoryid: categoryId.toString(),
+        );
+        update();
+        break;
+      default:
+        print('Unknown category id');
+        break;
+    }
+
+    if (response.isNotEmpty) {
+      garages = (response['garages'] as List<dynamic>)
+          .map((item) => GarageModel.fromJson(item as Map<String, dynamic>))
+          .toList();
       Get.toNamed(AppRoutes.acceptedorder);
       UiUtilites.successAlertDialog(
           context: Get.context,
@@ -531,16 +600,6 @@ class FilterServiceController extends GetxController {
   List<BrandModel> brands = [];
   int? selectedBrandId;
 
-  // getBrands() async {
-  //   var response = await VGetBrandsApi.getUserBrands(id: categoryId.toString());
-  //   if (response.isNotEmpty) {
-  //     brands = (response['brands'] as List<dynamic>)
-  //         .map((item) => BrandModel.from(item as Map<String, dynamic>))
-  //         .toList();
-  //     update();
-  //   }
-  // }
-
   void setSelectedBrands(BrandModel? brands) async {
     selectedBrand = brands;
     selectedBrandId = brands?.id;
@@ -548,63 +607,20 @@ class FilterServiceController extends GetxController {
     update();
   }
 
-  // int get itemCount {
-  //   switch (selectedCategoryId) {
-  //     case 2:
-  //       return oilextras.length;
-  //     case 4:
-  //       return roadAssistanceExtras.length;
-  //     case 7:
-  //       return recoveryExtras.length;
-  //     case 9:
-  //       return fuelExtras.length;
-  //     default:
-  //       return 0;
-  //   }
-  // }
+//////////////////////////////////////////////
+  ///
+  String img = 'https://dummyimage.com/35x35/000/fff';
+  bool isSelected = false;
+  void toggleSelection() {
+    isSelected = !isSelected;
+    update();
+  }
 
-  // Map<int, String> oilextrapriceErrors = {};
+  double ratings = 0.0;
+  void updateRating(double rating) {
+    ratings = rating;
+    update();
+  }
 
-  // String getPriceError(int index) {
-  //   switch (selectedCategoryId) {
-  //     case 2:
-  //       return oilextrapriceErrors[index] ?? '';
-  //     case 4:
-  //       return roadextrapriceErrors[index] ?? '';
-  //     case 7:
-  //       return recoveryextrapriceErrors[index] ?? '';
-  //     case 9:
-  //       return fuelextrapriceErrors[index] ?? '';
-  //     default:
-  //       return '';
-  //   }
-  // }
-
-  // String getTimeError(int index) {
-  //   switch (selectedCategoryId) {
-  //     case 4:
-  //       return roadextratimeErrors[index] ?? '';
-  //     case 7:
-  //       return recoveryextratimeErrors[index] ?? '';
-  //     case 9:
-  //       return fuelextratimeErrors[index] ?? '';
-  //     default:
-  //       return '';
-  //   }
-  // }
-
-  // String getTitle(int index) {
-  //   switch (selectedCategoryId) {
-  //     case 2:
-  //       return oilextras[index].name.toString();
-  //     case 4:
-  //       return roadAssistanceExtras[index].name.toString();
-  //     case 7:
-  //       return recoveryExtras[index].name.toString();
-  //     case 9:
-  //       return fuelExtras[index].name.toString();
-  //     default:
-  //       return '';
-  //   }
-  // }
+  List<GarageModel> garages = [];
 }
