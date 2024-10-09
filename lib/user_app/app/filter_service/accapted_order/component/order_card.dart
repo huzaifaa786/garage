@@ -1,4 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,9 +18,15 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class OrderCard extends StatelessWidget {
-  OrderCard({super.key, required this.garage});
+  OrderCard({super.key, required this.garage, this.location,this.city
+  ,required this.isSelected,
+ required this.onToggle
+  });
   GarageModel garage;
-
+ final String? location;
+ final String? city;
+ final bool isSelected;
+  final Function() onToggle; 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FilterServiceController>(
@@ -27,7 +34,7 @@ class OrderCard extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.all(15),
           child: GestureDetector(
-            onTap: controller.toggleSelection,
+            onTap: onToggle,
             child: Stack(
               clipBehavior: Clip.none,
               children: [
@@ -35,8 +42,8 @@ class OrderCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
-                      color: controller.isSelected
-                          ? AppColors.primary
+                      color: isSelected
+                          ?AppColors.primary
                           : Colors.transparent,
                     ),
                     color: AppColors.white,
@@ -77,33 +84,33 @@ class OrderCard extends StatelessWidget {
                                   borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(13)),
                                   child: AppNetworkImage(
-                                    networkImage: garage
-                                        .products![0].images!.first.imageUrl
-                                        .toString(),
+                                    // networkImage: garage
+                                    //     .products![0].images!.first.imageUrl
+                                    //     .toString(),
                                     assetPath: 'assets/images/mobiloil.png',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                               Gap(5),
-                               AppText(
+                              AppText(
                                 title: 'Super car oil',
                                 size: 11,
                                 fontWeight: FontWeight.w600,
                               ),
-                               Gap(4),
-                               AppText(
+                              Gap(4),
+                              AppText(
                                 title:
-                                garage.products![0].description.toString(),
-                                    // 'Car oil 700 ml best quality\n for all car types',
+                                    garage.products![0].description.toString(),
+                                // 'Car oil 700 ml best quality\n for all car types',
                                 size: 9,
                                 fontWeight: FontWeight.w400,
                                 textAlign: TextAlign.center,
                                 maxLines: 2,
                                 overFlow: TextOverflow.ellipsis,
                               ),
-                               Gap(4),
-                               Row(
+                              Gap(4),
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   AppText(
@@ -121,7 +128,7 @@ class OrderCard extends StatelessWidget {
                         const Gap(4),
                       ],
                     ),
-                     Padding(
+                    Padding(
                       padding: EdgeInsets.only(left: 20, top: 13),
                       child: Row(
                         children: [
@@ -169,7 +176,7 @@ class OrderCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
+                      padding:  EdgeInsets.only(
                         left: 20,
                         top: 7,
                       ),
@@ -181,16 +188,13 @@ class OrderCard extends StatelessWidget {
                             height: 10,
                             fit: BoxFit.scaleDown,
                           ),
-                          const Gap(3),
-                          // const Icon(
-                          //   Icons.map_,
-                          //   size: 15,
-                          // ),
+                           Gap(3),
+                         
                           Flexible(
                             child: RichText(
                               textAlign: TextAlign.center,
-                              text: const TextSpan(
-                                text: "Dubai",
+                              text:  TextSpan(
+                                text:city ,
                                 style: TextStyle(
                                     color: AppColors.black,
                                     fontSize: 8,
@@ -204,7 +208,7 @@ class OrderCard extends StatelessWidget {
                                         fontWeight: FontWeight.w400),
                                   ),
                                   TextSpan(
-                                    text: "Zayed street , road 3452",
+                                    text: location,
                                     style: TextStyle(
                                         color: AppColors.grey,
                                         fontSize: 8,
@@ -261,9 +265,7 @@ class OrderCard extends StatelessWidget {
                                 right: 0,
                                 top: Get.height * 0.003,
                                 child: GestureDetector(
-                                  onTap: () {
-                                    print('object23');
-                                  },
+                                  onTap: () {},
                                   child: Container(
                                       height: Get.height * 0.045,
                                       width: Get.width * 0.085,
@@ -285,7 +287,7 @@ class OrderCard extends StatelessWidget {
                           ),
                           const Gap(17),
                           // if (isSelected)
-                          controller.isSelected
+                          isSelected
                               ? SvgPicture.asset(
                                   'assets/icons/check-circle.svg',
                                   height: 20,

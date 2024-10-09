@@ -54,7 +54,8 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppText(
-                      title: '(${controller.garages.length.toString()})'+' garages',
+                      title: '(${controller.garages.length.toString()})' +
+                          ' garages',
                       size: 12,
                       fontWeight: FontWeight.w500,
                       color: AppColors.darkprimary,
@@ -62,36 +63,48 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                   ],
                 ),
               ),
-              ListView.builder( 
+              ListView.builder(
                 shrinkWrap: true,
                 physics: BouncingScrollPhysics(),
                 itemCount: controller.garages.length,
                 itemBuilder: (context, index) {
-                  return  OrderCard(
+                  final garageAddress =
+                      controller.garageAddresses.length > index
+                          ? controller.garageAddresses[index]
+                          : null;
+                  return OrderCard(
                     garage: controller.garages[index],
+                    location: garageAddress!['location'],
+                    city: garageAddress['city'],
+                    isSelected: controller.selectedGarageIndex == index,
+                    onToggle: () {
+                      controller.toggleSelection(index);
+                      Get.toNamed(AppRoutes.garage);
+
+                    },
                   );
                 },
               ),
-              Gap(50),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: MainButton(
-                  buttonWidth: Get.width * 0.8,
-                  height: Get.height * 0.07,
-                  title: 'Confirm',
-                  fontsize: 12,
-                  btncolor: controller.isSelected
-                      ? AppColors.primary
-                      : AppColors.greybg,
-                  onTap: () {
-                    controller.toggleSelection();
-                    if (controller.isSelected) {
-                      Get.toNamed(AppRoutes.search_result);
-                    }
-                  },
-                ),
-              ),
+              // Gap(50),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              //   child: MainButton(
+              //     buttonWidth: Get.width * 0.8,
+              //     height: Get.height * 0.07,
+              //     title: 'Confirm',
+              //     fontsize: 12,
+              //     btncolor: controller.isSelected
+              //         ? AppColors.primary
+              //         : AppColors.greybg,
+              //     onTap: () {
+              //       // controller.toggleSelection();
+              //       if (controller.isSelected) {
+              //         Get.toNamed(AppRoutes.search_result);
+              //       }
+              //     },
+              //   ),
+              // ),
             ],
           ),
         ),
