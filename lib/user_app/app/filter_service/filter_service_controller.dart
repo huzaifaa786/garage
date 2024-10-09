@@ -2,35 +2,23 @@
 
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/categories/user_get_categories_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/filter_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
-import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/product_vehicles.dart';
-import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/add_product_api.dart';
-import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/brands/add_brand_api.dart';
-import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/brands/get_brands_api.dart';
-import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/categories/get_categories_api.dart';
-import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/product_detail_apis/product_detail_api.dart';
-import 'package:mobilegarage/models/ac_models/ac_extra_model.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
 import 'package:mobilegarage/models/battery_models/voltage_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
-import 'package:mobilegarage/models/car_wash_models/car_wash_extra_model.dart';
-import 'package:mobilegarage/models/category_model.dart';
-import 'package:mobilegarage/models/fuel_models/fuel_extra_model.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/oil_models/extra_model.dart';
 import 'package:mobilegarage/models/oil_models/product_type_model.dart';
 import 'package:mobilegarage/models/oil_models/volume_model.dart';
 import 'package:mobilegarage/models/product_detail_model.dart';
-import 'package:mobilegarage/models/recovery_models/recovery_extra_model.dart';
-import 'package:mobilegarage/models/road_assistance_models/road_extra_model.dart';
 import 'package:mobilegarage/models/tyre_models/height_model.dart';
 import 'package:mobilegarage/models/tyre_models/origin_model.dart';
 import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
@@ -60,7 +48,6 @@ class FilterServiceController extends GetxController {
     categoryId = Get.parameters['categoryId'] ?? '';
     await getvehicles();
     await getUserCategories();
-
     update();
   }
 
@@ -583,6 +570,9 @@ class FilterServiceController extends GetxController {
       garages = (response['garages'] as List<dynamic>)
           .map((item) => GarageModel.fromJson(item as Map<String, dynamic>))
           .toList();
+
+      await fetchGarageAddresses();
+
       Get.toNamed(AppRoutes.acceptedorder);
       UiUtilites.successAlertDialog(
           context: Get.context,
@@ -609,12 +599,18 @@ class FilterServiceController extends GetxController {
 
 //////////////////////////////////////////////
   ///
-  String img = 'https://dummyimage.com/35x35/000/fff';
+
   bool isSelected = false;
-  void toggleSelection() {
-    isSelected = !isSelected;
-    update();
+  int? selectedGarageIndex;
+  void toggleSelection(int index) {
+    if (selectedGarageIndex == index) {
+      selectedGarageIndex = null; 
+    } else {
+      selectedGarageIndex = index; 
+    }
+    update(); 
   }
+  
 
   double ratings = 0.0;
   void updateRating(double rating) {
@@ -623,4 +619,33 @@ class FilterServiceController extends GetxController {
   }
 
   List<GarageModel> garages = [];
+
+  List<Map<String, String?>> garageAddresses = [];
+  String? location;
+  String? city;
+
+  Future<Map<String, String?>> getAddress(int index) async {
+    final latDouble = double.parse(garages[index].lat!);
+    final lngDouble = double.parse(garages[index].lng!);
+    final placemark = await placemarkFromCoordinates(latDouble, lngDouble);
+    if (placemark.isNotEmpty) {
+      final locationData = placemark.first;
+      location =
+          '${locationData.thoroughfare}${locationData.subLocality}, ${locationData.locality}, ${locationData.country}.';
+      city = locationData.locality;
+    }
+    return {
+      'location': location,
+      'city': city,
+    };
+  }
+
+  fetchGarageAddresses() async {
+    for (int i = 0; i < garages.length; i++) {
+      final address = await getAddress(i);
+      print('aaaaaaaaaaaaav$address');
+      garageAddresses.add(address);
+      update();
+    }
+  }
 }
