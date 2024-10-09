@@ -18,7 +18,7 @@ class SearchCard extends StatelessWidget {
   final String? title;
   final String? services;
   final String? currentAddress;
-
+  final VoidCallback? onTapViewGarage;
   final VoidCallback? onTap;
   final String? price;
 
@@ -30,6 +30,7 @@ class SearchCard extends StatelessWidget {
     this.price,
     this.logoimage,
     this.currentAddress,
+    this.onTapViewGarage,
   });
 
   @override
@@ -156,8 +157,7 @@ class SearchCard extends StatelessWidget {
                       SizedBox(
                         width: Get.width * 0.70,
                         child: AppText(
-                          title: currentAddress ??
-                              'Dubai Zayed street , road 3452 ',
+                          title: currentAddress!,
                           size: 11,
                           fontWeight: FontWeight.w500,
                         ),
@@ -174,9 +174,7 @@ class SearchCard extends StatelessWidget {
                             ClipPath(
                               clipper: RightCircularClipper(),
                               child: GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.garage);
-                                },
+                                onTap: onTapViewGarage,
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: AppColors.lightPink,
