@@ -120,19 +120,23 @@ class _VHomeViewState extends State<VHomeView> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                            TextSwitchButton(
-                                    value: controller.isSwitched,
-                                    ontoggle: (value) {
-                                      controller.toggleStatus(value);
-                                      UiUtilites.showConfirmationDialog(
-                                        true,
-                                        'Are you sure you want to toggle the garage status?',
-                                        onConfirm: () {
-                                          controller.updateGarageStatus();
-                                        },
-                                      );
+                              TextSwitchButton(
+                                value: controller.isSelected,
+                                ontoggle: (value) {
+                                  controller.isSelected = value;
+                                  controller.showConfirmationDialog(
+                                    value,
+                                    value
+                                        ? "Are you sure you want to mark your garage as available?"
+                                        : "Are you sure you want to mark your garage as unavailable?",
+                                    onConfirm: () async {
+                                      await controller.updateGarageStatus();
+                                      controller.garage!.opened = value;
+                                      controller.update();
                                     },
-                                  ),
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ),

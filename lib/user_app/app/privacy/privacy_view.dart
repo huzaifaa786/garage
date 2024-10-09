@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -14,10 +12,10 @@ class PrivacyView extends StatefulWidget {
   const PrivacyView({super.key});
 
   @override
-  State<PrivacyView> createState() => _TermsConditionsViewState();
+  State<PrivacyView> createState() => _PrivacyViewState();
 }
 
-class _TermsConditionsViewState extends State<PrivacyView> {
+class _PrivacyViewState extends State<PrivacyView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PrivacyController>(
@@ -61,21 +59,25 @@ class _TermsConditionsViewState extends State<PrivacyView> {
                     ],
                   ),
                   Gap(25),
-                  AppText(
-                    title:
-                        'Conditions of use By using this app, you certify that you have read and reviewed this Agreement and that you agree to comply with its terms. If you do not want to be bound by the terms of this Agreement, you are advised to stop using the app accordingly. [company name] only grants use and access of this app, its products, and its services to those who have accepted its terms. Privacy policy Before you continue using our app, we advise you to read our privacy policy [link to privacy policy] regarding our user data collection. It will help ',
-                    size: 10,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5,
-                  ),
-                  Gap(10),
-                  AppText(
-                    title:
-                        'Conditions of use By using this app, you certify that you have read and reviewed this Agreement and that you agree to comply with its terms. If you do not want to be bound by the terms of this Agreement, you are advised to stop using the app accordingly. [company name] only grants use and access of this app, its products, and its services to those who have accepted its terms. Privacy policy Before you continue using our app, we advise you to read our privacy policy [link to privacy policy] regarding our user data collection. It will help ',
-                    size: 10,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5,
-                  )
+                  if (controller.privacyPolicy.isNotEmpty)
+                    for (var policy in controller.privacyPolicy)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: AppText(
+                          title: policy['description'],
+                          size: 10,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5,
+                        ),
+                      )
+                  else
+                    Center(
+                      child: AppText(
+                        title: 'Loading privacy policy...',
+                        size: 10,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                 ],
               ),
             ),

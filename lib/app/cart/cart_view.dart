@@ -32,6 +32,7 @@ class CartView extends StatelessWidget {
               title: TopBar(
                 title: 'Cart',
                 showgarageicon: false,
+                showicon: false,
               ),
             ),
           ),

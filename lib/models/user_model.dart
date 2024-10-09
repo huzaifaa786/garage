@@ -10,33 +10,30 @@ class UserModel {
   String? lat;
   String? lng;
 
-
-  UserModel({
-    required this.id,
-    this.name,
-    this.phone,
-    this.emirate,
-    this.email,
-    this.addressDetail,
-    this.createdAt,
-    this.image,
-    this.lat,this.lng
-  });
+  UserModel(
+      {required this.id,
+      this.name,
+      this.phone,
+      this.emirate,
+      this.email,
+      this.addressDetail,
+      this.createdAt,
+      this.image,
+      this.lat,
+      this.lng});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'],
-      name: json['name'],
-      email: json['email'],
-      phone: json['phone'],
-      emirate: json['emirate'],
-      addressDetail: json['address'],
-      createdAt: json['created_at'],
-      image: json['image'],
-      lat: json['lat'],
-      lng: json['lng'],
-
-
+      name: json['name'] ?? '',
+      email: json['email'] ?? '',
+      phone: json['phone'] ?? '',
+      emirate: json['emirate'] ?? '',
+      addressDetail: json['address'] ?? '',
+      createdAt: json['created_at'] ?? '',
+      image: json['image'] ?? '',
+      lat: json['lat'] ?? '0',
+      lng: json['lng'] ?? '0',
     );
   }
 

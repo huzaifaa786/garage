@@ -4,7 +4,7 @@ import 'package:mobilegarage/user_app/utils/base_url.dart';
 class HomeApi {
   Future<Map<String, dynamic>> getbanners() async {
     //* URL
-    String url = '${baseUrl}/banners';
+    String url = '$baseUrl/banners';
 
     //  var data = {
     // 'image': banner,
@@ -17,7 +17,7 @@ class HomeApi {
   }
 
   Future<Map<String, dynamic>> getServices() async {
-    String url = '${baseUrl}/services';
+    String url = '$baseUrl/services';
     var response = await DioService.get(url: url);
     return response;
   }

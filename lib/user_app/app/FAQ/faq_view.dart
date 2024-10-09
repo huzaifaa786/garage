@@ -56,12 +56,12 @@ class _FaqViewState extends State<FaqView> {
                 Expanded(
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
-                    itemCount: controller.questionsAndAnswers.length,
+                    itemCount: controller.frequentlyAskedQuestions.length,
                     itemBuilder: (context, index) {
-                      final qa = controller.questionsAndAnswers[index];
+                      final qa = controller.frequentlyAskedQuestions[index];
                       return FaqQuestionAnswer(
-                        question: qa.question,
-                        answer: qa.answer,
+                        question: qa['question'],
+                        answer: qa['answer'],
                       );
                     },
                   ),

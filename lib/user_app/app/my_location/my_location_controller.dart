@@ -110,9 +110,9 @@ class MyLocationController extends GetxController {
   double? lat;
   double? lng;
   String currentAddress = '';
+
   //
-  //
-  //
+  @override
   void onInit() async {
     super.onInit();
     await getEmirates();

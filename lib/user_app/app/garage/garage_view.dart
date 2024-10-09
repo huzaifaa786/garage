@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +15,6 @@ import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:shimmer/shimmer.dart';
 
 class GarageView extends StatelessWidget {
   const GarageView({super.key});
@@ -75,7 +73,7 @@ class GarageView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: ClipOval(
+                          child: ClipRRect(
                               child: AppNetworkImage(
                             assetPath: 'assets/images/street_garage.png',
                             height: Get.height * 0.08,
