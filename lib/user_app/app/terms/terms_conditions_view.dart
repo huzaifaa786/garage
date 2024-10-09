@@ -1,12 +1,10 @@
-// ignore_for_file: prefer_const_constructors
-
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/terms/terms_conditions_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/user_app/components/cards/terms_condition_listile.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
@@ -19,6 +17,31 @@ class TermsConditionsView extends StatefulWidget {
 }
 
 class _TermsConditionsViewState extends State<TermsConditionsView> {
+  String loadingText = 'Loading terms and conditions';
+  Timer? _timer;
+  int dotCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _startLoadingAnimation();
+  }
+
+  void _startLoadingAnimation() {
+    _timer = Timer.periodic(Duration(milliseconds: 500), (timer) {
+      setState(() {
+        dotCount = (dotCount + 1) % 4;
+        loadingText = 'Loading terms and conditions${'.' * dotCount}';
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TermsConditionsController>(
@@ -62,21 +85,25 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
                     ],
                   ),
                   Gap(25),
-                  AppText(
-                    title:
-                        'Conditions of use By using this app, you certify that you have read and reviewed this Agreement and that you agree to comply with its terms. If you do not want to be bound by the terms of this Agreement, you are advised to stop using the app accordingly. [company name] only grants use and access of this app, its products, and its services to those who have accepted its terms. Privacy policy Before you continue using our app, we advise you to read our privacy policy [link to privacy policy] regarding our user data collection. It will help ',
-                    size: 10,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5,
-                  ),
-                  Gap(10),
-                  AppText(
-                    title:
-                        'Conditions of use By using this app, you certify that you have read and reviewed this Agreement and that you agree to comply with its terms. If you do not want to be bound by the terms of this Agreement, you are advised to stop using the app accordingly. [company name] only grants use and access of this app, its products, and its services to those who have accepted its terms. Privacy policy Before you continue using our app, we advise you to read our privacy policy [link to privacy policy] regarding our user data collection. It will help ',
-                    size: 10,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5,
-                  )
+                  if (controller.termsConditions.isNotEmpty)
+                    for (var term in controller.termsConditions)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: AppText(
+                          title: term['description'],
+                          size: 10,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5,
+                        ),
+                      )
+                  else
+                    Center(
+                      child: AppText(
+                        title: loadingText,
+                        size: 10,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                 ],
               ),
             ),

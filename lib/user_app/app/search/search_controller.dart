@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/post_api/post_api.dart';
 import 'package:mobilegarage/models/user_model/post_model.dart';
@@ -53,7 +53,7 @@ class SearchScreenController extends GetxController {
   String searchText = '';
   String selectedCategory = '';
 
-   @override
+  @override
   void onInit() {
     getGarages();
     super.onInit();
@@ -67,6 +67,12 @@ class SearchScreenController extends GetxController {
           .map((postJson) => PostModel.fromJson(postJson))
           .toList();
       filteredPosts = posts;
+      if (posts.isNotEmpty) {
+        PostModel post = posts.first;
+        lat = double.tryParse(post.lat!);
+        lng = double.tryParse(post.lng!);
+        getPlaceName(lat!, lng!);
+      }
     }
     update();
   }
@@ -94,6 +100,23 @@ class SearchScreenController extends GetxController {
       }).toList();
     }
     print('Filtered posts count: ${filteredPosts.length}');
+    update();
+  }
+
+// Location
+  String currentAddress = '';
+  double? lat;
+  double? lng;
+
+  Future<void> getPlaceName(double latitude, double longitude) async {
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(latitude, longitude);
+    if (placemarks.isNotEmpty) {
+      Placemark place = placemarks.first;
+      currentAddress =
+          //  '${place.name},'
+          ' ${place.locality}, ${place.administrativeArea}, ${place.country}';
+    }
     update();
   }
 }

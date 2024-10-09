@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// SearchView.dart
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -65,10 +65,7 @@ class _SearchViewState extends State<SearchView> {
                         hint: 'street,garages'.tr,
                         readOnly: false,
                         onChange: (text) {
-                           controller.filterPosts(
-                                query: text,
-                                category:
-                                    text);
+                          controller.filterPosts(query: text, category: text);
                           Get.toNamed(AppRoutes.search);
                         },
                       ),
@@ -107,42 +104,43 @@ class _SearchViewState extends State<SearchView> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                controller.filteredPosts.isNotEmpty?
-                ListView.builder(
-                  itemCount: controller.filteredPosts.length,
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final item = controller.filteredPosts[index];
-                    return Padding(
-                      padding: EdgeInsets.only(top: 15),
-                      child: SearchCard(
-                        image: item.banner,
-                        title: item.name,
-                        logoimage:item.logo,
-                        //  'https://dummyimage.com/70x70/d9c3d9/00000a'
-                        onTap: () {
-                          UiUtilites.SuccessAlert(context);
+                controller.filteredPosts.isNotEmpty
+                    ? ListView.builder(
+                        itemCount: controller.filteredPosts.length,
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final item = controller.filteredPosts[index];
+                          return Padding(
+                            padding: EdgeInsets.only(top: 15),
+                            child: SearchCard(
+                              image: item.banner,
+                              title: item.name,
+                              logoimage: item.logo,
+                              currentAddress:
+                                  controller.currentAddress.toString(),
+                              onTap: () {
+                                UiUtilites.SuccessAlert(context);
+                              },
+                              price: '',
+                              services:
+                                  "${controller.filteredPosts.length} services",
+                            ),
+                          );
                         },
-                        price: '',
-                        services: controller.filteredPosts.length.toString()+ " services",
-                        // '14 services'
+                      )
+                    : SizedBox(
+                        height: Get.height * 0.6,
+                        child: Center(
+                          child: Text(
+                            "No result found!".tr,
+                            style: TextStyles.customTextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.darkblue),
+                          ),
+                        ),
                       ),
-                    );
-                  },
-                )
-                : SizedBox(
-                                height: Get.height * 0.6,
-                                child: Center(
-                                  child: Text(
-                                    "No result found!".tr,
-                                    style: TextStyles.customTextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.darkblue),
-                                  ),
-                                ),
-                              ),
                 Gap(20),
                 GridView.builder(
                     itemCount: 4,
@@ -163,6 +161,14 @@ class _SearchViewState extends State<SearchView> {
                           price: "222");
                     }),
                 Gap(20),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: AppText(
+                    title: 'Current Location: ${controller.currentAddress}',
+                    size: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ],
             ),
           ),

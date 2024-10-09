@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_status_api.dart';
@@ -26,7 +24,6 @@ class VHomeController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     garagedata();
   }
@@ -66,7 +63,7 @@ class VHomeController extends GetxController {
   GarageModel? garage;
   garagedata() async {
     var response = await VGetGarageApi.getgarage();
-        if (response.isNotEmpty) {
+    if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response['garage']);
       update();
     }
@@ -110,7 +107,6 @@ class VHomeController extends GetxController {
         garage!.opened = value;
         update();
       });
-      update();
     }
   }
 
@@ -168,15 +164,11 @@ class VHomeController extends GetxController {
         ],
       ),
     );
-  }
+  } //  /// use this function only for design ///
 
-
-
-//  /// use this function only for design ///
-
-  var isSwitched = false;
+  //var isSwitched = false;
 
   void toggleStatuss(bool value) {
-    isSwitched = value;
+    isSelected = value;
   }
 }

@@ -6,8 +6,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
-import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -17,6 +17,7 @@ class SearchCard extends StatelessWidget {
 
   final String? title;
   final String? services;
+  final String? currentAddress;
 
   final VoidCallback? onTap;
   final String? price;
@@ -28,6 +29,7 @@ class SearchCard extends StatelessWidget {
     this.onTap,
     this.price,
     this.logoimage,
+    this.currentAddress,
   });
 
   @override
@@ -65,18 +67,13 @@ class SearchCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(12)),
-                    // child: AppNetworkImage(
-                    //   assetPath: 'assets/images/car_fueling.png',
-                    //   height: Get.height * 0.15,
-                    //   width: Get.width,
-                    //   // fit: BoxFit.cover,
-                    // ),
                     child: CachedNetworkImage(
                       imageUrl: image.toString(),
                       height: Get.height * 0.15,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      placeholder: (context, url) => CircularProgressIndicator(),
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
@@ -94,10 +91,6 @@ class SearchCard extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(60),
-                      // child: AppNetworkImage(
-                      //   assetPath: 'assets/images/car_fueling.png',
-                      //   // fit: BoxFit.cover,
-                      // ),
                       child: CachedNetworkImage(
                         imageUrl: logoimage.toString(),
                         fit: BoxFit.cover,
@@ -163,7 +156,8 @@ class SearchCard extends StatelessWidget {
                       SizedBox(
                         width: Get.width * 0.70,
                         child: AppText(
-                          title: 'Dubai Zayed street , road 3452 ',
+                          title: currentAddress ??
+                              'Dubai Zayed street , road 3452 ',
                           size: 11,
                           fontWeight: FontWeight.w500,
                         ),
@@ -181,7 +175,7 @@ class SearchCard extends StatelessWidget {
                               clipper: RightCircularClipper(),
                               child: GestureDetector(
                                 onTap: () {
-                                  print('object');
+                                  Get.toNamed(AppRoutes.garage);
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -213,22 +207,25 @@ class SearchCard extends StatelessWidget {
                             onTap: () {
                               print('object23');
                             },
-                            child: Container(
-                                height: Get.height * 0.045,
-                                width: Get.width * 0.085,
-                                decoration: BoxDecoration(
-                                  color: AppColors.lightPink,
-                                  borderRadius: BorderRadius.circular(80),
-                                ),
-                                child: SvgPicture.asset(
-                                  'assets/icons/chat.svg',
-                                  color: AppColors.primary,
-                                )
-                                // child: Image.asset(
-                                //   'assets/images/chat.png',
-                                //   color: AppColors.primary,
-                                // ),
-                                ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60),
+                              child: Container(
+                                  height: Get.height * 0.044,
+                                  width: Get.width * 0.1,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.lightPink,
+                                    borderRadius: BorderRadius.circular(60),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    'assets/icons/chat.svg',
+                                    color: AppColors.primary,
+                                  )
+                                  // child: Image.asset(
+                                  //   'assets/images/chat.png',
+                                  //   color: AppColors.primary,
+                                  // ),
+                                  ),
+                            ),
                           ),
                         )
                       ],
