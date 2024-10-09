@@ -74,31 +74,11 @@ class _HomeViewState extends State<HomeView> {
                         return BannerCard(
                           networkImage: controller.banners[index].image,
                           onTap: () {
-                            print('object');
                           },
                         );
                       },
                     ),
                   Gap(10),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-
-                  //     controller.banners.isEmpty
-                  //         ? Container()
-                  //         : SmoothPageIndicator(
-                  //             controller: PageController(
-                  //                 initialPage: i, keepPage: true),
-
-                  //             count: controller.banners.length,
-                  //             effect: ExpandingDotsEffect(
-                  //                 activeDotColor: AppColors.primary,
-                  //                 dotColor: AppColors.lightPink,
-                  //                 dotWidth: 5,
-                  //                 dotHeight: 5),
-                  //           ),
-                  //   ],
-                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(controller.banners.length, (index) {
@@ -120,7 +100,6 @@ class _HomeViewState extends State<HomeView> {
                   ),
 
                   Gap(30),
-                  if (controller.hasServices) ...[
                     Padding(
                       padding: const EdgeInsets.only(left: 40.0, right: 30.0),
                       child: Row(
@@ -163,10 +142,7 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                     Gap(40),
-                    // ] else ...[
-                    Gap(0),
                   ]
-                ],
               ),
             ),
           ),

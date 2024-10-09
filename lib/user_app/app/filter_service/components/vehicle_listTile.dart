@@ -41,11 +41,8 @@ class VehicleListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
                   child: AppNetworkImage(
                 networkImage: iconPath.toString(),
+                fit: BoxFit.cover,
               )),
-
-              // color: AppColors.primary,
-              // height: 20,
-              // width: 20,
 
               Gap(10),
               Text(
