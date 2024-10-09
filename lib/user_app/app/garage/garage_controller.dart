@@ -15,7 +15,7 @@ class GarageController extends GetxController {
 
   @override
   void onInit() async {
-    garageId = Get.arguments['id']?.toString();
+    // garageId = Get.parameters['id']?.toString();
     await getGarageProfile(1);
     super.onInit();
   }
@@ -24,6 +24,7 @@ class GarageController extends GetxController {
     var response = await GarageProfileApi.garageProfile(garageId);
     if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response);
+      print('${garage!.name}');
       update();
     }
   }

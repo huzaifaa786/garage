@@ -1,13 +1,10 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
-import 'package:mobilegarage/user_app/app/garage/components/container.dart';
 import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
 import 'package:mobilegarage/user_app/app/garage_review/garage_review_view.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
@@ -17,7 +14,6 @@ import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:shimmer/shimmer.dart';
 
 class GarageView extends StatelessWidget {
   const GarageView({super.key});
@@ -304,7 +300,7 @@ class GarageView extends StatelessWidget {
                   thickness: 10,
                   color: AppColors.grey.shade100,
                 ),
-                Gap(20  ),
+                Gap(20),
                 AppText(
                   title: 'Our Services',
                   size: 14,

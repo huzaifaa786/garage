@@ -17,6 +17,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
+import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/text_style.dart';
 
 class SearchView extends StatefulWidget {
@@ -30,32 +31,16 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchScreenController>(
-      builder: (controller) => Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(.0),
-          child: Container(
-            decoration: BoxDecoration(
-              boxShadow: [appbarShadow],
-            ),
-            child: AppBar(
-              automaticallyImplyLeading: false,
-              scrolledUnderElevation: 0.0,
-              toolbarHeight: 95.0,
-              title: TopBar(
-                showicon: true,
-                title: 'Search',
-                showgarageicon: false,
-              ),
-            ),
-          ),
-        ),
-        body: SafeArea(
-            child: SingleChildScrollView(
+      builder: (controller) => AppLayout(
+        hasBgColor: false,
+        hasShadow: true,
+        appBarTitle: 'Service Results',
+        child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
-                Gap(15),
+                Gap(25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -104,13 +89,13 @@ class _SearchViewState extends State<SearchView> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                controller.filteredPosts.isNotEmpty
+                controller.filteredGarages.isNotEmpty
                     ? ListView.builder(
-                        itemCount: controller.filteredPosts.length,
+                        itemCount: controller.filteredGarages.length,
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final item = controller.filteredPosts[index];
+                          final item = controller.filteredGarages[index];
                           return Padding(
                             padding: EdgeInsets.only(top: 15),
                             child: SearchCard(
@@ -124,10 +109,11 @@ class _SearchViewState extends State<SearchView> {
                               },
                               price: '',
                               services:
-                                  "${controller.filteredPosts.length} services",
+                                  "${controller.filteredGarages.length} services",
                               onTapViewGarage: () {
-                                Get.toNamed(AppRoutes.garage, arguments: {
-                                  'id': controller.posts[index].id.toString(),
+                                Get.toNamed(AppRoutes.garage, parameters: {
+                                  'id': controller.filteredGarages[index].id
+                                      .toString(),
                                 });
                               },
                             ),
@@ -177,7 +163,7 @@ class _SearchViewState extends State<SearchView> {
               ],
             ),
           ),
-        )),
+        ),
       ),
     );
   }
