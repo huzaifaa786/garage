@@ -39,7 +39,8 @@ class GarageView extends StatelessWidget {
                     clipBehavior: Clip.none,
                     children: [
                       AppNetworkImage(
-                        assetPath: 'assets/images/garage.png',
+                        networkImage: controller.garage!.banner.toString(),
+                        assetPath: 'assets/images/ac.png',
                         width: Get.width,
                         height: Get.height * 0.2,
                       ),
@@ -75,7 +76,7 @@ class GarageView extends StatelessWidget {
                           ),
                           child: ClipRRect(
                               child: AppNetworkImage(
-                            assetPath: 'assets/images/street_garage.png',
+                            assetPath: controller.garage!.logo!,
                             height: Get.height * 0.08,
                             width: Get.width * 0.16,
                           )),
@@ -115,8 +116,7 @@ class GarageView extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 65),
                   child: AppText(
-                    title:
-                        'in street garage we can solve all your car problems with the best price!',
+                    title: controller.garage!.description!,
                     size: 12,
                     fontWeight: FontWeight.w400,
                     color: AppColors.greybg,

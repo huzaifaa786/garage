@@ -127,7 +127,7 @@ class _SearchViewState extends State<SearchView> {
                                   "${controller.filteredPosts.length} services",
                               onTapViewGarage: () {
                                 Get.toNamed(AppRoutes.garage, arguments: {
-                                  'id': controller.posts[index].id
+                                  'id': controller.posts[index].id.toString(),
                                 });
                               },
                             ),
