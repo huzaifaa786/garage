@@ -20,28 +20,29 @@ class GarageModel {
   bool? opened;
   String? status;
   List<GarageTimeModel>? garageTime;
-DateTime? createdAt;
+  DateTime? createdAt;
   List<ProductModel>? products = [];
-  GarageModel({
-    this.id,
-    this.banner,
-    this.logo,
-    this.ownerName,
-    this.name,
-    this.email,
-    this.idFront,
-    this.idBack,
-    this.license,
-    this.description,
-    this.phone,
-    this.lat,
-    this.lng,
-    this.emirateId,
-    this.address,
-    this.opened,
-    this.status,
-    this.garageTime,this.createdAt,this.products
-  });
+  GarageModel(
+      {this.id,
+      this.banner,
+      this.logo,
+      this.ownerName,
+      this.name,
+      this.email,
+      this.idFront,
+      this.idBack,
+      this.license,
+      this.description,
+      this.phone,
+      this.lat,
+      this.lng,
+      this.emirateId,
+      this.address,
+      this.opened,
+      this.status,
+      this.garageTime,
+      this.createdAt,
+      this.products});
 
   factory GarageModel.fromJson(Map<String, dynamic> json) {
     return GarageModel(
@@ -49,7 +50,7 @@ DateTime? createdAt;
       banner: json['banner'],
       logo: json['logo'],
       ownerName: json['owner_name'],
-      name: json['name'],
+      name: json['name']??'d',
       email: json['email'],
       idFront: json['id_front'],
       idBack: json['id_back'],
@@ -66,12 +67,11 @@ DateTime? createdAt;
           ? List<GarageTimeModel>.from(
               json['garage_time'].map((x) => GarageTimeModel.fromJson(x)),
             )
-            
-            :null,
+          : null,
       createdAt: json['created_at'] != null
           ? DateTime.parse(json['created_at'])
           : null,
-          products: json['products'] != null
+      products: json['products'] != null
           ? (json['products'] as List)
               .map((item) => ProductModel.fromJson(item))
               .toList()

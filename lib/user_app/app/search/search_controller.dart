@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/post_api/post_api.dart';
+import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/user_model/post_model.dart';
 import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 
@@ -48,8 +49,8 @@ class SearchScreenController extends GetxController {
 
   // TODO implementation code //
 
-  List<PostModel> posts = [];
-  List<PostModel> filteredPosts = [];
+  List<GarageModel> garages = [];
+  List<GarageModel> filteredGarages = [];
   String searchText = '';
   String selectedCategory = '';
 
@@ -64,12 +65,12 @@ class SearchScreenController extends GetxController {
     var response = await PostApi.getAllGarages();
     log('$response');
     if (response != {}) {
-      posts = (response['garages'] as List<dynamic>)
-          .map((postJson) => PostModel.fromJson(postJson))
+      garages = (response['garages'] as List<dynamic>)
+          .map((postJson) => GarageModel.fromJson(postJson))
           .toList();
-      filteredPosts = posts;
-      if (posts.isNotEmpty) {
-        PostModel post = posts.first;
+      filteredGarages = garages;
+      if (garages.isNotEmpty) {
+        GarageModel post = garages.first;
         lat = double.tryParse(post.lat!);
         lng = double.tryParse(post.lng!);
         getPlaceName(lat!, lng!);
@@ -83,12 +84,12 @@ class SearchScreenController extends GetxController {
     selectedCategory = category ?? '';
 
     print(
-        'Filtering posts with searchText: $searchText and selectedCategory: $selectedCategory');
+        'Filtering garages with searchText: $searchText and selectedCategory: $selectedCategory');
 
     if (searchText.isEmpty && selectedCategory.isEmpty) {
-      filteredPosts = posts;
+      filteredGarages = garages;
     } else {
-      filteredPosts = posts.where((post) {
+      filteredGarages = garages.where((post) {
         final postName = post.name?.toLowerCase() ?? '';
         // final postCategory = post.subCategory?.name.toLowerCase() ?? '';
 
@@ -100,7 +101,7 @@ class SearchScreenController extends GetxController {
         // || matchesCategory;
       }).toList();
     }
-    print('Filtered posts count: ${filteredPosts.length}');
+    print('Filtered garages count: ${filteredGarages.length}');
     update();
   }
 
