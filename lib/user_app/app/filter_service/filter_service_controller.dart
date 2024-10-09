@@ -572,7 +572,6 @@ class FilterServiceController extends GetxController {
           .toList();
 
       await fetchGarageAddresses();
-
       Get.toNamed(AppRoutes.acceptedorder);
       UiUtilites.successAlertDialog(
           context: Get.context,
