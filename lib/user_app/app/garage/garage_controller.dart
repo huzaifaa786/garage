@@ -7,25 +7,24 @@ class GarageController extends GetxController {
   static GarageController instanse = Get.find();
   int selectedindex = 0;
   String? garageId = '';
-  GarageModel? garage ;
-    void selectindex(int index) {
+  GarageModel? garage;
+  void selectindex(int index) {
     selectedindex = index;
     update();
-    print('object');
   }
 
   @override
   void onInit() async {
     garageId = Get.arguments['id']?.toString();
-    await getGarageProfile(garageId);
+    await getGarageProfile(1);
     super.onInit();
   }
 
-  getGarageProfile(id) async {
-    var response = await GarageProfileApi.garageProfile(id);
+  getGarageProfile(garageId) async {
+    var response = await GarageProfileApi.garageProfile(garageId);
     if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response);
-      
+      update();
     }
   }
 
