@@ -4,7 +4,7 @@ import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 
 class GarageController extends GetxController {
-  static GarageController instanse = Get.find();
+  static GarageController instance = Get.find();
   int selectedindex = 0;
   String? garageId = '';
   GarageModel? garage;

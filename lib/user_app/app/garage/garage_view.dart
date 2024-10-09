@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/garage/components/container.dart';
 import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
 import 'package:mobilegarage/user_app/app/garage_review/garage_review_view.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
@@ -15,6 +17,7 @@ import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:shimmer/shimmer.dart';
 
 class GarageView extends StatelessWidget {
   const GarageView({super.key});
@@ -39,8 +42,7 @@ class GarageView extends StatelessWidget {
                     clipBehavior: Clip.none,
                     children: [
                       AppNetworkImage(
-                        networkImage: controller.garage!.banner.toString(),
-                        assetPath: 'assets/images/ac.png',
+                        assetPath: 'assets/images/garage.png',
                         width: Get.width,
                         height: Get.height * 0.2,
                       ),
@@ -74,24 +76,23 @@ class GarageView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: ClipRRect(
+                          child: ClipOval(
                               child: AppNetworkImage(
-                            assetPath: controller.garage!.logo!,
+                            assetPath: 'assets/images/street_garage.png',
                             height: Get.height * 0.08,
                             width: Get.width * 0.16,
                           )),
                         ),
                       ),
                     ]),
-                SizedBox(
-                  height: Get.height * 0.06,
-                ),
+                Gap(30),
                 AppText(
-                  title: controller.garage!.name!,
+                  title: 'Street Garage',
                   size: 14,
+                  textAlign: TextAlign.center,
                   fontWeight: FontWeight.w600,
                 ),
-                Gap(3),
+                Gap(5.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -108,25 +109,109 @@ class GarageView extends StatelessWidget {
                     Gap(3),
                     AppText(
                       title: '4.0',
+                      textAlign: TextAlign.center,
                       size: 10,
                     ),
                   ],
                 ),
-                Gap(10),
+                Gap(5.0),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 65),
                   child: AppText(
-                    title: controller.garage!.description!,
+                    title:
+                        'in street garage we can solve all your car problems with the best price!',
                     size: 12,
+                    textAlign: TextAlign.center,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.greybg,
+                    color: AppColors.grey,
                   ),
+                ),
+                Gap(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset('assets/icons/sun.svg'),
+                    Gap(5),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: 'Opened from ',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.grey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: '03:00 Am',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black),
+                          ),
+                          TextSpan(
+                            text: ' to ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.grey,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '12:00 Pm',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Gap(5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset('assets/icons/moon.svg'),
+                    Gap(5),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: 'Opened from ',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.grey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: '08:00 Am',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black),
+                          ),
+                          TextSpan(
+                            text: ' to ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.grey,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '12:00 Pm',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 25),
                   child: Stack(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ClipPath(
@@ -144,42 +229,37 @@ class GarageView extends StatelessWidget {
                                         bottomLeft: Radius.circular(20))),
                                 height: Get.height * 0.05,
                                 width: Get.width * 0.5,
-                                child: Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset('assets/icons/star.svg'),
-                                      Gap(5),
-                                      Text(
-                                        'View reviews',
-                                        style: TextStyle(
-                                            color: AppColors.primarybg,
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset('assets/icons/star.svg',
+                                        height: 16, width: 16),
+                                    Gap(5),
+                                    AppText(
+                                        title: 'View reviews',
+                                        color: AppColors.primarybg,
+                                        size: 11,
+                                        fontWeight: FontWeight.w600),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                          Gap(
-                            8,
-                          ),
                           SizedBox(
-                            width: Get.width * 0.13,
+                            width: Get.width * 0.25,
                           )
                         ],
                       ),
                       Positioned(
                         right: 0,
-                        top: Get.height * 0.003,
+                        height: Get.height * 0.05,
                         child: GestureDetector(
                           onTap: () {
                             print('object23');
                           },
                           child: Container(
                             height: Get.height * 0.045,
+                            padding: EdgeInsets.symmetric(horizontal: 25),
                             decoration: BoxDecoration(
                               color: AppColors.lightPink,
                               borderRadius: BorderRadius.circular(80),
@@ -191,19 +271,14 @@ class GarageView extends StatelessWidget {
                                 children: [
                                   SvgPicture.asset(
                                     'assets/icons/chat.svg',
-                                    width: Get.width * 0.07,
+                                    height: 16,
+                                    width: 16,
                                     color: AppColors.primary,
                                   ),
-
-                                  // Image.asset(
-                                  //   'assets/images/chat.png',
-                                  //   color: AppColors.primarybg,
-                                  // ),
-                                  // Gap(2),
                                   AppText(
                                     title: 'Chat',
                                     size: 11,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w600,
                                     color: AppColors.primarybg,
                                   )
                                 ],
@@ -215,13 +290,28 @@ class GarageView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Gap(25),
+                // Gap(30),
+                // AppText(
+                //   title: 'Selected Product',
+                //   size: 14,
+                //   textAlign: TextAlign.center,
+                //   fontWeight: FontWeight.w600,
+                // ),
+                // Gap(10),
+                // SSSSCard(),
+                Gap(20),
+                Divider(
+                  thickness: 10,
+                  color: AppColors.grey.shade100,
+                ),
+                Gap(20  ),
                 AppText(
                   title: 'Our Services',
                   size: 14,
                   fontWeight: FontWeight.w600,
                 ),
                 Gap(25),
+
                 GridView.builder(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   physics: BouncingScrollPhysics(),
