@@ -132,22 +132,30 @@ class ProductFormController extends GetxController {
   setSelectedCategory(CategoryModel? category) async {
     selectedCategory = category;
     selectedCategoryId = category?.id;
-    clearbatterymodels();
-    clearbatterycomponents();
+    await clearmodels();
+    await clearcomponents();
     if (selectedCategoryId != null) await getBrands();
     await getProductDetails();
     update();
   }
 
-  clearbatterycomponents() {
+  clearcomponents() {
     brands.clear();
     producttypes.clear();
     batteryOrigins.clear();
     batteryAmperes.clear();
     batteryVoltages.clear();
+    tyrewidths.clear();
+    tyreheights.clear();
+    tyresizes.clear();
+    tyrepattterens.clear();
+    tyreSpeedRatings.clear();
+    tyreorigins.clear();
+    oilVolumes.clear();
+    oilproductTypes.clear();
   }
 
-  clearbatterymodels() {
+  clearmodels() {
     selectedBrand = null;
     selectedBrandId = null;
     selectedproducttype = null;
@@ -158,6 +166,22 @@ class ProductFormController extends GetxController {
     selectedampereId = null;
     selectedvoltage = null;
     selectedvoltageId = null;
+    selectedwidthId == null;
+    selectedwidth == null;
+    selectedheight == null;
+    selectedheightId == null;
+    selectedsizeId == null;
+    selectedsize == null;
+    selectedpatterenId == null;
+    selectedpatteren == null;
+    selectedSpeedRating == null;
+    selectedSpeedRatingId == null;
+    selectedtyreoriginId == null;
+    selectedtyreorigin == null;
+    selectedVolumeId == null;
+    selectedvolume == null;
+    selectedoilproductTypeId == null;
+    selectedoilproductType == null;
   }
 
 // brands dropdown
@@ -1245,7 +1269,7 @@ class ProductFormController extends GetxController {
         return fuelextrapriceErrors[index] ?? '';
       case 1:
         return carWashextrapriceErrors[index] ?? '';
-         case 8:
+      case 8:
         return acextrapriceErrors[index] ?? '';
       default:
         return '';
