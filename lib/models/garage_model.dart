@@ -1,4 +1,5 @@
 import 'package:mobilegarage/models/garage_timing_model/garage_timing_model.dart';
+import 'package:mobilegarage/models/product_model.dart';
 
 class GarageModel {
   int? id;
@@ -19,7 +20,8 @@ class GarageModel {
   bool? opened;
   String? status;
   List<GarageTimeModel>? garageTime;
-
+DateTime? createdAt;
+  List<ProductModel>? products = [];
   GarageModel({
     this.id,
     this.banner,
@@ -38,7 +40,7 @@ class GarageModel {
     this.address,
     this.opened,
     this.status,
-    this.garageTime,
+    this.garageTime,this.createdAt,this.products
   });
 
   factory GarageModel.fromJson(Map<String, dynamic> json) {
@@ -64,6 +66,15 @@ class GarageModel {
           ? List<GarageTimeModel>.from(
               json['garage_time'].map((x) => GarageTimeModel.fromJson(x)),
             )
+            
+            :null,
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : null,
+          products: json['products'] != null
+          ? (json['products'] as List)
+              .map((item) => ProductModel.fromJson(item))
+              .toList()
           : null,
     );
   }

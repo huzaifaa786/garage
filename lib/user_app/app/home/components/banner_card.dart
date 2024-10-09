@@ -32,7 +32,7 @@ class BannerCard extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: networkImage.toString(),
           width: isRectangle ? Get.width : Get.width * 0.9,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.cover,
           placeholderFadeInDuration: Duration(milliseconds: 500),
           placeholder: (context, url) => Shimmer.fromColors(
             baseColor: Colors.grey[300]!,
