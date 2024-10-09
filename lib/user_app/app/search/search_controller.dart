@@ -55,6 +55,7 @@ class SearchScreenController extends GetxController {
 
   @override
   void onInit() {
+   
     getGarages();
     super.onInit();
   }

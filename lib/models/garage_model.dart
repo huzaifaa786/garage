@@ -1,3 +1,4 @@
+import 'package:mobilegarage/models/garage_timing_model/garage_timing_model.dart';
 import 'package:mobilegarage/models/product_model.dart';
 
 class GarageModel {
@@ -16,28 +17,31 @@ class GarageModel {
   String? lng;
   int? emirateId;
   String? address;
-  DateTime? createdAt;
   bool? opened;
+  String? status;
+  List<GarageTimeModel>? garageTime;
+DateTime? createdAt;
   List<ProductModel>? products = [];
-
-  GarageModel(
-      {this.id,
-      this.banner,
-      this.logo,
-      this.ownerName,
-      this.name,
-      this.email,
-      this.idFront,
-      this.idBack,
-      this.license,
-      this.description,
-      this.phone,
-      this.lat,
-      this.lng,
-      this.emirateId,
-      this.address,
-      this.createdAt,
-      this.opened,this.products});
+  GarageModel({
+    this.id,
+    this.banner,
+    this.logo,
+    this.ownerName,
+    this.name,
+    this.email,
+    this.idFront,
+    this.idBack,
+    this.license,
+    this.description,
+    this.phone,
+    this.lat,
+    this.lng,
+    this.emirateId,
+    this.address,
+    this.opened,
+    this.status,
+    this.garageTime,this.createdAt,this.products
+  });
 
   factory GarageModel.fromJson(Map<String, dynamic> json) {
     return GarageModel(
@@ -57,6 +61,13 @@ class GarageModel {
       emirateId: json['emirate_id'],
       address: json['address'],
       opened: json['opened'],
+      status: json['status'],
+      garageTime: json['garage_time'] != null
+          ? List<GarageTimeModel>.from(
+              json['garage_time'].map((x) => GarageTimeModel.fromJson(x)),
+            )
+            
+            :null,
       createdAt: json['created_at'] != null
           ? DateTime.parse(json['created_at'])
           : null,

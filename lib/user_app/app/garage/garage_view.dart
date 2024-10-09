@@ -86,7 +86,7 @@ class GarageView extends StatelessWidget {
                   height: Get.height * 0.06,
                 ),
                 AppText(
-                  title: 'Street Garage',
+                  title: controller.garage!.name!,
                   size: 14,
                   fontWeight: FontWeight.w600,
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/apis/user_apis/garage_timings_api/garage_timings_api.dart';
+import 'package:mobilegarage/apis/vender_apis/garage_timings_api/garage_timings_api.dart';
 import 'package:mobilegarage/models/garage_timing_model/garage_timing_model.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
@@ -12,13 +12,13 @@ class GarageTimingsController extends GetxController {
   TimeOfDay selectedTimeClosedFrom = TimeOfDay.now();
   TimeOfDay selectedTimeClosedTo = TimeOfDay.now();
 
-  List<GarageTimingModel> garageTimings = [
-    GarageTimingModel(
+  List<GarageTimeModel> garageTimings = [
+    GarageTimeModel(
       shiftType: "morning",
       openTime: TimeOfDay.now().format(Get.context!),
       closeTime: TimeOfDay.now().format(Get.context!),
     ),
-    GarageTimingModel(
+    GarageTimeModel(
       shiftType: "night",
       openTime: TimeOfDay.now().format(Get.context!),
       closeTime: TimeOfDay.now().format(Get.context!),
@@ -30,7 +30,7 @@ class GarageTimingsController extends GetxController {
     final index =
         garageTimings.indexWhere((timing) => timing.shiftType == shiftType);
     if (index != -1) {
-      garageTimings[index] = GarageTimingModel(
+      garageTimings[index] = GarageTimeModel(
         shiftType: shiftType,
         openTime: openTime.format(Get.context!),
         closeTime: closeTime.format(Get.context!),
@@ -38,7 +38,7 @@ class GarageTimingsController extends GetxController {
     }
   }
 
-  Future<bool> postGarageTimings(List<GarageTimingModel> garageTimings) async {
+  Future<bool> postGarageTimings(List<GarageTimeModel> garageTimings) async {
     List<Map<String, dynamic>> formattedGarageTimings =
         garageTimings.map((timing) {
       return {
