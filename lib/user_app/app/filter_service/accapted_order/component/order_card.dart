@@ -221,6 +221,7 @@ class OrderCard extends StatelessWidget {
                         ],
                       ),
                     ),
+                    
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 15, bottom: 12, left: 20),
