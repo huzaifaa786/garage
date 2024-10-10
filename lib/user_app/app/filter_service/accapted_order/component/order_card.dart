@@ -18,15 +18,18 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class OrderCard extends StatelessWidget {
-  OrderCard({super.key, required this.garage, this.location,this.city
-  ,required this.isSelected,
- required this.onToggle
-  });
+  OrderCard(
+      {super.key,
+      required this.garage,
+      this.location,
+      this.city,
+      required this.isSelected,
+      required this.onToggle});
   GarageModel garage;
- final String? location;
- final String? city;
- final bool isSelected;
-  final Function() onToggle; 
+  final String? location;
+  final String? city;
+  final bool isSelected;
+  final Function() onToggle;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FilterServiceController>(
@@ -42,9 +45,8 @@ class OrderCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
-                      color: isSelected
-                          ?AppColors.primary
-                          : Colors.transparent,
+                      color:
+                          isSelected ? AppColors.primary : Colors.transparent,
                     ),
                     color: AppColors.white,
                     boxShadow: [
@@ -73,7 +75,6 @@ class OrderCard extends StatelessWidget {
                             )),
                         Expanded(
                           child: Column(
-                            // crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
                                 height: Get.height * 0.13,
@@ -84,9 +85,9 @@ class OrderCard extends StatelessWidget {
                                   borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(13)),
                                   child: AppNetworkImage(
-                                    // networkImage: garage
-                                    //     .products![0].images!.first.imageUrl
-                                    //     .toString(),
+                                    networkImage: garage
+                                        .products![0].images!.first.imageUrl
+                                        .toString(),
                                     assetPath: 'assets/images/mobiloil.png',
                                     fit: BoxFit.cover,
                                   ),
@@ -94,7 +95,8 @@ class OrderCard extends StatelessWidget {
                               ),
                               Gap(5),
                               AppText(
-                                title: 'Super car oil',
+                                title: garage.products![0].oilextra![0].name
+                                    .toString(),
                                 size: 11,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -102,7 +104,6 @@ class OrderCard extends StatelessWidget {
                               AppText(
                                 title:
                                     garage.products![0].description.toString(),
-                                // 'Car oil 700 ml best quality\n for all car types',
                                 size: 9,
                                 fontWeight: FontWeight.w400,
                                 textAlign: TextAlign.center,
@@ -139,7 +140,7 @@ class OrderCard extends StatelessWidget {
                           ),
                           Gap(5),
                           AppText(
-                            title: '14 Services',
+                            title: garage.servicecount.toString()+''+'Services',
                             size: 9,
                             fontWeight: FontWeight.w500,
                             color: AppColors.darkblue,
@@ -176,7 +177,7 @@ class OrderCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding:  EdgeInsets.only(
+                      padding: EdgeInsets.only(
                         left: 20,
                         top: 7,
                       ),
@@ -188,13 +189,12 @@ class OrderCard extends StatelessWidget {
                             height: 10,
                             fit: BoxFit.scaleDown,
                           ),
-                           Gap(3),
-                         
+                          Gap(3),
                           Flexible(
                             child: RichText(
                               textAlign: TextAlign.center,
-                              text:  TextSpan(
-                                text:city ,
+                              text: TextSpan(
+                                text: city,
                                 style: TextStyle(
                                     color: AppColors.black,
                                     fontSize: 8,
