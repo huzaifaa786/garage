@@ -366,70 +366,6 @@ class FilterServiceController extends GetxController {
     selectedExtraId = volume?.id;
     update();
   }
-  /////////////////////////////                                        ////////////////////////////////////
-  ///////////////////////////            Road Assistance  data                   ////////////////////////////////////
-  ///////////////////////////                                        ////////////////////////////////////
-
-  // List<RoadAssistanceExtraModel> roadAssistanceExtras = [];
-
-/////////////////////////////                                        ////////////////////////////////////
-  ///////////////////////////            Recovery  data                   ////////////////////////////////////
-  ///////////////////////////                                        ////////////////////////////////////
-
-  // List<RecoveryExtraModel> recoveryExtras = [];
-
-  /////////////////////////////                                        ////////////////////////////////////
-  ///////////////////////////            fuel  data                   ////////////////////////////////////
-  ///////////////////////////                                        ////////////////////////////////////
-
-  // List<FuelExtraModel> fuelExtras = [];
-
-  /////////////////////////////                                        ////////////////////////////////////
-  ///////////////////////////            car wash  data                   ////////////////////////////////////
-  ///////////////////////////                                        ////////////////////////////////////
-
-  // List<CarWashExtraModel> carwashExtras = [];
-
-/////////////////////////////                                        ////////////////////////////////////
-  ///////////////////////////            ac  data                   ////////////////////////////////////
-  ///////////////////////////                                        ////////////////////////////////////
-
-  // List<AcExtraModel> acExtras = [];
-
-  // void setSelectedCategory(CategoryModel? category) async {
-  //   selectedCategory = category;
-  //   selectedCategoryId = category?.id;
-
-  //   clearbatterymodels();
-  //   // if (selectedCategoryId != 7) {
-  //   //   await getBrands();
-  //   // }
-
-  //   await getProductDetails();
-
-  //   update();
-  // }
-
-  // clearbatterycomponents() {
-  //   brands.clear();
-  //   producttypes.clear();
-  //   batteryOrigins.clear();
-  //   batteryAmperes.clear();
-  //   batteryVoltages.clear();
-  // }
-
-  // clearbatterymodels() {
-  //   selectedBrand = null;
-  //   selectedBrandId = null;
-  //   selectedproducttype = null;
-  //   selectedProducttypeId = null;
-  //   selectedbatteryOrigin = null;
-  //   selectedbatteryOriginId = null;
-  //   selectedampere = null;
-  //   selectedampereId = null;
-  //   selectedvoltage = null;
-  //   selectedvoltageId = null;
-  // }
 
   List<UserVehicles> vehiclesList = [];
   final ordervehiclesapi = OrderVehiclesApi();
@@ -441,6 +377,7 @@ class FilterServiceController extends GetxController {
           .toList();
       if (vehiclesList.isNotEmpty) {
         selectedCarName = vehiclesList.first.id.toString();
+        box.write('selectedvehicleid', selectedCarName.toString());
       }
       update();
     }
@@ -450,6 +387,8 @@ class FilterServiceController extends GetxController {
   //! Method to select a car
   void selectCar(String carName) {
     selectedCarName = carName;
+    box.write('selectedvehicleid', selectedCarName.toString());
+
     update();
   }
 
@@ -567,7 +506,7 @@ class FilterServiceController extends GetxController {
     }
 
     if (response.isNotEmpty) {
-      garages = (response['garages'] as List<dynamic>)
+      garages = (response['garage']['garages'] as List<dynamic>)
           .map((item) => GarageModel.fromJson(item as Map<String, dynamic>))
           .toList();
 
@@ -603,13 +542,12 @@ class FilterServiceController extends GetxController {
   int? selectedGarageIndex;
   void toggleSelection(int index) {
     if (selectedGarageIndex == index) {
-      selectedGarageIndex = null; 
+      selectedGarageIndex = null;
     } else {
-      selectedGarageIndex = index; 
+      selectedGarageIndex = index;
     }
-    update(); 
+    update();
   }
-  
 
   double ratings = 0.0;
   void updateRating(double rating) {
