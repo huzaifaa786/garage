@@ -38,8 +38,8 @@ class FilterServiceController extends GetxController {
 
   List<Map<String, dynamic>> serviceTypeList = [];
 
-  double start = 0.0;
-  double end = 50.0;
+  double start = 100.0;
+  double end = 500.0;
   String? categoryId;
 
   @override

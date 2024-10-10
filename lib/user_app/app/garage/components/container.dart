@@ -8,7 +8,7 @@ import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
-class SSSSCard extends StatelessWidget {
+class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

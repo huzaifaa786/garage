@@ -124,7 +124,6 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         inactiveTrackColor: AppColors.darkGrey,
                         trackHeight: 1.0,
                         thumbShape:
-                        
                             RoundSliderThumbShape(enabledThumbRadius: 10.0),
                         overlayShape:
                             RoundSliderOverlayShape(overlayRadius: 10.0),
@@ -145,11 +144,21 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         max: 1000.0,
                       ),
                     ),
+                    Gap(25),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: AppText(
+                        title: '*All boxes are optional',
+                        size: 12,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.grey,
+                      ),
+                    ),
                     if (![4, 7, 9, 8, 1]
                         .contains(int.parse(controller.categoryId.toString())))
                       Column(
                         children: [
-                          Gap(30),
+                          Gap(20),
                           DropDownField<BrandModel>(
                             displayValue: (item) => item.name!,
                             items: controller.brands,
@@ -163,7 +172,6 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           ),
                         ],
                       ),
-                   
                     controller.categoryId == '6'
                         ? Column(
                             children: [
@@ -330,12 +338,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                             ],
                           )
                         : Gap(0),
-                         if ([4, 7, 9, 8, 1, 2]
+                    if ([4, 7, 9, 8, 1, 2]
                         .contains(int.parse(controller.categoryId.toString())))
                       Column(
                         children: [
-                          Gap(20),
-
                           DropDownField<OilExtraModel>(
                             displayValue: (item) => item.name!,
                             items: controller.oilextras,
@@ -349,7 +355,6 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           ),
                         ],
                       ),
-                   
                     Gap(36),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -386,10 +391,9 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                                 text: vehical.vehicle_info.toString());
                           },
                         ),
-                        Gap(30),
+                        Gap(15),
                       ],
                     ),
-
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -409,62 +413,71 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           ],
                         ),
                         Gap(8),
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: 'Select garage',
-                              groupValue: controller.selectedgarageName,
-                              onChanged: (value) {
-                                controller.selectGarage(value!);
-                              },
-                              fillColor:
-                                  MaterialStatePropertyAll(AppColors.primarybg),
-                            ),
-                            SvgPicture.asset(
-                              'assets/icons/garage_logo.svg',
-                              color: AppColors.primarybg,
-                              height: 20,
-                              width: 20,
-                            ),
-                            Gap(10),
-                            Text(
-                              'Select garage',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.primarybg,
+                        GestureDetector(
+                          onTap: () {
+                            controller.selectGarage('Select garage');
+                          },
+                          child: Row(
+                            children: [
+                              Radio<String>(
+                                value: 'Select garage',
+                                groupValue: controller.selectedgarageName,
+                                onChanged: (value) {
+                                  controller.selectGarage(value!);
+                                },
+                                fillColor: MaterialStatePropertyAll(
+                                    AppColors.primarybg),
                               ),
-                            ),
-                          ],
+                              SvgPicture.asset(
+                                'assets/icons/garage_logo.svg',
+                                color: AppColors.primarybg,
+                                height: 20,
+                                width: 20,
+                              ),
+                              Gap(10),
+                              Text(
+                                'Select garage',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.primarybg,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        Gap(22),
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: 'Send to all garages',
-                              groupValue: controller.selectedgarageName,
-                              onChanged: (value) {
-                                controller.selectGarage(value!);
-                              },
-                              fillColor:
-                                  MaterialStatePropertyAll(AppColors.primarybg),
-                            ),
-                            Image.asset(
-                              'assets/images/all_garage.png',
-                              color: AppColors.primarybg,
-                              height: 30,
-                              width: 30,
-                            ),
-                            Gap(10),
-                            Text(
-                              'Send to all garages',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.primarybg,
+                        GestureDetector(
+                          onTap: () {
+                            controller.selectGarage('Send to all garages');
+                          },
+                          child: Row(
+                            children: [
+                              Radio<String>(
+                                value: 'Send to all garages',
+                                groupValue: controller.selectedgarageName,
+                                onChanged: (value) {
+                                  controller.selectGarage(value!);
+                                },
+                                fillColor: MaterialStatePropertyAll(
+                                    AppColors.primarybg),
                               ),
-                            ),
-                          ],
+                              Image.asset(
+                                'assets/images/all_garage.png',
+                                color: AppColors.primarybg,
+                                height: 30,
+                                width: 30,
+                              ),
+                              Gap(10),
+                              Text(
+                                'Send to all garages',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.primarybg,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

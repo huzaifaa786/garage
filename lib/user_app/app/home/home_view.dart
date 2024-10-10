@@ -114,7 +114,7 @@ class _HomeViewState extends State<HomeView> {
                         ],
                       ),
                     ),
-                    Gap(30),
+                    Gap(10),
                     GridView.builder(
                       padding: EdgeInsets.only(left: 20.0, right: 20.0),
                       shrinkWrap: true,
@@ -123,7 +123,7 @@ class _HomeViewState extends State<HomeView> {
                         crossAxisCount: 4,
                         crossAxisSpacing: 9.0,
                         mainAxisSpacing: 1.0,
-                        mainAxisExtent: Get.height * 0.21,
+                        mainAxisExtent: Get.height * 0.17,
                       ),
                       itemCount: controller.servicesList.length,
                       itemBuilder: (context, index) {
@@ -131,7 +131,6 @@ class _HomeViewState extends State<HomeView> {
                         return ServicesIcons(
                           imageUrl: item.image,
                           text: item.name,
-                          // showSubtext: false,
                           ontap: () {
                             Get.toNamed(
                               AppRoutes.filterorder,
@@ -141,7 +140,7 @@ class _HomeViewState extends State<HomeView> {
                         );
                       },
                     ),
-                    Gap(40),
+                    Gap(10),
                   ]
               ),
             ),

@@ -140,7 +140,9 @@ class OrderCard extends StatelessWidget {
                           ),
                           Gap(5),
                           AppText(
-                            title: garage.servicecount.toString()+''+'Services',
+                            title: garage.servicecount.toString() +
+                                '' +
+                                'Services',
                             size: 9,
                             fontWeight: FontWeight.w500,
                             color: AppColors.darkblue,
@@ -221,7 +223,6 @@ class OrderCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 15, bottom: 12, left: 20),
@@ -236,7 +237,10 @@ class OrderCard extends StatelessWidget {
                                     clipper: RightCircularClipper(),
                                     child: GestureDetector(
                                       onTap: () {
-                                        Get.toNamed(AppRoutes.garage);
+                                        Get.toNamed(AppRoutes.garage,
+                                            parameters: {
+                                              'id': garage.id.toString(),
+                                            });
                                       },
                                       child: Container(
                                         decoration: const BoxDecoration(
