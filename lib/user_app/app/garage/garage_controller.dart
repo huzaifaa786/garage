@@ -4,7 +4,7 @@ import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 
 class GarageController extends GetxController {
-  static GarageController instanse = Get.find();
+  static GarageController instance = Get.find();
   int selectedindex = 0;
   String? garageId = '';
   GarageModel? garage;
@@ -15,16 +15,15 @@ class GarageController extends GetxController {
 
   @override
   void onInit() async {
-    // garageId = Get.parameters['id']?.toString();
-    await getGarageProfile(1);
+    garageId = Get.parameters['id']?.toString();
+    await getGarageProfile(garageId);
     super.onInit();
   }
 
   getGarageProfile(garageId) async {
     var response = await GarageProfileApi.garageProfile(garageId);
     if (response.isNotEmpty) {
-      garage = GarageModel.fromJson(response);
-      print('${garage!.name}');
+      garage = GarageModel.fromJson(response['message']['garage']);
       update();
     }
   }
