@@ -15,8 +15,8 @@ class GarageController extends GetxController {
 
   @override
   void onInit() async {
-    // garageId = Get.parameters['id']?.toString();
-    await getGarageProfile(1);
+    garageId = Get.parameters['id']?.toString();
+    await getGarageProfile(garageId);
     super.onInit();
   }
 

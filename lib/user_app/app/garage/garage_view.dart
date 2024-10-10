@@ -38,7 +38,7 @@ class GarageView extends StatelessWidget {
                     clipBehavior: Clip.none,
                     children: [
                       AppNetworkImage(
-                        assetPath: 'assets/images/garage.png',
+                        networkImage: controller.garage!.banner!,
                         width: Get.width,
                         height: Get.height * 0.2,
                       ),
