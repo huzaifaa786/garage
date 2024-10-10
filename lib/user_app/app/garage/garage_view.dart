@@ -123,28 +123,84 @@ class GarageView extends StatelessWidget {
                   ),
                 ),
                 Gap(15),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.garage!.garageTime!
-                      .where((element) =>
-                          element.shiftType == 'morning' ||
-                          element.shiftType == 'evening')
-                      .toList()
-                      .length,
-                  itemBuilder: (context, index) {
-                    var filteredList = controller.garage!.garageTime!
-                        .where((element) =>
-                            element.shiftType == 'morning' ||
-                            element.shiftType == 'evening')
-                        .toList();
-                    return ListTile(
-                      leading: filteredList[index].shiftType == 'morning'
-                          ? const Icon(Icons.wb_sunny_outlined)
-                          : const Icon(Icons.nightlight_round),
-                      title: Text(
-                          '${filteredList[index].openTime} - ${filteredList[index].closeTime}'),
-                    );
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset('assets/icons/sun.svg'),
+                    Gap(5),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: 'Opened from ',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.grey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: '03:00 Am',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black),
+                          ),
+                          TextSpan(
+                            text: ' to ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.grey,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '12:00 Pm',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Gap(5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset('assets/icons/moon.svg'),
+                    Gap(5),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: 'Opened from ',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.grey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: '08:00 Am',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black),
+                          ),
+                          TextSpan(
+                            text: ' to ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.grey,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '12:00 Pm',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 25),
