@@ -38,8 +38,9 @@ class GarageView extends StatelessWidget {
                     clipBehavior: Clip.none,
                     children: [
                       AppNetworkImage(
-                        networkImage: controller.garage!.banner!,
+                        networkImage: controller.garage!.banner.toString(),
                         width: Get.width,
+                        fit: BoxFit.cover,
                         height: Get.height * 0.2,
                       ),
                       // CachedNetworkImage(
@@ -74,7 +75,7 @@ class GarageView extends StatelessWidget {
                           ),
                           child: ClipOval(
                               child: AppNetworkImage(
-                            assetPath: 'assets/images/street_garage.png',
+                            networkImage: controller.garage!.logo!,
                             height: Get.height * 0.08,
                             width: Get.width * 0.16,
                           )),
@@ -83,7 +84,7 @@ class GarageView extends StatelessWidget {
                     ]),
                 Gap(30),
                 AppText(
-                  title: 'Street Garage',
+                  title: controller.garage!.name!,
                   size: 14,
                   textAlign: TextAlign.center,
                   fontWeight: FontWeight.w600,
@@ -114,8 +115,7 @@ class GarageView extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 65),
                   child: AppText(
-                    title:
-                        'in street garage we can solve all your car problems with the best price!',
+                    title: controller.garage!.description!,
                     size: 12,
                     textAlign: TextAlign.center,
                     fontWeight: FontWeight.w400,
@@ -123,84 +123,28 @@ class GarageView extends StatelessWidget {
                   ),
                 ),
                 Gap(15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset('assets/icons/sun.svg'),
-                    Gap(5),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: 'Opened from ',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.grey,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: '03:00 Am',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.black),
-                          ),
-                          TextSpan(
-                            text: ' to ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.grey,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '12:00 Pm',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.black),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                Gap(5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset('assets/icons/moon.svg'),
-                    Gap(5),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: 'Opened from ',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.grey,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: '08:00 Am',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.black),
-                          ),
-                          TextSpan(
-                            text: ' to ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.grey,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '12:00 Pm',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.black),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.garage!.garageTime!
+                      .where((element) =>
+                          element.shiftType == 'morning' ||
+                          element.shiftType == 'evening')
+                      .toList()
+                      .length,
+                  itemBuilder: (context, index) {
+                    var filteredList = controller.garage!.garageTime!
+                        .where((element) =>
+                            element.shiftType == 'morning' ||
+                            element.shiftType == 'evening')
+                        .toList();
+                    return ListTile(
+                      leading: filteredList[index].shiftType == 'morning'
+                          ? const Icon(Icons.wb_sunny_outlined)
+                          : const Icon(Icons.nightlight_round),
+                      title: Text(
+                          '${filteredList[index].openTime} - ${filteredList[index].closeTime}'),
+                    );
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 25),

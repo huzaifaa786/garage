@@ -23,8 +23,7 @@ class GarageController extends GetxController {
   getGarageProfile(garageId) async {
     var response = await GarageProfileApi.garageProfile(garageId);
     if (response.isNotEmpty) {
-      garage = GarageModel.fromJson(response);
-      print('${garage!.name}');
+      garage = GarageModel.fromJson(response['message']['garage']);
       update();
     }
   }
