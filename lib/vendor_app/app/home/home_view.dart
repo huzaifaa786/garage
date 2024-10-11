@@ -115,31 +115,22 @@ class _VHomeViewState extends State<VHomeView> {
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        controller.garage != null
+                                  ?
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               TextSwitchButton(
-                                value: controller.isSelected,
+                                value: controller.isSelected!,
                                 ontoggle: (value) {
-                                  controller.isSelected = value;
-                                  controller.showConfirmationDialog(
-                                    value,
-                                    value
-                                        ? "Are you sure you want to mark your garage as available?"
-                                        : "Are you sure you want to mark your garage as unavailable?",
-                                    onConfirm: () async {
-                                      await controller.updateGarageStatus();
-                                      controller.garage!.opened = value;
-                                      controller.update();
-                                    },
-                                  );
+                                  controller.toggleStatus(value);
                                 },
                               ),
                             ],
                           ),
-                        ),
+                        ):Gap(0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -223,91 +214,6 @@ class _VHomeViewState extends State<VHomeView> {
                                 )
                               ],
                             ),
-                            //       Padding(
-                            //         padding: const EdgeInsets.only(left: 33, top: 10),
-                            //         child: Row(
-                            //           mainAxisAlignment: MainAxisAlignment.start,
-                            //           children: [
-                            //             Column(
-                            //               children: [
-                            //                 Padding(
-                            //                   padding: const EdgeInsets.only(bottom: 29),
-                            //                   child: CachedNetworkImage(
-                            //                     imageUrl:
-                            //                      controller.garage != null
-                            //  ?
-                            //                     controller.garage!.banner!:'https://dummyimage.com/60x40/000/fff',
-                            //                     width: MediaQuery.of(context).size.width,
-                            //                     height: MediaQuery.of(context).size.height *
-                            //                         0.235,
-                            //                     fit: BoxFit.cover,
-                            //                   ),
-                            //                 ),
-                            //                 Positioned(
-                            //                     top: Get.height * 0.15,
-                            //                     left: (MediaQuery.of(context).size.width -
-                            //                             100) /
-                            //                         2,
-                            //                     child: ClipRRect(
-                            //                       borderRadius: BorderRadius.circular(50),
-                            //                       child: CachedNetworkImage(
-                            //                         imageUrl:
-                            //                          controller.garage != null
-                            //  ?
-                            //                         controller.garage!.logo!:'https://dummyimage.com/60x40/000/fff',
-                            //                         width: 80,
-                            //                         height: 80,
-                            //                         fit: BoxFit.cover,
-                            //                       ),
-                            //                     )),
-                            //               ],
-                            //             ),
-                            //             Gap(5),
-                            //             Row(
-                            //               mainAxisAlignment: MainAxisAlignment.center,
-                            //               children: [
-                            //                 AppText(
-                            //                   title:
-                            //                    controller.garage != null
-                            //  ?
-                            //                    controller.garage!.name!:"street garage",
-                            //                   size: 14,
-                            //                   fontWeight: FontWeight.w600,
-                            //                   color: AppColors.primary_color,
-                            //                 ),
-                            //                 Gap(4),
-                            //                 SvgPicture.asset(
-                            //                     'assets/images/Vector (20).svg')
-                            //               ],
-                            //             ),
-                            //             Gap(8),
-                            //             Padding(
-                            //               padding:
-                            //                   const EdgeInsets.symmetric(horizontal: 30),
-                            //               child: AppText(
-                            //                 title:
-                            //                  controller.garage != null
-                            //  ?
-                            //                 controller.garage!.description!:'description',
-                            //                 size: 12,
-                            //                 fontWeight: FontWeight.w600,
-                            //                 color: Colors.grey,
-                            //                 textAlign: TextAlign.center,
-                            //               ),
-                            //             ),
-                            //             Padding(
-                            //               padding: const EdgeInsets.all(8.0),
-                            //               child: Row(
-                            //                 mainAxisAlignment: MainAxisAlignment.center,
-                            //                 children: [
-                            //                   TextSwitchButton(
-                            //                     //  value: controller.garage!.opened ?? false,
-                            //                     value: true,
-                            //                     ontoggle: controller.toggleStatus,
-                            //                   ),
-                            //                 ],
-                            //               ),
-                            //             ),
                             Container(
                               width: Get.width,
                               padding: EdgeInsets.symmetric(
@@ -374,9 +280,7 @@ class _VHomeViewState extends State<VHomeView> {
                       ))
                 ]),
               ),
-            ))
-        // : Container(),
-        );
+            )));
   }
 
   void _openReviewBottomSheet(BuildContext context) {

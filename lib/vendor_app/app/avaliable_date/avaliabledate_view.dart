@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/components/selected_date.dart';
+import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -24,40 +25,15 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
   Widget build(BuildContext context) {
     return GetBuilder<AvaliableDateController>(
       autoRemove: false,
-      builder: (controller) => Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  offset: const Offset(0, 3),
-                  blurRadius: 6,
-                  spreadRadius: 1,
-                ),
-              ],
-            ),
-            child: AppBar(
-              centerTitle: true,
-              title: AppText(
-                title: 'Edit unavailable dates',
-                size: 16,
-                fontWeight: FontWeight.w600,
-                color: AppColors.primary_color,
-              ),
-              elevation: 0,
-              scrolledUnderElevation: 0.0,
-              backgroundColor: Colors.white,
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
+      builder: (controller) => AppLayout(
+        appBarTitle: 'Edit unavailable dates',
+        hasBgColor: false,
+        hasShadow: true,
+        child: SingleChildScrollView(
           child: SafeArea(
             child: Column(
               children: [
-                const Gap(10),
+                 Gap(40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

@@ -65,6 +65,7 @@ class VHomeController extends GetxController {
     var response = await VGetGarageApi.getgarage();
     if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response['garage']);
+      isSelected = garage!.opened;
       update();
     }
   }
@@ -80,9 +81,9 @@ class VHomeController extends GetxController {
   // RATING ALERTDIALOG CODE HERE //
   String img = 'https://dummyimage.com/73x73/000/fff';
   TextEditingController nameController = TextEditingController();
-  bool isSelected = false;
+  bool? isSelected;
   void toggleSelection() {
-    isSelected = !isSelected;
+    isSelected = !isSelected!;
     update();
   }
 
@@ -92,24 +93,25 @@ class VHomeController extends GetxController {
     update();
   }
 
-  var status = GarageModel().obs;
-
-  // end //
-  void toggleStatus(bool value) async {
+  void toggleStatus(bool value) {
     if (garage != null) {
       showConfirmationDialog(
-          value,
-          value
-              ? "Are you sure you want to mark your garage as available?"
-              : "Are you sure you want to mark your garage as unavailable?",
-          onConfirm: () async {
-        await updateGarageStatus();
-        garage!.opened = value;
-        update();
-      });
+        value,
+        value
+            ? "Are you sure you want to mark your garage as available?"
+            : "Are you sure you want to mark your garage as unavailable?",
+        onConfirm: () async {
+          await updateGarageStatus();
+          isSelected = value;
+          garage!.opened = value;
+          update();
+          print(value);
+        },
+      );
     }
   }
 
+/////
   double ratings = 0.0;
   void updateRating(double rating) {
     ratings = rating;
@@ -164,11 +166,5 @@ class VHomeController extends GetxController {
         ],
       ),
     );
-  } //  /// use this function only for design ///
-
-  //var isSwitched = false;
-
-  void toggleStatuss(bool value) {
-    isSelected = value;
   }
 }
