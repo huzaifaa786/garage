@@ -50,6 +50,7 @@ class RadioCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                   child: AppNetworkImage(
                     networkImage: userVehicles!.image.toString(),
+                    fit: BoxFit.cover,
                     height: 50,
                     width: 50,
                   ),

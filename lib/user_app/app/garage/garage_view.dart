@@ -73,14 +73,17 @@ class GarageView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: ClipOval(
-                              child: AppNetworkImage(
-                            networkImage: controller.garage!.logo!,
-                            height: Get.height * 0.08,
-                            width: Get.width * 0.16,
-                          )),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(60.0),
+                            child: AppNetworkImage(
+                              networkImage: controller.garage!.logo!,
+                              fit: BoxFit.cover,
+                              height: 70,
+                              width: 70,
+                            ),
+                          ),
                         ),
-                      ),
+                      )
                     ]),
                 Gap(30),
                 AppText(

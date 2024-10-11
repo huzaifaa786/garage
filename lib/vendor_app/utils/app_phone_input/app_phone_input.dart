@@ -84,10 +84,10 @@ class AppPhoneInput extends StatelessWidget {
         ),
         if (errorText!.isNotEmpty)
           Padding(
-            padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
+            padding: EdgeInsets.only(top: 4, left: 16, right: 16),
             child: AppText(
               title: errorText!,
-              color: AppColors.primary_color,
+              color: AppColors.red,
               size: 10,
             ),
           ),

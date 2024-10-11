@@ -40,7 +40,7 @@ class _AccountViewState extends State<AccountView> {
               toolbarHeight: 95.0,
               title: const TopBar(
                 showgarageicon: false,
-                showicon: true,
+                showicon: false,
                 title: "Profile",
               ),
             ),
@@ -156,10 +156,9 @@ class _AccountViewState extends State<AccountView> {
                           //     ontap: () {}),
                           const Gap(30),
                           LogoutButton(
-                            image: 
-                             box.read('locale') != 'ar'?
-                            'assets/icons/log-out.svg'
-                            :'assets/icons/log_outleft.svg',
+                            image: box.read('locale') != 'ar'
+                                ? 'assets/icons/log-out.svg'
+                                : 'assets/icons/log_outleft.svg',
                             title: 'Log out',
                             buttonWidth: Get.width * 0.77,
                             height: Get.height * 0.07,

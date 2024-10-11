@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/order_history/components/order_history_card.dart';
 import 'package:mobilegarage/user_app/app/order_history/order_history_controller.dart';
 
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
@@ -39,16 +41,37 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
                       ),
                     ),
                   )),
-              body: ListView.builder(
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemCount: controller.orders.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final orders = controller.orders[index];
-                    return OrderHistoryCard(
-                      orders: orders,
-                    );
-                  }),
+              body: Column(
+                children: [
+                  Container(
+                    color: AppColors.white,
+                    height: Get.height * 0.05,
+                    width: Get.width,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Gap(25),
+                        AppText(
+                          title: 'Yesterday',
+                          size: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gap(5),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
+                      itemCount: controller.orders.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final orders = controller.orders[index];
+                        return OrderHistoryCard(
+                          orders: orders,
+                        );
+                      }),
+                ],
+              ),
             ));
   }
 }

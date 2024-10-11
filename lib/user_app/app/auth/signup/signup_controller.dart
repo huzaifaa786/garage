@@ -29,7 +29,7 @@ class SignupController extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController adreesdetailController = TextEditingController();
 
-GetStorage box =GetStorage();
+  GetStorage box = GetStorage();
 
 // onint
   @override
@@ -112,7 +112,6 @@ GetStorage box =GetStorage();
     }
   }
 
-
   //TODO: Error Variables
   String nameError = '';
   String emirateError = '';
@@ -152,7 +151,7 @@ GetStorage box =GetStorage();
         validateFields('address detail', adreesdetailController.text);
 
     if (selectedEmirateId == null) {
-      emirateError = 'Please select an Brand';
+      emirateError = 'please select an Brand';
       update();
     } else {
       emirateError = '';
@@ -256,9 +255,9 @@ GetStorage box =GetStorage();
         imageBase64 = base64Encode(imageBytes);
       }
       return {
-        'vehicletype_id': section['vehicletype_id']?.id ?? null,
-        'vehiclebrand_id': section['vehiclebrand_id']?.id ?? null,
-        'vehiclebrandname_id': section['vehiclebrandname_id']?.id ?? null,
+        'vehicletype_id': section['vehicletype_id']?.id,
+        'vehiclebrand_id': section['vehiclebrand_id']?.id,
+        'vehiclebrandname_id': section['vehiclebrandname_id']?.id,
         'year_of_manufacture': section['year_of_manufacture'] ?? '',
         'vehicle_info': section['vehicle_info'] ?? '',
         'image': imageBase64,
@@ -273,12 +272,14 @@ GetStorage box =GetStorage();
       includes: formattedVehicleSections,
     );
     if (response.isNotEmpty) {
-       box.write('api_token', response['user']['token']);
-       box.write('user_type', 'user');
+      box.write('api_token', response['user']['token']);
+      box.write('user_type', 'user');
 
-       box.write('number_verified', 'false');
-      Get.toNamed(AppRoutes.otp,
-          parameters: {'phone': completePhoneNumber.toString(),'auth':'signup'});
+      box.write('number_verified', 'false');
+      Get.toNamed(AppRoutes.otp, parameters: {
+        'phone': completePhoneNumber.toString(),
+        'auth': 'signup'
+      });
       update();
     }
   }

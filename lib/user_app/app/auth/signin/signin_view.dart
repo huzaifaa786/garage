@@ -34,7 +34,7 @@ class SigninView extends StatelessWidget {
                       children: [
                         // Image.asset('assets/images/splash_logo.png'),
                         Padding(
-                            padding: EdgeInsets.only(top: 30,bottom: 20),
+                          padding: EdgeInsets.only(top: 30, bottom: 20),
                           child: SvgPicture.asset(
                             'assets/icons/mobile_garagelogo.svg',
                             color: AppColors.white,
@@ -100,7 +100,6 @@ class SigninView extends StatelessWidget {
                                           title: 'Sign In',
                                           txtweight: FontWeight.w600,
                                           onTap: () {
-                                            
                                             // Get.toNamed(AppRoutes.otp);
                                             controller.verifyNumber();
                                           },
