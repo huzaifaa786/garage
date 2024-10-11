@@ -323,16 +323,18 @@ class VSignUpController extends GetxController {
         idfrontside: base64IdCardFrontSide,
       );
       if (response.isNotEmpty) {
-        box.write('api_token', response['garage']['token']);
-        box.write('user_type', 'vendor');
-        print(response['garage']['token']);
+        // box.write('api_token', response['garage']['token']);
+        // box.write('user_type', 'vendor');
+        // print(response['garage']['token']);
         UiUtilites.successAlertDialog(
             context: Get.context,
-            onTap: () {},
-            title: 'sdfsdfsf',
-            description: 'sdfsdfsdfs',
-            buttontitle: 'ok');
-        Get.offAllNamed(AppRoutes.vhome);
+            onTap: () {
+              Get.toNamed(AppRoutes.signin);
+            },
+            title: 'Thank you!',
+            description:
+                'You have submitted your application successfully and it’s pending approval.',
+            buttontitle: 'Ok');
 
         resetfields();
       }
