@@ -79,10 +79,10 @@ class MainInput extends StatelessWidget {
         ),
         if (errorText != null && errorText!.isNotEmpty)
           Padding(
-            padding: EdgeInsets.only(top: 4, left: 4, right: 4),
+            padding: EdgeInsets.only(top: 4, left: 16, right: 16),
             child: Text(
               errorText!,
-              style: TextStyle(color: Colors.red, fontSize: 9),
+              style: TextStyle(color: AppColors.red, fontSize: 10),
             ),
           ),
       ],

@@ -115,7 +115,7 @@ class DropDownField<T> extends StatelessWidget {
             padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
             child: AppText(
               title: errorText!,
-              color: AppColors.primary_color,
+              color: AppColors.red,
               size: 10,
             ),
           ),

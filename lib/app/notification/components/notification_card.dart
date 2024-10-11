@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/notification/notification_controller.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -71,14 +72,22 @@ class NotificationCard extends StatelessWidget {
                             ],
                           ),
                           if (status != 'neworder')
-                            Container(
-                              height: 35,
-                              width: 35,
-                              decoration: BoxDecoration(
-                                color: AppColors.lightPink,
-                                borderRadius: BorderRadius.circular(80),
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed(AppRoutes.chats_accounts);
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 35,
+                                decoration: BoxDecoration(
+                                  color: AppColors.lightPink,
+                                  borderRadius: BorderRadius.circular(80),
+                                ),
+                                child: SvgPicture.asset(
+                                  'assets/icons/chat.svg',
+                                  color: AppColors.darkprimary,
+                                ),
                               ),
-                              child: Image.asset('assets/images/chat.png'),
                             ),
                         ],
                       ),

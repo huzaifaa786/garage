@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/setting/setting_controller.dart';
@@ -10,6 +11,7 @@ import 'package:mobilegarage/user_app/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 
 class SettingView extends StatefulWidget {
   const SettingView({super.key});
@@ -119,12 +121,10 @@ class _SettingViewState extends State<SettingView> {
                         color: AppColors.darkprimary,
                       ),
                       const Gap(11),
-                      // SvgPicture.asset(
-                      //   'assets/icons/mobile_garage.svg',
-                      // ),
-                      Image.asset(
-                        'assets/images/mobile_garage.png',
-                        // height: 150,
+                      SvgPicture.asset(
+                        ImageConst.appLogoSvg,
+                        height: 70,
+                        color: AppColors.primary_color,
                       ),
                       const Gap(22),
                       Row(
@@ -140,21 +140,18 @@ class _SettingViewState extends State<SettingView> {
                             image: 'assets/icons/Instagram.svg',
                             ontap: () {
                               controller.openInstagram();
-
                             },
                           ),
                           SocialMediaButton(
                             image: 'assets/icons/whatsapp_img.svg',
                             ontap: () {
                               controller.openWhatsApp();
-
                             },
                           ),
                           SocialMediaButton(
                             image: 'assets/icons/phone.svg',
                             ontap: () {
                               controller.openPhone();
-
                             },
                           ),
                         ],

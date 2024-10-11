@@ -25,14 +25,15 @@ class OrderHistoryCard extends StatelessWidget {
 
     return Wrap(
       children: [
+        Gap(20),
         Container(
-          margin: EdgeInsets.only(top: 7, bottom: 7),
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+          margin: EdgeInsets.only(top: 4, bottom: 4),
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
           color: AppColors.white,
           child: Column(
             children: [
-              Gap(20),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Container(
                     height: Get.height * 0.1 / 13,
@@ -42,12 +43,28 @@ class OrderHistoryCard extends StatelessWidget {
                       color: AppColors.darkprimary,
                     ),
                   ),
-                  Gap(3),
-                  AppText(
-                    title: "Tracking Number  (${orders!['TrackingNumber']})",
-                    color: AppColors.primary_color,
-                    size: 10,
-                    fontWeight: FontWeight.w400,
+                  Gap(5),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Tracking Number  ',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: AppColors.primarybg,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '(${orders!['TrackingNumber']})',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: AppColors.primarybg,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -104,7 +121,7 @@ class OrderHistoryCard extends StatelessWidget {
                             title: orders!["client Name"].toString(),
                             fontWeight: FontWeight.w600,
                             size: 12,
-                            color: AppColors.primary,
+                            color: AppColors.primarybg,
                           ),
                         ],
                       ),
@@ -122,27 +139,62 @@ class OrderHistoryCard extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                 ),
                                 Gap(3),
-                                AppText(
-                                  title: "(Quantity: ${orders!["quantity"]} )",
-                                  fontWeight: FontWeight.w400,
-                                  size: 8,
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: ' (Quantity: ',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: AppColors.black,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: '${orders!["quantity"]})',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: AppColors.black,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
                       Gap(5),
-                      AppText(
-                        title: "Type: ${orders!["product_type"]}",
-                        fontWeight: FontWeight.w400,
-                        size: 8,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Type: ',
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' ${orders!["product_type"]}',
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Gap(6),
+                      Gap(2),
                       Row(
                         children: [
                           SvgPicture.asset("assets/icons/cars.svg"),
                           Gap(2),
                           AppText(
                             title: orders!["carName"].toString(),
-                            size: 8,
+                            size: 10,
+                            color: AppColors.primarybg,
                             fontWeight: FontWeight.w500,
                           ),
                         ],
@@ -152,27 +204,61 @@ class OrderHistoryCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AppText(
-                            title: "Date: $carWashDate",
-                            fontWeight: FontWeight.w400,
-                            size: 8,
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Date: ',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: AppColors.black,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ' $carWashDate',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: AppColors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Gap(2),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              AppText(
-                                title: "Time: $carWashTime",
-                                fontWeight: FontWeight.w400,
-                                size: 8,
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Time: ',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: AppColors.black,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: '$carWashTime am',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: AppColors.black,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Gap(120),
                               AppText(
                                 title: "${orders!['Price']} AED",
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 color: AppColors.darkblue,
-                                size: 8,
+                                size: 10,
                               ),
                             ],
                           ),
