@@ -130,13 +130,34 @@ class ProductFormController extends GetxController {
   }
 
   setSelectedCategory(CategoryModel? category) async {
+    clearSelectedValues();
     selectedCategory = category;
     selectedCategoryId = category?.id;
     await clearmodels();
     await clearcomponents();
+    print('obje3333333333ct');
+
     if (selectedCategoryId != null) await getBrands();
     await getProductDetails();
     update();
+  }
+
+  void clearSelectedValues() {
+    selectedBrand = null;
+    selectedproducttype = null;
+    selectedbatteryOrigin = null;
+    selectedampere = null;
+    selectedvoltage = null;
+    selectedwidth = null;
+    selectedheight = null;
+    selectedsize = null;
+    selectedSpeedRating = null;
+    selectedpatteren = null;
+    selectedtyreorigin = null;
+    selectedvolume = null;
+    selectedoilproductType = null;
+    descriptionController.text = '';
+    priceController.text = '';
   }
 
   clearcomponents() {

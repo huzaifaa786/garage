@@ -79,8 +79,10 @@ class EditProductView extends StatelessWidget {
                       hint: 'Category',
                       selectedValue: controller.selectedCategory,
                       onChanged: (value) {
-                        controller.setSelectedCategory(value);
-                       controller.update();
+                        // controller.setSelectedCategory(value);
+                        UiUtilites.errorSnackbar('Error',
+                            'Category cant be changed while editing product');
+                        controller.update();
                       },
                       errorText: '',
                     ),
@@ -96,7 +98,7 @@ class EditProductView extends StatelessWidget {
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
-                           controller.update();
+                              controller.update();
                             },
                             errorText: '',
                             onAddPressed: () {
@@ -122,7 +124,7 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
                                   controller.setSelectedproducttype(value);
-                               controller.update();
+                                  controller.update();
                                 },
                                 errorText: '',
                               ),
@@ -134,7 +136,7 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedbatteryOrigin,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryOrigin(value);
-                                 controller.update();
+                                  controller.update();
                                 },
                                 errorText: '',
                               ),
@@ -200,7 +202,7 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedsize,
                                 onChanged: (value) {
                                   controller.setSelectedSize(value);
-                                 controller.update();
+                                  controller.update();
                                 },
                                 errorText: '',
                               ),
@@ -225,7 +227,7 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedpatteren,
                                 onChanged: (value) {
                                   controller.setSelectedPatteren(value);
-                                 controller.update();
+                                  controller.update();
                                 },
                                 errorText: '',
                               ),
@@ -256,7 +258,7 @@ class EditProductView extends StatelessWidget {
                                     controller.selectedoilproductType,
                                 onChanged: (value) {
                                   controller.setSelectedOilproducttype(value);
-                                 controller.update();
+                                  controller.update();
                                 },
                                 errorText: '',
                               ),
@@ -268,7 +270,7 @@ class EditProductView extends StatelessWidget {
                                 selectedValue: controller.selectedvolume,
                                 onChanged: (value) {
                                   controller.setSelectedVolume(value);
-                                   controller.update();
+                                  controller.update();
                                 },
                                 errorText: '',
                               ),
@@ -288,8 +290,7 @@ class EditProductView extends StatelessWidget {
                                 ? 'Description'
                                 : 'Description (optional)',
                             controller: controller.descriptionController,
-                            onchange: (val) {
-                            },
+                            onchange: (val) {},
                           ),
                           Gap(20),
                         ],
@@ -338,10 +339,10 @@ class EditProductView extends StatelessWidget {
                       case '4':
                         extra = controller.product!.roadextra![index];
                         break;
-                          case '1':
+                      case '1':
                         extra = controller.product!.carwashextra![index];
                         break;
-                        case '8':
+                      case '8':
                         extra = controller.product!.acextra![index];
                         break;
                       default:
@@ -394,36 +395,36 @@ class EditProductView extends StatelessWidget {
                             errorText: '',
                           ),
                         ),
-                          Column(
-                            children: [
-                              Gap(20),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 22),
-                                child: AppInputField(
-                                  hint: 'Price',
-                                  type: TextInputType.number,
-                                  controller: controller.extraprices[extra.id],
-                                  errorText: '',
-                                  onchange: (val) {
-                                    extra.price = val;
-                                    controller.update();
-                                  },
-                                  hasSuffix: true,
-                                  suffixWidget: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
-                                    child: AppText(
-                                      title: 'AED',
-                                      size: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.primary_color,
-                                    ),
+                        Column(
+                          children: [
+                            Gap(20),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 22),
+                              child: AppInputField(
+                                hint: 'Price',
+                                type: TextInputType.number,
+                                controller: controller.extraprices[extra.id],
+                                errorText: '',
+                                onchange: (val) {
+                                  extra.price = val;
+                                  controller.update();
+                                },
+                                hasSuffix: true,
+                                suffixWidget: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 16),
+                                  child: AppText(
+                                    title: 'AED',
+                                    size: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.primary_color,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
+                        ),
                         if ([4, 7, 9, 1]
                             .contains(controller.selectedCategoryId))
                           Padding(

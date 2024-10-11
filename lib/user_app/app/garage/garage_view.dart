@@ -14,6 +14,7 @@ import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/app/product/products/component/product_card.dart';
 
 class GarageView extends StatelessWidget {
   const GarageView({super.key});
@@ -289,15 +290,17 @@ class GarageView extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Gap(30),
-                // AppText(
-                //   title: 'Selected Product',
-                //   size: 14,
-                //   textAlign: TextAlign.center,
-                //   fontWeight: FontWeight.w600,
-                // ),
-                // Gap(10),
-                // SSSSCard(),
+                Gap(30),
+                AppText(
+                  title: 'Selected Product',
+                  size: 14,
+                  textAlign: TextAlign.center,
+                  fontWeight: FontWeight.w600,
+                ),
+                Gap(10),
+                ProductCard(
+                  product: controller.garage!.products![0],
+                ),
                 Gap(20),
                 Divider(
                   thickness: 10,
