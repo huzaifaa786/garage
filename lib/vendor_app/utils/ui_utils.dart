@@ -169,8 +169,7 @@ class UiUtilites {
       required onTap,
       required title,
       required buttontitle,
-      required description
-      }) {
+      required description}) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -191,12 +190,15 @@ class UiUtilites {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(ImageConst.success_ic),
-                      AppText(
-                        title: '$title',
-                        size: 14,
-                        fontWeight: FontWeight.w700,
-                        textAlign: TextAlign.center,
-                        color: AppColors.darkprimary,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: AppText(
+                          title: '$title',
+                          size: 14,
+                          fontWeight: FontWeight.w700,
+                          textAlign: TextAlign.center,
+                          color: AppColors.darkprimary,
+                        ),
                       ),
                       Gap(10),
                       AppText(
