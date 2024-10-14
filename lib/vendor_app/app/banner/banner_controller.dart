@@ -42,10 +42,10 @@ class VBannerController extends GetxController {
       List<dynamic> bannerList = response['bannerprice'];
       banners = bannerList.map((banner) => BannerModel.from(banner)).toList();
     }
+    if (banners.isNotEmpty) {
       selectedBannerCost = banners[0].cost;
-      print('aaaaaaaaaaaaaaaaaaaaaaaaaaa$selectedBannerCost');
       selectedValue = banners[0].id;
-      print('vvvvvvvvvvvvvvvvvvvvvvvvvvv$selectedValue');
+    }
 
     update();
   }

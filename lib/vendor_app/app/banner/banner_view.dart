@@ -39,33 +39,46 @@ class _VBannerViewState extends State<VBannerView> {
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
                           children: [
-                            Row(
-                              children: [
-                                Gap(20),
-                                AppText(
-                                  title: 'Select',
-                                  size: 13,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ],
-                            ),
+                            if (controller.banners.isNotEmpty)
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: AppText(
+                                      title: 'Select',
+                                      size: 13,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             Gap(10),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: controller.banners.length,
-                              itemBuilder: (context, index) {
-                                var banner = controller.banners[index];
-                                return RadioButton(
-                                  cost: banner.cost,
-                                    value: banner.id,
-                                    text: "${banner.duration}"
-                                        " for "
-                                        "${banner.cost}"
-                                        " AED");
-                                        
-                              },
-                            ),
+                            controller.banners.isNotEmpty
+                                ? ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: controller.banners.length,
+                                    itemBuilder: (context, index) {
+                                      var banner = controller.banners[index];
+                                      return RadioButton(
+                                          cost: banner.cost,
+                                          value: banner.id,
+                                          text: "${banner.duration}"
+                                              " for "
+                                              "${banner.cost}"
+                                              " AED");
+                                    },
+                                  )
+                                : AppText(
+                                    title:
+                                        'Banner price is missing. Please add it through the admin panel',
+                                    textAlign: TextAlign.center,
+                                  size: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.darkprimary,
+
+                                  ),
                             Gap(30),
                             AppButton(
                               title: 'Purchase',
@@ -76,7 +89,8 @@ class _VBannerViewState extends State<VBannerView> {
                                   ? null
                                   : () {
                                       // controller.storeBanner();
-                                       controller.makePayment(context, controller.selectedBannerCost!);
+                                      controller.makePayment(context,
+                                          controller.selectedBannerCost!);
                                     },
                             ),
                           ],

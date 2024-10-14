@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/models/product_model.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -11,7 +12,10 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ProductCard extends StatelessWidget {
-  ProductCard({super.key, this.product, this.ondeltap,this.oneditTap});
+  ProductCard(
+      {super.key, this.product, this.category, this.ondeltap, this.oneditTap});
+
+  CategoryModel? category;
 
   ProductModel? product;
   final ondeltap;
@@ -51,7 +55,9 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      title: product!.description!.toString(),
+                      title: product!.brands != null
+                          ? product!.brands!.name.toString()
+                          : category!.name!.toString(),
                       size: 14,
                       fontWeight: FontWeight.w600,
                       maxLines: 2,
@@ -63,12 +69,13 @@ class ProductCard extends StatelessWidget {
                     //   fontWeight: FontWeight.w500,
                     // ),
                     const Gap(6.0),
-                    AppText(
-                      title: product!.price.toString() + ' AED',
-                      size: 14,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.lightblue,
-                    ),
+                    if (product!.price != '')
+                      AppText(
+                        title: product!.price! + ' AED',
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.lightblue,
+                      ),
                     const Gap(8.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
