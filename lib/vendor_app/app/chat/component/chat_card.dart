@@ -84,16 +84,14 @@ class ChatCard extends StatelessWidget {
                                     children: [
                                       SizedBox(
                                         width: Get.width * 0.5,
-                                        child: const Flexible(
-                                          child: AppText(
-                                            maxLines: 1,
-                                            overFlow: TextOverflow.ellipsis,
-                                            title:
-                                                'oh hello ahmed, the batte ...',
-                                            size: 11,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.grey,
-                                          ),
+                                        child: AppText(
+                                          maxLines: 1,
+                                          overFlow: TextOverflow.ellipsis,
+                                          title:
+                                              'oh hello ahmed, th ...',
+                                          size: 11,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.grey,
                                         ),
                                       ),
                                     ],
