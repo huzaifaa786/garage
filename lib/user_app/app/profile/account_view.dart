@@ -9,7 +9,7 @@ import 'package:mobilegarage/user_app/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/user_app/components/cards/profile_card.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class AccountView extends StatefulWidget {
   const AccountView({super.key});
@@ -155,6 +155,7 @@ class _AccountViewState extends State<AccountView> {
                           //     text2: 'mobilegarage1@gmail.com',
                           //     ontap: () {}),
                           const Gap(30),
+
                           LogoutButton(
                             image: box.read('locale') != 'ar'
                                 ? 'assets/icons/log-out.svg'
@@ -163,12 +164,16 @@ class _AccountViewState extends State<AccountView> {
                             buttonWidth: Get.width * 0.77,
                             height: Get.height * 0.07,
                             onTap: () {
-                              UiUtilites.logoutSuccessAlert(context, () async {
-                                GetStorage box = GetStorage();
-                                await box.remove('api_token');
-                                await box.remove('user_type');
-                                Get.toNamed(AppRoutes.selectside);
-                              }, () {});
+                              UiUtilites.showConfirmationDialog(
+                                false,
+                                'Are you Sure that you want\n to log out ?',
+                                onConfirm: () async {
+                                  GetStorage box = GetStorage();
+                                  await box.remove('api_token');
+                                  await box.remove('user_type');
+                                  Get.offAllNamed(AppRoutes.selectside);
+                                },
+                              );
                             },
                           ),
                           const Gap(25),

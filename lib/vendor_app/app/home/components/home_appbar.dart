@@ -33,40 +33,40 @@ class HomeAppbar extends StatelessWidget {
           ),
           Row(
             children: [
-              Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(6),
-                    child: InkWell(
-                      onTap: notification,
+              InkWell(
+                onTap: notification,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(6),
                       child: SvgPicture.asset('assets/images/bell.svg'),
                     ),
-                  ),
-                  Positioned(
-                    top: 3,
-                    right: 0,
-                    child: Container(
-                      height: 7,
-                      width: 7,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.primary_color,
+                    Positioned(
+                      top: 3,
+                      right: 0,
+                      child: Container(
+                        height: 7,
+                        width: 7,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primary_color,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Stack(
-                children: [
-                  Container(
-                    height: 30,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: AppColors.lightPink),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: InkWell(
-                        onTap: chat,
+              InkWell(
+                onTap: chat,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: AppColors.lightPink),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
                         child: SvgPicture.asset(
                           'assets/icons/chat.svg',
                           fit: BoxFit.scaleDown,
@@ -76,20 +76,20 @@ class HomeAppbar extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    top: 2,
-                    right: 0,
-                    child: Container(
-                      height: 7,
-                      width: 7,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.primary_color,
+                    Positioned(
+                      top: 2,
+                      right: 0,
+                      child: Container(
+                        height: 7,
+                        width: 7,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primary_color,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
