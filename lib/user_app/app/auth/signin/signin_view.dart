@@ -23,6 +23,7 @@ class SigninView extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: AppColors.primarybg,
             toolbarHeight: 20,
+            automaticallyImplyLeading: false,
           ),
           body: SafeArea(
               child: Container(
