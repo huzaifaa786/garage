@@ -329,7 +329,7 @@ class VSignUpController extends GetxController {
         UiUtilites.successAlertDialog(
             context: Get.context,
             onTap: () {
-              Get.toNamed(AppRoutes.signin);
+              Get.toNamed(AppRoutes.vsignin);
             },
             title: 'Thank you!',
             description:
