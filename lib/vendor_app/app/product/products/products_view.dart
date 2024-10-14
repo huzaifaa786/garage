@@ -60,6 +60,7 @@ class _VProductsViewState extends State<VProductsView> {
                                         final product =
                                             categoryies.product![index];
                                         return ProductCard(
+                                          category: categoryies,
                                           product: product,
                                           ondeltap: () {
                                             controller

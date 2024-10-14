@@ -14,11 +14,14 @@ class VContactusController extends GetxController {
   getContacts() async {
     var response = await VContactUsApi.getContacts();
     if (response.isNotEmpty) {
-      var contact = response['contacts'];
-      email = contact['email'] ?? '';
-      phoneNo = contact['phone_no'] ?? '';
-      whatsappNo = contact['whatsapp_no'] ?? '';
-      instagram = contact['instagram_handle'] ?? '';
+      var contacts = response['contacts'];
+      if (contacts != null) {
+        email = contacts['email'] ?? '';
+        phoneNo = contacts['phone_no'] ?? '';
+        whatsappNo = contacts['whatsapp_no'] ?? '';
+        instagram = contacts['instagram_handle'] ?? '';
+      }
+
       update();
     }
   }

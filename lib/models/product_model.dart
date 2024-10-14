@@ -131,7 +131,11 @@ class ProductModel {
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'],
-      brands: json['brands'] != null ? BrandModel.from(json['brands']) : null,
+      brands: json['brands'] != null
+          ? BrandModel.from(json['brands'])
+          : json['brand'] != null
+              ? BrandModel.from(json['brand'])
+              : null,
       brandId: json['brand_id'].toString(),
       garageId: json['garage_id'].toString(),
       categoryId: json['category_id'].toString(),
@@ -159,7 +163,7 @@ class ProductModel {
       oilproducttypeId: json['oil_product_type_id'].toString(),
       oilvolumeId: json['oil_volume_id'].toString(),
       description: json['description'].toString(),
-      price: json['price'].toString(),
+      price: json['price']??'',
       createdat: json['created_at'].toString(),
       updatedat: json['updated_at'].toString(),
       batteryAmpere: json['battery_ampere'] != null
