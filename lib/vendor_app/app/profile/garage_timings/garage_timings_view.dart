@@ -1,5 +1,3 @@
-// ignore_for_file: dead_code
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -29,24 +27,26 @@ class GarageTimingsView extends StatelessWidget {
               children: [
                 _buildTimeSection(
                   "Morning period",
-                  controller.selectedTimeOpenFrom,
-                  controller.selectedTimeOpenTo,
+                  controller.selectedTimeOpenFromMorning,
+                  controller.selectedTimeCloseMorning,
                   (fromTime, toTime) {
-                    controller.selectedTimeOpenFrom = fromTime;
-                    controller.selectedTimeOpenTo = toTime;
+                    controller.selectedTimeOpenFromMorning = fromTime;
+                    controller.selectedTimeCloseMorning = toTime;
                     controller.update(); // Update the state
                   },
+                  isMorning: true, // Pass true for morning period
                 ),
                 Divider(thickness: 6, color: AppColors.divider_color),
                 _buildTimeSection(
                   "Night period",
-                  controller.selectedTimeClosedFrom,
-                  controller.selectedTimeClosedTo,
+                  controller.selectedTimeOpenFromNight,
+                  controller.selectedTimeCloseNight,
                   (fromTime, toTime) {
-                    controller.selectedTimeClosedFrom = fromTime;
-                    controller.selectedTimeClosedTo = toTime;
+                    controller.selectedTimeOpenFromNight = fromTime;
+                    controller.selectedTimeCloseNight = toTime;
                     controller.update(); // Update the state
                   },
+                  isMorning: false, // Pass false for night period
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -94,7 +94,8 @@ class GarageTimingsView extends StatelessWidget {
   }
 
   Widget _buildTimeSection(String title, TimeOfDay fromTime, TimeOfDay toTime,
-      Function(TimeOfDay, TimeOfDay) onTimesSelected) {
+      Function(TimeOfDay, TimeOfDay) onTimesSelected,
+      {required bool isMorning}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
       child: Column(
@@ -112,7 +113,8 @@ class GarageTimingsView extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           const Gap(8),
-          buildTimeRow('From', fromTime, onTimesSelected, true),
+          buildTimeRow('From', fromTime,
+              (newTime) => onTimesSelected(newTime, toTime), isMorning, true),
           const Gap(20.0),
           const AppText(
             title: 'To',
@@ -120,14 +122,19 @@ class GarageTimingsView extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           const Gap(8),
-          buildTimeRow('To', toTime, onTimesSelected, false),
+          buildTimeRow(
+              'To',
+              toTime,
+              (newTime) => onTimesSelected(fromTime, newTime),
+              isMorning,
+              false),
         ],
       ),
     );
   }
 
   Widget buildTimeRow(String label, TimeOfDay selectedTime,
-      Function(TimeOfDay, TimeOfDay) onTimesSelected, bool isFromTime) {
+      Function(TimeOfDay) onTimeSelected, bool isMorning, bool isFromTime) {
     return Row(
       children: [
         Flexible(
@@ -139,11 +146,7 @@ class GarageTimingsView extends StatelessWidget {
                 initialTime: selectedTime,
               );
               if (newTime != null) {
-                if (isFromTime) {
-                  onTimesSelected(newTime, selectedTime);
-                } else {
-                  onTimesSelected(selectedTime, newTime);
-                }
+                onTimeSelected(newTime);
               }
             },
             child: Container(
@@ -153,13 +156,11 @@ class GarageTimingsView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(3),
               ),
               child: Center(
-                child: Text(
-                  selectedTime.format(Get.context!),
-                  style: const TextStyle(
-                    color: AppColors.black,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
+                child: AppText(
+                  title: selectedTime.format(Get.context!),
+                  color: AppColors.black,
+                  size: 10,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
@@ -192,15 +193,16 @@ class GarageTimingsView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(4)),
-        color: isSelected ? AppColors.primary : Colors.transparent,
+        color: isSelected ? AppColors.primary : AppColors.grey[200],
       ),
-      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 13),
+      // padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
       child: Text(
         label,
         style: TextStyle(
-          fontSize: 8,
-          fontWeight: FontWeight.w500,
-          color: isSelected ? AppColors.white : AppColors.black,
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+          color: isSelected ? AppColors.white : AppColors.grey[600],
         ),
       ),
     );
