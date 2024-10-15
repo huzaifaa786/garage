@@ -18,105 +18,73 @@ class _PromotionViewState extends State<PromotionView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PromotionController>(
-        autoRemove: false,
-        builder: (controller) => Scaffold(
-              appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(70.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [appbarShadow],
-                  ),
-                  child: AppBar(
-                    automaticallyImplyLeading: false,
-                    scrolledUnderElevation: 0.0,
-                    toolbarHeight: 95.0,
-                    title: const TopBar(
-                      showicon: true,
-                      showgarageicon: false,
-                      title: "Promotion",
-                    ),
-                  ),
-                ),
+      autoRemove: false,
+      builder: (controller) => Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(70.0),
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [appbarShadow],
+            ),
+            child: AppBar(
+              automaticallyImplyLeading: false,
+              scrolledUnderElevation: 0.0,
+              toolbarHeight: 95.0,
+              title: const TopBar(
+                showicon: true,
+                showgarageicon: false,
+                title: "Promotion",
               ),
-              body: SafeArea(
-                  child: Container(
-                padding: const EdgeInsets.only(left: 46, top: 40),
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppText(
-                      title: 'New Promotion!',
+            ),
+          ),
+        ),
+        body: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.only(left: 46, top: 40),
+            child: controller.getPromotions.isEmpty
+                ? const Center(
+                    child: AppText(
+                      title: 'No promotions available',
                       size: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.darkprimary,
                     ),
-                    Gap(14),
-                    AppText(
-                      title: 'Use voucher AED for 30% ',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),
-                    Gap(17),
-                    AppText(
-                      title: 'Use Code H27 for 15% discount for first order! ',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),
-                    Gap(17),
-                    AppText(
-                      title: 'Use voucher AED for 30%',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),
-                    Gap(17),
-                    AppText(
-                      title: 'Use voucher AED for 30% ',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),
-                    Gap(32),
-                    AppText(
-                      title: 'New Promotion!',
-                      size: 14,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.darkprimary,
-                    ),
-                    Gap(14),
-                    AppText(
-                      title: 'Use voucher AED for 30% ',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),
-                    Gap(17),
-                    AppText(
-                      title: 'Use Code H27 for 15% discount for first order! ',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),
-                    Gap(17),
-                    AppText(
-                      title: 'Use voucher AED for 30%',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),
-                    Gap(17),
-                    AppText(
-                      title: 'Use voucher AED for 30% ',
-                      size: 10,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),
-                  ],
-                ),
-              )),
-            ));
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppText(
+                        title: controller.getPromotions[0]['title'],
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.darkprimary,
+                      ),
+                      const Gap(14),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.getPromotions.length,
+                        itemBuilder: (context, index) {
+                          var promotions = controller.getPromotions[index];
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AppText(
+                                title: promotions['promotions'],
+                                size: 10,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.primary,
+                              ),
+                              const Gap(17),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/vender_apis/auth/signin_api/sign_in_api.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class VSignInController extends GetxController {
   static VSignInController instance = Get.find();
@@ -60,6 +61,13 @@ class VSignInController extends GetxController {
         box.write('user_type', 'vendor');
         Get.offAllNamed(AppRoutes.vhome);
       }
+    } else {
+      UiUtilites.pendingApprovalAlertDialog(
+        context: Get.context!,
+        imageAssetPath: 'assets/icons/warning.svg',
+        onTap: () {},
+        description: 'Fill out all details required!',
+      );
     }
   }
 }

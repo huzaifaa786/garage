@@ -226,6 +226,77 @@ class UiUtilites {
     );
   }
 
+  static pendingApprovalAlertDialog({
+    required BuildContext context,
+    required VoidCallback onTap,
+    String? title,
+    required String description,
+    String? buttonTitle,
+    String? imageAssetPath,
+  }) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+              backgroundColor: AppColors.white_color,
+              surfaceTintColor: AppColors.white_color,
+              content: Wrap(
+                children: [
+                  SizedBox(
+                    width: Get.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (imageAssetPath != null)
+                          SvgPicture.asset(imageAssetPath),
+                        if (title != null)
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: AppText(
+                              title: title,
+                              size: 14,
+                              fontWeight: FontWeight.w700,
+                              textAlign: TextAlign.center,
+                              color: AppColors.darkprimary,
+                            ),
+                          ),
+                        Gap(10),
+                        AppText(
+                          title: description,
+                          size: 12,
+                          textAlign: TextAlign.center,
+                          color: AppColors.hint_text_color,
+                        ),
+                        Gap(20),
+                        if (buttonTitle != null)
+                          AppButton(
+                            height: 45,
+                            title: buttonTitle,
+                            buttonColor:
+                                AppColors.primary_color.withOpacity(0.1),
+                            titleColor: AppColors.primary_color,
+                            ontap: onTap,
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   static void showConfirmationDialog(bool intendedValue, String message,
       {VoidCallback? onConfirm}) {
     Get.dialog(

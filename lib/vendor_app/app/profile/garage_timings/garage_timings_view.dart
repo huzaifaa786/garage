@@ -27,26 +27,34 @@ class GarageTimingsView extends StatelessWidget {
               children: [
                 _buildTimeSection(
                   "Morning period",
-                  controller.selectedTimeOpenFromMorning,
-                  controller.selectedTimeCloseMorning,
+                  TimeOfDay.fromDateTime(DateTime.parse(controller.garageTimings
+                      .firstWhere((timing) => timing.shiftType == "morning")
+                      .openTime)),
+                  TimeOfDay.fromDateTime(DateTime.parse(controller.garageTimings
+                      .firstWhere((timing) => timing.shiftType == "morning")
+                      .closeTime)),
                   (fromTime, toTime) {
                     controller.selectedTimeOpenFromMorning = fromTime;
                     controller.selectedTimeCloseMorning = toTime;
-                    controller.update(); // Update the state
+                    controller.update();
                   },
-                  isMorning: true, // Pass true for morning period
+                  isMorning: true,
                 ),
                 Divider(thickness: 6, color: AppColors.divider_color),
                 _buildTimeSection(
                   "Night period",
-                  controller.selectedTimeOpenFromNight,
-                  controller.selectedTimeCloseNight,
+                  TimeOfDay.fromDateTime(DateTime.parse(controller.garageTimings
+                      .firstWhere((timing) => timing.shiftType == "night")
+                      .openTime)),
+                  TimeOfDay.fromDateTime(DateTime.parse(controller.garageTimings
+                      .firstWhere((timing) => timing.shiftType == "night")
+                      .closeTime)),
                   (fromTime, toTime) {
                     controller.selectedTimeOpenFromNight = fromTime;
                     controller.selectedTimeCloseNight = toTime;
-                    controller.update(); // Update the state
+                    controller.update();
                   },
-                  isMorning: false, // Pass false for night period
+                  isMorning: false,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(

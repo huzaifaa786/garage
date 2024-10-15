@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/vender_apis/available_date_apis/unavailable_date_api.dart';
+import 'package:mobilegarage/apis/vender_apis/available_date_apis/update_unavaliable_dates_api.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AvaliableDateController extends GetxController {
@@ -39,19 +42,31 @@ class AvaliableDateController extends GetxController {
 
   var isButtonClicked = false;
   @override
-  void onInit() {
+  void onInit() async {
     // TODO: implement onInit
     super.onInit();
     isButtonClicked = false;
+    // await updateUnavaliableDates();
     update();
   }
 
-  onconfirm() async{
-    var response = await VUnvailableDateApi.storeUnavailableDates(selectedDates);
+  onconfirm() async {
+    var response =
+        await VUnvailableDateApi.storeUnavailableDates(selectedDates);
     if (response.isNotEmpty) {
       selectedDates.clear();
-    isButtonClicked = true;
+      isButtonClicked = true;
       update();
     }
   }
+
+  // updateUnavaliableDates() async {
+  //   var response = await GetUnavaliableDatesApi.getUnavaliableDates();
+  //   if (response.isNotEmpty) {}
+
+  // if (response['promotions'] != null) {
+  //   getPromotions = List<Map<String, dynamic>>.from(response['promotions']);
+  //   update();
+  // }
+  // }
 }

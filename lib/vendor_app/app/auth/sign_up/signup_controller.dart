@@ -152,66 +152,37 @@ class VSignUpController extends GetxController {
 
   //TODO: BUTTON VALIDATION
   Future<bool> validateForm() async {
-    final nameErrorString = validateFields('Name', nameController.text);
-    final emailErrorString = validateFields('Email', emailController.text);
-    final garageNameErrorString =
-        validateFields('Garage name', garageNameController.text);
-    final garageDescriptionErrorString =
-        validateFields('Garage description', garageDescriptionController.text);
-    if (selectedEmirateId == null) {
-      emirateError = 'Please select an emirate';
-      update();
-    } else {
-      emirateError = '';
-      update();
-    }
-    final garageAddressDetailErrorString = validateFields(
-        'Garage address detail', garageDescriptionController.text);
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        Validators.emailValidator(emailController.text) != null ||
+        garageNameController.text.isEmpty ||
+        garageDescriptionController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        Validators.passwordValidator(passwordController.text) != null ||
+        confirmPasswordController.text.isEmpty ||
+        Validators.confrimPasswordValidator(
+                passwordController.text, confirmPasswordController.text) !=
+            null ||
+        selectedEmirateId == null ||
+        checkphoneController == null ||
+        logo == null ||
+        cover == null ||
+        idCardFrontSide == null ||
+        idCardBackSide == null ||
+        uploadLicense == null ||
+        lat == null ||
+        lng == null) {
+      UiUtilites.pendingApprovalAlertDialog(
+        context: Get.context!,
+        imageAssetPath: 'assets/icons/warning.svg',
+        onTap: () {},
+        description: 'Fill out all details required!',
+      );
 
-    final passwordErrorString =
-        validateFields('password', passwordController.text);
-    final confirmPasswordErrorString =
-        validateFields('confirm_password', confirmPasswordController.text);
-    if (checkphoneController != null) {
-      phoneValidation(checkphoneController);
-    } else {
-      phoneNumberError = "Phone number can't be empty.";
-      update();
+      return false;
     }
 
-    if (logo == null || logo!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "logo can't be empty");
-      return false;
-    }
-    if (cover == null || cover!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "banner can't be empty");
-      return false;
-    }
-    if (idCardBackSide == null || idCardBackSide!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "id backside can't be empty");
-      return false;
-    }
-    if (idCardFrontSide == null || idCardFrontSide!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "id front side can't be empty");
-      return false;
-    }
-    if (uploadLicense == null && uploadLicense!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "license can't be empty");
-      return false;
-    }
-    if (lat == null && lng == null) {
-      UiUtilites.errorSnackbar('Error', "location can't be empty");
-      return false;
-    }
-    return nameErrorString.isEmpty &&
-        emailErrorString.isEmpty &&
-        emirateError.isEmpty &&
-        garageNameErrorString.isEmpty &&
-        phoneNumberError.isEmpty &&
-        garageDescriptionErrorString.isEmpty &&
-        garageAddressDetailErrorString.isEmpty &&
-        passwordErrorString.isEmpty &&
-        confirmPasswordErrorString.isEmpty;
+    return true;
   }
 
   //TODO: Start Phone Validation

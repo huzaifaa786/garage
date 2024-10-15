@@ -33,12 +33,13 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
           child: SafeArea(
             child: Column(
               children: [
-                 Gap(40),
+                Gap(40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppText(
                       title: '*Select date to mark as unavailable',
+                      fontWeight: FontWeight.w400,
                       color: AppColors.primary_color,
                     )
                   ],
@@ -57,7 +58,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                       focusedDay: controller.focusedDay,
                       selectedDayPredicate: (day) => controller.isSelected(day),
                       availableCalendarFormats: const {
-                        CalendarFormat.month: 'Month',
+                        CalendarFormat.month: 'Month',  
                       },
                       onDaySelected: controller.onDaySelected,
                       onPageChanged: (focusedDay) {
