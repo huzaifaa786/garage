@@ -38,8 +38,8 @@ class FilterServiceController extends GetxController {
 
   List<Map<String, dynamic>> serviceTypeList = [];
 
-  double start = 100.0;
-  double end = 500.0;
+  double start = 50.0;
+  double end = 1000.0;
   String? categoryId;
 
   @override
@@ -440,7 +440,9 @@ class FilterServiceController extends GetxController {
   }
 
   // filter api
-
+  filterSendallGarage() async {
+    print('object');
+  }
   filterorder() async {
     
     var response;
@@ -513,14 +515,14 @@ class FilterServiceController extends GetxController {
 
       await fetchGarageAddresses();
       Get.toNamed(AppRoutes.acceptedorder);
-      UiUtilites.successAlertDialog(
-          context: Get.context,
-          onTap: () {
-            Get.toNamed(AppRoutes.main);
-          },
-          title: 'Thank you!',
-          buttontitle: 'Back to home',
-          description: 'A garage will accept your order from within 3-5 min.');
+      // UiUtilites.successAlertDialog(
+      //     context: Get.context,
+      //     onTap: () {
+      //       Get.toNamed(AppRoutes.main);
+      //     },
+      //     title: 'Thank you!',
+      //     buttontitle: 'Back to home',
+      //     description: 'A garage will accept your order from within 3-5 min.');
     }
   }
 

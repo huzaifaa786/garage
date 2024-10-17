@@ -4,14 +4,14 @@ import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
 import 'package:mobilegarage/models/user_model/banner_model.dart';
 import 'package:mobilegarage/models/user_model/services_model.dart';
 
-class ServiceItem {
-  final String imageUrl;
-  final String text;
-  final String subText;
+// class ServiceItem {
+//   final String imageUrl;
+//   final String text;
+//   final String subText;
 
-  ServiceItem(
-      {required this.imageUrl, required this.text, required this.subText});
-}
+//   ServiceItem(
+//       {required this.imageUrl, required this.text, required this.subText});
+// }
 
 // class ServiceCards {
 //   final String image;

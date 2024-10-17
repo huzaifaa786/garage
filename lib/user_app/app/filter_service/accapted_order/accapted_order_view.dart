@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/filter_service/accapted_order/component/order_card.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
-import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
@@ -25,7 +24,9 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
     return GetBuilder<FilterServiceController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: 'Accepted Orders',
+        appBarTitle: controller.selectedgarageName == 'Select garage'
+            ? 'Service Results'
+            : 'Accepted Orders',
         hasBgColor: false,
         hasShadow: true,
         child: SingleChildScrollView(
@@ -79,8 +80,15 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                     isSelected: controller.selectedGarageIndex == index,
                     onToggle: () {
                       controller.toggleSelection(index);
-                      Get.toNamed(AppRoutes.garage);
 
+                      Get.toNamed(AppRoutes.garage, parameters: {
+                        'id': controller.garages[index].id.toString(),
+                        'productId': controller.garages[index].products![0].id
+                            .toString(),
+                        'productextraId': controller
+                            .garages[index].products![0].oilextra![0].id
+                            .toString()
+                      });
                     },
                   );
                 },

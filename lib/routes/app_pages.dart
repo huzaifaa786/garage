@@ -59,6 +59,8 @@ import 'package:mobilegarage/user_app/app/search_result/searchResult_binding.dar
 import 'package:mobilegarage/user_app/app/search_result/searchResult_view.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_view.dart';
+import 'package:mobilegarage/user_app/app/service_detail/service_detail_binding.dart';
+import 'package:mobilegarage/user_app/app/service_detail/service_detail_view.dart';
 import 'package:mobilegarage/user_app/app/terms/terms_conditions_binding.dart';
 import 'package:mobilegarage/user_app/app/terms/terms_conditions_view.dart';
 import 'package:mobilegarage/user_app/app/FAQ/faq_binding.dart';
@@ -530,6 +532,12 @@ class AppPages {
       name: AppRoutes.vgarage_timings,
       page: () => const GarageTimingsView(),
       binding: GarageTimingsBindings(),
+     
+    ),
+      GetPage(
+      name: AppRoutes.servicedetail,
+      page: () => const ServiceDetailView(),
+      binding: ServiceDetailBinding(),
      
     ),
   ];
