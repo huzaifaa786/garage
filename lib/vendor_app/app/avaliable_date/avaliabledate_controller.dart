@@ -26,7 +26,6 @@ class AvaliableDateController extends GetxController {
     this.focusedDay = focusedDay;
     print(selectedDates);
     isButtonClicked = false;
-
     update();
   }
 
