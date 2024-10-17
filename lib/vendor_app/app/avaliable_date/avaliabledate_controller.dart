@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/vender_apis/available_date_apis/get_unavailable_dates_api.dart';
 import 'package:mobilegarage/apis/vender_apis/available_date_apis/unavailable_date_api.dart';
-import 'package:mobilegarage/apis/vender_apis/available_date_apis/update_unavaliable_dates_api.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/intl.dart';
 
 class AvaliableDateController extends GetxController {
   static AvaliableDateController instance = Get.find();
@@ -46,7 +45,7 @@ class AvaliableDateController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     isButtonClicked = false;
-    // await updateUnavaliableDates();
+    await getUnavailableDates();
     update();
   }
 
@@ -60,13 +59,18 @@ class AvaliableDateController extends GetxController {
     }
   }
 
-  // updateUnavaliableDates() async {
-  //   var response = await GetUnavaliableDatesApi.getUnavaliableDates();
-  //   if (response.isNotEmpty) {}
+   getUnavailableDates() async {
+    var response = await GetUnavailableDatesApi.getUnAvailableDates();
 
-  // if (response['promotions'] != null) {
-  //   getPromotions = List<Map<String, dynamic>>.from(response['promotions']);
-  //   update();
-  // }
-  // }
+    if (response.isNotEmpty && response['unavailableDates'] != null) {
+      List<String> unavailableDates =
+          List<String>.from(response['unavailableDates']);
+
+      selectedDates = unavailableDates.map((dateStr) {
+        return DateFormat('yyyy-MM-dd').parse(dateStr);
+      }).toList();
+
+      update();
+    }
+  }
 }

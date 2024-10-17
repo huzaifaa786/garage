@@ -17,6 +17,7 @@ class GarageTimingsView extends StatelessWidget {
       autoRemove: false,
       builder: (controller) {
         bool isButtonPressed = false;
+
         String successMessage = '';
 
         return AppLayout(
@@ -27,15 +28,13 @@ class GarageTimingsView extends StatelessWidget {
               children: [
                 _buildTimeSection(
                   "Morning period",
-                  TimeOfDay.fromDateTime(DateTime.parse(controller.garageTimings
-                      .firstWhere((timing) => timing.shiftType == "morning")
-                      .openTime)),
-                  TimeOfDay.fromDateTime(DateTime.parse(controller.garageTimings
-                      .firstWhere((timing) => timing.shiftType == "morning")
-                      .closeTime)),
+                  controller.selectedTimeOpenFromMorning,
+                  controller.selectedTimeCloseMorning,
                   (fromTime, toTime) {
                     controller.selectedTimeOpenFromMorning = fromTime;
+
                     controller.selectedTimeCloseMorning = toTime;
+
                     controller.update();
                   },
                   isMorning: true,
@@ -43,15 +42,13 @@ class GarageTimingsView extends StatelessWidget {
                 Divider(thickness: 6, color: AppColors.divider_color),
                 _buildTimeSection(
                   "Night period",
-                  TimeOfDay.fromDateTime(DateTime.parse(controller.garageTimings
-                      .firstWhere((timing) => timing.shiftType == "night")
-                      .openTime)),
-                  TimeOfDay.fromDateTime(DateTime.parse(controller.garageTimings
-                      .firstWhere((timing) => timing.shiftType == "night")
-                      .closeTime)),
+                  controller.selectedTimeOpenFromNight,
+                  controller.selectedTimeCloseNight,
                   (fromTime, toTime) {
                     controller.selectedTimeOpenFromNight = fromTime;
+
                     controller.selectedTimeCloseNight = toTime;
+
                     controller.update();
                   },
                   isMorning: false,
@@ -63,9 +60,12 @@ class GarageTimingsView extends StatelessWidget {
                     onTap: () {
                       controller.onSaveChanges(() {
                         isButtonPressed = true;
+
                         successMessage = 'Changes have been saved successfully';
+
                         Future.delayed(const Duration(seconds: 2), () {
                           isButtonPressed = false;
+
                           controller.update();
                         });
                       });
@@ -141,6 +141,13 @@ class GarageTimingsView extends StatelessWidget {
     );
   }
 
+  // Updated method to display time in 24-hour format
+  String _formatTime(TimeOfDay time) {
+    final hours = time.hour.toString().padLeft(2, '0');
+    final minutes = time.minute.toString().padLeft(2, '0');
+    return "$hours:$minutes"; // 24-hour format without AM/PM
+  }
+
   Widget buildTimeRow(String label, TimeOfDay selectedTime,
       Function(TimeOfDay) onTimeSelected, bool isMorning, bool isFromTime) {
     return Row(
@@ -153,6 +160,7 @@ class GarageTimingsView extends StatelessWidget {
                 context: Get.context!,
                 initialTime: selectedTime,
               );
+
               if (newTime != null) {
                 onTimeSelected(newTime);
               }
@@ -165,7 +173,7 @@ class GarageTimingsView extends StatelessWidget {
               ),
               child: Center(
                 child: AppText(
-                  title: selectedTime.format(Get.context!),
+                  title: _formatTime(selectedTime),
                   color: AppColors.black,
                   size: 10,
                   fontWeight: FontWeight.w500,
@@ -186,9 +194,9 @@ class GarageTimingsView extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _buildAmPmButton('AM', selectedTime.period == DayPeriod.am),
+                _buildAmPmButton('AM', selectedTime.hour < 12),
                 const Gap(5),
-                _buildAmPmButton('PM', selectedTime.period == DayPeriod.pm),
+                _buildAmPmButton('PM', selectedTime.hour >= 12),
               ],
             ),
           ),
@@ -204,7 +212,6 @@ class GarageTimingsView extends StatelessWidget {
         color: isSelected ? AppColors.primary : AppColors.grey[200],
       ),
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 13),
-      // padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
       child: Text(
         label,
         style: TextStyle(
