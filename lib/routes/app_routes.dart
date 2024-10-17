@@ -31,15 +31,14 @@ class AppRoutes {
   static const selectside = '/selectside';
   static const acceptedorder = '/acceptedorder';
   static const cardetails = '/cardetaile';
-
   static const garage = '/garage';
   static const bookservice = '/bookservice';
   static const payments = '/payments';
   static const filterorder = '/filterorder';
   static const search_result = '/search_result';
   static const edit_product = '/edit_product';
-
-  // static const forgotpassword = '/forgotpassword';
+  static const servicedetail = '/servicedetail';
+  
   // static const phonesignup = '/phonesignup';
   // static const profile =  '/profile';
   // static const orders = '/orders';

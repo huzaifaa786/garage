@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_import
+// ignore_for_file: unnecessary_import, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -77,8 +77,8 @@ class OrderCard extends StatelessWidget {
                           child: Column(
                             children: [
                               Container(
-                                height: Get.height * 0.13,
-                                width: Get.width * 0.3,
+                                height: Get.height * 0.1,
+                                width: Get.width * 0.4,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(60)),
                                 child: ClipRRect(
@@ -94,39 +94,52 @@ class OrderCard extends StatelessWidget {
                                 ),
                               ),
                               Gap(5),
-                              AppText(
-                                title: garage.products![0].oilextra![0].name
-                                    .toString(),
-                                size: 11,
-                                fontWeight: FontWeight.w600,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 2),
+                                child: AppText(
+                                  title: garage.products![0].oilextra![0].name
+                                      .toString(),
+                                  size: 11,
+                                  fontWeight: FontWeight.w600,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                               Gap(4),
-                              AppText(
-                                title:
-                                    garage.products![0].description.toString(),
-                                size: 9,
-                                fontWeight: FontWeight.w400,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                overFlow: TextOverflow.ellipsis,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: AppText(
+                                  title: garage
+                                      .products![0].oilextra![0].description
+                                      .toString(),
+                                  size: 9,
+                                  fontWeight: FontWeight.w400,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  overFlow: TextOverflow.ellipsis,
+                                ),
                               ),
-                              Gap(4),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  AppText(
-                                    title: garage.products![0].price.toString(),
-                                    size: 9,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.darkblue,
-                                  ),
-                                ],
+                              Gap(6),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: AppText(
+                                  title: garage.products![0].oilextra![0].price
+                                          .toString() +
+                                      ' ' +
+                                      'AED',
+                                  size: 9,
+                                  maxLines: 1,
+                                  overFlow: TextOverflow.ellipsis,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.darkblue,
+                                ),
                               ),
-                              const Gap(4),
                             ],
                           ),
                         ),
-                        const Gap(4),
+                        // const Gap(4),
                       ],
                     ),
                     Padding(

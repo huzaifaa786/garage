@@ -83,7 +83,7 @@ class PaymentView extends StatelessWidget {
                         ),
                         Gap(8),
                         DateLocationCard(
-                          txt: '18 March 2024    09:00 am',
+                          txt: controller.date.toString(),
                         ),
                         Gap(8),
                         AppText(
@@ -94,7 +94,7 @@ class PaymentView extends StatelessWidget {
                         Gap(8),
                         DateLocationCard(
                           txt:
-                              'Dubai zayed street , house3564 ,....Dubai zayed street , house3564  ',
+                              controller.location.toString(),
                         )
                       ],
                     ),

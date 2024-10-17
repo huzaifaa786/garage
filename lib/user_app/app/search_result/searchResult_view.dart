@@ -72,12 +72,8 @@ class _SearchresultViewState extends State<SearchresultView> {
                   color: AppColors.lightgrey,
                   child: TableCalendar(
                     availableGestures: AvailableGestures.horizontalSwipe,
-                    firstDay:
-                        // controller.selectedService!='quickService'
-                        // ?
-                        DateTime.utc(2023, 1, 1),
-                    // :DateTime.now(),
-                    lastDay: DateTime.now(),
+                    firstDay: DateTime.utc(2023, 1, 1),
+                    lastDay: DateTime.utc(2035, 1, 1),
                     focusedDay: DateTime.now(),
                     calendarFormat: CalendarFormat.month,
                     startingDayOfWeek: StartingDayOfWeek.monday,
@@ -99,10 +95,17 @@ class _SearchresultViewState extends State<SearchresultView> {
                         color: AppColors.primarybg,
                       ),
                     ),
+                    onDaySelected: (selectedDay, focusedDay) {
+                      controller.selectDate(selectedDay);
+                    },
+                    selectedDayPredicate: (day) {
+                      return isSameDay(day, controller.selectedDate);
+                    },
                     calendarStyle: CalendarStyle(
+                      // isTodayHighlighted: false,
                       todayDecoration: BoxDecoration(
-                        color: AppColors
-                            .primarybg, // Today's date background color
+                        color: AppColors.primarybg
+                            .withOpacity(0.4), // Today's date background color
                         shape: BoxShape.circle,
                       ),
                       selectedDecoration: BoxDecoration(
@@ -219,18 +222,11 @@ class _SearchresultViewState extends State<SearchresultView> {
                                             ),
                                           ],
                                         )
-                                      : ConstrainedBox(
-                                          constraints: BoxConstraints(
-                                              maxWidth: Get.width * 0.46),
-                                          child: Row(
-                                            children: [
-                                              AppText(
-                                                title:
-                                                    controller.currentAddress,
-                                                size: 10,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ],
+                                      : Flexible(
+                                          child: AppText(
+                                            title: controller.currentAddress,
+                                            size: 10,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                   Gap(30),
@@ -267,7 +263,10 @@ class _SearchresultViewState extends State<SearchresultView> {
                     height: Get.height * 0.077,
                     title: 'Payment',
                     onTap: () {
-                      Get.toNamed(AppRoutes.payments);
+                      Get.toNamed(AppRoutes.payments, parameters: {
+                        'date': controller.formattedDateTime.toString(),
+                        'location': controller.currentAddress.toString(),
+                      });
                     },
                   ),
                 ),

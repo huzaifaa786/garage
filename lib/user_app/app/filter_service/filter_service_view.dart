@@ -335,6 +335,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                                 },
                                 errorText: '',
                               ),
+                              Gap(20)
                             ],
                           )
                         : Gap(0),
@@ -489,7 +490,9 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         height: Get.height * 0.07,
                         fontsize: 12,
                         onTap: () {
-                          controller.filterorder();
+                          controller.selectedgarageName == 'Select garage'
+                              ? controller.filterorder()
+                              : controller.filterSendallGarage();
                         },
                       ),
                     ),

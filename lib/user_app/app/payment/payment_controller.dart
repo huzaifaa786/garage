@@ -11,10 +11,16 @@ class PaymentsController extends GetxController {
     update();
     return;
   }
+  
+   String? date = '';
+  String? location = '';
    @override
   void onInit() {
     super.onInit();
     isapplied = false;
+     date = Get.parameters['date'].toString();
+    location = Get.parameters['location'].toString();
+   
   }
 
   List<Map<String, dynamic>> orders = [
@@ -66,4 +72,7 @@ class PaymentsController extends GetxController {
     },
     
   ];
+
+
+ 
 }
