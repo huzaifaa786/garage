@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/user_apis/store_vehicle_api/store_vehicle_api.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
@@ -35,6 +37,7 @@ class FilterServiceView extends StatefulWidget {
 }
 
 int activeStep = 0;
+GetStorage box = GetStorage();
 
 class _FilterServiceViewState extends State<FilterServiceView> {
   @override
@@ -383,10 +386,15 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           itemBuilder: (context, index) {
                             final vehical = controller.vehiclesList[index];
                             return VehicleListTile(
+                                ontap: () {
+                                  controller.selectCar(vehical.id.toString(),
+                                      vehical.vehicle_info!);
+                                },
                                 value: vehical.id.toString(),
-                                groupValue: controller.selectedCarName,
+                                groupValue: controller.selectedCarid,
                                 onChanged: (value) {
-                                  controller.selectCar(value!);
+                                  controller.selectCar(
+                                      value!, vehical.vehicle_info!);
                                 },
                                 iconPath: vehical.image!.toString(),
                                 text: vehical.vehicle_info.toString());
@@ -448,7 +456,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             controller.selectGarage('Send to all garages');
                           },
                           child: Row(

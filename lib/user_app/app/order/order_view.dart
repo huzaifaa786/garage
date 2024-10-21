@@ -504,7 +504,7 @@ class _OrderViewState extends State<OrderView> {
                                 value: vehical.id.toString(),
                                 groupValue: vehical.id.toString(),
                                 onChanged: (value) {
-                                  controller.selectCar(value!);
+                                  // controller.selectCar(value!);
                                 },
                                 iconPath: vehical.image!.toString(),
                                 text: vehical.vehicle_info.toString());

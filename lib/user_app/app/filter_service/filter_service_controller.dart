@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/categories/user_get_categories_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/filter_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
+import 'package:mobilegarage/apis/user_apis/store_vehicle_api/store_vehicle_api.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
@@ -27,7 +28,6 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
-import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class FilterServiceController extends GetxController {
   static FilterServiceController instance = Get.find();
@@ -376,18 +376,32 @@ class FilterServiceController extends GetxController {
           .map((item) => UserVehicles.fromJson(item as Map<String, dynamic>))
           .toList();
       if (vehiclesList.isNotEmpty) {
-        selectedCarName = vehiclesList.first.id.toString();
-        box.write('selectedvehicleid', selectedCarName.toString());
+        selectedCarid = vehiclesList.first.id.toString();
+        box.write('selectedvehicleid', selectedCarid.toString());
+        selectedCarName = vehiclesList.first.vehicle_info.toString();
+        box.write('selectedvehicleName', selectedCarName.toString());
+        print(selectedCarName);
+        print(selectedCarid);
       }
       update();
     }
   }
 
+  String selectedCarid = '';
   String selectedCarName = '';
+
   //! Method to select a car
-  void selectCar(String carName) {
+  void selectCar(
+    String carid,
+    String carName,
+  ) async {
+    selectedCarid = carid;
     selectedCarName = carName;
-    box.write('selectedvehicleid', selectedCarName.toString());
+    await StoreVehicleApi.storevehicleid(selectedCarid);
+    box.write('selectedvehicleid', selectedCarid.toString());
+    box.write('selectedvehicleName', selectedCarName.toString());
+    print(selectedCarid);
+    print(selectedCarName);
 
     update();
   }
@@ -443,8 +457,8 @@ class FilterServiceController extends GetxController {
   filterSendallGarage() async {
     print('object');
   }
+
   filterorder() async {
-    
     var response;
 
     switch (categoryId) {

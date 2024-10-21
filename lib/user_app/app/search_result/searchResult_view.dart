@@ -263,10 +263,11 @@ class _SearchresultViewState extends State<SearchresultView> {
                     height: Get.height * 0.077,
                     title: 'Payment',
                     onTap: () {
+                      if (controller.validateInputs()) {
                       Get.toNamed(AppRoutes.payments, parameters: {
                         'date': controller.formattedDateTime.toString(),
                         'location': controller.currentAddress.toString(),
-                      });
+                      });}
                     },
                   ),
                 ),
