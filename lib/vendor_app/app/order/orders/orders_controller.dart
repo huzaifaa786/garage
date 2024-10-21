@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/product_vehicles.dart';
+import 'package:mobilegarage/apis/vender_apis/orders_apis/pending_order_api.dart';
+import 'package:mobilegarage/models/order_models/orders_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class VOrdersController extends GetxController {
@@ -10,6 +11,14 @@ class VOrdersController extends GetxController {
   String? phoneNumber;
   int selectedIndex = 0;
   int selectedSubIndex = 0;
+  List<OrdersModel> pendingOrders = [];
+
+  @override
+  void onInit() async {
+    super.onInit();
+    await getPendingOrders();
+  }
+
   List<Map<String, dynamic>> filterList = [
     {
       'Name': 'New orders',
@@ -42,5 +51,13 @@ class VOrdersController extends GetxController {
     );
     await launchUrl(launchUri);
   }
-  
+
+  getPendingOrders() async {
+    var response = await PendingOrderApi.pendingOrders();
+    if (response.isNotEmpty) {
+      List<dynamic> ordersList = response['orders'];
+      pendingOrders =
+          ordersList.map((order) => OrdersModel.fromJson(order)).toList();
+    }
+  }
 }

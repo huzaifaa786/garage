@@ -234,7 +234,7 @@ class EditProductController extends GetxController {
     selectedCategoryId = brand?.id;
     clearbatterymodels();
     clearbatterycomponents();
-    if (![7, 9, 4, 1,8].contains(selectedCategoryId)) {
+    if (![7, 9, 4, 1, 8].contains(selectedCategoryId)) {
       await getBrands();
     }
     await getProductDetails();
@@ -562,7 +562,7 @@ class EditProductController extends GetxController {
                     .map((item) => TyrePatternModel.from(item))
                     .toList();
             await setSelectedPatteren(tyrepattterens.firstWhere((brand) =>
-                brand.id == int.parse(product!.tyrepatterenId.toString())));
+                brand.id == int.parse(product!.tyrepatternId.toString())));
           }
           update();
 

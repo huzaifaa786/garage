@@ -10,6 +10,7 @@ import 'package:mobilegarage/apis/user_apis/categories/user_get_categories_api.d
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/filter_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
 import 'package:mobilegarage/apis/user_apis/store_vehicle_api/store_vehicle_api.dart';
+import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/send_allGarages_api.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
@@ -455,7 +456,7 @@ class FilterServiceController extends GetxController {
 
   // filter api
   filterSendallGarage() async {
-    print('object');
+    sendtoAllGarages();
   }
 
   filterorder() async {
@@ -509,7 +510,7 @@ class FilterServiceController extends GetxController {
       case '7':
       case '8':
       case '9':
-        response = await FilterOrderApi.filterexraOrder(
+        response = await FilterOrderApi.filterextraOrder(
           startprice: start.toString(),
           endprice: end.toString(),
           categoryextraid: selectedExtraId.toString(),
@@ -538,6 +539,18 @@ class FilterServiceController extends GetxController {
       //     buttontitle: 'Back to home',
       //     description: 'A garage will accept your order from within 3-5 min.');
     }
+  }
+
+  void sendtoAllGarages() async {
+    var response = await SendAllgaragesApi.sendAllGarages(
+      id: categoryId,
+      vehicleId: selectedCarName,
+      lowprice: start.toString(),
+      highprice: end.toString(),
+      categoryextraId: selectedExtraId.toString(),
+    );
+
+    if (response.isNotEmpty) {}
   }
 
 // brands dropdown

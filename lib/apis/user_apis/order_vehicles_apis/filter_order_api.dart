@@ -2,7 +2,7 @@ import 'package:mobilegarage/services/dio_service.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
 
 class FilterOrderApi {
-  static Future<Map<String, dynamic>> filterexraOrder({
+  static Future<Map<String, dynamic>> filterextraOrder({
     String? startprice,
     String? endprice,
     String? categoryid,
