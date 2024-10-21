@@ -3,33 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/models/battery_models/ampere_model.dart';
-import 'package:mobilegarage/models/battery_models/origin_model.dart';
-import 'package:mobilegarage/models/battery_models/product_type_model.dart';
-import 'package:mobilegarage/models/battery_models/voltage_model.dart';
-import 'package:mobilegarage/models/brand_model.dart';
-import 'package:mobilegarage/models/oil_models/product_type_model.dart';
-import 'package:mobilegarage/models/oil_models/volume_model.dart';
-import 'package:mobilegarage/models/tyre_models/height_model.dart';
-import 'package:mobilegarage/models/tyre_models/origin_model.dart';
-import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
-import 'package:mobilegarage/models/tyre_models/size_model.dart';
-import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
-import 'package:mobilegarage/models/tyre_models/width_model.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/filter_service/components/vehicle_listTile.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
-import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
-import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
-import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
-
 class OrderView extends StatefulWidget {
   const OrderView({super.key});
 
@@ -513,7 +494,6 @@ class _OrderViewState extends State<OrderView> {
                         Gap(30),
                       ],
                     ),
-
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
