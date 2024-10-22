@@ -7,6 +7,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -170,9 +171,9 @@ class UiUtilites {
       required title,
       required buttontitle,
       required description}) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
+           showDialog(
+              context: context,
+                   builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
           child: AlertDialog(
@@ -223,8 +224,14 @@ class UiUtilites {
           ),
         );
       },
-    );
-  }
+          );
+       
+        Future.delayed(Duration(seconds: 3), () {
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    }
+  });
+        }
 
   static pendingApprovalAlertDialog({
     required BuildContext context,

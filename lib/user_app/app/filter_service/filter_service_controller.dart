@@ -29,6 +29,7 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class FilterServiceController extends GetxController {
   static FilterServiceController instance = Get.find();
@@ -515,6 +516,7 @@ class FilterServiceController extends GetxController {
           endprice: end.toString(),
           categoryextraid: selectedExtraId.toString(),
           categoryid: categoryId.toString(),
+
         );
         update();
         break;
@@ -524,7 +526,7 @@ class FilterServiceController extends GetxController {
     }
 
     if (response.isNotEmpty) {
-      garages = (response['garage']['garages'] as List<dynamic>)
+      garages = (response['garages'] as List<dynamic>)
           .map((item) => GarageModel.fromJson(item as Map<String, dynamic>))
           .toList();
 
@@ -544,13 +546,22 @@ class FilterServiceController extends GetxController {
   void sendtoAllGarages() async {
     var response = await SendAllgaragesApi.sendAllGarages(
       id: categoryId,
-      vehicleId: selectedCarName,
+      vehicleId: selectedCarid,
       lowprice: start.toString(),
       highprice: end.toString(),
       categoryextraId: selectedExtraId.toString(),
     );
 
-    if (response.isNotEmpty) {}
+    if (response.isNotEmpty) {
+       UiUtilites.successAlertDialog(
+          context: Get.context,
+          onTap: () {
+            Get.toNamed(AppRoutes.main);
+          },
+          title: 'Thank you!',
+          buttontitle: 'Back to home',
+          description: 'A garage will accept your order from within 3-5 min.');
+    }
   }
 
 // brands dropdown
