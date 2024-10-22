@@ -16,12 +16,25 @@ class AppNetworkImage extends StatelessWidget {
   final String? networkImage;
   final double? height;
   final double? width;
-  final String? assetPath;
+  final String assetPath;
   final fit;
   @override
   Widget build(BuildContext context) {
+      if (networkImage == null || networkImage!.isEmpty) {
+      // Display asset image or fallback widget
+      return assetPath.isNotEmpty
+          ? Image.asset(
+              assetPath,
+              fit: fit,
+              width: width,
+              height: height,
+            )
+          : Icon(Icons.error, size: width);
+    }
+
+    // CachedNetworkImage for valid networkImage URL
     return CachedNetworkImage(
-      imageUrl: networkImage.toString(),
+      imageUrl: networkImage!,
       height: height,
       width: width,
       fit: fit,
@@ -31,12 +44,32 @@ class AppNetworkImage extends StatelessWidget {
         highlightColor: Colors.grey[100]!,
         child: Container(color: Colors.white, width: width, height: height),
       ),
-      errorWidget: (context, url, error) => assetPath != ''
+      errorWidget: (context, url, error) => assetPath.isNotEmpty
           ? Image.asset(
-              assetPath!,
+              assetPath,
               fit: BoxFit.cover,
+              width: width,
+              height: height,
             )
-          : Icon(Icons.error),
+          : Icon(Icons.error, size: width),
     );
+    // return CachedNetworkImage(
+    //   imageUrl: networkImage.toString(),
+    //   height: height,
+    //   width: width,
+    //   fit: fit,
+    //   placeholderFadeInDuration: Duration(milliseconds: 500),
+    //   placeholder: (context, url) => Shimmer.fromColors(
+    //     baseColor: Colors.grey[300]!,
+    //     highlightColor: Colors.grey[100]!,
+    //     child: Container(color: Colors.white, width: width, height: height),
+    //   ),
+    //   errorWidget: (context, url, error) => assetPath.isNotEmpty
+    //       ? Image.asset(
+    //           assetPath!,
+    //           fit: BoxFit.cover,
+    //         )
+    //       : Icon(Icons.error),
+    // );
   }
 }

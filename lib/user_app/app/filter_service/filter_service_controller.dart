@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/categories/user_get_categories_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/filter_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
+import 'package:mobilegarage/apis/user_apis/store_vehicle_api/store_vehicle_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/send_allGarages_api.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
@@ -377,18 +378,32 @@ class FilterServiceController extends GetxController {
           .map((item) => UserVehicles.fromJson(item as Map<String, dynamic>))
           .toList();
       if (vehiclesList.isNotEmpty) {
-        selectedCarName = vehiclesList.first.id.toString();
-        box.write('selectedvehicleid', selectedCarName.toString());
+        selectedCarid = vehiclesList.first.id.toString();
+        box.write('selectedvehicleid', selectedCarid.toString());
+        selectedCarName = vehiclesList.first.vehicle_info.toString();
+        box.write('selectedvehicleName', selectedCarName.toString());
+        print(selectedCarName);
+        print(selectedCarid);
       }
       update();
     }
   }
 
+  String selectedCarid = '';
   String selectedCarName = '';
+
   //! Method to select a car
-  void selectCar(String carName) {
+  void selectCar(
+    String carid,
+    String carName,
+  ) async {
+    selectedCarid = carid;
     selectedCarName = carName;
-    box.write('selectedvehicleid', selectedCarName.toString());
+    await StoreVehicleApi.storevehicleid(selectedCarid);
+    box.write('selectedvehicleid', selectedCarid.toString());
+    box.write('selectedvehicleName', selectedCarName.toString());
+    print(selectedCarid);
+    print(selectedCarName);
 
     update();
   }
@@ -501,6 +516,7 @@ class FilterServiceController extends GetxController {
           endprice: end.toString(),
           categoryextraid: selectedExtraId.toString(),
           categoryid: categoryId.toString(),
+
         );
         update();
         break;
@@ -510,7 +526,7 @@ class FilterServiceController extends GetxController {
     }
 
     if (response.isNotEmpty) {
-      garages = (response['garage']['garages'] as List<dynamic>)
+      garages = (response['garages'] as List<dynamic>)
           .map((item) => GarageModel.fromJson(item as Map<String, dynamic>))
           .toList();
 
@@ -530,13 +546,22 @@ class FilterServiceController extends GetxController {
   void sendtoAllGarages() async {
     var response = await SendAllgaragesApi.sendAllGarages(
       id: categoryId,
-      vehicleId: selectedCarName,
+      vehicleId: selectedCarid,
       lowprice: start.toString(),
       highprice: end.toString(),
       categoryextraId: selectedExtraId.toString(),
     );
 
-    if (response.isNotEmpty) {}
+    if (response.isNotEmpty) {
+       UiUtilites.successAlertDialog(
+          context: Get.context,
+          onTap: () {
+            Get.toNamed(AppRoutes.main);
+          },
+          title: 'Thank you!',
+          buttontitle: 'Back to home',
+          description: 'A garage will accept your order from within 3-5 min.');
+    }
   }
 
 // brands dropdown

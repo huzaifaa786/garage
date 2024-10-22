@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_import, prefer_interpolation_to_compose_strings
+// ignore_for_file: unnecessary_import, prefer_interpolation_to_compose_strings, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -24,12 +24,12 @@ class OrderCard extends StatelessWidget {
       this.location,
       this.city,
       required this.isSelected,
-      required this.onToggle});
+      required this.ontap});
   GarageModel garage;
   final String? location;
   final String? city;
   final bool isSelected;
-  final Function() onToggle;
+  final ontap;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FilterServiceController>(
@@ -37,7 +37,7 @@ class OrderCard extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.all(15),
           child: GestureDetector(
-            onTap: onToggle,
+            onTap: ontap,
             child: Stack(
               clipBehavior: Clip.none,
               children: [
@@ -95,7 +95,8 @@ class OrderCard extends StatelessWidget {
                               ),
                               Gap(5),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 2),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 2),
                                 child: AppText(
                                   title: garage.products![0].oilextra![0].name
                                       .toString(),

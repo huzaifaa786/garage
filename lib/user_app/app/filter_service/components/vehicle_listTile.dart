@@ -12,6 +12,7 @@ class VehicleListTile extends StatelessWidget {
   final ValueChanged<String?>? onChanged;
   final String iconPath;
   final String text;
+  final ontap;
 
   const VehicleListTile({
     Key? key,
@@ -20,42 +21,46 @@ class VehicleListTile extends StatelessWidget {
     required this.onChanged,
     required this.iconPath,
     required this.text,
+    this.ontap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Radio<String>(
-            value: value,
-            groupValue: groupValue,
-            onChanged: onChanged,
-            fillColor: MaterialStatePropertyAll(AppColors.primarybg),
-          ),
-          Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                  child: AppNetworkImage(
-                networkImage: iconPath.toString(),
-                fit: BoxFit.cover,
-              )),
-
-              Gap(10),
-              Text(
-                text,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.primary,
+      title: GestureDetector(
+        onTap: ontap,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Radio<String>(
+              value: value,
+              groupValue: groupValue,
+              onChanged: onChanged,
+              fillColor: MaterialStatePropertyAll(AppColors.primarybg),
+            ),
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                    child: AppNetworkImage(
+                  networkImage: iconPath.toString(),
+                  fit: BoxFit.cover,
+                )),
+        
+                Gap(10),
+                Text(
+                  text,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primary,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

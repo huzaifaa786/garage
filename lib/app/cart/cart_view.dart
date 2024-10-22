@@ -63,7 +63,7 @@ class CartView extends StatelessWidget {
                       return Column(
                         children: [
                           CartCard(
-                            orders: orders,
+                            // orders: orders,
                           ),
                           Gap(20)
                         ],

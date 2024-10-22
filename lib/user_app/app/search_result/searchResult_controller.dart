@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -30,7 +32,7 @@ class SearchResultController extends GetxController {
   double? lng;
   String currentAddress = '';
 
-  DateTime? selectedDate =DateTime.now();
+  DateTime? selectedDate = DateTime.now();
   String? formatteddate;
   void selectDate(DateTime date) {
     selectedDate = date;
@@ -43,7 +45,42 @@ class SearchResultController extends GetxController {
     final hour = selectedTimeFrom.hour;
     final minute = selectedTimeFrom.minute;
     final period = isAm ? 'AM' : 'PM';
+    return '${formatteddate}' +
+        '   ' +
+        '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} $period';
+  }
 
-    return '${formatteddate}'+'   '+'${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} $period';
+  @override
+  void onInit() {
+    super.onInit();
+    selectedDate = DateTime.now();
+    formatteddate = DateFormat('yyyy-MM-dd').format(selectedDate!);
+    final now = DateTime.now();
+    selectedTimeFrom = TimeOfDay(hour: now.hour, minute: now.minute);
+    isAm = now.hour < 12;
+    update();
+  }
+
+  bool validateInputs() {
+    if (currentAddress.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'Please provide a valid location.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return false;
+    } else if (formatteddate == null) {
+      Get.snackbar(
+        'Error',
+        'Please select a valid date.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return false;
+    }
+    return true;
   }
 }

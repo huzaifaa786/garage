@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/add_to_cart_api.dart';
 import 'package:mobilegarage/apis/user_apis/garage_profile/garage_profile_api.dart';
 import 'package:mobilegarage/apis/user_apis/garage_profile/garage_with_product_api.dart';
+import 'package:mobilegarage/apis/user_apis/store_vehicle_api/store_vehicle_api.dart';
 import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
@@ -54,13 +56,14 @@ class GarageController extends GetxController {
     }
   }
 
+  GetStorage box = GetStorage();
+
   addToCart() async {
     var response = await AddToCartApi.addToCart(
         id: garageId,
         productid: productId,
         product_extraid: garage!.products![0].oilextra![0].id.toString());
     if (response.isNotEmpty) {
-      // garage = GarageModel.fromJson(response['message']['garage']);
       Get.toNamed(AppRoutes.search_result);
       update();
     }
