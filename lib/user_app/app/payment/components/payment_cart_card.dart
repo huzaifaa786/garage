@@ -19,10 +19,7 @@ class PaymentCartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // String carWashDate = orders!['date'];
-    // String carWashTime = orders!['time'];
-
-    return GetBuilder<PaymentsController>(
+  return GetBuilder<PaymentsController>(
         builder: (controller) => Container(
               decoration: BoxDecoration(
                   color: AppColors.white,
