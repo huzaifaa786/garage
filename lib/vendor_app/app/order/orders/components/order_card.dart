@@ -1,24 +1,21 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:mobilegarage/models/order_models/orders_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/button.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/location.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({
+  OrderCard({
     super.key,
+    required this.orders,
     this.day,
     this.img = '',
     this.name,
@@ -26,6 +23,7 @@ class OrderCard extends StatelessWidget {
     this.time,
     this.number,
   });
+  OrdersModel orders;
   final day;
   final number;
   final img;
@@ -51,7 +49,7 @@ class OrderCard extends StatelessWidget {
                       children: [
                         SvgPicture.asset('assets/icons/calendar.svg'),
                         AppText(
-                          title: ' ' 'Wednesday 3 March 2024',
+                          title: ' ${orders.createdAt}',
                           color: AppColors.primary_color,
                           size: 11,
                           fontWeight: FontWeight.w600,
@@ -90,7 +88,7 @@ class OrderCard extends StatelessWidget {
                     ),
                     Gap(13),
                     AppText(
-                      title: '453453533',
+                      title: orders.id.toString(),
                       size: 12,
                       fontWeight: FontWeight.w600,
                       color: AppColors.primary_color,
@@ -141,12 +139,12 @@ class OrderCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppText(
-                              title: '  ' + name,
+                              // title: '  ' + orders.,
                               size: 13,
                               fontWeight: FontWeight.w600,
                             ),
                             AppText(
-                              title: '  ' + number,
+                              // title: '  ' + number,
                               size: 13,
                               fontWeight: FontWeight.w600,
                             ),
@@ -259,7 +257,9 @@ class OrderCard extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                               AppText(
-                                title: 'automatic',
+                                // title: orders.orderItems[index].productsExtra!
+                                //     .categoryExtra!.name
+                                //     .toString(),
                                 size: 10,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -282,7 +282,8 @@ class OrderCard extends StatelessWidget {
                           // ),
                           Gap(4),
                           AppText(
-                            title: 'Total 343435 AED',
+                            // title: orders.orderItems[index].productsExtra!.price
+                            //     .toString(),
                             size: 13,
                             fontWeight: FontWeight.w600,
                             color: AppColors.lightblue,
