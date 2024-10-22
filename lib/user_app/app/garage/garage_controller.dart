@@ -28,15 +28,15 @@ class GarageController extends GetxController {
     garageId = Get.parameters['id']?.toString();
     productId = Get.parameters['productId']?.toString();
     productextraId = Get.parameters['productextraId']?.toString();
-    await getGarageProduct(garageId, productId, productextraId);
+    await getGarageProduct();
     // await getGarageProfile(garageId);
 
     super.onInit();
   }
 
-  getGarageProduct(garageId, productid, productextraid) async {
+  getGarageProduct() async {
     var response = await GarageWithProductApi.garageProductData(
-        id: garageId, productid: productid, productextraid: productextraid);
+        id: garageId, productid: productId, productextraid: productextraId);
     if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response['garage']['garage']);
       categories = (response['garage']['categories'] as List<dynamic>)
@@ -60,9 +60,10 @@ class GarageController extends GetxController {
 
   addToCart() async {
     var response = await AddToCartApi.addToCart(
-        id: garageId,
-        productid: productId,
-        product_extraid: garage!.products![0].oilextra![0].id.toString());
+        id: garageId.toString(),
+        productid: productId.toString(),
+        product_extraid: productextraId,
+        quantity: '1');
     if (response.isNotEmpty) {
       Get.toNamed(AppRoutes.search_result);
       update();

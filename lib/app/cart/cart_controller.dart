@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/user_apis/cart_apis/cart_detail_api.dart';
+import 'package:mobilegarage/models/cart_model.dart/cart_model.dart';
 
 class CartController extends GetxController {
   static CartController instanse = Get.find();
@@ -13,11 +15,21 @@ class CartController extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onInit() async{
     super.onInit();
     isapplied = false;
-  }
+    await getCartData();
 
+  }
+  CartModel? cart;
+
+  getCartData() async {
+    var response = await CartDetailApi.getCartData();
+    if (response.isNotEmpty) {
+      cart = CartModel.fromJson(response['cart']);
+      update();
+    }
+  }
   List<Map<String, dynamic>> orders = [
     {
       "productImage": "https://dummyimage.com/93x93/000/fff",

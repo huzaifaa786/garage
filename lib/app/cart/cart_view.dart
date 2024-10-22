@@ -18,12 +18,13 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
       autoRemove: false,
+      
       builder: (controller) => Scaffold(
+        
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(70.0),
           child: Container(
             decoration: BoxDecoration(
-                // boxShadow: [appbarShadow],
                 ),
             child: AppBar(
               automaticallyImplyLeading: false,
@@ -47,28 +48,31 @@ class CartView extends StatelessWidget {
                 Row(
                   children: [
                     AppText(
-                      title: 'Items ( 2 )',
+                      title: 'Items ( ${controller.cart!.items!.length} )',
                       size: 12,
                       fontWeight: FontWeight.w600,
                     ),
                   ],
                 ),
                 Gap(10),
-                ListView.builder(
+                controller.cart!=null
+                ?ListView.builder(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
                     itemCount: controller.orders.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final orders = controller.orders[index];
+                      // final orders = controller.orders[index];
+                                  final item = controller.cart!.items![index];
+
                       return Column(
                         children: [
                           CartCard(
-                            // orders: orders,
+                            item: item,
                           ),
                           Gap(20)
                         ],
                       );
-                    }),
+                    }):Text(''),
                 Row(
                   children: [
                     Gap(10),

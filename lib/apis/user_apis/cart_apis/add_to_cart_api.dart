@@ -9,16 +9,16 @@ class AddToCartApi {
       String? productid,
       String? quantity,
       String? product_extraid,
+
       }) async {
     String url = '$baseUrl/add/cart';
     var data;
 
-    quantity == null
+    product_extraid == ''
         ? data = {
             'garage_id': id,
             'product_id': productid,
-            'quantity': '1',
-            'product_extra_id': product_extraid
+            'quantity': quantity,
           }
         : data = {
             'garage_id': id,

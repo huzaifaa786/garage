@@ -40,8 +40,8 @@ class GarageProductCard extends StatelessWidget {
                             BorderRadius.vertical(top: Radius.circular(12)),
                         child: AppNetworkImage(
                           networkImage: controller
-                          .garage!.products![0].images![0].imageUrl
-                          .toString(),
+                              .garage!.products![0].images![0].imageUrl
+                              .toString(),
                           assetPath: 'assets/images/washing.png',
                           width: double.infinity,
                           height: 80,
@@ -52,7 +52,16 @@ class GarageProductCard extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(top: 8.0, right: 5.0, left: 5.0),
                     child: AppText(
-                      title: 'Super car oilcccccccccccccc',
+                      title: controller.garage!.products![0].oilextra!.isEmpty
+                          ? controller.garage!.products![0].brands!.name
+                              .toString()
+                          : controller.garage!.products![0].categoryId == '2'
+                              ? controller.garage!.products![0].brands!.name
+                                  .toString()
+                              : controller
+                                  .garage!.products![0].oilextra![0].name
+                                  // '',
+                                  .toString(),
                       fontWeight: FontWeight.w600,
                       size: 14.0,
                       maxLines: 1,
@@ -64,9 +73,12 @@ class GarageProductCard extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 8.0, bottom: 8.0, right: 5.0, left: 5.0),
                     child: AppText(
-                      title: controller
-                          .garage!.products![0].oilextra![0].description
-                          .toString(),
+                      title: controller.garage!.products![0].oilextra!.isEmpty
+                          ? controller.garage!.products![0].description
+                              .toString()
+                          : controller
+                              .garage!.products![0].oilextra![0].description
+                              .toString(),
                       fontWeight: FontWeight.w400,
                       size: 10.0,
                       maxLines: 2,
@@ -78,9 +90,10 @@ class GarageProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppText(
-                        title: controller
-                            .garage!.products![0].oilextra![0].price
-                            .toString(),
+                        title: controller.garage!.products![0].oilextra!.isEmpty
+                            ? controller.garage!.products![0].price.toString()
+                            : controller.garage!.products![0].oilextra![0].price
+                                .toString(),
                         color: Color.fromARGB(255, 0, 91, 165),
                         fontWeight: FontWeight.w600,
                         textAlign: TextAlign.center,
