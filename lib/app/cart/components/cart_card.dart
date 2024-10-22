@@ -131,7 +131,7 @@ class CartCard extends StatelessWidget {
                                       right: 5, bottom: 5),
                                   child: InputQty(
                                     initVal:
-                                        controller.cart!.totalQuantity ?? 1,
+                                        controller.cart!.totalQuantity ?? 0,
                                     minVal: 1,
                                     decoration: QtyDecorationProps(
                                       minusBtn: Container(
@@ -142,15 +142,10 @@ class CartCard extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                             border: Border.all(
                                                 color: AppColors.primary)),
-                                        child: InkWell(
-                                          onTap: () {
-                                            // controller.updateCartItems();
-                                          },
-                                          child: Icon(
-                                            Icons.remove,
-                                            color: AppColors.primary,
-                                            size: 12,
-                                          ),
+                                        child: Icon(
+                                          Icons.remove,
+                                          color: AppColors.primary,
+                                          size: 12,
                                         ),
                                       ),
                                       isBordered: false,
@@ -164,20 +159,19 @@ class CartCard extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
-                                        child: InkWell(
-                                          onTap: () {
-                                            // controller.updateCartItems();
-                                          },
-                                          child: Icon(
-                                            Icons.add,
-                                            color: AppColors.white,
-                                            size: 12,
-                                          ),
+                                        child: Icon(
+                                          Icons.add,
+                                          color: AppColors.white,
+                                          size: 12,
                                         ),
                                       ),
                                     ),
                                     onQtyChanged: (val) {
-                                      print('sdfds');
+                                      int updatedQuantity = val.toInt();
+                                      controller.updateCartItems(
+                                        item!.id.toString(),
+                                        updatedQuantity,
+                                      );
                                     },
                                   ),
                                 ),
