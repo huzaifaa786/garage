@@ -27,10 +27,22 @@ class VOrdersView extends StatelessWidget {
                 const Gap(12),
                 const SubFilterView()
               ],
-              const OrderCard(
-                name: 'ali',
-                number: '3435435435352',
-              ),
+               ListView.builder(
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: controller.pendingOrders.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final orders = controller.pendingOrders[index];
+                      return Column(
+                        children: [
+                          OrderCard(
+                            orders: orders,
+                          ),
+                          Gap(20)
+                        ],
+                      );
+                    }),
+            
             ],
           ),
         ),
