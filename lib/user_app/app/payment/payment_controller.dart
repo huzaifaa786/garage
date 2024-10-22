@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/cart_detail_api.dart';
+import 'package:mobilegarage/apis/user_apis/cart_apis/delete_from_cart_api.dart';
+import 'package:mobilegarage/apis/user_apis/cart_apis/update_cart_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_apis/create_order_api.dart';
 import 'package:mobilegarage/models/cart_model.dart/cart_model.dart';
 import 'package:http/http.dart' as http;
@@ -194,6 +197,25 @@ class PaymentsController extends GetxController {
       );
     } catch (e) {
       print('$e');
+    }
+  }
+
+  deleteCartItems(cartItemId) async {
+    var response = DeleteFromCartApi.deleteCart(
+      cartItemId: cartItemId.toString()
+    );
+
+    
+  }
+
+  updateCartItems(cartItemId) async {
+    var response = await UpdateCartApi.updateCart(
+      cartItemId: cart!.items![cartItemId].id.toString(),
+      quantity: cart!.totalQuantity.toString(),
+    );
+
+    if (response['error'] == false) {
+      // List<dynamic> services = response['services'];
     }
   }
 }

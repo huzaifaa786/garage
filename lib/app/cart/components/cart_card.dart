@@ -14,8 +14,10 @@ class CartCard extends StatelessWidget {
   CartCard({
     super.key,
     this.item,
+    this.ontap,
   });
   CartItemModel? item;
+  final ontap;
 
   @override
   Widget build(BuildContext context) {
@@ -73,13 +75,16 @@ class CartCard extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                SvgPicture.asset('assets/icons/cross.svg'),
+                                InkWell(
+                                    onTap: ontap,
+                                    child: SvgPicture.asset(
+                                        'assets/icons/cross.svg')),
                               ],
                             ),
                             Gap(7),
                             AppText(
-                              title: "Type: ${controller.cart!.vehicle!.vehicle_type!.name
-                                        .toString()}",
+                              title:
+                                  "Type: ${controller.cart!.vehicle!.vehicle_type!.name.toString()}",
                               fontWeight: FontWeight.w500,
                               size: 9,
                               maxLines: 1,
@@ -91,7 +96,8 @@ class CartCard extends StatelessWidget {
                                 Gap(4),
                                 AppText(
                                   title: controller.cart!.vehicle!.vehicle_info
-                                          .toString() +'  '+
+                                          .toString() +
+                                      '  ' +
                                       controller
                                           .cart!.vehicle!.year_of_manufacture
                                           .toString(),
@@ -127,7 +133,8 @@ class CartCard extends StatelessWidget {
                                   padding: const EdgeInsets.only(
                                       right: 5, bottom: 5),
                                   child: InputQty(
-                                    initVal: 1,
+                                    initVal:
+                                        controller.cart!.totalQuantity ?? 1,
                                     minVal: 1,
                                     decoration: QtyDecorationProps(
                                       minusBtn: Container(
@@ -138,10 +145,15 @@ class CartCard extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                             border: Border.all(
                                                 color: AppColors.primary)),
-                                        child: Icon(
-                                          Icons.remove,
-                                          color: AppColors.primary,
-                                          size: 12,
+                                        child: InkWell(
+                                          onTap: () {
+                                            // controller.updateCartItems();
+                                          },
+                                          child: Icon(
+                                            Icons.remove,
+                                            color: AppColors.primary,
+                                            size: 12,
+                                          ),
                                         ),
                                       ),
                                       isBordered: false,
@@ -155,10 +167,15 @@ class CartCard extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
-                                        child: Icon(
-                                          Icons.add,
-                                          color: AppColors.white,
-                                          size: 12,
+                                        child: InkWell(
+                                          onTap: () {
+                                            // controller.updateCartItems();
+                                          },
+                                          child: Icon(
+                                            Icons.add,
+                                            color: AppColors.white,
+                                            size: 12,
+                                          ),
                                         ),
                                       ),
                                     ),
