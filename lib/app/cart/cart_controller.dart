@@ -15,12 +15,12 @@ class CartController extends GetxController {
   }
 
   @override
-  void onInit() async{
+  void onInit() async {
     super.onInit();
     isapplied = false;
     await getCartData();
-
   }
+
   CartModel? cart;
 
   getCartData() async {
@@ -30,6 +30,7 @@ class CartController extends GetxController {
       update();
     }
   }
+
   List<Map<String, dynamic>> orders = [
     {
       "productImage": "https://dummyimage.com/93x93/000/fff",

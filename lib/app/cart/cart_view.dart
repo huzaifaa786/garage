@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/cart/cart_controller.dart';
 import 'package:mobilegarage/app/cart/components/cart_card.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.dart';
@@ -18,14 +19,18 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
       autoRemove: false,
-      
-      builder: (controller) => Scaffold(
-        
+      initState: (state) {
+        Future.delayed(Duration(milliseconds: 100), () {
+          state.controller!.getCartData();
+        });
+      },
+      builder: (controller) => 
+      controller.cart!=null?
+      Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(70.0),
           child: Container(
-            decoration: BoxDecoration(
-                ),
+            decoration: BoxDecoration(),
             child: AppBar(
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
@@ -55,42 +60,43 @@ class CartView extends StatelessWidget {
                   ],
                 ),
                 Gap(10),
-                controller.cart!=null
-                ?ListView.builder(
-                    shrinkWrap: true,
-                    physics: BouncingScrollPhysics(),
-                    itemCount: controller.orders.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      // final orders = controller.orders[index];
-                                  final item = controller.cart!.items![index];
+                controller.cart != null
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        itemCount: controller.orders.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          // final orders = controller.orders[index];
+                          final item = controller.cart!.items![index];
 
-                      return Column(
-                        children: [
-                          CartCard(
-                            item: item,
-                          ),
-                          Gap(20)
-                        ],
-                      );
-                    }):Text(''),
-                Row(
-                  children: [
-                    Gap(10),
-                    AppText(
-                      title: 'Promo code',
-                      size: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ],
-                ),
-                Gap(6),
-                PromocodeTextfield(
-                  controller: controller.promocodeController,
-                  hint: 'Promo Code'.tr,
-                  errorText: '',
-                  onTap: controller.promoCode,
-                  isApplied: controller.isapplied,
-                ),
+                          return Column(
+                            children: [
+                              CartCard(
+                                item: item,
+                              ),
+                              Gap(20)
+                            ],
+                          );
+                        })
+                    : Text(''),
+                // Row(
+                //   children: [
+                //     Gap(10),
+                //     AppText(
+                //       title: 'Promo code',
+                //       size: 12,
+                //       fontWeight: FontWeight.w600,
+                //     ),
+                //   ],
+                // ),
+                // Gap(6),
+                // PromocodeTextfield(
+                //   controller: controller.promocodeController,
+                //   hint: 'Promo Code'.tr,
+                //   errorText: '',
+                //   onTap: controller.promoCode,
+                //   isApplied: controller.isapplied,
+                // ),
               ],
             ),
           ),
@@ -120,6 +126,9 @@ class CartView extends StatelessWidget {
                 ],
               ),
               IconMainButton(
+                onTap: () {
+                Get.toNamed( AppRoutes.search_result); 
+                },
                 buttonWidth: Get.width * 0.4,
                 height: Get.height * 0.06,
                 title: 'Purchase',
@@ -127,7 +136,7 @@ class CartView extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      ):Text(''),
     );
   }
 }
