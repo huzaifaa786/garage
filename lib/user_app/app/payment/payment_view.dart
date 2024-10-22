@@ -69,6 +69,9 @@ class PaymentView extends StatelessWidget {
                                     children: [
                                       PaymentCartCard(
                                         item: item,
+                                        ontap: () {
+                                          controller.deleteCartItems(item.id.toString());
+                                        },
                                       ),
                                       Gap(20)
                                     ],
@@ -81,7 +84,7 @@ class PaymentView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     AppText(
-                                      title: 'Date &Time',
+                                      title: 'Date & Time',
                                       size: 10,
                                       fontWeight: FontWeight.w500,
                                     ),

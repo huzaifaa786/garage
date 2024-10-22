@@ -1,10 +1,10 @@
 import 'package:mobilegarage/services/dio_service.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
 
-class DeleteFromCartApi {
-  static Future<Map<String, dynamic>> deleteCart(
+class UpdateCartApi {
+  static Future<Map<String, dynamic>> updateCart(
       {String? cartItemId, String? quantity}) async {
-    String url = '$baseUrl/delete/cart';
+    String url = '$baseUrl/update/cart';
 
     var data = {
       'cartItemId': cartItemId,
