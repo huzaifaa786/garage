@@ -85,8 +85,11 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                         'productId': controller.garages[index].products![0].id
                             .toString(),
                         'productextraId': controller
-                            .garages[index].products![0].oilextra![0].id
-                            .toString()
+                                .garages[index].products![0].oilextra!.isEmpty
+                            ? ''
+                            : controller
+                                .garages[index].products![0].oilextra![0].id
+                                .toString()
                       });
                     },
                   );

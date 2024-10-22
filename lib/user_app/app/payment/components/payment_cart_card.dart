@@ -4,14 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:input_quantity/input_quantity.dart';
-import 'package:mobilegarage/app/cart/cart_controller.dart';
 import 'package:mobilegarage/models/cart_model.dart/cart_model.dart';
+import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
-class CartCard extends StatelessWidget {
-  CartCard({
+class PaymentCartCard extends StatelessWidget {
+  PaymentCartCard({
     super.key,
     this.item,
   });
@@ -19,7 +19,10 @@ class CartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CartController>(
+    // String carWashDate = orders!['date'];
+    // String carWashTime = orders!['time'];
+
+    return GetBuilder<PaymentsController>(
         builder: (controller) => Container(
               decoration: BoxDecoration(
                   color: AppColors.white,
@@ -63,7 +66,7 @@ class CartCard extends StatelessWidget {
                                   constraints:
                                       BoxConstraints(maxWidth: Get.width * 0.5),
                                   child: AppText(
-                                    title: item!.acextra![0].name.toString(),
+                                    title: 'item!.acextra![0].name.toString()',
                                     size: 12,
                                     maxLines: 1,
                                     overFlow: TextOverflow.ellipsis,
@@ -115,7 +118,7 @@ class CartCard extends StatelessWidget {
                               children: [
                                 AppText(
                                   title:
-                                      "${item!.acextra![0].price.toString()} AED",
+                                      "{item!.acextra![0].price.toString()} AED",
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.darkblue,
                                   size: 12,

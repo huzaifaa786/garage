@@ -7,6 +7,7 @@ import 'package:mobilegarage/app/cart/components/cart_card.dart';
 import 'package:mobilegarage/user_app/app/payment/components/date_location_card.dart';
 import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
 import 'package:mobilegarage/user_app/app/payment/components/payment_bottomsheet.dart';
+import 'package:mobilegarage/user_app/app/payment/components/payment_cart_card.dart';
 import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.dart';
@@ -66,7 +67,7 @@ class PaymentView extends StatelessWidget {
                                   final item = controller.cart!.items![index];
                                   return Column(
                                     children: [
-                                      CartCard(
+                                      PaymentCartCard(
                                         item: item,
                                       ),
                                       Gap(20)

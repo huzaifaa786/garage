@@ -98,8 +98,16 @@ class OrderCard extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 2),
                                 child: AppText(
-                                  title: garage.products![0].oilextra![0].name
-                                      .toString(),
+                                  title: 
+                                  garage.products![0].oilextra!.isEmpty
+                                      ? garage.products![0].brands!.name
+                                          .toString()
+                                      :garage.products![0].categoryId=='2'
+                                      ?garage.products![0].brands!.name
+                                          .toString():
+                                       garage.products![0].oilextra![0].name 
+                                          // '',
+                                  .toString(),
                                   size: 11,
                                   fontWeight: FontWeight.w600,
                                   maxLines: 1,
@@ -111,9 +119,12 @@ class OrderCard extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 child: AppText(
-                                  title: garage
-                                      .products![0].oilextra![0].description
-                                      .toString(),
+                                  title: garage.products![0].oilextra!.isEmpty
+                                      ? garage.products![0].description
+                                          .toString()
+                                      : garage
+                                          .products![0].oilextra![0].description
+                                          .toString(),
                                   size: 9,
                                   fontWeight: FontWeight.w400,
                                   textAlign: TextAlign.center,
@@ -126,7 +137,10 @@ class OrderCard extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 child: AppText(
-                                  title: garage.products![0].oilextra![0].price
+                                  title: 
+                                  garage.products![0].oilextra!.isEmpty
+                                      ?garage.products![0].price.toString():
+                                  garage.products![0].oilextra![0].price
                                           .toString() +
                                       ' ' +
                                       'AED',
@@ -155,7 +169,7 @@ class OrderCard extends StatelessWidget {
                           Gap(5),
                           AppText(
                             title: garage.servicecount.toString() +
-                                '' +
+                                ' ' +
                                 'Services',
                             size: 9,
                             fontWeight: FontWeight.w500,
