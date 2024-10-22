@@ -201,21 +201,24 @@ class PaymentsController extends GetxController {
   }
 
   deleteCartItems(cartItemId) async {
-    var response = DeleteFromCartApi.deleteCart(
-      cartItemId: cartItemId.toString()
-    );
-
-    
+    var response =
+        await DeleteFromCartApi.deleteCart(cartItemId: cartItemId.toString());
+    if (response.isNotEmpty) {
+      getCartData();
+      update();
+    }
   }
 
-  updateCartItems(cartItemId) async {
-    var response = await UpdateCartApi.updateCart(
-      cartItemId: cart!.items![cartItemId].id.toString(),
-      quantity: cart!.totalQuantity.toString(),
-    );
+  String? updatedQuantity;
 
-    if (response['error'] == false) {
-      // List<dynamic> services = response['services'];
+  updateCartItems(String cartItemId, int quantity) async {
+    updatedQuantity = quantity.toString();
+    var response = await UpdateCartApi.updateCart(
+      cartItemId: cartItemId,
+      quantity: updatedQuantity,
+    );
+    if (response.isNotEmpty) {
+      getCartData();
     }
   }
 }

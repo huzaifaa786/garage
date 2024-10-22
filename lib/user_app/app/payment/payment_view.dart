@@ -70,7 +70,8 @@ class PaymentView extends StatelessWidget {
                                       PaymentCartCard(
                                         item: item,
                                         ontap: () {
-                                          controller.deleteCartItems(item.id.toString());
+                                          controller.deleteCartItems(
+                                              item.id.toString());
                                         },
                                       ),
                                       Gap(20)
