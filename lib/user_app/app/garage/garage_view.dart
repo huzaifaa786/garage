@@ -16,6 +16,7 @@ import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/product_card.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class GarageView extends StatelessWidget {
   const GarageView({super.key});
@@ -308,7 +309,13 @@ class GarageView extends StatelessWidget {
                       Gap(10),
                       InkWell(
                         onTap: () {
-                          controller.addToCart();
+                          UiUtilites.showConfirmationDialog(
+                            false,
+                            'Are you Sure that you want\n to Add this product to cart ?',
+                            onConfirm: () async {
+                              controller.addToCart();
+                            },
+                          );
                         },
                         child: GarageProductCard(),
                       ),
@@ -341,9 +348,9 @@ class GarageView extends StatelessWidget {
                           return GestureDetector(
                             onTap: () {
                               Get.toNamed(AppRoutes.servicedetail, parameters: {
-                                'garageid':
-                                    controller.garage!.id.toString(),
-                                'serviceId': controller.categories![index].id.toString()
+                                'garageid': controller.garage!.id.toString(),
+                                'serviceId':
+                                    controller.categories![index].id.toString()
                               });
                             },
                             child: ServicesIcons(

@@ -149,6 +149,9 @@ class _SearchViewState extends State<SearchView> {
                           time: "30 min",
                           title: "1223",
                           onTap: () {},
+                          oncardTap: () {
+                            
+                          },
                           price: "222");
                     }),
                 Gap(20),

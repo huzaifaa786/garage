@@ -13,6 +13,8 @@ class ServiceCard extends StatelessWidget {
   final String? logo;
   final String title;
   final VoidCallback onTap;
+  final VoidCallback oncardTap;
+
   final String price;
   final time;
 
@@ -20,6 +22,7 @@ class ServiceCard extends StatelessWidget {
     required this.image,
     required this.title,
     required this.onTap,
+    required this.oncardTap,
     required this.price,
     this.time,
     this.logo,
@@ -28,7 +31,7 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: oncardTap,
       child: Container(
         margin: EdgeInsets.only(bottom: 4),
         decoration: BoxDecoration(
@@ -115,7 +118,7 @@ class ServiceCard extends StatelessWidget {
                   ),
                   Gap(5),
                   AppText(
-                    title: time,
+                    title: time + ' min',
                     color: AppColors.primary,
                     size: 9,
                     fontWeight: FontWeight.w400,
@@ -129,7 +132,7 @@ class ServiceCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppText(
-                    title: price+' '+'AED',
+                    title: price + ' ' + 'AED',
                     color: Color.fromARGB(255, 0, 91, 165),
                     fontWeight: FontWeight.w600,
                     size: 11.0,
@@ -137,6 +140,7 @@ class ServiceCard extends StatelessWidget {
                     overFlow: TextOverflow.visible,
                   ),
                   IconButton(
+                    onPressed: onTap,
                     icon: Container(
                       height: 24,
                       width: 24,
@@ -152,7 +156,6 @@ class ServiceCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onPressed: onTap,
                   )
                 ],
               ),
