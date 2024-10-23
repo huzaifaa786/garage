@@ -1,4 +1,5 @@
 import 'package:mobilegarage/models/ac_models/ac_extra_model.dart';
+import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/car_wash_models/car_wash_extra_model.dart';
 import 'package:mobilegarage/models/fuel_models/fuel_extra_model.dart';
 import 'package:mobilegarage/models/oil_models/extra_model.dart';
@@ -60,19 +61,22 @@ class CartItemModel {
   List<ProductImage>? images;
   List<OilExtraModel>? oilextra = [];
 //
-  List<RecoveryExtraModel>? recoveryextra = [];
+  // List<RecoveryExtraModel>? recoveryextra = [];
 
 //
-  List<FuelExtraModel>? fuelextra = [];
+  // List<FuelExtraModel>? fuelextra = [];
+
+ FuelExtraModel? fuelextra;
+  BrandModel? brand;
 
 //
-  List<RoadAssistanceExtraModel>? roadextra = [];
+  // List<RoadAssistanceExtraModel>? roadextra = [];
 
 //
-  List<CarWashExtraModel>? carwashextra = [];
+  // List<CarWashExtraModel>? carwashextra = [];
 
 //
-  List<AcExtraModel>? acextra = [];
+  // List<AcExtraModel>? acextra = [];
 
   CartItemModel({
     this.id,
@@ -84,12 +88,14 @@ class CartItemModel {
     this.createdAt,
     this.updatedAt,
     this.cartProduct,
-    this.acextra,
-    this.carwashextra,
+    this.brand,
+    // this.acextra,
+    // this.carwashextra,
     this.fuelextra,
     this.oilextra,
-    this.recoveryextra,
-    this.roadextra,
+    // this.recoveryextra,
+    // this.roadextra,
+  
   });
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) {
@@ -108,31 +114,38 @@ class CartItemModel {
       oilextra: json['product_extra'] != null
           ? [OilExtraModel.from(json['product_extra'])]
           : [],
-      recoveryextra: json['product_extra'] != null
-          ? [
-              RecoveryExtraModel.from(json['product_extra'])
-            ] // Changed to handle a single object and wrap it in a list
-          : [],
-      fuelextra: json['product_extra'] != null
-          ? [
-              FuelExtraModel.from(json['product_extra'])
-            ] // Changed to handle a single object and wrap it in a list
-          : [],
-      roadextra: json['product_extra'] != null
-          ? [
-              RoadAssistanceExtraModel.from(json['product_extra'])
-            ] // Changed to handle a single object and wrap it in a list
-          : [],
-      carwashextra: json['product_extra'] != null
-          ? [
-              CarWashExtraModel.from(json['product_extra'])
-            ] // Changed to handle a single object and wrap it in a list
-          : [],
-      acextra: json['product_extra'] != null
-          ? [
-              AcExtraModel.from(json['product_extra'])
-            ] // Changed to handle a single object and wrap it in a list
-          : [],
+          fuelextra: json['product_extra'] != null
+          ? FuelExtraModel.from(json['product_extra'])
+          : null,
+           brand: 
+           json['product']['brand'] != null
+              ? BrandModel.from(json['product']['brand'])
+              : null,
+      // recoveryextra: json['product_extra'] != null
+      //     ? [
+      //         RecoveryExtraModel.from(json['product_extra'])
+      //       ] // Changed to handle a single object and wrap it in a list
+      //     : [],
+      // fuelextra: json['product_extra'] != null
+      //     ? [
+      //         FuelExtraModel.from(json['product_extra'])
+      //       ] // Changed to handle a single object and wrap it in a list
+      //     : [],
+      // roadextra: json['product_extra'] != null
+      //     ? [
+      //         RoadAssistanceExtraModel.from(json['product_extra'])
+      //       ] // Changed to handle a single object and wrap it in a list
+      //     : [],
+      // carwashextra: json['product_extra'] != null
+      //     ? [
+      //         CarWashExtraModel.from(json['product_extra'])
+      //       ] // Changed to handle a single object and wrap it in a list
+      //     : [],
+      // acextra: json['product_extra'] != null
+      //     ? [
+      //         AcExtraModel.from(json['product_extra'])
+      //       ] // Changed to handle a single object and wrap it in a list
+      //     : [],
     );
   }
 }

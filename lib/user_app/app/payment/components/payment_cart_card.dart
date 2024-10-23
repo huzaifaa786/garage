@@ -59,7 +59,7 @@ class PaymentCartCard extends StatelessWidget {
                         children: [
                           Flexible(
                             child: AppText(
-                              title: item!.acextra![0].name.toString(),
+                              title: item!.fuelextra!.name.toString(),
                               size: 12,
                               maxLines: 1,
                               overFlow: TextOverflow.ellipsis,
@@ -123,7 +123,7 @@ class PaymentCartCard extends StatelessWidget {
                           Flexible(
                             child: AppText(
                               title:
-                                  "${item!.acextra![0].price.toString()} AED",
+                                  "${item!.fuelextra!.price.toString()} AED",
                               fontWeight: FontWeight.w500,
                               color: AppColors.darkblue,
                               maxLines: 1,

@@ -63,7 +63,12 @@ class CartCard extends StatelessWidget {
                               children: [
                                 Flexible(
                                   child: AppText(
-                                    title: item!.acextra![0].name.toString(),
+                                    // title: item!.acextra![0].name.toString(),
+                                    title: item!.fuelextra == null
+                                        ? item!.brand!.name.toString()
+                                        : item!.cartProduct!.categoryId == '2'
+                                            ? item!.brand!.name.toString()
+                                            : item!.fuelextra!.name.toString(),
                                     size: 12,
                                     maxLines: 1,
                                     overFlow: TextOverflow.ellipsis,
@@ -76,6 +81,7 @@ class CartCard extends StatelessWidget {
                                         'assets/icons/cross.svg')),
                               ],
                             ),
+                            Gap(5),
                             AppText(
                               title:
                                   "Type: ${controller.cart!.vehicle!.vehicle_type!.name.toString()}",
@@ -83,7 +89,7 @@ class CartCard extends StatelessWidget {
                               size: 9,
                               maxLines: 1,
                             ),
-                            Gap(7),
+                            Gap(9),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -97,8 +103,7 @@ class CartCard extends StatelessWidget {
                                         '  ' +
                                         controller
                                             .cart!.vehicle!.year_of_manufacture
-                                            .toString() +
-                                        '111111111111111111111111111111111111111111111111111111111111111111111',
+                                            .toString(),
                                     size: 9,
                                     textAlign: TextAlign.justify,
                                     fontWeight: FontWeight.w500,
@@ -125,8 +130,9 @@ class CartCard extends StatelessWidget {
                               children: [
                                 Flexible(
                                   child: AppText(
-                                    title:
-                                        "${item!.acextra![0].price.toString()} AED",
+                                    title: item!.fuelextra != null
+                                        ? "${item!.fuelextra!.price.toString()} AED"
+                                        : "${item!.price.toString()} AED",
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.darkblue,
                                     size: 12,
