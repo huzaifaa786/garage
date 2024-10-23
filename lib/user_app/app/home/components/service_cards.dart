@@ -13,7 +13,7 @@ class ServiceCard extends StatelessWidget {
   final String? logo;
   final String title;
   final VoidCallback onTap;
-  final VoidCallback oncardTap;
+  // final VoidCallback oncardTap;
 
   final String price;
   final time;
@@ -22,7 +22,7 @@ class ServiceCard extends StatelessWidget {
     required this.image,
     required this.title,
     required this.onTap,
-    required this.oncardTap,
+    // required this.oncardTap,
     required this.price,
     this.time,
     this.logo,
@@ -31,7 +31,7 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: oncardTap,
+      onTap: onTap,
       child: Container(
         margin: EdgeInsets.only(bottom: 4),
         decoration: BoxDecoration(
@@ -61,7 +61,7 @@ class ServiceCard extends StatelessWidget {
                           BorderRadius.vertical(top: Radius.circular(12)),
                       child: AppNetworkImage(
                         networkImage: image,
-                        assetPath: 'assets/images/washing.png',
+                        // assetPath: 'assets/images/washing.png',
                         width: double.infinity,
                         height: Get.height * 0.12,
                         fit: BoxFit.cover,
@@ -84,7 +84,7 @@ class ServiceCard extends StatelessWidget {
                           networkImage: logo,
                           height: 40.0,
                           width: 40.0,
-                          assetPath: 'assets/images/street_garage.png',
+                          // assetPath: 'assets/images/street_garage.png',
                           fit: BoxFit.cover,
                         )),
                   ),
@@ -102,42 +102,49 @@ class ServiceCard extends StatelessWidget {
                 title: title,
                 fontWeight: FontWeight.w600,
                 size: 10.0,
-                maxLines: 2,
+                maxLines: 1,
                 overFlow: TextOverflow.ellipsis,
               ),
             ),
             Gap(5),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    "assets/icons/clock.svg",
-                    width: 9,
-                    height: 9,
-                  ),
-                  Gap(5),
-                  AppText(
-                    title: time + ' min',
-                    color: AppColors.primary,
-                    size: 9,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ],
+            if (time == '')
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/icons/clock.svg",
+                      width: 9,
+                      height: 9,
+                    ),
+                    Gap(5),
+                    Expanded(
+                      child: AppText(
+                        title: time + ' min',
+                        color: AppColors.primary,
+                        size: 9,
+                        maxLines: 1,
+                        overFlow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppText(
-                    title: price + ' ' + 'AED',
-                    color: Color.fromARGB(255, 0, 91, 165),
-                    fontWeight: FontWeight.w600,
-                    size: 11.0,
-                    maxLines: 1,
-                    overFlow: TextOverflow.visible,
+                  Expanded(
+                    child: AppText(
+                      title: price + ' ' + 'AED',
+                      color: Color.fromARGB(255, 0, 91, 165),
+                      fontWeight: FontWeight.w600,
+                      size: 11.0,
+                      maxLines: 1,
+                      overFlow: TextOverflow.visible,
+                    ),
                   ),
                   IconButton(
                     onPressed: onTap,

@@ -208,34 +208,58 @@ class ProductModel {
           ? OilVolumeModel.from(json['oil_volume'])
           : null,
       oilextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => OilExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => OilExtraModel.from(item))
+                  .toList()
+              : [
+                  OilExtraModel.from(json['product_extra'])
+                ]) // Wrap single object in a list
           : null,
       recoveryextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => RecoveryExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => RecoveryExtraModel.from(item))
+                  .toList()
+              : [
+                  RecoveryExtraModel.from(json['product_extra'])
+                ]) 
           : null,
       fuelextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => FuelExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => FuelExtraModel.from(item))
+                  .toList()
+              : [
+                  FuelExtraModel.from(json['product_extra'])
+                ])
           : null,
       roadextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => RoadAssistanceExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => RoadAssistanceExtraModel.from(item))
+                  .toList()
+              : [
+                  RoadAssistanceExtraModel.from(json['product_extra'])
+                ]) 
           : null,
       carwashextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => CarWashExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => CarWashExtraModel.from(item))
+                  .toList()
+              : [
+                  CarWashExtraModel.from(json['product_extra'])
+                ]) 
           : null,
       acextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => AcExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => AcExtraModel.from(item))
+                  .toList()
+              : [
+                  AcExtraModel.from(json['product_extra'])
+                ]) 
           : null,
     );
   }
@@ -268,7 +292,7 @@ class ProductExtraModel {
 
   factory ProductExtraModel.fromJson(Map<String, dynamic> json) {
     return ProductExtraModel(
-       id: json['id']?.toString(),
+      id: json['id']?.toString(),
       productId: json['product_id']?.toString(),
       categoryExtraId: json['category_extra_id']?.toString(),
       description: json['description'],

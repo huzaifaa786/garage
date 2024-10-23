@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 import 'package:mobilegarage/user_app/app/service_detail/service_detail_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -53,28 +51,37 @@ class ServiceDetailView extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     var product =
                                         controller.garage!.products![index];
+                                    var productextra =
+                                        product.fuelextra != null ? product.fuelextra![0].id : '';
                                     return ServiceCard(
-                                        logo:
-                                            controller.garage!.logo.toString(),
-                                        image: product.images![0].imageUrl
-                                            .toString(),
-                                        time: product.fuelextra![0].time
-                                            .toString(),
-                                        title: product.fuelextra![0].name
-                                            .toString(),
-                                        oncardTap: () {
-                                          print('rrrrrrrr');
-                                        },
-                                        onTap: () {
-                                          UiUtilites.showConfirmationDialog(
-                                            false,
-                                            'Are you Sure that you want\n to Add this product to cart ?',
-                                            onConfirm: () async {
-                                              print('object');
-                                            },
-                                          );
-                                        },
-                                        price: "222");
+                                      logo: controller.garage!.logo.toString(),
+                                      image: product.images![0].imageUrl
+                                          .toString(),
+                                      time: product.brands == null
+                                          ? product.fuelextra![0].time
+                                              .toString()
+                                          : '',
+                                      price: product.brands == null
+                                          ? product.fuelextra![0].price
+                                              .toString()
+                                          : product.price.toString(),
+                                      title: product.brands == null
+                                          ? product.fuelextra![0].name
+                                              .toString()
+                                          : product.brands!.name.toString(),
+                                    
+                                      onTap: () {
+                                        UiUtilites.showConfirmationDialog(
+                                          false,
+                                          'Are you Sure that you want\n to Add this product to cart ?',
+                                          onConfirm: () async {
+                                            controller.addToCart(
+                                                product.id.toString(),
+                                                productextra);
+                                          },
+                                        );
+                                      },
+                                    );
                                   }),
                             ),
                           ])

@@ -52,7 +52,7 @@ class GarageModel {
       banner: json['banner'],
       logo: json['logo'],
       ownerName: json['owner_name'],
-      name: json['name']??'d',
+      name: json['name']??'',
       email: json['email'],
       idFront: json['id_front'],
       idBack: json['id_back'],
