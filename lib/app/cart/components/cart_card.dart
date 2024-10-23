@@ -61,9 +61,7 @@ class CartCard extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ConstrainedBox(
-                                  constraints:
-                                      BoxConstraints(maxWidth: Get.width * 0.5),
+                                Flexible(
                                   child: AppText(
                                     title: item!.acextra![0].name.toString(),
                                     size: 12,
@@ -78,7 +76,6 @@ class CartCard extends StatelessWidget {
                                         'assets/icons/cross.svg')),
                               ],
                             ),
-                            Gap(7),
                             AppText(
                               title:
                                   "Type: ${controller.cart!.vehicle!.vehicle_type!.name.toString()}",
@@ -88,19 +85,26 @@ class CartCard extends StatelessWidget {
                             ),
                             Gap(7),
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SvgPicture.asset("assets/icons/cars.svg"),
                                 Gap(4),
-                                AppText(
-                                  title: controller.cart!.vehicle!.vehicle_info
-                                          .toString() +
-                                      '  ' +
-                                      controller
-                                          .cart!.vehicle!.year_of_manufacture
-                                          .toString(),
-                                  size: 9,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.darkprimary,
+                                Flexible(
+                                  child: AppText(
+                                    title: controller
+                                            .cart!.vehicle!.vehicle_info
+                                            .toString() +
+                                        '  ' +
+                                        controller
+                                            .cart!.vehicle!.year_of_manufacture
+                                            .toString() +
+                                        '111111111111111111111111111111111111111111111111111111111111111111111',
+                                    size: 9,
+                                    textAlign: TextAlign.justify,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.darkprimary,
+                                    maxLines: 1,
+                                  ),
                                 ),
                               ],
                             ),
@@ -119,12 +123,15 @@ class CartCard extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                AppText(
-                                  title:
-                                      "${item!.acextra![0].price.toString()} AED",
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.darkblue,
-                                  size: 12,
+                                Flexible(
+                                  child: AppText(
+                                    title:
+                                        "${item!.acextra![0].price.toString()} AED",
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.darkblue,
+                                    size: 12,
+                                    maxLines: 1,
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
@@ -133,10 +140,12 @@ class CartCard extends StatelessWidget {
                                     initVal:
                                         controller.cart!.totalQuantity ?? 0,
                                     minVal: 1,
+                                    qtyFormProps:
+                                        QtyFormProps(enableTyping: false),
                                     decoration: QtyDecorationProps(
                                       minusBtn: Container(
-                                        height: 15,
-                                        width: 15,
+                                        height: 20,
+                                        width: 20,
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -152,8 +161,8 @@ class CartCard extends StatelessWidget {
                                       width: 6,
                                       borderShape: BorderShapeBtn.circle,
                                       plusBtn: Container(
-                                        height: 15,
-                                        width: 15,
+                                        height: 20,
+                                        width: 20,
                                         decoration: BoxDecoration(
                                           color: AppColors.primary,
                                           borderRadius:

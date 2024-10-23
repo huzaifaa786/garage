@@ -140,6 +140,7 @@ class PaymentCartCard extends StatelessWidget {
                               child: InputQty(
                                 initVal: controller.cart!.totalQuantity ?? 0,
                                 minVal: 1,
+                                qtyFormProps: QtyFormProps(enableTyping: false),
                                 decoration: QtyDecorationProps(
                                   minusBtn: Container(
                                     height: 15,
