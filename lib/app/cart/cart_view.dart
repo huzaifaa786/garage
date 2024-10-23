@@ -64,7 +64,7 @@ class CartView extends StatelessWidget {
                           ? ListView.builder(
                               shrinkWrap: true,
                               physics: BouncingScrollPhysics(),
-                              itemCount: controller.orders.length,
+                              itemCount: controller.cart!.items!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 // final orders = controller.orders[index];
                                 final item = controller.cart!.items![index];
