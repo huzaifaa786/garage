@@ -75,27 +75,27 @@ class SigninView extends StatelessWidget {
                                           onChanged: controller.onChanged,
                                         ),
                                         Gap(40),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Checkbox(
-                                              value: controller.isChecked,
-                                              onChanged: (bool? value) {
-                                                controller.toggleCheckbox();
-                                              },
-                                              activeColor: AppColors.primary,
-                                              side: BorderSide(
-                                                  color: AppColors.primary),
-                                            ),
-                                            AppText(
-                                              title: 'Remember me',
-                                              size: 12,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColors.primary,
-                                            )
-                                          ],
-                                        ),
+                                        // Row(
+                                        //   mainAxisAlignment:
+                                        //       MainAxisAlignment.center,
+                                        //   children: [
+                                        //     Checkbox(
+                                        //       value: controller.isChecked,
+                                        //       onChanged: (bool? value) {
+                                        //         controller.toggleCheckbox();
+                                        //       },
+                                        //       activeColor: AppColors.primary,
+                                        //       side: BorderSide(
+                                        //           color: AppColors.primary),
+                                        //     ),
+                                        //     AppText(
+                                        //       title: 'Remember me',
+                                        //       size: 12,
+                                        //       fontWeight: FontWeight.w500,
+                                        //       color: AppColors.primary,
+                                        //     )
+                                        //   ],
+                                        // ),
                                         Gap(70),
                                         MainButton(
                                           title: 'Sign In',

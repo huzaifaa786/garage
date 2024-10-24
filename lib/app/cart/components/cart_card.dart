@@ -18,7 +18,6 @@ class CartCard extends StatelessWidget {
   });
   CartItemModel? item;
   final ontap;
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
@@ -144,7 +143,7 @@ class CartCard extends StatelessWidget {
                                       right: 5, bottom: 5),
                                   child: InputQty(
                                     initVal:
-                                        controller.cart!.totalQuantity ?? 0,
+                                        item!.quantity ?? 0,
                                     minVal: 1,
                                     qtyFormProps:
                                         QtyFormProps(enableTyping: false),

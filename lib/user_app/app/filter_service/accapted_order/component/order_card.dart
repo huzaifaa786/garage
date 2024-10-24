@@ -264,12 +264,7 @@ class OrderCard extends StatelessWidget {
                                   ClipPath(
                                     clipper: RightCircularClipper(),
                                     child: GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(AppRoutes.garage,
-                                            parameters: {
-                                              'id': garage.id.toString(),
-                                            });
-                                      },
+                                      onTap: ontap,
                                       child: Container(
                                         decoration: const BoxDecoration(
                                             color: AppColors.lightPink,
