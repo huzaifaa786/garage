@@ -25,11 +25,16 @@ class GarageController extends GetxController {
 
   @override
   void onInit() async {
-    garageId = Get.parameters['id']?.toString();
-    productId = Get.parameters['productId']?.toString();
-    productextraId = Get.parameters['productextraId']?.toString();
-    await getGarageProduct();
-    // await getGarageProfile(garageId);
+    garageId = Get.parameters['id'] ?? '';
+    productId = Get.parameters['productId'] ?? '';
+    productextraId = Get.parameters['productextraId'] ?? '';
+    if (productId != '' || productextraId != '') {
+      await getGarageProduct();
+    }
+    if (productId == '' || productextraId == '') {
+      await getGarageProfile(garageId);
+    }
+    update();
 
     super.onInit();
   }
@@ -50,7 +55,10 @@ class GarageController extends GetxController {
   getGarageProfile(garageId) async {
     var response = await GarageProfileApi.garageProfile(garageId);
     if (response.isNotEmpty) {
-      garage = GarageModel.fromJson(response['message']['garage']);
+      garage = GarageModel.fromJson(response['garage']);
+categories = (response['garage']['categories'] as List<dynamic>)
+          .map((item) => CategoryModel.fromJson(item as Map<String, dynamic>))
+          .toList();
 
       update();
     }
