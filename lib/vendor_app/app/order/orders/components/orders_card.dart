@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -12,8 +13,8 @@ import 'package:mobilegarage/vendor_app/app/order/orders/components/location.dar
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
-class OrderCard extends StatelessWidget {
-  OrderCard({
+class OrdersCard extends StatelessWidget {
+  OrdersCard({
     super.key,
     required this.orders,
     this.day,
@@ -49,7 +50,8 @@ class OrderCard extends StatelessWidget {
                       children: [
                         SvgPicture.asset('assets/icons/calendar.svg'),
                         AppText(
-                          // title: ' ${orders.newOrders!.pendingOrders![id].createdAt}',
+                          title: ""
+                              ' ${controller.selectedIndex == 0 ? controller.pendingOrders.length : controller.selectedIndex == 1 ? controller.onTheWayOrders.length : controller.selectedIndex == 2 ? controller.deliveredOrders.length : controller.rejectedOrders.length}',
                           color: AppColors.primary_color,
                           size: 11,
                           fontWeight: FontWeight.w600,
@@ -60,7 +62,7 @@ class OrderCard extends StatelessWidget {
                       children: [
                         SvgPicture.asset('assets/icons/clock.svg'),
                         AppText(
-                          title: ' ' '12:30 pm',
+                          // title: orders!.newOrders!.acceptedOrders[index].createdAt.toString(),
                           color: AppColors.primary_color,
                           size: 11,
                           fontWeight: FontWeight.w600,
@@ -88,7 +90,7 @@ class OrderCard extends StatelessWidget {
                     ),
                     Gap(13),
                     AppText(
-                      // title: orders.newOrders.toString(),
+                      // title: orders.newOrders.acceptedOrders[].id.toString(),
                       size: 12,
                       fontWeight: FontWeight.w600,
                       color: AppColors.primary_color,
@@ -139,12 +141,13 @@ class OrderCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppText(
-                              // title: '  ' + orders.,
+                              // orders.newOrders.pendingOrders[].name.toString(),
                               size: 13,
                               fontWeight: FontWeight.w600,
                             ),
                             AppText(
-                              // title: '  ' + number,
+                              // orders.completedOrders[Index].totalAmount.toString(),
+
                               size: 13,
                               fontWeight: FontWeight.w600,
                             ),
@@ -199,7 +202,10 @@ class OrderCard extends StatelessWidget {
                             )),
                       ),
                       Gap(12),
-                      SvgPicture.asset('assets/icons/car (1).svg'),
+                      SvgPicture.asset(
+                        'assets/icons/vehicle.svg',
+                        color: AppColors.primary_color,
+                      ),
                       Gap(6),
                       AppText(
                         title: 'white Mercedes 2022',

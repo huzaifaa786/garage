@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/filter_view.dart';
-import 'package:mobilegarage/vendor_app/app/order/orders/components/order_card.dart';
+import 'package:mobilegarage/vendor_app/app/order/orders/components/orders_card.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/sub_filter.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
@@ -46,7 +46,7 @@ class VOrdersView extends StatelessWidget {
                               : controller.rejectedOrders[index];
                   return Column(
                     children: [
-                      OrderCard(orders: orders),
+                      OrdersCard(orders: orders),
                       const Gap(20),
                     ],
                   );
