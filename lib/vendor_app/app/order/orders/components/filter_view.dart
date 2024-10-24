@@ -69,8 +69,9 @@ class FilterView extends StatelessWidget {
               ),
             ),
           ),
-          Gap(20),
+          Gap(10),
           if (controller.selectedIndex == 0) const SubFilterView(),
+          Gap(10),
         ],
       ),
     );

@@ -21,29 +21,12 @@ class VOrdersView extends StatelessWidget {
         child: Column(
           children: [
             const FilterView(),
-            if (controller.selectedIndex == 0) ...[
-              // const Gap(12),
-              // const SubFilterView(),
-            ],
-            // Orders List
             Expanded(
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: controller.selectedIndex == 0
-                    ? controller.pendingOrders.length
-                    : controller.selectedIndex == 1
-                        ? controller.onTheWayOrders.length
-                        : controller.selectedIndex == 2
-                            ? controller.deliveredOrders.length
-                            : controller.rejectedOrders.length,
+                itemCount: controller.getItemCount(),
                 itemBuilder: (BuildContext context, int index) {
-                  final orders = controller.selectedIndex == 0
-                      ? controller.pendingOrders[index]
-                      : controller.selectedIndex == 1
-                          ? controller.onTheWayOrders[index]
-                          : controller.selectedIndex == 2
-                              ? controller.deliveredOrders[index]
-                              : controller.rejectedOrders[index];
+                  final orders = controller.getOrder(index);
                   return Column(
                     children: [
                       OrdersCard(orders: orders),
