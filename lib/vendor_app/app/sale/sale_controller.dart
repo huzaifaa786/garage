@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:mobilegarage/apis/vender_apis/sales/orders_sales_api.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class SaleController extends GetxController {
@@ -11,6 +12,12 @@ class SaleController extends GetxController {
 
   DateTime? rangeStart;
   DateTime? rangeEnd;
+
+  @override
+  void onInit() async {
+    super.onInit();
+    await getSales();
+  }
 
   void onRangeSelected(start, end, focusedDay) {
     rangeStart = start;
@@ -24,6 +31,12 @@ class SaleController extends GetxController {
   void onFormatChanged(DateTime date) {
     today = date;
     Ourdate = date;
+    update();
+  }
+
+  getSales() async {
+    var response = await OrdersSalesApi.getSales();
+    if (response.isNotEmpty) {}
     update();
   }
 }

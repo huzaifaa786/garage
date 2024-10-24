@@ -117,9 +117,9 @@ class _SaleViewState extends State<SaleView> {
                       daysOfWeekVisible: true,
                     ),
                   ),
-                  const Gap(10),
-                  Image.asset('assets/images/sale.png'),
-                  const Gap(10),
+                  // const Gap(10),
+                  // Image.asset('assets/images/sale.png'),
+                  // const Gap(10),
                   const AppText(
                     title: 'Total sales',
                     size: 16,

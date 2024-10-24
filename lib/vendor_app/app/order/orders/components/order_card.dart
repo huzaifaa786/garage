@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/models/order_models/orders_model.dart';
+import 'package:mobilegarage/models/order_models/order_status_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -23,7 +23,7 @@ class OrderCard extends StatelessWidget {
     this.time,
     this.number,
   });
-  OrdersModel orders;
+  OrderProgressModel orders;
   final day;
   final number;
   final img;
@@ -49,7 +49,7 @@ class OrderCard extends StatelessWidget {
                       children: [
                         SvgPicture.asset('assets/icons/calendar.svg'),
                         AppText(
-                          title: ' ${orders.createdAt}',
+                          // title: ' ${orders.newOrders!.pendingOrders![id].createdAt}',
                           color: AppColors.primary_color,
                           size: 11,
                           fontWeight: FontWeight.w600,
@@ -88,7 +88,7 @@ class OrderCard extends StatelessWidget {
                     ),
                     Gap(13),
                     AppText(
-                      title: orders.id.toString(),
+                      // title: orders.newOrders.toString(),
                       size: 12,
                       fontWeight: FontWeight.w600,
                       color: AppColors.primary_color,

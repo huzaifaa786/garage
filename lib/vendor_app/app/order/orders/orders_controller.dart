@@ -1,17 +1,32 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/apis/vender_apis/orders_apis/pending_order_api.dart';
-import 'package:mobilegarage/models/order_models/orders_model.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:mobilegarage/apis/vender_apis/orders_apis/orders_byStatus_api.dart';
+import 'package:mobilegarage/models/order_models/order_status_model.dart';
 
 class VOrdersController extends GetxController {
   static VOrdersController instance = Get.find();
   GetStorage box = GetStorage();
-  String? image;
-  String? phoneNumber;
   int selectedIndex = 0;
   int selectedSubIndex = 0;
-  List<OrdersModel> pendingOrders = [];
+
+  List<OrderProgressModel> allOrders = [];
+  List<OrderProgressModel> pendingOrders = [];
+  List<OrderProgressModel> acceptedOrders = [];
+  List<OrderProgressModel> onTheWayOrders = [];
+  List<OrderProgressModel> deliveredOrders = [];
+  List<OrderProgressModel> rejectedOrders = [];
+
+  List<Map<String, dynamic>> filterList = [
+    {'Name': 'New orders'},
+    {'Name': 'On the way'},
+    {'Name': 'Delivered'},
+    {'Name': 'Rejected'},
+  ];
+
+  List<Map<String, dynamic>> subFilterList = [
+    {'Name': 'Pending'},
+    {'Name': 'Accepted'},
+  ];
 
   @override
   void onInit() async {
@@ -19,45 +34,45 @@ class VOrdersController extends GetxController {
     await getPendingOrders();
   }
 
-  List<Map<String, dynamic>> filterList = [
-    {
-      'Name': 'New orders',
-    },
-    {
-      'Name': 'On the way',
-    },
-    {
-      'Name': 'Delivered',
-    },
-    {
-      'Name': 'Rejected',
-    },
-  ];
-
-  List<Map<String, dynamic>> subFilterList = [
-    {
-      'Name': 'Pending',
-    },
-    {
-      'Name': 'Accepted',
-    },
-  ];
-
-  void makePhoneCall(String phoneNumber) async {
-    print(phoneNumber);
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: phoneNumber,
-    );
-    await launchUrl(launchUri);
-  }
-
   getPendingOrders() async {
-    var response = await PendingOrderApi.pendingOrders();
-    if (response.isNotEmpty) {
-      List<dynamic> ordersList = response['orders'];
-      pendingOrders =
-          ordersList.map((order) => OrdersModel.fromJson(order)).toList();
+    var response = await OrdersbyStatusApi.getOrders();
+    if (response.isNotEmpty && response['orders_by_status'] is Map) {
+      Map<String, dynamic> ordersByStatus = response['orders_by_status'];
+
+      if (ordersByStatus.containsKey("new_orders")) {
+        Map<String, dynamic> newOrders = ordersByStatus['new_orders'];
+
+        if (newOrders.containsKey("PENDING")) {
+          pendingOrders = (newOrders['PENDING'] as List)
+              .map((order) => OrderProgressModel.fromJson(order))
+              .toList();
+        }
+
+        if (newOrders.containsKey("ACCEPTED")) {
+          acceptedOrders = (newOrders['ACCEPTED'] as List)
+              .map((order) => OrderProgressModel.fromJson(order))
+              .toList();
+        }
+
+        if (ordersByStatus.containsKey("ON_THE_WAY")) {
+          onTheWayOrders = (ordersByStatus['ON_THE_WAY'] as List)
+              .map((order) => OrderProgressModel.fromJson(order))
+              .toList();
+        }
+
+        if (ordersByStatus.containsKey("DELIVERED")) {
+          deliveredOrders = (ordersByStatus['DELIVERED'] as List)
+              .map((order) => OrderProgressModel.fromJson(order))
+              .toList();
+        }
+
+        if (ordersByStatus.containsKey("REJECTED")) {
+          rejectedOrders = (ordersByStatus['REJECTED'] as List)
+              .map((order) => OrderProgressModel.fromJson(order))
+              .toList();
+        }
+      }
     }
+    update();
   }
 }

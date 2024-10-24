@@ -22,7 +22,7 @@ class PaymentCartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return GetBuilder<PaymentsController>(
+    return GetBuilder<PaymentsController>(
         builder: (controller) => Container(
             decoration: BoxDecoration(
                 color: AppColors.white,
@@ -140,8 +140,8 @@ class PaymentCartCard extends StatelessWidget {
                                 qtyFormProps: QtyFormProps(enableTyping: false),
                                 decoration: QtyDecorationProps(
                                   minusBtn: Container(
-                                    height: 15,
-                                    width: 15,
+                                    height: 20,
+                                    width: 20,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border:
@@ -154,11 +154,11 @@ class PaymentCartCard extends StatelessWidget {
                                     ),
                                   ),
                                   isBordered: false,
-                                  width: 6,
+                                  width: 8,
                                   borderShape: BorderShapeBtn.circle,
                                   plusBtn: Container(
-                                    height: 15,
-                                    width: 15,
+                                    height: 20,
+                                    width: 20,
                                     decoration: BoxDecoration(
                                       color: AppColors.primary,
                                       borderRadius: BorderRadius.circular(10),
