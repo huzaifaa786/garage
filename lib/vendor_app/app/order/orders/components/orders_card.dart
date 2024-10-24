@@ -17,20 +17,8 @@ class OrdersCard extends StatelessWidget {
   OrdersCard({
     super.key,
     required this.orders,
-    this.day,
-    this.img = '',
-    this.name,
-    this.location,
-    this.time,
-    this.number,
   });
   OrderProgressModel orders;
-  final day;
-  final number;
-  final img;
-  final location;
-  final name;
-  final time;
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +35,18 @@ class OrdersCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SvgPicture.asset('assets/icons/calendar.svg'),
-                        AppText(
-                          title: ""
-                              ' ${controller.selectedIndex == 0 ? controller.pendingOrders.length : controller.selectedIndex == 1 ? controller.onTheWayOrders.length : controller.selectedIndex == 2 ? controller.deliveredOrders.length : controller.rejectedOrders.length}',
-                          color: AppColors.primary_color,
-                          size: 11,
-                          fontWeight: FontWeight.w600,
+                        Row(
+                          children: [
+                            SvgPicture.asset('assets/icons/calendar.svg'),
+                            AppText(
+                              title: controller.getOrderDate(controller),
+                              color: AppColors.primary_color,
+                              size: 11,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ],
                         )
                       ],
                     ),
