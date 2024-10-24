@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -27,6 +25,8 @@ class PaymentsController extends GetxController {
 
   String? date = '';
   String? location = '';
+  String? serviceType = '';
+
   CartModel? cart;
   @override
   void onInit() async {
@@ -35,6 +35,8 @@ class PaymentsController extends GetxController {
     await getCartData();
     date = Get.parameters['date'].toString();
     location = Get.parameters['location'].toString();
+    serviceType = Get.parameters['servicetype'].toString();
+
   }
 
   getCartData() async {
@@ -45,13 +47,17 @@ class PaymentsController extends GetxController {
     }
   }
 
+ 
+
   createOrder() async {
     var response = await CreateOrderApi.createOrder(
         paymentintent: paymentID.toString(),
         paymentmethod: 'stripe',
         deliverytime: date.toString(),
         ordertype: 'select_garage',
-        vehicleid: cart!.vehicle!.id.toString());
+        vehicleid: cart!.vehicle!.id.toString(),
+        servicetype: serviceType.toString()
+        );
     if (response.isNotEmpty) {
       UiUtilites.successAlertDialog(
           context: Get.context,

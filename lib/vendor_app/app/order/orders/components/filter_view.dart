@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/sub_filter.dart';
@@ -68,6 +69,7 @@ class FilterView extends StatelessWidget {
               ),
             ),
           ),
+          Gap(20),
           if (controller.selectedIndex == 0) const SubFilterView(),
         ],
       ),

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mobilegarage/apis/user_apis/order_apis/check_unavialable_dates_api.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 
 class SearchResultController extends GetxController {
   static SearchResultController instance = Get.find();
@@ -59,6 +61,21 @@ class SearchResultController extends GetxController {
     selectedTimeFrom = TimeOfDay(hour: now.hour, minute: now.minute);
     isAm = now.hour < 12;
     update();
+  }
+
+  checkDate() async {
+    var response = await CheckDateApi.checkunavialabledate(
+      date: formatteddate.toString(),
+    );
+    if (response.isNotEmpty) {
+      if (validateInputs()) {
+        Get.toNamed(AppRoutes.payments, parameters: {
+          'date': formattedDateTime.toString(),
+          'location': currentAddress.toString(),
+        });
+      }
+      update();
+    }
   }
 
   bool validateInputs() {
