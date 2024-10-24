@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
@@ -29,7 +30,7 @@ import 'package:mobilegarage/models/user_model/services_model.dart';
 
 class HomeController extends GetxController {
   static HomeController instance = Get.find();
-
+TextEditingController searchController = TextEditingController();
   // bool _showAllItems = false;
 
   // bool get showAllItems => _showAllItems;

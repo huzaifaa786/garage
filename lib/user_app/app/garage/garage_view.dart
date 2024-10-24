@@ -300,25 +300,31 @@ class GarageView extends StatelessWidget {
                         ),
                       ),
                       Gap(30),
-                      AppText(
-                        title: 'Selected Product',
-                        size: 14,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      Gap(10),
-                      InkWell(
-                        onTap: () {
-                          UiUtilites.showConfirmationDialog(
-                            false,
-                            'Are you Sure that you want\n to Add this product to cart ?',
-                            onConfirm: () async {
-                              controller.addToCart();
-                            },
-                          );
-                        },
-                        child: GarageProductCard(),
-                      ),
+                      if (controller.productId != '' ||
+                          controller.productextraId != '')
+                        AppText(
+                          title: 'Selected Product',
+                          size: 14,
+                          textAlign: TextAlign.center,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      if (controller.productId != '' ||
+                          controller.productextraId != '')
+                        Gap(10),
+                      if (controller.productId != '' ||
+                          controller.productextraId != '')
+                        InkWell(
+                          onTap: () {
+                            UiUtilites.showConfirmationDialog(
+                              false,
+                              'Are you Sure that you want\n to Add this product to cart ?',
+                              onConfirm: () async {
+                                controller.addToCart();
+                              },
+                            );
+                          },
+                          child: GarageProductCard(),
+                        ),
                       Gap(20),
                       Divider(
                         thickness: 10,

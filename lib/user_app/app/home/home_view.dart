@@ -41,65 +41,72 @@ class _HomeViewState extends State<HomeView> {
           body: SingleChildScrollView(
             child: SafeArea(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                    child: IconInputField(
-                      hasprefix: true,
-                      hint: 'Search for garages, service ..'.tr,
-                      readOnly: false,
-                      onsubmit: (value) {
-                        Get.toNamed(AppRoutes.search);
-                      },
-                    ),
-                  ),
-                  Gap(10),
-                  if (controller.banners.isNotEmpty)
-                    CarouselSlider.builder(
-                      options: CarouselOptions(
-                        height: 190,
-                        enableInfiniteScroll: true,
-                        autoPlay: true,
-                        autoPlayCurve: Curves.ease,
-                        viewportFraction: 0.8,
-                        enlargeCenterPage: false,
-                        onPageChanged: (index, reason) {
-                          controller.updateIndex(index);
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 40.0, right: 40.0),
+                      child: IconInputField(
+                        controller: controller.searchController,
+                        hasprefix: true,
+                        hint: 'Search for garages, service ..'.tr,
+                        readOnly: false,
+                        onsubmit: (value) {
+                          Get.toNamed(AppRoutes.search, parameters: {
+                            'searchtext': controller.searchController.text
+                          });
                         },
                       ),
-                      itemCount: controller.banners.length,
-                      itemBuilder: (context, index, realIndex) {
-                        return BannerCard(
-                          networkImage: controller.banners[index].image,
-                          onTap: () {
-                          },
-                        );
-                      },
                     ),
-                  Gap(10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(controller.banners.length, (index) {
-                      return AnimatedContainer(
-                        duration: Duration(milliseconds: 300),
-                        margin: EdgeInsets.symmetric(horizontal: 4.0),
-                        height: 6.0,
-                        width: controller.currentIndex == index ? 20.0 : 6.0,
-                        decoration: BoxDecoration(
-                          color: controller.currentIndex == index
-                              ? AppColors.primary
-                              : AppColors.lightPink,
-                          borderRadius: controller.currentIndex == index
-                              ? BorderRadius.circular(10.0)
-                              : BorderRadius.circular(50.0),
+                    Gap(10),
+                    if (controller.banners.isNotEmpty)
+                      CarouselSlider.builder(
+                        options: CarouselOptions(
+                          height: 190,
+                          enableInfiniteScroll: true,
+                          autoPlay: true,
+                          autoPlayCurve: Curves.ease,
+                          viewportFraction: 0.8,
+                          enlargeCenterPage: false,
+                          onPageChanged: (index, reason) {
+                            controller.updateIndex(index);
+                          },
                         ),
-                      );
-                    }),
-                  ),
-
-                  Gap(30),
+                        itemCount: controller.banners.length,
+                        itemBuilder: (context, index, realIndex) {
+                          return BannerCard(
+                            networkImage: controller.banners[index].image,
+                            onTap: () {
+                              Get.toNamed(AppRoutes.garage, parameters: {
+                                'id': controller.banners[index].garageid
+                                    .toString(),
+                              });
+                            },
+                          );
+                        },
+                      ),
+                    Gap(10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:
+                          List.generate(controller.banners.length, (index) {
+                        return AnimatedContainer(
+                          duration: Duration(milliseconds: 300),
+                          margin: EdgeInsets.symmetric(horizontal: 4.0),
+                          height: 6.0,
+                          width: controller.currentIndex == index ? 20.0 : 6.0,
+                          decoration: BoxDecoration(
+                            color: controller.currentIndex == index
+                                ? AppColors.primary
+                                : AppColors.lightPink,
+                            borderRadius: controller.currentIndex == index
+                                ? BorderRadius.circular(10.0)
+                                : BorderRadius.circular(50.0),
+                          ),
+                        );
+                      }),
+                    ),
+                    Gap(30),
                     Padding(
                       padding: const EdgeInsets.only(left: 40.0, right: 30.0),
                       child: Row(
@@ -141,8 +148,7 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                     Gap(10),
-                  ]
-              ),
+                  ]),
             ),
           ),
         );

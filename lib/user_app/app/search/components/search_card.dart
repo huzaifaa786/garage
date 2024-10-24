@@ -6,7 +6,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -14,7 +13,6 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 class SearchCard extends StatelessWidget {
   final String? image;
   final String? logoimage;
-
   final String? title;
   final String? services;
   final String? currentAddress;
@@ -35,7 +33,8 @@ class SearchCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -73,8 +72,11 @@ class SearchCard extends StatelessWidget {
                       height: Get.height * 0.15,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
+                      placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(
+                        color: AppColors.greybg,
+                        strokeWidth: 1,
+                      )),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),

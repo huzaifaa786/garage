@@ -107,7 +107,7 @@ class ServiceCard extends StatelessWidget {
               ),
             ),
             Gap(5),
-            if (time == '')
+            if (time != '')
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Row(

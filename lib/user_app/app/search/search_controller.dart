@@ -1,14 +1,14 @@
 import 'dart:developer';
+import 'package:flutter/widgets.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/post_api/post_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
-import 'package:mobilegarage/models/user_model/post_model.dart';
 import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 
 class SearchScreenController extends GetxController {
   static SearchScreenController instance = Get.find();
-
+  TextEditingController searchController = TextEditingController();
   int selectedIndexPrice = 0;
   int selectedIndexClosest = 0;
   int selectedIndexRating = 0;
@@ -51,18 +51,19 @@ class SearchScreenController extends GetxController {
 
   List<GarageModel> garages = [];
   List<GarageModel> filteredGarages = [];
-  String searchText = '';
+  String? searchText = '';
   String selectedCategory = '';
 
   @override
   void onInit() {
-   
+    searchText = Get.parameters['searchtext']?.toString();
+    searchController.text = searchText.toString();
     getGarages();
     super.onInit();
   }
 
   Future getGarages() async {
-    var response = await PostApi.getAllGarages();
+    var response = await PostApi.getAllGarages(searchText);
     log('$response');
     if (response != {}) {
       garages = (response['garages'] as List<dynamic>)
@@ -86,7 +87,7 @@ class SearchScreenController extends GetxController {
     print(
         'Filtering garages with searchText: $searchText and selectedCategory: $selectedCategory');
 
-    if (searchText.isEmpty && selectedCategory.isEmpty) {
+    if (searchText!.isEmpty && selectedCategory.isEmpty) {
       filteredGarages = garages;
     } else {
       filteredGarages = garages.where((post) {
@@ -94,7 +95,7 @@ class SearchScreenController extends GetxController {
         // final postCategory = post.subCategory?.name.toLowerCase() ?? '';
 
         final matchesSearchText =
-            searchText.isEmpty || postName.contains(searchText.toLowerCase());
+            searchText!.isEmpty || postName.contains(searchText!.toLowerCase());
         // final matchesCategory = selectedCategory.isEmpty || postCategory.contains(selectedCategory.toLowerCase());
 
         return matchesSearchText;
