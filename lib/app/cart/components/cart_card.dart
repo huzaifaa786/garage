@@ -54,139 +54,143 @@ class CartCard extends StatelessWidget {
                       ),
                       SizedBox(
                         width: Get.width * 0.525,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Gap(8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Flexible(
-                                  child: AppText(
-                                    title: item!.acextra![0].name.toString(),
-                                    size: 12,
-                                    maxLines: 1,
-                                    overFlow: TextOverflow.ellipsis,
-                                    fontWeight: FontWeight.w600,
+                        child: Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Gap(8),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: AppText(
+                                      title: item!.acextra![0].name.toString(),
+                                      size: 12,
+                                      maxLines: 1,
+                                      overFlow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                                InkWell(
-                                    onTap: ontap,
-                                    child: SvgPicture.asset(
-                                        'assets/icons/cross.svg')),
-                              ],
-                            ),
-                            AppText(
-                              title:
-                                  "Type: ${controller.cart!.vehicle!.vehicle_type!.name.toString()}",
-                              fontWeight: FontWeight.w500,
-                              size: 9,
-                              maxLines: 1,
-                            ),
-                            Gap(7),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SvgPicture.asset("assets/icons/cars.svg"),
-                                Gap(4),
-                                Flexible(
-                                  child: AppText(
-                                    title: controller
-                                            .cart!.vehicle!.vehicle_info
-                                            .toString() +
-                                        '  ' +
-                                        controller
-                                            .cart!.vehicle!.year_of_manufacture
-                                            .toString() +
-                                        '111111111111111111111111111111111111111111111111111111111111111111111',
-                                    size: 9,
-                                    textAlign: TextAlign.justify,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.darkprimary,
-                                    maxLines: 1,
+                                  InkWell(
+                                      onTap: ontap,
+                                      child: SvgPicture.asset(
+                                          'assets/icons/cross.svg')),
+                                ],
+                              ),
+                              AppText(
+                                title:
+                                    "Type: ${controller.cart!.vehicle!.vehicle_type!.name.toString()}",
+                                fontWeight: FontWeight.w500,
+                                size: 9,
+                                maxLines: 1,
+                              ),
+                              Gap(7),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SvgPicture.asset("assets/icons/cars.svg"),
+                                  Gap(4),
+                                  Flexible(
+                                    child: AppText(
+                                      title: controller
+                                              .cart!.vehicle!.vehicle_info
+                                              .toString() +
+                                          '  ' +
+                                          controller.cart!.vehicle!
+                                              .year_of_manufacture
+                                              .toString() +
+                                          '111111111111111111111111111111111111111111111111111111111111111111111',
+                                      size: 9,
+                                      textAlign: TextAlign.justify,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.darkprimary,
+                                      maxLines: 1,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Gap(5),
-                            // AppText(
-                            //   title: "Date: carWashDate",
-                            //   fontWeight: FontWeight.w500,
-                            //   size: 9,
-                            // ),
-                            // Gap(2),
-                            // AppText(
-                            //   title: "Time: carWashTime",
-                            //   fontWeight: FontWeight.w500,
-                            //   size: 9,
-                            // ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Flexible(
-                                  child: AppText(
-                                    title:
-                                        "${item!.acextra![0].price.toString()} AED",
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.darkblue,
-                                    size: 12,
-                                    maxLines: 1,
+                                ],
+                              ),
+                              Gap(5),
+                              // AppText(
+                              //   title: "Date: carWashDate",
+                              //   fontWeight: FontWeight.w500,
+                              //   size: 9,
+                              // ),
+                              // Gap(2),
+                              // AppText(
+                              //   title: "Time: carWashTime",
+                              //   fontWeight: FontWeight.w500,
+                              //   size: 9,
+                              // ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: AppText(
+                                      title:
+                                          "${item!.acextra![0].price.toString()} AED",
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.darkblue,
+                                      size: 12,
+                                      maxLines: 1,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 5, bottom: 5),
-                                  child: InputQty(
-                                    initVal:
-                                        controller.cart!.totalQuantity ?? 0,
-                                    minVal: 1,
-                                    qtyFormProps:
-                                        QtyFormProps(enableTyping: false),
-                                    decoration: QtyDecorationProps(
-                                      minusBtn: Container(
-                                        height: 20,
-                                        width: 20,
-                                        decoration: BoxDecoration(
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 5, bottom: 5),
+                                    child: InputQty(
+                                      initVal:
+                                          controller.cart!.totalQuantity ?? 0,
+                                      minVal: 1,
+                                      qtyFormProps:
+                                          QtyFormProps(enableTyping: false),
+                                      decoration: QtyDecorationProps(
+                                        minusBtn: Container(
+                                          height: 20,
+                                          width: 20,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              border: Border.all(
+                                                  color: AppColors.primary)),
+                                          child: Icon(
+                                            Icons.remove,
+                                            color: AppColors.primary,
+                                            size: 12,
+                                          ),
+                                        ),
+                                        isBordered: false,
+                                        width: 8,
+                                        borderShape: BorderShapeBtn.circle,
+                                        plusBtn: Container(
+                                          height: 20,
+                                          width: 20,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primary,
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            border: Border.all(
-                                                color: AppColors.primary)),
-                                        child: Icon(
-                                          Icons.remove,
-                                          color: AppColors.primary,
-                                          size: 12,
+                                          ),
+                                          child: Icon(
+                                            Icons.add,
+                                            color: AppColors.white,
+                                            size: 12,
+                                          ),
                                         ),
                                       ),
-                                      isBordered: false,
-                                      width: 6,
-                                      borderShape: BorderShapeBtn.circle,
-                                      plusBtn: Container(
-                                        height: 20,
-                                        width: 20,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.primary,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Icon(
-                                          Icons.add,
-                                          color: AppColors.white,
-                                          size: 12,
-                                        ),
-                                      ),
+                                      onQtyChanged: (val) {
+                                        int updatedQuantity = val.toInt();
+                                        controller.updateCartItems(
+                                          item!.id.toString(),
+                                          updatedQuantity,
+                                        );
+                                      },
                                     ),
-                                    onQtyChanged: (val) {
-                                      int updatedQuantity = val.toInt();
-                                      controller.updateCartItems(
-                                        item!.id.toString(),
-                                        updatedQuantity,
-                                      );
-                                    },
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
