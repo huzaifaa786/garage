@@ -27,7 +27,7 @@ class OrdersCard extends StatelessWidget {
         padding: const EdgeInsets.only(top: 12),
         child: Container(
           decoration: BoxDecoration(color: AppColors.white_color),
-          child: Padding(
+          child:  Padding(
             padding: const EdgeInsets.only(left: 25, right: 25, top: 12),
             child: Column(
               children: [
@@ -217,7 +217,7 @@ class OrdersCard extends StatelessWidget {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(38),
                             child: AppNetworkImage(
-                              assetPath: order
+                              networkImage: order
                                   .orderItems![0].userVehicles!.image
                                   .toString(),
                             )),
@@ -243,10 +243,10 @@ class OrdersCard extends StatelessWidget {
                     physics: BouncingScrollPhysics(),
                     itemCount: order.orderItems!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final orders = order.orderItems;
+                      final orders = order.orderItems![index];
                       return Column(
                         children: [
-                          ItemsCard(item: order),
+                          ItemsCard(item: orders),
                           const Gap(20),
                         ],
                       );
@@ -267,7 +267,7 @@ class OrdersCard extends StatelessWidget {
                         Get.toNamed(AppRoutes.vmap);
                       },
                       child: Locationn(
-                        text: order.user!.lat.toString(),
+                        text: 'fgfdgdfdfsdfsdfsdfsdfsdfsdfsdfsgdfgdfgdfgd',
                       ),
                     ),
                   ),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:mobilegarage/models/order_models/orders_model.dart';
+import 'package:mobilegarage/models/order_models/order_items_model.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class ItemsCard extends StatelessWidget {
   ItemsCard({super.key, required this.item});
-  OrdersModel item;
+  OrderItemsModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class ItemsCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: AppNetworkImage(
-                networkImage: item.orderItems![0].products!.images![0].toString(),
+                networkImage: item.products!.images![0].imageUrl.toString(),
               ),
               // child: CachedNetworkImage(
               //   imageUrl: controller.image?.isEmpty ?? true
@@ -44,7 +44,7 @@ class ItemsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppText(
-                title: item.orderItems![0].products!.id.toString(),
+                title: item.products!.id.toString(),
                 size: 11,
                 fontWeight: FontWeight.w500,
               ),
@@ -58,7 +58,7 @@ class ItemsCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   AppText(
-                    title: " ${item.orderItems![0].price}",
+                    title: " ${item.price.toString()}",
                     size: 10,
                     fontWeight: FontWeight.w500,
                   ),
@@ -72,7 +72,7 @@ class ItemsCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   AppText(
-                    title: ' ${item.orderItems![0].quantity}',
+                    title: ' ${item.quantity.toString()}',
                     size: 10,
                     fontWeight: FontWeight.w500,
                   ),
@@ -95,7 +95,7 @@ class ItemsCard extends StatelessWidget {
               // ),
               Gap(4),
               AppText(
-                title: "Total ${item.orderItems![0].price}",
+                title: "Total ${item.price.toString()}",
                 size: 13,
                 fontWeight: FontWeight.w600,
                 color: AppColors.lightblue,

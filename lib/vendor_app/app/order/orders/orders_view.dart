@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/filter_view.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/orders_card.dart';
-import 'package:mobilegarage/vendor_app/app/order/orders/components/sub_filter.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 
@@ -18,26 +18,32 @@ class VOrdersView extends StatelessWidget {
         appBarTitle: 'Orders',
         hasBgColor: true,
         hasShadow: false,
-        child: Column(
-          children: [
-            const FilterView(),
-            Expanded(
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: controller.getItemCount(),
-                itemBuilder: (BuildContext context, int index) {
-                  final orders = controller.getOrder(index);
-                  return Column(
-                    children: [
-                      OrdersCard(order: orders),
-                      const Gap(20),
-                    ],
-                  );
-                },
+        child: controller.pendingOrders.isNotEmpty
+            ? Column(
+                children: [
+                  const FilterView(),
+                  Expanded(
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: controller.getItemCount(),
+                      itemBuilder: (BuildContext context, int index) {
+                        final orders = controller.getOrder(index);
+                        return Column(
+                          children: [
+                            OrdersCard(order: orders),
+                            const Gap(20),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              )
+            : Center(
+                child: AppText(
+                  title: 'No Orders Found',
+                ),
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
