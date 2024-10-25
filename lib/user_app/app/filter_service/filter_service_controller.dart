@@ -391,15 +391,24 @@ class FilterServiceController extends GetxController {
 
   String selectedCarid = '';
   String selectedCarName = '';
+  String newCarid = '';
 
   //! Method to select a car
   void selectCar(
     String carid,
     String carName,
   ) async {
-    selectedCarid = carid;
-    selectedCarName = carName;
-    await StoreVehicleApi.storevehicleid(selectedCarid);
+    // selectedCarid = carid;
+    // selectedCarName = carName;
+print(newCarid);
+
+    newCarid = carid;
+print(newCarid);
+    var response = await StoreVehicleApi.storevehicleid(newCarid);
+    if (response.isNotEmpty) {
+      selectedCarid = carid;
+      selectedCarName = carName;
+    }
     box.write('selectedvehicleid', selectedCarid.toString());
     box.write('selectedvehicleName', selectedCarName.toString());
     print(selectedCarid);
@@ -516,7 +525,6 @@ class FilterServiceController extends GetxController {
           endprice: end.toString(),
           categoryextraid: selectedExtraId.toString(),
           categoryid: categoryId.toString(),
-
         );
         update();
         break;
@@ -553,7 +561,7 @@ class FilterServiceController extends GetxController {
     );
 
     if (response.isNotEmpty) {
-       UiUtilites.successAlertDialog(
+      UiUtilites.successAlertDialog(
           context: Get.context,
           onTap: () {
             Get.toNamed(AppRoutes.main);

@@ -8,7 +8,6 @@ import 'package:mobilegarage/app/cart/components/cart_card.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -127,7 +126,10 @@ class CartView extends StatelessWidget {
                     ),
                     IconMainButton(
                       onTap: () {
-                        Get.toNamed(AppRoutes.search_result);
+                        // Get.toNamed(AppRoutes.search_result);
+                        Get.toNamed(AppRoutes.search_result, parameters: {
+                          'garageid': controller.cart!.garageId.toString(),
+                        });
                       },
                       buttonWidth: Get.width * 0.4,
                       height: Get.height * 0.06,
@@ -137,7 +139,11 @@ class CartView extends StatelessWidget {
                 ),
               ),
             )
-          : Text(''),
+          : Center(
+              child: Text(
+              'No item Yet!',
+              style: TextStyle(color: AppColors.greybg),
+            )),
     );
   }
 }

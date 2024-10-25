@@ -36,18 +36,15 @@ class PaymentsController extends GetxController {
     date = Get.parameters['date'].toString();
     location = Get.parameters['location'].toString();
     serviceType = Get.parameters['servicetype'].toString();
-
   }
 
   getCartData() async {
     var response = await CartDetailApi.getCartData();
-    if (response.isNotEmpty) {
+    if (response.isNotEmpty && response['cart'] != null) {
       cart = CartModel.fromJson(response['cart']);
       update();
     }
   }
-
- 
 
   createOrder() async {
     var response = await CreateOrderApi.createOrder(
@@ -56,9 +53,11 @@ class PaymentsController extends GetxController {
         deliverytime: date.toString(),
         ordertype: 'select_garage',
         vehicleid: cart!.vehicle!.id.toString(),
-        servicetype: serviceType.toString()
-        );
+        servicetype: serviceType.toString());
     if (response.isNotEmpty) {
+      Future.delayed(Duration(seconds: 3), () {
+        Get.toNamed(AppRoutes.main);
+      });
       UiUtilites.successAlertDialog(
           context: Get.context,
           onTap: () {
