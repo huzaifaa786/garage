@@ -58,7 +58,7 @@ class ItemsCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   AppText(
-                    title: " ${item.price.toString()}",
+                    title: " ${item.products!.producttypeId.toString()}",
                     size: 10,
                     fontWeight: FontWeight.w500,
                   ),
