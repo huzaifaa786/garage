@@ -2,20 +2,24 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/vender_apis/orders_apis/orders_byStatus_api.dart';
 import 'package:mobilegarage/models/order_models/order_status_model.dart';
+import 'package:mobilegarage/models/order_models/orders_model.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
 
 class VOrdersController extends GetxController {
   static VOrdersController instance = Get.find();
+
   GetStorage box = GetStorage();
 
   int selectedIndex = 0;
   int selectedSubIndex = 0;
 
   List<OrderProgressModel> allOrders = [];
-  List<OrderProgressModel> pendingOrders = [];
-  List<OrderProgressModel> acceptedOrders = [];
-  List<OrderProgressModel> onTheWayOrders = [];
-  List<OrderProgressModel> deliveredOrders = [];
-  List<OrderProgressModel> rejectedOrders = [];
+  List<OrdersModel> pendingOrders = [];
+  List<OrdersModel> acceptedOrders = [];
+  List<OrdersModel> onTheWayOrders = [];
+  List<OrdersModel> deliveredOrders = [];
+  List<OrdersModel> rejectedOrders = [];
 
   List<Map<String, dynamic>> filterList = [
     {'Name': 'New orders'},
@@ -33,6 +37,19 @@ class VOrdersController extends GetxController {
   void onInit() async {
     super.onInit();
     await fetchOrders();
+  }
+
+  // Function to format the date
+  String formatDate(String dateTime) {
+    DateTime parsedDate = DateTime.parse(dateTime);
+    return DateFormat('yyyy-MM-dd').format(parsedDate);
+  }
+
+  // Function to format the time
+  String formatTime(String dateTime) {
+    DateTime parsedDate = DateTime.parse(dateTime);
+    return DateFormat('HH:mm').format(parsedDate); // 24-hour format
+    // Alternatively, use DateFormat('hh:mm a') for 12-hour format with AM/PM
   }
 
   Future<void> fetchOrders() async {
@@ -55,8 +72,8 @@ class VOrdersController extends GetxController {
     rejectedOrders = _mapOrders(ordersByStatus['REJECTED']);
   }
 
-  List<OrderProgressModel> _mapOrders(List<dynamic> orders) {
-    return (orders).map((order) => OrderProgressModel.fromJson(order)).toList();
+  List<OrdersModel> _mapOrders(List<dynamic> orders) {
+    return (orders).map((order) => OrdersModel.fromJson(order)).toList();
   }
 
   int getItemCount() {
@@ -76,7 +93,7 @@ class VOrdersController extends GetxController {
     }
   }
 
-  OrderProgressModel getOrder(int index) {
+  OrdersModel getOrder(int index) {
     switch (selectedIndex) {
       case 0:
         return selectedSubIndex == 0
@@ -93,46 +110,12 @@ class VOrdersController extends GetxController {
     }
   }
 
-  //! date and time 
-  String getOrderDate(VOrdersController controller) {
-    switch (controller.selectedIndex) {
-      case 0:
-        switch (controller.selectedSubIndex) {
-          case 0:
-            return controller.allOrders.isNotEmpty &&
-                    controller.allOrders[controller.selectedSubIndex].newOrders!
-                        .pendingOrders!.isNotEmpty
-                ? '${controller.allOrders[controller.selectedSubIndex].newOrders!.pendingOrders![controller.selectedIndex].createdAt}'
-                : '';
-
-          case 1:
-            return controller.allOrders.isNotEmpty &&
-                    controller.allOrders[controller.selectedSubIndex].newOrders!
-                        .acceptedOrders!.isNotEmpty
-                ? '${controller.allOrders[controller.selectedSubIndex].newOrders!.acceptedOrders![0].createdAt}'
-                : '';
-
-          default:
-            return '';
-        }
-
-      case 1:
-        return controller.onTheWayOrders.isNotEmpty
-            ? '${controller.onTheWayOrders[0].inProgressOrders![selectedIndex].createdAt}'
-            : '';
-
-      case 2:
-        return controller.deliveredOrders.isNotEmpty
-            ? '${controller.deliveredOrders[0].completedOrders![selectedIndex].createdAt}'
-            : '';
-
-      case 3:
-        return controller.rejectedOrders.isNotEmpty
-            ? '${controller.rejectedOrders[0].cancelledOrders![selectedIndex].createdAt}'
-            : '';
-
-      default:
-        return '';
+  Future<void> makePhoneCall(String phoneNumber) async {
+    final Uri phoneUri = Uri(scheme: 'tel', path: phoneNumber);
+    if (await canLaunchUrl(phoneUri)) {
+      await launchUrl(phoneUri);
+    } else {
+      print('Could not launch $phoneUri');
     }
   }
 }

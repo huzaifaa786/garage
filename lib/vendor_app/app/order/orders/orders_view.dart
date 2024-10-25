@@ -29,7 +29,7 @@ class VOrdersView extends StatelessWidget {
                   final orders = controller.getOrder(index);
                   return Column(
                     children: [
-                      OrdersCard(orders: orders),
+                      OrdersCard(order: orders),
                       const Gap(20),
                     ],
                   );

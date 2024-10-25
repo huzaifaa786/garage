@@ -1,14 +1,14 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/models/order_models/order_status_model.dart';
+import 'package:mobilegarage/models/order_models/orders_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/button.dart';
+import 'package:mobilegarage/vendor_app/app/order/orders/components/items_card.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/location.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -16,9 +16,9 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 class OrdersCard extends StatelessWidget {
   OrdersCard({
     super.key,
-    required this.orders,
+    required this.order,
   });
-  OrderProgressModel orders;
+  OrdersModel order;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,10 @@ class OrdersCard extends StatelessWidget {
                         Row(
                           children: [
                             SvgPicture.asset('assets/icons/calendar.svg'),
+                            Gap(5),
                             AppText(
-                              title: controller.getOrderDate(controller),
+                              title: controller
+                                  .formatDate(order.createdAt.toString()),
                               color: AppColors.primary_color,
                               size: 11,
                               fontWeight: FontWeight.w600,
@@ -53,8 +55,10 @@ class OrdersCard extends StatelessWidget {
                     Row(
                       children: [
                         SvgPicture.asset('assets/icons/clock.svg'),
+                        Gap(5),
                         AppText(
-                          // title: orders!.newOrders!.acceptedOrders[index].createdAt.toString(),
+                          title:
+                              controller.formatTime(order.createdAt.toString()),
                           color: AppColors.primary_color,
                           size: 11,
                           fontWeight: FontWeight.w600,
@@ -82,7 +86,7 @@ class OrdersCard extends StatelessWidget {
                     ),
                     Gap(13),
                     AppText(
-                      // title: orders.newOrders.acceptedOrders[].id.toString(),
+                      title: order.id.toString(),
                       size: 12,
                       fontWeight: FontWeight.w600,
                       color: AppColors.primary_color,
@@ -129,17 +133,17 @@ class OrdersCard extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Gap(12),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppText(
-                              // orders.newOrders.pendingOrders[].name.toString(),
+                              title: order.user!.name.toString(),
                               size: 13,
                               fontWeight: FontWeight.w600,
                             ),
                             AppText(
-                              // orders.completedOrders[Index].totalAmount.toString(),
-
+                              title: order.user!.phone.toString(),
                               size: 13,
                               fontWeight: FontWeight.w600,
                             ),
@@ -152,26 +156,49 @@ class OrdersCard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: InkWell(
-                              onTap: () {},
-                              child: Image.asset('assets/images/chat.png')),
-                        ),
-                        GestureDetector(
-                          // onTap: () =>
-                          // controller.makePhoneCall(
-                          //   controller.phoneNumber ?? '+923154704013',
-                          // ),
-                          child: Container(
-                              width: 35,
+                            onTap: () {
+                              Get.toNamed(AppRoutes.chatScreen);
+                            },
+                            child: Container(
                               height: 35,
-                              decoration: BoxDecoration(
-                                color: AppColors.light_red,
-                                borderRadius: BorderRadius.circular(30),
-                              ),
+                              width: 35,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.lightPink),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child:
-                                    SvgPicture.asset('assets/images/call.svg'),
-                              )),
+                                padding: const EdgeInsets.all(4.0),
+                                child: SvgPicture.asset(
+                                  'assets/icons/chat.svg',
+                                  fit: BoxFit.scaleDown,
+                                  height: 20.0,
+                                  width: 18.0,
+                                  color: AppColors.darkprimary,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () => controller.makePhoneCall(
+                            order.user!.phone.toString(),
+                          ),
+                          child: Container(
+                            height: 35,
+                            width: 35,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.lightPink),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: SvgPicture.asset(
+                                'assets/images/call.svg',
+                                fit: BoxFit.scaleDown,
+                                height: 20.0,
+                                width: 18.0,
+                                color: AppColors.darkprimary,
+                              ),
+                            ),
+                          ),
                         )
                       ],
                     )
@@ -190,7 +217,9 @@ class OrdersCard extends StatelessWidget {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(38),
                             child: AppNetworkImage(
-                              assetPath: 'assets/images/mercedes.png',
+                              assetPath: order
+                                  .orderItems![0].userVehicles!.image
+                                  .toString(),
                             )),
                       ),
                       Gap(12),
@@ -200,7 +229,8 @@ class OrdersCard extends StatelessWidget {
                       ),
                       Gap(6),
                       AppText(
-                        title: 'white Mercedes 2022',
+                        title: order.orderItems![0].userVehicles!.vehicle_info
+                            .toString(),
                         size: 11,
                         fontWeight: FontWeight.w500,
                         color: AppColors.primary_color,
@@ -208,89 +238,19 @@ class OrdersCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: AppNetworkImage(
-                            assetPath: 'assets/images/battery.png',
-                          ),
-                          // child: CachedNetworkImage(
-                          //   imageUrl: controller.image?.isEmpty ?? true
-                          //       ? img
-                          //       : controller.image.toString(),
-                          //   placeholder: (context, url) =>
-                          //       CircularProgressIndicator(),
-                          //   errorWidget: (context, url, error) =>
-                          //       Icon(Icons.error),
-                          //   fit: BoxFit.cover,
-                          // ),
-                        ),
-                      ),
-                      Gap(10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: order.orderItems!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final orders = order.orderItems;
+                      return Column(
                         children: [
-                          AppText(
-                            title: 'Car washing',
-                            size: 11,
-                            fontWeight: FontWeight.w500,
-                          ),
-
-                          Gap(4),
-                          Row(
-                            children: [
-                              AppText(
-                                title: 'Type :',
-                                size: 11,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              AppText(
-                                // title: orders.orderItems[index].productsExtra!
-                                //     .categoryExtra!.name
-                                //     .toString(),
-                                size: 10,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ],
-                          ),
-                          // Gap(3),
-                          // Row(
-                          //   children: [
-                          //     AppText(
-                          //       title: 'Time :',
-                          //       size: 10,
-                          //       fontWeight: FontWeight.w400,
-                          //     ),
-                          //     AppText(
-                          //       title: '4: 34',
-                          //       size: 9,
-                          //       fontWeight: FontWeight.w500,
-                          //     ),
-                          //   ],
-                          // ),
-                          Gap(4),
-                          AppText(
-                            // title: orders.orderItems[index].productsExtra!.price
-                            //     .toString(),
-                            size: 13,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.lightblue,
-                          )
+                          ItemsCard(item: order),
+                          const Gap(20),
                         ],
-                      )
-                    ],
-                  ),
-                ),
+                      );
+                    }),
                 Gap(10),
                 Container(
                   height: 60,
@@ -307,7 +267,7 @@ class OrdersCard extends StatelessWidget {
                         Get.toNamed(AppRoutes.vmap);
                       },
                       child: Locationn(
-                        text: 'fgfdgdfdfsdfsdfsdfsdfsdfsdfsdfsgdfgdfgdfgd',
+                        text: order.user!.lat.toString(),
                       ),
                     ),
                   ),
