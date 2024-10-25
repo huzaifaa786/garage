@@ -52,9 +52,11 @@ class SearchResultController extends GetxController {
         '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} $period';
   }
 
+  String? garageid = '';
   @override
   void onInit() {
     super.onInit();
+ garageid = Get.parameters['garageid'] ?? '';
     selectedDate = DateTime.now();
     formatteddate = DateFormat('yyyy-MM-dd').format(selectedDate!);
     final now = DateTime.now();
@@ -66,12 +68,15 @@ class SearchResultController extends GetxController {
   checkDate() async {
     var response = await CheckDateApi.checkunavialabledate(
       date: formatteddate.toString(),
+      garageid: garageid.toString()
     );
     if (response.isNotEmpty) {
       if (validateInputs()) {
         Get.toNamed(AppRoutes.payments, parameters: {
           'date': formattedDateTime.toString(),
           'location': currentAddress.toString(),
+          'servicetype': selectedService.toString(),
+
         });
       }
       update();

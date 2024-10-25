@@ -27,7 +27,7 @@ class CartController extends GetxController {
 
   getCartData() async {
     var response = await CartDetailApi.getCartData();
-    if (response.isNotEmpty) {
+    if (response.isNotEmpty && response['cart'] != null) {
       cart = CartModel.fromJson(response['cart']);
       update();
     }

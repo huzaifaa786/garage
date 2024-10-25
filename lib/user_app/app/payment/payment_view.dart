@@ -129,7 +129,11 @@ class PaymentView extends StatelessWidget {
                             Gap(20)
                           ],
                         )
-                      : Text(''),
+                      : Center(
+              child: Text(
+              'No item Yet!',
+              style: TextStyle(color: AppColors.greybg),
+            )),
                 ),
               )),
               bottomNavigationBar: Container(

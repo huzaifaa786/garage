@@ -56,7 +56,7 @@ class GarageController extends GetxController {
     var response = await GarageProfileApi.garageProfile(garageId);
     if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response['garage']);
-categories = (response['garage']['categories'] as List<dynamic>)
+      categories = (response['garage']['categories'] as List<dynamic>)
           .map((item) => CategoryModel.fromJson(item as Map<String, dynamic>))
           .toList();
 
@@ -73,7 +73,9 @@ categories = (response['garage']['categories'] as List<dynamic>)
         product_extraid: productextraId,
         quantity: '1');
     if (response.isNotEmpty) {
-      Get.toNamed(AppRoutes.search_result);
+      Get.toNamed(AppRoutes.search_result, parameters: {
+        'garageid': garageId.toString(),
+      });
       update();
     }
   }
