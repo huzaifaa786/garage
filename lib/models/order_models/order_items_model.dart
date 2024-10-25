@@ -1,4 +1,5 @@
 import 'package:mobilegarage/models/product_model.dart';
+import 'package:mobilegarage/models/user_vehicles.dart';
 
 class OrderItemsModel {
   String? id;
@@ -13,6 +14,7 @@ class OrderItemsModel {
   DateTime? updatedAt;
   ProductModel? products;
   ProductExtraModel? productsExtra;
+  UserVehicles? userVehicles;
 
   OrderItemsModel({
     this.id,
@@ -27,6 +29,7 @@ class OrderItemsModel {
     this.updatedAt,
     this.products,
     this.productsExtra,
+    this.userVehicles,
   });
 
   factory OrderItemsModel.fromJson(Map<String, dynamic> json) {
@@ -41,7 +44,10 @@ class OrderItemsModel {
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       products: ProductModel.fromJson(json['products']),
-      productsExtra: ProductExtraModel.fromJson(json['product_extra']),
+      productsExtra: json['product_extra'] != null
+          ? ProductExtraModel.fromJson(json['product_extra'])
+          : null,
+      userVehicles: UserVehicles.fromJson(json['user_vehicle']),
     );
   }
 }
