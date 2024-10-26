@@ -76,6 +76,9 @@ class SearchResultController extends GetxController {
           'date': formattedDateTime.toString(),
           'location': currentAddress.toString(),
           'servicetype': selectedService.toString(),
+          'lat': lat.toString(),
+          'lng': lng.toString(),
+
 
         });
       }
