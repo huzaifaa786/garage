@@ -379,7 +379,7 @@ class FilterServiceController extends GetxController {
           .toList();
       if (vehiclesList.isNotEmpty) {
         selectedCarid = vehiclesList.first.id.toString();
-        box.write('selectedvehicleid', selectedCarid.toString());
+        // box.write('selectedvehicleid', selectedCarid.toString());
         selectedCarName = vehiclesList.first.vehicle_info.toString();
         box.write('selectedvehicleName', selectedCarName.toString());
         print(selectedCarName);
