@@ -72,6 +72,10 @@ class CartView extends StatelessWidget {
                                   children: [
                                     CartCard(
                                       item: item,
+                                      ontap: () {
+                                        controller.deleteCartItems(
+                                            item.id.toString());
+                                      },
                                     ),
                                     Gap(20)
                                   ],

@@ -38,7 +38,8 @@ class AppRoutes {
   static const search_result = '/search_result';
   static const edit_product = '/edit_product';
   static const servicedetail = '/servicedetail';
-  
+  static const vurgent_orders_view = '/vurgent_orders_view';
+
   // static const phonesignup = '/phonesignup';
   // static const profile =  '/profile';
   // static const orders = '/orders';
@@ -87,5 +88,4 @@ class AppRoutes {
   static const vmap = '/vmap';
   static const vtradinglicense = '/vtradinglicense';
   static const vownerid = '/vownerid';
-
 }
