@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_interpolation_to_compose_strings
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -220,6 +220,7 @@ class OrdersCard extends StatelessWidget {
                               networkImage: order
                                   .orderItems![0].userVehicles!.image
                                   .toString(),
+                              fit: BoxFit.cover,
                             )),
                       ),
                       Gap(12),
@@ -230,7 +231,10 @@ class OrdersCard extends StatelessWidget {
                       Gap(6),
                       AppText(
                         title: order.orderItems![0].userVehicles!.vehicle_info
-                            .toString(),
+                                .toString() + '  '+
+                            order.orderItems![0].userVehicles!
+                                .year_of_manufacture
+                                .toString(),
                         size: 11,
                         fontWeight: FontWeight.w500,
                         color: AppColors.primary_color,
