@@ -31,7 +31,7 @@ class GarageController extends GetxController {
     if (productId != '' || productextraId != '') {
       await getGarageProduct();
     }
-    if (productId == '' || productextraId == '') {
+    if (productId == '' ) {
       await getGarageProfile(garageId);
     }
     update();
