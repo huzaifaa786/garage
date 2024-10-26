@@ -80,12 +80,12 @@ class PaymentsController extends GetxController {
         lng: lng.toString());
     if (response.isNotEmpty) {
       Future.delayed(Duration(seconds: 3), () {
-        Get.toNamed(AppRoutes.main);
+        Get.offAllNamed(AppRoutes.main);
       });
       UiUtilites.successAlertDialog(
           context: Get.context,
           onTap: () {
-            Get.toNamed(AppRoutes.main);
+            Get.offAllNamed(AppRoutes.main);
           },
           title: 'Thank you!',
           buttontitle: 'Back to home',
