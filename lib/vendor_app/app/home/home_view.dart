@@ -223,7 +223,7 @@ class _VHomeViewState extends State<VHomeView> {
                                 children: [
                                   ReviewBox(
                                     ontap: () {
-                                      Get.toNamed(AppRoutes.vorders_view);
+                                      Get.toNamed(AppRoutes.vurgent_orders_view);
                                     },
                                     icon: 'assets/images/quick-check 1.png',
                                     text: 'Urgent Orders',
