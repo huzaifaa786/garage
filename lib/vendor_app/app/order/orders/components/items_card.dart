@@ -21,11 +21,13 @@ class ItemsCard extends StatelessWidget {
             width: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
+              // border: Border.all()
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: AppNetworkImage(
                 networkImage: item.products!.images![0].imageUrl.toString(),
+                fit: BoxFit.cover,
               ),
               // child: CachedNetworkImage(
               //   imageUrl: controller.image?.isEmpty ?? true
@@ -44,30 +46,34 @@ class ItemsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppText(
-                title: item.products!.id.toString(),
+                title: item.productsExtra == null
+                    ? item.products!.brands!.name.toString()
+                    : item.products!.categoryId == '2'
+                        ? item.products!.brands!.name.toString()
+                        : item.productsExtra!.categoryExtra!.name.toString(),
                 size: 11,
                 fontWeight: FontWeight.w500,
               ),
 
               Gap(4),
+              // Row(
+              //   children: [
+              //     AppText(
+              //       title: 'Type : ',
+              //       size: 11,
+              //       fontWeight: FontWeight.w400,
+              //     ),
+              //     AppText(
+              //       title: " ${item.price.toString()}",
+              //       size: 10,
+              //       fontWeight: FontWeight.w500,
+              //     ),
+              //   ],
+              // ),
               Row(
                 children: [
                   AppText(
-                    title: 'Type:',
-                    size: 11,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  AppText(
-                    title: " ${item.price.toString()}",
-                    size: 10,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  AppText(
-                    title: 'Quantity:',
+                    title: 'Quantity : ',
                     size: 11,
                     fontWeight: FontWeight.w400,
                   ),
@@ -95,7 +101,7 @@ class ItemsCard extends StatelessWidget {
               // ),
               Gap(4),
               AppText(
-                title: "Total ${item.price.toString()}",
+                title: "Total : ${item.price.toString()}",
                 size: 13,
                 fontWeight: FontWeight.w600,
                 color: AppColors.lightblue,
