@@ -29,7 +29,7 @@ class VUrgentOrdersView extends StatelessWidget {
                         final orders = controller.getOrder(index);
                         return Column(
                           children: [
-                            OrdersCard(order: orders),
+                            // OrdersCard(order: orders),
                             const Gap(20),
                           ],
                         );

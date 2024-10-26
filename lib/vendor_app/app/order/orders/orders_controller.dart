@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/vender_apis/orders_apis/change_order_status_api.dart';
 import 'package:mobilegarage/apis/vender_apis/orders_apis/orders_byStatus_api.dart';
 import 'package:mobilegarage/apis/vender_apis/orders_apis/quick_orders_api.dart';
 import 'package:mobilegarage/models/order_models/order_status_model.dart';
@@ -38,7 +39,7 @@ class VOrdersController extends GetxController {
   void onInit() async {
     super.onInit();
     await fetchOrders();
-    await getquickOrders();
+    await getUrgentOrders();
   }
 
   // Function to format the date
@@ -121,8 +122,19 @@ class VOrdersController extends GetxController {
     }
   }
 
-  getquickOrders() async {
+  List<OrdersModel> urgentOrders = [];
+
+  getUrgentOrders() async {
     var response = await QuickOrdersApi.quickOrders();
-    if (response.isNotEmpty) {}
+    if (response.isNotEmpty) {
+      urgentOrders = (response['orders'] as List<dynamic>)
+          .map((item) => OrdersModel.fromJson(item as Map<String, dynamic>))
+          .toList();
+      update();
+    }
   }
+
+  // acceptOrder() async {
+  //   var response = await ChangeOrderStatusApi.changeOrderStatus(orderId : ,status:  );
+  // }
 }
