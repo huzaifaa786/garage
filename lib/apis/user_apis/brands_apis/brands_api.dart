@@ -2,9 +2,7 @@ import 'package:mobilegarage/services/dio_service.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
 
 class brandsApi {
-  static Future<Map<String, dynamic>> brands({
-    String? id,
-  }) async {
+  static Future<Map<String, dynamic>> brands({String? id}) async {
     //* URL
     String url = '${baseUrl}/product/allbrands';
 

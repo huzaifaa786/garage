@@ -42,7 +42,9 @@ class _VHomeViewState extends State<VHomeView> {
                   Get.toNamed(AppRoutes.vchat);
                 },
                 notification: () {
-                  Get.toNamed(AppRoutes.vnotification);
+                  Get.toNamed(AppRoutes.vnotification, parameters: {
+                    'garageId': controller.garage!.id.toString(),
+                  });
                 },
               ),
             ),
@@ -116,21 +118,21 @@ class _VHomeViewState extends State<VHomeView> {
                           ),
                         ),
                         controller.garage != null
-                                  ?
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextSwitchButton(
-                                value: controller.isSelected!,
-                                ontoggle: (value) {
-                                  controller.toggleStatus(value);
-                                },
-                              ),
-                            ],
-                          ),
-                        ):Gap(0),
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    TextSwitchButton(
+                                      value: controller.isSelected!,
+                                      ontoggle: (value) {
+                                        controller.toggleStatus(value);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Gap(0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -223,7 +225,8 @@ class _VHomeViewState extends State<VHomeView> {
                                 children: [
                                   ReviewBox(
                                     ontap: () {
-                                      Get.toNamed(AppRoutes.vurgent_orders_view);
+                                      Get.toNamed(
+                                          AppRoutes.vurgent_orders_view);
                                     },
                                     icon: 'assets/images/quick-check 1.png',
                                     text: 'Urgent Orders',
