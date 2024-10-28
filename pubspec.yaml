@@ -77,6 +77,9 @@ dependencies:
   flutter_stripe: ^9.5.0+1
   http: ^1.2.2
   geocoding: ^3.0.0
+  firebase_messaging: ^14.7.10
+  flutter_local_notifications: ^17.2.4
+  flutter_launcher_icons: ^0.14.1
 
 
 
@@ -87,6 +90,12 @@ dev_dependencies:
 
 dependency_overrides:
   stripe_android: "9.5.0+1"
+
+flutter_icons:
+  android: true
+  ios: true
+  remove_alpha_channel_ios: true
+  image_path : "assets/images/street_garage.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
