@@ -500,7 +500,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         onTap: () {
                           controller.selectedgarageName == 'Select garage'
                               ? controller.filterorder()
-                              : controller.filterSendallGarage();
+                              : controller.sendtoAllGarages();
                         },
                       ),
                     ),
