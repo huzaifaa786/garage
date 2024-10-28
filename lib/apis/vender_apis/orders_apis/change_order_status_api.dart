@@ -3,7 +3,7 @@ import 'package:mobilegarage/vendor_app/utils/vender_base_url.dart';
 
 class ChangeOrderStatusApi {
   static Future<Map<String, dynamic>> changeOrderStatus(
-      String? orderId, String status) async {
+     { String? orderId, String? status}) async {
     String url;
 
     switch (status) {

@@ -119,8 +119,8 @@ import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timing
 import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timings_view.dart';
 import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_binding.dart';
 import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_view.dart';
-import 'package:mobilegarage/vendor_app/app/sale/sale_binding.dart';
-import 'package:mobilegarage/vendor_app/app/sale/sale_view.dart';
+import 'package:mobilegarage/vendor_app/app/sales/sales_binding.dart';
+import 'package:mobilegarage/vendor_app/app/sales/sales_view.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
@@ -351,7 +351,7 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     //TODO:  [payment Screen]
+    //TODO:  [payment Screen]
     GetPage(
       name: AppRoutes.payments,
       page: () => PaymentView(),
@@ -360,7 +360,6 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
-
     GetPage(
       name: AppRoutes.acceptedorder,
       page: () => AccaptedOrderView(),
@@ -368,7 +367,7 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.filterorder,
       page: () => FilterServiceView(),
       binding: FilterServiceBinding(),
@@ -458,8 +457,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.vsale,
-      page: () => const SaleView(),
-      binding: SaleBinding(),
+      page: () => const SalesView(),
+      binding: SalesBinding(),
     ),
     GetPage(
       name: AppRoutes.vchangepassword,
@@ -479,7 +478,7 @@ class AppPages {
 
     GetPage(
       name: AppRoutes.vproductlist,
-      page: () =>  VProductsView(),
+      page: () => VProductsView(),
       binding: VProductsBinding(),
     ),
     GetPage(
@@ -502,51 +501,45 @@ class AppPages {
       page: () => const VLanguageView(),
       binding: VLanguageBinding(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.cardetails,
       page: () => CarDetailsView(),
-      binding:CarDetailsBinding(),
+      binding: CarDetailsBinding(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.search_result,
       page: () => const SearchresultView(),
       binding: SearchResultBinding(),
-     
     ),
     GetPage(
       name: AppRoutes.edit_product,
       page: () => const EditProductView(),
       binding: EditProductBinding(),
-     
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.vtradinglicense,
       page: () => const TradingLicenseView(),
       binding: TradingLicenseBinding(),
-     
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.vownerid,
       page: () => const OwnerIdView(),
       binding: OwnerIdBinding(),
-     ),
-     GetPage(
+    ),
+    GetPage(
       name: AppRoutes.vgarage_timings,
       page: () => const GarageTimingsView(),
       binding: GarageTimingsBindings(),
-     
     ),
-      GetPage(
+    GetPage(
       name: AppRoutes.servicedetail,
       page: () => const ServiceDetailView(),
       binding: ServiceDetailBinding(),
-     
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.vurgent_orders_view,
       page: () => const VUrgentOrdersView(),
       binding: VUrgentOrdersBinding(),
     ),
-
   ];
 }

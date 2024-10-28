@@ -17,19 +17,23 @@ class VUrgentOrdersView extends StatelessWidget {
         appBarTitle: 'Urgent Orders',
         hasBgColor: true,
         hasShadow: false,
-        child: controller.pendingOrders.isNotEmpty
+        child: controller.urgentOrders.isNotEmpty
             ? Column(
                 children: [
                   // const FilterView(),
                   Expanded(
                     child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
-                      itemCount: controller.getItemCount(),
+                      itemCount: controller.urgentOrders.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final orders = controller.getOrder(index);
+                        final orders = controller.urgentOrders[index];
                         return Column(
                           children: [
-                            // OrdersCard(order: orders),
+                            OrdersCard(order: orders,ontapReject:  () {
+                                  controller.rejectedOrder(orders.id.toString() );
+                                },ontapAccept:  () {
+                                  controller.acceptOrder(orders.id.toString());
+                                },),
                             const Gap(20),
                           ],
                         );

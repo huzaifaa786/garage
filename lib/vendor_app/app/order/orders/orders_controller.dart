@@ -16,6 +16,7 @@ class VOrdersController extends GetxController {
   int selectedIndex = 0;
   int selectedSubIndex = 0;
 
+  OrdersModel? orders;
   List<OrderProgressModel> allOrders = [];
   List<OrdersModel> pendingOrders = [];
   List<OrdersModel> acceptedOrders = [];
@@ -48,11 +49,11 @@ class VOrdersController extends GetxController {
     return DateFormat('yyyy-MM-dd').format(parsedDate);
   }
 
-  // Function to format the time
+// Function to format the time
   String formatTime(String dateTime) {
     DateTime parsedDate = DateTime.parse(dateTime);
-    return DateFormat('HH:mm').format(parsedDate); // 24-hour format
-    // Alternatively, use DateFormat('hh:mm a') for 12-hour format with AM/PM
+    return DateFormat('hh:mm a')
+        .format(parsedDate); // 12-hour format with AM/PM
   }
 
   Future<void> fetchOrders() async {
@@ -134,7 +135,39 @@ class VOrdersController extends GetxController {
     }
   }
 
-  // acceptOrder() async {
-  //   var response = await ChangeOrderStatusApi.changeOrderStatus(orderId : ,status:  );
+  acceptOrder(id) async {
+    var response = await ChangeOrderStatusApi.changeOrderStatus(
+        orderId: id, status: 'accepted');
+    if (response.isNotEmpty) {
+      await fetchOrders();
+      await getUrgentOrders();
+    }
+  }
+
+  rejectedOrder(id) async {
+    var response = await ChangeOrderStatusApi.changeOrderStatus(
+        orderId: id, status: 'rejected');
+    if (response.isNotEmpty) {
+      await fetchOrders();
+      await getUrgentOrders();
+    }
+  }
+
+  // cancelOrder() async {
+  //   var response = await ChangeOrderStatusApi.changeOrderStatus(
+  //       orderId: orders!.id.toString(), status: 'cancelled');
+  //   if (response.isNotEmpty) {}
+  // }
+
+  // ontheWayOrder() async {
+  //   var response = await ChangeOrderStatusApi.changeOrderStatus(
+  //       orderId: orders!.id.toString(), status: 'on_the_way');
+  //   if (response.isNotEmpty) {}
+  // }
+
+  // deliveredOrder() async {
+  //   var response = await ChangeOrderStatusApi.changeOrderStatus(
+  //       orderId: orders!.id.toString(), status: 'delivered');
+  //   if (response.isNotEmpty) {}
   // }
 }
