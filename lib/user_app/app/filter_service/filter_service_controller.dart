@@ -466,9 +466,9 @@ class FilterServiceController extends GetxController {
   }
 
   // filter api
-  filterSendallGarage() async {
-    sendtoAllGarages();
-  }
+  // filterSendallGarage() async {
+  //   sendtoAllGarages();
+  // }
 
   filterorder() async {
     var response;
@@ -541,25 +541,75 @@ class FilterServiceController extends GetxController {
 
       await fetchGarageAddresses();
       Get.toNamed(AppRoutes.acceptedorder);
-      // UiUtilites.successAlertDialog(
-      //     context: Get.context,
-      //     onTap: () {
-      //       Get.toNamed(AppRoutes.main);
-      //     },
-      //     title: 'Thank you!',
-      //     buttontitle: 'Back to home',
-      //     description: 'A garage will accept your order from within 3-5 min.');
     }
   }
 
   void sendtoAllGarages() async {
-    var response = await SendAllgaragesApi.sendAllGarages(
+      var response;
+
+    switch (categoryId) {
+      case '6':
+        response = await SendAllgaragesApi.sendAllGarages(
+         lowprice : start.toString(),
+          highprice: end.toString(),
+          brandid: selectedBrandId.toString(),
+          id: categoryId.toString(),
+          originid: selectedbatteryOriginId.toString(),
+          ampereid: selectedampereId.toString(),
+          productid: selectedProducttypeId.toString(),
+          voltageid: selectedvoltageId.toString(),
+        );
+        update();
+        break;
+      case '3':
+        response = await SendAllgaragesApi.sendAllGarages(
+          lowprice: start.toString(),
+          highprice: end.toString(),
+          brandid: selectedBrandId.toString(),
+          id: categoryId.toString(),
+          widthid: selectedwidthId.toString(),
+          heightid: selectedheightId.toString(),
+          sizeid: selectedsizeId.toString(),
+          tyreoriginid: selectedtyreoriginId.toString(),
+          patterenid: selectedpatterenId.toString(),
+          speedratingid: selectedSpeedRatingId.toString(),
+        );
+        update();
+
+        break;
+      case '2':
+        response = await SendAllgaragesApi.sendAllGarages(
+          lowprice: start.toString(),
+          highprice: end.toString(),
+          brandid: selectedBrandId.toString(),
+          id: categoryId.toString(),
+          oilproductid: selectedoilproductTypeId.toString(),
+          voilumeid: selectedVolumeId.toString(),
+          categoryextraId: selectedExtraId.toString(),
+        );
+        update();
+        break;
+
+      case '1':
+      case '4':
+      case '7':
+      case '8':
+      case '9':
+           response = await SendAllgaragesApi.sendAllGarages(
       id: categoryId,
       vehicleId: selectedCarid,
       lowprice: start.toString(),
       highprice: end.toString(),
       categoryextraId: selectedExtraId.toString(),
     );
+        update();
+        break;
+      default:
+        print('Unknown category id');
+        break;
+    }
+
+ 
 
     if (response.isNotEmpty) {
       UiUtilites.successAlertDialog(
