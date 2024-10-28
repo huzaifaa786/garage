@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/cart_detail_api.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/delete_from_cart_api.dart';
@@ -26,6 +28,9 @@ class PaymentsController extends GetxController {
   String? date = '';
   String? location = '';
   String? serviceType = '';
+  double? lat;
+  double? lng;
+  String currentAddress = '';
 
   CartModel? cart;
   @override
@@ -36,6 +41,23 @@ class PaymentsController extends GetxController {
     date = Get.parameters['date'].toString();
     location = Get.parameters['location'].toString();
     serviceType = Get.parameters['servicetype'].toString();
+    // lat = Get.parameters['lat'].toString();
+    // lng = Get.parameters['lng'].toString();
+    lat = double.tryParse(Get.parameters['lat'].toString());
+    lng = double.tryParse(Get.parameters['lng'].toString());
+    getPlaceName(lat!, lng!);
+  }
+
+  Future<void> getPlaceName(double latitude, double longitude) async {
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(latitude, longitude);
+    if (placemarks.isNotEmpty) {
+      Placemark place = placemarks.first;
+      currentAddress =
+          //  '${place.name},'
+          ' ${place.locality}, ${place.administrativeArea}, ${place.country}';
+    }
+    update();
   }
 
   getCartData() async {
@@ -53,15 +75,17 @@ class PaymentsController extends GetxController {
         deliverytime: date.toString(),
         ordertype: 'select_garage',
         vehicleid: cart!.vehicle!.id.toString(),
-        servicetype: serviceType.toString());
+        servicetype: serviceType.toString(),
+        lat: lat.toString(),
+        lng: lng.toString());
     if (response.isNotEmpty) {
       Future.delayed(Duration(seconds: 3), () {
-        Get.toNamed(AppRoutes.main);
+        Get.offAllNamed(AppRoutes.main);
       });
       UiUtilites.successAlertDialog(
           context: Get.context,
           onTap: () {
-            Get.toNamed(AppRoutes.main);
+            Get.offAllNamed(AppRoutes.main);
           },
           title: 'Thank you!',
           buttontitle: 'Back to home',

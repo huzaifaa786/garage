@@ -383,7 +383,7 @@ class FilterServiceController extends GetxController {
         selectedCarName = vehiclesList.first.vehicle_info.toString();
         box.write('selectedvehicleName', selectedCarName.toString());
         print(selectedCarName);
-        print(selectedCarid);
+        print('  bgghhg${box.read('selectedvehicleid')}');
       }
       update();
     }
@@ -400,16 +400,17 @@ class FilterServiceController extends GetxController {
   ) async {
     // selectedCarid = carid;
     // selectedCarName = carName;
-print(newCarid);
+    print(newCarid);
 
     newCarid = carid;
-print(newCarid);
+    print(newCarid);
     var response = await StoreVehicleApi.storevehicleid(newCarid);
     if (response.isNotEmpty) {
       selectedCarid = carid;
       selectedCarName = carName;
+       box.write('selectedvehicleid', selectedCarid.toString());
     }
-    box.write('selectedvehicleid', selectedCarid.toString());
+    // box.write('selectedvehicleid', selectedCarid.toString());
     box.write('selectedvehicleName', selectedCarName.toString());
     print(selectedCarid);
     print(selectedCarName);

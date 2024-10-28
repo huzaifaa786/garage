@@ -13,6 +13,41 @@ class SearchScreenController extends GetxController {
   int selectedIndexClosest = 0;
   int selectedIndexRating = 0;
   int selectedIndexResults = 0;
+  String selecetedPrice = '';
+  String selecetedPlace = '';
+  String selecetedRating = '';
+
+  void updateApplySelections() {
+    selecetedPrice = selectedIndexPrice == 0
+        ? ''
+        : selectedIndexPrice == 1
+            ? 'From low to high'
+            : 'From high to low';
+    /////////
+    selecetedPlace = selectedIndexClosest == 0
+        ? ''
+        : selectedIndexClosest == 1
+            ? 'From the closest to the furthest'
+            : 'Random';
+    ////////////
+    selecetedRating = selectedIndexRating == 0
+        ? ''
+        : selectedIndexRating == 1
+            ? 'From high to low'
+            : 'From low to high';
+
+    update();
+  }
+
+  void ResetSelections() {
+    selecetedPrice = '';
+    selecetedPlace = '';
+    selecetedRating = '';
+    selectIndexPrice(0);
+    selectIndexClosest(0);
+    selectIndexRating(0);
+    update();
+  }
 
   var searchCards = <SearchCard>[
     SearchCard(

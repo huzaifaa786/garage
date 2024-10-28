@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
+import 'package:mobilegarage/user_app/app/search/components/selected_fiter_card.dart';
 import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/cards/bottomsheet_container.dart';
@@ -80,7 +81,52 @@ class _SearchViewState extends State<SearchView> {
                     ),
                   ],
                 ),
+                Gap(10),
+                Row(
+                  children: [
+                    if (controller.selecetedPrice != '')
+                      SelectedFilterCard(
+                          onCancel: () {
+                            controller.selecetedPrice = '';
+                            controller.selectIndexPrice(0);
+                            controller.update();
+                          },
+                          controller: controller,
+                          text: controller.selecetedPrice),
+                  ],
+                ),
+                Gap(5),
+
+                Row(
+                  children: [
+                    if (controller.selecetedPlace != '')
+                      SelectedFilterCard(
+                          onCancel: () {
+                            controller.selecetedPlace = '';
+                            controller.selectIndexClosest(0);
+                            controller.update();
+                          },
+                          controller: controller,
+                          text: controller.selecetedPlace),
+                  ],
+                ),
+                Gap(5),
+
+                if (controller.selecetedRating != '')
+                  Row(
+                    children: [
+                      SelectedFilterCard(
+                          onCancel: () {
+                            controller.selecetedRating = '';
+                            controller.selectIndexRating(0);
+                            controller.update();
+                          },
+                          controller: controller,
+                          text: controller.selecetedRating),
+                    ],
+                  ),
                 Gap(25),
+
                 if (controller.filteredGarages.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -116,8 +162,7 @@ class _SearchViewState extends State<SearchView> {
                                 // UiUtilites.SuccessAlert(context);
                               },
                               price: '',
-                              services:
-                                  "${item.servicecount} services",
+                              services: "${item.servicecount} services",
                               onTapViewGarage: () {
                                 Get.toNamed(AppRoutes.garage, parameters: {
                                   'id': controller.filteredGarages[index].id

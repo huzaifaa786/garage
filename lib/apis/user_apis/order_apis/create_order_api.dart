@@ -9,7 +9,8 @@ class CreateOrderApi {
     String? ordertype,
     String? vehicleid,
     String? servicetype,
-
+    String? lat,
+    String? lng,
   }) async {
     String url = '$baseUrl/place/order';
     var data = {
@@ -19,7 +20,8 @@ class CreateOrderApi {
       'order_type': ordertype,
       'user_vehicle_id': vehicleid,
       'service_type': servicetype,
-
+      "lat": lat,
+      "lng": lng
     };
     var response = await DioService.post(url: url, data: data);
     return response;

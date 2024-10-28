@@ -36,9 +36,9 @@ class FilterBottomsheetContainer extends StatelessWidget {
           case 'rating':
             selectedIndex = controller.selectedIndexRating;
             break;
-          case 'results':
-            selectedIndex = controller.selectedIndexResults;
-            break;
+          // case 'results':
+          //   selectedIndex = controller.selectedIndexResults;
+          //   break;
           default:
             selectedIndex = 0;
         }
