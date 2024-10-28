@@ -1,31 +1,27 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/app/sale/sale_controller.dart';
+import 'package:mobilegarage/vendor_app/app/sales/sales_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class SaleView extends StatefulWidget {
-  const SaleView({super.key});
+class SalesView extends StatefulWidget {
+  const SalesView({super.key});
 
   @override
-  State<SaleView> createState() => _SaleViewState();
+  State<SalesView> createState() => _SalesViewState();
 }
 
-class _SaleViewState extends State<SaleView> {
+class _SalesViewState extends State<SalesView> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SaleController>(
+    return GetBuilder<SalesController>(
         autoRemove: false,
         builder: (controller) => AppLayout(
-              appBarTitle: 'Sale',
+              appBarTitle: 'Sales',
               hasBgColor: false,
               child: Column(
                 children: [
@@ -117,13 +113,20 @@ class _SaleViewState extends State<SaleView> {
                       daysOfWeekVisible: true,
                     ),
                   ),
-                  // const Gap(10),
-                  // Image.asset('assets/images/sale.png'),
-                  // const Gap(10),
+                  const Gap(10),
+                  Image.asset('assets/images/sale.png'),
+                  AppText(
+                    title: 'Total orders (${controller.totalOrders})',
+                    size: 20,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primary_color,
+                  ),
+                  const Gap(40),
                   const AppText(
                     title: 'Total sales',
                     size: 16,
                     fontWeight: FontWeight.w500,
+                    color: AppColors.darkprimary,
                   ),
                   const Gap(18),
                   Container(
@@ -137,7 +140,8 @@ class _SaleViewState extends State<SaleView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppText(
-                          title: '00.00' 'AED',
+                          title:
+                              '${controller.totalAmount.toStringAsFixed(2)} AED',
                           size: 20,
                           color: AppColors.primary_color,
                           fontWeight: FontWeight.w600,

@@ -16,9 +16,13 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 class OrdersCard extends StatelessWidget {
   OrdersCard({
     super.key,
+     this.ontapAccept,
+     this.ontapReject,
     required this.order,
   });
   OrdersModel order;
+  final VoidCallback? ontapAccept;
+  final VoidCallback? ontapReject;
 
   @override
   Widget build(BuildContext context) {
@@ -231,7 +235,8 @@ class OrdersCard extends StatelessWidget {
                       Gap(6),
                       AppText(
                         title: order.orderItems![0].userVehicles!.vehicle_info
-                                .toString() + '  '+
+                                .toString() +
+                            '  ' +
                             order.orderItems![0].userVehicles!
                                 .year_of_manufacture
                                 .toString(),
@@ -283,11 +288,13 @@ class OrdersCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               AcceptedButton(
+                                ontap: ontapReject,
                                 color: AppColors.primary_color,
                                 text: 'Reject',
                                 width: Get.width * 0.3,
                               ),
                               AcceptedButton(
+                                ontap: ontapAccept,
                                 color: AppColors.green_color,
                                 text: 'Accept',
                                 width: Get.width * 0.3,

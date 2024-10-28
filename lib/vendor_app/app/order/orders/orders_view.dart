@@ -30,8 +30,16 @@ class VOrdersView extends StatelessWidget {
                         final orders = controller.getOrder(index);
                         return Column(
                           children: [
-                            OrdersCard(order: orders),
-                             Gap(20),
+                            OrdersCard(
+                              order: orders,
+                              ontapReject: () {
+                                controller.rejectedOrder(orders.id.toString());
+                              },
+                              ontapAccept: () {
+                                controller.acceptOrder(orders.id.toString());
+                              },
+                            ),
+                            Gap(20),
                           ],
                         );
                       },
