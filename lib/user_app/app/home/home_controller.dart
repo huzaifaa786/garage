@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
+import 'package:mobilegarage/apis/user_apis/home_apis/store_ratings_api.dart';
 import 'package:mobilegarage/models/user_model/banner_model.dart';
 import 'package:mobilegarage/models/user_model/services_model.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
@@ -129,6 +130,8 @@ class HomeController extends GetxController {
     super.onInit();
     getBanners();
     getServices();
+    getGarageRatings();
+
     // await showDialog(
     //   context: context,
     //   builder: (BuildContext context) {
@@ -164,6 +167,16 @@ class HomeController extends GetxController {
       servicesList = (response['services'] as List<dynamic>)
           .map((item) => ServicesModel.fromJson(item as Map<String, dynamic>))
           .toList();
+
+      update();
+    }
+  }
+
+  void garageRating = 0.0;
+  getGarageRatings() async {
+    var response = await ratingsApi.checkGarageRatings();
+    if (response.isNotEmpty) {
+      garageRating = (response['order']['has_rating']);
 
       update();
     }
