@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/notification/component/notification_card.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
@@ -18,38 +19,58 @@ class _VNotificationViewState extends State<VNotificationView> {
   Widget build(BuildContext context) {
     return GetBuilder<VNotificationController>(
       autoRemove: false,
-      builder: (controller) => const AppLayout(
-          appBarTitle: 'Notification',
+      builder: (controller) => AppLayout(
+          appBarTitle: 'Notifications',
           hasBgColor: true,
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+          child: controller.notifications.isNotEmpty
+              ? Column(
                   children: [
-                    AppText(
-                      title: 'Today',
-                      size: 20,
-                      fontWeight: FontWeight.w700,
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          AppText(
+                            title: 'Today',
+                            size: 20,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ],
+                      ),
                     ),
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        itemCount: controller.notifications.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final item = controller.notifications[index];
+                          return NotificationCard(
+                            notifications: item,
+                            // name: 'Ali Raza',
+                            // ordername: 'car wash',
+                          );
+                        }),
+                    // NotificationCard(
+                    //   name: 'Ali Raza',
+                    //   ordername: 'car wash',
+                    // ),
+                    // NotificationCard(
+                    //   name: 'Ali Raza',
+                    //   ordername: 'car wash',
+                    // ),
+                    // NotificationCard(
+                    //   name: 'Ali Raza',
+                    //   ordername: 'car wash',
+                    // ),
                   ],
-                ),
-              ),
-              NotificationCard(
-                name: 'Ali Raza',
-                ordername: 'car wash',
-              ),
-              NotificationCard(
-                name: 'Ali Raza',
-                ordername: 'car wash',
-              ),
-              NotificationCard(
-                name: 'Ali Raza',
-                ordername: 'car wash',
-              ),
-            ],
-          )),
+                )
+              : Center(
+                  child: AppText(
+                    title: 'No notifications available \n for this garage.',
+                    color: AppColors.black,
+                    textAlign: TextAlign.center,
+                  ),
+                )),
     );
   }
 }

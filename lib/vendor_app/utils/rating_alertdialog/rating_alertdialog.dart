@@ -4,17 +4,19 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'dart:ui';
 
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
+import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 
 class RatingAlertDialog extends StatelessWidget {
-  final String gatagetitle;
+  final String garagetitle;
 
   const RatingAlertDialog({
     Key? key,
-    required this.gatagetitle,
+    required this.garagetitle,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class RatingAlertDialog extends StatelessWidget {
         onTap: controller.toggleSelection,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-          child: Center(  
+          child: Center(
             child: SingleChildScrollView(
               child: Stack(
                 alignment: Alignment.topCenter,
@@ -34,59 +36,34 @@ class RatingAlertDialog extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 15),
                     backgroundColor: Colors.white,
                     surfaceTintColor: Colors.white,
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                       
-                       Gap(15),
-                        Text(
-                          gatagetitle,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.primary,
-                          ),
+                        Gap(20),
+                        AppText(
+                          title: garagetitle,
+                          size: 14,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.primary_color,
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 10),
+                        Gap(15),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Text(
-                            'Your order has been delivered!',
+                          child: AppText(
+                            title:
+                                'Your order has been \ndelivered! We enjoy serving \n you Please rate us.',
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                            ),
+                            size: 12,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Text(
-                            'We enjoy serving you',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Text(
-                            'Please rate us.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                        ),
-                        Gap(3),
+                        Gap(10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -98,10 +75,13 @@ class RatingAlertDialog extends StatelessWidget {
                               itemCount: 5,
                               glow: false,
                               itemSize: 22,
-                              unratedColor: Colors.grey,
-                              itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-                              itemBuilder: (context, _) =>
-                                  Icon(Icons.star, color: Colors.yellow),
+                              unratedColor: AppColors.divider_color,
+                              itemPadding:
+                                  EdgeInsets.symmetric(horizontal: 2.0),
+                              itemBuilder: (context, _) => Icon(
+                                Icons.star,
+                                color: AppColors.orange,
+                              ),
                               onRatingUpdate: (rating) {
                                 controller.updateRatingg(rating);
                               },
@@ -114,20 +94,26 @@ class RatingAlertDialog extends StatelessWidget {
                           controller: controller.nameController,
                           errorText: '',
                         ),
-                        Gap(10),
+                        Gap(20),
+                        AppButton(
+                          buttonColor: AppColors.primary_color,
+                          buttonWidth: 0.5,
+                          title: 'Submit',
+                          ontap: () {},
+                        ),
                       ],
                     ),
                   ),
                   Positioned(
-                    top: -10, // Adjust the value based on the image size
+                    top: -10,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(53),
                       child: CachedNetworkImage(
                         imageUrl: controller.img,
-                        // height: 100, 
-                        // width: 100, 
-                        height: Get.height*0.1, 
-                       // width: Get.width*0.2,
+                        // height: 100,
+                        // width: 100,
+                        height: Get.height * 0.08,
+                        // width: Get.width*0.2,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -138,27 +124,6 @@ class RatingAlertDialog extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return RatingAlertDialog(
-              gatagetitle: 'Street garage',
-            );
-          },
-        );
-      },
-     
     );
   }
 }

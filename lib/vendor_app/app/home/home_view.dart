@@ -250,7 +250,7 @@ class _VHomeViewState extends State<VHomeView> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return RatingAlertDialog(
-                                            gatagetitle: 'Street garage',
+                                            garagetitle: 'Street garage',
                                           );
                                         },
                                       );

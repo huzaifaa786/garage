@@ -23,7 +23,7 @@ class VNotificationController extends GetxController {
 
   garageNotifications() async {
     var response = await VendorNotificationsApi.garageNotifications(garageId);
-    if (response.isNotEmpty) {
+    if (response['data'] != null && response['data'] is List<dynamic>) {
       notifications = (response['data'] as List<dynamic>)
           .map((item) => NotificationsModel.fromJson(item))
           .toList();
