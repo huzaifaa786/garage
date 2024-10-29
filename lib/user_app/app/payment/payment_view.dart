@@ -14,6 +14,7 @@ import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class PaymentView extends StatelessWidget {
   const PaymentView({super.key});
@@ -70,8 +71,14 @@ class PaymentView extends StatelessWidget {
                                       PaymentCartCard(
                                         item: item,
                                         ontap: () {
-                                          controller.deleteCartItems(
-                                              item.id.toString());
+                                          UiUtilites.showConfirmationDialog(
+                                          false,
+                                          'Are you Sure that you want\n to delete this product ?',
+                                          onConfirm: () async {
+                                            controller.deleteCartItems(
+                                                item.id.toString());
+                                          },
+                                        );
                                         },
                                       ),
                                       Gap(20)
@@ -243,7 +250,11 @@ class PaymentView extends StatelessWidget {
                 ),
               ),
             )
-          : Text(''),
+          :Center(
+              child: Text(
+              'No item Yet!',
+              style: TextStyle(color: AppColors.greybg),
+            )),
     );
   }
 }

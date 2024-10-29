@@ -10,6 +10,7 @@ import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class CartView extends StatelessWidget {
   const CartView({super.key});
@@ -73,8 +74,14 @@ class CartView extends StatelessWidget {
                                     CartCard(
                                       item: item,
                                       ontap: () {
-                                        controller.deleteCartItems(
-                                            item.id.toString());
+                                        UiUtilites.showConfirmationDialog(
+                                          false,
+                                          'Are you Sure that you want\n to delete this product ?',
+                                          onConfirm: () async {
+                                            controller.deleteCartItems(
+                                                item.id.toString());
+                                          },
+                                        );
                                       },
                                     ),
                                     Gap(20)
@@ -130,7 +137,6 @@ class CartView extends StatelessWidget {
                     ),
                     IconMainButton(
                       onTap: () {
-                        // Get.toNamed(AppRoutes.search_result);
                         Get.toNamed(AppRoutes.search_result, parameters: {
                           'garageid': controller.cart!.garageId.toString(),
                         });
@@ -143,11 +149,11 @@ class CartView extends StatelessWidget {
                 ),
               ),
             )
-          : Center(
-              child: Text(
-              'No item Yet!',
-              style: TextStyle(color: AppColors.greybg),
-            )),
+            : Center(
+                child: Text(
+                'No item Yet!',
+                style: TextStyle(color: AppColors.greybg),
+              )),
     );
   }
 }

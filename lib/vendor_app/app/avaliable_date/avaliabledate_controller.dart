@@ -52,7 +52,7 @@ class AvaliableDateController extends GetxController {
     var response =
         await VUnvailableDateApi.storeUnavailableDates(selectedDates);
     if (response.isNotEmpty) {
-      selectedDates.clear();
+      // selectedDates.clear();
       isButtonClicked = true;
       update();
     }

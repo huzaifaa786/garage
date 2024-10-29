@@ -8,14 +8,12 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/garage/components/selected_product_card.dart';
 import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
 import 'package:mobilegarage/user_app/app/garage_review/garage_review_view.dart';
-import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_icons.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/app/product/products/component/product_card.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class GarageView extends StatelessWidget {
@@ -132,6 +130,7 @@ class GarageView extends StatelessWidget {
                         ),
                       ),
                       Gap(20),
+                      if(controller.garage!.garageTime!.isNotEmpty)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -148,7 +147,7 @@ class GarageView extends StatelessWidget {
                               ),
                               children: [
                                 TextSpan(
-                                  text: '03:00 Am',
+                                  text: controller.garage!.garageTime![0].openTime.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.black),
@@ -161,7 +160,7 @@ class GarageView extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: '12:00 Pm',
+                                  text: controller.garage!.garageTime![0].closeTime.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.black),
@@ -171,7 +170,11 @@ class GarageView extends StatelessWidget {
                           )
                         ],
                       ),
+                      if(controller.garage!.garageTime!.isNotEmpty)
+
                       Gap(5),
+                      if(controller.garage!.garageTime!.isNotEmpty)
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -188,7 +191,7 @@ class GarageView extends StatelessWidget {
                               ),
                               children: [
                                 TextSpan(
-                                  text: '08:00 Am',
+                                  text: controller.garage!.garageTime![1].openTime.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.black),
@@ -201,7 +204,7 @@ class GarageView extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: '12:00 Pm',
+                                  text: controller.garage!.garageTime![1].openTime.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.black),

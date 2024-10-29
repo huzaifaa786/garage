@@ -61,6 +61,7 @@ class PaymentsController extends GetxController {
   }
 
   getCartData() async {
+    cart = null;
     var response = await CartDetailApi.getCartData();
     if (response.isNotEmpty && response['cart'] != null) {
       cart = CartModel.fromJson(response['cart']);
