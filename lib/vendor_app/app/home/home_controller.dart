@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_status_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
+import 'package:mobilegarage/apis/vender_apis/home_apis/get_review_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 
@@ -23,9 +24,11 @@ class VHomeController extends GetxController {
   ];
 
   @override
-  void onInit() {
+  void onInit()async {
     super.onInit();
-    garagedata();
+  await  garagedata();
+  await  garageRating();
+
   }
 
   pickImageFromGallery(String imageName) async {
@@ -66,6 +69,15 @@ class VHomeController extends GetxController {
     if (response.isNotEmpty) {
       garage = GarageModel.fromJson(response['garage']);
       isSelected = garage!.opened;
+      update();
+    }
+  }
+
+  garageRating() async {
+    var response = await GetReviewApi.getgarageReview(garage!.id.toString());
+    if (response.isNotEmpty) {
+      // garage = GarageModel.fromJson(response['garage']);
+      // isSelected = garage!.opened;
       update();
     }
   }
