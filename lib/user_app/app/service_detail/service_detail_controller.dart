@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/add_to_cart_api.dart';
 import 'package:mobilegarage/apis/user_apis/services_products_apis/services_products_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ServiceDetailController extends GetxController {
