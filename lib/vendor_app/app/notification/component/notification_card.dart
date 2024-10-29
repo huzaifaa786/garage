@@ -4,23 +4,24 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/notifications_model.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class NotificationCard extends StatelessWidget {
-  const NotificationCard({
+  NotificationCard({
     super.key,
     this.img = 'https://dummyimage.com/50x47/000/fff',
     this.ordername,
     this.name,
+    this.notifications,
   });
   final img;
   final ordername;
   final name;
+  NotificationsModel? notifications;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<VNotificationController>(
@@ -58,9 +59,9 @@ class NotificationCard extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(38),
                             child: CachedNetworkImage(
-                              imageUrl: controller.image?.isEmpty ?? true
+                              imageUrl: notifications!.userImage!.isEmpty
                                   ? img
-                                  : controller.image.toString(),
+                                  : notifications!.userImage.toString(),
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
@@ -74,7 +75,7 @@ class NotificationCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AppText(
-                                title: name,
+                                title: notifications!.title.toString(),
                                 fontWeight: FontWeight.w600,
                                 size: 12,
                               ),
