@@ -40,7 +40,7 @@ class FilterServiceController extends GetxController {
 
   List<Map<String, dynamic>> serviceTypeList = [];
 
-  double start = 50.0;
+  double start = 0.0;
   double end = 1000.0;
   String? categoryId;
 

@@ -103,7 +103,7 @@ class _MainViewState extends State<MainView> with RouteAware {
                       1,
                       "assets/icons/redCart.svg",
                       "assets/icons/cart.svg",
-                      'Carts',
+                      'Cart',
                     ),
                     _BuildnavigationBarItem(
                       2,

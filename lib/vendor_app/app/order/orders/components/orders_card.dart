@@ -18,12 +18,15 @@ class OrdersCard extends StatelessWidget {
     super.key,
      this.ontapAccept,
      this.ontapReject,
+     this.ontapOnway,
+     this.ontapDelivered,
     required this.order,
   });
   OrdersModel order;
   final VoidCallback? ontapAccept;
   final VoidCallback? ontapReject;
-
+  final VoidCallback? ontapOnway;
+  final VoidCallback? ontapDelivered;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<VOrdersController>(
@@ -305,11 +308,13 @@ class OrdersCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               AcceptedButton(
+                                ontap: ontapReject,
                                 color: AppColors.primary_color,
                                 text: 'Reject',
                                 width: Get.width * 0.3,
                               ),
                               AcceptedButton(
+                                ontap: ontapOnway,
                                 color: AppColors.lightblue,
                                 text: 'Mark as delivered',
                                 width: Get.width * 0.5,
@@ -318,6 +323,7 @@ class OrdersCard extends StatelessWidget {
                           )
                     : controller.selectedIndex == 1
                         ? AcceptedButton(
+                                ontap: ontapDelivered,
                             color: AppColors.lightblue,
                             text: 'Mark as delivered',
                             width: Get.width * 0.5,

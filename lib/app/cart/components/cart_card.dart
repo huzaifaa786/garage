@@ -77,7 +77,8 @@ class CartCard extends StatelessWidget {
                                 InkWell(
                                     onTap: ontap,
                                     child: SvgPicture.asset(
-                                        'assets/icons/cross.svg')),
+                                        'assets/icons/cross.svg',height: 15,
+                                        width: 15,)),
                               ],
                             ),
                             Gap(5),
