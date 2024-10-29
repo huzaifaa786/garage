@@ -38,6 +38,14 @@ class VOrdersView extends StatelessWidget {
                               ontapAccept: () {
                                 controller.acceptOrder(orders.id.toString());
                               },
+                              ontapOnway: () {
+                                 controller.ontheWayOrder(orders.id.toString());
+                              },
+                              ontapDelivered: () {
+                                 controller.deliveredOrder(orders.id.toString());
+
+                              },
+                            
                             ),
                             Gap(20),
                           ],

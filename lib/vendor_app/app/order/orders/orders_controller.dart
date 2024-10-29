@@ -159,15 +159,21 @@ class VOrdersController extends GetxController {
   //   if (response.isNotEmpty) {}
   // }
 
-  // ontheWayOrder() async {
-  //   var response = await ChangeOrderStatusApi.changeOrderStatus(
-  //       orderId: orders!.id.toString(), status: 'on_the_way');
-  //   if (response.isNotEmpty) {}
-  // }
+  ontheWayOrder(id) async {
+    var response = await ChangeOrderStatusApi.changeOrderStatus(
+        orderId:id, status: 'on_the_way');
+    if (response.isNotEmpty) {
+      await fetchOrders();
 
-  // deliveredOrder() async {
-  //   var response = await ChangeOrderStatusApi.changeOrderStatus(
-  //       orderId: orders!.id.toString(), status: 'delivered');
-  //   if (response.isNotEmpty) {}
-  // }
+    }
+  }
+
+  deliveredOrder(id) async {
+    var response = await ChangeOrderStatusApi.changeOrderStatus(
+        orderId: id, status: 'delivered');
+    if (response.isNotEmpty) {
+      await fetchOrders();
+
+    }
+  }
 }

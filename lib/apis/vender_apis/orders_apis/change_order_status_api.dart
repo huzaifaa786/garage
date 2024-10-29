@@ -13,11 +13,11 @@ class ChangeOrderStatusApi {
       case 'rejected':
         url = '$vbaseUrl/reject/order';
         break;
-      case 'cancelled':
-        url = '$vbaseUrl/cancel/order';
-        break;
+      // case 'cancelled':
+      //   url = '$vbaseUrl/cancel/order';
+      //   break;
       case 'on_the_way':
-        url = '$vbaseUrl/on_the_way/order';
+        url = '$vbaseUrl/onway/order';
         break;
       case 'delivered':
         url = '$vbaseUrl/deliver/order';
