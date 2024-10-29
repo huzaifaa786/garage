@@ -18,7 +18,10 @@ class VOrdersView extends StatelessWidget {
         appBarTitle: 'Orders',
         hasBgColor: true,
         hasShadow: false,
-        child: controller.pendingOrders.isNotEmpty
+        child: controller.pendingOrders.isNotEmpty ||
+                controller.acceptedOrders.isNotEmpty ||
+                controller.onTheWayOrders.isNotEmpty||
+                controller.deliveredOrders.isNotEmpty
             ? Column(
                 children: [
                   const FilterView(),
@@ -39,13 +42,11 @@ class VOrdersView extends StatelessWidget {
                                 controller.acceptOrder(orders.id.toString());
                               },
                               ontapOnway: () {
-                                 controller.ontheWayOrder(orders.id.toString());
+                                controller.ontheWayOrder(orders.id.toString());
                               },
                               ontapDelivered: () {
-                                 controller.deliveredOrder(orders.id.toString());
-
+                                controller.deliveredOrder(orders.id.toString());
                               },
-                            
                             ),
                             Gap(20),
                           ],

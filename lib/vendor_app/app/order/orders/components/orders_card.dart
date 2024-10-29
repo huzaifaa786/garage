@@ -316,7 +316,7 @@ class OrdersCard extends StatelessWidget {
                               AcceptedButton(
                                 ontap: ontapOnway,
                                 color: AppColors.lightblue,
-                                text: 'Mark as delivered',
+                                text: 'Mark as on the way',
                                 width: Get.width * 0.5,
                               )
                             ],
