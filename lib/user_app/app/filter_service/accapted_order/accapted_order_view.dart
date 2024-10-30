@@ -24,9 +24,8 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
     return GetBuilder<FilterServiceController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: controller.selectedgarageName == 'Select garage'
-            ? 'Service Results'
-            : 'Accepted Orders',
+        appBarTitle:
+            controller.path == 'filter' ? 'Service Results' : 'Accepted Orders',
         hasBgColor: false,
         hasShadow: true,
         child: SingleChildScrollView(
@@ -55,8 +54,11 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppText(
-                      title: '(${controller.garages.length.toString()})' +
-                          ' garages',
+                      title: controller.path != 'filter'
+                          ? '(${controller.garages.length.toString()})' +
+                              ' garages'
+                          : '(${controller.garages.length.toString()})' +
+                              ' garages',
                       size: 12,
                       fontWeight: FontWeight.w500,
                       color: AppColors.darkprimary,

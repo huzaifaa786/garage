@@ -13,7 +13,21 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class NotificationCard extends StatelessWidget {
-  const NotificationCard({super.key, this.status = 'neworders'});
+  const NotificationCard({super.key, this.status});
+   int getActiveIndex(String status) {
+    switch (status) {
+       case 'PENDING':
+        return -1;
+      case 'ACCEPTED':
+        return 0;
+      case 'ON_THE_WAY':
+        return 1;
+      case 'DELIVERED':
+        return 2;
+      default:
+        return 0;
+    }
+  }
   final status;
   @override
   Widget build(BuildContext context) {
@@ -41,7 +55,7 @@ class NotificationCard extends StatelessWidget {
                                     color: AppColors.darkblue),
                               ),
                               Gap(15),
-                              status == 'neworder'
+                              status == 'PENDING'
                                   ? SvgPicture.asset(
                                       'assets/icons/order_accepted.svg',
                                       height: 30,
@@ -62,7 +76,7 @@ class NotificationCard extends StatelessWidget {
                                     ),
                               Gap(10),
                               AppText(
-                                title: status == 'neworder'
+                                title: status == 'PENDING'
                                     ? 'Congratulation!'
                                     : 'Street garage',
                                 size: 12,
@@ -71,7 +85,7 @@ class NotificationCard extends StatelessWidget {
                               ),
                             ],
                           ),
-                          if (status != 'neworder')
+                          if (status != 'PENDING'||status != 'REJECTED')
                             GestureDetector(
                               onTap: () {
                                 Get.toNamed(AppRoutes.chats_accounts);
@@ -96,7 +110,11 @@ class NotificationCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50),
                       child: AuthRichText(
-                        title: 'Has been accepted your order!',
+                        title: status == 'ACCEPTED'
+                            ? 'Has been accepted your order!'
+                            : status == 'ON_THE_WAY'
+                                ? 'Your order is on the way'
+                                : 'Your order has been delivered',
                         description: 'View_order',
                         titlesize: 12,
                         descriptiosize: 12,
@@ -104,17 +122,22 @@ class NotificationCard extends StatelessWidget {
                         titlefontweight: FontWeight.w400,
                         descriptionColor: AppColors.darkblue,
                         descriptionfontweight: FontWeight.w500,
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(
+                            AppRoutes.acceptedorder,
+                            parameters: {'path': 'notification'},
+                          );
+                        },
                       ),
                     ),
-                    if (status != 'neworder')
+                    if (status != 'PENDING')
                       Column(
                         children: [
                           Gap(20),
                           SizedBox(
                             width: Get.width,
                             child: AnotherStepper(
-                              stepperList: controller.stepperData,
+                              stepperList: controller.getstepperData(status),
                               stepperDirection: Axis.horizontal,
                               iconWidth: 30,
                               iconHeight: 30,
@@ -122,7 +145,7 @@ class NotificationCard extends StatelessWidget {
                               inActiveBarColor: Colors.grey,
                               inverted: true,
                               verticalGap: 20,
-                              activeIndex: controller.activestatus,
+                              activeIndex: getActiveIndex(status),
                               barThickness: 8,
                             ),
                           ),

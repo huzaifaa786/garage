@@ -78,9 +78,11 @@ class OrdersModel {
         garage: json['garage'] != null
             ? GarageModel.fromJson(json['garage'])
             : null,
-        orderItems: (json['items'] as List)
-            .map((item) => OrderItemsModel.fromJson(item))
-            .toList(),
+        orderItems: json['items'] != null
+            ? (json['items'] as List)
+                .map((item) => OrderItemsModel.fromJson(item))
+                .toList()
+            : null,
         user: json['user'] != null ? UserModel.fromJson(json['user']) : null);
   }
 }

@@ -31,7 +31,9 @@ class NotificationView extends StatelessWidget {
             shrinkWrap: true,
             itemCount: controller.notifications.length,
             physics: BouncingScrollPhysics(),
-            itemBuilder: (context, index) => NotificationCard(),
+            itemBuilder: (context, index) => NotificationCard(
+              status: controller.notifications[index].order!.status.toString(),
+            ),
           ),
         ))),
       ),

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/user_apis/categories/user_get_categories_api.dart';
+import 'package:mobilegarage/apis/user_apis/order_apis/accepted_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/filter_order_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_vehicles_apis/order_vehicles_api.dart';
 import 'package:mobilegarage/apis/user_apis/store_vehicle_api/store_vehicle_api.dart';
@@ -43,14 +44,37 @@ class FilterServiceController extends GetxController {
   double start = 0.0;
   double end = 1000.0;
   String? categoryId;
+  String? path;
 
   @override
   void onInit() async {
     super.onInit();
     categoryId = Get.parameters['categoryId'] ?? '';
-    await getvehicles();
-    await getUserCategories();
+    path = Get.parameters['path'] ?? '';
+    if (path == 'filter') {
+      await getvehicles();
+      await getUserCategories();
+    }
+    if (path != 'filter') {
+      await getvehicles();
+      await getUserCategories();
+    }
     update();
+  }
+
+  getAcceptedOrder() async {
+    var response = await AcceptedOrderApi.getOrder();
+    if (response.isNotEmpty) {
+      print('object');
+        if (response.isNotEmpty) {
+      garages = (response['garages'] as List<dynamic>)
+          .map((item) => GarageModel.fromJson(item as Map<String, dynamic>))
+          .toList();
+
+      await fetchGarageAddresses();
+      Get.toNamed(AppRoutes.acceptedorder);
+    }
+    }
   }
 
   getUserCategories() async {
@@ -408,7 +432,7 @@ class FilterServiceController extends GetxController {
     if (response.isNotEmpty) {
       selectedCarid = carid;
       selectedCarName = carName;
-       box.write('selectedvehicleid', selectedCarid.toString());
+      box.write('selectedvehicleid', selectedCarid.toString());
     }
     // box.write('selectedvehicleid', selectedCarid.toString());
     box.write('selectedvehicleName', selectedCarName.toString());
@@ -545,12 +569,12 @@ class FilterServiceController extends GetxController {
   }
 
   void sendtoAllGarages() async {
-      var response;
+    var response;
 
     switch (categoryId) {
       case '6':
         response = await SendAllgaragesApi.sendAllGarages(
-         lowprice : start.toString(),
+          lowprice: start.toString(),
           highprice: end.toString(),
           brandid: selectedBrandId.toString(),
           id: categoryId.toString(),
@@ -595,21 +619,19 @@ class FilterServiceController extends GetxController {
       case '7':
       case '8':
       case '9':
-           response = await SendAllgaragesApi.sendAllGarages(
-      id: categoryId,
-      vehicleId: selectedCarid,
-      lowprice: start.toString(),
-      highprice: end.toString(),
-      categoryextraId: selectedExtraId.toString(),
-    );
+        response = await SendAllgaragesApi.sendAllGarages(
+          id: categoryId,
+          vehicleId: selectedCarid,
+          lowprice: start.toString(),
+          highprice: end.toString(),
+          categoryextraId: selectedExtraId.toString(),
+        );
         update();
         break;
       default:
         print('Unknown category id');
         break;
     }
-
- 
 
     if (response.isNotEmpty) {
       UiUtilites.successAlertDialog(

@@ -6,5 +6,6 @@ class GetReviewApi {
     String url = '$vbaseUrl/ratings/$id';
     var response = await DioService.get(url: url);
     return response;
+    
   }
 }

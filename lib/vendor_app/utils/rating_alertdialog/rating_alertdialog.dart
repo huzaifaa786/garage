@@ -3,27 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'dart:ui';
-
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 
 class RatingAlertDialog extends StatelessWidget {
   final String garagetitle;
+ final String? garageimg;
 
   const RatingAlertDialog({
     Key? key,
     required this.garagetitle,
+    this.garageimg
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<VHomeController>(
+    return GetBuilder<HomeController>(
       builder: (controller) => GestureDetector(
-        onTap: controller.toggleSelection,
+        // onTap: controller.toggleSelection,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
           child: Center(
@@ -68,7 +69,7 @@ class RatingAlertDialog extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RatingBar.builder(
-                              initialRating: controller.ratingss,
+                              initialRating:controller. ratingss,
                               minRating: 1,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
@@ -91,7 +92,7 @@ class RatingAlertDialog extends StatelessWidget {
                         Gap(20),
                         MainInput(
                           hint: 'Type a comment..'.tr,
-                          controller: controller.nameController,
+                          controller: controller.ratingController,
                           errorText: '',
                         ),
                         Gap(20),
@@ -99,7 +100,9 @@ class RatingAlertDialog extends StatelessWidget {
                           buttonColor: AppColors.primary_color,
                           buttonWidth: 0.5,
                           title: 'Submit',
-                          ontap: () {},
+                          ontap: () {
+                            controller.storeRating();
+                          },
                         ),
                       ],
                     ),
@@ -109,7 +112,7 @@ class RatingAlertDialog extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(53),
                       child: CachedNetworkImage(
-                        imageUrl: controller.img,
+                        imageUrl: garageimg.toString(),
                         // height: 100,
                         // width: 100,
                         height: Get.height * 0.08,
