@@ -9,9 +9,9 @@ class OrderHistoryController extends GetxController {
   List<OrdersModel>? orders = [];
 
   @override
-  void onInit() {
+  void onInit() async{
     super.onInit();
-    getOrder();
+  await  getOrder();
   }
 
   // Function to format the date
@@ -33,5 +33,6 @@ class OrderHistoryController extends GetxController {
           .map((item) => OrdersModel.fromJson(item))
           .toList();
     }
+    update();
   }
 }

@@ -9,15 +9,15 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 class OrderHistoryCard extends StatelessWidget {
   final OrdersModel? order;
   final GarageModel? garage;
-  final String deliveryDate; // New parameter for delivery date
-  final String deliveryTime; // New parameter for delivery time
+  // final String deliveryDate; // New parameter for delivery date
+  // final String deliveryTime; 
 
   OrderHistoryCard({
     super.key,
     required this.order,
     required this.garage,
-    required this.deliveryDate,
-    required this.deliveryTime,
+    // required this.deliveryDate,
+    // required this.deliveryTime,
   });
 
   @override
@@ -77,8 +77,8 @@ class OrderHistoryCard extends StatelessWidget {
                     return OrderProductCard(
                       items: items,
                       garage: garage,
-                      deliveryDate: deliveryDate,
-                      deliveryTime: deliveryTime,
+                      // deliveryDate: deliveryDate,
+                      // deliveryTime: deliveryTime,
                     );
                   }),
             ],
