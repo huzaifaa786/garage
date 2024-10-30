@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/notifications_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -14,13 +15,13 @@ class NotificationCard extends StatelessWidget {
   NotificationCard({
     super.key,
     this.img = 'https://dummyimage.com/50x47/000/fff',
-    this.ordername,
-    this.name,
+    // this.ordername,
+    // this.name,
     this.notifications,
   });
   final img;
-  final ordername;
-  final name;
+  // final ordername;
+  // final name;
   NotificationsModel? notifications;
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class NotificationCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AppText(
-                                title: notifications!.title.toString(),
+                                title: notifications!.username.toString(),
                                 fontWeight: FontWeight.w600,
                                 size: 12,
                               ),
@@ -109,22 +110,27 @@ class NotificationCard extends StatelessWidget {
                                 ],
                               ),
                               AppText(
-                                title: 'Ordered a $ordername ,click to accept ',
+                                title: 'Ordered a ${notifications!.categoryName.toString()} ,click to accept ',
                                 size: 11,
                                 fontWeight: FontWeight.w600,
                               ),
-                              const Row(
+                               Row(
                                 children: [
                                   AppText(
                                     title: 'or reject order',
                                     size: 11,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  AppText(
-                                    title: '  view',
-                                    color: Colors.blue,
-                                    size: 11,
-                                    fontWeight: FontWeight.w600,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(AppRoutes.orders);
+                                    },
+                                    child: AppText(
+                                      title: '  view',
+                                      color: Colors.blue,
+                                      size: 11,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   )
                                 ],
                               ),

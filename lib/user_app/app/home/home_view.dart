@@ -142,7 +142,9 @@ class _HomeViewState extends State<HomeView> {
                           ontap: () {
                             Get.toNamed(
                               AppRoutes.filterorder,
-                              parameters: {'categoryId': item.id.toString()},
+                              parameters: {'categoryId': item.id.toString(),
+                              'path': 'filter'
+                              },
                             );
                           },
                         );

@@ -25,19 +25,19 @@ class _VNotificationViewState extends State<VNotificationView> {
           child: controller.notifications.isNotEmpty
               ? Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          AppText(
-                            title: 'Today',
-                            size: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.all(20.0),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.start,
+                    //     children: [
+                    //       AppText(
+                    //         title: 'Today',
+                    //         size: 20,
+                    //         fontWeight: FontWeight.w700,
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                     ListView.builder(
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),

@@ -57,9 +57,11 @@ class OrdersModel {
         subTotal: json['sub_total']?.toString(),
         createdAt: DateTime.parse(json['created_at']),
         updatedAt: DateTime.parse(json['updated_at']),
-        orderItems: (json['items'] as List)
+        orderItems: 
+        json['items']!=null?
+        (json['items'] as List)
             .map((item) => OrderItemsModel.fromJson(item))
-            .toList(),
+            .toList():null,
         user: json['user'] != null ? UserModel.fromJson(json['user']) : null);
   }
 }

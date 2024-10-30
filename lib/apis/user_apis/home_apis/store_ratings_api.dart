@@ -3,19 +3,26 @@ import 'package:mobilegarage/user_app/utils/base_url.dart';
 
 class ratingsApi {
   static Future<Map<String, dynamic>> checkGarageRatings() async {
-    //* URL
-
     String url = '$baseUrl/rating/check';
 
-    //! Make the Get request using ApiService
     var response = await DioService.get(url: url);
     return response;
   }
 
-  Future<Map<String, dynamic>> storeRatings(double? rating) async {
-    String url = '$baseUrl/services';
+  static Future<Map<String, dynamic>> storeRatings({
+    String? rating,
+    String? orderid,
+    String? comment,
+    String? garageid,
+
+  }) async {
+    String url = '$baseUrl/store/rating';
     var data = {
       'rating': rating,
+      'order_id': orderid,
+      'comment': comment,
+      'garage_id': garageid,
+
     };
 
     var response = await DioService.post(url: url, data: data);

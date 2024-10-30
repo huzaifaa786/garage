@@ -7,117 +7,12 @@ import 'package:mobilegarage/apis/user_apis/home_apis/store_ratings_api.dart';
 import 'package:mobilegarage/models/user_model/banner_model.dart';
 import 'package:mobilegarage/models/user_model/services_model.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
-
-// class ServiceItem {
-//   final String imageUrl;
-//   final String text;
-//   final String subText;
-
-//   ServiceItem(
-//       {required this.imageUrl, required this.text, required this.subText});
-// }
-
-// class ServiceCards {
-//   final String image;
-//   final String title;
-//   final String price;
-//   final VoidCallback onTap;
-
-//   ServiceCards({
-//     required this.image,
-//     required this.title,
-//     required this.price,
-//     required this.onTap,
-//   });
-// }
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class HomeController extends GetxController {
   static HomeController instance = Get.find();
   TextEditingController searchController = TextEditingController();
-  // bool _showAllItems = false;
-
-  // bool get showAllItems => _showAllItems;
-
-  // void toggleView() {
-  //   _showAllItems = !_showAllItems;
-  //   update();
-  // }
-
-  // bool get hasServices => services.isNotEmpty;
-  // int get itemCount => showAllItems ? services.length : 4;
-
-  // var services = <ServiceItem>[
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Car wash',
-  //       subText: ''),
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Oil change',
-  //       subText: ''),
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Tyre Retations',
-  //       subText: ''),
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Road Assistance',
-  //       subText: ''),
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Engine Diagnostic',
-  //       subText: ''),
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Battery',
-  //       subText: ''),
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Recovery',
-  //       subText: ''),
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Air Conditioning',
-  //       subText: ''),
-  //   ServiceItem(
-  //       imageUrl: 'https://dummyimage.com/70x70/000/fff',
-  //       text: 'Fuel Delivery',
-  //       subText: ''),
-  // ];
-
-  // String? img = 'assets/images/home_crousal.png';
-  // var servicesCards = <ServiceCards>[
-  //   // ServiceCards(
-  //   //     image: 'https://dummyimage.com/70x70/000/fff',
-  //   //     title: 'Hand washing car',
-  //   //     price: '90.90909090',
-  //   //     onTap: () {}),
-  //   // ServiceCards(
-  //   //     image: 'https://dummyimage.com/70x70/000/fff',
-  //   //     title: 'Automatic washing car',
-  //   //     price: '1234567821',
-  //   //     onTap: () {}),
-  //   // ServiceCards(
-  //   //     image: 'https://dummyimage.com/70x70/000/fff',
-  //   //     title: 'Self washing car',
-  //   //     price: 'qwerty',
-  //   //     onTap: () {}),
-  //   // ServiceCards(
-  //   //     image: 'https://dummyimage.com/70x70/000/fff',
-  //   //     title: 'Hand washing car',
-  //   //     price: 'ytrewq',
-  //   //     onTap: () {}),
-  //   // ServiceCards(
-  //   //     image: 'https://dummyimage.com/70x70/000/fff',
-  //   //     title: 'Automatic washing car',
-  //   //     price: '',
-  //   //     onTap: () {}),
-  //   // ServiceCards(
-  //   //     image: 'https://dummyimage.com/70x70/000/fff',
-  //   //     title: 'Self washing car',
-  //   //     price: '',
-  //   //     onTap: () {}),
-  // ];
+  TextEditingController ratingController = TextEditingController();
 
   final BannersApi = HomeApi();
   final servicesApi = HomeApi();
@@ -128,18 +23,9 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    getBanners();
-    getServices();
-    getGarageRatings();
-
-    // await showDialog(
-    //   context: context,
-    //   builder: (BuildContext context) {
-    //     return RatingAlertDialog(
-    //       garagetitle: 'Street garage',
-    //     );
-    //   },
-    // );
+    await getBanners();
+    await getServices();
+    await getGarageRatings();
   }
 
   int currentIndex = 0;
@@ -172,12 +58,59 @@ class HomeController extends GetxController {
     }
   }
 
-  void garageRating = 0.0;
+  double ratingss = 0.0;
+  void updateRatingg(double rating) {
+    ratingss = rating;
+    update();
+  }
+
+  bool isratingavailable = false;
+  String garagename = '';
+  String garageimg = '';
+  String orderid = '';
+  String garageid = '';
+
   getGarageRatings() async {
     var response = await ratingsApi.checkGarageRatings();
-    if (response.isNotEmpty) {
-      garageRating = (response['order']['has_rating']);
+    if (response.isNotEmpty && response['order'] != null) {
+      garagename = response['order']['garage']['name'];
+      garageimg = response['order']['garage']['logo'];
+      orderid = response['order']['id'].toString();
+      garageid = response['order']['garage_id'].toString();
 
+      if (response['order'] != null) {
+        isratingavailable = true;
+
+        isratingavailable == true
+            ? WidgetsBinding.instance.addPostFrameCallback((_) async {
+                await showDialog(
+                  context: Get.context!,
+                  builder: (BuildContext context) {
+                    return RatingAlertDialog(
+                      garagetitle: garagename,
+                      garageimg: garageimg,
+                    );
+                  },
+                );
+              })
+            : print('object');
+
+        update();
+      }
+      update();
+    }
+  }
+
+  storeRating() async {
+    var response = await ratingsApi.storeRatings(
+        rating: ratingss.toString(),
+        comment: ratingController.text,
+        garageid: garageid.toString(),
+        orderid: orderid.toString());
+    if (response.isNotEmpty) {
+      isratingavailable == false;
+      Get.back();
+      UiUtilites.successSnackbar('Rating added successfully', 'Success');
       update();
     }
   }
