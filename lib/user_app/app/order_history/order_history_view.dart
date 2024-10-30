@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/user_app/app/order_history/components/order_history_card.dart';
 import 'package:mobilegarage/user_app/app/order_history/order_history_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -11,7 +10,11 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
 class OrderHistoryView extends StatefulWidget {
-  const OrderHistoryView({super.key});
+  OrderHistoryView({
+    super.key,
+    this.garage,
+  });
+  GarageModel? garage;
 
   @override
   State<OrderHistoryView> createState() => _OrderHistoryViewState();
@@ -62,11 +65,19 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
                   ListView.builder(
                       shrinkWrap: true,
                       physics: BouncingScrollPhysics(),
-                      itemCount: controller.orders.length,
+                      itemCount: controller.orders!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final orders = controller.orders[index];
+                        final orders = controller.orders![index];
+                        String deliveryDate = controller
+                            .formatDate(orders.deliveryTime.toString());
+                        String deliveryTime = controller
+                            .formatTime(orders.deliveryTime.toString());
+
                         return OrderHistoryCard(
-                          orders: orders,
+                          order: orders,
+                          garage: GarageModel(),
+                          deliveryDate: deliveryDate,
+                          deliveryTime: deliveryTime,
                         );
                       }),
                 ],

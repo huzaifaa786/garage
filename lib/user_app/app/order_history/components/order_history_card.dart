@@ -1,29 +1,28 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
-import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/models/garage_model.dart';
+import 'package:mobilegarage/models/order_models/orders_model.dart';
+import 'package:mobilegarage/user_app/app/order_history/components/order_product_card.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class OrderHistoryCard extends StatelessWidget {
-  const OrderHistoryCard({
+  final OrdersModel? order;
+  final GarageModel? garage;
+  final String deliveryDate; // New parameter for delivery date
+  final String deliveryTime; // New parameter for delivery time
+
+  OrderHistoryCard({
     super.key,
-    this.orders,
+    required this.order,
+    required this.garage,
+    required this.deliveryDate,
+    required this.deliveryTime,
   });
-  final Map<String, dynamic>? orders;
 
   @override
   Widget build(BuildContext context) {
-    // String productDetail = orders!['product_Detail'];
-    // String productType = orders!['product_type'];
-    String carWashDate = orders!['date'];
-    String carWashTime = orders!['time'];
-    String quantity = orders!["quantity"];
-
-    return Wrap(
+    return Column(
       children: [
         Gap(20),
         Container(
@@ -56,7 +55,7 @@ class OrderHistoryCard extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: '(${orders!['TrackingNumber']})',
+                          text: '(${order!.id})',
                           style: TextStyle(
                             fontSize: 10,
                             color: AppColors.primarybg,
@@ -69,205 +68,19 @@ class OrderHistoryCard extends StatelessWidget {
                 ],
               ),
               Gap(15),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 95.0,
-                    height: 98.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xff7c94b6),
-                      // image: DecorationImage(
-                      //   image: NetworkImage(
-                      //     orders!["productImage"].toString(),
-                      //   ),
-                      //   fit: BoxFit.cover,
-                      // ),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(
-                        color: AppColors.grey.shade100,
-                        width: 3.0,
-                      ),
-                    ),
-                    child: AppNetworkImage(
-                      assetPath: 'assets/images/battery.png',
-                    ),
-                  ),
-                  Gap(10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 28.0,
-                            height: 28.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xff7c94b6),
-                              image: DecorationImage(
-                                image: NetworkImage(orders!["clientImage"]),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(80.0)),
-                              border: Border.all(
-                                color: AppColors.grey.shade100,
-                                width: 3.0,
-                              ),
-                            ),
-                          ),
-                          Gap(2),
-                          AppText(
-                            title: orders!["client Name"].toString(),
-                            fontWeight: FontWeight.w600,
-                            size: 12,
-                            color: AppColors.primarybg,
-                          ),
-                        ],
-                      ),
-                      quantity.isEmpty
-                          ? AppText(
-                              title: orders!["product"].toString(),
-                              size: 10,
-                              fontWeight: FontWeight.w600,
-                            )
-                          : Row(
-                              children: [
-                                AppText(
-                                  title: orders!["product"].toString(),
-                                  size: 10,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                Gap(3),
-                                RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: ' (Quantity: ',
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: AppColors.black,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: '${orders!["quantity"]})',
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: AppColors.black,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                      Gap(5),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Type: ',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: AppColors.black,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            TextSpan(
-                              text: ' ${orders!["product_type"]}',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: AppColors.black,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Gap(2),
-                      Row(
-                        children: [
-                          SvgPicture.asset("assets/icons/cars.svg"),
-                          Gap(2),
-                          AppText(
-                            title: orders!["carName"].toString(),
-                            size: 10,
-                            color: AppColors.primarybg,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ],
-                      ),
-                      Gap(5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Date: ',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: AppColors.black,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: ' $carWashDate',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: AppColors.black,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Gap(2),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Time: ',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: AppColors.black,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: '$carWashTime am',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: AppColors.black,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Gap(120),
-                              AppText(
-                                title: "${orders!['Price']} AED",
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.darkblue,
-                                size: 10,
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
+              ListView.builder(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  itemCount: order!.orderItems!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final items = order!.orderItems![index];
+                    return OrderProductCard(
+                      items: items,
+                      garage: garage,
+                      deliveryDate: deliveryDate,
+                      deliveryTime: deliveryTime,
+                    );
+                  }),
             ],
           ),
         ),
