@@ -12,16 +12,16 @@ class OrderProductCard extends StatelessWidget {
   final OrdersModel? orders;
   final OrderItemsModel? items;
   final GarageModel? garage;
-  final String deliveryDate; // New parameter for delivery date
-  final String deliveryTime; // New parameter for delivery time
+  // final String deliveryDate; // New parameter for delivery date
+  // final String deliveryTime; // New parameter for delivery time
 
   OrderProductCard({
     super.key,
     this.orders,
     this.items,
     this.garage,
-    required this.deliveryDate, // Make sure to require these parameters
-    required this.deliveryTime,
+    // required this.deliveryDate, // Make sure to require these parameters
+    // required this.deliveryTime,
   });
 
   @override
@@ -43,7 +43,7 @@ class OrderProductCard extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
             border: Border.all(
               color: AppColors.grey.shade100,
-              width: 3.0,
+              // width: 3.0,
             ),
           ),
           child: garage != null
@@ -73,7 +73,7 @@ class OrderProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(80.0)),
                     border: Border.all(
                       color: AppColors.grey.shade100,
-                      width: 3.0,
+                      // width: 3.0,
                     ),
                   ),
                 ),
@@ -86,44 +86,38 @@ class OrderProductCard extends StatelessWidget {
                 ),
               ],
             ),
-            items!.quantity!.isEmpty
-                ? AppText(
-                    title: ("1234565 "),
-                    size: 10,
-                    fontWeight: FontWeight.w600,
-                  )
-                : Row(
+            Row(
+              children: [
+                AppText(
+                  title: items!.productsExtra!.categoryExtra!.name.toString(),
+                  size: 10,
+                  fontWeight: FontWeight.w600,
+                ),
+                Gap(3),
+                RichText(
+                  text: TextSpan(
                     children: [
-                      AppText(
-                        title: items!.quantity!.toString(),
-                        size: 10,
-                        fontWeight: FontWeight.w600,
+                      TextSpan(
+                        text: ' ( Quantity: ',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                      Gap(3),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: ' (Quantity: ',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: AppColors.black,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            TextSpan(
-                              text: '${items!.quantity!.toString()})',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: AppColors.black,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
+                      TextSpan(
+                        text: '${items!.quantity!.toString()} )',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
                   ),
+                ),
+              ],
+            ),
             Gap(5),
             RichText(
               text: TextSpan(
@@ -138,7 +132,7 @@ class OrderProductCard extends StatelessWidget {
                   ),
                   TextSpan(
                     text:
-                        ' ${items!.productsExtra!.categoryExtra!.name.toString()}',
+                        ' ${items!.userVehicles!.vehicle_type!.name.toString()}',
                     style: TextStyle(
                       fontSize: 10,
                       color: AppColors.black,
@@ -183,7 +177,7 @@ class OrderProductCard extends StatelessWidget {
                       ),
                       TextSpan(
                         text:
-                            deliveryDate, // Display the formatted delivery date
+                            'deliveryDate', // Display the formatted delivery date
                         style: TextStyle(
                           fontSize: 10,
                           color: AppColors.black,
@@ -211,7 +205,7 @@ class OrderProductCard extends StatelessWidget {
                           ),
                           TextSpan(
                             text:
-                                deliveryTime, // Display the formatted delivery time
+                                'deliveryTime', // Display the formatted delivery time
                             style: TextStyle(
                               fontSize: 10,
                               color: AppColors.black,

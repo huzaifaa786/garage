@@ -102,6 +102,7 @@ class NotificationCard extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              
                               AppText(
                                 title: 'Ordered a ${notifications!.categoryName.toString()} ,click to accept ',
                                 size: 11,

@@ -68,16 +68,16 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
                       itemCount: controller.orders!.length,
                       itemBuilder: (BuildContext context, int index) {
                         final orders = controller.orders![index];
-                        String deliveryDate = controller
-                            .formatDate(orders.deliveryTime.toString());
-                        String deliveryTime = controller
-                            .formatTime(orders.deliveryTime.toString());
+                        // String deliveryDate = controller
+                        //     .formatDate(orders.deliveryTime.toString());
+                        // String deliveryTime = controller
+                        //     .formatTime(orders.deliveryTime.toString());
 
                         return OrderHistoryCard(
                           order: orders,
-                          garage: GarageModel(),
-                          deliveryDate: deliveryDate,
-                          deliveryTime: deliveryTime,
+                          garage: orders.garage,
+                          // deliveryDate: deliveryDate,
+                          // deliveryTime: deliveryTime,
                         );
                       }),
                 ],
