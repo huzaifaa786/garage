@@ -269,7 +269,10 @@ class PaymentCartCard extends StatelessWidget {
                                 InkWell(
                                     onTap: ontap,
                                     child: SvgPicture.asset(
-                                        'assets/icons/cross.svg',height: 15,width: 15,)),
+                                      'assets/icons/cross.svg',
+                                      height: 15,
+                                      width: 15,
+                                    )),
                               ],
                             ),
                             Gap(5),
@@ -334,8 +337,7 @@ class PaymentCartCard extends StatelessWidget {
                                   padding: const EdgeInsets.only(
                                       right: 5, bottom: 5),
                                   child: InputQty(
-                                    initVal:
-                                       item!.quantity ?? 0,
+                                    initVal: item!.quantity ?? 0,
                                     minVal: 1,
                                     qtyFormProps:
                                         QtyFormProps(enableTyping: false),

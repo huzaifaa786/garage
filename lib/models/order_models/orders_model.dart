@@ -1,3 +1,4 @@
+import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/order_models/order_items_model.dart';
 import 'package:mobilegarage/models/user_model.dart';
 
@@ -15,9 +16,15 @@ class OrdersModel {
   String? subTotal;
   String? discountTotal;
   String? deliveryTime;
+  String? serviceType;
+  String? isNotified;
+  String? lat;
+  String? lng;
+  String? hasRating;
   DateTime? createdAt;
   DateTime? updatedAt;
   List<OrderItemsModel>? orderItems;
+  GarageModel? garage;
   UserModel? user;
 
   OrdersModel({
@@ -34,9 +41,15 @@ class OrdersModel {
     this.discountTotal,
     this.deliveryTime,
     this.subTotal,
+    this.serviceType,
+    this.isNotified,
+    this.lat,
+    this.lng,
+    this.hasRating,
     this.createdAt,
     this.updatedAt,
     this.orderItems,
+    this.garage,
     this.user,
   });
 
@@ -55,8 +68,16 @@ class OrdersModel {
         discountTotal: json['discount_total']?.toString(),
         deliveryTime: json['delivery_time'],
         subTotal: json['sub_total']?.toString(),
+        serviceType: json['service_type'],
+        isNotified: json['is_notified'].toString(),
+        lat: json['lat'],
+        lng: json['lng'],
+        hasRating: json['has_rating'].toString(),
         createdAt: DateTime.parse(json['created_at']),
         updatedAt: DateTime.parse(json['updated_at']),
+        garage: json['garage'] != null
+            ? GarageModel.fromJson(json['garage'])
+            : null,
         orderItems: (json['items'] as List)
             .map((item) => OrderItemsModel.fromJson(item))
             .toList(),
