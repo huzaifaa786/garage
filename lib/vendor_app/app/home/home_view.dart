@@ -317,11 +317,11 @@ class _VHomeViewState extends State<VHomeView> {
                   SizedBox(
                     height: Get.height * 0.42,
                     child: ListView.builder(
-                      itemCount: controller.review.length,
+                      itemCount: controller.garageReviews!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final item = controller.review[index];
+                        final item = controller.garageReviews![index];
                         return Reviewcard(
-                          name: 'sfsdfsd',
+                          reviews: item,
                         );
                       },
                     ),

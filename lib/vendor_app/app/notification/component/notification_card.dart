@@ -1,8 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_typing_uninitialized_variables
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/notifications_model.dart';
@@ -14,7 +12,7 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 class NotificationCard extends StatelessWidget {
   NotificationCard({
     super.key,
-    this.img = 'https://dummyimage.com/50x47/000/fff',
+    this.img = 'assets/icons/user_filled.svg',
     // this.ordername,
     // this.name,
     this.notifications,
@@ -34,6 +32,7 @@ class NotificationCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
@@ -51,19 +50,30 @@ class NotificationCard extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // ClipRRect(
+                        //   borderRadius: BorderRadius.circular(60),
+                        //   child: CachedNetworkImage(
+                        //     imageUrl: notifications!.userImage == null
+                        //         ? img
+                        //         : notifications!.userImage.toString(),
+                        //     placeholder: (context, url) =>
+                        //         const CircularProgressIndicator(),
+                        //     errorWidget: (context, url, error) =>
+                        //         const Icon(Icons.error),
+                        //     fit: BoxFit.cover,
+                        //   ),
+                        // ),
+
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(60),
-                          child: CachedNetworkImage(
-                            imageUrl: notifications!.userImage == null
-                                ? img
-                                : notifications!.userImage.toString(),
-                            placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(60),
+                            child: SvgPicture.asset(
+                              height: 40,
+                              img,
+                              placeholderBuilder: (context) =>
+                                  const CircularProgressIndicator(),
+                              fit: BoxFit.cover,
+                            )),
+
                         const Gap(8),
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,41 +84,42 @@ class NotificationCard extends StatelessWidget {
                                 size: 12,
                               ),
                               const Gap(10),
-                              Row(
-                                children: [
-                                  RatingBar.builder(
-                                    initialRating: controller.ratings,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    glow: false,
-                                    itemSize: 14,
-                                    unratedColor: Colors.grey,
-                                    itemPadding: const EdgeInsets.symmetric(
-                                        horizontal: 2.0),
-                                    itemBuilder: (context, _) => const Icon(
-                                        Icons.star,
-                                        color: Colors.yellow),
-                                    onRatingUpdate: (rating) {
-                                      controller.updateRating(rating);
-                                    },
-                                  ),
-                                  const Gap(10),
-                                  AppText(
-                                    title: controller.ratings.toString(),
-                                    size: 8.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ],
-                              ),
-                              
+                              // Row(
+                              //   children: [
+                              //     RatingBar.builder(
+                              //       initialRating: controller.ratings,
+                              //       minRating: 1,
+                              //       direction: Axis.horizontal,
+                              //       allowHalfRating: true,
+                              //       itemCount: 5,
+                              //       glow: false,
+                              //       itemSize: 14,
+                              //       unratedColor: Colors.grey,
+                              //       itemPadding: const EdgeInsets.symmetric(
+                              //           horizontal: 2.0),
+                              //       itemBuilder: (context, _) => const Icon(
+                              //           Icons.star,
+                              //           color: Colors.yellow),
+                              //       onRatingUpdate: (rating) {
+                              //         controller.updateRating(rating);
+                              //       },
+                              //     ),
+                              //     const Gap(10),
+                              //     AppText(
+                              //       title: controller.ratings.toString(),
+                              //       size: 8.0,
+                              //       fontWeight: FontWeight.w500,
+                              //     ),
+                              //   ],
+                              // ),
+
                               AppText(
-                                title: 'Ordered a ${notifications!.categoryName.toString()} ,click to accept ',
+                                title:
+                                    'Ordered a ${notifications!.categoryName.toString()} ,click to accept ',
                                 size: 11,
                                 fontWeight: FontWeight.w600,
                               ),
-                               Row(
+                              Row(
                                 children: [
                                   AppText(
                                     title: 'or reject order',
@@ -117,7 +128,7 @@ class NotificationCard extends StatelessWidget {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Get.toNamed(AppRoutes.orders);
+                                      Get.toNamed(AppRoutes.vorders_view);
                                     },
                                     child: AppText(
                                       title: '  view',
@@ -129,8 +140,10 @@ class NotificationCard extends StatelessWidget {
                                 ],
                               ),
                               const Gap(6),
-                              const AppText(
-                                title: 'now',
+                              AppText(
+                                title: controller.timeAgo(notifications!
+                                    .createdAt!
+                                    .toIso8601String()),
                                 size: 11,
                               )
                             ]),
@@ -138,11 +151,26 @@ class NotificationCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: InkWell(
-                      onTap: () {},
-                      child: Image.asset('assets/images/chat.png')),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(AppRoutes.chatScreen);
+                  },
+                  child: Container(
+                    height: 30,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: AppColors.lightPink),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/chat.svg',
+                        fit: BoxFit.scaleDown,
+                        height: 20.0,
+                        width: 18.0,
+                        color: AppColors.darkprimary,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

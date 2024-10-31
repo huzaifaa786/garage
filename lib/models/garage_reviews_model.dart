@@ -24,10 +24,10 @@ class GarageReviewsModel {
 
   factory GarageReviewsModel.fromJson(Map<String, dynamic> json) {
     return GarageReviewsModel(
-      id: json['id'],
-      userId: json['user_id'],
-      garageId: json['garage_id'],
-      orderId: json['order_id'],
+      id: json['id'].toString(),
+      userId: json['user_id'].toString(),
+      garageId: json['garage_id'].toString(),
+      orderId: json['order_id'].toString(),
       rating: json['rating'],
       comment: json['comment'],
       createdAt: DateTime.parse(json['created_at']),

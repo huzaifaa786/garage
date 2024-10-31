@@ -23,46 +23,48 @@ class _VNotificationViewState extends State<VNotificationView> {
           appBarTitle: 'Notifications',
           hasBgColor: true,
           child: controller.notifications.isNotEmpty
-              ? Column(
-                  children: [
-                    // Padding(
-                    //   padding: EdgeInsets.all(20.0),
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.start,
-                    //     children: [
-                    //       AppText(
-                    //         title: 'Today',
-                    //         size: 20,
-                    //         fontWeight: FontWeight.w700,
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        itemCount: controller.notifications.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final item = controller.notifications[index];
-                          return NotificationCard(
-                            notifications: item,
-                            // name: 'Ali Raza',
-                            // ordername: 'car wash',
-                          );
-                        }),
-                    // NotificationCard(
-                    //   name: 'Ali Raza',
-                    //   ordername: 'car wash',
-                    // ),
-                    // NotificationCard(
-                    //   name: 'Ali Raza',
-                    //   ordername: 'car wash',
-                    // ),
-                    // NotificationCard(
-                    //   name: 'Ali Raza',
-                    //   ordername: 'car wash',
-                    // ),
-                  ],
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      // Padding(
+                      //   padding: EdgeInsets.all(20.0),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     children: [
+                      //       AppText(
+                      //         title: 'Today',
+                      //         size: 20,
+                      //         fontWeight: FontWeight.w700,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          itemCount: controller.notifications.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = controller.notifications[index];
+                            return NotificationCard(
+                              notifications: item,
+                              // name: 'Ali Raza',
+                              // ordername: 'car wash',
+                            );
+                          }),
+                      // NotificationCard(
+                      //   name: 'Ali Raza',
+                      //   ordername: 'car wash',
+                      // ),
+                      // NotificationCard(
+                      //   name: 'Ali Raza',
+                      //   ordername: 'car wash',
+                      // ),
+                      // NotificationCard(
+                      //   name: 'Ali Raza',
+                      //   ordername: 'car wash',
+                      // ),
+                    ],
+                  ),
                 )
               : Center(
                   child: AppText(

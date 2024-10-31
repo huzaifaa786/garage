@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:mobilegarage/apis/vender_apis/home_apis/garage_review_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_status_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/get_review_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
+import 'package:mobilegarage/models/garage_reviews_model.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 
 class VHomeController extends GetxController {
@@ -22,13 +24,54 @@ class VHomeController extends GetxController {
     "Review 1",
     "Review 2"
   ];
+  List<GarageReviewsModel>? garageReviews = [];
 
   @override
-  void onInit()async {
+  void onInit() async {
     super.onInit();
-  await  garagedata();
-  await  garageRating();
+    await garagedata();
+    await garageRating();
+    await getReviews();
+  }
 
+  getReviews() async {
+    var response = await GarageReviewsApi.garageReviews();
+    if (response.isNotEmpty && response['ratings'] != null) {
+      garageReviews = (response['ratings'] as List<dynamic>)
+          .map((item) => GarageReviewsModel.fromJson(item))
+          .toList();
+      update();
+    }
+    ;
+  }
+
+  //!  Time Format
+  String timeAgo(String createdAt) {
+    DateTime dateTime = DateTime.parse(createdAt);
+
+    final now = DateTime.now();
+
+    final difference = now.difference(dateTime);
+
+    if (difference.inDays >= 1) {
+      return difference.inDays == 1
+          ? '1 day ago'
+          : '${difference.inDays} days ago';
+    } else if (difference.inHours >= 1) {
+      return difference.inHours == 1
+          ? '1 hour ago'
+          : '${difference.inHours} hours ago';
+    } else if (difference.inMinutes >= 1) {
+      return difference.inMinutes == 1
+          ? '1 minute ago'
+          : '${difference.inMinutes} minutes ago';
+    } else if (difference.inSeconds >= 1) {
+      return difference.inSeconds == 1
+          ? '1 second ago'
+          : '${difference.inSeconds} seconds ago';
+    } else {
+      return 'Just now';
+    }
   }
 
   pickImageFromGallery(String imageName) async {
