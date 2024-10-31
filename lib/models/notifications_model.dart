@@ -28,9 +28,9 @@ class NotificationsModel {
         seen: json['seen'] ?? false,
         body: json['body'],
         createdAt: DateTime.parse(json['created_at']),
-        userImage: json['sender']!=null? json['sender']['image']:'',
-        username:json['sender']!=null? json['sender']['name']:'',
-        categoryName: json['category']!=null?json['category']['name']: '',
+        userImage: json['sender'] != null ? json['sender']['image'] : '',
+        username: json['sender'] != null ? json['sender']['name'] : '',
+        categoryName: json['category'] != null ? json['category'] : '',
         order:
             json['order'] != null ? OrdersModel.fromJson(json['order']) : null);
   }

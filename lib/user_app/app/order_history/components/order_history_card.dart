@@ -75,8 +75,10 @@ class OrderHistoryCard extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     final items = order!.orderItems![index];
                     return OrderProductCard(
+                      orders: order,
                       items: items,
                       garage: garage,
+
                       // deliveryDate: deliveryDate,
                       // deliveryTime: deliveryTime,
                     );

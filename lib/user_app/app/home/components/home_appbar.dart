@@ -27,9 +27,29 @@ class HomeAppbar extends StatelessWidget {
             Gap(10),
             Row(
               children: [
-                GestureDetector(
-                    onTap: onNotificationtap,
-                    child: SvgPicture.asset('assets/icons/bell.svg')),
+                 InkWell(
+                onTap: onNotificationtap,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(6),
+                      child: SvgPicture.asset('assets/images/bell.svg'),
+                    ),
+                    Positioned(
+                      top: 3,
+                      right: 0,
+                      child: Container(
+                        height: 7,
+                        width: 7,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primary_color,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
                 Gap(20),
                 GestureDetector(
                   onTap: () {

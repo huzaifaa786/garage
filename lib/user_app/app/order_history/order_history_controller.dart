@@ -35,4 +35,34 @@ class OrderHistoryController extends GetxController {
     }
     update();
   }
+
+  // //!  Time Format
+  // String timeAgo(String createdAt) {
+  //   DateTime dateTime = DateTime.parse(createdAt);
+
+  //   final now = DateTime.now();
+
+  //   final difference = now.difference(dateTime);
+
+  //   if (difference.inDays >= 1) {
+  //     return difference.inDays == 1
+  //         ? '1 day ago'
+  //         : '${difference.inDays} days ago';
+  //   } else if (difference.inHours >= 1) {
+  //     return difference.inHours == 1
+  //         ? '1 hour ago'
+  //         : '${difference.inHours} hours ago';
+  //   } else if (difference.inMinutes >= 1) {
+  //     return difference.inMinutes == 1
+  //         ? '1 minute ago'
+  //         : '${difference.inMinutes} minutes ago';
+  //   } else if (difference.inSeconds >= 1) {
+  //     return difference.inSeconds == 1
+  //         ? '1 second ago'
+  //         : '${difference.inSeconds} seconds ago';
+  //   } else {
+  //     return 'Just now';
+  //   }
+  // }
+
 }
