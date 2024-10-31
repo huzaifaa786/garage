@@ -16,10 +16,10 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 class OrdersCard extends StatelessWidget {
   OrdersCard({
     super.key,
-     this.ontapAccept,
-     this.ontapReject,
-     this.ontapOnway,
-     this.ontapDelivered,
+    this.ontapAccept,
+    this.ontapReject,
+    this.ontapOnway,
+    this.ontapDelivered,
     required this.order,
   });
   OrdersModel order;
@@ -258,6 +258,7 @@ class OrdersCard extends StatelessWidget {
                       final orders = order.orderItems![index];
                       return Column(
                         children: [
+                          //!  Items card ma name commented ha
                           ItemsCard(item: orders),
                           const Gap(20),
                         ],
@@ -279,7 +280,7 @@ class OrdersCard extends StatelessWidget {
                         Get.toNamed(AppRoutes.vmap);
                       },
                       child: Locationn(
-                        text: 'fgfdgdfdfsdfsdfsdfsdfsdfsdfsdfsgdfgdfgdfgd',
+                        // text: controller.getAddress(1),
                       ),
                     ),
                   ),
@@ -323,7 +324,7 @@ class OrdersCard extends StatelessWidget {
                           )
                     : controller.selectedIndex == 1
                         ? AcceptedButton(
-                                ontap: ontapDelivered,
+                            ontap: ontapDelivered,
                             color: AppColors.lightblue,
                             text: 'Mark as delivered',
                             width: Get.width * 0.5,

@@ -12,7 +12,7 @@ class VMapView extends StatelessWidget {
     return GetBuilder<VMapController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: 'Orders',
+        appBarTitle: 'Map',
         hasBgColor: true,
         hasShadow: false,
         child: GoogleMap(

@@ -1,3 +1,4 @@
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/vender_apis/orders_apis/change_order_status_api.dart';
@@ -16,7 +17,7 @@ class VOrdersController extends GetxController {
   int selectedIndex = 0;
   int selectedSubIndex = 0;
 
-  OrdersModel? orders;
+  List<OrdersModel>? orders = [];
   List<OrderProgressModel> allOrders = [];
   List<OrdersModel> pendingOrders = [];
   List<OrdersModel> acceptedOrders = [];
@@ -161,10 +162,9 @@ class VOrdersController extends GetxController {
 
   ontheWayOrder(id) async {
     var response = await ChangeOrderStatusApi.changeOrderStatus(
-        orderId:id, status: 'on_the_way');
+        orderId: id, status: 'on_the_way');
     if (response.isNotEmpty) {
       await fetchOrders();
-
     }
   }
 
@@ -173,7 +173,46 @@ class VOrdersController extends GetxController {
         orderId: id, status: 'delivered');
     if (response.isNotEmpty) {
       await fetchOrders();
-
     }
   }
+
+//! getting location  ??????????????????
+
+  List<OrdersModel> ordersLocation = [];
+
+  List<Map<String, String?>> garageAddress = [];
+  String? location;
+  String? city;
+
+  Future<Map<String, String?>> getAddress(int index) async {
+    final latDouble = double.parse(orders![index].lat!);
+    final lngDouble = double.parse(orders![index].lng!);
+    final placemark = await placemarkFromCoordinates(latDouble, lngDouble);
+    if (placemark.isNotEmpty) {
+      final locationData = placemark.first;
+      location =
+          '${locationData.thoroughfare}${locationData.subLocality}, ${locationData.locality}, ${locationData.country}.';
+      city = locationData.locality;
+    }
+    return {
+      'location': location,
+      'city': city,
+    };
+  }
+  // Future<String?> fetchLocation() async {
+  //   if (orders == null || orders!.lat == null || orders!.lng == null)
+  //     return null;
+
+  //   final latDouble = double.tryParse(orders!.lat!);
+  //   final lngDouble = double.tryParse(orders!.lng!);
+
+  //   if (latDouble != null && lngDouble != null) {
+  //     final placemarks = await placemarkFromCoordinates(latDouble, lngDouble);
+  //     if (placemarks.isNotEmpty) {
+  //       final place = placemarks.first;
+  //       return '${place.thoroughfare}, ${place.subLocality}, ${place.locality}, ${place.country}';
+  //     }
+  //   }
+  //   return null;
+  // }
 }
