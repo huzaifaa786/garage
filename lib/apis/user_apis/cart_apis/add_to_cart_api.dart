@@ -5,7 +5,7 @@ import 'package:mobilegarage/user_app/utils/base_url.dart';
 
 class AddToCartApi {
   static Future<Map<String, dynamic>> addToCart(
-      {String? id,
+      {int? id,
       String? productid,
       String? quantity,
       String? product_extraid,

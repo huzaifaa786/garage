@@ -115,7 +115,7 @@ class NotificationCard extends StatelessWidget {
                             : status == 'ON_THE_WAY'
                                 ? 'Your order is on the way'
                                 : 'Your order has been delivered',
-                        description: 'View_order',
+                        description:status == 'ACCEPTED'? 'View_order':'',
                         titlesize: 12,
                         descriptiosize: 12,
                         titleColor: AppColors.black,

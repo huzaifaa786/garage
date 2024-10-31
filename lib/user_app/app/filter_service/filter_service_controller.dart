@@ -56,8 +56,7 @@ class FilterServiceController extends GetxController {
       await getUserCategories();
     }
     if (path != 'filter') {
-      await getvehicles();
-      await getUserCategories();
+      await getAcceptedOrder();
     }
     update();
   }
@@ -65,15 +64,14 @@ class FilterServiceController extends GetxController {
   getAcceptedOrder() async {
     var response = await AcceptedOrderApi.getOrder();
     if (response.isNotEmpty) {
-      print('object');
-        if (response.isNotEmpty) {
-      garages = (response['garages'] as List<dynamic>)
-          .map((item) => GarageModel.fromJson(item as Map<String, dynamic>))
-          .toList();
+      // print('object');
+      if (response.isNotEmpty) {
+        garages = (response['garages'] as List<dynamic>)
+            .map((item) => GarageModel.fromJson(item as Map<String, dynamic>))
+            .toList();
 
-      await fetchGarageAddresses();
-      Get.toNamed(AppRoutes.acceptedorder);
-    }
+        await fetchGarageAddresses();
+      }
     }
   }
 
@@ -582,6 +580,7 @@ class FilterServiceController extends GetxController {
           ampereid: selectedampereId.toString(),
           productid: selectedProducttypeId.toString(),
           voltageid: selectedvoltageId.toString(),
+          vehicleId: selectedCarid,
         );
         update();
         break;
@@ -597,6 +596,7 @@ class FilterServiceController extends GetxController {
           tyreoriginid: selectedtyreoriginId.toString(),
           patterenid: selectedpatterenId.toString(),
           speedratingid: selectedSpeedRatingId.toString(),
+          vehicleId: selectedCarid,
         );
         update();
 
@@ -610,6 +610,7 @@ class FilterServiceController extends GetxController {
           oilproductid: selectedoilproductTypeId.toString(),
           voilumeid: selectedVolumeId.toString(),
           categoryextraId: selectedExtraId.toString(),
+          vehicleId: selectedCarid,
         );
         update();
         break;

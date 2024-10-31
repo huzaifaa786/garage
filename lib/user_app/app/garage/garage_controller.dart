@@ -68,7 +68,7 @@ class GarageController extends GetxController {
 
   addToCart() async {
     var response = await AddToCartApi.addToCart(
-        id: garageId.toString(),
+        id: int.parse(garageId.toString()) ,
         productid: productId.toString(),
         product_extraid: productextraId,
         quantity: '1');
