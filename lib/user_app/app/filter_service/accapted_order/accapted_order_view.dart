@@ -54,11 +54,8 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppText(
-                      title: controller.path != 'filter'
-                          ? '(${controller.garages.length.toString()})' +
-                              ' garages'
-                          : '(${controller.garages.length.toString()})' +
-                              ' garages',
+                      title: '(${controller.garages.length.toString()})' +
+                          ' garages',
                       size: 12,
                       fontWeight: FontWeight.w500,
                       color: AppColors.darkprimary,
@@ -81,17 +78,35 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                     city: garageAddress['city'],
                     isSelected: controller.selectedGarageIndex == index,
                     ontap: () {
-                      // controller.toggleSelection(index);
                       Get.toNamed(AppRoutes.garage, parameters: {
                         'id': controller.garages[index].id.toString(),
-                        'productId': controller.garages[index].products![0].id
-                            .toString(),
-                        'productextraId': controller
-                                .garages[index].products![0].oilextra!.isEmpty
-                            ? ''
-                            : controller
-                                .garages[index].products![0].oilextra![0].id
+                        'productId': controller.path != 'filter'
+                            ? controller.garages[index].order!.orderItems![0]
+                                .products!.id
                                 .toString()
+                            : controller.garages[index].products![0].id
+                                .toString(),
+                        // 'productextraId':
+                        // controller
+                        //         .garages[index].products![0].oilextra!.isEmpty
+                        //     ? ''
+                        //     : controller
+                        //         .garages[index].products![0].oilextra![0].id
+                        //         .toString()
+                        'productextraId': controller.path != 'filter'
+                            ? (controller.garages[index].order!.orderItems![0]
+                                        .productsExtra ==
+                                    null
+                                ? ''
+                                : controller.garages[index].order!
+                                    .orderItems![0].productsExtra!.id
+                                    .toString())
+                            : (controller.garages[index].products![0].oilextra!
+                                    .isEmpty
+                                ? ''
+                                : controller
+                                    .garages[index].products![0].oilextra![0].id
+                                    .toString()),
                       });
                     },
                   );

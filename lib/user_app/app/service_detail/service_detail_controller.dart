@@ -9,7 +9,7 @@ class ServiceDetailController extends GetxController {
 
   String? garageId = '';
   String? serviceId = '';
-  GarageModel? garage ;
+  GarageModel? garage;
 
   @override
   void onInit() async {
@@ -23,19 +23,20 @@ class ServiceDetailController extends GetxController {
     var response = await ServicesProductsApi.getproducts(
         garageid: garageId, serviceid: serviceId);
     if (response.isNotEmpty) {
-   garage =   GarageModel.fromJson(response['garage']);
+      garage = GarageModel.fromJson(response['garage']);
       update();
     }
   }
-   addToCart(productId,productextraid) async {
+
+  addToCart(productId, productextraid) async {
     var response = await AddToCartApi.addToCart(
-        id: garageId.toString(),
+        id: int.parse(garageId.toString()),
         productid: productId.toString(),
         product_extraid: productextraid.toString(),
         quantity: '1');
     if (response.isNotEmpty) {
       Get.back();
-      UiUtilites.successSnackbar('Product added to Cart','Success');
+      UiUtilites.successSnackbar('Product added to Cart', 'Success');
       update();
     }
   }

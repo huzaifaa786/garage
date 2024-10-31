@@ -10,7 +10,6 @@ import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 import 'package:mobilegarage/models/garage_model.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
@@ -85,9 +84,13 @@ class OrderCard extends StatelessWidget {
                                   borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(13)),
                                   child: AppNetworkImage(
-                                    networkImage: garage
-                                        .products![0].images!.first.imageUrl
-                                        .toString(),
+                                    networkImage: controller.path != 'filter'
+                                        ? garage.order!.orderItems![0].products!
+                                            .images![0].imageUrl
+                                            .toString()
+                                        : garage
+                                            .products![0].images!.first.imageUrl
+                                            .toString(),
                                     assetPath: 'assets/images/mobiloil.png',
                                     fit: BoxFit.cover,
                                   ),
@@ -98,16 +101,31 @@ class OrderCard extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 2),
                                 child: AppText(
-                                  title: 
-                                  garage.products![0].oilextra!.isEmpty
-                                      ? garage.products![0].brands!.name
-                                          .toString()
-                                      :garage.products![0].categoryId=='2'
-                                      ?garage.products![0].brands!.name
-                                          .toString():
-                                       garage.products![0].oilextra![0].name 
-                                          // '',
-                                  .toString(),
+                                  title: controller.path != 'filter'
+                                      ? (garage.order?.orderItems?[0].products?.brands != null
+                                          ? garage.order!.orderItems![0]
+                                              .products!.brands!.name
+                                              .toString()
+                                          : garage
+                                                  .order!
+                                                  .orderItems![0]
+                                                  .productsExtra
+                                                  ?.categoryExtra
+                                                  ?.name
+                                                  ?.toString() ??
+                                              '')
+                                      : (garage.products?[0].oilextra?.isEmpty ?? true
+                                          ? garage.products![0].brands?.name
+                                                  ?.toString() ??
+                                              ''
+                                          : (garage.products![0].categoryId == '2'
+                                              ? garage.products![0].brands?.name
+                                                      ?.toString() ??
+                                                  ''
+                                              : garage.products![0].oilextra![0].name
+                                                      ?.toString() ??
+                                                  '')),
+
                                   size: 11,
                                   fontWeight: FontWeight.w600,
                                   maxLines: 1,
@@ -119,12 +137,34 @@ class OrderCard extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 child: AppText(
-                                  title: garage.products![0].oilextra!.isEmpty
-                                      ? garage.products![0].description
-                                          .toString()
-                                      : garage
-                                          .products![0].oilextra![0].description
-                                          .toString(),
+                                  title: controller.path != 'filter'
+                                      ? (garage.order?.orderItems?[0].products
+                                                  ?.description ==
+                                              ''
+                                          ? garage.order!.orderItems![0]
+                                              .products!.description
+                                              .toString()
+                                          : garage.order!.orderItems![0]
+                                                  .productsExtra?.description
+                                                  ?.toString() ??
+                                              '')
+                                      : (garage.products?[0].oilextra
+                                                  ?.isEmpty ??
+                                              true
+                                          ? garage.products![0].description
+                                                  ?.toString() ??
+                                              ''
+                                          : (garage.products![0]
+                                                      .categoryId ==
+                                                  '2'
+                                              ? garage.products![0].description
+                                                      .toString() ??
+                                                  ''
+                                              : garage.products![0].oilextra![0]
+                                                      .description
+                                                      ?.toString() ??
+                                                  '')),
+
                                   size: 9,
                                   fontWeight: FontWeight.w400,
                                   textAlign: TextAlign.center,
@@ -136,25 +176,55 @@ class OrderCard extends StatelessWidget {
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
-                                child: AppText(
-                                  title: 
-                                  garage.products![0].oilextra!.isEmpty
-                                      ?garage.products![0].price.toString():
-                                  garage.products![0].oilextra![0].price
-                                          .toString() +
-                                      ' ' +
-                                      'AED',
-                                  size: 9,
-                                  maxLines: 1,
-                                  overFlow: TextOverflow.ellipsis,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.darkblue,
+                                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AppText(
+                                      title: controller.path != 'filter'
+                                          ? (garage.order?.orderItems?[0].products
+                                                      ?.price !=
+                                                  ''
+                                              ? garage.order!.orderItems![0]
+                                                  .products!.price
+                                                  .toString() 
+                                              : garage.order!.orderItems![0]
+                                                      .productsExtra?.price
+                                                      ?.toString() ??
+                                                  '')
+                                          : (garage.products?[0].oilextra
+                                                      ?.isEmpty ??
+                                                  true
+                                              ? garage.products![0].price
+                                                      ?.toString() ??
+                                                  ''
+                                              : (garage.products![0].categoryId ==
+                                                      '2'
+                                                  ? garage.products![0].price
+                                                          ?.toString() ??
+                                                      ''
+                                                  : garage.products![0].oilextra![0]
+                                                          .price
+                                                          ?.toString() ??
+                                                      '')),
+                                      size: 9,
+                                      maxLines: 1,
+                                      overFlow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.darkblue,
+                                    ),Gap(5),
+                                    AppText(
+                                      title: ' AED',
+                                        size: 9,
+                                      maxLines: 1,
+                                      overFlow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.darkblue,
+                                    )
+                                  ],
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        // const Gap(4),
                       ],
                     ),
                     Padding(

@@ -48,7 +48,7 @@ class UserVehicles {
       vehicle_info: json['vehicle_info'],
       image: json['image'],
       vehiclebrand: vehicleBrand.fromJson(json['vehicle_brand']),
-      vehiclebrandname: vehicleBrandName.fromJson(json['vehicle_brand_name']),
+      vehiclebrandname:json['vehicle_brand_name']!=null? vehicleBrandName.fromJson(json['vehicle_brand_name']):null,
       createdAt: json['createdAt'],
       updatedAt: json['updatedAt'],
     );
