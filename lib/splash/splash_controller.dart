@@ -23,7 +23,6 @@ class SplashController extends GetxController {
     initscreen();
   }
 
-
   void initscreen() async {
     await Future.delayed(const Duration(seconds: 3), () {
       checkFirstSeen();
@@ -43,7 +42,7 @@ class SplashController extends GetxController {
     String? user_verified = box.read('number_verified');
 
     if (apiToken == null) {
-      Get.offNamed(AppRoutes.selectside);
+      Get.offNamed(AppRoutes.selectlang);
     } else {
       if (usertype == 'vendor') {
         Get.offNamed(AppRoutes.vhome);
