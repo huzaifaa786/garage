@@ -74,7 +74,7 @@ class SignupView extends StatelessWidget {
                             ),
                             Gap(30),
                             MainInput(
-                              hint: 'Name'.tr,
+                              hint: ConstantStrings.name.tr,
                               controller: controller.nameController,
                               errorText: controller.nameError,
                               onchange: (p0) {

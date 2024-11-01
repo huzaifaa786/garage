@@ -46,7 +46,7 @@ class ConstantStrings {
   // static const select_language = 'Select \n language';
 
   //* G
-  static const garageOwner =  'Garage Owner';
+  static const garageOwner = 'Garage Owner';
   // static const select_language = 'Select \n language';
   // static const select_language = 'Select \n language';
   // static const select_language = 'Select \n language';
@@ -95,7 +95,7 @@ class ConstantStrings {
   // static const select_language = 'Select \n language';
 
   //* N
-  // static const select_language = 'Select \n language';
+  static const name = 'Name';
   // static const select_language = 'Select \n language';
   // static const select_language = 'Select \n language';
   // static const select_language = 'Select \n language';
