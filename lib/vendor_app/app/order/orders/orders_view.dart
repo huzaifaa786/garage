@@ -20,40 +20,53 @@ class VOrdersView extends StatelessWidget {
         hasShadow: false,
         child: controller.pendingOrders.isNotEmpty ||
                 controller.acceptedOrders.isNotEmpty ||
-                controller.onTheWayOrders.isNotEmpty||
+                controller.onTheWayOrders.isNotEmpty ||
                 controller.deliveredOrders.isNotEmpty
             ? Column(
                 children: [
                   const FilterView(),
-                  Expanded(
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: controller.getItemCount(),
-                      itemBuilder: (BuildContext context, int index) {
-                        final orders = controller.getOrder(index);
-                        return Column(
-                          children: [
-                            OrdersCard(
-                              order: orders,
-                              ontapReject: () {
-                                controller.rejectedOrder(orders.id.toString());
-                              },
-                              ontapAccept: () {
-                                controller.acceptOrder(orders.id.toString());
-                              },
-                              ontapOnway: () {
-                                controller.ontheWayOrder(orders.id.toString());
-                              },
-                              ontapDelivered: () {
-                                controller.deliveredOrder(orders.id.toString());
-                              },
-                            ),
-                            Gap(20),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
+                  controller.pendingOrders.isNotEmpty ||
+                          controller.acceptedOrders.isNotEmpty ||
+                          controller.onTheWayOrders.isNotEmpty ||
+                          controller.deliveredOrders.isNotEmpty
+                      ? Expanded(
+                          child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: controller.getItemCount(),
+                            itemBuilder: (BuildContext context, int index) {
+                              final orders = controller.getOrder(index);
+                              return Column(
+                                children: [
+                                  OrdersCard(
+                                    order: orders,
+                                    ontapReject: () {
+                                      controller
+                                          .rejectedOrder(orders.id.toString());
+                                    },
+                                    ontapAccept: () {
+                                      controller
+                                          .acceptOrder(orders.id.toString());
+                                    },
+                                    ontapOnway: () {
+                                      controller
+                                          .ontheWayOrder(orders.id.toString());
+                                    },
+                                    ontapDelivered: () {
+                                      controller
+                                          .deliveredOrder(orders.id.toString());
+                                    },
+                                  ),
+                                  Gap(20),
+                                ],
+                              );
+                            },
+                          ),
+                        )
+                      : Center(
+                          child: AppText(
+                            title: 'No Orders Found',
+                          ),
+                        ),
                 ],
               )
             : Center(
