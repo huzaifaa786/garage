@@ -9,7 +9,16 @@ import 'package:mobilegarage/user_app/app/chat_screen/components/app_bar/chat_ap
 import 'package:mobilegarage/user_app/app/chat_screen/components/input_field/chat_text_field.dart';
 
 class ChatScreenView extends StatefulWidget {
-  const ChatScreenView({super.key});
+  const ChatScreenView(
+      {super.key,
+      this.id,
+       this.name,
+       this.profilePic,
+      this.screen});
+  final String? id;
+  final String? name;
+  final String? profilePic;
+  final String? screen;
 
   @override
   State<ChatScreenView> createState() => _ChatScreenViewState();
@@ -36,7 +45,8 @@ class _ChatScreenViewState extends State<ChatScreenView> {
           ),
         ),
         bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             child: Row(
@@ -49,7 +59,6 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                   child: ChatInputField(
                     obscure: false,
                     readOnly: false,
-                    
                     suffiximage: "assets/icons/sent_icon.svg",
                   ),
                 ),

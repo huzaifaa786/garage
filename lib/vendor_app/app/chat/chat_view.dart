@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:mobilegarage/vendor_app/app/chat/chat_controller.dart';
 import 'package:mobilegarage/vendor_app/app/chat/component/chat_card.dart';
@@ -17,7 +16,7 @@ class _VChatViewState extends State<VChatView> {
   Widget build(BuildContext context) {
     return GetBuilder<VChatController>(
         autoRemove: false,
-        builder: (controller) => const AppLayout(
+        builder: (controller) =>  AppLayout(
               appBarTitle: 'Chat',
               hasBgColor: true,
               child: Column(
