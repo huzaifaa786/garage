@@ -1,17 +1,13 @@
-import 'package:mobilegarage/models/ac_models/ac_extra_model.dart';
 import 'package:mobilegarage/models/brand_model.dart';
-import 'package:mobilegarage/models/car_wash_models/car_wash_extra_model.dart';
 import 'package:mobilegarage/models/fuel_models/fuel_extra_model.dart';
 import 'package:mobilegarage/models/oil_models/extra_model.dart';
 import 'package:mobilegarage/models/product_image.dart';
 import 'package:mobilegarage/models/product_model.dart';
-import 'package:mobilegarage/models/recovery_models/recovery_extra_model.dart';
-import 'package:mobilegarage/models/road_assistance_models/road_extra_model.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
 
 class CartModel {
   int? id;
-  int? userId;
+  String? userId;
   int? garageId;
   String? totalAmount;
   int? totalQuantity;
@@ -66,7 +62,7 @@ class CartItemModel {
 //
   // List<FuelExtraModel>? fuelextra = [];
 
- FuelExtraModel? fuelextra;
+  FuelExtraModel? fuelextra;
   BrandModel? brand;
 
 //
@@ -95,7 +91,6 @@ class CartItemModel {
     this.oilextra,
     // this.recoveryextra,
     // this.roadextra,
-  
   });
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) {
@@ -114,13 +109,12 @@ class CartItemModel {
       oilextra: json['product_extra'] != null
           ? [OilExtraModel.from(json['product_extra'])]
           : [],
-          fuelextra: json['product_extra'] != null
+      fuelextra: json['product_extra'] != null
           ? FuelExtraModel.from(json['product_extra'])
           : null,
-           brand: 
-           json['product']['brand'] != null
-              ? BrandModel.from(json['product']['brand'])
-              : null,
+      brand: json['product']['brand'] != null
+          ? BrandModel.from(json['product']['brand'])
+          : null,
       // recoveryextra: json['product_extra'] != null
       //     ? [
       //         RecoveryExtraModel.from(json['product_extra'])
