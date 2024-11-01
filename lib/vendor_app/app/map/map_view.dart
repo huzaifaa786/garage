@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
-
 import 'map_controller.dart';
 
 class VMapView extends StatelessWidget {
@@ -17,13 +16,13 @@ class VMapView extends StatelessWidget {
         hasShadow: false,
         child: GoogleMap(
           initialCameraPosition: CameraPosition(
-            target: LatLng(25.2048, 55.2708),
+            target: LatLng(double.parse(controller.lat.toString()),
+                double.parse(controller.lng.toString())),
             zoom: 14,
           ),
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
-          markers:  Set<Marker>(),
-        
+          markers: Set<Marker>(),
         ),
       ),
     );

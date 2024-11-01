@@ -18,6 +18,8 @@ class VMapController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    lat = double.parse(Get.parameters['lat'].toString());
+    lng = double.parse(Get.parameters['lng'].toString());
   }
 
   Future<void> requestLocationPermission() async {

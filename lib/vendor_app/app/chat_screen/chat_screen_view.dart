@@ -9,6 +9,7 @@ import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_controller.dar
 import 'package:mobilegarage/user_app/app/chat_screen/components/app_bar/chat_appbar.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/components/input_field/chat_text_field.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/app/chat/chat_controller.dart';
 
 class ChatScreenView extends StatefulWidget {
   const ChatScreenView({super.key});
@@ -20,7 +21,7 @@ class ChatScreenView extends StatefulWidget {
 class _ChatScreenViewState extends State<ChatScreenView> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ChatScreenController>(
+    return GetBuilder<VChatController>(
       autoRemove: false,
       builder: (controller) => Scaffold(
         body: ChatAppbar(

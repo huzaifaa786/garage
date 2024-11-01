@@ -23,12 +23,17 @@ class _VChatViewState extends State<VChatView> {
                 children: [
                   ChatCard(
                     name: 'Mohammed',
+                    img:  'https://dummyimage.com/50x47/000/fff',
                   ),
                   ChatCard(
                     name: 'Ahmed52',
+                    img:  'https://dummyimage.com/50x47/000/fff',
+
                   ),
                   ChatCard(
                     name: 'Ahmed alhagiry',
+                    img:  'https://dummyimage.com/50x47/000/fff',
+
                   ),
                 ],
               ),
