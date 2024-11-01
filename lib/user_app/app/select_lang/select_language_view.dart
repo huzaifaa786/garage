@@ -5,12 +5,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_controller.dart';
-import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/cards/language_card.dart';
 import 'package:mobilegarage/user_app/components/enums/enums.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SelectLanguageView extends StatelessWidget {
   const SelectLanguageView({super.key});
@@ -32,13 +32,17 @@ class SelectLanguageView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-             // Image.asset('assets/images/splash_logo.png'),
-             Padding(
-              padding: EdgeInsets.only(top: 30,bottom: 20),
-               child: SvgPicture.asset('assets/icons/mobile_garagelogo.svg',color:AppColors.white,height: 100,
-                  width: 207,),
-             ),
-               
+              // Image.asset('assets/images/splash_logo.png'),
+              Padding(
+                padding: EdgeInsets.only(top: 30, bottom: 20),
+                child: SvgPicture.asset(
+                  'assets/icons/mobile_garagelogo.svg',
+                  color: AppColors.white,
+                  height: 100,
+                  width: 207,
+                ),
+              ),
+
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
@@ -59,7 +63,7 @@ class SelectLanguageView extends StatelessWidget {
                           children: [
                             Gap(30),
                             AppText(
-                              title: 'Select \n language',
+                              title: ConstantStrings.select_language.tr,
                               textAlign: TextAlign.center,
                               size: 32,
                               fontWeight: FontWeight.w600,
@@ -74,12 +78,11 @@ class SelectLanguageView extends StatelessWidget {
                                 ontap: () async {
                                   await controller
                                       .toggleplan(translateMethod.English);
-                                      Get.offAllNamed(AppRoutes.selectside);
+                                  Get.offAllNamed(AppRoutes.selectside);
                                 },
-                                title: 'English',
+                                title: ConstantStrings.english.tr,
                                 isSelected:
                                     controller.site == translateMethod.English,
-                                    
                               ),
                             ),
                             Gap(30),
@@ -90,10 +93,9 @@ class SelectLanguageView extends StatelessWidget {
                                 ontap: () async {
                                   await controller
                                       .toggleplan(translateMethod.Arabic);
-                                      Get.offAllNamed(AppRoutes.selectside);
+                                  Get.offAllNamed(AppRoutes.selectside);
                                 },
-                                title: 'العربية'.tr,
-                              
+                                title: ConstantStrings.arabic.tr,
                                 isSelected:
                                     controller.site == translateMethod.Arabic,
                               ),
