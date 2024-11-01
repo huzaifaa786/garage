@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_controller.dart';
+import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/Components/charts_card.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_controller.dart';
-import 'package:mobilegarage/user_app/components/app_bar/icon_top_bar.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -18,7 +20,7 @@ class ChatsAccountsView extends StatefulWidget {
 class _ChatsAccountsViewState extends State<ChatsAccountsView> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ChatsAccountsController>(
+    return GetBuilder<ChatScreenController>(
         builder: (controller) => Scaffold(
               appBar: AppBar(
                 toolbarHeight: Get.height * 0.1,
@@ -42,7 +44,28 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                           return Container(
                               color: AppColors.grey.shade100,
                               child: ChartsCard(
-                                item: item,
+                                name: 'item',
+                                img: 'assets/images/street_garage.png',
+                                msg: 'Tap here to view messages',
+                                ontap: (){
+                                  // Get.toNamed(AppRoutes.chatScreen,parameters: {
+                                  //   'id':'1',
+                                  //   'name':'item',
+                                  //   'img':'assets/images/street_garage.png',
+                                  //   'screen':'chat',
+
+                                  // });
+                                   Get.to(() =>ChatScreenView(
+                                      id: 'chatController.scontacts[index].id',
+                                    name: 'chatController',
+                                        // .scontacts[index].username,
+                                    profilePic: 'chatController',
+                                        // .scontacts[index].profilePic,
+                                    screen: 'chat'
+                                   )
+                                   
+                                   );
+                                },
                               ));
                         })
                   ],
