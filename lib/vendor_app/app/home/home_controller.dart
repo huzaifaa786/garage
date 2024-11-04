@@ -35,7 +35,7 @@ class VHomeController extends GetxController {
   }
 
   getReviews() async {
-    var response = await GarageReviewsApi.garageReviews();
+    var response = await GarageReviewsApi.garageReviews(garage!.id.toString());
     if (response.isNotEmpty && response['ratings'] != null) {
       garageReviews = (response['ratings'] as List<dynamic>)
           .map((item) => GarageReviewsModel.fromJson(item))

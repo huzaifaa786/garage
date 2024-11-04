@@ -18,10 +18,16 @@ class ChatInputField extends StatelessWidget {
     this.onChange,
     this.ontap,
     this.suffiximage,
+    this.onSubmit,
+    this.onsendtap
   });
 
   final ValueChanged<String>? onChange;
+  final ValueChanged<String>? onSubmit;
+
   final VoidCallback? ontap;
+  final VoidCallback? onsendtap;
+
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final bool obscure;
@@ -49,6 +55,7 @@ class ChatInputField extends StatelessWidget {
         onChanged: onChange,
         validator: validator,
         onTap: ontap,
+        onFieldSubmitted: onSubmit,
         autovalidateMode: autovalidateMode ??
             (validator == null
                 ? AutovalidateMode.disabled
@@ -65,7 +72,7 @@ class ChatInputField extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
 
           suffixIcon: GestureDetector(
-            onTap: () {},
+            onTap: onsendtap,
             child: SvgPicture.asset(
               suffiximage.toString(),
               height: 20,
