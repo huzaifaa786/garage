@@ -9,15 +9,11 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 class OrderHistoryCard extends StatelessWidget {
   final OrdersModel? order;
   final GarageModel? garage;
-  // final String deliveryDate; // New parameter for delivery date
-  // final String deliveryTime; 
 
   OrderHistoryCard({
     super.key,
     required this.order,
     required this.garage,
-    // required this.deliveryDate,
-    // required this.deliveryTime,
   });
 
   @override
@@ -55,7 +51,7 @@ class OrderHistoryCard extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: '(${order!.id})',
+                          text: '( ${order!.id} )',
                           style: TextStyle(
                             fontSize: 10,
                             color: AppColors.primarybg,
@@ -74,13 +70,19 @@ class OrderHistoryCard extends StatelessWidget {
                   itemCount: order!.orderItems!.length,
                   itemBuilder: (BuildContext context, int index) {
                     final items = order!.orderItems![index];
-                    return OrderProductCard(
-                      orders: order,
-                      items: items,
-                      garage: garage,
-
-                      // deliveryDate: deliveryDate,
-                      // deliveryTime: deliveryTime,
+                    return Column(
+                      children: [
+                        OrderProductCard(
+                          orders: order,
+                          items: items,
+                          garage: garage,
+                        ),
+                        if (order!.orderItems!.length != 1)
+                          Divider(
+                            thickness: 3,
+                            color: AppColors.grey.shade200,
+                          ),
+                      ],
                     );
                   }),
             ],

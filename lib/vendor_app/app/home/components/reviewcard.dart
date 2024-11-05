@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_typing_uninitialized_variables
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,7 +16,7 @@ class Reviewcard extends StatelessWidget {
   Reviewcard({
     super.key,
     required this.reviews,
-    this.img = 'assets/images/default_image.svg',
+    this.img,
     // this.ordername,
     // this.name,
   });
@@ -60,10 +59,10 @@ class Reviewcard extends StatelessWidget {
                             ),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(38),
-                                child: SvgPicture.network(
+                                child:
+                                 Image.asset(
                                   img,
-                                  placeholderBuilder: (context) =>
-                                      const CircularProgressIndicator(),
+                                  
                                   fit: BoxFit.cover,
                                 )
                                 //  CachedNetworkImage(
@@ -112,10 +111,11 @@ class Reviewcard extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                AppText(
-                                  maxLines: 2,
-                                  title: reviews.comment.toString(),
-                                )
+                                if (reviews.comment != null)
+                                  AppText(
+                                    maxLines: 2,
+                                    title: reviews.comment.toString(),
+                                  )
                               ],
                             ),
                           ),

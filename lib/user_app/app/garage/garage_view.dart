@@ -130,90 +130,95 @@ class GarageView extends StatelessWidget {
                         ),
                       ),
                       Gap(20),
-                      if(controller.garage!.garageTime!.isNotEmpty)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset('assets/icons/sun.svg'),
-                          Gap(5),
-                          RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              text: 'Opened from ',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.grey,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: controller.garage!.garageTime![0].openTime.toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.black),
+                      if (controller.garage!.garageTime!.isNotEmpty)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset('assets/icons/sun.svg'),
+                            Gap(5),
+                            RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                text: 'Opened from ',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.grey,
                                 ),
-                                TextSpan(
-                                  text: ' to ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.grey,
+                                children: [
+                                  TextSpan(
+                                    text: controller
+                                        .garage!.garageTime![0].openTime
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black),
                                   ),
-                                ),
-                                TextSpan(
-                                  text: controller.garage!.garageTime![0].closeTime.toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.black),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      if(controller.garage!.garageTime!.isNotEmpty)
-
-                      Gap(5),
-                      if(controller.garage!.garageTime!.isNotEmpty)
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset('assets/icons/moon.svg'),
-                          Gap(5),
-                          RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              text: 'Opened from ',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.grey,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: controller.garage!.garageTime![1].openTime.toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.black),
-                                ),
-                                TextSpan(
-                                  text: ' to ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.grey,
+                                  TextSpan(
+                                    text: ' to ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.grey,
+                                    ),
                                   ),
+                                  TextSpan(
+                                    text: controller
+                                        .garage!.garageTime![0].closeTime
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      if (controller.garage!.garageTime!.isNotEmpty) Gap(5),
+                      if (controller.garage!.garageTime!.isNotEmpty)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset('assets/icons/moon.svg'),
+                            Gap(5),
+                            RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                text: 'Opened from ',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.grey,
                                 ),
-                                TextSpan(
-                                  text: controller.garage!.garageTime![1].openTime.toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.black),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                children: [
+                                  TextSpan(
+                                    text: controller
+                                        .garage!.garageTime![1].openTime
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black),
+                                  ),
+                                  TextSpan(
+                                    text: ' to ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.grey,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: controller
+                                        .garage!.garageTime![1].openTime
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       Padding(
                         padding: const EdgeInsets.only(top: 25),
                         child: Stack(
@@ -267,7 +272,7 @@ class GarageView extends StatelessWidget {
                               height: Get.height * 0.05,
                               child: GestureDetector(
                                 onTap: () {
-                                  // print('object23');
+                                  Get.toNamed(AppRoutes.chatScreen);
                                 },
                                 child: Container(
                                   height: Get.height * 0.045,

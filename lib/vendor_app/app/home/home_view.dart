@@ -46,6 +46,9 @@ class _VHomeViewState extends State<VHomeView> {
                     'garageId': controller.garage!.id.toString(),
                   });
                 },
+                name: controller.garage != null
+                                  ? controller.garage!.name!
+                                  : "Street Garage",
               ),
             ),
             body: SingleChildScrollView(
@@ -234,8 +237,9 @@ class _VHomeViewState extends State<VHomeView> {
                                   ReviewBox(
                                     icon: 'assets/images/star.png',
                                     text: 'My reviews',
-                                    ontap: () =>
-                                        _openReviewBottomSheet(context),
+                                    ontap: () {
+                                      _openReviewBottomSheet(context);
+                                    },
                                   ),
                                   ReviewBox(
                                     ontap: () {
@@ -322,6 +326,7 @@ class _VHomeViewState extends State<VHomeView> {
                         final item = controller.garageReviews![index];
                         return Reviewcard(
                           reviews: item,
+                          img:  'assets/images/user_icon.png',
                         );
                       },
                     ),

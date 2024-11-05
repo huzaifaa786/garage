@@ -40,10 +40,10 @@ class _ChatScreenViewState extends State<ChatScreenView> {
   }
  @override
   void initState() {
-    chatController.massages = RxList([]);
-    msg();
-    chatController.initPusher(widget.id);
-    chatController.fetchmassage(widget.id);
+    // chatController.massages = RxList([]);
+    // msg();
+    // chatController.initPusher(widget.id);
+    // chatController.fetchmassage(widget.id);
     super.initState();
   }
 

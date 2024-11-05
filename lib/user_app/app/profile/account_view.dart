@@ -65,17 +65,26 @@ class _AccountViewState extends State<AccountView> {
                               userphone: controller.user!.phone.toString(),
                               image: controller.user!.image.toString(),
                               ontap: () {
-                                Get.toNamed(
-                                  AppRoutes.editprofile,
-                                  arguments: {
-                                    'image': controller.user!.image != null
-                                        ? controller.user!.image.toString()
-                                        : 'https://dummyimage.com/60x60/ede4ed/fff',
-                                    'userName': controller.user!.name,
-                                    'userNumber': controller.user!.phone,
-                                    'userEmail': controller.user!.email,
-                                  },
-                                )!
+                                Get.toNamed(AppRoutes.editprofile, parameters: {
+                                  'image': 
+                                  // controller.user!.image != ''
+                                      controller.user!.image.toString(),
+                                      // : 'https://dummyimage.com/60x60/ede4ed/fff',
+                                  'userName': controller.user!.name.toString(),
+                                  'userNumber':
+                                      controller.user!.phone.toString(),
+                                  'userEmail':
+                                      controller.user!.email.toString(),
+                                }
+                                        // arguments: {
+                                        //   'image': controller.user!.image != null
+                                        //       ? controller.user!.image.toString()
+                                        //       : 'https://dummyimage.com/60x60/ede4ed/fff',
+                                        //   'userName': controller.user!.name,
+                                        //   'userNumber': controller.user!.phone,
+                                        //   'userEmail': controller.user!.email,
+                                        // },
+                                        )!
                                     .then(
                                   (value) {
                                     controller.userdata();

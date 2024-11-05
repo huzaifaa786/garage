@@ -117,6 +117,7 @@ class MyLocationController extends GetxController {
     super.onInit();
     await getEmirates();
     await userdata();
+    update();
   }
 
   Future<void> getPlaceName(double latitude, double longitude) async {
@@ -136,9 +137,12 @@ class MyLocationController extends GetxController {
     if (response.isNotEmpty) {
       user = UserModel.fromJson(response['user']);
       adreesdetailController.text = user!.addressDetail.toString();
-      lat = double.tryParse(user!.lat!);
-      lng = double.tryParse(user!.lng!);
-      getPlaceName(lat!, lng!);
+
+      if (user!.lng != '0' && user!.lat != '0') {
+        lat = double.tryParse(user!.lat!);
+        lng = double.tryParse(user!.lng!);
+        getPlaceName(lat!, lng!);
+      }
       update();
     }
   }

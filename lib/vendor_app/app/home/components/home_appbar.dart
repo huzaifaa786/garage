@@ -5,14 +5,16 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class HomeAppbar extends StatelessWidget {
-  const HomeAppbar({
+   HomeAppbar({
     super.key,
     this.notification,
     this.chat,
+    this.name
   });
 
   final notification;
   final chat;
+  String? name='Street Garage';
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,11 @@ class HomeAppbar extends StatelessWidget {
           Row(
             children: [
               Image.asset('assets/images/appbar.png'),
-              const AppText(
-                title: '  Street Garage',
+               AppText(
+                title:'  '+ name.toString(),
                 size: 12,
                 fontWeight: FontWeight.w600,
+                color: const Color.fromARGB(255, 158, 9, 12),
               ),
             ],
           ),

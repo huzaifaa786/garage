@@ -40,7 +40,7 @@ class _PromotionViewState extends State<PromotionView> {
         ),
         body: SafeArea(
           child: Container(
-            padding: const EdgeInsets.only(left: 46, top: 40),
+            padding: const EdgeInsets.only(left: 46, top: 40,right: 45),
             child: controller.getPromotions.isEmpty
                 ? const Center(
                     child: AppText(

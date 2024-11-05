@@ -905,7 +905,7 @@ class EditProductController extends GetxController {
           context: Get.context,
           description: 'Your product / service has been\n added successfully!',
           onTap: () {
-            Get.offAllNamed(AppRoutes.vproductlist);
+            Get.offAllNamed(AppRoutes.vhome);
           },
           title: 'Done!');
       update();

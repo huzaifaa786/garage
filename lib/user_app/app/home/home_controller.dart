@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/store_ratings_api.dart';
-import 'package:mobilegarage/apis/vender_apis/home_apis/garage_review_api.dart';
-import 'package:mobilegarage/models/garage_reviews_model.dart';
+import 'package:mobilegarage/apis/user_apis/notification_apis/notification_count_api.dart';
 import 'package:mobilegarage/models/user_model/banner_model.dart';
 import 'package:mobilegarage/models/user_model/services_model.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
@@ -21,15 +20,23 @@ class HomeController extends GetxController {
   List<BannerModel> banners = [];
   List<ServicesModel> servicesList = [];
   GetStorage box = GetStorage();
-
+String? notificationcount=''; 
   @override
   void onInit() async {
     super.onInit();
     await getBanners();
     await getServices();
     await getGarageRatings();
+   await countNotification();
   }
-
+ countNotification() async {
+    var response = await UserNotificationCountApi.countNotification();
+    if (response.isNotEmpty) {
+  notificationcount =response['count'].toString();
+    update();
+      
+    }
+  }
   int currentIndex = 0;
 
   void updateIndex(int index) {

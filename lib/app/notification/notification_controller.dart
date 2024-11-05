@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/notification_apis/get_notification_api.dart';
+import 'package:mobilegarage/apis/user_apis/notification_apis/notification_seen_api.dart';
 import 'package:mobilegarage/models/notifications_model.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -13,7 +14,9 @@ class NotificationController extends GetxController {
   List<NotificationsModel> notifications = [];
   getNotification() async {
     var response = await GetNotificationApi.getNotification();
-    if (response.isNotEmpty) {
+    if (response.isNotEmpty &&
+        response['data'] != null &&
+        response['data'] is List<dynamic>) {
       notifications = (response['success']['data'] as List<dynamic>)
           .map((item) => NotificationsModel.fromJson(item))
           .toList();
@@ -37,7 +40,12 @@ class NotificationController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     await getNotification();
-    // print(activestatus);
+    seenNotification();
+  }
+
+  seenNotification() async {
+    var response = await UserNotificationSeenApi.seenNotification();
+    update();
   }
 
   List<StepperData> getstepperData(String status) => [

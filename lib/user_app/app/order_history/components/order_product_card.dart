@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/order_models/order_items_model.dart';
 import 'package:mobilegarage/models/order_models/orders_model.dart';
-import 'package:mobilegarage/user_app/app/order_history/order_history_controller.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -63,8 +61,8 @@ class OrderProductCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 28.0,
-                    height: 28.0,
+                    width: 24.0,
+                    height: 24.0,
                     decoration: BoxDecoration(
                       color: Color(0xff7c94b6),
                       image: DecorationImage(
@@ -77,25 +75,30 @@ class OrderProductCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Gap(2),
-                  AppText(
-                    title: garage?.name ?? '',
-                    fontWeight: FontWeight.w600,
-                    size: 12,
-                    color: AppColors.primarybg,
+                  Gap(4),
+                  Expanded(
+                    child: AppText(
+                      title: garage?.name ?? '',
+                      fontWeight: FontWeight.w600,
+                      size: 12,
+                      color: AppColors.primarybg,
+                      maxLines: 1,
+                    ),
                   ),
                 ],
               ),
+              Gap(4),
               Row(
                 children: [
-                  AppText(
-                    title:
-                        // items?.productsExtra?.categoryExtra?.name == ''
-                        //     ? items?.productsExtra?.categoryExtra?.name ?? ''
-                        //     :
-                        items?.productsExtra?.categoryExtra?.name ?? '',
-                    size: 10,
-                    fontWeight: FontWeight.w600,
+                  Flexible(
+                    child: AppText(
+                      title: items?.productsExtra != null
+                          ? items?.productsExtra?.categoryExtra?.name ?? ''
+                          : items?.products?.brands?.name ?? '',
+                      size: 10,
+                      fontWeight: FontWeight.w600,
+                      maxLines: 1,
+                    ),
                   ),
                   Gap(3),
                   RichText(
@@ -145,7 +148,7 @@ class OrderProductCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Gap(2),
+              Gap(4),
               Row(
                 children: [
                   SvgPicture.asset("assets/icons/cars.svg"),
@@ -185,7 +188,7 @@ class OrderProductCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Gap(2),
+                  Gap(4),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
