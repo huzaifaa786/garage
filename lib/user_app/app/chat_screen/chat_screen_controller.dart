@@ -78,7 +78,6 @@ class ChatScreenController extends GetxController {
   //     "showcolor": true,
   //   },
   // ];
-
   RxList<Msg> massages = <Msg>[].obs;
 
   TextEditingController massagecontroller = TextEditingController();
