@@ -174,6 +174,10 @@ class GarageView extends StatelessWidget {
                             )
                           ],
                         ),
+                      if (controller.garage!.opened == false)
+                        AppText(
+                          title: 'Garage is currently off',
+                        ),
                       if (controller.garage!.garageTime!.isNotEmpty) Gap(5),
                       if (controller.garage!.garageTime!.isNotEmpty)
                         Row(

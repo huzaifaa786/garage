@@ -14,11 +14,7 @@ import 'dart:io' as io;
 
 class ChatScreenView extends StatefulWidget {
   const ChatScreenView(
-      {super.key,
-      this.id,
-       this.name,
-       this.profilePic,
-      this.screen});
+      {super.key, this.id, this.name, this.profilePic, this.screen});
   final String? id;
   final String? name;
   final String? profilePic;
@@ -31,20 +27,12 @@ class ChatScreenView extends StatefulWidget {
 class _ChatScreenViewState extends State<ChatScreenView> {
   final ChatScreenController chatController = Get.put(ChatScreenController());
 
-   GetStorage box = GetStorage();
+  GetStorage box = GetStorage();
   PusherChannelsFlutter pusher = PusherChannelsFlutter.getInstance();
 
   msg() async {
     await chatController.makeseen(widget.id!);
     await chatController.unseenchat();
-  }
- @override
-  void initState() {
-    // chatController.massages = RxList([]);
-    // msg();
-    // chatController.initPusher(widget.id);
-    // chatController.fetchmassage(widget.id);
-    super.initState();
   }
 
   @override
@@ -69,10 +57,19 @@ class _ChatScreenViewState extends State<ChatScreenView> {
         .exists();
     return fileExist;
   }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ChatScreenController>(
       autoRemove: false,
+      initState: (state) {
+        Future.delayed(Duration(milliseconds: 100), () {
+          chatController.massages = RxList([]);
+          msg();
+          chatController.initPusher(widget.id);
+          chatController.fetchmassage(widget.id);
+        });
+      },
       builder: (controller) => Scaffold(
         body: ChatAppbar(
           hasIcon: true,
@@ -86,49 +83,44 @@ class _ChatScreenViewState extends State<ChatScreenView> {
               //      height: Get.height * 0.75,
               //   ),
               // ),
-               Expanded(
-                    child: ListView.builder(
-                        reverse: true, // Set reverse to true
-                        itemCount: controller.massages.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                          bool fileExist = false;
-                          checkFileExistance(index)
-                              .then((value) => fileExist = value);
-                          print(fileExist);
-                          return ReplyMessageCard(
-                            msg: controller
-                                .massages[
-                                    controller.massages.length - 1 - index]
-                                .body
-                                .toString(), // Reverse the index
-                            Time: getTime(controller
-                                .massages[
-                                    controller.massages.length - 1 - index]
-                                .dateTime), // Reverse the index
-                            sender: controller
-                                        .massages[controller.massages.length -
-                                            1 -
-                                            index]
-                                        .to_id ==
-                                    widget.id
-                                ? false
-                                : true,
-                            fileName: controller
-                                .massages[
-                                    controller.massages.length - 1 - index]
-                                .file_name,
-                            fileType: controller
-                                .massages[
-                                    controller.massages.length - 1 - index]
-                                .file_type,
-                            fileTitle: controller
-                                .massages[
-                                    controller.massages.length - 1 - index]
-                                .file_title,
-                            fileExist: fileExist,
-                          );
-                        })),
+              Expanded(
+                  child: ListView.builder(
+                      reverse: true, // Set reverse to true
+                      itemCount: controller.massages.length,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        bool fileExist = false;
+                        checkFileExistance(index)
+                            .then((value) => fileExist = value);
+                        print(fileExist);
+                        return ReplyMessageCard(
+                          msg: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .body
+                              .toString(), // Reverse the index
+                          Time: getTime(controller
+                              .massages[controller.massages.length - 1 - index]
+                              .dateTime), // Reverse the index
+                          sender: controller
+                                      .massages[controller.massages.length -
+                                          1 -
+                                          index]
+                                      .to_id ==
+                                  widget.id
+                              ? false
+                              : true,
+                          fileName: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .file_name,
+                          fileType: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .file_type,
+                          fileTitle: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .file_title,
+                          fileExist: fileExist,
+                        );
+                      })),
             ],
           ),
         ),
@@ -141,13 +133,32 @@ class _ChatScreenViewState extends State<ChatScreenView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset("assets/icons/Group 473.svg"),
+                GestureDetector(
+                    onTap: () {
+                     controller.picksinglefile();
+                  },
+                  child: SvgPicture.asset("assets/icons/Group 473.svg")),
                 Gap(8),
                 Flexible(
                   child: ChatInputField(
                     obscure: false,
                     readOnly: false,
                     suffiximage: "assets/icons/sent_icon.svg",
+                      controller: controller.massagecontroller,
+                    onSubmit: (value) {
+                      if (value.trim().isNotEmpty) {
+                        // Send the message when 'Enter' is pressed and the input is not empty
+                        chatController.sendMassage();
+                      }
+                      setState(() {});
+                    },
+                    onsendtap: () {
+                      if (chatController.massagecontroller.text
+                          .trim()
+                          .isNotEmpty) {
+                        chatController.sendMassage();
+                      }
+                    },
                   ),
                 ),
                 Gap(8),

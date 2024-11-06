@@ -9,8 +9,10 @@ class HomeAppbar extends StatelessWidget {
     super.key,
     this.notification,
     this.chat,
-    this.name
+    this.name,
+    this.isnotification = true
   });
+  final isnotification;
 
   final notification;
   final chat;
@@ -44,6 +46,8 @@ class HomeAppbar extends StatelessWidget {
                       padding: const EdgeInsets.all(6),
                       child: SvgPicture.asset('assets/images/bell.svg'),
                     ),
+                      if(isnotification==true)
+
                     Positioned(
                       top: 3,
                       right: 0,

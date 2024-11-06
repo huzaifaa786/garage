@@ -47,17 +47,24 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
                 child: Column(
                   children: [
                     Gap(5),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        itemCount: controller.orders!.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final orders = controller.orders![index];
-                          return OrderHistoryCard(
-                            order: orders,
-                            garage: orders.garage,
-                          );
-                        }),
+                    controller.orders!.isNotEmpty
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: controller.orders!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final orders = controller.orders![index];
+                              return OrderHistoryCard(
+                                order: orders,
+                                garage: orders.garage,
+                              );
+                            })
+                        : Center(
+                            child: AppText(
+                              title: 'No order Found!',
+                              color: AppColors.darkGrey,
+                            ),
+                          ),
                   ],
                 ),
               ),

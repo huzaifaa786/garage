@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/vender_apis/notifications_api/garage_notification_seen_api.dart';
 import 'package:mobilegarage/apis/vender_apis/notifications_api/notifications_api.dart';
 import 'package:mobilegarage/models/notifications_model.dart';
 
@@ -8,12 +9,17 @@ class VNotificationController extends GetxController {
 
   String? garageId = '';
   @override
-  void onInit() {
+  void onInit()async {
     super.onInit();
     garageId = Get.parameters['garageId'] ?? '';
-    garageNotifications();
-  }
+  await  garageNotifications();
+   await seenNotification();
 
+  }
+ seenNotification() async {
+    var response = await GarageNotificationSeenApi.seenNotification();
+    update();
+  }
   String? image;
   double ratings = 0.0;
   void updateRating(double rating) {

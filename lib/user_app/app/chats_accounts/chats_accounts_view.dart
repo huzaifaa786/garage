@@ -18,14 +18,6 @@ class ChatsAccountsView extends StatefulWidget {
 }
 
 class _ChatsAccountsViewState extends State<ChatsAccountsView> {
-  //  late final ChatScreenController chatController;
-  // static ChatScreenController intance = Get.find();
-  // final ChatScreenController chatController = Get.put(ChatScreenController());
-  // @override
-  // void initState() {
-  //   chatController.getContacts();
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {

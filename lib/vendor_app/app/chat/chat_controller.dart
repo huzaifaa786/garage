@@ -51,7 +51,7 @@ class VChatController extends GetxController {
   initPusher(String? id) async {
     try {
       await pusher.init(
-          apiKey: "4341ec79756753dcfb7b",
+          apiKey: "a62c32373bdcbeea6aa7",
           cluster: "ap2",
           onConnectionStateChange: onConnectionStateChange,
           onError: onError,

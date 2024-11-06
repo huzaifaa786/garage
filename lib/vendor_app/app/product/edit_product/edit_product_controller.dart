@@ -908,6 +908,12 @@ class EditProductController extends GetxController {
             Get.offAllNamed(AppRoutes.vhome);
           },
           title: 'Done!');
+      Future.delayed(Duration(seconds: 3), () {
+        if (Navigator.canPop(Get.context!)) {
+         Get.toNamed(AppRoutes.vhome);
+
+        }
+      });
       update();
     }
     // }

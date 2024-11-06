@@ -63,10 +63,10 @@ class _ChatScreenViewState extends State<ChatDetailScreenView> {
       autoRemove: false,
       initState: (state) {
         Future.delayed(Duration(milliseconds: 100), () {
-          // chatController.massages = RxList([]);
-          // chatController.initPusher(widget.id!);
-          // chatController.fetchmassage(widget.id!);
-          // msg();
+          chatController.massages = RxList([]);
+          chatController.initPusher(widget.id!);
+          chatController.fetchmassage(widget.id!);
+          msg();
         });
       },
       builder: (controller) => Scaffold(
@@ -77,44 +77,44 @@ class _ChatScreenViewState extends State<ChatDetailScreenView> {
           child: Column(
             children: [
             
-              // Expanded(
-              //     child: ListView.builder(
-              //         reverse: true, // Set reverse to true
-              //         itemCount: controller.massages.length,
-              //         scrollDirection: Axis.vertical,
-              //         itemBuilder: (context, index) {
-              //           bool fileExist = false;
-              //           checkFileExistance(index)
-              //               .then((value) => fileExist = value);
-              //           print(fileExist);
-              //           return ReplyMessageCard(
-              //             msg: controller
-              //                 .massages[controller.massages.length - 1 - index]
-              //                 .body
-              //                 .toString(), // Reverse the index
-              //             Time: getTime(controller
-              //                 .massages[controller.massages.length - 1 - index]
-              //                 .dateTime), // Reverse the index
-              //             sender: controller
-              //                         .massages[controller.massages.length -
-              //                             1 -
-              //                             index]
-              //                         .to_id ==
-              //                     widget.id!
-              //                 ? false
-              //                 : true,
-              //             fileName: controller
-              //                 .massages[controller.massages.length - 1 - index]
-              //                 .file_name,
-              //             fileType: controller
-              //                 .massages[controller.massages.length - 1 - index]
-              //                 .file_type,
-              //             fileTitle: controller
-              //                 .massages[controller.massages.length - 1 - index]
-              //                 .file_title,
-              //             fileExist: fileExist,
-              //           );
-              //         })),
+              Expanded(
+                  child: ListView.builder(
+                      reverse: true, // Set reverse to true
+                      itemCount: controller.massages.length,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        bool fileExist = false;
+                        checkFileExistance(index)
+                            .then((value) => fileExist = value);
+                        print(fileExist);
+                        return ReplyMessageCard(
+                          msg: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .body
+                              .toString(), // Reverse the index
+                          Time: getTime(controller
+                              .massages[controller.massages.length - 1 - index]
+                              .dateTime), // Reverse the index
+                          sender: controller
+                                      .massages[controller.massages.length -
+                                          1 -
+                                          index]
+                                      .to_id ==
+                                  widget.id!
+                              ? false
+                              : true,
+                          fileName: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .file_name,
+                          fileType: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .file_type,
+                          fileTitle: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .file_title,
+                          fileExist: fileExist,
+                        );
+                      })),
             ],
           ),
         ),
@@ -129,7 +129,7 @@ class _ChatScreenViewState extends State<ChatDetailScreenView> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    //  controller.picksinglefile();
+                     controller.picksinglefile();
                   },
                   child: SvgPicture.asset("assets/icons/Group 473.svg")),
                 Gap(8),
@@ -142,7 +142,7 @@ class _ChatScreenViewState extends State<ChatDetailScreenView> {
                     onSubmit: (value) {
                       if (value.trim().isNotEmpty) {
                         // Send the message when 'Enter' is pressed and the input is not empty
-                        // chatController.sendMassage();
+                        chatController.sendMassage();
                       }
                       setState(() {});
                     },
@@ -150,12 +150,9 @@ class _ChatScreenViewState extends State<ChatDetailScreenView> {
                       if (chatController.massagecontroller.text
                           .trim()
                           .isNotEmpty) {
-                        // chatController.sendMassage();
+                        chatController.sendMassage();
                       }
                     },
-                    // ontap: () {
-                    //   print('object');
-                    // },
                   ),
                 ),
                 Gap(8),

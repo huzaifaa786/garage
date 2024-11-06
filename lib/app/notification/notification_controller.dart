@@ -40,7 +40,7 @@ class NotificationController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     await getNotification();
-    seenNotification();
+   await seenNotification();
   }
 
   seenNotification() async {

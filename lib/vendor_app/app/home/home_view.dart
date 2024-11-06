@@ -38,6 +38,8 @@ class _VHomeViewState extends State<VHomeView> {
               scrolledUnderElevation: 0,
               automaticallyImplyLeading: false,
               title: HomeAppbar(
+               isnotification:
+                  controller.notificationcount == '0' ? false : true,
                 chat: () {
                   Get.toNamed(AppRoutes.vchat);
                 },
@@ -47,8 +49,8 @@ class _VHomeViewState extends State<VHomeView> {
                   });
                 },
                 name: controller.garage != null
-                                  ? controller.garage!.name!
-                                  : "Street Garage",
+                    ? controller.garage!.name!
+                    : "Street Garage",
               ),
             ),
             body: SingleChildScrollView(
@@ -320,15 +322,22 @@ class _VHomeViewState extends State<VHomeView> {
                   Gap(10),
                   SizedBox(
                     height: Get.height * 0.42,
-                    child: ListView.builder(
-                      itemCount: controller.garageReviews!.length,
+                    child: 
+                    controller.garageReviews.isNotEmpty
+                  ?  ListView.builder(
+                      itemCount: controller.garageReviews.length,
                       itemBuilder: (BuildContext context, int index) {
                         final item = controller.garageReviews![index];
                         return Reviewcard(
                           reviews: item,
-                          img:  'assets/images/user_icon.png',
+                          img: 'assets/images/user_icon.png',
                         );
                       },
+                    ):Center(
+                      child: AppText(
+                        title: 'No Review Found!',
+                        color: AppColors.darkGrey,
+                      ),
                     ),
                   ),
                 ],
