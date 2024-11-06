@@ -51,13 +51,13 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                   Card(
                     elevation: 1,
                     shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Color(0xFF7586A9)),
+                        // side: BorderSide(color: Color(0xFF7586A9)),
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(8),
                             bottomLeft: Radius.circular(8),
                             topLeft: Radius.circular(8),
                             topRight: Radius.circular(8))),
-                    color: widget.sender == true ? Colors.white : AppColors.darkprimary,
+                    color: widget.sender == true ? Colors.black.withOpacity(0.8) : AppColors.darkprimary,
                     margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -68,7 +68,7 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                             color:
-                                widget.sender == true ? Colors.black :Colors. white),
+                                widget.sender == true ? Colors.white :Colors. white),
                       ),
                     ),
                   ),

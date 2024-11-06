@@ -188,7 +188,7 @@ class VChatController extends GetxController {
     GetStorage box = GetStorage();
 
     String fileName =
-        file?.path.split('/').last ?? ''; // Get the file name if it exists
+        file?.path.split('/').last ?? ''; 
     print(fileName);
 
     data = dio.FormData.fromMap({
@@ -198,7 +198,7 @@ class VChatController extends GetxController {
       'temporaryMsgId': main(),
       'id': activeUserId,
     });
-
+print(data);
     if (file != null) {
       data.files.add(
         MapEntry(
@@ -217,6 +217,7 @@ class VChatController extends GetxController {
 
     update();
     ClearVariable();
+    update();
   }
 
   fetchmassage(id) async {
