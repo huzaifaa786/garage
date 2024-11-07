@@ -30,81 +30,84 @@ class OrderProductCard extends StatelessWidget {
     final deliveryTime = deliveryParts != null && deliveryParts.length > 1
         ? deliveryParts.sublist(1).join(' ')
         : '';
-    return Column(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 95.0,
-              height: 98.0,
-              decoration: BoxDecoration(
-                color: Color(0xff7c94b6),
-                image: DecorationImage(
-                  image:
-                      NetworkImage(items?.products?.images?[0].imageUrl ?? ''),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                border: Border.all(
-                  color: AppColors.grey.shade100,
-                ),
-              ),
-              child: garage != null
-                  ? AppNetworkImage(
-                      networkImage: items?.products?.images?[0].imageUrl ?? '',
-                      fit: BoxFit.contain,
-                    )
-                  : Container(),
+        Container(
+          width: 95.0,
+          height: 98.0,
+          decoration: BoxDecoration(
+            color: Color(0xff7c94b6),
+            image: DecorationImage(
+              image: NetworkImage(items?.products?.images?[0].imageUrl ?? ''),
+              fit: BoxFit.cover,
             ),
-            Gap(10),
-            Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            border: Border.all(
+              color: AppColors.grey.shade100,
+            ),
+          ),
+          child: garage != null
+              ? AppNetworkImage(
+                  networkImage: items?.products?.images?[0].imageUrl ?? '',
+                  fit: BoxFit.contain,
+                )
+              : Container(),
+        ),
+        Gap(10),
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 28.0,
-                        height: 28.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xff7c94b6),
-                          image: DecorationImage(
-                            image: NetworkImage(garage?.logo ?? ''),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                          border: Border.all(
-                            color: AppColors.grey.shade100,
-                          ),
-                        ),
+                  Container(
+                    width: 24.0,
+                    height: 24.0,
+                    decoration: BoxDecoration(
+                      color: Color(0xff7c94b6),
+                      image: DecorationImage(
+                        image: NetworkImage(garage?.logo ?? ''),
+                        fit: BoxFit.cover,
                       ),
-                      Gap(2),
-                      AppText(
-                        title: garage?.name ?? '',
-                        fontWeight: FontWeight.w600,
-                        size: 12,
-                        color: AppColors.primarybg,
+                      borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                      border: Border.all(
+                        color: AppColors.grey.shade100,
                       ),
-                    ],
+                    ),
                   ),
-                  Row(
-                    children: [
-                      AppText(
-                        title:
-                            // items?.productsExtra?.categoryExtra?.name == ''
-                            //     ? items?.productsExtra?.categoryExtra?.name ?? ''
-                            //     :
-                            items?.productsExtra?.categoryExtra?.name ?? '',
-                        size: 10,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      Gap(3),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                          text: ' ( Quantity: '.tr,
+                  Gap(4),
+                  Expanded(
+                    child: AppText(
+                      title: garage?.name ?? '',
+                      fontWeight: FontWeight.w600,
+                      size: 12,
+                      color: AppColors.primarybg,
+                      maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
+              Gap(4),
+              Row(
+                children: [
+                  Flexible(
+                    child: AppText(
+                      title: items?.productsExtra != null
+                          ? items?.productsExtra?.categoryExtra?.name ?? ''
+                          : items?.products?.brands?.name ?? '',
+                      size: 10,
+                      fontWeight: FontWeight.w600,
+                      maxLines: 1,
+                    ),
+                  ),
+                  Gap(3),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: ' ( Quantity: '.tr
+                          ,
                           style: TextStyle(
                             fontSize: 10,
                             color: AppColors.black,
@@ -137,39 +140,38 @@ class OrderProductCard extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                          text:
-                              ' ${items?.userVehicles?.vehicle_type?.name ?? ''}',
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Gap(2),
-                  Row(
-                    children: [
-                      SvgPicture.asset("assets/icons/cars.svg"),
-                      Gap(2),
-                      AppText(
-                        title:
-                            '${items?.userVehicles?.vehiclebrand?.name ?? ''} ${items?.userVehicles?.vehicle_info ?? ''} ${items?.userVehicles?.year_of_manufacture ?? ''}',
-                        size: 10,
-                        color: AppColors.primarybg,
+                      text: ' ${items?.userVehicles?.vehicle_type?.name ?? ''}',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: AppColors.black,
                         fontWeight: FontWeight.w500,
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+              ),
+              Gap(4),
+              Row(
+                children: [
+                  SvgPicture.asset("assets/icons/cars.svg"),
+                  Gap(2),
+                  AppText(
+                    title:
+                        '${items?.userVehicles?.vehiclebrand?.name ?? ''} ${items?.userVehicles?.vehicle_info ?? ''} ${items?.userVehicles?.year_of_manufacture ?? ''}',
+                    size: 10,
+                    color: AppColors.primarybg,
+                    fontWeight: FontWeight.w500,
                   ),
-                  Gap(5),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
+                ],
+              ),
+              Gap(5),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
                           text: 'Date: '.tr,
                           style: TextStyle(
                             fontSize: 10,
@@ -188,7 +190,7 @@ class OrderProductCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Gap(2),
+                  Gap(4),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -218,23 +220,19 @@ class OrderProductCard extends StatelessWidget {
                       ),
                       Flexible(
                         child: AppText(
-                              title:
-                                  '${orders?.totalAmount ?? ''} ${"AED".tr}',
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.darkblue,
-                              size: 10,
-                            ),
-                          ),
-                        ],
+                          title: '${orders?.totalAmount ?? ''} ${"AED".tr}',
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.darkblue,
+                          size: 10,
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-        
       ],
     );
   }

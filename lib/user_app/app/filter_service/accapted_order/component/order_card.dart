@@ -10,6 +10,7 @@ import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 import 'package:mobilegarage/models/garage_model.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
@@ -351,7 +352,10 @@ class OrderCard extends StatelessWidget {
                                 right: 0,
                                 top: Get.height * 0.003,
                                 child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                  Get.toNamed(AppRoutes.chatScreen);
+
+                                  },
                                   child: Container(
                                       height: Get.height * 0.045,
                                       width: Get.width * 0.085,

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
 import 'package:mobilegarage/user_app/app/garage_review/components/garage_review_card.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -13,7 +14,8 @@ class GarageReviewBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GetBuilder<GarageController>(
+      builder: (controller) =>Container(
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -34,10 +36,12 @@ class GarageReviewBottomSheetView extends StatelessWidget {
                 ),
                 Gap(20),
                 ListView.builder(
-                  itemCount: 5,
+                  itemCount: controller.garageReviews.length,
                   shrinkWrap: true,
                   physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) => GarageReviewCard(),
+                  itemBuilder: (context, index) => GarageReviewCard(
+                    garageReview: controller.garageReviews[index],
+                  ),
                 ),
                 Divider(
                   color: AppColors.lightgrey,
@@ -48,6 +52,6 @@ class GarageReviewBottomSheetView extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 }

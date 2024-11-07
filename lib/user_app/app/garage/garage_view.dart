@@ -140,7 +140,7 @@ class GarageView extends StatelessWidget {
                             RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
-                                text: 'Opened from '.tr,
+                                text: 'Opened from ',
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
@@ -156,7 +156,7 @@ class GarageView extends StatelessWidget {
                                         color: AppColors.black),
                                   ),
                                   TextSpan(
-                                    text: ' to '.tr,
+                                    text: ' to ',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       color: AppColors.grey,
@@ -175,6 +175,10 @@ class GarageView extends StatelessWidget {
                             )
                           ],
                         ),
+                      if (controller.garage!.opened == false)
+                        AppText(
+                          title: 'Garage is currently off',
+                        ),
                       if (controller.garage!.garageTime!.isNotEmpty) Gap(5),
                       if (controller.garage!.garageTime!.isNotEmpty)
                         Row(
@@ -185,7 +189,7 @@ class GarageView extends StatelessWidget {
                             RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
-                                text: 'Opened from '.tr,
+                                text: 'Opened from ',
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
@@ -201,7 +205,7 @@ class GarageView extends StatelessWidget {
                                         color: AppColors.black),
                                   ),
                                   TextSpan(
-                                    text: ' to '.tr,
+                                    text: ' to ',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       color: AppColors.grey,
@@ -273,7 +277,7 @@ class GarageView extends StatelessWidget {
                               height: Get.height * 0.05,
                               child: GestureDetector(
                                 onTap: () {
-                                  // print('object23');
+                                  Get.toNamed(AppRoutes.chatScreen);
                                 },
                                 child: Container(
                                   height: Get.height * 0.045,

@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/garage_reviews_model.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class GarageReviewCard extends StatelessWidget {
-  const GarageReviewCard({super.key});
-
+  GarageReviewCard({super.key, this.garageReview});
+  GarageReviewsModel? garageReview;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,6 +43,9 @@ class GarageReviewCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       child: AppNetworkImage(
                         assetPath: 'assets/images/street_garage.png',
+                        networkImage: garageReview!.user!.image != null
+                            ? garageReview!.user!.image.toString()
+                            : null,
                       )),
                   Gap(10),
                   ConstrainedBox(
@@ -53,14 +57,15 @@ class GarageReviewCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             AppText(
-                              title: 'Street garage',
+                              // title: 'Street garage',
+                              title: garageReview!.user!.name.toString(),
                               size: 12,
                               maxLines: 1,
                               overFlow: TextOverflow.ellipsis,
                               fontWeight: FontWeight.w600,
                             ),
                             AppText(
-                              title: '3h ago',
+                              title: garageReview!.createdAtRelative.toString(),
                               size: 10,
                               fontWeight: FontWeight.w600,
                               color: AppColors.greybg,
@@ -72,7 +77,8 @@ class GarageReviewCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             RatingBarIndicator(
-                              rating: 4.0,
+                              rating:
+                                  double.parse(garageReview!.rating.toString()),
                               itemCount: 5,
                               itemSize: 11,
                               unratedColor: AppColors.black.withOpacity(0.5),
@@ -81,19 +87,19 @@ class GarageReviewCard extends StatelessWidget {
                                 color: Colors.amber,
                               ),
                             ),
-                            Gap(3),
-                            AppText(
-                              title: '4.0',
-                              size: 10,
-                            ),
+                            // Gap(3),
+                            // AppText(
+                            //   title: '4.0',
+                            //   size: 10,
+                            // ),
                           ],
                         ),
                         Gap(8),
-                        AppText(
-                          title:
-                              'This is the best car washing i had ever ,thank you street garage!',
-                          size: 10,
-                        ),
+                        if (garageReview!.comment != null)
+                          AppText(
+                            title: garageReview!.comment.toString(),
+                            size: 10,
+                          ),
                       ],
                     ),
                   ),

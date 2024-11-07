@@ -80,12 +80,11 @@ class OtpController extends GetxController {
   void verifyOtpCode() async {
     LoadingHelper.show();
     try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationid,
-        smsCode: otpCode,
-      );
-      await auth.signInWithCredential(credential);
-
+      // PhoneAuthCredential credential = PhoneAuthProvider.credential(
+      //   verificationId: verificationid,
+      //   smsCode: otpCode,
+      // );
+      // await auth.signInWithCredential(credential);
       Map<String, dynamic> response;
       if (authmethod == 'signin') {
         response = await LoginVerifyApi.verifyNumber(phone: phone);
@@ -113,6 +112,8 @@ class OtpController extends GetxController {
         box.write('number_verified', 'true');
 
         box.write('user_type', 'user');
+        box.write('user_type', 'user');
+        box.write('user_id', response['user']['id']);
 
         Get.offAllNamed(AppRoutes.main);
         LoadingHelper.dismiss();

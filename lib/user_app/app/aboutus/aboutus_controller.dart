@@ -19,20 +19,23 @@ class AboutusController extends GetxController {
 
   void aboutusApi() async {
     var response = await AboutusApi.getAboutUs();
+    if (response.isNotEmpty && response['aboutus'] != null) {
+      des = response['aboutus']['des'];
+      lat = response['aboutus']['lat'];
+      lng = response['aboutus']['lng'];
 
-    des = response['aboutus']['des'];
-    lat = response['aboutus']['lat'];
-    lng = response['aboutus']['lng'];
-
-    final latDouble = double.parse(lat!);
-    final lngDouble = double.parse(lng!);
-    final placemark = await placemarkFromCoordinates(latDouble, lngDouble);
-    if (placemark.isNotEmpty) {
-      final locationData = placemark.first;
-      location =
-          '${locationData.thoroughfare}${locationData.subLocality}, ${locationData.locality}, ${locationData.country}.';
-      city = locationData.locality;
+      final latDouble = double.parse(lat!);
+      final lngDouble = double.parse(lng!);
+      
+      final placemark = await placemarkFromCoordinates(latDouble, lngDouble);
+      if (placemark.isNotEmpty) {
+        final locationData = placemark.first;
+        location =
+            '${locationData.thoroughfare}${locationData.subLocality}, ${locationData.locality}, ${locationData.country}.';
+        city = locationData.locality;
+      }
     }
+
     update();
   }
 }

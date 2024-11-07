@@ -37,6 +37,8 @@ class _HomeViewState extends State<HomeView> {
               onNotificationtap: () {
                 Get.toNamed(AppRoutes.notification);
               },
+              isnotification:
+                  controller.notificationcount == '0' ? false : true,
             ),
           ),
           body: SingleChildScrollView(
@@ -142,8 +144,9 @@ class _HomeViewState extends State<HomeView> {
                           ontap: () {
                             Get.toNamed(
                               AppRoutes.filterorder,
-                              parameters: {'categoryId': item.id.toString(),
-                              'path': 'filter'
+                              parameters: {
+                                'categoryId': item.id.toString(),
+                                'path': 'filter'
                               },
                             );
                           },

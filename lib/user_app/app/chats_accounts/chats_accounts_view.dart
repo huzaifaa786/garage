@@ -19,9 +19,16 @@ class ChatsAccountsView extends StatefulWidget {
 }
 
 class _ChatsAccountsViewState extends State<ChatsAccountsView> {
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ChatScreenController>(
+       autoRemove: false,
+        initState: (state) {
+          Future.delayed(Duration(milliseconds: 100), () {
+            state.controller!.getContacts();
+          });   
+        },
         builder: (controller) => Scaffold(
               appBar: AppBar(
                 toolbarHeight: Get.height * 0.1,
@@ -35,36 +42,42 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                 child: SingleChildScrollView(
                     child: Column(
                   children: [
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        itemCount: controller.item.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final item = controller.item[index];
-                          return Container(
-                              color: AppColors.grey.shade100,
-                              child: ChartsCard(
-                                name: 'item',
-                                img: 'assets/images/street_garage.png',
-                                msg: 'Tap here to view messages',
-                                ontap: () {
-                                  // Get.toNamed(AppRoutes.chatScreen,parameters: {
-                                  //   'id':'1',
-                                  //   'name':'item',
-                                  //   'img':'assets/images/street_garage.png',
-                                  //   'screen':'chat',
-
-                                  // });
-                                  Get.to(() => ChatScreenView(
-                                      id: 'chatController.scontacts[index].id',
-                                      name: 'chatController',
-                                      // .scontacts[index].username,
-                                      profilePic: 'chatController',
-                                      // .scontacts[index].profilePic,
-                                      screen: 'chat'));
-                                },
-                              ));
-                        })
+                    controller.scontacts.isNotEmpty
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: controller.scontacts.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                  color: AppColors.grey.shade100,
+                                  child: ChartsCard(
+                                    name: controller
+                                        .scontacts[index].username,
+                                    img: controller
+                                        .scontacts[index].profilePic,
+                                    msg: 'Tap here to view messages',
+                                    ontap: () {
+                                      Get.to(() => ChatScreenView(
+                                          id: controller
+                                              .scontacts[index].id,
+                                          name: controller
+                                              .scontacts[index].username,
+                                          profilePic: controller
+                                              .scontacts[index].profilePic,
+                                          screen: 'chat'));
+                                    },
+                                  ));
+                            })
+                        : SizedBox(
+                          height: Get.height*0.7,
+                          child: Center(
+                              child: Text(
+                              'No chat found!',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.grey),
+                            )),
+                        )
                   ],
                 )),
               ),

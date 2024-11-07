@@ -7,17 +7,19 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ChatAppbar extends StatelessWidget {
-  const ChatAppbar({
-    super.key,
-    required this.child,
-    this.appBarTitle,
-    this.hasIcon = true,
-    this.hasBgColor = false,
-    this.hasShadow = true,
-    this.isRectangle = false,
-  });
+  const ChatAppbar(
+      {super.key,
+      required this.child,
+      this.appBarTitle,
+      this.hasIcon = true,
+      this.hasBgColor = false,
+      this.hasShadow = true,
+      this.isRectangle = false,
+      this.appBarimage});
   final Widget child;
   final String? appBarTitle;
+  final String? appBarimage;
+
   final bool hasIcon;
   final bool hasBgColor;
   final bool hasShadow;
@@ -66,8 +68,9 @@ class ChatAppbar extends StatelessWidget {
                       ),
                     ),
                   ),
-                const ClipRRect(
+                ClipRRect(
                     child: AppNetworkImage(
+                  networkImage: appBarimage,
                   assetPath: 'assets/images/street_garage.png',
                   // width: Get.width,
                   height: 53,

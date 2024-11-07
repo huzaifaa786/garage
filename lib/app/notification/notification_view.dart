@@ -27,14 +27,22 @@ class NotificationView extends StatelessWidget {
                 child: Container(
           height: 700,
           width: Get.width,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: controller.notifications.length,
-            physics: BouncingScrollPhysics(),
-            itemBuilder: (context, index) => NotificationCard(
-              status: controller.notifications[index].order!.status.toString(),
-            ),
-          ),
+          child: controller.notifications.isNotEmpty
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.notifications.length,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) => NotificationCard(
+                    status: controller.notifications[index].order!.status
+                        .toString(),
+                  ),
+                )
+              : Center(
+                  child: Text(
+                  'No notification found !',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 180, 180, 180)),
+                )),
         ))),
       ),
     );

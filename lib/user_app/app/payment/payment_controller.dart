@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -9,6 +8,7 @@ import 'package:mobilegarage/apis/user_apis/cart_apis/cart_detail_api.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/delete_from_cart_api.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/update_cart_api.dart';
 import 'package:mobilegarage/apis/user_apis/order_apis/create_order_api.dart';
+import 'package:mobilegarage/apis/user_apis/order_apis/promo_code_api.dart';
 import 'package:mobilegarage/models/cart_model.dart/cart_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobilegarage/routes/app_routes.dart';
@@ -19,10 +19,24 @@ class PaymentsController extends GetxController {
   TextEditingController promocodeController = TextEditingController();
   bool isapplied = false;
 
+  String? discountAmount = '';
+  String? promoTotal = '';
+
   Future<void> promoCode() async {
-    isapplied = true;
-    update();
-    return;
+    if (promocodeController.text.trim().isEmpty) {
+      UiUtilites.errorSnackbar('Error', 'Please enter a promo code');
+      return;
+    }
+    var response = await PromoCodeApi.checkPromoCode(
+        name: promocodeController.text, price: cart!.totalAmount.toString());
+    if (response.isNotEmpty) {
+      isapplied = true;
+      discountAmount =
+          response['promo_code_data']['discount_amount'].toString();
+      promoTotal = response['promo_code_data']['final_price'].toString();
+      update();
+      return;
+    }
   }
 
   String? date = '';
@@ -96,56 +110,56 @@ class PaymentsController extends GetxController {
     }
   }
 
-  List<Map<String, dynamic>> orders = [
-    {
-      "productImage": "assetPath: 'assets/images/washing.png',",
-      "clientImage": "https://dummyimage.com/20x20/000/fff",
-      "client Name": "Street garage",
-      "product": "Car super power battery",
-      "product_Detail": "",
-      "carName": "white Mercedes 2022",
-      "date": "2/3/230",
-      "time": "2:30",
-      "Price": "230",
-      "product_type": "self-service car wash",
-    },
-    {
-      "productImage": "assetPath: 'assets/images/battery.png',",
-      "clientImage": "https://dummyimage.com/20x20/000/fff",
-      "client Name": "Street garage",
-      "product": "Car super power battery",
-      "product_Detail": "",
-      "carName": "white Mercedes 2022",
-      "date": "2/3/230",
-      "time": "2:30",
-      "Price": "230",
-      "product_type": "self-service car wash",
-    },
-    {
-      "productImage": "assetPath: 'assets/images/washing.png',",
-      "clientImage": "https://dummyimage.com/20x20/000/fff",
-      "client Name": "Street garage",
-      "product": "Car super power battery",
-      "product_Detail": "",
-      "carName": "white Mercedes 2022",
-      "date": "2/3/230",
-      "time": "2:30",
-      "Price": "230",
-      "product_type": "self-service car wash",
-    },
-    {
-      "productImage": "assetPath: 'assets/images/battery.png',",
-      "clientImage": "https://dummyimage.com/20x20/000/fff",
-      "client Name": "Street garage",
-      "product": "Car super power battery",
-      "product_Detail": "",
-      "carName": "white Mercedes 2022",
-      "date": "2/3/230",
-      "time": "2:30",
-      "Price": "230",
-      "product_type": "self-service car wash",
-    },
-  ];
+  // List<Map<String, dynamic>> orders = [
+  //   {
+  //     "productImage": "assetPath: 'assets/images/washing.png',",
+  //     "clientImage": "https://dummyimage.com/20x20/000/fff",
+  //     "client Name": "Street garage",
+  //     "product": "Car super power battery",
+  //     "product_Detail": "",
+  //     "carName": "white Mercedes 2022",
+  //     "date": "2/3/230",
+  //     "time": "2:30",
+  //     "Price": "230",
+  //     "product_type": "self-service car wash",
+  //   },
+  //   {
+  //     "productImage": "assetPath: 'assets/images/battery.png',",
+  //     "clientImage": "https://dummyimage.com/20x20/000/fff",
+  //     "client Name": "Street garage",
+  //     "product": "Car super power battery",
+  //     "product_Detail": "",
+  //     "carName": "white Mercedes 2022",
+  //     "date": "2/3/230",
+  //     "time": "2:30",
+  //     "Price": "230",
+  //     "product_type": "self-service car wash",
+  //   },
+  //   {
+  //     "productImage": "assetPath: 'assets/images/washing.png',",
+  //     "clientImage": "https://dummyimage.com/20x20/000/fff",
+  //     "client Name": "Street garage",
+  //     "product": "Car super power battery",
+  //     "product_Detail": "",
+  //     "carName": "white Mercedes 2022",
+  //     "date": "2/3/230",
+  //     "time": "2:30",
+  //     "Price": "230",
+  //     "product_type": "self-service car wash",
+  //   },
+  //   {
+  //     "productImage": "assetPath: 'assets/images/battery.png',",
+  //     "clientImage": "https://dummyimage.com/20x20/000/fff",
+  //     "client Name": "Street garage",
+  //     "product": "Car super power battery",
+  //     "product_Detail": "",
+  //     "carName": "white Mercedes 2022",
+  //     "date": "2/3/230",
+  //     "time": "2:30",
+  //     "Price": "230",
+  //     "product_type": "self-service car wash",
+  //   },
+  // ];
 
   ///  Stripe payment Integration
   Map<String, dynamic>? paymentIntent;

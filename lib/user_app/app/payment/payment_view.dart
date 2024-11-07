@@ -3,10 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/app/cart/components/cart_card.dart';
 import 'package:mobilegarage/user_app/app/payment/components/date_location_card.dart';
 import 'package:mobilegarage/user_app/app/payment/components/icon_button.dart';
-import 'package:mobilegarage/user_app/app/payment/components/payment_bottomsheet.dart';
 import 'package:mobilegarage/user_app/app/payment/components/payment_cart_card.dart';
 import 'package:mobilegarage/user_app/app/payment/payment_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -147,7 +145,9 @@ class PaymentView extends StatelessWidget {
                 ),
               )),
               bottomNavigationBar: Container(
-                height: Get.height * 0.25,
+                height:
+                controller.discountAmount!=''?
+                 Get.height * 0.25: Get.height * 0.18,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
@@ -172,38 +172,40 @@ class PaymentView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Gap(10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          AppText(
-                            title: 'Sub total:'.tr,
-                            size: 10,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          AppText(
-                            title: controller.cart!.totalAmount.toString(),
-                            size: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ],
-                      ),
-                      Gap(15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          AppText(
-                            title: 'discount:'.tr,
-                            size: 10,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          AppText(
-                            title: '70.50 ${'AED'.tr}',
-                            size: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ],
-                      ),
+                      if (controller.discountAmount != '') Gap(10),
+                      if (controller.discountAmount != '')
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            AppText(
+                              title: 'Sub total:',
+                              size: 10,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            AppText(
+                              title: controller.cart!.totalAmount.toString(),
+                              size: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ],
+                        ),
+                      if (controller.discountAmount != '') Gap(15),
+                      if (controller.discountAmount != '')
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            AppText(
+                              title: 'discount:',
+                              size: 10,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            AppText(
+                              title: controller.discountAmount.toString(),
+                              size: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ],
+                        ),
                       Gap(15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -214,7 +216,9 @@ class PaymentView extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                           AppText(
-                            title: '30.50 ${'AED'.tr}',
+                            title: controller.discountAmount != ''
+                                ? controller.promoTotal.toString()
+                                : controller.cart!.totalAmount.toString(),
                             size: 12,
                             fontWeight: FontWeight.w600,
                           ),

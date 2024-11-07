@@ -36,7 +36,7 @@ class OrdersCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(color: AppColors.white_color),
           child: Padding(
-            padding: const EdgeInsets.only(left: 25, right: 25, top: 12),
+            padding: EdgeInsets.only(left: 25, right: 25, top: 12),
             child: Column(
               children: [
                 Row(
@@ -271,27 +271,31 @@ class OrdersCard extends StatelessWidget {
                       );
                     }),
                 Gap(10),
-                Container(
-                  height: 60,
-                  width: Get.width * 0.8,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/map.png'),
-                        fit: BoxFit.fill),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: InkWell(
-                      onTap: () {
-                        Get.toNamed(AppRoutes.vmap);
-                      },
-                      child: Locationn(
-                          // text: controller.getAddress(1),
-                          ),
+                if (order.lat != null || order.lng != null)
+                  Container(
+                    height: 60,
+                    width: Get.width * 0.8,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/map.png'),
+                          fit: BoxFit.fill),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: InkWell(
+                        onTap: () async {
+                          Get.toNamed(AppRoutes.vmap, parameters: {
+                            'lat': order.lat.toString(),
+                            'lng': order.lng.toString()
+                          });
+                        },
+                        child: Locationn(
+                          text: 'click to view order location',
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                Gap(12),
+                if (order.lat != null || order.lng != null) Gap(12),
                 controller.selectedIndex == 0
                     ? controller.selectedSubIndex == 0
                         ? Row(

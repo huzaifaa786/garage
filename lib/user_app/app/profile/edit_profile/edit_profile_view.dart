@@ -7,10 +7,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
-
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -59,10 +57,8 @@ class _EditProfileViewState extends State<EditProfileView> {
                     CircleAvatar(
                       radius: 50,
                       backgroundColor: Colors.grey[300],
-                      backgroundImage: controller.profilepic != null
-                          ? FileImage(controller.profilepic!)
-                          : null,
-                      child: controller.profilepic == null
+                      
+                      child: controller.img != ''
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(80),
                               child: CachedNetworkImage(
@@ -76,7 +72,23 @@ class _EditProfileViewState extends State<EditProfileView> {
                                     Icon(Icons.error),
                               ),
                             )
-                          : null,
+                          : controller.profilepic != null
+                              ? ClipOval(
+                                  child: Image.file(
+                                    controller.profilepic!,
+                                    height: 100,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              : ClipOval(
+                                  child: Image.asset(
+                                    'assets/images/user_profile2.png',
+                                    height: 100,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                     ),
                     Positioned(
                       bottom: 0,

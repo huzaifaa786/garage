@@ -1236,7 +1236,13 @@ class ProductFormController extends GetxController {
             onTap: () {
               Get.offAllNamed(AppRoutes.vhome);
             },
-            title: 'Done!'.tr);
+            title: 'Done!');
+            Future.delayed(Duration(seconds: 3), () {
+        if (Navigator.canPop(Get.context!)) {
+         Get.offAllNamed(AppRoutes.vhome);
+
+        }
+      });
         update();
       }
     }

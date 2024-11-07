@@ -158,12 +158,6 @@ class VOrdersController extends GetxController {
     }
   }
 
-  // cancelOrder() async {
-  //   var response = await ChangeOrderStatusApi.changeOrderStatus(
-  //       orderId: orders!.id.toString(), status: 'cancelled');
-  //   if (response.isNotEmpty) {}
-  // }
-
   ontheWayOrder(id) async {
     var response = await ChangeOrderStatusApi.changeOrderStatus(
         orderId: id, status: 'on_the_way');
@@ -180,43 +174,5 @@ class VOrdersController extends GetxController {
     }
   }
 
-//! getting location  ??????????????????
 
-  List<OrdersModel> ordersLocation = [];
-
-  List<Map<String, String?>> garageAddress = [];
-  String? location;
-  String? city;
-
-  Future<Map<String, String?>> getAddress(int index) async {
-    final latDouble = double.parse(orders![index].lat!);
-    final lngDouble = double.parse(orders![index].lng!);
-    final placemark = await placemarkFromCoordinates(latDouble, lngDouble);
-    if (placemark.isNotEmpty) {
-      final locationData = placemark.first;
-      location =
-          '${locationData.thoroughfare}${locationData.subLocality}, ${locationData.locality}, ${locationData.country}.';
-      city = locationData.locality;
-    }
-    return {
-      'location': location,
-      'city': city,
-    };
-  }
-  // Future<String?> fetchLocation() async {
-  //   if (orders == null || orders!.lat == null || orders!.lng == null)
-  //     return null;
-
-  //   final latDouble = double.tryParse(orders!.lat!);
-  //   final lngDouble = double.tryParse(orders!.lng!);
-
-  //   if (latDouble != null && lngDouble != null) {
-  //     final placemarks = await placemarkFromCoordinates(latDouble, lngDouble);
-  //     if (placemarks.isNotEmpty) {
-  //       final place = placemarks.first;
-  //       return '${place.thoroughfare}, ${place.subLocality}, ${place.locality}, ${place.country}';
-  //     }
-  //   }
-  //   return null;
-  // }
 }

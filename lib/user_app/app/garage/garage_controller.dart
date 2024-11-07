@@ -2,10 +2,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/add_to_cart_api.dart';
 import 'package:mobilegarage/apis/user_apis/garage_profile/garage_profile_api.dart';
+import 'package:mobilegarage/apis/user_apis/garage_profile/garage_rating_api.dart';
 import 'package:mobilegarage/apis/user_apis/garage_profile/garage_with_product_api.dart';
-import 'package:mobilegarage/apis/user_apis/store_vehicle_api/store_vehicle_api.dart';
 import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/models/garage_model.dart';
+import 'package:mobilegarage/models/garage_reviews_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 
 class GarageController extends GetxController {
@@ -30,15 +31,29 @@ class GarageController extends GetxController {
     productextraId = Get.parameters['productextraId'] ?? '';
     if (productId != '' || productextraId != '') {
       await getGarageProduct();
+     await getReviews();
     }
     if (productId == '' ) {
       await getGarageProfile(garageId);
+     await getReviews();
+
     }
     update();
 
     super.onInit();
   }
+  List<GarageReviewsModel> garageReviews = [];
 
+ getReviews() async {
+    var response = await GarageUserRatingApi.garageReviews(garageId);
+    if (response.isNotEmpty && response['ratings'] != null) {
+      garageReviews = (response['ratings'] as List<dynamic>)
+          .map((item) => GarageReviewsModel.fromJson(item))
+          .toList();
+      update();
+    }
+    ;
+  }
   getGarageProduct() async {
     var response = await GarageWithProductApi.garageProductData(
         id: garageId, productid: productId, productextraid: productextraId);

@@ -9,8 +9,10 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class HomeAppbar extends StatelessWidget {
-  const HomeAppbar({super.key, this.onNotificationtap});
+  const HomeAppbar(
+      {super.key, this.onNotificationtap, this.isnotification = true});
   final onNotificationtap;
+  final isnotification;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,29 +29,30 @@ class HomeAppbar extends StatelessWidget {
             Gap(10),
             Row(
               children: [
-                 InkWell(
-                onTap: onNotificationtap,
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(6),
-                      child: SvgPicture.asset('assets/images/bell.svg'),
-                    ),
-                    Positioned(
-                      top: 3,
-                      right: 0,
-                      child: Container(
-                        height: 7,
-                        width: 7,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary_color,
+                InkWell(
+                  onTap: onNotificationtap,
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: SvgPicture.asset('assets/images/bell.svg'),
+                      ),
+                      if(isnotification==true)
+                      Positioned(
+                        top: 3,
+                        right: 0,
+                        child: Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary_color,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
                 Gap(20),
                 GestureDetector(
                   onTap: () {

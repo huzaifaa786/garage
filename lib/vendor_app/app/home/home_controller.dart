@@ -7,6 +7,7 @@ import 'package:mobilegarage/apis/vender_apis/home_apis/garage_review_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_status_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/get_review_api.dart';
+import 'package:mobilegarage/apis/vender_apis/notifications_api/garage_notification_count_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/garage_reviews_model.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
@@ -17,14 +18,8 @@ class VHomeController extends GetxController {
   File? cover;
   String? base64Logo;
   String? base64Cover;
-  List<String> review = [
-    "Review 1",
-    "Review 2",
-    "Review 3",
-    "Review 1",
-    "Review 2"
-  ];
-  List<GarageReviewsModel>? garageReviews = [];
+
+  List<GarageReviewsModel> garageReviews = [];
 
   @override
   void onInit() async {
@@ -32,10 +27,21 @@ class VHomeController extends GetxController {
     await garagedata();
     await garageRating();
     await getReviews();
+    await countNotification();
+  }
+
+  String? notificationcount = '';
+
+  countNotification() async {
+    var response = await GarageNotificationCountApi.countNotification();
+    if (response.isNotEmpty) {
+      notificationcount = response['count'].toString();
+      update();
+    }
   }
 
   getReviews() async {
-    var response = await GarageReviewsApi.garageReviews();
+    var response = await GarageReviewsApi.garageReviews(garage!.id.toString());
     if (response.isNotEmpty && response['ratings'] != null) {
       garageReviews = (response['ratings'] as List<dynamic>)
           .map((item) => GarageReviewsModel.fromJson(item))

@@ -92,12 +92,15 @@ class _TermsConditionsViewState extends State<AboutusView> {
                         color: AppColors.darkprimary,
                       ),
                       Gap(8),
-                      AppText(
-                        title: controller.location ?? '',
-                        size: 10,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.darkprimary,
-                        overFlow: TextOverflow.ellipsis,
+                      Expanded(
+                        child: AppText(
+                          title: controller.location ?? '',
+                          size: 10,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkprimary,
+                          overFlow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                        ),
                       ),
                     ],
                   )

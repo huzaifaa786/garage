@@ -29,23 +29,21 @@ class EditProfileController extends GetxController {
   void onInit() {
     super.onInit();
     receiveArguments();
+    update();
   }
 
   void receiveArguments() {
-    var args = Get.arguments;
-    if (args != null) {
-      img = args['image'] ?? '';
-
-      nameController.text = args['userName'] ?? '';
-      phoneController.text = args['userNumber'] ?? '';
-      emailController.text = args['userEmail'] ?? '';
-    }
+    img = Get.parameters['image'];
+    nameController.text = Get.parameters['userName'] ?? '';
+    phoneController.text = Get.parameters['userNumber'] ?? '';
+    emailController.text = Get.parameters['userEmail'] ?? '';
+    update();
+    print('aaaaaaaaa$img');
   }
 
   void onSaveChanges() async {
     var response = await EditProfileApi.editProfile(
       username: nameController.text,
-      
       profileimage: base64pic,
       phone: phoneController.text,
     );
@@ -55,7 +53,6 @@ class EditProfileController extends GetxController {
     }
     update();
     Get.back();
-
   }
 
   pickImageFromGallery(String imageName) async {
