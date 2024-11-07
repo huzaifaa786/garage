@@ -87,13 +87,12 @@ class VChatController extends GetxController {
     };
 
     var response = await Api.execute(url: url, data: data);
-print(response);
+    print('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq$response');
     contacts = <Contact>[];
     if (response['contacts'].isNotEmpty) {
       for (var contact in response['contacts']) {
         contacts.add(Contact(contact));
         update();
-
       }
     }
     update();
@@ -163,16 +162,12 @@ print(response);
   File? file;
   Future<void> picksinglefile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['png', 'jpg', 'jpeg', 'gif']
-    );
+        type: FileType.custom,
+        allowedExtensions: ['png', 'jpg', 'jpeg', 'gif']);
     if (result != null) {
       file = await File(result.files.single.path!);
       await sendMassage();
-    
-    } else {
-    
-    }
+    } else {}
   }
 
   sendMassage() async {
@@ -199,13 +194,13 @@ print(response);
         ),
       );
     }
-ClearVariable();
+    ClearVariable();
     if (file != null) {
       file = null;
     }
     update();
 
-     var response = await Api.execute(url: url, data: data, image: file != null);
+    var response = await Api.execute(url: url, data: data, image: file != null);
 
     response['message']['body'] = response['message']['message'];
     response['message']['created_at'] = response['message']['created_at'];
@@ -222,12 +217,15 @@ ClearVariable();
     var data;
     GetStorage box = GetStorage();
     print(box.read('api_token'));
+
     data = {
       'api_token': box.read('api_token')!,
       'id': id,
     };
-    var response = await Api.execute(url: url, data: data);
+    print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx$data');
 
+    var response = await Api.execute(url: url, data: data);
+    print('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww$response');
     massages = <Msg>[].obs;
     for (var van in response['messages']) {
       print(van['attachment']);

@@ -113,8 +113,6 @@ class OtpController extends GetxController {
         box.write('user_type', 'user');
         box.write('user_type', 'user');
         box.write('user_id', response['user']['id']);
-        print(box.read('user_id'));
-        print( 'ssssssssssssssssssssssssssssssssssss${box.read('user_id')}');
 
         Get.offAllNamed(AppRoutes.main);
         LoadingHelper.dismiss();

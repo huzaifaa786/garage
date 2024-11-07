@@ -284,19 +284,23 @@ class ChatScreenController extends GetxController {
     LoadingHelper.show();
     var url = chatbaseUrl + '/fetchMessages';
     var data;
+    print(data);
     GetStorage box = GetStorage();
-    print(box.read('api_token'));
+
     data = {
       'api_token': box.read('api_token')!,
       'id': id,
     };
+print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx$data');
+
+
     var response = await Api.execute(url: url, data: data);
+print('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww$response');
 
     massages = <Msg>[].obs;
     for (var van in response['messages']) {
       print(van['attachment']);
       massages.add(Msg(van));
-
       update();
     }
     LoadingHelper.dismiss();

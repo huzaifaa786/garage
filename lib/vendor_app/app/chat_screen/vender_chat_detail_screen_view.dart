@@ -95,12 +95,20 @@ class _ChatScreenViewState extends State<ChatDetailScreenView> {
                           Time: getTime(controller
                               .massages[controller.massages.length - 1 - index]
                               .dateTime), // Reverse the index
-                          sender: controller
+                          // sender: controller
+                          //             .massages[controller.massages.length -
+                          //                 1 -
+                          //                 index]
+                          //             .to_id ==
+                          //         widget.id!
+                          //     ? false
+                          //     : true,
+                            sender: controller
                                       .massages[controller.massages.length -
                                           1 -
                                           index]
-                                      .to_id ==
-                                  widget.id!
+                                      .to_id.toString() ==
+                                  '63'
                               ? false
                               : true,
                           fileName: controller
