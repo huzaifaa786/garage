@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/components/chatify/replycard.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/components/app_bar/chat_appbar.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/components/input_field/chat_text_field.dart';
-import 'package:mobilegarage/vendor_app/app/chat/chat_controller.dart';
+import 'package:mobilegarage/vendor_app/app/chat/vender_chat_controller.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import 'dart:io' as io;
 

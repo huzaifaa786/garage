@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/app/chat/chat_controller.dart';
+import 'package:mobilegarage/vendor_app/app/chat/vender_chat_controller.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_controller.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/app/chat/chat_controller.dart';
-import 'package:mobilegarage/vendor_app/app/chat/component/chat_card.dart';
-import 'package:mobilegarage/vendor_app/app/chat_screen/chat_detail_screen_view.dart';
+import 'package:mobilegarage/vendor_app/app/chat/vender_chat_controller.dart';
+import 'package:mobilegarage/vendor_app/app/chat/component/vender_chat_card.dart';
+import 'package:mobilegarage/vendor_app/app/chat_screen/vender_chat_detail_screen_view.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 
 class VChatView extends StatefulWidget {

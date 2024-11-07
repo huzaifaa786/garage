@@ -87,9 +87,9 @@ import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_binding
 import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_view.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_binding.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_view.dart';
-import 'package:mobilegarage/vendor_app/app/chat/chat_binding.dart';
-import 'package:mobilegarage/vendor_app/app/chat/chat_view.dart';
-import 'package:mobilegarage/vendor_app/app/chat_screen/chat_detail_screen_view.dart';
+import 'package:mobilegarage/vendor_app/app/chat/vender_chat_binding.dart';
+import 'package:mobilegarage/vendor_app/app/chat/vender_chat_view.dart';
+import 'package:mobilegarage/vendor_app/app/chat_screen/vender_chat_detail_screen_view.dart';
 import 'package:mobilegarage/vendor_app/app/contactus/contactus_binding.dart';
 import 'package:mobilegarage/vendor_app/app/contactus/contactus_view.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_binding.dart';

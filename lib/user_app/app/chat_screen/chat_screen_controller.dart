@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/chatify/user_api.dart';
@@ -10,74 +12,22 @@ import 'package:mobilegarage/models/chatify/contact.dart';
 import 'package:mobilegarage/models/chatify/msg.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ChatScreenController extends GetxController {
   static ChatScreenController intance = Get.find();
 
-  // @override
-  // void onInit() async {
-  //   update();
-  //   super.onInit();
-  // }
-  //   List<Map<String, dynamic>> item = [
-  //   {
-  //     'onTab': () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     'image': 'assets/images/street_garage.png',
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': "3 New messages",
-  //     "showBluedot": true,
-  //     "showcolor": true,
-  //   },
-  //   {
-  //     "onTab": () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': " Seen 2m ago",
-  //     "showBluedot": false,
-  //     "showcolor": false,
-  //   },
-  //   {
-  //     "onTab": () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': " 3 days ago",
-  //     "showBluedot": false,
-  //     "showcolor": false,
-  //   },
-  //   {
-  //     "onTab": () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': "3 New messages",
-  //     "showBluedot": true,
-  //     "showcolor": true,
-  //   },
-  //   {
-  //     "onTab": () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': "3 New messages",
-  //     "showBluedot": true,
-  //     "showcolor": true,
-  //   },
-  // ];
+  final Completer<GoogleMapController> mController =
+      Completer<GoogleMapController>();
+  double? lat;
+  double? lng;
+
+  Position? currentPosition;
+  String currentAddress = '';
 
   RxList<Msg> massages = <Msg>[].obs;
 
@@ -129,7 +79,7 @@ class ChatScreenController extends GetxController {
       GetStorage box = GetStorage();
       String user_id = box.read('user_id').toString();
 
-      await pusher.subscribe(channelName: "private-chatify.${user_id}");
+      await pusher.subscribe(channelName: "private-chatify.$user_id");
 
       print(pusher.connectionState);
       await pusher.connect();
@@ -153,17 +103,16 @@ class ChatScreenController extends GetxController {
 
     print(response);
     contacts = <Contact>[];
-     if (response['contacts'].isNotEmpty) {
-    for (var contact in response['contacts']) {
-      contacts.add(Contact(contact));
-    update();
-
-    }}
+    if (response['contacts'].isNotEmpty) {
+      for (var contact in response['contacts']) {
+        contacts.add(Contact(contact));
+        update();
+      }
+    }
     scontacts = contacts;
     update();
     LoadingHelper.dismiss();
     update();
-
   }
 
   void searchContact(String query) {
@@ -228,24 +177,12 @@ class ChatScreenController extends GetxController {
   Future<void> picksinglefile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: [
-        'zip',
-        'rar',
-        'txt',
-        'pdf',
-        'png',
-        'jpg',
-        'jpeg',
-        'gif'
-      ],
+      allowedExtensions: ['png', 'jpg', 'jpeg', 'gif'],
     );
     if (result != null) {
       file = await File(result.files.single.path!);
       await sendMassage();
-      file = null;
-    } else {
-      // User canceled the picker
-    }
+    } else {}
   }
 
   sendMassage() async {
@@ -253,9 +190,7 @@ class ChatScreenController extends GetxController {
     var data;
     GetStorage box = GetStorage();
 
-    String fileName =
-        file?.path.split('/').last ?? ''; // Get the file name if it exists
-    print(fileName);
+    String fileName = file?.path.split('/').last ?? '';
 
     data = dio.FormData.fromMap({
       'api_token': box.read('api_token')!,
@@ -273,16 +208,16 @@ class ChatScreenController extends GetxController {
         ),
       );
     }
-
-    var response = await Api.execute(url: url, data: data);
-
+    ClearVariable();
+    if (file != null) {
+      file = null;
+    }
+    update();
+    var response = await Api.execute(url: url, data: data, image: file != null);
     response['message']['body'] = response['message']['message'];
     response['message']['created_at'] = response['message']['created_at'];
-
     massages.add(Msg(response['message']));
-
     update();
-    ClearVariable();
   }
 
   fetchmassage(id) async {
@@ -301,7 +236,6 @@ class ChatScreenController extends GetxController {
     for (var van in response['messages']) {
       print(van['attachment']);
       massages.add(Msg(van));
-      print(massages.last.file_name);
 
       update();
     }

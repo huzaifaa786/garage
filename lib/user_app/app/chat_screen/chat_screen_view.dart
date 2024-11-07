@@ -5,12 +5,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:mobilegarage/components/chatify/replycard.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_controller.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/components/app_bar/chat_appbar.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/components/input_field/chat_text_field.dart';
+import 'package:mobilegarage/user_app/helper/permission.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import 'dart:io' as io;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ChatScreenView extends StatefulWidget {
   const ChatScreenView(
@@ -78,11 +82,6 @@ class _ChatScreenViewState extends State<ChatScreenView> {
           hasBgColor: true,
           child: Column(
             children: [
-              // Flexible(
-              //   child: Container(
-              //      height: Get.height * 0.75,
-              //   ),
-              // ),
               Expanded(
                   child: ListView.builder(
                       reverse: true, // Set reverse to true
@@ -135,16 +134,16 @@ class _ChatScreenViewState extends State<ChatScreenView> {
               children: [
                 GestureDetector(
                     onTap: () {
-                     controller.picksinglefile();
-                  },
-                  child: SvgPicture.asset("assets/icons/Group 473.svg")),
+                      controller.picksinglefile();
+                    },
+                    child: SvgPicture.asset("assets/icons/Group 473.svg")),
                 Gap(8),
                 Flexible(
                   child: ChatInputField(
                     obscure: false,
                     readOnly: false,
                     suffiximage: "assets/icons/sent_icon.svg",
-                      controller: controller.massagecontroller,
+                    controller: controller.massagecontroller,
                     onSubmit: (value) {
                       if (value.trim().isNotEmpty) {
                         // Send the message when 'Enter' is pressed and the input is not empty
@@ -162,7 +161,41 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                   ),
                 ),
                 Gap(8),
-                SvgPicture.asset("assets/icons/location.svg"),
+                GestureDetector(
+                    onTap: () async {
+                      if (await getLocationPermission() == true) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PlacePicker(
+                              apiKey:
+                                  "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
+                              onPlacePicked: (result) {
+                                controller.currentAddress =
+                                    result.formattedAddress!;
+                                controller.lat =
+                                    result.geometry!.location.lat;
+                                controller.lng =
+                                    result.geometry!.location.lng;
+                                controller.update();
+                                Navigator.of(context).pop();
+                              },
+                              initialPosition: LatLng(
+                                  controller.currentPosition != null
+                                      ? controller.currentPosition!.latitude
+                                      : 25.1972,
+                                  controller.currentPosition != null
+                                      ? controller.currentPosition!.longitude
+                                      : 55.2744),
+                              useCurrentLocation: true,
+                              resizeToAvoidBottomInset: false,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    // },
+                    child: SvgPicture.asset("assets/icons/location.svg")),
               ],
             ),
           ),
