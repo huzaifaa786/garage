@@ -87,12 +87,10 @@ class OtpController extends GetxController {
       Map<String, dynamic> response;
       if (authmethod == 'signin') {
         response = await LoginVerifyApi.verifyNumber(phone: phone);
-      } else  if(authmethod == 'signup'){
+      } else if (authmethod == 'signup') {
         response = await phoneOtpApi.registerUserWithOtp(phone: phone);
-      }
-      else{
-           response =
-        await EditProfileApi.editProfile(phone: phone);
+      } else {
+        response = await EditProfileApi.editProfile(phone: phone);
       }
 
       if (response.isNotEmpty) {
@@ -112,10 +110,12 @@ class OtpController extends GetxController {
         box.write('api_token', response['user']['token']);
         box.write('number_verified', 'true');
 
-       box.write('user_type', 'user');
-       box.write('user_type', 'user');
-       box.write('user_id', response['user']['id']);
-print(box.read('user_id'));
+        box.write('user_type', 'user');
+        box.write('user_type', 'user');
+        box.write('user_id', response['user']['id']);
+        print(box.read('user_id'));
+        print( 'ssssssssssssssssssssssssssssssssssss${box.read('user_id')}');
+
         Get.offAllNamed(AppRoutes.main);
         LoadingHelper.dismiss();
         UiUtilites.successSnackbar(

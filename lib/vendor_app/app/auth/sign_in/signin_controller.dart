@@ -59,9 +59,9 @@ class VSignInController extends GetxController {
       if (response.isNotEmpty) {
         box.write('api_token', response['garage']['token']);
         box.write('user_id', response['garage']['id']);
-
         box.write('user_type', 'vendor');
         Get.offAllNamed(AppRoutes.vhome);
+        update();
       }
     } else {
       UiUtilites.pendingApprovalAlertDialog(
