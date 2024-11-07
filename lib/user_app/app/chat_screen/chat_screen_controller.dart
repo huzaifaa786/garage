@@ -29,6 +29,67 @@ class ChatScreenController extends GetxController {
   Position? currentPosition;
   String currentAddress = '';
 
+  // @override
+  // void onInit() async {
+  //   update();
+  //   super.onInit();
+  // }
+  //   List<Map<String, dynamic>> item = [
+  //   {
+  //     'onTab': () {
+  //       Get.toNamed(AppRoutes.chatScreen);
+  //     },
+  //     'image': 'assets/images/street_garage.png',
+  //     "messagetitle": "Street garage",
+  //     "messageSubTitle": "oh hello ahmed, the batte ...",
+  //     'newMessage': "3 New messages",
+  //     "showBluedot": true,
+  //     "showcolor": true,
+  //   },
+  //   {
+  //     "onTab": () {
+  //       Get.toNamed(AppRoutes.chatScreen);
+  //     },
+  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
+  //     "messagetitle": "Street garage",
+  //     "messageSubTitle": "oh hello ahmed, the batte ...",
+  //     'newMessage': " Seen 2m ago",
+  //     "showBluedot": false,
+  //     "showcolor": false,
+  //   },
+  //   {
+  //     "onTab": () {
+  //       Get.toNamed(AppRoutes.chatScreen);
+  //     },
+  //     "messagetitle": "Street garage",
+  //     "messageSubTitle": "oh hello ahmed, the batte ...",
+  //     'newMessage': " 3 days ago",
+  //     "showBluedot": false,
+  //     "showcolor": false,
+  //   },
+  //   {
+  //     "onTab": () {
+  //       Get.toNamed(AppRoutes.chatScreen);
+  //     },
+  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
+  //     "messagetitle": "Street garage",
+  //     "messageSubTitle": "oh hello ahmed, the batte ...",
+  //     'newMessage': "3 New messages",
+  //     "showBluedot": true,
+  //     "showcolor": true,
+  //   },
+  //   {
+  //     "onTab": () {
+  //       Get.toNamed(AppRoutes.chatScreen);
+  //     },
+  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
+  //     "messagetitle": "Street garage",
+  //     "messageSubTitle": "oh hello ahmed, the batte ...",
+  //     'newMessage': "3 New messages",
+  //     "showBluedot": true,
+  //     "showcolor": true,
+  //   },
+  // ];
   RxList<Msg> massages = <Msg>[].obs;
 
   TextEditingController massagecontroller = TextEditingController();
