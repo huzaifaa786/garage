@@ -140,7 +140,7 @@ class GarageView extends StatelessWidget {
                             RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
-                                text: 'Opened from ',
+                                text: 'Opened from '.tr,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
@@ -156,7 +156,7 @@ class GarageView extends StatelessWidget {
                                         color: AppColors.black),
                                   ),
                                   TextSpan(
-                                    text: ' to ',
+                                    text: ' to '.tr,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       color: AppColors.grey,
@@ -177,7 +177,7 @@ class GarageView extends StatelessWidget {
                         ),
                       if (controller.garage!.opened == false)
                         AppText(
-                          title: 'Garage is currently off',
+                          title: 'Garage is currently off'.tr,
                         ),
                       if (controller.garage!.garageTime!.isNotEmpty) Gap(5),
                       if (controller.garage!.garageTime!.isNotEmpty)
@@ -189,7 +189,7 @@ class GarageView extends StatelessWidget {
                             RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
-                                text: 'Opened from ',
+                                text: 'Opened from '.tr,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
@@ -205,7 +205,7 @@ class GarageView extends StatelessWidget {
                                         color: AppColors.black),
                                   ),
                                   TextSpan(
-                                    text: ' to ',
+                                    text: ' to '.tr,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       color: AppColors.grey,

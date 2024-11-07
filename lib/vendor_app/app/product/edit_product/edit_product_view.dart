@@ -288,7 +288,7 @@ class EditProductView extends StatelessWidget {
                             errorText: '',
                             hint: controller.selectedCategoryId == 2
                                 ? 'Description'.tr
-                                : 'Description (optional)',
+                                : 'Description (optional)'.tr,
                             controller: controller.descriptionController,
                             onchange: (val) {},
                           ),

@@ -507,7 +507,7 @@ class _OrderViewState extends State<OrderView> {
                             ),
                             Gap(5),
                             AppText(
-                              title: 'What do you prefer?',
+                              title: 'What do you prefer?'.tr,
                               fontWeight: FontWeight.w600,
                               size: 12,
                             ),
@@ -517,7 +517,7 @@ class _OrderViewState extends State<OrderView> {
                         Row(
                           children: [
                             Radio<String>(
-                              value: 'Select garage',
+                              value: 'Select garage'.tr,
                               groupValue: controller.selectedgarageName,
                               onChanged: (value) {
                                 controller.selectGarage(value!);
@@ -533,7 +533,7 @@ class _OrderViewState extends State<OrderView> {
                             ),
                             Gap(10),
                             Text(
-                              'Select garage',
+                              'Select garage'.tr,
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -546,7 +546,7 @@ class _OrderViewState extends State<OrderView> {
                         Row(
                           children: [
                             Radio<String>(
-                              value: 'Send to all garages',
+                              value: 'Send to all garages'.tr,
                               groupValue: controller.selectedgarageName,
                               onChanged: (value) {
                                 controller.selectGarage(value!);
@@ -562,7 +562,7 @@ class _OrderViewState extends State<OrderView> {
                             ),
                             Gap(10),
                             Text(
-                              'Send to all garages',
+                              'Send to all garages'.tr,
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -577,7 +577,7 @@ class _OrderViewState extends State<OrderView> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: MainButton(
-                        title: 'Next',
+                        title: 'Next'.tr,
                         height: Get.height * 0.07,
                         fontsize: 12,
                         onTap: () {

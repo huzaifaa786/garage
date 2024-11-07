@@ -145,9 +145,9 @@ class PaymentView extends StatelessWidget {
                 ),
               )),
               bottomNavigationBar: Container(
-                height:
-                controller.discountAmount!=''?
-                 Get.height * 0.25: Get.height * 0.18,
+                height: controller.discountAmount != ''
+                    ? Get.height * 0.25
+                    : Get.height * 0.18,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
@@ -178,7 +178,7 @@ class PaymentView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             AppText(
-                              title: 'Sub total:',
+                              title: 'Sub total:'.tr,
                               size: 10,
                               fontWeight: FontWeight.w500,
                             ),
@@ -195,7 +195,7 @@ class PaymentView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             AppText(
-                              title: 'discount:',
+                              title: 'discount:'.tr,
                               size: 10,
                               fontWeight: FontWeight.w500,
                             ),
