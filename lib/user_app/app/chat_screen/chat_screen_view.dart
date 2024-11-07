@@ -11,7 +11,6 @@ import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_controller.dar
 import 'package:mobilegarage/user_app/app/chat_screen/components/app_bar/chat_appbar.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/components/input_field/chat_text_field.dart';
 import 'package:mobilegarage/user_app/helper/permission.dart';
-import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import 'dart:io' as io;
 import 'package:google_maps_flutter/google_maps_flutter.dart';

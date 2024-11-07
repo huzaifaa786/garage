@@ -162,7 +162,6 @@ class ChatScreenController extends GetxController {
 
     var response = await Api.execute(url: url, data: data);
 
-    print(response);
     contacts = <Contact>[];
     if (response['contacts'].isNotEmpty) {
       for (var contact in response['contacts']) {

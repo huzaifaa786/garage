@@ -87,16 +87,16 @@ class VChatController extends GetxController {
     };
 
     var response = await Api.execute(url: url, data: data);
-
-    // log(response);
+print(response);
     contacts = <Contact>[];
     if (response['contacts'].isNotEmpty) {
       for (var contact in response['contacts']) {
         contacts.add(Contact(contact));
+        update();
+
       }
     }
     update();
-
     scontacts = contacts;
     update();
     LoadingHelper.dismiss();
@@ -164,23 +164,14 @@ class VChatController extends GetxController {
   Future<void> picksinglefile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: [
-        'zip',
-        'rar',
-        'txt',
-        'pdf',
-        'png',
-        'jpg',
-        'jpeg',
-        'gif'
-      ],
+      allowedExtensions: ['png', 'jpg', 'jpeg', 'gif']
     );
     if (result != null) {
       file = await File(result.files.single.path!);
       await sendMassage();
-      file = null;
+    
     } else {
-      // User canceled the picker
+    
     }
   }
 
@@ -192,32 +183,37 @@ class VChatController extends GetxController {
     String fileName = file?.path.split('/').last ?? '';
     print('object ************');
 
-    // data = dio.FormData.fromMap({
-    //   'api_token': box.read('api_token')!,
-    //   'message': massagecontroller.text.toString(),
-    //   'type': 'user',
-    //   'temporaryMsgId': main(),
-    //   'id': activeUserId,
-    // });
-    // print(data);
-    // if (file != null) {
-    //   data.files.add(
-    //     MapEntry(
-    //       'file',
-    //       await dio.MultipartFile.fromFile(file!.path, filename: fileName),
-    //     ),
-    //   );
-    // }
+    data = dio.FormData.fromMap({
+      'api_token': box.read('api_token')!,
+      'message': massagecontroller.text.toString(),
+      'type': 'user',
+      'temporaryMsgId': main(),
+      'id': activeUserId,
+    });
+    print(data);
+    if (file != null) {
+      data.files.add(
+        MapEntry(
+          'file',
+          await dio.MultipartFile.fromFile(file!.path, filename: fileName),
+        ),
+      );
+    }
+ClearVariable();
+    if (file != null) {
+      file = null;
+    }
+    update();
 
-    // var response = await Api.execute(url: url, data: data);
+     var response = await Api.execute(url: url, data: data, image: file != null);
 
-    // response['message']['body'] = response['message']['message'];
-    // response['message']['created_at'] = response['message']['created_at'];
+    response['message']['body'] = response['message']['message'];
+    response['message']['created_at'] = response['message']['created_at'];
 
-    // massages.add(Msg(response['message']));
+    massages.add(Msg(response['message']));
 
-    // update();
-    // ClearVariable();
+    update();
+    ClearVariable();
   }
 
   fetchmassage(id) async {
