@@ -46,10 +46,11 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
         ),
         child: widget.fileName == '' || widget.fileName == null
             ? Container(
-              decoration: BoxDecoration(border: Border.all()),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                decoration: BoxDecoration(border: Border.all()),
+                child: Column(
+                  crossAxisAlignment: widget.sender == true
+                      ? CrossAxisAlignment.start
+                      : CrossAxisAlignment.end,
                   children: [
                     Card(
                       elevation: 1,
@@ -59,7 +60,9 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                               bottomLeft: Radius.circular(8),
                               topLeft: Radius.circular(8),
                               topRight: Radius.circular(8))),
-                      color: widget.sender == true ? Colors.black.withOpacity(0.8) : AppColors.darkprimary,
+                      color: widget.sender == true
+                          ? Colors.black.withOpacity(0.8)
+                          : AppColors.darkprimary,
                       margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -69,8 +72,9 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
-                              color:
-                                  widget.sender == true ? Colors.white :Colors. white),
+                              color: widget.sender == true
+                                  ? Colors.white
+                                  : Colors.white),
                         ),
                       ),
                     ),
@@ -86,7 +90,7 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                     )
                   ],
                 ),
-            )
+              )
             : Column(
                 children: [
                   widget.fileType == 'image'
@@ -187,7 +191,7 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                                         "Download this and view from your device download folder.",
                                         snackPosition: SnackPosition.BOTTOM,
                                         backgroundColor: Colors.red,
-                                        colorText:Colors. white);
+                                        colorText: Colors.white);
                                   }
                                 },
                                 child: ListTile(
@@ -198,7 +202,7 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                                         fontWeight: FontWeight.w400,
                                         color: widget.sender == true
                                             ? Colors.black
-                                            :Colors. white),
+                                            : Colors.white),
                                   ),
                                   trailing: IconButton(
                                     icon: Icon(
@@ -207,7 +211,7 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                                           : Icons.download,
                                       color: widget.sender == true
                                           ? Colors.black
-                                          :Colors. white,
+                                          : Colors.white,
                                     ),
                                     onPressed: () async {
                                       FileDownloader.downloadFile(
