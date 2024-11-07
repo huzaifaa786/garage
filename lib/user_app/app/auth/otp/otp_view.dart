@@ -6,8 +6,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/auth/otp/otp_controller.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class OtpView extends StatelessWidget {
   const OtpView({super.key});
@@ -25,12 +27,14 @@ class OtpView extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  'assets/icons/backarrow.svg',
+                  box.read('locale') != 'ar'
+                      ? 'assets/icons/backarrow.svg'
+                      : 'assets/icons/backarrow_right.svg',
                   color: AppColors.black,
                   height: 30,
                 ),
                 Gap(5),
-                Text('Back'),
+                Text('Back'.tr),
               ],
             ),
           ),
@@ -84,20 +88,20 @@ class OtpView extends StatelessWidget {
                           fontSize: 15,
                           fontWeight: FontWeight.w600),
                       onCodeChanged: (String code) {
-                         controller.otpCode = code;
+                        controller.otpCode = code;
                       },
                       onSubmit: (String verificationCode) {
-                         controller.otpCode = verificationCode;
-                          controller.verifyOtpCode();
+                        controller.otpCode = verificationCode;
+                        controller.verifyOtpCode();
                       },
                     ),
                     Gap(33),
                     GestureDetector(
                       onTap: () {
-                         controller.verifyPhone();
+                        controller.verifyPhone();
                       },
                       child: AppText(
-                        title: 'Resend',
+                        title: 'Resend'.tr,
                         color: AppColors.darkprimary,
                         size: 16,
                         fontWeight: FontWeight.w500,

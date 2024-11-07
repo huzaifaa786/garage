@@ -9,7 +9,7 @@ class Validators {
     if (value == null) {
       return null;
     } else if (value.isEmpty) {
-      return "$valueType " + "can't be empty".tr;
+      return "$valueType ".tr + "can't be empty".tr;
     } else {
       return null;
     }

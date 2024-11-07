@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/search_result/searchResult_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class ColumnRadioTile extends StatelessWidget {
   const ColumnRadioTile({
@@ -22,7 +23,7 @@ class ColumnRadioTile extends StatelessWidget {
                   title: Row(
                     children: [
                       AppText(
-                        title: 'Quick Service',
+                        title: 'Quick Service'.tr,
                         size: 12,
                         fontWeight: FontWeight.w500,
                       ),
@@ -40,7 +41,7 @@ class ColumnRadioTile extends StatelessWidget {
                   title: Row(
                     children: [
                       AppText(
-                        title: 'Set time',
+                        title: 'Set time'.tr,
                         size: 12,
                         fontWeight: FontWeight.w500,
                       ),

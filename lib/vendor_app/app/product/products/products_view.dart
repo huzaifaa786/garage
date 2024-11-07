@@ -23,7 +23,7 @@ class _VProductsViewState extends State<VProductsView> {
     return GetBuilder<VProductsController>(
         autoRemove: false,
         builder: (controller) => AppLayout(
-              appBarTitle: 'Edit products & services',
+              appBarTitle: 'Edit products & services'.tr,
               hasBgColor: false,
               child: controller.categoriess.isNotEmpty
                   ? SingleChildScrollView(
@@ -90,7 +90,7 @@ class _VProductsViewState extends State<VProductsView> {
                     ))
                   : Center(
                       child: AppText(
-                        title: 'No Products Found.',
+                        title: 'No Products Found.'.tr,
                         color: AppColors.black,
                       ),
                     ),

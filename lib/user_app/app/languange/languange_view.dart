@@ -9,6 +9,7 @@ import 'package:mobilegarage/user_app/components/enums/enums.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class LanguangeView extends StatefulWidget {
   const LanguangeView({super.key});
@@ -32,10 +33,10 @@ class _LanguangeViewState extends State<LanguangeView> {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: const TopBar(
+              title: TopBar(
                 showgarageicon: false,
                 showicon: true,
-                title: "Language",
+                title: "Language".tr,
               ),
             ),
           ),
@@ -62,7 +63,7 @@ class _LanguangeViewState extends State<LanguangeView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppText(
-                          title: 'English (United States)',
+                          title: 'English (United States)'.tr,
                           size: 14,
                           fontWeight: FontWeight.w400,
                           color: controller.site == translateMethod.English
@@ -70,8 +71,8 @@ class _LanguangeViewState extends State<LanguangeView> {
                               : AppColors.black,
                         ),
                         const Gap(5),
-                        const AppText(
-                          title: 'Default',
+                         AppText(
+                          title: 'Default'.tr,
                           size: 12,
                           fontWeight: FontWeight.w400,
                           color: AppColors.grey,

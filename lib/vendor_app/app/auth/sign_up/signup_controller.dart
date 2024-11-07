@@ -13,6 +13,7 @@ import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/signup_api.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/validators.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
@@ -176,7 +177,7 @@ class VSignUpController extends GetxController {
         context: Get.context!,
         imageAssetPath: 'assets/icons/warning.svg',
         onTap: () {},
-        description: 'Fill out all details required!',
+        description: 'Fill out all details required!'.tr,
       );
 
       return false;
@@ -195,7 +196,7 @@ class VSignUpController extends GetxController {
 
   phoneValidation(phone) {
     if (!isNumeric(phone.number)) {
-      phoneNumberError = 'Use Numeric Variables';
+      phoneNumberError = 'Use Numeric Variables'.tr;
       update();
       return phoneNumberError;
     } else if (phone.number.length < selectedCountry!.minLength ||
@@ -237,7 +238,7 @@ class VSignUpController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());
@@ -302,9 +303,9 @@ class VSignUpController extends GetxController {
             onTap: () {
               Get.toNamed(AppRoutes.vsignin);
             },
-            title: 'Thank you!',
+            title: 'Thank you!'.tr,
             description:
-                'You have submitted your application successfully and it’s pending approval.',
+                'You have submitted your application successfully and it’s pending approval.'.tr,
             buttontitle: 'Ok');
 
         resetfields();

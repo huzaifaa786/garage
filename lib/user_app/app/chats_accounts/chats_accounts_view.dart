@@ -9,6 +9,7 @@ import 'package:mobilegarage/user_app/app/chats_accounts/Components/charts_card.
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class ChatsAccountsView extends StatefulWidget {
   const ChatsAccountsView({super.key});
@@ -26,9 +27,8 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                 toolbarHeight: Get.height * 0.1,
                 automaticallyImplyLeading: false,
                 title: TopBar(
-                  title: "Chats",
+                  title: "Chats".tr,
                   showicon: true,
-
                 ),
               ),
               body: SafeArea(
@@ -47,7 +47,7 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                                 name: 'item',
                                 img: 'assets/images/street_garage.png',
                                 msg: 'Tap here to view messages',
-                                ontap: (){
+                                ontap: () {
                                   // Get.toNamed(AppRoutes.chatScreen,parameters: {
                                   //   'id':'1',
                                   //   'name':'item',
@@ -55,16 +55,13 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                                   //   'screen':'chat',
 
                                   // });
-                                   Get.to(() =>ChatScreenView(
+                                  Get.to(() => ChatScreenView(
                                       id: 'chatController.scontacts[index].id',
-                                    name: 'chatController',
-                                        // .scontacts[index].username,
-                                    profilePic: 'chatController',
-                                        // .scontacts[index].profilePic,
-                                    screen: 'chat'
-                                   )
-                                   
-                                   );
+                                      name: 'chatController',
+                                      // .scontacts[index].username,
+                                      profilePic: 'chatController',
+                                      // .scontacts[index].profilePic,
+                                      screen: 'chat'));
                                 },
                               ));
                         })

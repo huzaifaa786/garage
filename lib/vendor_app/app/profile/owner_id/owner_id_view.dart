@@ -21,7 +21,7 @@ class OwnerIdView extends StatelessWidget {
         autoRemove: false,
         builder: (controller) => controller.garage != null
             ? AppLayout(
-                appBarTitle: 'Owner ID',
+                appBarTitle: 'Owner ID'.tr,
                 hasBgColor: false,
                 child: SingleChildScrollView(
                   child: Column(
@@ -35,7 +35,7 @@ class OwnerIdView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: AppText(
-                                title: 'Front side',
+                                title: 'Front side'.tr,
                                 size: 11,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -62,7 +62,7 @@ class OwnerIdView extends StatelessWidget {
                               Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: AppText(
-                                title: 'Back side',
+                                title: 'Back side'.tr,
                                 size: 11,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -97,7 +97,7 @@ class OwnerIdView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 40),
                         child: AppText(
-                          title: 'Add New Owner ID',
+                          title: 'Add New Owner ID'.tr,
                           size: 14,
                           fontWeight: FontWeight.w600,
                         ),
@@ -107,7 +107,7 @@ class OwnerIdView extends StatelessWidget {
                           horizontal: 40,
                         ),
                         child: ImageSelectionTile(
-                          title: 'Upload the front side',
+                          title: 'Upload the front side'.tr,
                           onTap: () {
                             controller.pickImageFromGallery('idfront');
                           },
@@ -121,7 +121,7 @@ class OwnerIdView extends StatelessWidget {
                           horizontal: 40,
                         ),
                         child: ImageSelectionTile(
-                          title: 'Upload the Back side',
+                          title: 'Upload the Back side'.tr,
                           onTap: () {
                             controller.pickImageFromGallery('idback');
                           },
@@ -132,7 +132,7 @@ class OwnerIdView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 50),
                         child: MainButton(
-                          title: 'Confirm',
+                          title: 'Confirm'.tr,
                           onTap: () {
                             controller.updatelicense();
                           },

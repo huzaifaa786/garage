@@ -15,6 +15,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -41,7 +42,7 @@ class _EditProfileViewState extends State<EditProfileView> {
               title: TopBar(
                 showgarageicon: false,
                 showicon: true,
-                title: "Edit profile",
+                title: "Edit profile".tr,
               ),
             ),
           ),
@@ -93,7 +94,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                 Row(
                   children: [
                     AppText(
-                      title: 'My information',
+                      title: 'My information'.tr,
                       size: 14,
                       fontWeight: FontWeight.w500,
                     ),
@@ -116,7 +117,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           AppText(
-                            title: '(Optional)',
+                            title: '(Optional)'.tr,
                             size: 10,
                             fontWeight: FontWeight.w500,
                             color: AppColors.grey,
@@ -141,7 +142,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                   readOnly: true,
                   controller: controller.phoneController,
                   errorText: '',
-                  
                   onchange: (value) {
                     print('Current input: $value');
                   },
@@ -162,7 +162,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppText(
-                          title: 'Change phone number',
+                          title: 'Change phone number'.tr,
                           size: 12,
                           fontWeight: FontWeight.w500,
                           color: AppColors.primary,
@@ -176,7 +176,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                 Gap(50),
                 // Gap(88),
                 MainButton(
-                  title: 'Save changes',
+                  title: 'Save changes'.tr,
                   buttonWidth: Get.width * 0.77,
                   height: Get.height * 0.077,
                   onTap: () {

@@ -62,7 +62,7 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                                   ),
                                   const Gap(4),
                                   AppText(
-                                    title: ConstantStrings.upload_garage_banner,
+                                    title: 'Upload garage banner'.tr,
                                     size: 11,
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.primary_color,
@@ -71,7 +71,7 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                               ),
                               const Gap(6),
                               AppText(
-                                title: ConstantStrings.recomended_image_size,
+                                title: 'Recomended size 390 * 185 px'.tr,
                                 size: 10,
                                 color: AppColors.hint_text_color,
                               )
@@ -137,14 +137,14 @@ class ProfileAndCoverPickerr extends StatelessWidget {
                               ),
                               const Gap(2),
                               AppText(
-                                title: ConstantStrings.upload_logo,
+                                title: 'Uploaded'.tr,
                                 size: 9,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.primary_color,
                               ),
                               const Gap(2),
                               AppText(
-                                title: ConstantStrings.seventy_square,
+                                title: '70*70'.tr,
                                 size: 8,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.hint_text_color,

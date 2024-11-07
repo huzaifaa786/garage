@@ -25,7 +25,7 @@ class _ChatScreenViewState extends State<ChatScreenView> {
       builder: (controller) => Scaffold(
         body: ChatAppbar(
           hasIcon: true,
-          appBarTitle: 'Street garage',
+          appBarTitle: 'Street garage'.tr,
           hasBgColor: true,
           child: Column(
             children: [

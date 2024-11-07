@@ -5,6 +5,7 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/notification/component/notification_card.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class VNotificationView extends StatefulWidget {
@@ -20,7 +21,7 @@ class _VNotificationViewState extends State<VNotificationView> {
     return GetBuilder<VNotificationController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-          appBarTitle: 'Notifications',
+          appBarTitle: 'Notifications'.tr,
           hasBgColor: true,
           child: controller.notifications.isNotEmpty
               ? SingleChildScrollView(
@@ -68,7 +69,7 @@ class _VNotificationViewState extends State<VNotificationView> {
                 )
               : Center(
                   child: AppText(
-                    title: 'No notifications available \n for this garage.',
+                    title: 'No notifications available \n for this garage.'.tr,
                     color: AppColors.black,
                     textAlign: TextAlign.center,
                   ),

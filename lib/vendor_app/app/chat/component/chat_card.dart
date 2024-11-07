@@ -22,10 +22,9 @@ class ChatCard extends StatelessWidget {
   final img;
   final time;
   final title;
-    void handleTap() {
+  void handleTap() {
     Get.toNamed(AppRoutes.chatScreen);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -87,8 +86,7 @@ class ChatCard extends StatelessWidget {
                                         child: AppText(
                                           maxLines: 1,
                                           overFlow: TextOverflow.ellipsis,
-                                          title:
-                                              'oh hello ahmed, th ...',
+                                          title: 'oh hello ahmed, th ...',
                                           size: 11,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.grey,
@@ -112,8 +110,8 @@ class ChatCard extends StatelessWidget {
                           ),
                         ),
                         const Gap(5),
-                        const AppText(
-                          title: '3 days ago',
+                        AppText(
+                          title: '3 days ago'.tr,
                           size: 11,
                           fontWeight: FontWeight.w500,
                           color: Colors.grey,

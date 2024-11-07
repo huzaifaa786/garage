@@ -5,6 +5,7 @@ import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 import 'package:mobilegarage/user_app/app/service_detail/service_detail_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ServiceDetailView extends StatelessWidget {
@@ -15,7 +16,7 @@ class ServiceDetailView extends StatelessWidget {
     return GetBuilder<ServiceDetailController>(
         autoRemove: false,
         builder: (controller) => AppLayout(
-            appBarTitle: 'Service Detail',
+            appBarTitle: 'Service Detail'.tr,
             hasBgColor: false,
             hasShadow: true,
             child: SingleChildScrollView(
@@ -28,7 +29,7 @@ class ServiceDetailView extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 20),
                               child: AppText(
-                                title: 'Results',
+                                title: 'Results'.tr,
                                 fontWeight: FontWeight.w500,
                                 size: 15,
                               ),
@@ -51,8 +52,9 @@ class ServiceDetailView extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     var product =
                                         controller.garage!.products![index];
-                                    var productextra =
-                                        product.fuelextra != null ? product.fuelextra![0].id : '';
+                                    var productextra = product.fuelextra != null
+                                        ? product.fuelextra![0].id
+                                        : '';
                                     return ServiceCard(
                                       logo: controller.garage!.logo.toString(),
                                       image: product.images![0].imageUrl
@@ -69,11 +71,10 @@ class ServiceDetailView extends StatelessWidget {
                                           ? product.fuelextra![0].name
                                               .toString()
                                           : product.brands!.name.toString(),
-                                    
                                       onTap: () {
                                         UiUtilites.showConfirmationDialog(
                                           false,
-                                          'Are you Sure that you want\n to Add this product to cart ?',
+                                          'Are you Sure that you want\n to Add this product to cart ?'.tr,
                                           onConfirm: () async {
                                             controller.addToCart(
                                                 product.id.toString(),

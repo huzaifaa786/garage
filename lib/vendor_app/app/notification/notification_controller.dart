@@ -42,21 +42,21 @@ class VNotificationController extends GetxController {
     if (difference.inDays >= 1) {
       return difference.inDays == 1
           ? '1 day ago'
-          : '${difference.inDays} days ago';
+          : '${difference.inDays} ${'days ago'.tr}';
     } else if (difference.inHours >= 1) {
       return difference.inHours == 1
           ? '1 hour ago'
-          : '${difference.inHours} hours ago';
+          : '${difference.inHours} ${'hours ago'.tr}';
     } else if (difference.inMinutes >= 1) {
       return difference.inMinutes == 1
           ? '1 minute ago'
-          : '${difference.inMinutes} minutes ago';
+          : '${difference.inMinutes} ${'minutes ago'.tr}';
     } else if (difference.inSeconds >= 1) {
       return difference.inSeconds == 1
           ? '1 second ago'
-          : '${difference.inSeconds} seconds ago';
+          : '${difference.inSeconds} ${'seconds ago'.tr}';
     } else {
-      return 'Just now';
+      return '${'Just now'.tr}';
     }
   }
 }

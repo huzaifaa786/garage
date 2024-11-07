@@ -1,14 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/components/enums/enums.dart';
 
-
 class LanguagesController extends GetxController {
   static LanguagesController get instance => Get.find();
 
-  String language = 'english';
+  String language = 'english'.tr;
   translateMethod? site;
   toggleplan(translateMethod value) {
     site = value;

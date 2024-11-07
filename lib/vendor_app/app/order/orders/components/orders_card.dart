@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/order_models/orders_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/button.dart';
@@ -62,14 +63,14 @@ class OrdersCard extends StatelessWidget {
                     Row(
                       children: [
                         SvgPicture.asset('assets/icons/clock.svg'),
-                        Gap(5),
+                        const SizedBox(width: 5),
                         AppText(
                           title:
                               controller.formatTime(order.createdAt.toString()),
                           color: AppColors.primary_color,
                           size: 11,
                           fontWeight: FontWeight.w600,
-                        )
+                        ),
                       ],
                     )
                   ],
@@ -87,7 +88,7 @@ class OrdersCard extends StatelessWidget {
                     ),
                     Gap(13),
                     AppText(
-                      title: 'Tracking number:',
+                      title: 'Tracking number:'.tr,
                       size: 12,
                       fontWeight: FontWeight.w500,
                     ),
@@ -149,10 +150,15 @@ class OrdersCard extends StatelessWidget {
                               size: 13,
                               fontWeight: FontWeight.w600,
                             ),
-                            AppText(
-                              title: order.user!.phone.toString(),
-                              size: 13,
-                              fontWeight: FontWeight.w600,
+                            Directionality(
+                              textDirection: box.read('locale') != 'ar'
+                                  ? TextDirection.ltr
+                                  : TextDirection.rtl,
+                              child: AppText(
+                                title: order.user!.phone.toString(),
+                                size: 13,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ],
                         )
@@ -280,8 +286,8 @@ class OrdersCard extends StatelessWidget {
                         Get.toNamed(AppRoutes.vmap);
                       },
                       child: Locationn(
-                        // text: controller.getAddress(1),
-                      ),
+                          // text: controller.getAddress(1),
+                          ),
                     ),
                   ),
                 ),
@@ -294,13 +300,13 @@ class OrdersCard extends StatelessWidget {
                               AcceptedButton(
                                 ontap: ontapReject,
                                 color: AppColors.primary_color,
-                                text: 'Reject',
+                                text: 'Reject'.tr,
                                 width: Get.width * 0.3,
                               ),
                               AcceptedButton(
                                 ontap: ontapAccept,
                                 color: AppColors.green_color,
-                                text: 'Accept',
+                                text: 'Accept'.tr,
                                 width: Get.width * 0.3,
                               )
                             ],
@@ -311,13 +317,13 @@ class OrdersCard extends StatelessWidget {
                               AcceptedButton(
                                 ontap: ontapReject,
                                 color: AppColors.primary_color,
-                                text: 'Reject',
+                                text: 'Reject'.tr,
                                 width: Get.width * 0.3,
                               ),
                               AcceptedButton(
                                 ontap: ontapOnway,
                                 color: AppColors.lightblue,
-                                text: 'Mark as on the way',
+                                text: 'Mark as on the way'.tr,
                                 width: Get.width * 0.5,
                               )
                             ],
@@ -326,7 +332,7 @@ class OrdersCard extends StatelessWidget {
                         ? AcceptedButton(
                             ontap: ontapDelivered,
                             color: AppColors.lightblue,
-                            text: 'Mark as delivered',
+                            text: 'Mark as delivered'.tr,
                             width: Get.width * 0.5,
                           )
                         : Gap(1),

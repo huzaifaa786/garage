@@ -21,13 +21,13 @@ class GarageTimingsView extends StatelessWidget {
         String successMessage = '';
 
         return AppLayout(
-          appBarTitle: "Open time & close time",
+          appBarTitle: "Open time & close time".tr,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildTimeSection(
-                  "Morning period",
+                  "Morning period".tr,
                   controller.selectedTimeOpenFromMorning,
                   controller.selectedTimeCloseMorning,
                   (fromTime, toTime) {
@@ -41,7 +41,7 @@ class GarageTimingsView extends StatelessWidget {
                 ),
                 Divider(thickness: 6, color: AppColors.divider_color),
                 _buildTimeSection(
-                  "Night period",
+                  "Night period".tr,
                   controller.selectedTimeOpenFromNight,
                   controller.selectedTimeCloseNight,
                   (fromTime, toTime) {
@@ -61,7 +61,8 @@ class GarageTimingsView extends StatelessWidget {
                       controller.onSaveChanges(() {
                         isButtonPressed = true;
 
-                        successMessage = 'Changes have been saved successfully';
+                        successMessage =
+                            'Changes have been saved successfully'.tr;
 
                         Future.delayed(const Duration(seconds: 2), () {
                           isButtonPressed = false;
@@ -73,7 +74,7 @@ class GarageTimingsView extends StatelessWidget {
                     child: AppButton(
                       buttonColor:
                           isButtonPressed ? AppColors.grey : AppColors.primary,
-                      title: 'Save changes',
+                      title: 'Save changes'.tr,
                       textColor:
                           isButtonPressed ? AppColors.primary : AppColors.white,
                     ),
@@ -115,17 +116,17 @@ class GarageTimingsView extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
           const Gap(20.0),
-          const AppText(
-            title: 'Open from',
+          AppText(
+            title: 'Open from'.tr,
             size: 14,
             fontWeight: FontWeight.w500,
           ),
           const Gap(8),
-          buildTimeRow('From', fromTime,
+          buildTimeRow('From'.tr, fromTime,
               (newTime) => onTimesSelected(newTime, toTime), isMorning, true),
           const Gap(20.0),
-          const AppText(
-            title: 'To',
+          AppText(
+            title: 'To'.tr,
             size: 14,
             fontWeight: FontWeight.w500,
           ),

@@ -54,14 +54,14 @@ class _LanguageView extends State<LanguageView> {
                           child: Column(children: [
                             Gap(30),
                             AppText(
-                              title: '  Select \nlanguage',
+                              title: '  Select \nlanguage'.tr,
                               size: 30,
                               fontWeight: FontWeight.w600,
                               color: const Color.fromARGB(255, 96, 3, 5),
                             ),
                             Gap(120),
                             LanguageSelecter(
-                              text: 'English',
+                              text: 'English'.tr,
                               ontap: () async {
                                 await controller
                                     .toggleplan(translateMethod.English);
@@ -74,7 +74,7 @@ class _LanguageView extends State<LanguageView> {
                             ),
                             Gap(60),
                             LanguageSelecter(
-                              text: 'العربية',
+                              text: 'العربية'.tr,
                               ontap: () async {
                                 await controller
                                     .toggleplan(translateMethod.Arabic);

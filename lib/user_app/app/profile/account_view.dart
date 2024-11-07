@@ -10,6 +10,7 @@ import 'package:mobilegarage/user_app/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/user_app/components/cards/profile_card.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class AccountView extends StatefulWidget {
@@ -40,10 +41,10 @@ class _AccountViewState extends State<AccountView> {
                 automaticallyImplyLeading: false,
                 scrolledUnderElevation: 0.0,
                 toolbarHeight: 95.0,
-                title: const TopBar(
+                title: TopBar(
                   showgarageicon: false,
                   showicon: false,
-                  title: "Profile",
+                  title: "Profile".tr,
                 ),
               ),
             ),
@@ -105,7 +106,7 @@ class _AccountViewState extends State<AccountView> {
                                 height: Get.height * 0.08,
                                 width: Get.width * 0.8,
                                 color: AppColors.lightPink,
-                                text: 'My cars',
+                                text: 'My cars'.tr,
                                 textColor: AppColors.black,
                                 image: 'assets/icons/car.svg',
                                 text2: '',
@@ -117,17 +118,17 @@ class _AccountViewState extends State<AccountView> {
                                 height: Get.height * 0.08,
                                 width: Get.width * 0.8,
                                 color: AppColors.lightPink,
-                                text: 'Language',
+                                text: 'Language'.tr,
                                 textColor: AppColors.black,
                                 image: 'assets/icons/language.svg',
-                                text2: 'English',
+                                text2: 'English'.tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.language);
                                 }),
                             const Gap(15),
                             AllProfileCard(
                               color: AppColors.lightPink,
-                              text: 'Settings',
+                              text: 'Settings'.tr,
                               textColor: AppColors.black,
                               image: 'assets/icons/setting.svg',
                               ontap: () {
@@ -145,11 +146,11 @@ class _AccountViewState extends State<AccountView> {
                                   color: AppColors.lightPink,
                                   height: Get.height * 0.08,
                                   width: Get.width * 0.8,
-                                  text: 'Orders history',
+                                  text: 'Orders history'.tr,
                                   textColor: AppColors.black,
                                   image: 'assets/icons/order.svg',
                                   text2:
-                                      '${orderController.orders?.length ?? 0} items',
+                                      "${orderController.orders?.length ?? 0} ${"items".tr}",
                                   ontap: () {
                                     Get.toNamed(AppRoutes.order_history);
                                   },
@@ -161,13 +162,14 @@ class _AccountViewState extends State<AccountView> {
                               image: box.read('locale') != 'ar'
                                   ? 'assets/icons/log-out.svg'
                                   : 'assets/icons/log_outleft.svg',
-                              title: 'Log out',
+                              title: 'Log out'.tr,
                               buttonWidth: Get.width * 0.77,
                               height: Get.height * 0.07,
                               onTap: () {
                                 UiUtilites.showConfirmationDialog(
                                   false,
-                                  'Are you Sure that you want\n to log out ?',
+                                  'Are you Sure that you want\n to log out ?'
+                                      .tr,
                                   onConfirm: () async {
                                     GetStorage box = GetStorage();
                                     await box.remove('api_token');

@@ -6,6 +6,7 @@ import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class PromotionView extends StatefulWidget {
   const PromotionView({super.key});
@@ -30,10 +31,10 @@ class _PromotionViewState extends State<PromotionView> {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: const TopBar(
+              title: TopBar(
                 showicon: true,
                 showgarageicon: false,
-                title: "Promotion",
+                title: "Promotion".tr,
               ),
             ),
           ),
@@ -42,9 +43,9 @@ class _PromotionViewState extends State<PromotionView> {
           child: Container(
             padding: const EdgeInsets.only(left: 46, top: 40),
             child: controller.getPromotions.isEmpty
-                ? const Center(
+                ? Center(
                     child: AppText(
-                      title: 'No promotions available',
+                      title: 'No promotions available'.tr,
                       size: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.darkprimary,

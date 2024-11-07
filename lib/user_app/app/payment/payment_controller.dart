@@ -88,10 +88,10 @@ class PaymentsController extends GetxController {
           onTap: () {
             Get.offAllNamed(AppRoutes.main);
           },
-          title: 'Thank you!',
-          buttontitle: 'Back to home',
+          title: 'Thank you!'.tr,
+          buttontitle: 'Back to home'.tr,
           description:
-              'your order has been placed successfully, and soon a garage will accept your order.');
+              'your order has been placed successfully, and soon a garage will accept your order.'.tr);
       update();
     }
   }

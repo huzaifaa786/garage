@@ -42,7 +42,7 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
               child: AppBar(
                 centerTitle: true,
                 title: AppText(
-                  title: 'Change Password',
+                  title: 'Change Password'.tr,
                   size: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary_color,
@@ -61,7 +61,7 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                 children: [
                   AppInputField(
                     errorText: controller.passwordError,
-                    hint: 'Old Password',
+                    hint: 'Old Password'.tr,
                     obscure: controller.obscureOldPassword,
                     controller: controller.oldpasswordController,
                     onchange: (val) {
@@ -84,7 +84,7 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                   Gap(20),
                   AppInputField(
                     errorText: controller.newpasswordError,
-                    hint: 'Password',
+                    hint: 'Password'.tr,
                     obscure: controller.obscurePassword,
                     controller: controller.passwordController,
                     onchange: (val) {
@@ -107,7 +107,7 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                   const Gap(20),
                   AppInputField(
                     errorText: controller.confirmPasswordError,
-                    hint: 'Confirm Password',
+                    hint: 'Confirm Password'.tr,
                     obscure: controller.cobscurePassword,
                     controller: controller.confirmPasswordController,
                     onchange: (val) {
@@ -129,7 +129,7 @@ class _VChangepasswordViewState extends State<VChangepasswordView> {
                   ),
                   Gap(35),
                   AppButton(
-                    title: 'Confirm',
+                    title: 'Confirm'.tr,
                     buttonColor: controller.isButtonClicked
                         ? AppColors.divider_color
                         : AppColors.primary_color,

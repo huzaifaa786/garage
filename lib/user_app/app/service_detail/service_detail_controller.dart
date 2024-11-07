@@ -36,7 +36,7 @@ class ServiceDetailController extends GetxController {
         quantity: '1');
     if (response.isNotEmpty) {
       Get.back();
-      UiUtilites.successSnackbar('Product added to Cart', 'Success');
+      UiUtilites.successSnackbar('Product added to Cart'.tr, 'Success'.tr);
       update();
     }
   }

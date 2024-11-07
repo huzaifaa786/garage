@@ -13,6 +13,7 @@ import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class UiUtilites {
@@ -171,9 +172,9 @@ class UiUtilites {
       required title,
       required buttontitle,
       required description}) {
-           showDialog(
-              context: context,
-                   builder: (BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
           child: AlertDialog(
@@ -224,14 +225,14 @@ class UiUtilites {
           ),
         );
       },
-          );
-       
-        Future.delayed(Duration(seconds: 3), () {
-    if (Navigator.canPop(context)) {
-      Navigator.pop(context);
-    }
-  });
-        }
+    );
+
+    Future.delayed(Duration(seconds: 3), () {
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+    });
+  }
 
   static pendingApprovalAlertDialog({
     required BuildContext context,
@@ -328,7 +329,7 @@ class UiUtilites {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
                 child: Text(
-                  'No',
+                  "No".tr,
                   style: TextStyle(color: Colors.red, fontSize: 16),
                 ),
               ),
@@ -343,7 +344,7 @@ class UiUtilites {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
                 child: Text(
-                  'Yes',
+                  'Yes'.tr,
                   style: TextStyle(color: Colors.green, fontSize: 16),
                 ),
               ),
@@ -380,7 +381,7 @@ class UiUtilites {
                       ),
                     ),
                     Text(
-                      'Add new',
+                      ' to '.tr,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

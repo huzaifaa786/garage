@@ -8,6 +8,7 @@ import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class AboutusView extends StatefulWidget {
   const AboutusView({super.key});
@@ -34,7 +35,7 @@ class _TermsConditionsViewState extends State<AboutusView> {
               title: TopBar(
                 showicon: true,
                 showgarageicon: false,
-                title: "About us",
+                title: 'About us'.tr,
               ),
             ),
           ),
@@ -52,7 +53,7 @@ class _TermsConditionsViewState extends State<AboutusView> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       AppText(
-                        title: 'Who are we?',
+                        title: 'Who are we'.tr,
                         size: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,
@@ -68,7 +69,8 @@ class _TermsConditionsViewState extends State<AboutusView> {
                   ),
                   Gap(27),
                   AppText(
-                    title: 'Location ',
+                    title: 'Location'.tr,
+
                     size: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.darkprimary,

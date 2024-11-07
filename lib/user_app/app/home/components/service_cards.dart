@@ -120,7 +120,7 @@ class ServiceCard extends StatelessWidget {
                     Gap(5),
                     Expanded(
                       child: AppText(
-                        title: time + ' min',
+                        title: time + ' ' + 'min'.tr,
                         color: AppColors.primary,
                         size: 9,
                         maxLines: 1,
@@ -138,7 +138,7 @@ class ServiceCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AppText(
-                      title: price + ' ' + 'AED',
+                      title: price + ' ' + 'AED'.tr,
                       color: Color.fromARGB(255, 0, 91, 165),
                       fontWeight: FontWeight.w600,
                       size: 11.0,

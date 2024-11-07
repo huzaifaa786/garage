@@ -7,6 +7,7 @@ import 'package:mobilegarage/user_app/components/cards/terms_condition_listile.d
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class FaqView extends StatefulWidget {
   const FaqView({super.key});
@@ -31,10 +32,10 @@ class _FaqViewState extends State<FaqView> {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: const TopBar(
+              title: TopBar(
                 showicon: true,
                 showgarageicon: false,
-                title: "FAQ",
+                title: "FAQ".tr,
               ),
             ),
           ),
@@ -46,8 +47,8 @@ class _FaqViewState extends State<FaqView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AppText(
-                  title: 'Popular questions?',
+                 AppText(
+                  title: 'Popular questions?'.tr,
                   size: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.darkprimary,

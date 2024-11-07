@@ -14,7 +14,7 @@ class VUrgentOrdersView extends StatelessWidget {
     return GetBuilder<VOrdersController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: 'Urgent Orders',
+        appBarTitle: 'Urgent Orders'.tr,
         hasBgColor: true,
         hasShadow: false,
         child: controller.urgentOrders.isNotEmpty
@@ -44,7 +44,7 @@ class VUrgentOrdersView extends StatelessWidget {
               )
             : Center(
                 child: AppText(
-                  title: 'No Orders Found',
+                  title: 'No Orders Found'.tr,
                 ),
               ),
       ),

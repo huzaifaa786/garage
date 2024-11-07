@@ -83,7 +83,7 @@ class MyLocationController extends GetxController {
         validateFields('address detail', adreesdetailController.text);
 
     if (selectedEmirateId == null) {
-      emirateError = 'Please select an Emirate';
+      emirateError = 'Please select an Emirate'.tr;
       update();
     } else {
       emirateError = '';
@@ -91,8 +91,8 @@ class MyLocationController extends GetxController {
     }
     //
     if (lat == null) {
-      latError = 'Please select an Address';
-      UiUtilites.errorSnackbar('error', 'Please select an Address');
+      latError = 'Please select an Address'.tr;
+      UiUtilites.errorSnackbar('Error'.tr, 'Please select an Address'.tr);
     } else {
       latError = '';
       update();

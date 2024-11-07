@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_controller.dart';
 import 'package:mobilegarage/user_app/components/cards/language_card.dart';
 import 'package:mobilegarage/user_app/components/enums/enums.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SelectLanguageView extends StatelessWidget {
   const SelectLanguageView({super.key});
@@ -63,7 +63,7 @@ class SelectLanguageView extends StatelessWidget {
                           children: [
                             Gap(30),
                             AppText(
-                              title: ConstantStrings.select_language.tr,
+                              title: 'Select \n language'.tr,
                               textAlign: TextAlign.center,
                               size: 32,
                               fontWeight: FontWeight.w600,
@@ -77,10 +77,14 @@ class SelectLanguageView extends StatelessWidget {
                               child: LanguageCard(
                                 ontap: () async {
                                   await controller
-                                      .toggleplan(translateMethod.English);
+                                      .togglePlan(translateMethod.English);
+                                  Get.updateLocale(const Locale('en', 'US'));
+                                  GetStorage box = GetStorage();
+                                  await box.write('locale', 'en');
+                                 
                                   Get.offAllNamed(AppRoutes.selectside);
                                 },
-                                title: ConstantStrings.english.tr,
+                                title: 'English (United States)',
                                 isSelected:
                                     controller.site == translateMethod.English,
                               ),
@@ -92,10 +96,13 @@ class SelectLanguageView extends StatelessWidget {
                               child: LanguageCard(
                                 ontap: () async {
                                   await controller
-                                      .toggleplan(translateMethod.Arabic);
+                                      .togglePlan(translateMethod.Arabic);
+                                  Get.updateLocale(const Locale('ar', 'AE'));
+                                  GetStorage box = GetStorage();
+                                  await box.write('locale', 'ar');
                                   Get.offAllNamed(AppRoutes.selectside);
                                 },
-                                title: ConstantStrings.arabic.tr,
+                                title: 'عربي'.tr,
                                 isSelected:
                                     controller.site == translateMethod.Arabic,
                               ),

@@ -17,7 +17,7 @@ class _VChatViewState extends State<VChatView> {
     return GetBuilder<VChatController>(
         autoRemove: false,
         builder: (controller) =>  AppLayout(
-              appBarTitle: 'Chat',
+              appBarTitle: 'Chat'.tr,
               hasBgColor: true,
               child: Column(
                 children: [

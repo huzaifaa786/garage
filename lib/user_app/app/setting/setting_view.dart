@@ -12,6 +12,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SettingView extends StatefulWidget {
   const SettingView({super.key});
@@ -35,10 +36,10 @@ class _SettingViewState extends State<SettingView> {
                     automaticallyImplyLeading: false,
                     scrolledUnderElevation: 0.0,
                     toolbarHeight: 95.0,
-                    title: const TopBar(
+                    title: TopBar(
                       showicon: true,
                       showgarageicon: false,
-                      title: "Settings",
+                      title: "Settings".tr,
                     ),
                   ),
                 ),
@@ -58,7 +59,7 @@ class _SettingViewState extends State<SettingView> {
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
                           color: AppColors.lightgreysettingCard,
-                          text: 'About us',
+                          text: 'About us'.tr,
                           textColor: AppColors.primary,
                           image: 'assets/icons/users.svg',
                           text2: '',
@@ -70,7 +71,7 @@ class _SettingViewState extends State<SettingView> {
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
                           color: AppColors.lightgreysettingCard,
-                          text: 'Promotion',
+                          text: 'Promotion'.tr,
                           textColor: AppColors.primary,
                           image: 'assets/icons/award.svg',
                           text2: '',
@@ -82,7 +83,7 @@ class _SettingViewState extends State<SettingView> {
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
                           color: AppColors.lightgreysettingCard,
-                          text: 'FAQ',
+                          text: 'FAQ'.tr,
                           textColor: AppColors.primary,
                           image: 'assets/icons/help-circle.svg',
                           text2: '',
@@ -94,7 +95,7 @@ class _SettingViewState extends State<SettingView> {
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
                           color: AppColors.lightgreysettingCard,
-                          text: 'Terms and conditions',
+                          text: 'Terms and conditions'.tr,
                           textColor: AppColors.primary,
                           image: 'assets/icons/align-justify.svg',
                           text2: '',
@@ -106,7 +107,7 @@ class _SettingViewState extends State<SettingView> {
                           height: Get.height * 0.08,
                           width: Get.width * 0.8,
                           color: AppColors.lightgreysettingCard,
-                          text: 'Privacy',
+                          text: 'Privacy'.tr,
                           textColor: AppColors.primary,
                           image: 'assets/icons/local.svg',
                           text2: '',
@@ -114,8 +115,8 @@ class _SettingViewState extends State<SettingView> {
                             Get.toNamed(AppRoutes.privacy);
                           }),
                       const Gap(28),
-                      const AppText(
-                        title: 'Contact us',
+                      AppText(
+                        title: 'Contact us'.tr,
                         size: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,

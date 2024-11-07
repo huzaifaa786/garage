@@ -24,7 +24,7 @@ class OwnerIdController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());
@@ -35,7 +35,7 @@ class OwnerIdController extends GetxController {
             base64idfront = base64Image;
             update();
             break;
-               case 'idback':
+          case 'idback':
             idback = File(croppedImage.path);
             base64idback = base64Image;
             update();
@@ -52,8 +52,7 @@ class OwnerIdController extends GetxController {
   }
 
   void removeLicenseImage(String imageName) {
-     switch (imageName) {
-    
+    switch (imageName) {
       case 'idfront':
         idfront = null;
         base64idfront = null;
@@ -84,15 +83,17 @@ class OwnerIdController extends GetxController {
   }
 
   updatelicense() async {
-    if (base64idback == null||base64idfront == null) {
-      UiUtilites.errorSnackbar('Error', 'Please select license image');
+    if (base64idback == null || base64idfront == null) {
+      UiUtilites.errorSnackbar('Error'.tr, 'Please select Owner ID image'.tr);
       return;
     }
-    var response = await VUpdateOwnerIdApi.updateownerid(base64idfront,base64idback);
+    var response =
+        await VUpdateOwnerIdApi.updateownerid(base64idfront, base64idback);
     if (response.isNotEmpty) {
       garagedata();
       garage = GarageModel.fromJson(response['garage']);
-      UiUtilites.successSnackbar('License updated successfully', 'Success');
+      UiUtilites.successSnackbar(
+          'Images updated successfully'.tr, 'Success'.tr);
       Get.back();
 
       update();

@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/app/auth/signin/signin_controller.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/phone_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
@@ -62,17 +63,23 @@ class SigninView extends StatelessWidget {
                                       child: Column(children: [
                                         Gap(30),
                                         AppText(
-                                          title: ConstantStrings.sign_in,
+                                          title: 'Sign In'.tr,
                                           size: 28,
                                           fontWeight: FontWeight.w600,
                                           color: AppColors.heading_text_color,
                                           fontFamily: 'Ibarra Real Nova',
                                         ),
                                         Gap(30),
-                                        PhoneInputField(
-                                          controller:
-                                              controller.phoneController,
-                                          onChanged: controller.onChanged,
+                                        Directionality(
+                                          textDirection:
+                                              box.read('locale') != 'ar'
+                                                  ? TextDirection.ltr
+                                                  : TextDirection.rtl,
+                                          child: PhoneInputField(
+                                            controller:
+                                                controller.phoneController,
+                                            onChanged: controller.onChanged,
+                                          ),
                                         ),
                                         Gap(40),
                                         // Row(
@@ -98,7 +105,7 @@ class SigninView extends StatelessWidget {
                                         // ),
                                         Gap(70),
                                         MainButton(
-                                          title: 'Sign In',
+                                          title: 'Sign In'.tr,
                                           txtweight: FontWeight.w600,
                                           onTap: () {
                                             // Get.toNamed(AppRoutes.otp);
@@ -107,8 +114,8 @@ class SigninView extends StatelessWidget {
                                         ),
                                         Gap(40),
                                         AuthRichText(
-                                          title: 'Already have an account?',
-                                          description: 'Sign up',
+                                          title: 'Already have an account?'.tr,
+                                          description: 'Sign Up'.tr,
                                           titlesize: 14,
                                           descriptiosize: 14,
                                           titlefontweight: FontWeight.w500,

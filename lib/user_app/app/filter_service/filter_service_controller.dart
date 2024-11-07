@@ -30,6 +30,7 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class FilterServiceController extends GetxController {
@@ -440,7 +441,7 @@ class FilterServiceController extends GetxController {
     update();
   }
 
-  String selectedgarageName = 'Select garage';
+  String selectedgarageName = 'Select garage'.tr;
   //! Method to select a garage
   void selectGarage(String garageName) {
     selectedgarageName = garageName;
@@ -449,8 +450,8 @@ class FilterServiceController extends GetxController {
 
 //! List for garage names
   final List<String> garageNames = [
-    'Select garage',
-    'Send to all garages',
+    'Select garage'.tr,
+    'Send to all garages'.tr,
   ];
 
   final picker = ImagePicker();
@@ -640,9 +641,10 @@ class FilterServiceController extends GetxController {
           onTap: () {
             Get.toNamed(AppRoutes.main);
           },
-          title: 'Thank you!',
-          buttontitle: 'Back to home',
-          description: 'A garage will accept your order from within 3-5 min.');
+          title: 'Thank you!'.tr,
+          buttontitle: 'Back to home'.tr,
+          description:
+              'A garage will accept your order from within 3-5 min.'.tr);
     }
   }
 

@@ -39,7 +39,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
                       title: TopBar(
                         showicon: true,
                         showgarageicon: false,
-                        title: "Orders history",
+                        title: "Orders history".tr,
                       ),
                     ),
                   )),

@@ -37,7 +37,7 @@ class ProductFormView extends StatelessWidget {
     return GetBuilder<ProductFormController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: 'Add Product or Service',
+        appBarTitle: 'Add Product or Service'.tr,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -58,7 +58,7 @@ class ProductFormView extends StatelessWidget {
                         horizontal: 20,
                       ),
                       child: AppText(
-                        title: 'Fill Info',
+                        title: 'Fill Info'.tr,
                         size: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -68,7 +68,7 @@ class ProductFormView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: AppText(
                         title:
-                            '(Note : prices will be final and if you ever need to change the price contact the owner.)',
+                            '(Note : prices will be final and if you ever need to change the price contact the owner.)'.tr,
                         size: 11,
                         fontWeight: FontWeight.w400,
                         color: AppColors.grey,
@@ -78,7 +78,7 @@ class ProductFormView extends StatelessWidget {
                     DropDownField<CategoryModel>(
                       displayValue: (item) => item.name!,
                       items: controller.categories,
-                      hint: 'Category',
+                      hint: 'Category'.tr,
                       selectedValue: controller.selectedCategory,
                       onChanged: (value) {
                         controller.setSelectedCategory(value);
@@ -96,7 +96,7 @@ class ProductFormView extends StatelessWidget {
                           DropDownWithAdd<BrandModel>(
                             displayValue: (item) => item.name!,
                             items: controller.brands,
-                            hint: 'Brands Name',
+                            hint: 'Brands Name'.tr,
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
@@ -124,7 +124,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<BatteryProductTypeModel>(
                                 displayValue: (item) => item.name!,
                                 items: controller.producttypes,
-                                hint: 'Product type',
+                                hint: 'Product type'.tr,
                                 selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
                                   controller.setSelectedproducttype(value);
@@ -140,7 +140,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<BatteryOriginModel>(
                                 displayValue: (item) => item.origin!,
                                 items: controller.batteryOrigins,
-                                hint: 'Origin',
+                                hint: 'Origin'.tr,
                                 selectedValue: controller.selectedbatteryOrigin,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryOrigin(value);
@@ -156,7 +156,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<BatteryAmpereModel>(
                                 displayValue: (item) => item.ampere!,
                                 items: controller.batteryAmperes,
-                                hint: 'Battery Ampere',
+                                hint: 'Battery Ampere'.tr,
                                 selectedValue: controller.selectedampere,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryAmpere(value);
@@ -170,7 +170,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<BatteryVoltageModel>(
                                 displayValue: (item) => item.voltage!,
                                 items: controller.batteryVoltages,
-                                hint: 'Battery Voltage',
+                                hint: 'Battery Voltage'.tr,
                                 selectedValue: controller.selectedvoltage,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryvoltage(value);
@@ -190,7 +190,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreWidthModel>(
                                 displayValue: (item) => item.width!,
                                 items: controller.tyrewidths,
-                                hint: 'Tyer width',
+                                hint: 'Tyre width'.tr,
                                 selectedValue: controller.selectedwidth,
                                 onChanged: (value) {
                                   controller.setSelectedWidth(value);
@@ -204,7 +204,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreHeightModel>(
                                 displayValue: (item) => item.height!,
                                 items: controller.tyreheights,
-                                hint: 'Tyer height',
+                                hint: 'Tyer height'.tr,
                                 selectedValue: controller.selectedheight,
                                 onChanged: (value) {
                                   controller.setSelectedheight(value);
@@ -218,7 +218,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreSizeModel>(
                                 displayValue: (item) => item.size!,
                                 items: controller.tyresizes,
-                                hint: 'Wheel size',
+                                hint: 'Wheel size'.tr,
                                 selectedValue: controller.selectedsize,
                                 onChanged: (value) {
                                   controller.setSelectedSize(value);
@@ -232,7 +232,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreSpeedRatingModel>(
                                 displayValue: (item) => item.speedrating!,
                                 items: controller.tyreSpeedRatings,
-                                hint: 'Speed rating',
+                                hint: 'Speed rating'.tr,
                                 selectedValue: controller.selectedSpeedRating,
                                 onChanged: (value) {
                                   controller.setSelectedSpeedRating(value);
@@ -248,7 +248,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyrePatternModel>(
                                 displayValue: (item) => item.pattern!,
                                 items: controller.tyrepattterens,
-                                hint: 'Pattern',
+                                hint: 'Pattern'.tr,
                                 selectedValue: controller.selectedpatteren,
                                 onChanged: (value) {
                                   controller.setSelectedPatteren(value);
@@ -262,7 +262,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreOriginModel>(
                                 displayValue: (item) => item.origin!,
                                 items: controller.tyreorigins,
-                                hint: 'Origin',
+                                hint: 'Origin'.tr,
                                 selectedValue: controller.selectedtyreorigin,
                                 onChanged: (value) {
                                   controller.setSelectedTyreOrigin(value);
@@ -284,7 +284,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<OilProductTTypeModel>(
                                 displayValue: (item) => item.producttype!,
                                 items: controller.oilproductTypes,
-                                hint: 'Product type',
+                                hint: 'Product type'.tr,
                                 selectedValue:
                                     controller.selectedoilproductType,
                                 onChanged: (value) {
@@ -302,7 +302,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<OilVolumeModel>(
                                 displayValue: (item) => item.volume!,
                                 items: controller.oilVolumes,
-                                hint: 'Liquid volume litter',
+                                hint: 'Liquid volume liter'.tr,
                                 selectedValue: controller.selectedvolume,
                                 onChanged: (value) {
                                   controller.setSelectedVolume(value);
@@ -327,8 +327,8 @@ class ProductFormView extends StatelessWidget {
                                 ? controller.descriptionError
                                 : '',
                             hint: controller.selectedCategoryId == 2
-                                ? 'Description'
-                                : 'Description (optional)',
+                                ? 'Description'.tr
+                                : 'Description (optional)'.tr,
                             controller: controller.descriptionController,
                             onchange: (val) {
                               controller.selectedCategoryId != 6
@@ -343,7 +343,7 @@ class ProductFormView extends StatelessWidget {
                         .contains(controller.selectedCategoryId))
                       AppInputField(
                         errorText: controller.priceError,
-                        hint: 'Price',
+                        hint: 'Price'.tr,
                         type: TextInputType.number,
                         controller: controller.priceController,
                         onchange: (val) {
@@ -353,7 +353,7 @@ class ProductFormView extends StatelessWidget {
                         suffixWidget: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: AppText(
-                            title: 'AED',
+                            title: 'AED'.tr,
                             size: 14,
                             fontWeight: FontWeight.w600,
                             color: AppColors.primary_color,
@@ -409,8 +409,8 @@ class ProductFormView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 22),
                           child: MainInput(
                             hint: controller.selectedCategoryId == 8
-                                ? 'Description'
-                                : 'Description (optional)',
+                                ? 'Description'.tr
+                                : 'Description (optional)'.tr,
                             onchange: (p0) {
                               switch (
                                   controller.selectedCategoryId.toString()) {
@@ -453,7 +453,7 @@ class ProductFormView extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 22),
                               child: AppInputField(
-                                hint: 'Price',
+                                hint: 'Price'.tr,
                                 type: TextInputType.number,
                                 errorText: priceError,
                                 onchange: (val) {
@@ -491,7 +491,7 @@ class ProductFormView extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 16),
                                   child: AppText(
-                                    title: 'AED',
+                                    title: 'AED'.tr,
                                     size: 14,
                                     fontWeight: FontWeight.w600,
                                     color: AppColors.primary_color,
@@ -510,7 +510,7 @@ class ProductFormView extends StatelessWidget {
                                 Gap(20),
                                 AppInputField(
                                   errorText: timeError,
-                                  hint: 'Time',
+                                  hint: 'Time'.tr,
                                   type: TextInputType.number,
                                   onchange: (val) {
                                     switch (controller.selectedCategoryId
@@ -542,7 +542,7 @@ class ProductFormView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 16),
                                     child: AppText(
-                                      title: 'Min',
+                                      title: 'Min'.tr,
                                       size: 14,
                                       fontWeight: FontWeight.w600,
                                       color: AppColors.primary_color,
@@ -593,7 +593,7 @@ class ProductFormView extends StatelessWidget {
               Gap(40),
               AppButton(
                 buttonWidth: 0.8,
-                title: 'Add product',
+                title: 'Add product'.tr,
                 buttonColor: AppColors.primary_color,
                 ontap: () {
                   controller.addProduct();

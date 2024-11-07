@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mobilegarage/apis/user_apis/order_apis/check_unavialable_dates_api.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SearchResultController extends GetxController {
   static SearchResultController instance = Get.find();
@@ -56,7 +57,7 @@ class SearchResultController extends GetxController {
   @override
   void onInit() {
     super.onInit();
- garageid = Get.parameters['garageid'] ?? '';
+    garageid = Get.parameters['garageid'] ?? '';
     selectedDate = DateTime.now();
     formatteddate = DateFormat('yyyy-MM-dd').format(selectedDate!);
     final now = DateTime.now();
@@ -67,9 +68,7 @@ class SearchResultController extends GetxController {
 
   checkDate() async {
     var response = await CheckDateApi.checkunavialabledate(
-      date: formatteddate.toString(),
-      garageid: garageid.toString()
-    );
+        date: formatteddate.toString(), garageid: garageid.toString());
     if (response.isNotEmpty) {
       if (validateInputs()) {
         Get.toNamed(AppRoutes.payments, parameters: {
@@ -78,8 +77,6 @@ class SearchResultController extends GetxController {
           'servicetype': selectedService.toString(),
           'lat': lat.toString(),
           'lng': lng.toString(),
-
-
         });
       }
       update();
@@ -89,8 +86,8 @@ class SearchResultController extends GetxController {
   bool validateInputs() {
     if (currentAddress.isEmpty) {
       Get.snackbar(
-        'Error',
-        'Please provide a valid location.',
+        'Error'.tr,
+        'Please provide a valid location.'.tr,
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
@@ -98,8 +95,8 @@ class SearchResultController extends GetxController {
       return false;
     } else if (formatteddate == null) {
       Get.snackbar(
-        'Error',
-        'Please select a valid date.',
+        'Error'.tr,
+        'Please select a valid date.'.tr,
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
