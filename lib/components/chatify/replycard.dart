@@ -45,45 +45,48 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
           maxWidth: MediaQuery.of(context).size.width - 65,
         ),
         child: widget.fileName == '' || widget.fileName == null
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Card(
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                        // side: BorderSide(color: Color(0xFF7586A9)),
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(8),
-                            bottomLeft: Radius.circular(8),
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8))),
-                    color: widget.sender == true ? Colors.black.withOpacity(0.8) : AppColors.darkprimary,
-                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, top: 10, bottom: 10),
-                      child: Text(
-                        widget.msg,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color:
-                                widget.sender == true ? Colors.white :Colors. white),
+            ? Container(
+              decoration: BoxDecoration(border: Border.all()),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Card(
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8))),
+                      color: widget.sender == true ? Colors.black.withOpacity(0.8) : AppColors.darkprimary,
+                      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10, right: 10, top: 10, bottom: 10),
+                        child: Text(
+                          widget.msg,
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color:
+                                  widget.sender == true ? Colors.white :Colors. white),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 15),
-                    child: Text(
-                      widget.Time.toString(),
-                      style: TextStyle(
-                          color: AppColors.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  )
-                ],
-              )
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        widget.Time.toString(),
+                        style: TextStyle(
+                            color: AppColors.grey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    )
+                  ],
+                ),
+            )
             : Column(
                 children: [
                   widget.fileType == 'image'
