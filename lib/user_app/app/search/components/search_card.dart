@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -206,7 +207,7 @@ class SearchCard extends StatelessWidget {
                           top: Get.height * 0.003,
                           child: GestureDetector(
                             onTap: () {
-                              print('object23');
+                              Get.toNamed(AppRoutes.chats_accounts);
                             },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(60),

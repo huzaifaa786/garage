@@ -77,6 +77,9 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                     location: garageAddress!['location'],
                     city: garageAddress['city'],
                     isSelected: controller.selectedGarageIndex == index,
+                    onchattap: (){
+                      
+                    },
                     ontap: () {
                       Get.toNamed(AppRoutes.garage, parameters: {
                         'id': controller.garages[index].id.toString(),

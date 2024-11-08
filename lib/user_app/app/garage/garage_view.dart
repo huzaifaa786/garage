@@ -175,10 +175,10 @@ class GarageView extends StatelessWidget {
                             )
                           ],
                         ),
-                      if (controller.garage!.opened == false)
-                        AppText(
-                          title: 'Garage is currently off'.tr,
-                        ),
+                      // if (controller.garage!.opened == false)
+                      //   AppText(
+                      //     title: 'Garage is currently off'.tr,
+                      //   ),
                       if (controller.garage!.garageTime!.isNotEmpty) Gap(5),
                       if (controller.garage!.garageTime!.isNotEmpty)
                         Row(
@@ -277,7 +277,7 @@ class GarageView extends StatelessWidget {
                               height: Get.height * 0.05,
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(AppRoutes.chatScreen);
+                                  Get.toNamed(AppRoutes.chats_accounts);
                                 },
                                 child: Container(
                                   height: Get.height * 0.045,

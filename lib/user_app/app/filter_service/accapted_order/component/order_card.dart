@@ -24,12 +24,14 @@ class OrderCard extends StatelessWidget {
       this.location,
       this.city,
       required this.isSelected,
-      required this.ontap});
+      required this.ontap,this.onchattap});
   GarageModel garage;
   final String? location;
   final String? city;
   final bool isSelected;
   final ontap;
+  final onchattap;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FilterServiceController>(
@@ -353,7 +355,7 @@ class OrderCard extends StatelessWidget {
                                 top: Get.height * 0.003,
                                 child: GestureDetector(
                                   onTap: () {
-                                  Get.toNamed(AppRoutes.chatScreen);
+                                  Get.toNamed(AppRoutes.chats_accounts);
 
                                   },
                                   child: Container(
