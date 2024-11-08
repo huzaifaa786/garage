@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:full_screen_image/full_screen_image.dart';
@@ -5,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:mobilegarage/components/chatify/pdf_view.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:photo_view/photo_view.dart';
@@ -38,8 +41,20 @@ class ReplyMessageCard extends StatefulWidget {
 class _ReplyMessageCardState extends State<ReplyMessageCard> {
   final FlutterLocalNotificationsPlugin notificationsPlugin =
       FlutterLocalNotificationsPlugin();
+      
   @override
   Widget build(BuildContext context) {
+    double? lat;
+    double? lng;
+
+    // Split location into lat and lng
+    if (widget.location.isNotEmpty||widget.location!=null) {
+      List<String> latLng = widget.location.split(',');
+      if (latLng.length == 2) {
+        lat = double.tryParse(latLng[0].trim());
+        lng = double.tryParse(latLng[1].trim());
+      }
+    }
     return Align(
       alignment:
           widget.sender == true ? Alignment.centerLeft : Alignment.centerRight,
@@ -53,23 +68,17 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                     ? CrossAxisAlignment.start
                     : CrossAxisAlignment.end,
                 children: [
-                  if (widget.location != '' || widget.location != null)
-                    Column(
+                  widget.msg == '' || widget.msg == null
+                  ?  Column(
                       children: [
-                        // Card(
-                        //   margin:
-                        //       EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                        //   color: widget.sender == true
-                        //       ? Colors.white
-                        //       : AppColors.green_color,
-                        //   child: 
-                        // ),
+                      
                         InkWell(
-                            onTap: () {
-                            
-                              print('extvvvvvvvvvvvvvvvvvvvvvvvvv');
-                             
-                            },
+                             onTap: () async {
+                          Get.toNamed(AppRoutes.vmap, parameters: {
+                            'lat':lat.toString(),
+                            'lng': lng.toString()
+                          });
+                        },
                             child: Container(
                               height: 150,
                               width: 150,
@@ -79,7 +88,7 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                                   image: DecorationImage(
                                       image: AssetImage(
                                           'assets/images/map_image.png'),
-                                      fit: BoxFit.contain)),
+                                      fit: BoxFit.cover)),
                             ),
                           ),
                         Container(
@@ -94,8 +103,7 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                           ),
                         )
                       ],
-                    ),
-                  if (widget.location == '' || widget.location == null)
+                    ):
                     Column(
                       children: [
                         Card(

@@ -210,12 +210,13 @@ class ChatScreenController extends GetxController {
     if (file != null) {
       file = null;
     }
-    update();
-    try {
-        await Api.execute(url: url, data: data, image: file != null);
-    } catch (e) {
-      developer.log("Error sending message: $e");
+    if (lat != null) {
+      lat = null;
+      lng = null;
+      location = '';
     }
+    update();
+
     var response = await Api.execute(url: url, data: data, image: file != null);
     response['message']['body'] = response['message']['message'];
     response['message']['created_at'] = response['message']['created_at'];
@@ -236,8 +237,21 @@ class ChatScreenController extends GetxController {
     var response = await Api.execute(url: url, data: data);
     massages = <Msg>[].obs;
     for (var van in response['messages']) {
-      print(van['attachment']);
-      massages.add(Msg(van));
+      // print(van['attachment']);
+
+       String location = van['location'] ?? ''; // Ensure location exists
+    double? lat;
+    double? lng;
+     // Split location into lat and lng
+    if (location.isNotEmpty) {
+      List<String> latLng = location.split(',');
+      if (latLng.length == 2) {
+       lat = double.tryParse(latLng[0].trim());
+        lng = double.tryParse(latLng[1].trim());
+      }
+    }
+      // massages.add(Msg(van));
+       massages.add(Msg(van, lat: lat, lng: lng));
       update();
     }
     LoadingHelper.dismiss();
