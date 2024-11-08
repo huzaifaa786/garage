@@ -170,7 +170,7 @@ class OrdersCard extends StatelessWidget {
                           padding: const EdgeInsets.all(4.0),
                           child: InkWell(
                             onTap: () {
-                              Get.toNamed(AppRoutes.chatScreen);
+                              Get.toNamed(AppRoutes.vchat);
                             },
                             child: Container(
                               height: 35,
