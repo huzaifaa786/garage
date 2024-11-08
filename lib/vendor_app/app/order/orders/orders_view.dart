@@ -40,8 +40,9 @@ class VOrdersView extends StatelessWidget {
                                   OrdersCard(
                                     order: orders,
                                     ontapReject: () {
-                                      controller
-                                          .rejectedOrder(orders.id.toString());
+                                      controller.rejectedOrder(
+                                          orders.id.toString(),
+                                          orders.paymentIntent.toString());
                                     },
                                     ontapAccept: () {
                                       controller

@@ -5,18 +5,17 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class HomeAppbar extends StatelessWidget {
-   HomeAppbar({
-    super.key,
-    this.notification,
-    this.chat,
-    this.name,
-    this.isnotification = true
-  });
+  HomeAppbar(
+      {super.key,
+      this.notification,
+      this.chat,
+      this.name,
+      this.isnotification = true});
   final isnotification;
 
   final notification;
   final chat;
-  String? name='Street Garage';
+  String? name = 'Street Garage';
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +27,8 @@ class HomeAppbar extends StatelessWidget {
           Row(
             children: [
               Image.asset('assets/images/appbar.png'),
-               AppText(
-                title:'  '+ name.toString(),
+              AppText(
+                title: '  ' + name.toString(),
                 size: 12,
                 fontWeight: FontWeight.w600,
                 color: const Color.fromARGB(255, 158, 9, 12),
@@ -46,20 +45,19 @@ class HomeAppbar extends StatelessWidget {
                       padding: const EdgeInsets.all(6),
                       child: SvgPicture.asset('assets/images/bell.svg'),
                     ),
-                      if(isnotification==true)
-
-                    Positioned(
-                      top: 3,
-                      right: 0,
-                      child: Container(
-                        height: 7,
-                        width: 7,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary_color,
+                    if (isnotification == true)
+                      Positioned(
+                        top: 3,
+                        right: 0,
+                        child: Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary_color,
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),
@@ -83,18 +81,18 @@ class HomeAppbar extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Positioned(
-                      top: 2,
-                      right: 0,
-                      child: Container(
-                        height: 7,
-                        width: 7,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary_color,
-                        ),
-                      ),
-                    ),
+                    // Positioned(
+                    //   top: 2,
+                    //   right: 0,
+                    //   child: Container(
+                    //     height: 7,
+                    //     width: 7,
+                    //     decoration: BoxDecoration(
+                    //       shape: BoxShape.circle,
+                    //       color: AppColors.primary_color,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

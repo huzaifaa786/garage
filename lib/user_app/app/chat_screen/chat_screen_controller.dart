@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -12,7 +13,6 @@ import 'package:mobilegarage/models/chatify/contact.dart';
 import 'package:mobilegarage/models/chatify/msg.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:dio/dio.dart' as dio;
@@ -29,67 +29,6 @@ class ChatScreenController extends GetxController {
   Position? currentPosition;
   String currentAddress = '';
 
-  // @override
-  // void onInit() async {
-  //   update();
-  //   super.onInit();
-  // }
-  //   List<Map<String, dynamic>> item = [
-  //   {
-  //     'onTab': () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     'image': 'assets/images/street_garage.png',
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': "3 New messages",
-  //     "showBluedot": true,
-  //     "showcolor": true,
-  //   },
-  //   {
-  //     "onTab": () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': " Seen 2m ago",
-  //     "showBluedot": false,
-  //     "showcolor": false,
-  //   },
-  //   {
-  //     "onTab": () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': " 3 days ago",
-  //     "showBluedot": false,
-  //     "showcolor": false,
-  //   },
-  //   {
-  //     "onTab": () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': "3 New messages",
-  //     "showBluedot": true,
-  //     "showcolor": true,
-  //   },
-  //   {
-  //     "onTab": () {
-  //       Get.toNamed(AppRoutes.chatScreen);
-  //     },
-  //     "imgurl": "https://dummyimage.com/61x61/000/fff",
-  //     "messagetitle": "Street garage",
-  //     "messageSubTitle": "oh hello ahmed, the batte ...",
-  //     'newMessage': "3 New messages",
-  //     "showBluedot": true,
-  //     "showcolor": true,
-  //   },
-  // ];
   RxList<Msg> massages = <Msg>[].obs;
 
   TextEditingController massagecontroller = TextEditingController();
@@ -115,10 +54,7 @@ class ChatScreenController extends GetxController {
       "socket_id": socketId,
       "channel_name": channelName,
     };
-
     var response = await Api.execute(url: url, data: data);
-    print('AAAAAAAAAAAAAAAAaa');
-    print(response);
     LoadingHelper.dismiss();
     return response;
   }
@@ -251,13 +187,15 @@ class ChatScreenController extends GetxController {
     GetStorage box = GetStorage();
 
     String fileName = file?.path.split('/').last ?? '';
-
+    String location = lat.toString() + ',' + lng.toString();
+    developer.log(location);
     data = dio.FormData.fromMap({
       'api_token': box.read('api_token')!,
       'message': massagecontroller.text.toString(),
       'type': 'user',
       'temporaryMsgId': main(),
       'id': activeUserId,
+      'location': lat.toString() + ',' + lng.toString()
     });
 
     if (file != null) {
@@ -273,6 +211,11 @@ class ChatScreenController extends GetxController {
       file = null;
     }
     update();
+    try {
+        await Api.execute(url: url, data: data, image: file != null);
+    } catch (e) {
+      developer.log("Error sending message: $e");
+    }
     var response = await Api.execute(url: url, data: data, image: file != null);
     response['message']['body'] = response['message']['message'];
     response['message']['created_at'] = response['message']['created_at'];
@@ -286,17 +229,11 @@ class ChatScreenController extends GetxController {
     var data;
     print(data);
     GetStorage box = GetStorage();
-
     data = {
       'api_token': box.read('api_token')!,
       'id': id,
     };
-print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx$data');
-
-
     var response = await Api.execute(url: url, data: data);
-print('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww$response');
-
     massages = <Msg>[].obs;
     for (var van in response['messages']) {
       print(van['attachment']);

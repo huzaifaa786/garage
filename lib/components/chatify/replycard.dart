@@ -16,6 +16,7 @@ class ReplyMessageCard extends StatefulWidget {
     this.Time,
     this.sender = true,
     this.fileExist = false,
+    this.location = '',
     this.fileName = '',
     this.fileTitle = '',
     this.fileType = '',
@@ -28,6 +29,8 @@ class ReplyMessageCard extends StatefulWidget {
   final fileTitle;
   final fileType;
   final fileExist;
+  final location;
+
   @override
   State<ReplyMessageCard> createState() => _ReplyMessageCardState();
 }
@@ -46,48 +49,96 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
         ),
         child: widget.fileName == '' || widget.fileName == null
             ? Column(
-              crossAxisAlignment: widget.sender == true
-                  ? CrossAxisAlignment.start
-                  : CrossAxisAlignment.end,
-              children: [
-                Card(
-                  elevation: 1,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(8),
-                          bottomLeft: Radius.circular(8),
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8))),
-                  color: widget.sender == true
-                      ? Colors.black.withOpacity(0.8)
-                      : AppColors.darkprimary,
-                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 10, bottom: 10),
-                    child: Text(
-                      widget.msg,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: widget.sender == true
-                              ? Colors.white
-                              : Colors.white),
+                crossAxisAlignment: widget.sender == true
+                    ? CrossAxisAlignment.start
+                    : CrossAxisAlignment.end,
+                children: [
+                  if (widget.location != '' || widget.location != null)
+                    Column(
+                      children: [
+                        // Card(
+                        //   margin:
+                        //       EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                        //   color: widget.sender == true
+                        //       ? Colors.white
+                        //       : AppColors.green_color,
+                        //   child: 
+                        // ),
+                        InkWell(
+                            onTap: () {
+                            
+                              print('extvvvvvvvvvvvvvvvvvvvvvvvvv');
+                             
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40),
+                                  color: Colors.transparent,
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/map_image.png'),
+                                      fit: BoxFit.contain)),
+                            ),
+                          ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                            widget.Time.toString(),
+                            style: TextStyle(
+                              color: AppColors.greybg,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(
-                    widget.Time.toString(),
-                    style: TextStyle(
-                        color: AppColors.grey,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400),
-                  ),
-                )
-              ],
-            )
+                  if (widget.location == '' || widget.location == null)
+                    Column(
+                      children: [
+                        Card(
+                          elevation: 1,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8),
+                                  topLeft: Radius.circular(8),
+                                  topRight: Radius.circular(8))),
+                          color: widget.sender == true
+                              ? Colors.black.withOpacity(0.8)
+                              : AppColors.darkprimary,
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 10, bottom: 10),
+                            child: Text(
+                              widget.msg,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: widget.sender == true
+                                      ? Colors.white
+                                      : Colors.white),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                            widget.Time.toString(),
+                            style: TextStyle(
+                                color: AppColors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        )
+                      ],
+                    ),
+                ],
+              )
             : Column(
                 children: [
                   widget.fileType == 'image'
@@ -176,68 +227,31 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                                   : AppColors.green_color,
                               child: InkWell(
                                 onTap: () {
-                                  String ext = widget.fileName.split('.').last;
-                                  print(widget.fileName);
-                                  print(ext);
-                                  if (ext == 'pdf') {
-                                    Get.to(() => PdfView(
-                                        file:
-                                            Msg_Storage_Url + widget.fileName));
-                                  } else {
-                                    Get.snackbar('Invalid File fromat!',
-                                        "Download this and view from your device download folder.",
-                                        snackPosition: SnackPosition.BOTTOM,
-                                        backgroundColor: Colors.red,
-                                        colorText: Colors.white);
-                                  }
+                                  // String ext = widget.fileName.split('.').last;
+                                  // print(widget.fileName);
+                                  print('extvvvvvvvvvvvvvvvvvvvvvvvvv');
+                                  // if (ext == 'pdf') {
+                                  //   Get.to(() => PdfView(
+                                  //       file:
+                                  //           Msg_Storage_Url + widget.fileName));
+                                  // } else {
+                                  //   Get.snackbar('Invalid File fromat!',
+                                  //       "Download this and view from your device download folder.",
+                                  //       snackPosition: SnackPosition.BOTTOM,
+                                  //       backgroundColor: Colors.red,
+                                  //       colorText: Colors.white);
+                                  // }
                                 },
-                                child: ListTile(
-                                  title: Text(
-                                    widget.fileTitle,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: widget.sender == true
-                                            ? Colors.black
-                                            : Colors.white),
-                                  ),
-                                  trailing: IconButton(
-                                    icon: Icon(
-                                      widget.fileExist
-                                          ? Icons.download_done
-                                          : Icons.download,
-                                      color: widget.sender == true
-                                          ? Colors.black
-                                          : Colors.white,
-                                    ),
-                                    onPressed: () async {
-                                      FileDownloader.downloadFile(
-                                          url:
-                                              Msg_Storage_Url + widget.fileName,
-                                          name: widget.fileTitle,
-                                          onProgress: (fileName, progress) {
-                                            Get.snackbar(
-                                                'Downloading ' + fileName!,
-                                                'Downloaded ' +
-                                                    progress.toString() +
-                                                    '%',
-                                                snackPosition:
-                                                    SnackPosition.BOTTOM,
-                                                backgroundColor: Colors.green,
-                                                colorText: Colors.white);
-                                          },
-                                          onDownloadCompleted: (path) async {
-                                            Get.snackbar(
-                                                'Downloading Successfully.',
-                                                'Downloaded at device path ' +
-                                                    path.toString(),
-                                                snackPosition:
-                                                    SnackPosition.BOTTOM,
-                                                backgroundColor: Colors.green,
-                                                colorText: Colors.white);
-                                          });
-                                    },
-                                  ),
+                                child: Container(
+                                  height: 150,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(40),
+                                      color: AppColors.white,
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/map_image.png'),
+                                          fit: BoxFit.cover)),
                                 ),
                               ),
                             ),
@@ -260,3 +274,92 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
     );
   }
 }
+// Column(
+//                           crossAxisAlignment: CrossAxisAlignment.start,
+//                           children: [
+//                             Card(
+//                               margin: EdgeInsets.symmetric(
+//                                   horizontal: 15, vertical: 5),
+//                               color: widget.sender == true
+//                                   ? Colors.white
+//                                   : AppColors.green_color,
+//                               child: InkWell(
+//                                 onTap: () {
+//                                   String ext = widget.fileName.split('.').last;
+//                                   print(widget.fileName);
+//                                   print(ext);
+//                                   if (ext == 'pdf') {
+//                                     Get.to(() => PdfView(
+//                                         file:
+//                                             Msg_Storage_Url + widget.fileName));
+//                                   } else {
+//                                     Get.snackbar('Invalid File fromat!',
+//                                         "Download this and view from your device download folder.",
+//                                         snackPosition: SnackPosition.BOTTOM,
+//                                         backgroundColor: Colors.red,
+//                                         colorText: Colors.white);
+//                                   }
+//                                 },
+//                                 child: ListTile(
+//                                   title: Text(
+//                                     widget.fileTitle,
+//                                     style: TextStyle(
+//                                         fontSize: 14,
+//                                         fontWeight: FontWeight.w400,
+//                                         color: widget.sender == true
+//                                             ? Colors.black
+//                                             : Colors.white),
+//                                   ),
+//                                   trailing: IconButton(
+//                                     icon: Icon(
+//                                       widget.fileExist
+//                                           ? Icons.download_done
+//                                           : Icons.download,
+//                                       color: widget.sender == true
+//                                           ? Colors.black
+//                                           : Colors.white,
+//                                     ),
+//                                     onPressed: () async {
+//                                       FileDownloader.downloadFile(
+//                                           url:
+//                                               Msg_Storage_Url + widget.fileName,
+//                                           name: widget.fileTitle,
+//                                           onProgress: (fileName, progress) {
+//                                             Get.snackbar(
+//                                                 'Downloading ' + fileName!,
+//                                                 'Downloaded ' +
+//                                                     progress.toString() +
+//                                                     '%',
+//                                                 snackPosition:
+//                                                     SnackPosition.BOTTOM,
+//                                                 backgroundColor: Colors.green,
+//                                                 colorText: Colors.white);
+//                                           },
+//                                           onDownloadCompleted: (path) async {
+//                                             Get.snackbar(
+//                                                 'Downloading Successfully.',
+//                                                 'Downloaded at device path ' +
+//                                                     path.toString(),
+//                                                 snackPosition:
+//                                                     SnackPosition.BOTTOM,
+//                                                 backgroundColor: Colors.green,
+//                                                 colorText: Colors.white);
+//                                           });
+//                                     },
+//                                   ),
+//                                 ),
+//                               ),
+//                             ),
+//                             Container(
+//                               margin: EdgeInsets.symmetric(horizontal: 15),
+//                               child: Text(
+//                                 widget.Time.toString(),
+//                                 style: TextStyle(
+//                                   color: AppColors.greybg,
+//                                   fontSize: 12,
+//                                   fontWeight: FontWeight.w400,
+//                                 ),
+//                               ),
+//                             )
+//                           ],
+//                         ),

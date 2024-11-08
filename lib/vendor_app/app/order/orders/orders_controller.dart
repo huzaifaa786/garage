@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -8,6 +10,8 @@ import 'package:mobilegarage/models/order_models/order_status_model.dart';
 import 'package:mobilegarage/models/order_models/orders_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class VOrdersController extends GetxController {
   static VOrdersController instance = Get.find();
@@ -145,12 +149,50 @@ class VOrdersController extends GetxController {
     }
   }
 
-  rejectedOrder(id) async {
+  rejectedOrder(id, String paymentIntentString) async {
     var response = await ChangeOrderStatusApi.changeOrderStatus(
         orderId: id, status: 'rejected');
     if (response.isNotEmpty) {
+      bool refundSuccessful = await refundPayment(paymentIntentString);
+      if (refundSuccessful) {
+        print('object');
+      }
       await fetchOrders();
       await getUrgentOrders();
+      update();
+    }
+  }
+
+  Future<bool> refundPayment(String paymentIntentString) async {
+    try {
+      // Parse the payment intent string into a JSON object
+      final paymentIntent = json.decode(paymentIntentString);
+
+      // Extract the payment intent ID
+      final paymentIntentId = paymentIntent['id'];
+
+      // Make a POST request to create a refund
+      final response = await http.post(
+        Uri.parse('https://api.stripe.com/v1/refunds'),
+        headers: {
+          'Authorization': 'Bearer ${dotenv.env['STRIPE_SECRET']}',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: {
+          'payment_intent': paymentIntentId,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // Refund successful
+        return true;
+      } else {
+        // Refund failed
+        return false;
+      }
+    } catch (err) {
+      print(err.toString());
+      return false;
     }
   }
 
@@ -169,6 +211,4 @@ class VOrdersController extends GetxController {
       await fetchOrders();
     }
   }
-
-
 }

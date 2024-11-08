@@ -29,11 +29,16 @@ class VUrgentOrdersView extends StatelessWidget {
                         final orders = controller.urgentOrders[index];
                         return Column(
                           children: [
-                            OrdersCard(order: orders,ontapReject:  () {
-                                  controller.rejectedOrder(orders.id.toString() );
-                                },ontapAccept:  () {
-                                  controller.acceptOrder(orders.id.toString());
-                                },),
+                            OrdersCard(
+                              order: orders,
+                              ontapReject: () {
+                                controller.rejectedOrder(orders.id.toString(),
+                                    orders.paymentIntent.toString());
+                              },
+                              ontapAccept: () {
+                                controller.acceptOrder(orders.id.toString());
+                              },
+                            ),
                             const Gap(20),
                           ],
                         );

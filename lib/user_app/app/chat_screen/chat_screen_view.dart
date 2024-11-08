@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -117,6 +119,9 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                               .massages[controller.massages.length - 1 - index]
                               .file_title,
                           fileExist: fileExist,
+                          location: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .location.toString(),
                         );
                       })),
             ],
@@ -169,7 +174,10 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                             builder: (context) => PlacePicker(
                               apiKey:
                                   "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
-                              onPlacePicked: (result) {
+                              onPlacePicked: (result)async {
+                                log(result.geometry!.location.lat.toString());
+                                log(result.geometry!.location.lng.toString());
+
                                 controller.currentAddress =
                                     result.formattedAddress!;
                                 controller.lat =
@@ -178,6 +186,7 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                                     result.geometry!.location.lng;
                                 controller.update();
                                 Navigator.of(context).pop();
+                                await chatController. sendMassage();
                               },
                               initialPosition: LatLng(
                                   controller.currentPosition != null

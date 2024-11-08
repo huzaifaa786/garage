@@ -7,6 +7,7 @@ class Msg {
   String? file_title;
   String? file_type;
   DateTime? dateTime;
+  String? location;
 
   Msg(massage) {
     id = massage['id'];
@@ -17,5 +18,6 @@ class Msg {
     file_title = massage['attachment'] != null ? massage['attachment']['title'] ?? '' : '';
     file_type = massage['attachment'] != null ? massage['attachment']['type'] ?? '' : '';
     dateTime = DateTime.parse(massage['created_at']).toLocal();
+     location = massage['location'] ?? '';
   }
 }
