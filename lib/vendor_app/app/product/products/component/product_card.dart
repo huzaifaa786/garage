@@ -71,7 +71,7 @@ class ProductCard extends StatelessWidget {
                     const Gap(6.0),
                     if (product!.price != '')
                       AppText(
-                        title: product!.price! + ' AED',
+                        title: product!.price! + ' ' + ' AED'.tr,
                         size: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.lightblue,
@@ -84,7 +84,7 @@ class ProductCard extends StatelessWidget {
                           ontap: oneditTap,
                           icon: 'assets/images/edit.svg',
                           width: Get.width * 0.22,
-                          text: 'Edit',
+                          text: 'Edit'.tr,
                           color: AppColors.light_red,
                         ),
                         const Gap(12),
@@ -92,7 +92,8 @@ class ProductCard extends StatelessWidget {
                           ontap: () {
                             UiUtilites.confirmAlertDialog(
                               title:
-                                  'Are you sure you want to delete this Product?',
+                                  'Are you sure you want to delete this Product?'
+                                      .tr,
                               context: Get.context,
                               onCancelTap: () {
                                 Get.back();
@@ -104,7 +105,7 @@ class ProductCard extends StatelessWidget {
                           },
                           icon: 'assets/images/delete.svg',
                           width: Get.width * 0.22,
-                          text: 'Delete',
+                          text: 'Delete'.tr,
                           color: AppColors.light_red,
                         )
                       ],

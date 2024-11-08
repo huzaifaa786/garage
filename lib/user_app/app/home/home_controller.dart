@@ -6,6 +6,7 @@ import 'package:mobilegarage/apis/user_apis/home_apis/store_ratings_api.dart';
 import 'package:mobilegarage/apis/user_apis/notification_apis/notification_count_api.dart';
 import 'package:mobilegarage/models/user_model/banner_model.dart';
 import 'package:mobilegarage/models/user_model/services_model.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
@@ -118,7 +119,7 @@ String? notificationcount='';
     if (response.isNotEmpty) {
       isratingavailable == false;
       Get.back();
-      UiUtilites.successSnackbar('Rating added successfully', 'Success');
+      UiUtilites.successSnackbar('Rating added successfully'.tr, 'Success'.tr);
       update();
     }
   }

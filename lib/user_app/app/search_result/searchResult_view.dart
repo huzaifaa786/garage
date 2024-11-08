@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/search_result/components/radioButton.dart';
 import 'package:mobilegarage/user_app/app/search_result/searchResult_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -15,6 +16,7 @@ import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class SearchresultView extends StatefulWidget {
@@ -39,7 +41,7 @@ class _SearchresultViewState extends State<SearchresultView> {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(title: 'Date & Time'),
+              title: TopBar(title: 'Date & Time'.tr),
             ),
           ),
         ),
@@ -49,7 +51,7 @@ class _SearchresultViewState extends State<SearchresultView> {
               children: [
                 Gap(30),
                 Padding(
-                  padding: const EdgeInsets.only(left: 30),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -58,7 +60,7 @@ class _SearchresultViewState extends State<SearchresultView> {
                       ),
                       Gap(10),
                       AppText(
-                        title: 'Delivery Time',
+                        title: 'Delivery Time'.tr,
                         size: 14,
                         fontWeight: FontWeight.w500,
                       ),
@@ -135,7 +137,7 @@ class _SearchresultViewState extends State<SearchresultView> {
                     ),
                     Gap(10),
                     AppText(
-                      title: 'Select location ',
+                      title: 'Select location '.tr,
                       size: 12,
                       fontWeight: FontWeight.w500,
                     )
@@ -216,7 +218,8 @@ class _SearchresultViewState extends State<SearchresultView> {
                                           children: [
                                             AppText(
                                               title:
-                                                  "Select location on Google map",
+                                                  "Select location on Google map"
+                                                      .tr,
                                               size: 10,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -240,7 +243,9 @@ class _SearchresultViewState extends State<SearchresultView> {
                                         padding:
                                             const EdgeInsets.only(right: 20.0),
                                         child: SvgPicture.asset(
-                                          "assets/icons/arrow_right.svg",
+                                          box.read('locale') != 'ar'
+                                              ? "assets/icons/arrow_right.svg"
+                                              : 'assets/icons/arrow_leftside.svg',
                                           color: AppColors.primarybg,
                                           fit: BoxFit.scaleDown,
                                         ),
@@ -261,10 +266,12 @@ class _SearchresultViewState extends State<SearchresultView> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: MainButton(
                     height: Get.height * 0.077,
-                    title: 'Payment',
+                    title: 'Payment'.tr,
                     onTap: () {
-                       controller.checkDate();
-                    
+                      controller.checkDate();
+                      controller.checkDate();
+
+                      controller.checkDate();
                     },
                   ),
                 ),

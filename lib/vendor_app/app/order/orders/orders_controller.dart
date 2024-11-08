@@ -30,15 +30,15 @@ class VOrdersController extends GetxController {
   List<OrdersModel> rejectedOrders = [];
 
   List<Map<String, dynamic>> filterList = [
-    {'Name': 'New orders'},
-    {'Name': 'On the way'},
-    {'Name': 'Delivered'},
-    {'Name': 'Rejected'},
+    {'Name': 'New orders'.tr},
+    {'Name': 'On the way'.tr},
+    {'Name': 'Delivered'.tr},
+    {'Name': 'Rejected'.tr},
   ];
 
   List<Map<String, dynamic>> subFilterList = [
-    {'Name': 'Pending'},
-    {'Name': 'Accepted'},
+    {'Name': 'Pending'.tr},
+    {'Name': 'Accepted'.tr},
   ];
 
   @override
@@ -48,19 +48,23 @@ class VOrdersController extends GetxController {
     await getUrgentOrders();
   }
 
-  // Function to format the date
+  /// Formats the date in 'yyyy-MM-dd' format.
   String formatDate(String dateTime) {
     DateTime parsedDate = DateTime.parse(dateTime);
     return DateFormat('yyyy-MM-dd').format(parsedDate);
   }
 
-// Function to format the time
+   /// Formats the time in 12-hour format with localized AM/PM.
   String formatTime(String dateTime) {
     DateTime parsedDate = DateTime.parse(dateTime);
-    return DateFormat('hh:mm a')
-        .format(parsedDate); // 12-hour format with AM/PM
-  }
+    String formattedTime = DateFormat('hh:mm a').format(parsedDate);
 
+    // Check if locale is Arabic and replace AM/PM with localized equivalents
+    if (Get.locale?.languageCode == 'ar') {
+      formattedTime = formattedTime.replaceAll('AM', 'ص').replaceAll('PM', 'م');
+    }
+    return formattedTime;
+  }
   Future<void> fetchOrders() async {
     var response = await OrdersbyStatusApi.getOrders();
     if (response.isNotEmpty && response['orders_by_status'] is Map) {

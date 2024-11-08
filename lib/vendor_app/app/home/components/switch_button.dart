@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
+import 'package:get/get.dart';
 
 class TextSwitchButton extends StatelessWidget {
   const TextSwitchButton({
@@ -16,13 +16,10 @@ class TextSwitchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = ValueNotifier<bool>(false);
-    //  final controller = AdvancedSwitchController(initialValue: value);
-
     return Row(
       children: [
         AppText(
-          title: value ? "Garage Open" : "Garage Busy",
+          title: value ? "Garage Open".tr : "Garage Busy".tr,
           size: 11,
           fontWeight: FontWeight.w500,
           color: value ? AppColors.green_color : AppColors.grey,

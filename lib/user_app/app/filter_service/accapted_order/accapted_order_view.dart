@@ -40,7 +40,7 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppText(
-                      title: 'Select garage',
+                      title: 'Select garage'.tr,
                       size: 14,
                       fontWeight: FontWeight.w500,
                     ),
@@ -54,8 +54,8 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppText(
-                      title: '(${controller.garages.length.toString()})' +
-                          ' garages',
+                      title:
+                          '(${controller.garages.length.toString()}) ${'garages'.tr}',
                       size: 12,
                       fontWeight: FontWeight.w500,
                       color: AppColors.darkprimary,

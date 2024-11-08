@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/models/order_models/order_items_model.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -73,7 +74,7 @@ class ItemsCard extends StatelessWidget {
               Row(
                 children: [
                   AppText(
-                    title: 'Quantity : ',
+                    title: 'Quantity : '.tr,
                     size: 11,
                     fontWeight: FontWeight.w400,
                   ),
@@ -101,7 +102,7 @@ class ItemsCard extends StatelessWidget {
               // ),
               Gap(4),
               AppText(
-                title: "Total : ${item.price.toString()}",
+                title: '${"Total : ".tr}${item.price.toString()} ${'AED'.tr}',
                 size: 13,
                 fontWeight: FontWeight.w600,
                 color: AppColors.lightblue,

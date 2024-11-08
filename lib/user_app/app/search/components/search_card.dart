@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SearchCard extends StatelessWidget {
   final String? image;
@@ -187,7 +188,7 @@ class SearchCard extends StatelessWidget {
                                   width: Get.width * 0.67,
                                   child: Center(
                                     child: Text(
-                                      'View garage',
+                                      'View garage'.tr,
                                       style: TextStyle(
                                           color: AppColors.primary,
                                           fontSize: 8,

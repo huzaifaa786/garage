@@ -17,6 +17,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 
 class MyCarsView extends StatefulWidget {
@@ -45,7 +46,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                       title: TopBar(
                         showicon: true,
                         showgarageicon: false,
-                        title: "My Cars",
+                        title: "My Cars".tr,
                       ),
                     ),
                   )),
@@ -131,7 +132,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                     vehicle.id.toString(),
                                           );
                                         })
-                                    : Text('No Car found'),
+                                    : Text('No Car found'.tr),
                               ],
                             ),
                           ),
@@ -143,7 +144,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                           Gap(20),
                           if (controller.vehicleSections.isNotEmpty)
                             AppText(
-                              title: 'Add Car details',
+                              title: 'Add Car details'.tr,
                               size: 26,
                               fontWeight: FontWeight.w400,
                               color: AppColors.heading_text_color,
@@ -202,7 +203,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                             AppColors.primarybg,
                                                       ),
                                                       AppText(
-                                                        title: "Delete",
+                                                        title: "Delete".tr,
                                                         size: 10,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -219,7 +220,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                         DropDownField<VehicleModel>(
                                           displayValue: (item) => item.name!,
                                           items: controller.vehilcles,
-                                          hint: 'Type of vehicle',
+                                          hint: 'Type of vehicle'.tr,
                                           selectedValue:
                                               section['vehicletype_id'],
                                           onChanged: (value) {
@@ -244,7 +245,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                         item.name!,
                                                     items:
                                                         section['brands'] ?? [],
-                                                    hint: 'Car brand',
+                                                    hint: 'Car brand'.tr,
                                                     selectedValue: section[
                                                         'vehiclebrand_id'],
                                                     onChanged: (value) {
@@ -276,7 +277,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                     items:
                                                         section['brandnames'] ??
                                                             [],
-                                                    hint: 'Brand name',
+                                                    hint: 'Brand name'.tr,
                                                     selectedValue: section[
                                                         'vehiclebrandname_id'],
                                                     onChanged: (value) {
@@ -299,7 +300,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                               )
                                             : Gap(0),
                                         MainInput(
-                                          hint: 'Year of manufacture',
+                                          hint: 'Year of manufacture'.tr,
                                           controller: controller
                                                   .yearOfManufactureControllers[
                                               index],
@@ -316,7 +317,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                         ),
                                         Gap(27),
                                         MainInput(
-                                          hint: 'Car information',
+                                          hint: 'Car information'.tr,
                                           controller: controller
                                               .carInfoControllers[index],
                                           onchange: (value) {
@@ -385,7 +386,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                         ),
                                         Gap(10),
                                         AppText(
-                                          title: 'Add another vehicle',
+                                          title: 'Add another vehicle'.tr,
                                           color: AppColors.primary,
                                           size: 11,
                                           fontWeight: FontWeight.w500,
@@ -404,7 +405,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                             ),
                             child: MainButton(
                               height: Get.height * 0.07,
-                              title: 'Save Changes',
+                              title: 'Save Changes'.tr,
                               onTap: () {
                                 controller.addvehicle();
                                 // UiUtilites.DeleteSuccessAlert(

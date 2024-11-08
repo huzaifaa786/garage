@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_controller.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
@@ -38,7 +39,7 @@ class SignupView extends StatelessWidget {
             children: [
               // Image.asset('assets/images/splash_logo.png'),
               Padding(
-                  padding: EdgeInsets.only(top: 30,bottom: 20),
+                padding: EdgeInsets.only(top: 30, bottom: 20),
                 child: SvgPicture.asset(
                   'assets/icons/mobile_garagelogo.svg',
                   color: AppColors.white,
@@ -66,7 +67,7 @@ class SignupView extends StatelessWidget {
                           children: [
                             Gap(30),
                             AppText(
-                              title: ConstantStrings.sign_up,
+                              title: 'Sign Up'.tr,
                               size: 28,
                               fontWeight: FontWeight.w600,
                               color: AppColors.heading_text_color,
@@ -74,29 +75,34 @@ class SignupView extends StatelessWidget {
                             ),
                             Gap(30),
                             MainInput(
-                              hint: ConstantStrings.name.tr,
+                              hint: 'Name'.tr,
                               controller: controller.nameController,
                               errorText: controller.nameError,
                               onchange: (p0) {
-                                controller.validateFields("name", p0);
+                                controller.validateFields('name'.tr, p0);
                               },
                             ),
                             Gap(20),
-                            AppPhoneInput(
-                              onCountryChanged: controller.onCountryChanged,
-                              errorText: controller.phoneError,
-                              onChanged: controller.phoneValidation,
-                              controller: controller.phoneController,
+                            Directionality(
+                              textDirection: box.read('locale') != 'ar'
+                                  ? TextDirection.ltr
+                                  : TextDirection.rtl,
+                              child: AppPhoneInput(
+                                onCountryChanged: controller.onCountryChanged,
+                                errorText: controller.phoneError,
+                                onChanged: controller.phoneValidation,
+                                controller: controller.phoneController,
+                              ),
                             ),
                             Gap(20),
                             DropDownField<EmirateModel>(
                               displayValue: (item) => item.name!,
                               items: controller.emirates,
-                              hint: 'Emirate',
+                              hint: 'Emirate'.tr,
                               selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
                                 controller.setSelectedEmirate(value);
-                                controller.validateFields("Emirate",
+                                controller.validateFields("Emirate".tr,
                                     controller.selectedEmirateId.toString());
                                 controller.update();
                               },
@@ -108,7 +114,8 @@ class SignupView extends StatelessWidget {
                               controller: controller.adreesdetailController,
                               errorText: controller.addressdetailError,
                               onchange: (p0) {
-                                controller.validateFields("address detail", p0);
+                                controller.validateFields(
+                                    "address detail".tr, p0);
                               },
                             ),
                             Gap(40),
@@ -116,20 +123,20 @@ class SignupView extends StatelessWidget {
                               child: RichText(
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
-                                  text: 'By continuing you agree to the',
+                                  text: 'By continuing you agree to the'.tr,
                                   style: DefaultTextStyle.of(context).style,
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: '\n\tterms',
+                                        text: '\n\tterms'.tr,
                                         style: TextStyle(
                                             decoration:
                                                 TextDecoration.underline,
                                             fontWeight: FontWeight.bold)),
                                     TextSpan(
-                                      text: '\tand',
+                                      text: '\tand'.tr,
                                     ),
                                     TextSpan(
-                                        text: '\tconditions',
+                                        text: '\tconditions'.tr,
                                         style: TextStyle(
                                             wordSpacing: 1,
                                             decoration:
@@ -141,7 +148,7 @@ class SignupView extends StatelessWidget {
                             ),
                             Gap(49),
                             MainButton(
-                              title: 'Sign Up',
+                              title: 'Sign Up'.tr,
                               txtweight: FontWeight.w600,
                               onTap: () {
                                 controller.register();
@@ -150,8 +157,8 @@ class SignupView extends StatelessWidget {
                             ),
                             Gap(40),
                             AuthRichText(
-                              title: 'Already have an account?',
-                              description: 'Sign In',
+                              title: 'Already have an account?'.tr,
+                              description: 'Sign In'.tr,
                               titlesize: 14,
                               descriptiosize: 14,
                               titlefontweight: FontWeight.w500,

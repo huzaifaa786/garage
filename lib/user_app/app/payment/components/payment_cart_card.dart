@@ -277,8 +277,8 @@ class PaymentCartCard extends StatelessWidget {
                             ),
                             Gap(5),
                             AppText(
-                              title:
-                                  "Type: ${controller.cart!.vehicle!.vehicle_type!.name.toString()}",
+                              title: "Type: ".tr +
+                                  "${controller.cart!.vehicle!.vehicle_type!.name.toString()}",
                               fontWeight: FontWeight.w500,
                               size: 9,
                               maxLines: 1,
@@ -325,8 +325,12 @@ class PaymentCartCard extends StatelessWidget {
                                 Flexible(
                                   child: AppText(
                                     title: item!.fuelextra != null
-                                        ? "${item!.fuelextra!.price.toString()} AED"
-                                        : "${item!.price.toString()} AED",
+                                        ? "${item!.fuelextra!.price.toString()}" +
+                                            " " +
+                                            "AED".tr
+                                        : "${item!.price.toString()}" +
+                                            " " +
+                                            "AED".tr,
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.darkblue,
                                     size: 12,

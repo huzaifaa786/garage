@@ -4,6 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
@@ -52,7 +53,7 @@ class ImageSelectionTile extends StatelessWidget {
                     ),
                     const Gap(4),
                     AppText(
-                      title: isSelected ? 'Uploaded' : '$title',
+                      title: isSelected ? 'Uploaded'.tr : '$title',
                       size: 12,
                       color: isSelected
                           ? AppColors.green_color

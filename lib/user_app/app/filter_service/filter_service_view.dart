@@ -27,6 +27,7 @@ import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_botto
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 
 class FilterServiceView extends StatefulWidget {
@@ -58,7 +59,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                   title: TopBar(
                     showicon: true,
                     showgarageicon: false,
-                    title: 'Find Service',
+                    title: 'Find Service'.tr,
                   ),
                 ),
               ),
@@ -98,7 +99,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30)),
                           child: AppText(
-                            title: 'Filter By',
+                            title: 'Filter By'.tr,
                             fontWeight: FontWeight.w600,
                             size: 16.0,
                             color: AppColors.primary,
@@ -108,13 +109,13 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                     ),
                     Gap(19),
                     AppText(
-                      title: 'Price Range',
+                      title: 'Price Range'.tr,
                       size: 12,
                       fontWeight: FontWeight.w400,
                     ),
                     Gap(28),
                     Text(
-                      "${controller.start.toStringAsFixed(2)} - ${controller.end.toStringAsFixed(2)} AED",
+                      "${controller.start.toStringAsFixed(2)} - ${controller.end.toStringAsFixed(2)} ${'AED'.tr}",
                       style: TextStyle(
                         fontSize: 10.0,
                         fontWeight: FontWeight.w600,
@@ -151,7 +152,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: AppText(
-                        title: '*All boxes are optional',
+                        title: '*All boxes are optional'.tr,
                         size: 12,
                         fontWeight: FontWeight.w400,
                         color: AppColors.grey,
@@ -165,7 +166,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           DropDownField<BrandModel>(
                             displayValue: (item) => item.name!,
                             items: controller.brands,
-                            hint: 'Brands Name',
+                            hint: 'Brands Name'.tr,
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
@@ -182,7 +183,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<BatteryProductTypeModel>(
                                 displayValue: (item) => item.name!,
                                 items: controller.producttypes,
-                                hint: 'Product type',
+                                hint: 'Product type'.tr,
                                 selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
                                   controller.setSelectedproducttype(value);
@@ -195,7 +196,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<BatteryOriginModel>(
                                 displayValue: (item) => item.origin!,
                                 items: controller.batteryOrigins,
-                                hint: 'Origin',
+                                hint: 'Origin'.tr,
                                 selectedValue: controller.selectedbatteryOrigin,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryOrigin(value);
@@ -207,7 +208,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<BatteryAmpereModel>(
                                 displayValue: (item) => item.ampere!,
                                 items: controller.batteryAmperes,
-                                hint: 'Battery Ampere',
+                                hint: 'Battery Ampere'.tr,
                                 selectedValue: controller.selectedampere,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryAmpere(value);
@@ -220,7 +221,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<BatteryVoltageModel>(
                                 displayValue: (item) => item.voltage!,
                                 items: controller.batteryVoltages,
-                                hint: 'Battery Voltage',
+                                hint: 'Battery Voltage'.tr,
                                 selectedValue: controller.selectedvoltage,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryvoltage(value);
@@ -238,7 +239,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<TyreWidthModel>(
                                 displayValue: (item) => item.width!,
                                 items: controller.tyrewidths,
-                                hint: 'Tyer width',
+                                hint: 'Tyre width'.tr,
                                 selectedValue: controller.selectedwidth,
                                 onChanged: (value) {
                                   controller.setSelectedWidth(value);
@@ -250,7 +251,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<TyreHeightModel>(
                                 displayValue: (item) => item.height!,
                                 items: controller.tyreheights,
-                                hint: 'Tyer height',
+                                hint: 'Tyre height'.tr,
                                 selectedValue: controller.selectedheight,
                                 onChanged: (value) {
                                   controller.setSelectedheight(value);
@@ -262,7 +263,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<TyreSizeModel>(
                                 displayValue: (item) => item.size!,
                                 items: controller.tyresizes,
-                                hint: 'Wheel size',
+                                hint: 'Wheel size'.tr,
                                 selectedValue: controller.selectedsize,
                                 onChanged: (value) {
                                   controller.setSelectedSize(value);
@@ -274,7 +275,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<TyreSpeedRatingModel>(
                                 displayValue: (item) => item.speedrating!,
                                 items: controller.tyreSpeedRatings,
-                                hint: 'Speed rating',
+                                hint: 'Speed rating'.tr,
                                 selectedValue: controller.selectedSpeedRating,
                                 onChanged: (value) {
                                   controller.setSelectedSpeedRating(value);
@@ -286,7 +287,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<TyrePatternModel>(
                                 displayValue: (item) => item.pattern!,
                                 items: controller.tyrepattterens,
-                                hint: 'Pattern',
+                                hint: 'Pattern'.tr,
                                 selectedValue: controller.selectedpatteren,
                                 onChanged: (value) {
                                   controller.setSelectedPatteren(value);
@@ -298,7 +299,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<TyreOriginModel>(
                                 displayValue: (item) => item.origin!,
                                 items: controller.tyreorigins,
-                                hint: 'Origin',
+                                hint: 'Origin'.tr,
                                 selectedValue: controller.selectedtyreorigin,
                                 onChanged: (value) {
                                   controller.setSelectedTyreOrigin(value);
@@ -316,7 +317,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<OilProductTTypeModel>(
                                 displayValue: (item) => item.producttype!,
                                 items: controller.oilproductTypes,
-                                hint: 'Product type',
+                                hint: 'Product type'.tr,
                                 selectedValue:
                                     controller.selectedoilproductType,
                                 onChanged: (value) {
@@ -329,7 +330,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               DropDownField<OilVolumeModel>(
                                 displayValue: (item) => item.volume!,
                                 items: controller.oilVolumes,
-                                hint: 'Liquid volume litter',
+                                hint: 'Liquid volume liter'.tr,
                                 selectedValue: controller.selectedvolume,
                                 onChanged: (value) {
                                   controller.setSelectedVolume(value);
@@ -349,7 +350,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           DropDownField<OilExtraModel>(
                             displayValue: (item) => item.name!,
                             items: controller.oilextras,
-                            hint: 'Extra  Name',
+                            hint: 'Extra Name'.tr,
                             selectedValue: controller.selectedexra,
                             onChanged: (value) {
                               controller.setSelectedExtra(value);
@@ -372,7 +373,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                             ),
                             Gap(8),
                             AppText(
-                              title: 'Choose your vehicle ',
+                              title: 'Choose your vehicle'.tr,
                               fontWeight: FontWeight.w600,
                               size: 12,
                             ),
@@ -415,7 +416,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                             ),
                             Gap(5),
                             AppText(
-                              title: 'What do you prefer?',
+                              title: 'What do you prefer?'.tr,
                               fontWeight: FontWeight.w600,
                               size: 12,
                             ),
@@ -445,7 +446,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(10),
                               Text(
-                                'Select garage',
+                                'Select garage'.tr,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
@@ -478,7 +479,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(10),
                               Text(
-                                'Send to all garages',
+                                'Send to all garages'.tr,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
@@ -494,7 +495,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: MainButton(
-                        title: 'Next',
+                        title: 'Next'.tr,
                         height: Get.height * 0.07,
                         fontsize: 12,
                         onTap: () {

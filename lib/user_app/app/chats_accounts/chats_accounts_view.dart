@@ -9,6 +9,7 @@ import 'package:mobilegarage/user_app/app/chats_accounts/Components/charts_card.
 import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class ChatsAccountsView extends StatefulWidget {
   const ChatsAccountsView({super.key});
@@ -33,7 +34,7 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                 toolbarHeight: Get.height * 0.1,
                 automaticallyImplyLeading: false,
                 title: TopBar(
-                  title: "Chats",
+                  title: "Chats".tr,
                   showicon: true,
                 ),
               ),

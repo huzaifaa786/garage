@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -7,6 +9,7 @@ import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class PrivacyView extends StatefulWidget {
   const PrivacyView({super.key});
@@ -16,6 +19,31 @@ class PrivacyView extends StatefulWidget {
 }
 
 class _PrivacyViewState extends State<PrivacyView> {
+  String loadingText = 'Loading privacy policy'.tr;
+  Timer? _timer;
+  int dotCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _startLoadingAnimation();
+  }
+
+  void _startLoadingAnimation() {
+    _timer = Timer.periodic(Duration(milliseconds: 500), (timer) {
+      setState(() {
+        dotCount = (dotCount + 1) % 4;
+        loadingText = "${'Loading privacy policy'.tr} ${'.' * dotCount}";
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PrivacyController>(
@@ -33,7 +61,7 @@ class _PrivacyViewState extends State<PrivacyView> {
               title: TopBar(
                 showicon: true,
                 showgarageicon: false,
-                title: "Privacy",
+                title: "Privacy".tr,
               ),
             ),
           ),
@@ -51,7 +79,7 @@ class _PrivacyViewState extends State<PrivacyView> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       AppText(
-                        title: 'Privacy',
+                        title: 'Privacy'.tr,
                         size: 16,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,
@@ -73,7 +101,7 @@ class _PrivacyViewState extends State<PrivacyView> {
                   else
                     Center(
                       child: AppText(
-                        title: 'Loading privacy policy...',
+                        title: loadingText.tr,
                         size: 10,
                         fontWeight: FontWeight.w400,
                       ),

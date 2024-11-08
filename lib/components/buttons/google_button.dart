@@ -4,6 +4,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:mobilegarage/app/cart/cart_bindings.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -57,7 +59,7 @@ class GoogleButton extends StatelessWidget {
                   const Gap(6),
                   Flexible(
                     child: AppText(
-                      title: address != '' ? '$address' : 'Pin location in map',
+                      title: address != '' ? '$address' : 'Pin location in map'.tr,
                       size: 12,
                       fontWeight: FontWeight.w500,
                       color: isSelected

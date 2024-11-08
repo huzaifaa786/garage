@@ -68,7 +68,7 @@ class VSignInController extends GetxController {
         context: Get.context!,
         imageAssetPath: 'assets/icons/warning.svg',
         onTap: () {},
-        description: 'Fill out all details required!',
+        description: 'Fill out all details required!'.tr,
       );
     }
   }

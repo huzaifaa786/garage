@@ -35,7 +35,7 @@ class CartView extends StatelessWidget {
                     scrolledUnderElevation: 0.0,
                     toolbarHeight: 95.0,
                     title: TopBar(
-                      title: 'Cart',
+                      title: 'Cart'.tr,
                       showgarageicon: false,
                       showicon: false,
                     ),
@@ -52,8 +52,8 @@ class CartView extends StatelessWidget {
                       Row(
                         children: [
                           AppText(
-                            title:
-                                'Items ( ${controller.cart!.items!.length} )',
+                            title: "Items (".tr +
+                                '${controller.cart!.items!.length} )',
                             size: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -76,7 +76,8 @@ class CartView extends StatelessWidget {
                                       ontap: () {
                                         UiUtilites.showConfirmationDialog(
                                           false,
-                                          'Are you Sure that you want\n to delete this product ?',
+                                          'Are you Sure that you want\n to delete this product ?'
+                                              .tr,
                                           onConfirm: () async {
                                             controller.deleteCartItems(
                                                 item.id.toString());
@@ -119,17 +120,20 @@ class CartView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppText(
-                          title: 'Total:',
+                          title: 'Total:'.tr,
                           size: 12,
                           fontWeight: FontWeight.w500,
                           color: AppColors.black.withOpacity(0.4),
                         ),
                         Gap(10),
                         AppText(
-                          title: controller.cart!.totalAmount.toString(),
+                          title: controller.cart!.totalAmount.toString() +
+                              ' ' +
+                              'AED'.tr,
                           size: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -143,17 +147,17 @@ class CartView extends StatelessWidget {
                       },
                       buttonWidth: Get.width * 0.4,
                       height: Get.height * 0.06,
-                      title: 'Purchase',
+                      title: 'Purchase'.tr,
                     ),
                   ],
                 ),
               ),
             )
-            : Center(
-                child: Text(
-                'No item Yet!',
-                style: TextStyle(color: AppColors.greybg),
-              )),
+          : Center(
+              child: Text(
+              'No item Yet!'.tr,
+              style: TextStyle(color: AppColors.greybg),
+            )),
     );
   }
 }

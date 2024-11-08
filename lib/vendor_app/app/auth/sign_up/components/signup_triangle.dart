@@ -32,7 +32,7 @@ class SignupTriangle extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               AppText(
-                title: ConstantStrings.sign_up,
+                title: "Sign Up",
                 size: 28,
                 fontWeight: FontWeight.w600,
                 color: AppColors.heading_text_color,

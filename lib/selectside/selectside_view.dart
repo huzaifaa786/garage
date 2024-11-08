@@ -58,7 +58,7 @@ class _SelectsideViewState extends State<SelectsideView> {
                           child: Column(children: [
                             Gap(30),
                             AppText(
-                              title: ConstantStrings.select_side.tr,
+                              title: "Select side..".tr,
                               size: 28,
                               fontWeight: FontWeight.w600,
                               // color: AppColors.primarybg,
@@ -69,15 +69,15 @@ class _SelectsideViewState extends State<SelectsideView> {
                               ontap: () {
                                 Get.toNamed(AppRoutes.signup);
                               },
-                              text: ConstantStrings.user.tr,
+                              text: 'User'.tr,
                             ),
                             Gap(60),
-                            ContainerSelect(
-                              text: ConstantStrings.garageOwner.tr,
-                              ontap: () {
-                                Get.toNamed(AppRoutes.vsignup);
-                              },
-                            ),
+                              ContainerSelect(
+                                text: 'Garage Owner'.tr,
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.vsignup);
+                                },
+                              ),
                           ])),
                     ),
                   ),

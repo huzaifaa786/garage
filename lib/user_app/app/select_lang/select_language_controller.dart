@@ -6,7 +6,7 @@ class SelectLanguageController extends GetxController {
   static SelectLanguageController instanse = Get.find();
   translateMethod? site;
 
-  toggleplan(translateMethod value) {
+  togglePlan(translateMethod value) {
     site = value;
     update();
   }

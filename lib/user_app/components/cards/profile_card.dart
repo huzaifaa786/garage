@@ -10,6 +10,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -84,8 +85,8 @@ class ProfileCard extends StatelessWidget {
               onTap: ontap,
               child: Row(
                 children: [
-                  const AppText(
-                    title: 'Edit',
+                   AppText(
+                    title: 'Edit'.tr,
                     color: AppColors.primary,
                     size: 12,
                     fontWeight: FontWeight.w500,

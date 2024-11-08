@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';

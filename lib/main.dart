@@ -10,6 +10,8 @@ import 'package:mobilegarage/firebase_options.dart';
 import 'package:mobilegarage/services/notification_service.dart';
 import 'package:mobilegarage/splash/splash_binding.dart';
 import 'package:mobilegarage/splash/splash_view.dart';
+import 'package:mobilegarage/translation.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/routes/app_pages.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -39,6 +41,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      translations: LocaleString(),
+      locale:
+          box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
+      fallbackLocale:
+          box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
       theme: ThemeData(
         colorScheme: ColorScheme.light().copyWith(
           primary: AppColors.primarybg,

@@ -12,6 +12,7 @@ import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/b
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/profile_cover_picker.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -47,7 +48,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
             child: AppBar(
                 centerTitle: true,
                 title: AppText(
-                  title: 'Edit Profile',
+                  title: 'Log out'.tr,
                   size: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary_color,
@@ -75,7 +76,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               Row(
                                 children: [
                                   AppText(
-                                    title: 'Garage description',
+                                    title: 'Garage description'.tr,
                                     color: Colors.grey,
                                   )
                                 ],
@@ -83,7 +84,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               Gap(20),
                               AppInputField(
                                 errorText: controller.garageDescriptionError,
-                                hint: 'Garage description',
+                                hint: 'Garage description'.tr,
                                 controller:
                                     controller.garageDescriptionController,
                                 onchange: (val) {
@@ -94,8 +95,8 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               Gap(16),
                               AppButton(
                                 title: controller.isButtonClicked
-                                    ? 'Changes saved successfully'
-                                    : 'Save Changes',
+                                    ? 'Changes saved successfully'.tr
+                                    : 'Save Changes'.tr,
                                 titleColor: controller.isButtonClicked
                                     ? AppColors.green_color
                                     : AppColors.white_color,
@@ -131,7 +132,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                   children: [
                                     Icon(Icons.settings),
                                     AppText(
-                                      title: ' Setting',
+                                      title: ' Setting'.tr,
                                       size: 16,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -143,36 +144,36 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                   Get.toNamed(AppRoutes.vtradinglicense);
                                 },
                                 icon: 'assets/icons/license.svg',
-                                text: 'Edit or add new trading license',
+                                text: 'Edit or add new trading license'.tr,
                               ),
                               ChangePassword(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vownerid);
                                 },
                                 icon: 'assets/icons/license.svg',
-                                text: 'Edit or add new owner ID',
+                                text: 'Edit or add new owner ID'.tr,
                               ),
                               ChangePassword(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vgarage_timings);
                                 },
                                 icon: 'assets/icons/Timeclock.svg',
-                                text: 'Open time and close time',
+                                text: 'Open time and close time'.tr,
                               ),
                               ChangePassword(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vchangepassword);
                                 },
                                 icon: 'assets/images/lock.svg',
-                                text: 'Change password',
+                                text: 'Change password'.tr,
                               ),
                               ChangePassword(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.language);
                                 },
                                 icon: 'assets/images/globe.svg',
-                                text: 'Change language',
-                                langtext: 'English',
+                                text: 'Change language'.tr,
+                                langtext: 'English'.tr,
                               ),
                               Padding(
                                 padding:
@@ -184,7 +185,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                       ontap: () {
                                         UiUtilites.showConfirmationDialog(
                                           false,
-                                          'Are you Sure that you want\n to log out ?',
+                                          'Are you Sure that you want\n to log out ?'.tr,
                                           onConfirm: () async {
                                             GetStorage box = GetStorage();
                                             await box.remove('api_token');
@@ -195,7 +196,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                         );
                                       },
                                       icon: 'assets/images/power.png',
-                                      text: 'Log Out',
+                                      text: 'Log Out'.tr,
                                     ),
                                   ],
                                 ),

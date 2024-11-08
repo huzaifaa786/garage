@@ -31,7 +31,7 @@ class VSignInView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 10,bottom: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     // child: Image.asset(ImageConst.appLogo,
                     //     width: 172, height: 108)
                     child: SvgPicture.asset(
@@ -60,7 +60,7 @@ class VSignInView extends StatelessWidget {
                                 children: [
                                   const Gap(40),
                                   AppText(
-                                    title: ConstantStrings.sign_in,
+                                    title: 'Sign In'.tr,
                                     size: 28,
                                     fontWeight: FontWeight.w600,
                                     color: AppColors.heading_text_color,
@@ -69,7 +69,7 @@ class VSignInView extends StatelessWidget {
                                   const Gap(25),
                                   AppInputField(
                                     errorText: controller.emailError,
-                                    hint: 'Email',
+                                    hint: 'Email'.tr,
                                     controller: controller.emailController,
                                     onchange: (val) {
                                       controller.validateFields("Email", val);
@@ -78,7 +78,7 @@ class VSignInView extends StatelessWidget {
                                   const Gap(12),
                                   AppInputField(
                                     errorText: controller.passwordError,
-                                    hint: 'Password',
+                                    hint: 'Password'.tr,
                                     obscure: controller.obscurePassword,
                                     controller: controller.passwordController,
                                     onchange: (val) {
@@ -105,7 +105,7 @@ class VSignInView extends StatelessWidget {
                                       Get.toNamed(AppRoutes.forgot_password);
                                     },
                                     child: AppText(
-                                      title: 'Forgot password?',
+                                      title: 'Forgot Password?'.tr,
                                       color: AppColors.primary_color,
                                       fontWeight: FontWeight.w600,
                                       size: 12,
@@ -113,7 +113,7 @@ class VSignInView extends StatelessWidget {
                                   ),
                                   const Gap(20),
                                   AppButton(
-                                    title: 'Sign In',
+                                    title: 'Sign In'.tr,
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
                                       controller.login();
@@ -121,8 +121,8 @@ class VSignInView extends StatelessWidget {
                                   ),
                                   const Gap(30),
                                   AppRichText(
-                                    title: "Don’t have an account?",
-                                    buttonText: 'Sign Up',
+                                    title: "Don’t have an account?".tr,
+                                    buttonText: 'Sign Up'.tr,
                                     onTap: () {
                                       Get.toNamed(AppRoutes.vsignup);
                                     },

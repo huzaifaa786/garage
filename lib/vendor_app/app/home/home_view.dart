@@ -15,6 +15,7 @@ import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/reviewcard.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/switch_button.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -115,7 +116,7 @@ class _VHomeViewState extends State<VHomeView> {
                           child: AppText(
                             title: controller.garage != null
                                 ? controller.garage!.description!
-                                : 'description',
+                                : 'description'.tr,
                             size: 12,
                             fontWeight: FontWeight.w600,
                             color: Colors.grey,
@@ -146,7 +147,7 @@ class _VHomeViewState extends State<VHomeView> {
                                 Get.toNamed(AppRoutes.vunavaliabledate);
                               },
                               icon: 'assets/images/calendar.svg',
-                              text: 'Edit unavailable dates',
+                              text: 'Edit unavailable dates'.tr,
                             ),
                             Gap(10),
                             EditButton(
@@ -157,7 +158,7 @@ class _VHomeViewState extends State<VHomeView> {
                                 });
                               },
                               icon: 'assets/icons/edit.svg',
-                              text: 'Edit profile',
+                              text: 'Edit profile'.tr,
                             ),
                           ],
                         ),
@@ -177,7 +178,7 @@ class _VHomeViewState extends State<VHomeView> {
                                 Get.toNamed(AppRoutes.vbanner);
                               },
                               icon: 'assets/images/pluscircle.svg',
-                              text: 'Promotional\n   banners',
+                              text: 'Promotional\n   banners'.tr,
                             ),
                             Gap(20),
                             Row(
@@ -188,7 +189,7 @@ class _VHomeViewState extends State<VHomeView> {
                                     Get.toNamed(AppRoutes.vproduct_form_view);
                                   },
                                   icon: 'assets/images/Group 51.svg',
-                                  text: 'Add product\n or service',
+                                  text: 'Add product\n or service'.tr,
                                 ),
                                 Gap(27),
                                 MainBox(
@@ -196,7 +197,7 @@ class _VHomeViewState extends State<VHomeView> {
                                     Get.toNamed(AppRoutes.vproductlist);
                                   },
                                   icon: 'assets/images/Group 53.svg',
-                                  text: 'Edit product &\n services',
+                                  text: 'Edit product &\n services'.tr,
                                 )
                               ],
                             ),
@@ -209,12 +210,12 @@ class _VHomeViewState extends State<VHomeView> {
                                     Get.toNamed(AppRoutes.vorders_view);
                                   },
                                   icon: 'assets/images/shopping-bag.svg',
-                                  text: 'Orders',
+                                  text: 'Orders'.tr,
                                 ),
                                 Gap(27),
                                 MainBox(
                                   icon: 'assets/images/Group 500.svg',
-                                  text: 'Sales',
+                                  text: 'Sales'.tr,
                                   ontap: () {
                                     Get.toNamed(AppRoutes.vsale);
                                   },
@@ -234,21 +235,20 @@ class _VHomeViewState extends State<VHomeView> {
                                           AppRoutes.vurgent_orders_view);
                                     },
                                     icon: 'assets/images/quick-check 1.png',
-                                    text: 'Urgent Orders',
+                                    text: 'Urgent Orders'.tr,
                                   ),
                                   ReviewBox(
                                     icon: 'assets/images/star.png',
-                                    text: 'My reviews',
-                                    ontap: () {
-                                      _openReviewBottomSheet(context);
-                                    },
+                                    text: 'My reviews'.tr,
+                                    ontap: () =>
+                                        _openReviewBottomSheet(context),
                                   ),
                                   ReviewBox(
                                     ontap: () {
                                       Get.toNamed(AppRoutes.vcontactus);
                                     },
                                     icon: 'assets/images/phone.png',
-                                    text: 'Contact us',
+                                    text: 'Contact us'.tr,
                                   ),
                                   GestureDetector(
                                     onTap: () {
@@ -256,18 +256,19 @@ class _VHomeViewState extends State<VHomeView> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return RatingAlertDialog(
-                                            garagetitle: 'Street garage',
+                                            garagetitle: 'Street garage'.tr,
                                           );
                                         },
                                       );
                                     },
                                     child: ReviewBox(
                                       icon: 'assets/images/power.png',
-                                      text: 'Log Out',
+                                      text: 'Log Out'.tr,
                                       ontap: () async {
                                         UiUtilites.showConfirmationDialog(
                                           false,
-                                          'Are you Sure that you want\n to log out ?',
+                                          'Are you Sure that you want\n to log out ?'
+                                              .tr,
                                           onConfirm: () async {
                                             GetStorage box = GetStorage();
                                             await box.remove('api_token');
@@ -306,7 +307,7 @@ class _VHomeViewState extends State<VHomeView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Reviews',
+                        'Reviews'.tr,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

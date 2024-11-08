@@ -1,13 +1,16 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:mobilegarage/app/cart/cart_bindings.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
@@ -33,7 +36,7 @@ class AppPhoneInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         IntlPhoneField(
-          searchText: "Select Country/Region",
+          searchText: "Select Country/Region".tr,
           dropdownIconPosition: IconPosition.trailing,
           controller: controller,
           initialCountryCode: initialCountryCode,
@@ -49,7 +52,7 @@ class AppPhoneInput extends StatelessWidget {
           dropdownTextStyle: GoogleFonts.inter(fontSize: 14),
           style: GoogleFonts.inter(fontSize: 14),
           decoration: InputDecoration(
-            hintText: "phone number",
+            hintText: "phone number".tr,
             hintStyle: GoogleFonts.inter(color: AppColors.hint_text_color),
             fillColor: AppColors.input_bg_color,
             filled: true,
@@ -86,7 +89,7 @@ class AppPhoneInput extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 4, left: 16, right: 16),
             child: AppText(
-              title: errorText!,
+              title: errorText!.tr,
               color: AppColors.red,
               size: 10,
             ),

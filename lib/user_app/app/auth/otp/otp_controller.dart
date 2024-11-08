@@ -9,6 +9,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class OtpController extends GetxController {
@@ -117,11 +118,13 @@ class OtpController extends GetxController {
         Get.offAllNamed(AppRoutes.main);
         LoadingHelper.dismiss();
         UiUtilites.successSnackbar(
-            'OTP verified successfully'.tr, 'Success!'.tr);
+          'OTP verified successfully'.tr,
+          'Success!'.tr,
+        );
       } else {
         LoadingHelper.dismiss();
         Get.snackbar(
-          'Login failed'.tr,
+          'Error'.tr,
           'Login failed'.tr,
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,

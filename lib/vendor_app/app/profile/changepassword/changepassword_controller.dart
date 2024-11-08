@@ -29,7 +29,7 @@ class VChangepasswordController extends GetxController {
       if (response.isNotEmpty) {
         isButtonClicked = true;
         update();
-        UiUtilites.successSnackbar('Password updated successfully', 'Success');
+        UiUtilites.successSnackbar('Password updated successfully'.tr, 'Success'.tr);
         Get.back();
       }
     }

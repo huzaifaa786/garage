@@ -17,6 +17,7 @@ import 'package:mobilegarage/vendor_app/app/auth/sign_up/signup_controller.dart'
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_phone_input/app_phone_input.dart';
@@ -65,7 +66,7 @@ class VSignupView extends StatelessWidget {
                             const Gap(20),
                             AppInputField(
                               errorText: controller.nameError,
-                              hint: 'Name of owner',
+                              hint: 'Name of owner'.tr,
                               controller: controller.nameController,
                               onchange: (val) {
                                 controller.validateFields("Name", val);
@@ -74,17 +75,17 @@ class VSignupView extends StatelessWidget {
                             const Gap(12),
                             AppInputField(
                               errorText: controller.garageNameError,
-                              hint: 'Garage name',
+                              hint: 'Garage name'.tr,
                               controller: controller.garageNameController,
                               onchange: (val) {
                                 controller.validateFields("Garage name", val);
                               },
                             ),
                             const Gap(16),
-                            const InputfiledTitle(title: 'Owner Id'),
+                            InputfiledTitle(title: 'Owner Id'.tr),
                             const Gap(8),
                             ImageSelectionTile(
-                              title: 'Upload the front side of ID',
+                              title: 'Upload the front side of ID'.tr,
                               onTap: () {
                                 controller
                                     .pickImageFromGallery('id_card_frontSide');
@@ -94,7 +95,7 @@ class VSignupView extends StatelessWidget {
                             ),
                             const Gap(12),
                             ImageSelectionTile(
-                              title: 'Upload the back side of ID',
+                              title: 'Upload the back side of ID'.tr,
                               onTap: () {
                                 controller
                                     .pickImageFromGallery('id_card_backSide');
@@ -103,10 +104,10 @@ class VSignupView extends StatelessWidget {
                                   controller.idCardBackSide!.path.isNotEmpty,
                             ),
                             const Gap(16),
-                            const InputfiledTitle(title: 'Garage license'),
+                            InputfiledTitle(title: 'Garage license'.tr),
                             const Gap(8),
                             ImageSelectionTile(
-                              title: 'Upload license',
+                              title: 'Upload license'.tr,
                               onTap: () {
                                 controller
                                     .pickImageFromGallery('upload_license');
@@ -124,7 +125,7 @@ class VSignupView extends StatelessWidget {
                             const Gap(12),
                             AppInputField(
                               errorText: controller.garageDescriptionError,
-                              hint: 'Garage description',
+                              hint: 'Garage description'.tr,
                               controller:
                                   controller.garageDescriptionController,
                               onchange: (val) {
@@ -133,7 +134,7 @@ class VSignupView extends StatelessWidget {
                               },
                             ),
                             const Gap(16),
-                            const InputfiledTitle(title: 'Garage location'),
+                            InputfiledTitle(title: 'Garage location'.tr),
                             const Gap(8),
                             GoogleButton(
                               address: controller.currentAddress,
@@ -178,7 +179,7 @@ class VSignupView extends StatelessWidget {
                             DropDownField<EmirateModel>(
                               displayValue: (item) => item.name!,
                               items: controller.emirates,
-                              hint: 'Emirate',
+                              hint: 'Emirate'.tr,
                               selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
                                 controller.setSelectedEmirate(value);
@@ -191,7 +192,7 @@ class VSignupView extends StatelessWidget {
                             const Gap(12),
                             AppInputField(
                               errorText: controller.garageAddressDetailError,
-                              hint: 'Garage address detail',
+                              hint: 'Garage address detail'.tr,
                               controller:
                                   controller.garageAddressDetailController,
                               onchange: (val) {
@@ -202,7 +203,7 @@ class VSignupView extends StatelessWidget {
                             const Gap(12),
                             AppInputField(
                               errorText: controller.emailError,
-                              hint: 'Email',
+                              hint: 'Email'.tr,
                               controller: controller.emailController,
                               onchange: (val) {
                                 controller.validateFields("Email", val);
@@ -211,7 +212,7 @@ class VSignupView extends StatelessWidget {
                             const Gap(12),
                             AppInputField(
                               errorText: controller.passwordError,
-                              hint: 'Password',
+                              hint: 'Password'.tr,
                               obscure: controller.obscurePassword,
                               controller: controller.passwordController,
                               onchange: (val) {
@@ -234,7 +235,7 @@ class VSignupView extends StatelessWidget {
                             const Gap(12),
                             AppInputField(
                               errorText: controller.confirmPasswordError,
-                              hint: 'Confirm Password',
+                              hint: 'Confirm Password'.tr,
                               obscure: controller.cobscurePassword,
                               controller: controller.confirmPasswordController,
                               onchange: (val) {
@@ -257,7 +258,7 @@ class VSignupView extends StatelessWidget {
                             ),
                             const Gap(30),
                             AppButton(
-                              title: 'Sign Up',
+                              title: 'Sign Up'.tr,
                               buttonColor: AppColors.primary_color,
                               ontap: () {
                                 controller.register();
@@ -265,8 +266,8 @@ class VSignupView extends StatelessWidget {
                             ),
                             const Gap(12),
                             AppRichText(
-                              title: "Already have an account?",
-                              buttonText: 'Sign In',
+                              title: "Already have an account?".tr,
+                              buttonText: 'Sign In'.tr,
                               onTap: () {
                                 Get.offNamed(AppRoutes.vsignin);
                               },

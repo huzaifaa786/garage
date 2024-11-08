@@ -52,7 +52,7 @@ class EditProductController extends GetxController {
 
   void removeExtra(int index) {
     UiUtilites.confirmAlertDialog(
-      title: 'Are you sure you want to delete this Service Type?',
+      title: 'Are you sure you want to delete this Service Type?'.tr,
       context: Get.context,
       onCancelTap: () {
         Get.back();
@@ -94,7 +94,7 @@ class EditProductController extends GetxController {
     if (response.isNotEmpty) {
       update();
       Get.offAllNamed(AppRoutes.vhome);
-      UiUtilites.successSnackbar('Image deleted Successfully', 'Success');
+      UiUtilites.successSnackbar('Image deleted Successfully'.tr, 'Success'.tr);
     } else {
       update();
       Get.back();
@@ -901,9 +901,9 @@ class EditProductController extends GetxController {
 
     if (response.isNotEmpty) {
       UiUtilites.successAlertDialog(
-          buttontitle: 'Back to dashboard',
+          buttontitle: 'Back to dashboard'.tr,
           context: Get.context,
-          description: 'Your product / service has been\n added successfully!',
+          description: 'Your product / service has been\n added successfully!'.tr,
           onTap: () {
             Get.offAllNamed(AppRoutes.vhome);
           },

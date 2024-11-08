@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/order_models/order_items_model.dart';
 import 'package:mobilegarage/models/order_models/orders_model.dart';
@@ -105,7 +106,8 @@ class OrderProductCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: ' ( Quantity: ',
+                          text: ' ( Quantity: '.tr
+                          ,
                           style: TextStyle(
                             fontSize: 10,
                             color: AppColors.black,
@@ -130,7 +132,7 @@ class OrderProductCard extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Type: ',
+                      text: 'Type: '.tr,
                       style: TextStyle(
                         fontSize: 10,
                         color: AppColors.black,
@@ -170,7 +172,7 @@ class OrderProductCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: 'Date: ',
+                          text: 'Date: '.tr,
                           style: TextStyle(
                             fontSize: 10,
                             color: AppColors.black,
@@ -197,7 +199,7 @@ class OrderProductCard extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Time: ',
+                                text: 'Time: '.tr,
                                 style: TextStyle(
                                   fontSize: 10,
                                   color: AppColors.black,
@@ -218,7 +220,7 @@ class OrderProductCard extends StatelessWidget {
                       ),
                       Flexible(
                         child: AppText(
-                          title: '${orders?.totalAmount ?? ''} AED',
+                          title: '${orders?.totalAmount ?? ''} ${"AED".tr}',
                           fontWeight: FontWeight.w500,
                           color: AppColors.darkblue,
                           size: 10,

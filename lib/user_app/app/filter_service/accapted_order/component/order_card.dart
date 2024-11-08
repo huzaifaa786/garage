@@ -126,7 +126,6 @@ class OrderCard extends StatelessWidget {
                                               : garage.products![0].oilextra![0].name
                                                       ?.toString() ??
                                                   '')),
-
                                   size: 11,
                                   fontWeight: FontWeight.w600,
                                   maxLines: 1,
@@ -139,9 +138,7 @@ class OrderCard extends StatelessWidget {
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 child: AppText(
                                   title: controller.path != 'filter'
-                                      ? (garage.order?.orderItems?[0].products
-                                                  ?.description ==
-                                              ''
+                                      ? (garage.order?.orderItems?[0].products?.description == ''
                                           ? garage.order!.orderItems![0]
                                               .products!.description
                                               .toString()
@@ -149,15 +146,10 @@ class OrderCard extends StatelessWidget {
                                                   .productsExtra?.description
                                                   ?.toString() ??
                                               '')
-                                      : (garage.products?[0].oilextra
-                                                  ?.isEmpty ??
-                                              true
-                                          ? garage.products![0].description
-                                                  ?.toString() ??
+                                      : (garage.products?[0].oilextra?.isEmpty ?? true
+                                          ? garage.products![0].description?.toString() ??
                                               ''
-                                          : (garage.products![0]
-                                                      .categoryId ==
-                                                  '2'
+                                          : (garage.products![0].categoryId == '2'
                                               ? garage.products![0].description
                                                       .toString() ??
                                                   ''
@@ -165,7 +157,6 @@ class OrderCard extends StatelessWidget {
                                                       .description
                                                       ?.toString() ??
                                                   '')),
-
                                   size: 9,
                                   fontWeight: FontWeight.w400,
                                   textAlign: TextAlign.center,
@@ -177,33 +168,29 @@ class OrderCard extends StatelessWidget {
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     AppText(
                                       title: controller.path != 'filter'
-                                          ? (garage.order?.orderItems?[0].products
-                                                      ?.price !=
-                                                  ''
+                                          ? (garage.order?.orderItems?[0].products?.price != ''
                                               ? garage.order!.orderItems![0]
                                                   .products!.price
-                                                  .toString() 
+                                                  .toString()
                                               : garage.order!.orderItems![0]
                                                       .productsExtra?.price
                                                       ?.toString() ??
                                                   '')
-                                          : (garage.products?[0].oilextra
-                                                      ?.isEmpty ??
-                                                  true
+                                          : (garage.products?[0].oilextra?.isEmpty ?? true
                                               ? garage.products![0].price
                                                       ?.toString() ??
                                                   ''
-                                              : (garage.products![0].categoryId ==
-                                                      '2'
+                                              : (garage.products![0].categoryId == '2'
                                                   ? garage.products![0].price
                                                           ?.toString() ??
                                                       ''
-                                                  : garage.products![0].oilextra![0]
-                                                          .price
+                                                  : garage.products![0]
+                                                          .oilextra![0].price
                                                           ?.toString() ??
                                                       '')),
                                       size: 9,
@@ -211,10 +198,11 @@ class OrderCard extends StatelessWidget {
                                       overFlow: TextOverflow.ellipsis,
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.darkblue,
-                                    ),Gap(5),
+                                    ),
+                                    Gap(5),
                                     AppText(
-                                      title: ' AED',
-                                        size: 9,
+                                      title: ' AED'.tr,
+                                      size: 9,
                                       maxLines: 1,
                                       overFlow: TextOverflow.ellipsis,
                                       fontWeight: FontWeight.w500,
@@ -241,7 +229,7 @@ class OrderCard extends StatelessWidget {
                           AppText(
                             title: garage.servicecount.toString() +
                                 ' ' +
-                                'Services',
+                                'Services'.tr,
                             size: 9,
                             fontWeight: FontWeight.w500,
                             color: AppColors.darkblue,
@@ -345,9 +333,9 @@ class OrderCard extends StatelessWidget {
                                                     Radius.circular(20))),
                                         height: Get.height * 0.05,
                                         width: Get.width * 0.65,
-                                        child: const Center(
+                                        child: Center(
                                           child: Text(
-                                            'View garage',
+                                            'View garage'.tr,
                                             style: TextStyle(
                                                 color: AppColors.primary,
                                                 fontSize: 8,

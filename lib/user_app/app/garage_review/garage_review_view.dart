@@ -7,6 +7,7 @@ import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
 import 'package:mobilegarage/user_app/app/garage_review/components/garage_review_card.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class GarageReviewBottomSheetView extends StatelessWidget {
   const GarageReviewBottomSheetView({super.key});
@@ -29,7 +30,7 @@ class GarageReviewBottomSheetView extends StatelessWidget {
               children: [
                 Gap(40),
                 AppText(
-                  title: 'Reviews',
+                  title: 'Reviews'.tr,
                   size: 14,
                   fontWeight: FontWeight.w600,
                 ),

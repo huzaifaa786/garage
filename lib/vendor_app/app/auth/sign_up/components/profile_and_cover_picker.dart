@@ -38,41 +38,41 @@ class ProfileAndCoverPicker extends StatelessWidget {
                 radius: const Radius.circular(5),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  child: controller.cover == null ||
-                          controller.cover!.path.isEmpty
-                      ? Container(
-                          height: 160,
-                          width: Get.width,
-                          color: AppColors.primary_color.withOpacity(0.07),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
+                  child:
+                      controller.cover == null || controller.cover!.path.isEmpty
+                          ? Container(
+                              height: 160,
+                              width: Get.width,
+                              color: AppColors.primary_color.withOpacity(0.07),
+                              child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SvgPicture.asset(ImageConst.image_ic),
-                                  const Gap(4),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(ImageConst.image_ic),
+                                      const Gap(4),
+                                      AppText(
+                                        title: 'Upload garage banner'.tr,
+                                        size: 10,
+                                        color: AppColors.primary_color,
+                                      )
+                                    ],
+                                  ),
+                                  const Gap(6),
                                   AppText(
-                                    title: ConstantStrings.upload_garage_banner,
-                                    size: 10,
-                                    color: AppColors.primary_color,
+                                    title: 'Recomended size 390 * 185 px'.tr,
+                                    size: 8,
+                                    color: AppColors.hint_text_color,
                                   )
                                 ],
                               ),
-                              const Gap(6),
-                              AppText(
-                                title: ConstantStrings.recomended_image_size,
-                                size: 8,
-                                color: AppColors.hint_text_color,
-                              )
-                            ],
-                          ),
-                        )
-                      : Image.file(
-                          controller.cover!,
-                          height: 160,
-                          width: Get.width,
-                        ),
+                            )
+                          : Image.file(
+                              controller.cover!,
+                              height: 160,
+                              width: Get.width,
+                            ),
                 ),
               ),
             ),
@@ -121,13 +121,13 @@ class ProfileAndCoverPicker extends StatelessWidget {
                                   SvgPicture.asset(ImageConst.image_ic),
                                   const Gap(2),
                                   AppText(
-                                    title: ConstantStrings.upload_logo,
+                                    title: 'Uploaded'.tr,
                                     size: 8,
                                     color: AppColors.primary_color,
                                   ),
                                   const Gap(2),
                                   AppText(
-                                    title: ConstantStrings.seventy_square,
+                                    title: '70*70'.tr,
                                     size: 8,
                                     color: AppColors.hint_text_color,
                                   ),

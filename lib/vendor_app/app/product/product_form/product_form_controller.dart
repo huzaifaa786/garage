@@ -49,7 +49,7 @@ class ProductFormController extends GetxController {
 
   void removeExtra(int index) {
     UiUtilites.confirmAlertDialog(
-      title: 'Are you sure you want to delete this Service Type?',
+      title: 'Are you sure you want to delete this Service Type?'.tr,
       context: Get.context,
       onCancelTap: () {
         Get.back();
@@ -656,7 +656,7 @@ class ProductFormController extends GetxController {
   Future<bool> validateImages() async {
     if (images.isEmpty) {
       imagesError = 'Please select an images';
-      UiUtilites.errorSnackbar('Error', 'Please select an images');
+      UiUtilites.errorSnackbar('Error'.tr, 'Please select an image'.tr);
       update();
       return false;
     } else {
@@ -668,7 +668,7 @@ class ProductFormController extends GetxController {
 
   Future<bool> validateBatteryForm() async {
     if (selectedCategoryId == null) {
-      categoryError = 'Please select an category';
+      categoryError = 'Please select an category'.tr;
       update();
     } else {
       categoryError = '';
@@ -676,7 +676,7 @@ class ProductFormController extends GetxController {
     }
     //
     if (selectedBrandId == null) {
-      brandError = 'Please select an brand';
+      brandError = 'Please select an brand'.tr;
       update();
     } else {
       brandError = '';
@@ -684,7 +684,7 @@ class ProductFormController extends GetxController {
     }
     //
     if (selectedProducttypeId == null) {
-      producttypeError = 'Please select an product tpye';
+      producttypeError = 'Please select an product tpye'.tr;
       update();
     } else {
       producttypeError = '';
@@ -693,7 +693,7 @@ class ProductFormController extends GetxController {
 
     //
     if (selectedbatteryOriginId == null) {
-      originError = 'Please select an battery origin';
+      originError = 'Please select an battery origin'.tr;
       update();
     } else {
       originError = '';
@@ -701,21 +701,21 @@ class ProductFormController extends GetxController {
     }
     //
     if (selectedampereId == null) {
-      ampereError = 'Please select an battery ampere';
+      ampereError = 'Please select an battery ampere'.tr;
       update();
     } else {
       ampereError = '';
       update();
     } //
     if (selectedvoltageId == null) {
-      voltageError = 'Please select an battery voltage';
+      voltageError = 'Please select an battery voltage'.tr;
       update();
     } else {
       voltageError = '';
       update();
     }
 
-    final priceErrorString = validateFields('Price', priceController.text);
+    final priceErrorString = validateFields('Price'.tr, priceController.text);
 
     return categoryError.isEmpty &&
         brandError.isEmpty &&
@@ -728,7 +728,7 @@ class ProductFormController extends GetxController {
 
   Future<bool> validateTyreForm() async {
     if (selectedCategoryId == null) {
-      categoryError = 'Please select category';
+      categoryError = 'Please select category'.tr;
       update();
     } else {
       categoryError = '';
@@ -736,7 +736,7 @@ class ProductFormController extends GetxController {
     }
     //
     if (selectedBrandId == null) {
-      brandError = 'Please select brand';
+      brandError = 'Please select brand'.tr;
       update();
     } else {
       brandError = '';
@@ -744,7 +744,7 @@ class ProductFormController extends GetxController {
     }
     //
     if (selectedwidth == null) {
-      widthError = 'Please select tyre width';
+      widthError = 'Please select tyre width'.tr;
       update();
     } else {
       widthError = '';
@@ -753,7 +753,7 @@ class ProductFormController extends GetxController {
 
     //
     if (selectedheightId == null) {
-      heightError = 'Please select tyre height';
+      heightError = 'Please select tyre height'.tr;
       update();
     } else {
       heightError = '';
@@ -761,34 +761,34 @@ class ProductFormController extends GetxController {
     }
     //
     if (selectedsizeId == null) {
-      sizeError = 'Please select tyre size';
+      sizeError = 'Please select tyre size'.tr;
       update();
     } else {
       sizeError = '';
       update();
     } //
     if (selectedSpeedRatingId == null) {
-      speedratingError = 'Please select an tyre speed rating';
+      speedratingError = 'Please select an tyre speed rating'.tr;
       update();
     } else {
       speedratingError = '';
       update();
     }
     if (selectedtyreoriginId == null) {
-      tyreoriginError = 'Please select an tyre origin';
+      tyreoriginError = 'Please select an tyre origin'.tr;
       update();
     } else {
       tyreoriginError = '';
       update();
     }
     if (selectedpatterenId == null) {
-      patterenError = 'Please select an tyre patteren';
+      patterenError = 'Please select an tyre pattern'.tr;
       update();
     } else {
       patterenError = '';
       update();
     }
-    final priceErrorString = validateFields('Price', priceController.text);
+    final priceErrorString = validateFields('Price'.tr, priceController.text);
 
     return categoryError.isEmpty &&
         brandError.isEmpty &&
@@ -805,7 +805,7 @@ class ProductFormController extends GetxController {
 
   Future<bool> validateOilForm() async {
     if (selectedCategoryId == null) {
-      categoryError = 'Please select category';
+      categoryError = 'Please select category'.tr;
       update();
     } else {
       categoryError = '';
@@ -813,7 +813,7 @@ class ProductFormController extends GetxController {
     }
     //
     if (selectedBrandId == null) {
-      brandError = 'Please select brand';
+      brandError = 'Please select brand'.tr;
       update();
     } else {
       brandError = '';
@@ -821,7 +821,7 @@ class ProductFormController extends GetxController {
     }
     //
     if (selectedoilproductType == null) {
-      oilproductTypeError = 'Please select oil product type';
+      oilproductTypeError = 'Please select oil product type'.tr;
       update();
     } else {
       oilproductTypeError = '';
@@ -830,7 +830,7 @@ class ProductFormController extends GetxController {
 
     //
     if (selectedVolumeId == null) {
-      volumeError = 'Please select oil volume';
+      volumeError = 'Please select oil volume'.tr;
       update();
     } else {
       volumeError = '';
@@ -838,14 +838,14 @@ class ProductFormController extends GetxController {
     }
     //
     oilextrapriceErrors.clear();
-    final priceErrorString = validateFields('Price', priceController.text);
+    final priceErrorString = validateFields('Price'.tr, priceController.text);
     final descriptionErrorString =
-        validateFields('description', descriptionController.text);
+        validateFields('description'.tr, descriptionController.text);
     // Validate Oil Extras
     for (int i = 0; i < oilextras.length; i++) {
       var extra = oilextras[i];
       if (extra.price == null || extra.price!.isEmpty) {
-        oilextrapriceErrors[i] = 'Extra Price is required';
+        oilextrapriceErrors[i] = 'Extra Price is required'.tr;
       } else {
         oilextrapriceErrors.remove(i);
       }
@@ -867,7 +867,7 @@ class ProductFormController extends GetxController {
   Map<int, String> roadextratimeErrors = {};
   Future<bool> validateRoadAssistanceForm() async {
     if (selectedCategoryId == null) {
-      categoryError = 'Please select category';
+      categoryError = 'Please select category'.tr;
       update();
     } else {
       categoryError = '';
@@ -879,7 +879,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < roadAssistanceExtras.length; i++) {
       var extra = roadAssistanceExtras[i];
       if (extra.price == null || extra.price!.isEmpty) {
-        roadextrapriceErrors[i] = 'Extra Price is required';
+        roadextrapriceErrors[i] = 'Extra Price is required'.tr;
       } else {
         roadextrapriceErrors.remove(i);
       }
@@ -890,7 +890,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < roadAssistanceExtras.length; i++) {
       var extra = roadAssistanceExtras[i];
       if (extra.time == null || extra.time!.isEmpty) {
-        roadextratimeErrors[i] = 'Extra Time is required';
+        roadextratimeErrors[i] = 'Extra Time is required'.tr;
       } else {
         roadextratimeErrors.remove(i);
       }
@@ -904,7 +904,7 @@ class ProductFormController extends GetxController {
   Map<int, String> recoveryextratimeErrors = {};
   Future<bool> validateRecoveryForm() async {
     if (selectedCategoryId == null) {
-      categoryError = 'Please select category';
+      categoryError = 'Please select category'.tr;
       update();
     } else {
       categoryError = '';
@@ -917,7 +917,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < recoveryExtras.length; i++) {
       var extra = recoveryExtras[i];
       if (extra.price == null || extra.price!.isEmpty) {
-        recoveryextrapriceErrors[i] = 'Extra Price is required';
+        recoveryextrapriceErrors[i] = 'Extra Price is required'.tr;
       } else {
         recoveryextrapriceErrors.remove(i);
       }
@@ -928,7 +928,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < recoveryExtras.length; i++) {
       var extra = recoveryExtras[i];
       if (extra.time == null || extra.time!.isEmpty) {
-        recoveryextratimeErrors[i] = 'Extra Time is required';
+        recoveryextratimeErrors[i] = 'Extra Time is required'.tr;
       } else {
         recoveryextratimeErrors.remove(i);
       }
@@ -942,7 +942,7 @@ class ProductFormController extends GetxController {
   Map<int, String> fuelextratimeErrors = {};
   Future<bool> validateFuelForm() async {
     if (selectedCategoryId == null) {
-      categoryError = 'Please select category';
+      categoryError = 'Please select category'.tr;
       update();
     } else {
       categoryError = '';
@@ -955,7 +955,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < fuelExtras.length; i++) {
       var extra = fuelExtras[i];
       if (extra.price == null || extra.price!.isEmpty) {
-        fuelextrapriceErrors[i] = 'Extra Price is required';
+        fuelextrapriceErrors[i] = 'Extra Price is required'.tr;
       } else {
         fuelextrapriceErrors.remove(i);
       }
@@ -966,7 +966,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < fuelExtras.length; i++) {
       var extra = fuelExtras[i];
       if (extra.time == null || extra.time!.isEmpty) {
-        fuelextratimeErrors[i] = 'Extra Time is required';
+        fuelextratimeErrors[i] = 'Extra Time is required'.tr;
       } else {
         fuelextratimeErrors.remove(i);
       }
@@ -980,7 +980,7 @@ class ProductFormController extends GetxController {
   Map<int, String> carWashextratimeErrors = {};
   Future<bool> validateCarWashForm() async {
     if (selectedCategoryId == null) {
-      categoryError = 'Please select category';
+      categoryError = 'Please select category'.tr;
       update();
     } else {
       categoryError = '';
@@ -993,7 +993,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < carwashExtras.length; i++) {
       var extra = carwashExtras[i];
       if (extra.price == null || extra.price!.isEmpty) {
-        carWashextrapriceErrors[i] = 'Extra Price is required';
+        carWashextrapriceErrors[i] = 'Extra Price is required'.tr;
       } else {
         carWashextrapriceErrors.remove(i);
       }
@@ -1004,7 +1004,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < carwashExtras.length; i++) {
       var extra = carwashExtras[i];
       if (extra.time == null || extra.time!.isEmpty) {
-        carWashextratimeErrors[i] = 'Extra Time is required';
+        carWashextratimeErrors[i] = 'Extra Time is required'.tr;
       } else {
         carWashextratimeErrors.remove(i);
       }
@@ -1019,7 +1019,7 @@ class ProductFormController extends GetxController {
 
   Future<bool> validateAcForm() async {
     if (selectedCategoryId == null) {
-      categoryError = 'Please select category';
+      categoryError = 'Please select category'.tr;
       update();
     } else {
       categoryError = '';
@@ -1033,7 +1033,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < acExtras.length; i++) {
       var extra = acExtras[i];
       if (extra.description == null) {
-        acextradescriptionErrors[i] = 'Extra description is required';
+        acextradescriptionErrors[i] = 'Extra description is required'.tr;
       } else {
         acextradescriptionErrors.remove(i);
       }
@@ -1042,7 +1042,7 @@ class ProductFormController extends GetxController {
     for (int i = 0; i < acExtras.length; i++) {
       var extra = acExtras[i];
       if (extra.price == null) {
-        acextrapriceErrors[i] = 'Extra price is required';
+        acextrapriceErrors[i] = 'Extra Price is required'.tr;
       } else {
         acextrapriceErrors.remove(i);
       }
@@ -1229,10 +1229,10 @@ class ProductFormController extends GetxController {
 
       if (response.isNotEmpty) {
         UiUtilites.successAlertDialog(
-            buttontitle: 'Back to dashboard',
+            buttontitle: 'Back to dashboard'.tr,
             context: Get.context,
             description:
-                'Your product / service has been\n added successfully!',
+                'Your product / service has been\n added successfully!'.tr,
             onTap: () {
               Get.offAllNamed(AppRoutes.vhome);
             },

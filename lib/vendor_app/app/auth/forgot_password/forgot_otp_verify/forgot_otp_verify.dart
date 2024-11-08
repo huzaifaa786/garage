@@ -55,7 +55,7 @@ class VForgotOtpVerifyView extends StatelessWidget {
                                 children: [
                                   const Gap(40),
                                   AppText(
-                                    title: ConstantStrings.verify_otp,
+                                    title: 'Verify Otp'.tr,
                                     size: 28,
                                     fontWeight: FontWeight.w600,
                                     color: AppColors.heading_text_color,
@@ -66,7 +66,9 @@ class VForgotOtpVerifyView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 25),
                                     child: AppText(
-                                      title: ConstantStrings.verify_otp_desc,
+                                      title:
+                                          'Please enter the OTP sent to your email address to reset your password.'
+                                              .tr,
                                       size: 12,
                                       color: AppColors.hint_text_color,
                                       fontWeight: FontWeight.w300,
@@ -81,7 +83,7 @@ class VForgotOtpVerifyView extends StatelessWidget {
                                   ),
                                   const Gap(50),
                                   AppButton(
-                                    title: 'Confirm',
+                                    title: 'Confirm'.tr,
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
                                       controller.verifyOtp();

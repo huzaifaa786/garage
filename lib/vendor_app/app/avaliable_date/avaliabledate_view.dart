@@ -24,7 +24,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
     return GetBuilder<AvaliableDateController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: 'Edit unavailable dates',
+        appBarTitle: 'Edit unavailable dates'.tr,
         hasBgColor: false,
         hasShadow: true,
         child: SingleChildScrollView(
@@ -36,7 +36,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppText(
-                      title: '*Select date to mark as unavailable',
+                      title: '*Select date to mark as unavailable'.tr,
                       fontWeight: FontWeight.w400,
                       color: AppColors.primary_color,
                     )
@@ -112,7 +112,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 49),
                                   child: AppText(
-                                    title: 'Unavailable dates',
+                                    title: 'Unavailable dates'.tr,
                                     color: AppColors.primary_color,
                                   ),
                                 ),
@@ -124,8 +124,9 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                       const Gap(20),
                       AppButton(
                         buttonWidth: 0.8,
-                        title:
-                            controller.isButtonClicked ? 'Confirm' : 'Confirm',
+                        title: controller.isButtonClicked
+                            ? 'Confirm'.tr
+                            : 'Confirm'.tr,
                         titleColor: controller.isButtonClicked
                             ? AppColors.green_color
                             : AppColors.white_color,

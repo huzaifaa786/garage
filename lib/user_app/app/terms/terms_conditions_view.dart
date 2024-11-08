@@ -8,6 +8,7 @@ import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class TermsConditionsView extends StatefulWidget {
   const TermsConditionsView({super.key});
@@ -17,7 +18,7 @@ class TermsConditionsView extends StatefulWidget {
 }
 
 class _TermsConditionsViewState extends State<TermsConditionsView> {
-  String loadingText = 'Loading terms and conditions';
+  String loadingText = 'Loading terms and conditions'.tr;
   Timer? _timer;
   int dotCount = 0;
 
@@ -31,7 +32,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
     _timer = Timer.periodic(Duration(milliseconds: 500), (timer) {
       setState(() {
         dotCount = (dotCount + 1) % 4;
-        loadingText = 'Loading terms and conditions${'.' * dotCount}';
+        loadingText = "${'Loading terms and conditions'.tr} ${'.' * dotCount}";
       });
     });
   }
@@ -59,7 +60,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
               title: TopBar(
                 showicon: true,
                 showgarageicon: false,
-                title: "Terms & Conditions",
+                title: "Terms & Conditions".tr,
               ),
             ),
           ),
@@ -77,7 +78,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       AppText(
-                        title: 'Terms & Conditions',
+                        title: 'Terms & Conditions'.tr,
                         size: 12,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,
@@ -99,7 +100,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
                   else
                     Center(
                       child: AppText(
-                        title: loadingText,
+                        title: loadingText.tr,
                         size: 10,
                         fontWeight: FontWeight.w400,
                       ),

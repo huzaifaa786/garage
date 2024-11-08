@@ -21,17 +21,17 @@ class _SalesViewState extends State<SalesView> {
     return GetBuilder<SalesController>(
         autoRemove: false,
         builder: (controller) => AppLayout(
-              appBarTitle: 'Sales',
+              appBarTitle: 'Sales'.tr,
               hasBgColor: false,
               child: Column(
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
                         padding: EdgeInsets.all(12.0),
                         child: AppText(
-                          title: '     *Select date to view sales',
+                          title: '     *Select date to view sales'.tr,
                           size: 14,
                           fontWeight: FontWeight.w500,
                         ),
@@ -116,14 +116,14 @@ class _SalesViewState extends State<SalesView> {
                   const Gap(10),
                   Image.asset('assets/images/sale.png'),
                   AppText(
-                    title: 'Total orders (${controller.totalOrders})',
+                    title: '${'Total orders'.tr} (${controller.totalOrders})',
                     size: 20,
                     fontWeight: FontWeight.w600,
                     color: AppColors.primary_color,
                   ),
                   const Gap(40),
-                  const AppText(
-                    title: 'Total sales',
+                  AppText(
+                    title: 'Total sales'.tr,
                     size: 16,
                     fontWeight: FontWeight.w500,
                     color: AppColors.darkprimary,
@@ -141,7 +141,7 @@ class _SalesViewState extends State<SalesView> {
                       children: [
                         AppText(
                           title:
-                              '${controller.totalAmount.toStringAsFixed(2)} AED',
+                              '${controller.totalAmount.toStringAsFixed(2)} ${'AED'.tr}',
                           size: 20,
                           color: AppColors.primary_color,
                           fontWeight: FontWeight.w600,

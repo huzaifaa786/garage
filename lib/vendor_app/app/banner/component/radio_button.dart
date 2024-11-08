@@ -6,8 +6,9 @@ import 'package:mobilegarage/vendor_app/app/banner/banner_controller.dart';
 class RadioButton extends StatelessWidget {
   const RadioButton({super.key, required this.value, this.text, this.cost});
   final int value;
-  final text;
+  final String? text; 
   final double? cost;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,7 +34,7 @@ class RadioButton extends StatelessWidget {
                 }
               },
               title: Text(
-                '   ' + text,
+                '   ' + (text ?? ''), // Handle the null case gracefully
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,

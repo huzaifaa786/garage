@@ -24,7 +24,7 @@ class _VContactusViewState extends State<VContactusView> {
     return GetBuilder<VContactusController>(
         autoRemove: false,
         builder: (controller) => AppLayout(
-              appBarTitle: 'Contact Us',
+              appBarTitle: 'Contact Us'.tr,
               hasBgColor: false,
               hasShadow: false,
               child: Row(
@@ -46,26 +46,26 @@ class _VContactusViewState extends State<VContactusView> {
                         children: [
                           ContactBox(
                             ontap: () {
-                              controller.openEmail();
+                              controller.openEmail(context);
                             },
                             icon: 'assets/images/mail.svg',
                           ),
                           ContactBox(
                             icon: 'assets/images/Instagram.svg',
                             ontap: () {
-                              controller.openInstagram();
+                              controller.openInstagram(context);
                             },
                           ),
                           ContactBox(
                             icon: 'assets/icons/whatsapp_img.svg',
                             ontap: () {
-                              controller.openWhatsApp();
+                              controller.openWhatsApp(context);
                             },
                           ),
                           ContactBox(
                             icon: 'assets/icons/phone.svg',
                             ontap: () {
-                              controller.openPhone();
+                              controller.openPhone(context);
                             },
                           )
                         ],

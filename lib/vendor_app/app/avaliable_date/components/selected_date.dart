@@ -20,7 +20,7 @@ class SelectedDate extends StatelessWidget {
         if (controller.selectedDates.isEmpty) {
           return Center(
             child: AppText(
-              title: 'No unavailable dates',
+              title: 'No unavailable dates'.tr,
               color: AppColors.primary_color,
             ),
           );

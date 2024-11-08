@@ -19,6 +19,7 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/text_style.dart';
 
 class SearchView extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SearchViewState extends State<SearchView> {
       builder: (controller) => AppLayout(
         hasBgColor: false,
         hasShadow: true,
-        appBarTitle: 'Search',
+        appBarTitle: 'Search'.tr,
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
@@ -133,7 +134,7 @@ class _SearchViewState extends State<SearchView> {
                     child: Row(
                       children: [
                         AppText(
-                          title: 'Results',
+                          title: 'Results'.tr,
                           size: 14,
                           fontWeight: FontWeight.w500,
                         ),
@@ -162,7 +163,7 @@ class _SearchViewState extends State<SearchView> {
                                 // UiUtilites.SuccessAlert(context);
                               },
                               price: '',
-                              services: "${item.servicecount} services",
+                              services: "${item.servicecount} ${"services".tr}",
                               onTapViewGarage: () {
                                 Get.toNamed(AppRoutes.garage, parameters: {
                                   'id': controller.filteredGarages[index].id

@@ -21,7 +21,7 @@ class TradingLicenseController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());
@@ -68,14 +68,14 @@ class TradingLicenseController extends GetxController {
 
   updatelicense() async {
     if (base64license == null) {
-      UiUtilites.errorSnackbar('Error', 'Please select license image');
+      UiUtilites.errorSnackbar('Error'.tr, 'Please select license image'.tr);
       return;
     }
     var response = await VUpdateLicenseApi.updateLicense(base64license);
     if (response.isNotEmpty) {
       garagedata();
       garage = GarageModel.fromJson(response['garage']);
-      UiUtilites.successSnackbar('License updated successfully', 'Success');
+      UiUtilites.successSnackbar('License updated successfully'.tr, 'Success'.tr);
       Get.back();
 
       update();

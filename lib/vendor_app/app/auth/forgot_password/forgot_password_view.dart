@@ -55,7 +55,7 @@ class VForgotPasswordView extends StatelessWidget {
                                 children: [
                                   const Gap(40),
                                   AppText(
-                                    title: ConstantStrings.forgot_password,
+                                    title: 'Forgot Password?'.tr,
                                     size: 28,
                                     fontWeight: FontWeight.w600,
                                     color: AppColors.heading_text_color,
@@ -63,7 +63,7 @@ class VForgotPasswordView extends StatelessWidget {
                                   ),
                                   const Gap(6),
                                   AppText(
-                                    title: 'Enter your registered Email',
+                                    title: 'Enter your registered Email'.tr,
                                     size: 12,
                                     color: AppColors.hint_text_color,
                                     fontWeight: FontWeight.w300,
@@ -71,7 +71,7 @@ class VForgotPasswordView extends StatelessWidget {
                                   const Gap(50),
                                   AppInputField(
                                     errorText: controller.emailError,
-                                    hint: 'Email',
+                                    hint: 'Email'.tr,
                                     controller: controller.emailController,
                                     onchange: (val) {
                                       controller.validateFields("Email", val);
@@ -79,7 +79,7 @@ class VForgotPasswordView extends StatelessWidget {
                                   ),
                                   const Gap(50),
                                   AppButton(
-                                    title: 'Confirm',
+                                    title: 'Confirm'.tr,
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
                                       controller.forgot();

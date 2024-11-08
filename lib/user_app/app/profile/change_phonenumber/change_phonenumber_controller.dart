@@ -8,6 +8,7 @@ import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart'
 import 'package:mobilegarage/models/user_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/validators.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class ChangePhonenumberController extends GetxController {
   static ChangePhonenumberController instance = Get.find();
@@ -31,7 +32,7 @@ class ChangePhonenumberController extends GetxController {
 
   phoneValidation(phone) {
     if (!isNumeric(phone.number)) {
-      phoneError = 'Use Numeric Variables';
+      phoneError = 'Use Numeric Variables'.tr;
       update();
       return phoneError;
     } else if (phone.number.length < selectedCountry!.minLength ||

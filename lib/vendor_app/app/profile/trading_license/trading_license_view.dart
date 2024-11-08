@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -21,7 +23,7 @@ class TradingLicenseView extends StatelessWidget {
         autoRemove: false,
         builder: (controller) => controller.garage != null
             ? AppLayout(
-                appBarTitle: 'Trading License',
+                appBarTitle: 'Trading License'.tr,
                 hasBgColor: false,
                 child: SingleChildScrollView(
                   child: Column(
@@ -55,7 +57,7 @@ class TradingLicenseView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 40),
                         child: AppText(
-                          title: 'Add New Trading License',
+                          title: 'Add New Trading License'.tr,
                           size: 14,
                           fontWeight: FontWeight.w600,
                         ),
@@ -65,7 +67,7 @@ class TradingLicenseView extends StatelessWidget {
                           horizontal: 40,
                         ),
                         child: ImageSelectionTile(
-                          title: 'Upload license',
+                          title: 'Upload license'.tr,
                           onTap: () {
                             controller.pickImageFromGallery('upload_license');
                           },
@@ -76,7 +78,7 @@ class TradingLicenseView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 50),
                         child: MainButton(
-                          title: 'Confirm',
+                          title: 'Confirm'.tr,
                           onTap: () {
                             controller.updatelicense();
                           },

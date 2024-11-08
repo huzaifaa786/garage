@@ -12,6 +12,7 @@ import 'package:mobilegarage/user_app/components/textfields/promocode_textfield.
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class PaymentView extends StatelessWidget {
@@ -33,7 +34,7 @@ class PaymentView extends StatelessWidget {
                     scrolledUnderElevation: 0.0,
                     toolbarHeight: 95.0,
                     title: TopBar(
-                      title: 'Payment',
+                      title: 'Payment'.tr,
                       showgarageicon: false,
                     ),
                   ),
@@ -50,8 +51,9 @@ class PaymentView extends StatelessWidget {
                             Row(
                               children: [
                                 AppText(
-                                  title: 'Items '
-                                      '( ${controller.cart!.items!.length} )',
+                                  title: "${'Items'.tr}" +
+                                      " " +
+                                      "(${controller.cart!.items!.length})",
                                   size: 12,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -71,7 +73,8 @@ class PaymentView extends StatelessWidget {
                                         ontap: () {
                                           UiUtilites.showConfirmationDialog(
                                             false,
-                                            'Are you Sure that you want\n to delete this product ?',
+                                            'Are you Sure that you want\n to delete this product ?'
+                                                .tr,
                                             onConfirm: () async {
                                               controller.deleteCartItems(
                                                   item.id.toString());
@@ -90,7 +93,7 @@ class PaymentView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     AppText(
-                                      title: 'Date & Time',
+                                      title: 'Date & Time'.tr,
                                       size: 10,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -100,7 +103,7 @@ class PaymentView extends StatelessWidget {
                                     ),
                                     Gap(8),
                                     AppText(
-                                      title: 'Location',
+                                      title: 'Location'.tr,
                                       size: 10,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -117,7 +120,7 @@ class PaymentView extends StatelessWidget {
                               children: [
                                 Gap(10),
                                 AppText(
-                                  title: 'Promo code',
+                                  title: 'Promo code'.tr,
                                   size: 12,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -126,7 +129,7 @@ class PaymentView extends StatelessWidget {
                             Gap(6),
                             PromocodeTextfield(
                               controller: controller.promocodeController,
-                              hint: 'Promo Code'.tr,
+                              hint: 'Promo code'.tr,
                               errorText: '',
                               onTap: controller.promoCode,
                               isApplied: controller.isapplied,
@@ -136,15 +139,15 @@ class PaymentView extends StatelessWidget {
                         )
                       : Center(
                           child: Text(
-                          'No item Yet!',
+                          'No item Yet!'.tr,
                           style: TextStyle(color: AppColors.greybg),
                         )),
                 ),
               )),
               bottomNavigationBar: Container(
-                height:
-                controller.discountAmount!=''?
-                 Get.height * 0.25: Get.height * 0.18,
+                height: controller.discountAmount != ''
+                    ? Get.height * 0.25
+                    : Get.height * 0.18,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
@@ -175,7 +178,7 @@ class PaymentView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             AppText(
-                              title: 'Sub total:',
+                              title: 'Sub total:'.tr,
                               size: 10,
                               fontWeight: FontWeight.w500,
                             ),
@@ -192,7 +195,7 @@ class PaymentView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             AppText(
-                              title: 'discount:',
+                              title: 'discount:'.tr,
                               size: 10,
                               fontWeight: FontWeight.w500,
                             ),
@@ -208,7 +211,7 @@ class PaymentView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           AppText(
-                            title: 'Total:',
+                            title: 'Total:'.tr,
                             size: 10,
                             fontWeight: FontWeight.w500,
                           ),
@@ -233,7 +236,7 @@ class PaymentView extends StatelessWidget {
                               ),
                               IconMainButton(
                                 buttonWidth: Get.width * 0.7,
-                                title: 'Pay',
+                                title: 'Pay'.tr,
                                 onTap: () {
                                   controller.makePayment(
                                       context,
@@ -256,7 +259,7 @@ class PaymentView extends StatelessWidget {
             )
           : Center(
               child: Text(
-              'No item Yet!',
+              'No item Yet!'.tr,
               style: TextStyle(color: AppColors.greybg),
             )),
     );

@@ -61,22 +61,22 @@ class VHomeController extends GetxController {
 
     if (difference.inDays >= 1) {
       return difference.inDays == 1
-          ? '1 day ago'
-          : '${difference.inDays} days ago';
+          ? '1 day ago'.tr
+          : '${difference.inDays}' 'days ago'.tr;
     } else if (difference.inHours >= 1) {
       return difference.inHours == 1
-          ? '1 hour ago'
-          : '${difference.inHours} hours ago';
+          ? '1 hour ago'.tr
+          : '${difference.inHours}' 'hours ago'.tr;
     } else if (difference.inMinutes >= 1) {
       return difference.inMinutes == 1
-          ? '1 minute ago'
-          : '${difference.inMinutes} minutes ago';
+          ? '1 minute ago'.tr
+          : '${difference.inMinutes}' 'minutes ago'.tr;
     } else if (difference.inSeconds >= 1) {
       return difference.inSeconds == 1
-          ? '1 second ago'
-          : '${difference.inSeconds} seconds ago';
+          ? '1 second ago'.tr
+          : '${difference.inSeconds}' 'seconds ago'.tr;
     } else {
-      return 'Just now';
+      return 'Just now'.tr;
     }
   }
 
@@ -88,7 +88,7 @@ class VHomeController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());
@@ -159,8 +159,8 @@ class VHomeController extends GetxController {
       showConfirmationDialog(
         value,
         value
-            ? "Are you sure you want to mark your garage as available?"
-            : "Are you sure you want to mark your garage as unavailable?",
+            ? "Are you sure you want to mark your garage as available?".tr
+            : "Are you sure you want to mark your garage as unavailable?".tr,
         onConfirm: () async {
           await updateGarageStatus();
           isSelected = value;
@@ -202,8 +202,8 @@ class VHomeController extends GetxController {
                   elevation: 0,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
-                child: const Text(
-                  'No',
+                child: Text(
+                  'No'.tr,
                   style: TextStyle(color: Colors.red, fontSize: 16),
                 ),
               ),
@@ -217,8 +217,8 @@ class VHomeController extends GetxController {
                   elevation: 0,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
-                child: const Text(
-                  'Yes',
+                child: Text(
+                  'Yes'.tr,
                   style: TextStyle(color: Colors.green, fontSize: 16),
                 ),
               ),

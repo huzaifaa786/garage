@@ -59,7 +59,8 @@ class VBannerController extends GetxController {
       update();
       Future.delayed(Duration(seconds: 1), () {
         Get.back();
-        UiUtilites.successSnackbar('Banner added successfully', 'Success');
+        UiUtilites.successSnackbar(
+            'Banner added successfully'.tr, 'Success'.tr);
       });
     }
   }
@@ -72,7 +73,7 @@ class VBannerController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+         uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());

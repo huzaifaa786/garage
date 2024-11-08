@@ -14,6 +14,7 @@ import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class GarageView extends StatelessWidget {
@@ -139,7 +140,7 @@ class GarageView extends StatelessWidget {
                             RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
-                                text: 'Opened from ',
+                                text: 'Opened from '.tr,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
@@ -155,7 +156,7 @@ class GarageView extends StatelessWidget {
                                         color: AppColors.black),
                                   ),
                                   TextSpan(
-                                    text: ' to ',
+                                    text: ' to '.tr,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       color: AppColors.grey,
@@ -176,7 +177,7 @@ class GarageView extends StatelessWidget {
                         ),
                       if (controller.garage!.opened == false)
                         AppText(
-                          title: 'Garage is currently off',
+                          title: 'Garage is currently off'.tr,
                         ),
                       if (controller.garage!.garageTime!.isNotEmpty) Gap(5),
                       if (controller.garage!.garageTime!.isNotEmpty)
@@ -188,7 +189,7 @@ class GarageView extends StatelessWidget {
                             RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
-                                text: 'Opened from ',
+                                text: 'Opened from '.tr,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
@@ -204,7 +205,7 @@ class GarageView extends StatelessWidget {
                                         color: AppColors.black),
                                   ),
                                   TextSpan(
-                                    text: ' to ',
+                                    text: ' to '.tr,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       color: AppColors.grey,
@@ -257,7 +258,7 @@ class GarageView extends StatelessWidget {
                                               width: 16),
                                           Gap(5),
                                           AppText(
-                                              title: 'View reviews',
+                                              title: 'View reviews'.tr,
                                               color: AppColors.primarybg,
                                               size: 11,
                                               fontWeight: FontWeight.w600),
@@ -297,7 +298,7 @@ class GarageView extends StatelessWidget {
                                           color: AppColors.primary,
                                         ),
                                         AppText(
-                                          title: 'Chat',
+                                          title: 'Chat'.tr,
                                           size: 11,
                                           fontWeight: FontWeight.w600,
                                           color: AppColors.primarybg,
@@ -315,7 +316,7 @@ class GarageView extends StatelessWidget {
                       if (controller.productId != '' ||
                           controller.productextraId != '')
                         AppText(
-                          title: 'Selected Product',
+                          title: 'Selected Product'.tr,
                           size: 14,
                           textAlign: TextAlign.center,
                           fontWeight: FontWeight.w600,
@@ -329,7 +330,8 @@ class GarageView extends StatelessWidget {
                           onTap: () {
                             UiUtilites.showConfirmationDialog(
                               false,
-                              'Are you Sure that you want\n to Add this product to cart ?',
+                              'Are you Sure that you want\n to Add this product to cart ?'
+                                  .tr,
                               onConfirm: () async {
                                 controller.addToCart();
                               },
@@ -344,7 +346,7 @@ class GarageView extends StatelessWidget {
                       ),
                       Gap(20),
                       AppText(
-                        title: 'Our Services',
+                        title: 'Our Services'.tr,
                         size: 14,
                         fontWeight: FontWeight.w600,
                       ),

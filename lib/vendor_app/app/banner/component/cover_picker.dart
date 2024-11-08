@@ -49,7 +49,7 @@ class CoverPickerr extends StatelessWidget {
                               SvgPicture.asset(ImageConst.image_ic),
                               const Gap(4),
                               AppText(
-                                title: ConstantStrings.upload_garage_banner,
+                                title: 'Upload garage banner'.tr,
                                 size: 10,
                                 color: AppColors.primary_color,
                               )
@@ -57,7 +57,7 @@ class CoverPickerr extends StatelessWidget {
                           ),
                           const Gap(6),
                           AppText(
-                            title: ConstantStrings.recomended_image_size,
+                            title: 'Recomended size 390 * 185 px'.tr,
                             size: 8,
                             color: AppColors.hint_text_color,
                           )

@@ -9,16 +9,14 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'dart:ui';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class RatingAlertDialog extends StatelessWidget {
   final String garagetitle;
- final String? garageimg;
+  final String? garageimg;
 
-  const RatingAlertDialog({
-    Key? key,
-    required this.garagetitle,
-    this.garageimg
-  }) : super(key: key);
+  const RatingAlertDialog({Key? key, required this.garagetitle, this.garageimg})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +52,10 @@ class RatingAlertDialog extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         Gap(15),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15),
                           child: AppText(
-                            title:
-                                'Your order has been \ndelivered! We enjoy serving \n you Please rate us.',
+                            title:  'Your order has been \ndelivered! We enjoy serving \n you Please rate us.'.tr,
                             textAlign: TextAlign.center,
                             size: 12,
                             fontWeight: FontWeight.w400,
@@ -69,7 +66,7 @@ class RatingAlertDialog extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RatingBar.builder(
-                              initialRating:controller. ratingss,
+                              initialRating: controller.ratingss,
                               minRating: 1,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
@@ -99,7 +96,7 @@ class RatingAlertDialog extends StatelessWidget {
                         AppButton(
                           buttonColor: AppColors.primary_color,
                           buttonWidth: 0.5,
-                          title: 'Submit',
+                          title: 'Submit'.tr,
                           ontap: () {
                             controller.storeRating();
                           },

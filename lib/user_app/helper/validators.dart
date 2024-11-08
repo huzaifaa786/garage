@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable
 import 'package:get/get.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class Validators {
   Validators._();
@@ -9,7 +10,7 @@ class Validators {
     if (value == null) {
       return null;
     } else if (value.isEmpty) {
-      return "$valueType ''can't be empty".tr;
+      return "$valueType ${'can\'t be empty'.tr}";
     } else {
       return null;
     }
@@ -18,7 +19,7 @@ class Validators {
   /// Validates if a dropdown selection is empty
   static String? dropdownValidator(String? value, String valueType) {
     if (value == null) {
-      return "$valueType ''can't be empty".tr;
+      return "$valueType ${'can\'t be empty'.tr}";
     } else {
       return null;
     }
