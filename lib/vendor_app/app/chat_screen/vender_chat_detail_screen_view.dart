@@ -121,6 +121,9 @@ class _ChatScreenViewState extends State<ChatDetailScreenView> {
                               .massages[controller.massages.length - 1 - index]
                               .file_title,
                           fileExist: fileExist,
+                          location: controller
+                              .massages[controller.massages.length - 1 - index]
+                              .location.toString(),
                         );
                       })),
             ],
