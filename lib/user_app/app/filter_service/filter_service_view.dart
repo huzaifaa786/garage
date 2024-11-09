@@ -76,10 +76,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.bottomSheet(
-                              FilterBottomsheet(),
-                              isScrollControlled: true,
-                            );
+                            // Get.bottomSheet(
+                            //   FilterBottomsheet(),
+                            //   isScrollControlled: true,
+                            // );
                           },
                           child: Container(
                             height: 30,

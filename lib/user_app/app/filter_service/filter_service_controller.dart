@@ -2,7 +2,9 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,7 +32,6 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class FilterServiceController extends GetxController {
@@ -75,7 +76,168 @@ class FilterServiceController extends GetxController {
       }
     }
   }
+//////////////
+  /// ///
 
+  int selectedIndexPrice = 0;
+  int selectedIndexClosest = 0;
+  int selectedIndexRating = 0;
+  int selectedIndexResults = 0;
+  String selecetedPrice = '';
+  String selecetedPlace = '';
+  String selecetedRating = '';
+  void ResetSelections() {
+    selecetedPrice = '';
+    selecetedPlace = '';
+    selecetedRating = '';
+    selectIndexPrice(0);
+    selectIndexClosest(0);
+    selectIndexRating(0);
+    update();
+  }
+
+  void selectIndexPrice(int index) {
+    selectedIndexPrice = index;
+    update();
+  }
+
+  void selectIndexClosest(int index) {
+    selectedIndexClosest = index;
+    update();
+  }
+
+  void selectIndexRating(int index) {
+    selectedIndexRating = index;
+
+    update();
+  }
+
+  void selectIndexResults(int index) {
+    selectedIndexResults = index;
+    update();
+  }
+
+  void updateApplySelections() async {
+    selecetedPrice = selectedIndexPrice == 0
+        ? ''
+        : selectedIndexPrice == 1
+            ? 'From low to high'
+            : 'From high to low';
+    /////////
+    selecetedPlace = selectedIndexClosest == 0
+        ? ''
+        : selectedIndexClosest == 1
+            ? 'From the closest to the furthest'
+            : 'Random';
+    ////////////
+    selecetedRating = selectedIndexRating == 0
+        ? ''
+        : selectedIndexRating == 1
+            ? 'From high to low'
+            : 'From low to high';
+
+    update();
+    // filter  with rating
+    if (selectedIndexRating == 2) {
+      garages.sort((a, b) => (double.tryParse(a.rating ?? '0') ?? 0)
+          .compareTo(double.tryParse(b.rating ?? '0') ?? 0));
+    } else if (selectedIndexRating == 1) {
+      garages.sort((a, b) => (double.tryParse(b.rating ?? '0') ?? 0)
+          .compareTo(double.tryParse(a.rating ?? '0') ?? 0));
+    }
+
+    // filter  with price
+
+    if (selectedIndexPrice == 1) {
+      garages.sort((a, b) => (double.tryParse(a.products![0].price ?? '0') ?? 0)
+          .compareTo(double.tryParse(b.products![0].price ?? '0') ?? 0));
+    } else if (selectedIndexPrice == 2) {
+      garages.sort((a, b) => (double.tryParse(b.products![0].price ?? '0') ?? 0)
+          .compareTo(double.tryParse(a.products![0].price ?? '0') ?? 0));
+    }
+
+    if ([
+      4,
+      7,
+      9,
+      8,
+      1,
+      2
+    ].contains(int.parse(categoryId.toString()))) if (selectedIndexPrice == 1) {
+      // Sort from low to high
+
+      garages.sort((a, b) =>
+          (double.tryParse(a.products![0].oilextra![0].price ?? '0') ?? 0)
+              .compareTo(
+                  double.tryParse(b.products![0].oilextra![0].price ?? '0') ??
+                      0));
+    } else if (selectedIndexPrice == 2) {
+      // Sort from high to low
+      garages.sort((a, b) =>
+          (double.tryParse(b.products![0].oilextra![0].price ?? '0') ?? 0)
+              .compareTo(
+                  double.tryParse(a.products![0].oilextra![0].price ?? '0') ??
+                      0));
+    }
+// filter with location
+
+    if (selectedIndexClosest == 1) {
+      Position position = await _getCurrentLocation();
+
+      double userLat = position.latitude;
+      double userLng = position.longitude;
+      garages.sort((a, b) {
+        double distanceA = calculateDistance(
+            userLat,
+            userLng,
+            double.tryParse(a.lat ?? '0') ?? 0,
+            double.tryParse(a.lng ?? '0') ?? 0);
+        double distanceB = calculateDistance(
+            userLat,
+            userLng,
+            double.tryParse(b.lat ?? '0') ?? 0,
+            double.tryParse(b.lng ?? '0') ?? 0);
+        return distanceA.compareTo(distanceB);
+      });
+    }
+ else if (selectedIndexClosest == 2) {
+    garages.shuffle();  
+  }
+    update();
+  }
+
+  Future<Position> _getCurrentLocation() async {
+    // Check if location services are enabledx
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Handle if location service is not enabled
+      throw Exception('Location services are disabled');
+    }
+
+    // Check for permission to access the location
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        throw Exception('Location permissions are denied');
+      }
+    }
+
+    // Get the current position of the user
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+  }
+
+  double calculateDistance(
+      double userLat, double userLng, double garageLat, double garageLng) {
+
+    var latDistance = (userLat - garageLat).abs();
+    var lngDistance = (userLng - garageLng).abs();
+    return latDistance +
+        lngDistance; 
+  }
+
+  ///
   getUserCategories() async {
     var response = await UserGetCategoriesApi.getUserCategories(id: categoryId);
     if (response.isNotEmpty) {
@@ -674,11 +836,11 @@ class FilterServiceController extends GetxController {
     update();
   }
 
-  double ratings = 0.0;
-  void updateRating(double rating) {
-    ratings = rating;
-    update();
-  }
+  // double ratings = 0.0;
+  // void updateRating(double rating) {
+  //   ratings = rating;
+  //   update();
+  // }
 
   List<GarageModel> garages = [];
 

@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/post_api/post_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
-import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 
 class SearchScreenController extends GetxController {
   static SearchScreenController instance = Get.find();
@@ -17,7 +17,7 @@ class SearchScreenController extends GetxController {
   String selecetedPlace = '';
   String selecetedRating = '';
 
-  void updateApplySelections() {
+  void updateApplySelections()async {
     selecetedPrice = selectedIndexPrice == 0
         ? ''
         : selectedIndexPrice == 1
@@ -37,8 +37,71 @@ class SearchScreenController extends GetxController {
             : 'From low to high';
 
     update();
+    // filter  with rating
+    if (selectedIndexRating == 2) {
+      filteredGarages.sort((a, b) => (double.tryParse(a.rating ?? '0') ?? 0)
+          .compareTo(double.tryParse(b.rating ?? '0') ?? 0));
+    } else if (selectedIndexRating == 1) {
+      filteredGarages.sort((a, b) => (double.tryParse(b.rating ?? '0') ?? 0)
+          .compareTo(double.tryParse(a.rating ?? '0') ?? 0));
+    }
+
+ // filter with location
+
+    if (selectedIndexClosest == 1) {
+      Position position = await _getCurrentLocation();
+
+      double userLat = position.latitude;
+      double userLng = position.longitude;
+      garages.sort((a, b) {
+        double distanceA = calculateDistance(
+            userLat,
+            userLng,
+            double.tryParse(a.lat ?? '0') ?? 0,
+            double.tryParse(a.lng ?? '0') ?? 0);
+        double distanceB = calculateDistance(
+            userLat,
+            userLng,
+            double.tryParse(b.lat ?? '0') ?? 0,
+            double.tryParse(b.lng ?? '0') ?? 0);
+        return distanceA.compareTo(distanceB);
+      });
+    }
+ else if (selectedIndexClosest == 2) {
+    garages.shuffle();  
+  }
+    update();
+  }
+Future<Position> _getCurrentLocation() async {
+    // Check if location services are enabled
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Handle if location service is not enabled
+      throw Exception('Location services are disabled');
+    }
+
+    // Check for permission to access the location
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        throw Exception('Location permissions are denied');
+      }
+    }
+
+    // Get the current position of the user
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
   }
 
+  double calculateDistance(
+      double userLat, double userLng, double garageLat, double garageLng) {
+
+    var latDistance = (userLat - garageLat).abs();
+    var lngDistance = (userLng - garageLng).abs();
+    return latDistance +
+        lngDistance; 
+  }
   void ResetSelections() {
     selecetedPrice = '';
     selecetedPlace = '';
@@ -48,19 +111,6 @@ class SearchScreenController extends GetxController {
     selectIndexRating(0);
     update();
   }
-
-  var searchCards = <SearchCard>[
-    SearchCard(
-        image: 'https://dummyimage.com/70x70/000/fff',
-        title: 'Hand washing car',
-        price: '90.90909090',
-        onTap: () {}),
-    SearchCard(
-        image: 'https://dummyimage.com/70x70/000/fff',
-        title: 'Automatic washing car',
-        price: '1234567821',
-        onTap: () {}),
-  ];
 
   void selectIndexPrice(int index) {
     selectedIndexPrice = index;
@@ -74,6 +124,7 @@ class SearchScreenController extends GetxController {
 
   void selectIndexRating(int index) {
     selectedIndexRating = index;
+
     update();
   }
 
@@ -134,9 +185,9 @@ class SearchScreenController extends GetxController {
         // final matchesCategory = selectedCategory.isEmpty || postCategory.contains(selectedCategory.toLowerCase());
 
         return matchesSearchText;
-        // || matchesCategory;
       }).toList();
     }
+
     print('Filtered garages count: ${filteredGarages.length}');
     update();
   }

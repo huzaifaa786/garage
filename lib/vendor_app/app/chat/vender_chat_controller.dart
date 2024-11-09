@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/chatify/user_api.dart';
@@ -13,10 +14,15 @@ import 'package:mobilegarage/user_app/utils/base_url.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:dio/dio.dart' as dio;
+import 'dart:developer' as developer;
 
 class VChatController extends GetxController {
   static VChatController instance = Get.find();
+  double? lat;
+  double? lng;
 
+  Position? currentPosition;
+  String currentAddress = '';
   RxList<Msg> massages = <Msg>[].obs;
   TextEditingController massagecontroller = TextEditingController();
   String? activeUserId;
@@ -87,7 +93,6 @@ class VChatController extends GetxController {
     };
 
     var response = await Api.execute(url: url, data: data);
-    print('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq$response');
     contacts = <Contact>[];
     if (response['contacts'].isNotEmpty) {
       for (var contact in response['contacts']) {
@@ -177,13 +182,15 @@ class VChatController extends GetxController {
 
     String fileName = file?.path.split('/').last ?? '';
     print('object ************');
-
+ String location = lat.toString() + ',' + lng.toString();
+    developer.log(location);
     data = dio.FormData.fromMap({
       'api_token': box.read('api_token')!,
       'message': massagecontroller.text.toString(),
       'type': 'user',
       'temporaryMsgId': main(),
       'id': activeUserId,
+      'location': lat.toString() + ',' + lng.toString()
     });
     print(data);
     if (file != null) {
@@ -197,6 +204,11 @@ class VChatController extends GetxController {
     ClearVariable();
     if (file != null) {
       file = null;
+    }
+      if (lat != null) {
+      lat = null;
+      lng = null;
+      location = '';
     }
     update();
 
@@ -229,7 +241,20 @@ class VChatController extends GetxController {
     massages = <Msg>[].obs;
     for (var van in response['messages']) {
       print(van['attachment']);
-      massages.add(Msg(van));
+        String location = van['location'] ?? ''; // Ensure location exists
+    double? lat;
+    double? lng;
+     // Split location into lat and lng
+    if (location.isNotEmpty) {
+      List<String> latLng = location.split(',');
+      if (latLng.length == 2) {
+       lat = double.tryParse(latLng[0].trim());
+        lng = double.tryParse(latLng[1].trim());
+      }
+    }
+      // massages.add(Msg(van));
+       massages.add(Msg(van, lat: lat, lng: lng));
+
       print(massages.last.file_name);
 
       update();

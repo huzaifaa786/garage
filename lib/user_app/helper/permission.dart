@@ -1,6 +1,4 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 
@@ -28,7 +26,7 @@ Future<bool> getLocationPermission() async {
   if (permission == LocationPermission.deniedForever) {
     /////   remove this comment when snackbar made
     // UiUtilites.errorSnackbar('Error'.tr, 'Provide Location Permissions.'.tr);
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(Duration(seconds: 3), () {
       openAppSettings();
     });
     return false;
