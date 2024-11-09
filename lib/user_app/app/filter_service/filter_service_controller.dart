@@ -30,7 +30,6 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/models/user_vehicles.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class FilterServiceController extends GetxController {
@@ -75,7 +74,86 @@ class FilterServiceController extends GetxController {
       }
     }
   }
+//////////////
+/// ///
 
+ int selectedIndexPrice = 0;
+  int selectedIndexClosest = 0;
+  int selectedIndexRating = 0;
+  int selectedIndexResults = 0;
+  String selecetedPrice = '';
+  String selecetedPlace = '';
+  String selecetedRating = '';
+void ResetSelections() {
+    selecetedPrice = '';
+    selecetedPlace = '';
+    selecetedRating = '';
+    selectIndexPrice(0);
+    selectIndexClosest(0);
+    selectIndexRating(0);
+    update();
+  }
+
+  void selectIndexPrice(int index) {
+    selectedIndexPrice = index;
+    update();
+  }
+
+  void selectIndexClosest(int index) {
+    selectedIndexClosest = index;
+    update();
+  }
+
+  void selectIndexRating(int index) {
+    selectedIndexRating = index;
+
+    update();
+  }
+
+  void selectIndexResults(int index) {
+    selectedIndexResults = index;
+    update();
+  }
+ void updateApplySelections() {
+    selecetedPrice = selectedIndexPrice == 0
+        ? ''
+        : selectedIndexPrice == 1
+            ? 'From low to high'
+            : 'From high to low';
+    /////////
+    selecetedPlace = selectedIndexClosest == 0
+        ? ''
+        : selectedIndexClosest == 1
+            ? 'From the closest to the furthest'
+            : 'Random';
+    ////////////
+    selecetedRating = selectedIndexRating == 0
+        ? ''
+        : selectedIndexRating == 1
+            ? 'From high to low'
+            : 'From low to high';
+
+    update();
+    // filter  with rating
+    if (selectedIndexRating == 2) {
+      garages.sort((a, b) => (double.tryParse(a.rating ?? '0') ?? 0)
+          .compareTo(double.tryParse(b.rating ?? '0') ?? 0));
+    } else if (selectedIndexRating == 1) {
+      garages.sort((a, b) => (double.tryParse(b.rating ?? '0') ?? 0)
+          .compareTo(double.tryParse(a.rating ?? '0') ?? 0));
+    }
+
+  //     if (selectedIndexClosest == 1) {
+  //   filteredGarages.sort((a, b) {
+  //     double? distanceA = _calculateDistance(a.lat, a.lng);
+  //     double? distanceB = _calculateDistance(b.lat, b.lng);
+  //     return distanceA.compareTo(distanceB);
+  //   });
+  // } else if (selectedIndexClosest == 2) {
+  // }
+    update();
+  }
+///
   getUserCategories() async {
     var response = await UserGetCategoriesApi.getUserCategories(id: categoryId);
     if (response.isNotEmpty) {

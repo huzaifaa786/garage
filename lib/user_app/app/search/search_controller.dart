@@ -4,7 +4,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/user_apis/post_api/post_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
-import 'package:mobilegarage/user_app/app/search/components/search_card.dart';
 
 class SearchScreenController extends GetxController {
   static SearchScreenController instance = Get.find();
@@ -37,8 +36,44 @@ class SearchScreenController extends GetxController {
             : 'From low to high';
 
     update();
-  }
+    // filter  with rating
+    if (selectedIndexRating == 2) {
+      filteredGarages.sort((a, b) => (double.tryParse(a.rating ?? '0') ?? 0)
+          .compareTo(double.tryParse(b.rating ?? '0') ?? 0));
+    } else if (selectedIndexRating == 1) {
+      filteredGarages.sort((a, b) => (double.tryParse(b.rating ?? '0') ?? 0)
+          .compareTo(double.tryParse(a.rating ?? '0') ?? 0));
+    }
 
+  //     if (selectedIndexClosest == 1) {
+  //   filteredGarages.sort((a, b) {
+  //     double? distanceA = _calculateDistance(a.lat, a.lng);
+  //     double? distanceB = _calculateDistance(b.lat, b.lng);
+  //     return distanceA.compareTo(distanceB);
+  //   });
+  // } else if (selectedIndexClosest == 2) {
+  // }
+    update();
+  }
+// double _calculateDistance(double? lat2, double? lng2) {
+//   if (lat == null || lng == null || lat2 == null || lng2 == null) {
+//     return double.infinity; // Return a large value if coordinates are missing
+//   }
+  
+//   const double radius = 6371; // Radius of the Earth in kilometers
+//   double dLat = _degreesToRadians(lat2 - lat!);
+//   double dLng = _degreesToRadians(lng2 - lng!);
+//   double a = (sin(dLat / 2) * sin(dLat / 2)) +
+//       cos(_degreesToRadians(lat!)) *
+//           cos(_degreesToRadians(lat2)) *
+//           (sin(dLng / 2) * sin(dLng / 2));
+//   double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+//   return radius * c; // Distance in kilometers
+// }
+
+// double _degreesToRadians(double degrees) {
+//   return degrees * (pi / 180);
+// }
   void ResetSelections() {
     selecetedPrice = '';
     selecetedPlace = '';
@@ -48,19 +83,6 @@ class SearchScreenController extends GetxController {
     selectIndexRating(0);
     update();
   }
-
-  var searchCards = <SearchCard>[
-    SearchCard(
-        image: 'https://dummyimage.com/70x70/000/fff',
-        title: 'Hand washing car',
-        price: '90.90909090',
-        onTap: () {}),
-    SearchCard(
-        image: 'https://dummyimage.com/70x70/000/fff',
-        title: 'Automatic washing car',
-        price: '1234567821',
-        onTap: () {}),
-  ];
 
   void selectIndexPrice(int index) {
     selectedIndexPrice = index;
@@ -74,6 +96,7 @@ class SearchScreenController extends GetxController {
 
   void selectIndexRating(int index) {
     selectedIndexRating = index;
+
     update();
   }
 
@@ -134,9 +157,9 @@ class SearchScreenController extends GetxController {
         // final matchesCategory = selectedCategory.isEmpty || postCategory.contains(selectedCategory.toLowerCase());
 
         return matchesSearchText;
-        // || matchesCategory;
       }).toList();
     }
+
     print('Filtered garages count: ${filteredGarages.length}');
     update();
   }

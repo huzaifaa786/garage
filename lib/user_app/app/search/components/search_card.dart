@@ -10,7 +10,6 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SearchCard extends StatelessWidget {
   final String? image;
@@ -21,6 +20,8 @@ class SearchCard extends StatelessWidget {
   final VoidCallback? onTapViewGarage;
   final VoidCallback? onTap;
   final String? price;
+  final String? rating;
+
 
   const SearchCard({
     this.image,
@@ -31,6 +32,7 @@ class SearchCard extends StatelessWidget {
     this.logoimage,
     this.currentAddress,
     this.onTapViewGarage,
+    this.rating
   });
 
   @override
@@ -135,7 +137,7 @@ class SearchCard extends StatelessWidget {
                   Row(
                     children: [
                       RatingBarIndicator(
-                        rating: 4.0,
+                        rating: double.parse(rating.toString()),
                         itemCount: 5,
                         itemSize: 11,
                         unratedColor: AppColors.black.withOpacity(0.5),
@@ -146,7 +148,7 @@ class SearchCard extends StatelessWidget {
                       ),
                       Gap(3),
                       AppText(
-                        title: '4.0',
+                        title: rating??'0.0',
                         size: 10,
                         fontWeight: FontWeight.w500,
                       )

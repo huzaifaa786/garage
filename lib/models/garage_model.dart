@@ -26,6 +26,8 @@ class GarageModel {
   DateTime? createdAt;
   List<ProductModel>? products = [];
   OrdersModel? order;
+  String? rating;
+
   GarageModel(
       {this.id,
       this.banner,
@@ -49,6 +51,7 @@ class GarageModel {
       this.servicecount,
       this.banned,
       this.order,
+      this.rating,
       this.products});
 
   factory GarageModel.fromJson(Map<String, dynamic> json) {
@@ -70,6 +73,7 @@ class GarageModel {
       address: json['address'],
       opened: json['opened'],
       status: json['status'],
+      rating: json['average_rating'].toString() ,
       servicecount: json['totalCategoryCount'].toString(),
       order: json['order'] != null ? OrdersModel.fromJson(json['order']) : null,
       garageTime: json['garage_time'] != null
