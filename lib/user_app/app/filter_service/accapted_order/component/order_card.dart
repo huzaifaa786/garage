@@ -24,7 +24,8 @@ class OrderCard extends StatelessWidget {
       this.location,
       this.city,
       required this.isSelected,
-      required this.ontap,this.onchattap});
+      required this.ontap,
+      this.onchattap});
   GarageModel garage;
   final String? location;
   final String? city;
@@ -244,7 +245,9 @@ class OrderCard extends StatelessWidget {
                       child: Row(
                         children: [
                           RatingBar.builder(
-                            initialRating: controller.ratings,
+                            initialRating: garage.rating == null
+                                ? 0.0
+                                : double.parse(garage.rating.toString()),
                             minRating: 1,
                             direction: Axis.horizontal,
                             allowHalfRating: true,
@@ -255,12 +258,12 @@ class OrderCard extends StatelessWidget {
                             itemBuilder: (context, _) =>
                                 const Icon(Icons.star, color: Colors.yellow),
                             onRatingUpdate: (rating) {
-                              controller.updateRating(rating);
+                              // controller.updateRating(rating);
                             },
                           ),
                           const Gap(5),
                           AppText(
-                            title: controller.ratings.toString(),
+                            title: garage.rating ?? '0.0',
                             size: 8.0,
                             fontWeight: FontWeight.w500,
                           ),
@@ -355,8 +358,7 @@ class OrderCard extends StatelessWidget {
                                 top: Get.height * 0.003,
                                 child: GestureDetector(
                                   onTap: () {
-                                  Get.toNamed(AppRoutes.chats_accounts);
-
+                                    Get.toNamed(AppRoutes.chats_accounts);
                                   },
                                   child: Container(
                                       height: Get.height * 0.045,

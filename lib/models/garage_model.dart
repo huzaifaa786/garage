@@ -73,7 +73,7 @@ class GarageModel {
       address: json['address'],
       opened: json['opened'],
       status: json['status'],
-      rating: json['average_rating'].toString() ,
+      rating: json['average_rating']!=null?json['average_rating'].toString():null ,
       servicecount: json['totalCategoryCount'].toString(),
       order: json['order'] != null ? OrdersModel.fromJson(json['order']) : null,
       garageTime: json['garage_time'] != null

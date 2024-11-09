@@ -18,11 +18,13 @@ class VOrdersView extends StatelessWidget {
         appBarTitle: 'Orders'.tr,
         hasBgColor: true,
         hasShadow: false,
-        child: controller.pendingOrders.isNotEmpty ||
-                controller.acceptedOrders.isNotEmpty ||
-                controller.onTheWayOrders.isNotEmpty ||
-                controller.deliveredOrders.isNotEmpty
-            ? Column(
+        child: 
+        // controller.pendingOrders.isNotEmpty ||
+        //         controller.acceptedOrders.isNotEmpty ||
+        //         controller.onTheWayOrders.isNotEmpty ||
+        //         controller.deliveredOrders.isNotEmpty
+            // ?
+             Column(
                 children: [
                   const FilterView(),
                   controller.pendingOrders.isNotEmpty ||
@@ -70,11 +72,11 @@ class VOrdersView extends StatelessWidget {
                         ),
                 ],
               )
-            : Center(
-                child: AppText(
-                  title: 'No Orders Found'.tr,
-                ),
-              ),
+            // : Center(
+            //     child: AppText(
+            //       title: 'No Orders Found'.tr,
+            //     ),
+            //   ),
       ),
     );
   }
