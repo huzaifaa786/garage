@@ -224,92 +224,97 @@ class GarageView extends StatelessWidget {
                             )
                           ],
                         ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: Stack(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ClipPath(
-                                  clipper: RightCircularClipper(),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Get.bottomSheet(
-                                          GarageReviewBottomSheetView(),
-                                          isScrollControlled: true);
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: AppColors.lightPink,
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20))),
-                                      height: Get.height * 0.05,
-                                      width: Get.width * 0.5,
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 25),
+                          child: Stack(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ClipPath(
+                                    clipper: RightCircularClipper(),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Get.bottomSheet(
+                                            GarageReviewBottomSheetView(),
+                                            isScrollControlled: true);
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: AppColors.lightPink,
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                bottomLeft:
+                                                    Radius.circular(20))),
+                                        height: Get.height * 0.05,
+                                        width: Get.width * 0.5,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            SvgPicture.asset(
+                                                'assets/icons/star.svg',
+                                                height: 16,
+                                                width: 16),
+                                            Gap(5),
+                                            AppText(
+                                                title: 'View reviews'.tr,
+                                                color: AppColors.primarybg,
+                                                size: 11,
+                                                fontWeight: FontWeight.w600),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: Get.width * 0.25,
+                                  )
+                                ],
+                              ),
+                              Positioned(
+                                right: 0,
+                                height: Get.height * 0.05,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.chatScreen);
+                                  },
+                                  child: Container(
+                                    height: Get.height * 0.045,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 25),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.lightPink,
+                                      borderRadius: BorderRadius.circular(80),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 10),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/icons/star.svg',
-                                              height: 16,
-                                              width: 16),
-                                          Gap(5),
+                                            'assets/icons/chat.svg',
+                                            height: 16,
+                                            width: 16,
+                                            color: AppColors.primary,
+                                          ),
                                           AppText(
-                                              title: 'View reviews'.tr,
-                                              color: AppColors.primarybg,
-                                              size: 11,
-                                              fontWeight: FontWeight.w600),
+                                            title: 'Chat'.tr,
+                                            size: 11,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.primarybg,
+                                          )
                                         ],
                                       ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: Get.width * 0.25,
-                                )
-                              ],
-                            ),
-                            Positioned(
-                              right: 0,
-                              height: Get.height * 0.05,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.chatScreen);
-                                },
-                                child: Container(
-                                  height: Get.height * 0.045,
-                                  padding: EdgeInsets.symmetric(horizontal: 25),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.lightPink,
-                                    borderRadius: BorderRadius.circular(80),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 10),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icons/chat.svg',
-                                          height: 16,
-                                          width: 16,
-                                          color: AppColors.primary,
-                                        ),
-                                        AppText(
-                                          title: 'Chat'.tr,
-                                          size: 11,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColors.primarybg,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       Gap(30),

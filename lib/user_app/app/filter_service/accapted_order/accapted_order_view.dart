@@ -25,7 +25,7 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
       autoRemove: false,
       builder: (controller) => AppLayout(
         appBarTitle:
-            controller.path == 'filter' ? 'Service Results' : 'Accepted Orders',
+            controller.path == 'filter' ? 'Service Results'.tr : 'Accepted Orders'.tr,
         hasBgColor: false,
         hasShadow: true,
         child: SingleChildScrollView(

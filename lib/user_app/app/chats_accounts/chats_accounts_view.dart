@@ -19,15 +19,14 @@ class ChatsAccountsView extends StatefulWidget {
 }
 
 class _ChatsAccountsViewState extends State<ChatsAccountsView> {
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ChatScreenController>(
-       autoRemove: false,
+        autoRemove: false,
         initState: (state) {
           Future.delayed(Duration(milliseconds: 100), () {
             state.controller!.getContacts();
-          });   
+          });
         },
         builder: (controller) => Scaffold(
               appBar: AppBar(
@@ -51,15 +50,12 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                               return Container(
                                   color: AppColors.grey.shade100,
                                   child: ChartsCard(
-                                    name: controller
-                                        .scontacts[index].username,
-                                    img: controller
-                                        .scontacts[index].profilePic,
-                                    msg: 'Tap here to view messages',
+                                    name: controller.scontacts[index].username,
+                                    img: controller.scontacts[index].profilePic,
+                                    msg: 'Tap here to view messages'.tr,
                                     ontap: () {
                                       Get.to(() => ChatScreenView(
-                                          id: controller
-                                              .scontacts[index].id,
+                                          id: controller.scontacts[index].id,
                                           name: controller
                                               .scontacts[index].username,
                                           profilePic: controller
@@ -69,15 +65,14 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                                   ));
                             })
                         : SizedBox(
-                          height: Get.height*0.7,
-                          child: Center(
-                              child: Text(
-                              'No chat found!',
+                            height: Get.height * 0.7,
+                            child: Center(
+                                child: Text(
+                              'No chat found!'.tr,
                               style: TextStyle(
-                                  fontSize: 14,
-                                  color: AppColors.grey),
+                                  fontSize: 14, color: AppColors.grey),
                             )),
-                        )
+                          )
                   ],
                 )),
               ),

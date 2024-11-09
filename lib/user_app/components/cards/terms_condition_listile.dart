@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 
 class FaqQuestionAnswer extends StatelessWidget {
@@ -22,7 +23,7 @@ class FaqQuestionAnswer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AppText(
-                title: 'Q. ',
+                title: 'Q. '.tr,
                 fontWeight: FontWeight.w500,
               ),
               Expanded(
@@ -39,7 +40,7 @@ class FaqQuestionAnswer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AppText(
-                title: 'A. ',
+                title: 'A. '.tr,
                 fontWeight: FontWeight.w500,
               ),
               Expanded(

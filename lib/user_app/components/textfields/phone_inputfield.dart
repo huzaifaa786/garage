@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import 'package:mobilegarage/app/cart/cart_bindings.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class PhoneInputField extends StatelessWidget {

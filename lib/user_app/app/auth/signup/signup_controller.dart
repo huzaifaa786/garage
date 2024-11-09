@@ -119,24 +119,24 @@ class SignupController extends GetxController {
   String phoneError = '';
   String addressdetailError = '';
 
-// input field validation
   String validateFields(String fieldName, value) {
     switch (fieldName) {
       case 'name':
-        nameError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        nameError = Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return nameError;
       case 'phone':
-        phoneError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        phoneError = Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return phoneError;
       case 'Emirate':
-        emirateError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        emirateError =
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return emirateError;
-      case 'address detail':
+      case 'address details':
         addressdetailError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return addressdetailError;
       default:
@@ -149,7 +149,7 @@ class SignupController extends GetxController {
     final nameErrorString = validateFields('name', nameController.text);
     final phoneErrorString = validateFields('phone', phoneController.text);
     final addressdetailErrorString =
-        validateFields('address detail', adreesdetailController.text);
+        validateFields('address details', adreesdetailController.text);
 
     if (selectedEmirateId == null) {
       emirateError = 'please select an Brand'.tr;

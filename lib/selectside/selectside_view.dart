@@ -72,12 +72,12 @@ class _SelectsideViewState extends State<SelectsideView> {
                               text: 'User'.tr,
                             ),
                             Gap(60),
-                              ContainerSelect(
-                                text: 'Garage Owner'.tr,
-                                ontap: () {
-                                  Get.toNamed(AppRoutes.vsignup);
-                                },
-                              ),
+                            ContainerSelect(
+                              text: 'Garage Owner'.tr,
+                              ontap: () {
+                                Get.toNamed(AppRoutes.vsignup);
+                              },
+                            ),
                           ])),
                     ),
                   ),

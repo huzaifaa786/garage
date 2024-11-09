@@ -8,10 +8,7 @@ import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import 'package:mobilegarage/app/cart/cart_bindings.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class AppPhoneInput extends StatelessWidget {
@@ -89,7 +86,7 @@ class AppPhoneInput extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 4, left: 16, right: 16),
             child: AppText(
-              title: errorText!.tr,
+              title: errorText!,
               color: AppColors.red,
               size: 10,
             ),

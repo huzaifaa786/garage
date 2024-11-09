@@ -10,7 +10,7 @@ class GarageReviewsModel {
   DateTime? createdAt;
   DateTime? updatedAt;
   UserModel? user;
-   String? createdAtRelative;
+  String? createdAtRelative;
   String? updatedAtRelative;
   GarageReviewsModel({
     this.id,
@@ -22,12 +22,12 @@ class GarageReviewsModel {
     this.createdAt,
     this.updatedAt,
     this.user,
-     this.createdAtRelative,
+    this.createdAtRelative,
     this.updatedAtRelative,
   });
 
   factory GarageReviewsModel.fromJson(Map<String, dynamic> json) {
-      DateTime createdDate = DateTime.parse(json['created_at']);
+    DateTime createdDate = DateTime.parse(json['created_at']);
     DateTime updatedDate = DateTime.parse(json['updated_at']);
 
     return GarageReviewsModel(
@@ -40,11 +40,11 @@ class GarageReviewsModel {
       createdAt: createdDate,
       updatedAt: updatedDate,
       user: UserModel.fromJson(json['user']),
-       createdAtRelative: _getRelativeTime(createdDate),
+      createdAtRelative: _getRelativeTime(createdDate),
       updatedAtRelative: _getRelativeTime(updatedDate),
     );
   }
-    static String _getRelativeTime(DateTime date) {
+  static String _getRelativeTime(DateTime date) {
     final now = DateTime.now();
     final difference = now.difference(date);
 

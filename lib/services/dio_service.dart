@@ -117,8 +117,8 @@ class DioService {
     dynamic e,
   }) {
     LoadingHelper.dismiss();
-    // showAlert == false
-    UiUtilites.errorSnackbar('Error', e.toString());
+
+    UiUtilites.errorSnackbar('Error'.tr, e.toString().tr);
     // : UiUtilites.rememberAlert(e.toString());
   }
 }

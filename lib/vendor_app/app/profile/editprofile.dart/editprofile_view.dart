@@ -139,35 +139,35 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                   ],
                                 ),
                               ),
-                              ChangePassword(
+                              EditProductsField(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vtradinglicense);
                                 },
                                 icon: 'assets/icons/license.svg',
                                 text: 'Edit or add new trading license'.tr,
                               ),
-                              ChangePassword(
+                              EditProductsField(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vownerid);
                                 },
                                 icon: 'assets/icons/license.svg',
                                 text: 'Edit or add new owner ID'.tr,
                               ),
-                              ChangePassword(
+                              EditProductsField(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vgarage_timings);
                                 },
                                 icon: 'assets/icons/Timeclock.svg',
                                 text: 'Open time and close time'.tr,
                               ),
-                              ChangePassword(
+                              EditProductsField(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vchangepassword);
                                 },
                                 icon: 'assets/images/lock.svg',
                                 text: 'Change password'.tr,
                               ),
-                              ChangePassword(
+                              EditProductsField(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.language);
                                 },
@@ -185,7 +185,8 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                       ontap: () {
                                         UiUtilites.showConfirmationDialog(
                                           false,
-                                          'Are you Sure that you want\n to log out ?'.tr,
+                                          'Are you Sure that you want\n to log out ?'
+                                              .tr,
                                           onConfirm: () async {
                                             GetStorage box = GetStorage();
                                             await box.remove('api_token');

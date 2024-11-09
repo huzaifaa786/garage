@@ -65,7 +65,7 @@ class ChatCard extends StatelessWidget {
                         AppText(
                           maxLines: 1,
                           overFlow: TextOverflow.ellipsis,
-                          title: 'Tap here to view messages',
+                          title: 'Tap here to view messages'.tr,
                           size: 11,
                           fontWeight: FontWeight.w600,
                           color: Colors.grey,

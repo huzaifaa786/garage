@@ -39,7 +39,7 @@ class NotificationView extends StatelessWidget {
                 )
               : Center(
                   child: Text(
-                  'No notification found !',
+                  'No notification found !'.tr,
                   style: TextStyle(
                       color: const Color.fromARGB(255, 180, 180, 180)),
                 )),

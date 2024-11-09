@@ -110,7 +110,8 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 49),
+                                  padding: const EdgeInsets.only(
+                                      left: 49, right: 49),
                                   child: AppText(
                                     title: 'Unavailable dates'.tr,
                                     color: AppColors.primary_color,

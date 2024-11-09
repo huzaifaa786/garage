@@ -79,7 +79,7 @@ class SignupView extends StatelessWidget {
                               controller: controller.nameController,
                               errorText: controller.nameError,
                               onchange: (p0) {
-                                controller.validateFields('name'.tr, p0);
+                                controller.validateFields('name', p0);
                               },
                             ),
                             Gap(20),
@@ -110,12 +110,12 @@ class SignupView extends StatelessWidget {
                             ),
                             Gap(20),
                             MainInput(
-                              hint: 'Address details'.tr,
+                              hint: 'address details'.tr,
                               controller: controller.adreesdetailController,
                               errorText: controller.addressdetailError,
                               onchange: (p0) {
                                 controller.validateFields(
-                                    "address detail".tr, p0);
+                                    "address details", p0);
                               },
                             ),
                             Gap(40),

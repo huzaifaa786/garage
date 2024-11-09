@@ -58,7 +58,7 @@ class Validators {
     } else if (newpassword == confirmPassword) {
       return null;
     } else {
-      return "Password and confirm password is not same!".tr;
+      return "Password and confirm password are not same!".tr;
     }
   }
 

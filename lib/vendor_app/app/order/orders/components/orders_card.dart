@@ -290,7 +290,7 @@ class OrdersCard extends StatelessWidget {
                           });
                         },
                         child: Locationn(
-                          text: 'click to view order location',
+                          text: 'click to view order location'.tr,
                         ),
                       ),
                     ),

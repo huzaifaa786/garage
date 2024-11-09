@@ -65,7 +65,8 @@ class GarageReviewCard extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                             AppText(
-                              title: garageReview!.createdAtRelative.toString(),
+                              title:
+                                  garageReview!.createdAtRelative.toString().tr,
                               size: 10,
                               fontWeight: FontWeight.w600,
                               color: AppColors.greybg,

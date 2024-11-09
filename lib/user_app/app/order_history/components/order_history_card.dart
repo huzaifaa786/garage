@@ -43,7 +43,7 @@ class OrderHistoryCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: 'Tracking Number  ',
+                          text: 'Tracking Number  '.tr,
                           style: TextStyle(
                             fontSize: 10,
                             color: AppColors.primarybg,
