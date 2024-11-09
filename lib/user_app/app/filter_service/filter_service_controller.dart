@@ -207,7 +207,7 @@ class FilterServiceController extends GetxController {
   }
 
   Future<Position> _getCurrentLocation() async {
-    // Check if location services are enabled
+    // Check if location services are enabledx
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // Handle if location service is not enabled
