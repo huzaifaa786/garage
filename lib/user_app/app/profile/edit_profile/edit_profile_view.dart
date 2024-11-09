@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -57,7 +58,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                     CircleAvatar(
                       radius: 50,
                       backgroundColor: Colors.grey[300],
-                      
                       child: controller.img != ''
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(80),
@@ -180,7 +180,9 @@ class _EditProfileViewState extends State<EditProfileView> {
                           color: AppColors.primary,
                         ),
                         Gap(2),
-                        SvgPicture.asset('assets/icons/arrow-left.svg'),
+                        SvgPicture.asset(box.read('locale') != 'ar'
+                            ? 'assets/icons/arrow-left.svg'
+                            : 'assets/icons/arrow_leftside.svg'),
                       ],
                     ),
                   ),

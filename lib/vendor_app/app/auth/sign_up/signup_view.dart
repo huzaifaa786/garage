@@ -69,7 +69,7 @@ class VSignupView extends StatelessWidget {
                               hint: 'Name of owner'.tr,
                               controller: controller.nameController,
                               onchange: (val) {
-                                controller.validateFields("Name", val);
+                                controller.validateFields("Name ", val);
                               },
                             ),
                             const Gap(12),
@@ -78,7 +78,7 @@ class VSignupView extends StatelessWidget {
                               hint: 'Garage name'.tr,
                               controller: controller.garageNameController,
                               onchange: (val) {
-                                controller.validateFields("Garage name", val);
+                                controller.validateFields("Garage name ", val);
                               },
                             ),
                             const Gap(16),
@@ -130,7 +130,7 @@ class VSignupView extends StatelessWidget {
                                   controller.garageDescriptionController,
                               onchange: (val) {
                                 controller.validateFields(
-                                    "Garage description", val);
+                                    "Garage description ", val);
                               },
                             ),
                             const Gap(16),
@@ -183,7 +183,7 @@ class VSignupView extends StatelessWidget {
                               selectedValue: controller.selectedEmirate,
                               onChanged: (value) {
                                 controller.setSelectedEmirate(value);
-                                controller.validateFields("Emirate",
+                                controller.validateFields("Emirate ",
                                     controller.selectedEmirateId.toString());
                                 controller.update();
                               },
@@ -197,7 +197,7 @@ class VSignupView extends StatelessWidget {
                                   controller.garageAddressDetailController,
                               onchange: (val) {
                                 controller.validateFields(
-                                    "Garage address detail", val);
+                                    "Garage address detail ", val);
                               },
                             ),
                             const Gap(12),
@@ -206,7 +206,7 @@ class VSignupView extends StatelessWidget {
                               hint: 'Email'.tr,
                               controller: controller.emailController,
                               onchange: (val) {
-                                controller.validateFields("Email", val);
+                                controller.validateFields("Email ", val);
                               },
                             ),
                             const Gap(12),
@@ -216,7 +216,7 @@ class VSignupView extends StatelessWidget {
                               obscure: controller.obscurePassword,
                               controller: controller.passwordController,
                               onchange: (val) {
-                                controller.validateFields("password", val);
+                                controller.validateFields("password ", val);
                               },
                               hasSuffix: true,
                               suffixWidget: InkWell(
@@ -240,7 +240,7 @@ class VSignupView extends StatelessWidget {
                               controller: controller.confirmPasswordController,
                               onchange: (val) {
                                 controller.validateFields(
-                                    "confirm_password", val);
+                                    "confirm password ", val);
                               },
                               hasSuffix: true,
                               suffixWidget: InkWell(

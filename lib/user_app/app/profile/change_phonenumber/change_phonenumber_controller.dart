@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
-import 'package:mobilegarage/models/user_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/validators.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class ChangePhonenumberController extends GetxController {
   static ChangePhonenumberController instance = Get.find();
@@ -60,7 +56,7 @@ class ChangePhonenumberController extends GetxController {
   changeNumber() async {
     if (await validateForm()) {
       Get.toNamed(AppRoutes.otp, parameters: {
-        'phone':completePhoneNumber.toString(),
+        'phone': completePhoneNumber.toString(),
         'auth': 'changeNumber'
       });
     }
@@ -70,7 +66,7 @@ class ChangePhonenumberController extends GetxController {
   String validateFields(String fieldName, value) {
     switch (fieldName) {
       case 'phone':
-        phoneError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        phoneError = Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return phoneError;
       default:

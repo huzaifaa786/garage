@@ -49,6 +49,8 @@ class MyLocationController extends GetxController {
       if (response.isNotEmpty) {
         user = UserModel.fromJson(response['user']);
         update();
+        UiUtilites.successSnackbar('Location updated successfully'.tr, 'Success'.tr);
+        Get.back();
       }
     }
   }

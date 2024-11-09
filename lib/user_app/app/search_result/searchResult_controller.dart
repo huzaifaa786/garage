@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
-
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -13,8 +11,7 @@ class SearchResultController extends GetxController {
 
   var selectedService = 'quickService';
 
-  TimeOfDay selectedTimeFrom =
-      TimeOfDay(hour: 9, minute: 0); // Default time for 'Set time'
+  TimeOfDay selectedTimeFrom = TimeOfDay(hour: 9, minute: 0);
   bool isAm = true;
 
   void onServiceSelected(String service) {

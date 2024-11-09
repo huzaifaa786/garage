@@ -109,38 +109,39 @@ class VSignUpController extends GetxController {
   //TODO: INPUT VALIDATIONS
   String validateFields(String fieldName, value) {
     switch (fieldName) {
-      case 'Name':
-        nameError = Validators.emptyStringValidator(value, fieldName) ?? '';
+      case 'Name ':
+        nameError = Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return nameError;
-      case 'Garage name':
+      case 'Garage name ':
         garageNameError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return garageNameError;
-      case 'Garage description':
+      case 'Garage description ':
         garageDescriptionError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return garageDescriptionError;
-      case 'Emirate':
-        emirateError = Validators.emptyStringValidator(value, fieldName) ?? '';
+      case 'Emirate ':
+        emirateError =
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return emirateError;
-      case 'Garage address detail':
+      case 'Garage address detail ':
         garageAddressDetailError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return garageAddressDetailError;
-      case 'Email':
+      case 'Email ':
         emailError = Validators.emailValidator(value) ?? '';
         update();
         return emailError;
-      case 'password':
+      case 'password ':
         passwordError = Validators.passwordValidator(value) ?? '';
         update();
         return passwordError;
-      case 'confirm_password':
+      case 'confirm password ':
         confirmPasswordError = Validators.confrimPasswordValidator(
                 passwordController.text, value) ??
             '';
@@ -305,7 +306,8 @@ class VSignUpController extends GetxController {
             },
             title: 'Thank you!'.tr,
             description:
-                'You have submitted your application successfully and it’s pending approval.'.tr,
+                'You have submitted your application successfully and it’s pending approval.'
+                    .tr,
             buttontitle: 'Ok');
 
         resetfields();

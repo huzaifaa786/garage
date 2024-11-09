@@ -30,10 +30,10 @@ class _VChatViewState extends State<VChatView> {
         initState: (state) {
           Future.delayed(Duration(milliseconds: 100), () {
             state.controller!.getContacts();
-          });   
+          });
         },
         builder: (controller) => AppLayout(
-            appBarTitle: 'Chat',
+            appBarTitle: 'Chat'.tr,
             hasBgColor: true,
             child: controller.scontacts.isNotEmpty
                 ? ListView.builder(
@@ -61,7 +61,7 @@ class _VChatViewState extends State<VChatView> {
                     height: Get.height * 0.7,
                     child: Center(
                         child: Text(
-                      'No chat found!',
+                      'No chat found!'.tr,
                       style: TextStyle(fontSize: 14, color: AppColors.grey),
                     )),
                   )));

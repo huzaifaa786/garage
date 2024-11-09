@@ -102,7 +102,7 @@ class GarageProductCard extends StatelessWidget {
                       ),
                       Gap(5),
                       AppText(
-                        title: 'AED',
+                        title: 'AED'.tr,
                         color: Color.fromARGB(255, 0, 91, 165),
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
