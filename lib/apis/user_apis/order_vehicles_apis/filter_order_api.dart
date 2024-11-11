@@ -2,6 +2,24 @@ import 'package:mobilegarage/services/dio_service.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
 
 class FilterOrderApi {
+  static Future<Map<String, dynamic>> filterPriceOrder({
+    String? startprice,
+    String? endprice,
+    String? categoryid,
+  }) async {
+    //* URL
+    String url = '$baseUrl/price/filter';
+
+    var data = {
+      'lowprice': startprice,
+      'highprice': endprice,
+      'category_id': categoryid,
+    };
+    //! Make the Get request using ApiService
+    var response = await DioService.post(url: url, data: data);
+    return response;
+  }
+
   static Future<Map<String, dynamic>> filterextraOrder({
     String? startprice,
     String? endprice,
@@ -15,7 +33,7 @@ class FilterOrderApi {
       'lowprice': startprice,
       'highprice': endprice,
       'id': categoryid,
-      'categoryextraid': categoryextraid,
+      if (categoryextraid != null) 'categoryextraid': categoryextraid,
     };
     //! Make the Get request using ApiService
     var response = await DioService.post(url: url, data: data);
@@ -41,13 +59,13 @@ class FilterOrderApi {
       'lowprice': startprice,
       'highprice': endprice,
       'id': categoryid,
-      'brand_id': brandid,
-      'tyer_width_id': widthid,
-      'tyer_height_id': heightid,
-      'tyer_size_id': sizeid,
-      'tyer_speed_rating_id': speedratingid,
-      'tyer_pattren_id': patterenid,
-      'tyer_origin_id': originid,
+      if (brandid != null) 'brand_id': brandid,
+      if (widthid != null) 'tyer_width_id': widthid,
+      if (heightid != null) 'tyer_height_id': heightid,
+      if (sizeid != null) 'tyer_size_id': sizeid,
+      if (speedratingid != null) 'tyer_speed_rating_id': speedratingid,
+      if (patterenid != null) 'tyer_pattren_id': patterenid,
+      if (originid != null) 'tyer_origin_id': originid,
     };
 
     //! Make the Get request using ApiService
@@ -72,11 +90,11 @@ class FilterOrderApi {
       'lowprice': startprice,
       'highprice': endprice,
       'id': categoryid,
-      'brand_id': brandid,
-      'producttype_id': productid,
-      'origin_id': originid,
-      'ampere_id': ampereid,
-      'voltage_id': voltageid,
+      if (brandid != null) 'brand_id': brandid,
+     if (productid != null) 'producttype_id': productid,
+     if (originid != null) 'origin_id': originid,
+     if (ampereid != null) 'ampere_id': ampereid,
+     if (voltageid != null) 'voltage_id': voltageid,
     };
 
     //! Make the Get request using ApiService
@@ -100,10 +118,10 @@ class FilterOrderApi {
       'lowprice': startprice,
       'highprice': endprice,
       'id': categoryid,
-      'brand_id': brandid,
-      'oil_product_type_id': productid,
-      'oil_volume_id': voilumeid,
-      'categoryextraid': extraid,
+      if (brandid != null) 'brand_id': brandid,
+     if (productid != null)  'oil_product_type_id': productid,
+     if (voilumeid != null)  'oil_volume_id': voilumeid,
+     if (extraid != null)  'categoryextraid': extraid,
     };
 
     //! Make the Get request using ApiService

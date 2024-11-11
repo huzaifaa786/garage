@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/apis/user_apis/store_vehicle_api/store_vehicle_api.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
 import 'package:mobilegarage/models/battery_models/origin_model.dart';
 import 'package:mobilegarage/models/battery_models/product_type_model.dart';
@@ -23,11 +22,9 @@ import 'package:mobilegarage/user_app/app/filter_service/components/vehicle_list
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
-import 'package:mobilegarage/user_app/components/filter_bottomsheet/filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 
 class FilterServiceView extends StatefulWidget {
@@ -499,7 +496,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         height: Get.height * 0.07,
                         fontsize: 12,
                         onTap: () {
-                          controller.selectedgarageName == 'Select garage'
+                          controller.selectedgarageName == 'Select garage'.tr
                               ? controller.filterorder()
                               : controller.sendtoAllGarages();
                         },
