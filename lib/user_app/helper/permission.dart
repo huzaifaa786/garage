@@ -1,7 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 //! LOCATIONS PERMISSIONS
 Future<bool> getLocationPermission() async {
   bool serviceEnabled;
@@ -11,8 +10,7 @@ Future<bool> getLocationPermission() async {
 
   if (!serviceEnabled) {
     await Permission.location;
-    permission = await Geolocator.requestPermission();
-    // return Future.error('Location services are disabled.');
+    // permission = await Geolocator.requestPermission();
   }
 
   permission = await Geolocator.checkPermission();
@@ -25,15 +23,12 @@ Future<bool> getLocationPermission() async {
 
   if (permission == LocationPermission.deniedForever) {
     /////   remove this comment when snackbar made
-    // UiUtilites.errorSnackbar('Error'.tr, 'Provide Location Permissions.'.tr);
     await Future.delayed(Duration(seconds: 3), () {
       openAppSettings();
     });
     return false;
   }
 
-  // When we reach here, permissions are granted and we can
-  // continue accessing the position of the device.
   await Geolocator.getCurrentPosition();
   return true;
 }

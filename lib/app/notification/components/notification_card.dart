@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/app/notification/notification_controller.dart';
+import 'package:mobilegarage/models/notifications_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
@@ -13,7 +14,12 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class NotificationCard extends StatelessWidget {
-  const NotificationCard({super.key, this.status});
+   NotificationCard({super.key, this.status,
+    this.notification,
+  
+  });
+  NotificationsModel? notification;
+
    int getActiveIndex(String status) {
     switch (status) {
        case 'PENDING':
@@ -64,6 +70,7 @@ class NotificationCard extends StatelessWidget {
                                   : ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
                                       child: AppNetworkImage(
+                                        networkImage: notification!.order!.garage!.banner.toString(),
                                         assetPath:
                                             'assets/images/street_garage.png',
                                       ),
@@ -78,31 +85,32 @@ class NotificationCard extends StatelessWidget {
                               AppText(
                                 title: status == 'PENDING'
                                     ? 'Congratulation!'
-                                    : 'Street garage',
+                                    // : 'Street garage',
+                                    :notification!.order!.garage!.name.toString(),
                                 size: 12,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.primarybg,
                               ),
                             ],
                           ),
-                          if (status != 'PENDING'||status != 'REJECTED')
-                            GestureDetector(
-                              onTap: () {
-                                Get.toNamed(AppRoutes.chats_accounts);
-                              },
-                              child: Container(
-                                height: 35,
-                                width: 35,
-                                decoration: BoxDecoration(
-                                  color: AppColors.lightPink,
-                                  borderRadius: BorderRadius.circular(80),
-                                ),
-                                child: SvgPicture.asset(
-                                  'assets/icons/chat.svg',
-                                  color: AppColors.darkprimary,
-                                ),
-                              ),
-                            ),
+                          // if (status != 'PENDING'||status != 'REJECTED')
+                            // GestureDetector(
+                            //   onTap: () {
+                            //     Get.toNamed(AppRoutes.chats_accounts);
+                            //   },
+                            //   child: Container(
+                            //     height: 35,
+                            //     width: 35,
+                            //     decoration: BoxDecoration(
+                            //       color: AppColors.lightPink,
+                            //       borderRadius: BorderRadius.circular(80),
+                            //     ),
+                            //     child: SvgPicture.asset(
+                            //       'assets/icons/chat.svg',
+                            //       color: AppColors.darkprimary,
+                            //     ),
+                            //   ),
+                            // ),
                         ],
                       ),
                     ),

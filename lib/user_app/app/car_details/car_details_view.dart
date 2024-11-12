@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/brand_name_model.dart';
 import 'package:mobilegarage/models/vehicle_model.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/auth/signup/signup_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/dotted_border_button.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -16,7 +14,6 @@ import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
-import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class CarDetailsView extends StatefulWidget {
   const CarDetailsView({super.key});
@@ -43,7 +40,6 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    // Image.asset('assets/images/splash_logo.png'),
                     Padding(
                       padding: EdgeInsets.only(top: 30, bottom: 20),
                       child: SvgPicture.asset(

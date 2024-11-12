@@ -146,11 +146,29 @@ class VChatController extends GetxController {
   }
 
   void onEvent(PusherEvent event) {
-    var response = jsonDecode(event.data);
+    // var response = jsonDecode(event.data);
+ var response;
+  if (event.data is String) {
+    response = jsonDecode(event.data);
+  } else if (event.data is Map) {
+    response = event.data;
+  } else {
+    print("Unexpected data type in event: ${event.data.runtimeType}");
+    return;
+  }
+    // response['message']['body'] = response['message']['message'];
+    // response['message']['created_at'] = response['message']['created_at'];
+
+    // massages.add(Msg(response['message']));
+     if (response['message'] is Map) {
     response['message']['body'] = response['message']['message'];
     response['message']['created_at'] = response['message']['created_at'];
-
     massages.add(Msg(response['message']));
+    update();
+  } else {
+    print("Message key is missing or has an unexpected format.");
+  }
+  //
     update();
   }
 

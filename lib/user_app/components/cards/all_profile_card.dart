@@ -86,7 +86,8 @@ class AllProfileCard extends StatelessWidget {
               ),
               box.read('locale') != 'ar'?
               SvgPicture.asset(
-                'assets/icons/arrow_right.svg',
+                'assets/icons/arrow-right.svg'
+,
                 height: 20,
                 width: 20,
               )

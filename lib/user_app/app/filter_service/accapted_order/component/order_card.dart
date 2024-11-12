@@ -358,7 +358,7 @@ class OrderCard extends StatelessWidget {
                                 top: Get.height * 0.003,
                                 child: GestureDetector(
                                   onTap: () {
-                                    Get.toNamed(AppRoutes.chats_accounts);
+                                    // Get.toNamed(AppRoutes.chats_accounts);
                                   },
                                   child: Container(
                                       height: Get.height * 0.045,

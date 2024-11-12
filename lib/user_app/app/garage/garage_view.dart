@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/garage/components/selected_product_card.dart';
 import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
 import 'package:mobilegarage/user_app/app/garage_review/garage_review_view.dart';
@@ -277,7 +278,12 @@ class GarageView extends StatelessWidget {
                               height: Get.height * 0.05,
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(AppRoutes.chats_accounts);
+                                  // Get.toNamed(AppRoutes.chats_accounts);
+                                   Get.to(() => ChatScreenView(
+                                          id: controller.garage!.id.toString(),
+                                          name:controller.garage!.name.toString(),
+                                          profilePic: '',
+                                          screen: 'chat'));
                                 },
                                 child: Container(
                                   height: Get.height * 0.045,

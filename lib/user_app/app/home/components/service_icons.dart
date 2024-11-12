@@ -78,7 +78,8 @@ class ServicesIcons extends StatelessWidget {
                 ),
                 Gap(2),
                 // SvgPicture.asset(
-                //   'assets/icons/arrow_right.svg',
+                //   'assets/icons/arrow-right.svg',
+
                 //   color: AppColors.primarybg,
                 // )
               ],

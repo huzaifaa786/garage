@@ -103,7 +103,8 @@ class SellerCard extends StatelessWidget {
               child: SvgPicture.asset(
                 height: 20,
                 width: 20,
-                'assets/icons/arrow_right.svg',
+                'assets/icons/arrow-right.svg'
+,
                 color: AppColors.black,
               ),
             )

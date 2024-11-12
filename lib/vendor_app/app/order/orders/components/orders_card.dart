@@ -8,6 +8,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/app/chat_screen/vender_chat_detail_screen_view.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/button.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/items_card.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/location.dart';
@@ -170,7 +171,13 @@ class OrdersCard extends StatelessWidget {
                           padding: const EdgeInsets.all(4.0),
                           child: InkWell(
                             onTap: () {
-                              Get.toNamed(AppRoutes.vchat);
+                              // Get.toNamed(AppRoutes.vchat);
+                                Get.to(() => ChatDetailScreenView(
+                              id: order.user!.id.toString(),
+                              name: order.user!.name.toString(),
+                              profilePic:
+                                 '',
+                              screen: 'chat'));
                             },
                             child: Container(
                               height: 35,

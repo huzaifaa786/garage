@@ -15,7 +15,6 @@ import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class SearchresultView extends StatefulWidget {
@@ -243,7 +242,7 @@ class _SearchresultViewState extends State<SearchresultView> {
                                             const EdgeInsets.only(right: 20.0),
                                         child: SvgPicture.asset(
                                           box.read('locale') != 'ar'
-                                              ? "assets/icons/arrow_right.svg"
+                                              ? "assets/icons/arrow_rightside.svg"
                                               : 'assets/icons/arrow_leftside.svg',
                                           color: AppColors.primarybg,
                                           fit: BoxFit.scaleDown,
@@ -267,9 +266,6 @@ class _SearchresultViewState extends State<SearchresultView> {
                     height: Get.height * 0.077,
                     title: 'Payment'.tr,
                     onTap: () {
-                      controller.checkDate();
-                      controller.checkDate();
-
                       controller.checkDate();
                     },
                   ),
