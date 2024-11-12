@@ -199,10 +199,9 @@ class FilterServiceController extends GetxController {
             double.tryParse(b.lng ?? '0') ?? 0);
         return distanceA.compareTo(distanceB);
       });
+    } else if (selectedIndexClosest == 2) {
+      garages.shuffle();
     }
- else if (selectedIndexClosest == 2) {
-    garages.shuffle();  
-  }
     update();
   }
 
@@ -230,11 +229,9 @@ class FilterServiceController extends GetxController {
 
   double calculateDistance(
       double userLat, double userLng, double garageLat, double garageLng) {
-
     var latDistance = (userLat - garageLat).abs();
     var lngDistance = (userLng - garageLng).abs();
-    return latDistance +
-        lngDistance; 
+    return latDistance + lngDistance;
   }
 
   ///
@@ -650,11 +647,6 @@ class FilterServiceController extends GetxController {
     update(); // This will trigger a UI update to reflect the changes
   }
 
-  // filter api
-  // filterSendallGarage() async {
-  //   sendtoAllGarages();
-  // }
-
   filterorder() async {
     var response;
 
@@ -663,41 +655,51 @@ class FilterServiceController extends GetxController {
         response = await FilterOrderApi.filterBatteryOrder(
           startprice: start.toString(),
           endprice: end.toString(),
-          brandid: selectedBrandId.toString(),
+          brandid: selectedBrandId != null ? selectedBrandId.toString() : null,
           categoryid: categoryId.toString(),
-          originid: selectedbatteryOriginId.toString(),
-          ampereid: selectedampereId.toString(),
-          productid: selectedProducttypeId.toString(),
-          voltageid: selectedvoltageId.toString(),
+          originid: selectedbatteryOriginId != null
+              ? selectedbatteryOriginId.toString()
+              : null,
+          ampereid:
+              selectedampereId != null ? selectedampereId.toString() : null,
+          productid: selectedProducttypeId != null
+              ? selectedProducttypeId.toString()
+              : null,
+          voltageid:
+              selectedvoltageId != null ? selectedvoltageId.toString() : null,
         );
         update();
         break;
       case '3':
+      
         response = await FilterOrderApi.filterTyreOrder(
           startprice: start.toString(),
           endprice: end.toString(),
-          brandid: selectedBrandId.toString(),
+          brandid: selectedBrandId != null ? selectedBrandId.toString() : null,
           categoryid: categoryId.toString(),
-          widthid: selectedwidthId.toString(),
-          heightid: selectedheightId.toString(),
-          sizeid: selectedsizeId.toString(),
-          originid: selectedtyreoriginId.toString(),
-          patterenid: selectedpatterenId.toString(),
-          speedratingid: selectedSpeedRatingId.toString(),
+          widthid: selectedwidthId!=null?selectedwidthId.toString() : null,
+          heightid: selectedheightId!=null?selectedheightId.toString() : null,
+          sizeid: selectedsizeId!=null?selectedsizeId.toString() : null,
+          originid: selectedtyreoriginId!=null?selectedtyreoriginId.toString() : null,
+          patterenid: selectedpatterenId!=null?selectedpatterenId.toString() : null,
+          speedratingid: selectedSpeedRatingId!=null?selectedSpeedRatingId.toString() : null,
         );
+        // }
         update();
 
         break;
       case '2':
+       
         response = await FilterOrderApi.filterOilOrder(
           startprice: start.toString(),
           endprice: end.toString(),
-          brandid: selectedBrandId.toString(),
+          brandid: selectedBrandId != null ? selectedBrandId.toString() : null,
           categoryid: categoryId.toString(),
-          productid: selectedoilproductTypeId.toString(),
-          voilumeid: selectedVolumeId.toString(),
-          extraid: selectedExtraId.toString(),
+          productid: selectedoilproductTypeId!=null?selectedoilproductTypeId.toString(): null,
+          voilumeid: selectedVolumeId!=null?selectedVolumeId.toString(): null,
+          extraid: selectedExtraId!=null?selectedExtraId.toString(): null,
         );
+        // }
         update();
         break;
 
@@ -706,12 +708,16 @@ class FilterServiceController extends GetxController {
       case '7':
       case '8':
       case '9':
+       
         response = await FilterOrderApi.filterextraOrder(
           startprice: start.toString(),
           endprice: end.toString(),
-          categoryextraid: selectedExtraId.toString(),
+          categoryextraid:
+              selectedExtraId != null ? selectedExtraId.toString() : null,
           categoryid: categoryId.toString(),
         );
+        // }
+
         update();
         break;
       default:
