@@ -74,24 +74,19 @@ class SignupView extends StatelessWidget {
                               fontFamily: 'Ibarra Real Nova',
                             ),
                             Gap(30),
-                            Directionality(
-                              textDirection: box.read('locale') != 'ar'
-                                  ? TextDirection.ltr
-                                  : TextDirection.rtl,
-                              child: MainInput(
-                                hint: 'Name'.tr,
-                                controller: controller.nameController,
-                                errorText: controller.nameError,
-                                onchange: (p0) {
-                                  controller.validateFields('name', p0);
-                                },
-                              ),
+                            MainInput(
+                              hint: 'Name'.tr,
+                              controller: controller.nameController,
+                              errorText: controller.nameError,
+                              onchange: (p0) {
+                                controller.validateFields('name', p0);
+                              },
                             ),
                             Gap(20),
                             Directionality(
-                              textDirection: box.read('locale') != 'ar'
+                              textDirection: box.read('locale') == 'ar'
                                   ? TextDirection.ltr
-                                  : TextDirection.rtl,
+                                  : TextDirection.ltr,
                               child: AppPhoneInput(
                                 onCountryChanged: controller.onCountryChanged,
                                 errorText: controller.phoneError,
@@ -100,38 +95,28 @@ class SignupView extends StatelessWidget {
                               ),
                             ),
                             Gap(20),
-                            Directionality(
-                              textDirection: box.read('locale') != 'ar'
-                                  ? TextDirection.ltr
-                                  : TextDirection.rtl,
-                              child: DropDownField<EmirateModel>(
-                                displayValue: (item) => item.name!,
-                                items: controller.emirates,
-                                hint: 'Emirate'.tr,
-                                selectedValue: controller.selectedEmirate,
-                                onChanged: (value) {
-                                  controller.setSelectedEmirate(value);
-                                  controller.validateFields("Emirate".tr,
-                                      controller.selectedEmirateId.toString());
-                                  controller.update();
-                                },
-                                errorText: controller.emirateError,
-                              ),
+                            DropDownField<EmirateModel>(
+                              displayValue: (item) => item.name!,
+                              items: controller.emirates,
+                              hint: 'Emirate'.tr,
+                              selectedValue: controller.selectedEmirate,
+                              onChanged: (value) {
+                                controller.setSelectedEmirate(value);
+                                controller.validateFields("Emirate".tr,
+                                    controller.selectedEmirateId.toString());
+                                controller.update();
+                              },
+                              errorText: controller.emirateError,
                             ),
                             Gap(20),
-                            Directionality(
-                              textDirection: box.read('locale') != 'ar'
-                                  ? TextDirection.ltr
-                                  : TextDirection.rtl,
-                              child: MainInput(
-                                hint: 'address details'.tr,
-                                controller: controller.adreesdetailController,
-                                errorText: controller.addressdetailError,
-                                onchange: (p0) {
-                                  controller.validateFields(
-                                      "address details", p0);
-                                },
-                              ),
+                            MainInput(
+                              hint: 'address details'.tr,
+                              controller: controller.adreesdetailController,
+                              errorText: controller.addressdetailError,
+                              onchange: (p0) {
+                                controller.validateFields(
+                                    "address details", p0);
+                              },
                             ),
                             Gap(40),
                             Center(

@@ -65,7 +65,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                               children: [
                                 Gap(37),
                                 AppText(
-                                  title: 'Car details',
+                                  title: 'Car details'.tr,
                                   size: 32,
                                   fontWeight: FontWeight.w400,
                                   // color: AppColors.primarybg,
@@ -111,7 +111,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                       AppText(
                                                         title: index == 0
                                                             ? 'Vehicle Details'
-                                                            : 'Vehicle ${index + 1}',
+                                                            : '${'Vehicle'.tr} ${index + 1}',
                                                         // 'Vehicle ${index + 1}',
                                                         size: 14,
                                                         fontWeight:
@@ -130,7 +130,8 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                                   .primarybg,
                                                             ),
                                                             AppText(
-                                                              title: "Delete",
+                                                              title:
+                                                                  "Delete".tr,
                                                               size: 10,
                                                               fontWeight:
                                                                   FontWeight
@@ -149,7 +150,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                 displayValue: (item) =>
                                                     item.name!,
                                                 items: controller.vehilcles,
-                                                hint: 'Type of vehicle',
+                                                hint: 'Type of vehicle'.tr,
                                                 selectedValue:
                                                     section['vehicletype_id'],
                                                 onChanged: (value) {
@@ -180,7 +181,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                           items: section[
                                                                   'brands'] ??
                                                               [],
-                                                          hint: 'Car brand',
+                                                          hint: 'Car brand'.tr,
                                                           selectedValue: section[
                                                               'vehiclebrand_id'],
                                                           onChanged: (value) {
@@ -217,7 +218,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                           items: section[
                                                                   'brandnames'] ??
                                                               [],
-                                                          hint: 'Brand name',
+                                                          hint: 'Brand name'.tr,
                                                           selectedValue: section[
                                                               'vehiclebrandname_id'],
                                                           onChanged: (value) {
@@ -241,7 +242,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                     )
                                                   : Gap(0),
                                               MainInput(
-                                                hint: 'Year of manufacture',
+                                                hint: 'Year of manufacture'.tr,
                                                 controller: controller
                                                         .yearOfManufactureControllers[
                                                     index],
@@ -260,7 +261,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                               ),
                                               Gap(27),
                                               MainInput(
-                                                hint: 'Car information',
+                                                hint: 'Car information'.tr,
                                                 controller: controller
                                                     .carInfoControllers[index],
                                                 onchange: (value) {
@@ -326,7 +327,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                           ),
                                           Gap(10),
                                           AppText(
-                                            title: 'Add another vehicle',
+                                            title: 'Add another vehicle'.tr,
                                             color: AppColors.primary,
                                             size: 11,
                                             fontWeight: FontWeight.w500,
@@ -341,10 +342,9 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 34),
                                   child: MainButton(
-                                    title: 'Continue',
+                                    title: 'Continue'.tr,
                                     txtweight: FontWeight.w600,
-                                   
-                                   onTap:   ()async {
+                                    onTap: () async {
                                       bool isValid =
                                           await controller.validateCarForm();
                                       if (isValid) {

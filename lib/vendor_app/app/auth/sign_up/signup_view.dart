@@ -7,6 +7,7 @@ import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:mobilegarage/components/buttons/google_button.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/image_selection_tile.dart';
@@ -15,9 +16,7 @@ import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/profile_and_
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/signup_triangle.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/signup_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_phone_input/app_phone_input.dart';
@@ -116,11 +115,16 @@ class VSignupView extends StatelessWidget {
                                   controller.uploadLicense!.path.isNotEmpty,
                             ),
                             const Gap(12),
-                            AppPhoneInput(
-                              onCountryChanged: controller.onCountryChanged,
-                              errorText: controller.phoneNumberError,
-                              onChanged: controller.phoneValidation,
-                              controller: controller.phoneNumberController,
+                            Directionality(
+                              textDirection: box.read('locale') == 'ar'
+                                  ? TextDirection.ltr
+                                  : TextDirection.ltr,
+                              child: AppPhoneInput(
+                                onCountryChanged: controller.onCountryChanged,
+                                errorText: controller.phoneNumberError,
+                                onChanged: controller.phoneValidation,
+                                controller: controller.phoneNumberController,
+                              ),
                             ),
                             const Gap(12),
                             AppInputField(

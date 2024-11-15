@@ -39,6 +39,7 @@ class LocaleString extends Translations {
           'Car brand': 'Car brand',
           'Car information': 'Car information',
           'Add Car details': 'Add Car details',
+          'Car details': 'Car details',
           'Are you Sure that you want\n to Add this product to cart?':
               'Are you Sure that you want\n to Add this product to cart?',
           'to continue': 'to continue',
@@ -461,6 +462,8 @@ class LocaleString extends Translations {
           'Garage address detail ': 'Garage address detail ',
           'password ': 'password ',
           'Email ': 'Email ',
+          'Continue': 'Continue',
+          "No garage timings found": "No garage timings found",
         },
         'ar_AE': {
           'Mobile Garage Vendor': 'بائع كراج متنقل',
@@ -911,7 +914,10 @@ class LocaleString extends Translations {
           "Emirate ": "الإمارة ",
           "Garage address detail ": "تفاصيل عنوان المرآب ",
           "password ": "كلمة المرور ",
-          "Email ": "البريد الإلكتروني "
+          "Email ": "البريد الإلكتروني ",
+          'Car details': 'تفاصيل السيارة',
+          'Continue': 'متابعة',
+          "No garage timings found": "لم يتم العثور على مواعيد الجراج",
         }
       };
 }
