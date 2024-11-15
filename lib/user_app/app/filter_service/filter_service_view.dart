@@ -26,6 +26,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class FilterServiceView extends StatefulWidget {
   const FilterServiceView({super.key});
@@ -498,7 +499,15 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         onTap: () {
                           controller.selectedgarageName == 'Select garage'.tr
                               ? controller.filterorder()
-                              : controller.sendtoAllGarages();
+                              // : UiUtilites.showConfirmationDialog(
+                              //     false,
+                              //     'Do you this order as urgent order'.tr,
+                              //     onConfirm: () async {
+                              //       controller.sendtoAllGarages();
+                              //     },
+                              //   );
+                              :  controller.sendtoAllGarages();
+
                         },
                       ),
                     ),

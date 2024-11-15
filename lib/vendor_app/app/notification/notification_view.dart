@@ -42,28 +42,17 @@ class _VNotificationViewState extends State<VNotificationView> {
                       // ),
                       ListView.builder(
                           shrinkWrap: true,
+                          reverse: true,
                           physics: BouncingScrollPhysics(),
                           itemCount: controller.notifications.length,
                           itemBuilder: (BuildContext context, int index) {
                             final item = controller.notifications[index];
                             return NotificationCard(
                               notifications: item,
-                              // name: 'Ali Raza',
-                              // ordername: 'car wash',
+                              
                             );
                           }),
-                      // NotificationCard(
-                      //   name: 'Ali Raza',
-                      //   ordername: 'car wash',
-                      // ),
-                      // NotificationCard(
-                      //   name: 'Ali Raza',
-                      //   ordername: 'car wash',
-                      // ),
-                      // NotificationCard(
-                      //   name: 'Ali Raza',
-                      //   ordername: 'car wash',
-                      // ),
+                      
                     ],
                   ),
                 )

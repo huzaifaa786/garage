@@ -381,7 +381,7 @@ class UiUtilites {
                       ),
                     ),
                     Text(
-                      ' to '.tr,
+                      'Add new'.tr,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

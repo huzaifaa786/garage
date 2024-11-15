@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/models/notifications_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/app/chat_screen/vender_chat_detail_screen_view.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
@@ -13,13 +14,9 @@ class NotificationCard extends StatelessWidget {
   NotificationCard({
     super.key,
     this.img = 'assets/icons/user_filled.svg',
-    // this.ordername,
-    // this.name,
     this.notifications,
   });
   final img;
-  // final ordername;
-  // final name;
   NotificationsModel? notifications;
   @override
   Widget build(BuildContext context) {
@@ -126,17 +123,23 @@ class NotificationCard extends StatelessWidget {
                                     size: 11,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed(AppRoutes.vorders_view);
-                                    },
-                                    child: AppText(
-                                      title: '  view',
-                                      color: Colors.blue,
-                                      size: 11,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  )
+                                  if (notifications!.ordertype !=
+                                      'Not specified')
+                                    GestureDetector(
+                                      onTap: () {
+                                        notifications!.ordertype != 'urgent'
+                                            ? Get.toNamed(
+                                                AppRoutes.vorders_view)
+                                            : Get.toNamed(
+                                                AppRoutes.vurgent_orders_view);
+                                      },
+                                      child: AppText(
+                                        title: '  view',
+                                        color: Colors.blue,
+                                        size: 11,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
                                 ],
                               ),
                               const Gap(6),
@@ -151,27 +154,34 @@ class NotificationCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed(AppRoutes.chatScreen);
-                  },
-                  child: Container(
-                    height: 30,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: AppColors.lightPink),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: SvgPicture.asset(
-                        'assets/icons/chat.svg',
-                        fit: BoxFit.scaleDown,
-                        height: 20.0,
-                        width: 18.0,
-                        color: AppColors.darkprimary,
+                if (notifications!.username != null &&
+                    notifications!.username != 'Unknown')
+                  InkWell(
+                    onTap: () {
+                      // Get.toNamed(AppRoutes.chatScreen);
+                      Get.to(() => ChatDetailScreenView(
+                          id: notifications!.userId.toString(),
+                          name: notifications!.username.toString(),
+                          profilePic: '',
+                          screen: 'chat'));
+                    },
+                    child: Container(
+                      height: 30,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: AppColors.lightPink),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: SvgPicture.asset(
+                          'assets/icons/chat.svg',
+                          fit: BoxFit.scaleDown,
+                          height: 20.0,
+                          width: 18.0,
+                          color: AppColors.darkprimary,
+                        ),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

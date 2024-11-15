@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "807664586594",
-    "project_id": "mobilegarage-e741f",
-    "storage_bucket": "mobilegarage-e741f.firebasestorage.app"
+    "project_number": "323733471662",
+    "project_id": "mobile-garage-b16a3",
+    "storage_bucket": "mobile-garage-b16a3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:807664586594:android:cbb180cf4f4b348108663b",
+        "mobilesdk_app_id": "1:323733471662:android:bf0816f7df1e12e704483f",
         "android_client_info": {
           "package_name": "com.tritec.mobilegarage"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCBlVJyFXAnu7sv9tFNnGc0AXwX2OJRjP8"
+          "current_key": "AIzaSyDwf8uu4aqcldQtSKLPxfLdXCCf2G3oXTM"
         }
       ],
       "services": {

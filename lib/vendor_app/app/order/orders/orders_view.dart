@@ -19,18 +19,16 @@ class VOrdersView extends StatelessWidget {
         hasBgColor: true,
         hasShadow: false,
         child: 
-        // controller.pendingOrders.isNotEmpty ||
-        //         controller.acceptedOrders.isNotEmpty ||
-        //         controller.onTheWayOrders.isNotEmpty ||
-        //         controller.deliveredOrders.isNotEmpty
-            // ?
+
              Column(
                 children: [
-                  const FilterView(),
-                  controller.pendingOrders.isNotEmpty ||
-                          controller.acceptedOrders.isNotEmpty ||
-                          controller.onTheWayOrders.isNotEmpty ||
-                          controller.deliveredOrders.isNotEmpty
+                   FilterView(),
+                  // controller.pendingOrders.isNotEmpty ||
+                  //         controller.acceptedOrders.isNotEmpty ||
+                  //         controller.onTheWayOrders.isNotEmpty ||
+                  //         controller.deliveredOrders.isNotEmpty
+              controller.getItemCount() > 0
+
                       ? Expanded(
                           child: ListView.builder(
                             physics: const BouncingScrollPhysics(),
@@ -65,18 +63,17 @@ class VOrdersView extends StatelessWidget {
                             },
                           ),
                         )
-                      : Center(
-                          child: AppText(
-                            title: 'No Orders Found'.tr,
+                      : SizedBox(
+                        height: Get.height*0.7,
+                        child: Center(
+                            child: AppText(
+                              title: 'No Orders Found'.tr,
+                            ),
                           ),
-                        ),
+                      ),
                 ],
               )
-            // : Center(
-            //     child: AppText(
-            //       title: 'No Orders Found'.tr,
-            //     ),
-            //   ),
+          
       ),
     );
   }

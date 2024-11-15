@@ -167,8 +167,10 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                           : null;
                   return OrderCard(
                     garage: controller.garages[index],
-                    location: garageAddress!['location'],
-                    city: garageAddress['city'],
+                    // location: garageAddress!['location'],
+                     location: garageAddress != null ? garageAddress['location'] : 'Unknown location',
+
+                    city:garageAddress != null ? garageAddress['city'] : 'Unknown location',
                     isSelected: controller.selectedGarageIndex == index,
                     onchattap: () {},
                     ontap: () {

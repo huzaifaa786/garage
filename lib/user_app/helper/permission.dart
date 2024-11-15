@@ -1,4 +1,5 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 //! LOCATIONS PERMISSIONS
@@ -9,8 +10,10 @@ Future<bool> getLocationPermission() async {
   print('serviceEnabled $serviceEnabled');
 
   if (!serviceEnabled) {
-    await Permission.location;
+    UiUtilites.errorSnackbar('Error!', 'Enable Your mobile location service to select your location');
+    // await Permission.location;
     // permission = await Geolocator.requestPermission();
+    return false;
   }
 
   permission = await Geolocator.checkPermission();

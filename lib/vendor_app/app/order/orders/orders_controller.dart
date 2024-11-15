@@ -166,6 +166,22 @@ class VOrdersController extends GetxController {
       update();
     }
   }
+  acceptUrgentOrder(id) async {
+    var response = await ChangeOrderStatusApi.changeOrderStatus(
+        orderId: id, status: 'accepturgent');
+    if (response.isNotEmpty) {
+      await fetchOrders();
+      await getUrgentOrders();
+    }
+  }
+  rejectUrgentOrder(id,String paymentIntentString) async {
+    var response = await ChangeOrderStatusApi.changeOrderStatus(
+        orderId: id, status: 'rejecturgent');
+    if (response.isNotEmpty) {
+      await fetchOrders();
+      await getUrgentOrders();
+    }
+  }
 
   Future<bool> refundPayment(String paymentIntentString) async {
     try {

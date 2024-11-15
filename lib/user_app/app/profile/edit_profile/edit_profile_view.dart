@@ -14,7 +14,6 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -181,7 +180,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                         ),
                         Gap(2),
                         SvgPicture.asset(box.read('locale') != 'ar'
-                            ? 'assets/icons/arrow-left.svg'
+                            ? 'assets/icons/arrow_leftside.svg'
                             : 'assets/icons/arrow_leftside.svg'),
                       ],
                     ),

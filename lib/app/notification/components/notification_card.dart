@@ -8,21 +8,23 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/app/notification/notification_controller.dart';
 import 'package:mobilegarage/models/notifications_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class NotificationCard extends StatelessWidget {
-   NotificationCard({super.key, this.status,
+  NotificationCard({
+    super.key,
+    this.status,
     this.notification,
-  
   });
   NotificationsModel? notification;
 
-   int getActiveIndex(String status) {
+  int getActiveIndex(String status) {
     switch (status) {
-       case 'PENDING':
+      case 'PENDING':
         return -1;
       case 'ACCEPTED':
         return 0;
@@ -34,6 +36,7 @@ class NotificationCard extends StatelessWidget {
         return 0;
     }
   }
+
   final status;
   @override
   Widget build(BuildContext context) {
@@ -70,47 +73,69 @@ class NotificationCard extends StatelessWidget {
                                   : ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
                                       child: AppNetworkImage(
-                                        networkImage: notification!.order!.garage!.banner.toString(),
+                                        networkImage:
+                                            notification!.order != null
+                                                ? notification!
+                                                    .order!.garage!.banner
+                                                    .toString()
+                                                : notification!.requestOrder!
+                                                    .garage!.banner
+                                                    .toString(),
                                         assetPath:
                                             'assets/images/street_garage.png',
                                       ),
-                                      // child: CachedNetworkImage(
-                                      //   imageUrl:
-                                      //       'https://dummyimage.com/93x93/000/fff',
-                                      //   height: 35,
-                                      //   width: 35,
-                                      // ),
                                     ),
                               Gap(10),
                               AppText(
                                 title: status == 'PENDING'
                                     ? 'Congratulation!'
                                     // : 'Street garage',
-                                    :notification!.order!.garage!.name.toString(),
+                                    : notification!.order != null
+                                        ? notification!.order!.garage!.name
+                                            .toString()
+                                        : notification!
+                                            .requestOrder!.garage!.name
+                                            .toString(),
                                 size: 12,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.primarybg,
                               ),
                             ],
                           ),
-                          // if (status != 'PENDING'||status != 'REJECTED')
-                            // GestureDetector(
-                            //   onTap: () {
-                            //     Get.toNamed(AppRoutes.chats_accounts);
-                            //   },
-                            //   child: Container(
-                            //     height: 35,
-                            //     width: 35,
-                            //     decoration: BoxDecoration(
-                            //       color: AppColors.lightPink,
-                            //       borderRadius: BorderRadius.circular(80),
-                            //     ),
-                            //     child: SvgPicture.asset(
-                            //       'assets/icons/chat.svg',
-                            //       color: AppColors.darkprimary,
-                            //     ),
-                            //   ),
-                            // ),
+                          if (status != 'PENDING' ||
+                              notification!.order != null ||
+                              notification!.requestOrder != null)
+                            GestureDetector(
+                              onTap: () {
+                                // Get.toNamed(AppRoutes.chats_accounts);
+                                Get.to(() => ChatScreenView(
+                                    id: notification!.order != null
+                                        ? notification!.order!.garage!.id
+                                            .toString()
+                                        : notification!.requestOrder!.garage!.id
+                                            .toString(),
+                                    name: notification!.order != null
+                                        ? notification!.order!.garage!.name
+                                            .toString()
+                                        : notification!
+                                            .requestOrder!.garage!.name
+                                            .toString(),
+                                    profilePic: '',
+                                    screen: 'chat'));
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 35,
+                                decoration: BoxDecoration(
+                                  color: AppColors.lightPink,
+                                  borderRadius: BorderRadius.circular(80),
+                                ),
+                                child: SvgPicture.asset(
+                                  'assets/icons/chat.svg',
+                                  color: AppColors.darkprimary,
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                     ),
@@ -122,8 +147,12 @@ class NotificationCard extends StatelessWidget {
                             ? 'Has been accepted your order!'
                             : status == 'ON_THE_WAY'
                                 ? 'Your order is on the way'
-                                : 'Your order has been delivered',
-                        description:status == 'ACCEPTED'? 'View_order':'',
+                                : status == 'DELIVERED'
+                                    ? 'Your order has been delivered'
+                                    : status == 'REJECTED'
+                                        ? 'Your order has been Rejected'
+                                        : '',
+                        description: status == 'ACCEPTED' ? 'View_order' : '',
                         titlesize: 12,
                         descriptiosize: 12,
                         titleColor: AppColors.black,
@@ -138,7 +167,9 @@ class NotificationCard extends StatelessWidget {
                         },
                       ),
                     ),
-                    if (status != 'PENDING')
+                    if ( status != 'REJECTED')
+                    // if (status != 'PENDING' || status != 'REJECTED')
+
                       Column(
                         children: [
                           Gap(20),

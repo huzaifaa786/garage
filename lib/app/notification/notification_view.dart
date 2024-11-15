@@ -30,16 +30,18 @@ class NotificationView extends StatelessWidget {
           child: controller.notifications.isNotEmpty
               ? ListView.builder(
                   shrinkWrap: true,
+                  reverse:true,
                   itemCount: controller.notifications.length,
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
-                            final item = controller.notifications[index];
+                    final item = controller.notifications[index];
 
                     return NotificationCard(
-                    status: controller.notifications[index].order!.status
-                        .toString(),
-                    notification: item,
-                  );
+                      status: item.order != null
+                          ? item.order!.status.toString()
+                          : item.requestOrder!.status.toString(),
+                      notification: item,
+                    );
                   },
                 )
               : Center(
