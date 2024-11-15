@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 
@@ -60,42 +61,47 @@ class AppInputField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: width,
-          decoration: errorText!.isNotEmpty
-              ? circularErrorInputDecoration
-              : circularInputDecoration,
-          child: TextFormField(
-            onChanged: onchange,
-            onSaved: onchange,
-            onFieldSubmitted: onchange,
-            readOnly: readOnly,
-            maxLines: maxlines,
-            obscureText: obscure,
-            controller: controller,
-            validator: validator,
-            style: GoogleFonts.inter(fontSize: 14),
-            autovalidateMode: autovalidateMode ??
-                (validator == true.obs
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.onUserInteraction),
-            keyboardType: type,
-            decoration: InputDecoration(
-              suffixIcon: hasSuffix == true ? suffixWidget : null,
-              prefixIcon: hasPrefix == true ? prefixWidget : null,
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              fillColor: AppColors.input_bg_color,
-              filled: true,
-              border: inputborder,
-              errorBorder: inputborder,
-              errorStyle: TextStyle(fontSize: 0),
-              hintText: hint,
-              hintStyle: GoogleFonts.inter(
-                color: AppColors.hint_text_color,
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
+        Directionality(
+          textDirection: box.read('locale') != 'ar'
+              ? TextDirection.ltr
+              : TextDirection.rtl,
+          child: Container(
+            width: width,
+            decoration: errorText!.isNotEmpty
+                ? circularErrorInputDecoration
+                : circularInputDecoration,
+            child: TextFormField(
+              onChanged: onchange,
+              onSaved: onchange,
+              onFieldSubmitted: onchange,
+              readOnly: readOnly,
+              maxLines: maxlines,
+              obscureText: obscure,
+              controller: controller,
+              validator: validator,
+              style: GoogleFonts.inter(fontSize: 14),
+              autovalidateMode: autovalidateMode ??
+                  (validator == true.obs
+                      ? AutovalidateMode.always
+                      : AutovalidateMode.onUserInteraction),
+              keyboardType: type,
+              decoration: InputDecoration(
+                suffixIcon: hasSuffix == true ? suffixWidget : null,
+                prefixIcon: hasPrefix == true ? prefixWidget : null,
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                fillColor: AppColors.input_bg_color,
+                filled: true,
+                border: inputborder,
+                errorBorder: inputborder,
+                errorStyle: TextStyle(fontSize: 0),
+                hintText: hint,
+                hintStyle: GoogleFonts.inter(
+                  color: AppColors.hint_text_color,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           ),

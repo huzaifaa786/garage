@@ -1,6 +1,7 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/borders/border.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
@@ -42,38 +43,43 @@ class MainInput extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: EdgeInsets.only(left: 15),
-          height: height,
-          decoration: errorText!.isNotEmpty
-              ? circularErrorInputDecoration
-              : circularInputDecoration,
-          child: TextFormField(
-            onChanged: onchange,
-            readOnly: readOnly,
-            maxLines: maxlines,
-            obscureText: obscure,
-            controller: controller,
-            validator: validator,
-            autovalidateMode: autovalidateMode ??
-                (validator != null
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.onUserInteraction),
-            keyboardType: type,
-            decoration: InputDecoration(
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              fillColor: Colors.transparent,
-              filled: true,
-              border: inputborder,
-              errorBorder: errorInputBorder,
-              errorStyle: TextStyle(fontSize: 0),
-              hoverColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hintText: hint,
-              hintStyle: TextStyle(
-                  color: AppColors.black.withOpacity(0.4),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400),
+        Directionality(
+          textDirection: box.read('locale') != 'ar'
+              ? TextDirection.ltr
+              : TextDirection.rtl,
+          child: Container(
+            padding: EdgeInsets.only(left: 15),
+            height: height,
+            decoration: errorText!.isNotEmpty
+                ? circularErrorInputDecoration
+                : circularInputDecoration,
+            child: TextFormField(
+              onChanged: onchange,
+              readOnly: readOnly,
+              maxLines: maxlines,
+              obscureText: obscure,
+              controller: controller,
+              validator: validator,
+              autovalidateMode: autovalidateMode ??
+                  (validator != null
+                      ? AutovalidateMode.always
+                      : AutovalidateMode.onUserInteraction),
+              keyboardType: type,
+              decoration: InputDecoration(
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                fillColor: Colors.transparent,
+                filled: true,
+                border: inputborder,
+                errorBorder: errorInputBorder,
+                errorStyle: TextStyle(fontSize: 0),
+                hoverColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hintText: hint,
+                hintStyle: TextStyle(
+                    color: AppColors.black.withOpacity(0.4),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400),
+              ),
             ),
           ),
         ),

@@ -74,7 +74,7 @@ class SigninView extends StatelessWidget {
                                           textDirection:
                                               box.read('locale') != 'ar'
                                                   ? TextDirection.ltr
-                                                  : TextDirection.rtl,
+                                                  : TextDirection.ltr,
                                           child: PhoneInputField(
                                             controller:
                                                 controller.phoneController,
