@@ -51,7 +51,7 @@ class FilterServiceController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    categoryId = Get.parameters['categoryId'] ?? '';
+    categoryId = Get.parameters['categoryId'] ?? '0';
     path = Get.parameters['path'] ?? '';
     if (path == 'filter') {
       await getvehicles();
@@ -137,6 +137,7 @@ class FilterServiceController extends GetxController {
             : 'From low to high';
 
     update();
+
     // filter  with rating
     if (selectedIndexRating == 2) {
       garages.sort((a, b) => (double.tryParse(a.rating ?? '0') ?? 0)
@@ -148,12 +149,28 @@ class FilterServiceController extends GetxController {
 
     // filter  with price
 
-    if (selectedIndexPrice == 1) {
+    if (selectedIndexPrice == 1 && path == 'filter') {
       garages.sort((a, b) => (double.tryParse(a.products![0].price ?? '0') ?? 0)
           .compareTo(double.tryParse(b.products![0].price ?? '0') ?? 0));
-    } else if (selectedIndexPrice == 2) {
+    } else if (selectedIndexPrice == 2 && path == 'filter') {
       garages.sort((a, b) => (double.tryParse(b.products![0].price ?? '0') ?? 0)
           .compareTo(double.tryParse(a.products![0].price ?? '0') ?? 0));
+    }
+
+// filter price of accepted orders
+    if (selectedIndexPrice == 1 && path != 'filter') {
+      print('object');
+      garages.sort((a, b) =>
+          (double.tryParse(a.order!.orderItems![0].products!.price ?? '0') ?? 0)
+              .compareTo(double.tryParse(
+                      b.order!.orderItems![0].products!.price ?? '0') ??
+                  0));
+    } else if (selectedIndexPrice == 2 && path != 'filter') {
+      garages.sort((a, b) =>
+          (double.tryParse(b.order!.orderItems![0].products!.price ?? '0') ?? 0)
+              .compareTo(double.tryParse(
+                      a.order!.orderItems![0].products!.price ?? '0') ??
+                  0));
     }
 
     if ([
@@ -178,6 +195,33 @@ class FilterServiceController extends GetxController {
               .compareTo(
                   double.tryParse(a.products![0].oilextra![0].price ?? '0') ??
                       0));
+    }
+// filter price of accepted orders
+
+    if ([
+      4,
+      7,
+      9,
+      8,
+      1,
+      2
+    ].contains(int.parse(categoryId.toString()))) if (selectedIndexPrice == 1) {
+      // Sort from low to high
+
+      garages.sort((a, b) => (double.tryParse(
+                  a.order!.orderItems![0].productsExtra!.price ?? '0') ??
+              0)
+          .compareTo(double.tryParse(
+                  b.order!.orderItems![0].productsExtra!.price ?? '0') ??
+              0));
+    } else if (selectedIndexPrice == 2) {
+      // Sort from high to low
+      garages.sort((a, b) => (double.tryParse(
+                  b.order!.orderItems![0].productsExtra!.price ?? '0') ??
+              0)
+          .compareTo(double.tryParse(
+                  a.order!.orderItems![0].productsExtra!.price ?? '0') ??
+              0));
     }
 // filter with location
 
@@ -206,14 +250,13 @@ class FilterServiceController extends GetxController {
   }
 
   Future<Position> _getCurrentLocation() async {
-    // Check if location services are enabledx
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Handle if location service is not enabled
-      throw Exception('Location services are disabled');
+      UiUtilites.errorSnackbar('Error!',
+          'Enable Your mobile location service to select your location');
+           return Future.error('Location services are disabled');
     }
 
-    // Check for permission to access the location
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -671,33 +714,40 @@ class FilterServiceController extends GetxController {
         update();
         break;
       case '3':
-      
         response = await FilterOrderApi.filterTyreOrder(
           startprice: start.toString(),
           endprice: end.toString(),
           brandid: selectedBrandId != null ? selectedBrandId.toString() : null,
           categoryid: categoryId.toString(),
-          widthid: selectedwidthId!=null?selectedwidthId.toString() : null,
-          heightid: selectedheightId!=null?selectedheightId.toString() : null,
-          sizeid: selectedsizeId!=null?selectedsizeId.toString() : null,
-          originid: selectedtyreoriginId!=null?selectedtyreoriginId.toString() : null,
-          patterenid: selectedpatterenId!=null?selectedpatterenId.toString() : null,
-          speedratingid: selectedSpeedRatingId!=null?selectedSpeedRatingId.toString() : null,
+          widthid: selectedwidthId != null ? selectedwidthId.toString() : null,
+          heightid:
+              selectedheightId != null ? selectedheightId.toString() : null,
+          sizeid: selectedsizeId != null ? selectedsizeId.toString() : null,
+          originid: selectedtyreoriginId != null
+              ? selectedtyreoriginId.toString()
+              : null,
+          patterenid:
+              selectedpatterenId != null ? selectedpatterenId.toString() : null,
+          speedratingid: selectedSpeedRatingId != null
+              ? selectedSpeedRatingId.toString()
+              : null,
         );
         // }
         update();
 
         break;
       case '2':
-       
         response = await FilterOrderApi.filterOilOrder(
           startprice: start.toString(),
           endprice: end.toString(),
           brandid: selectedBrandId != null ? selectedBrandId.toString() : null,
           categoryid: categoryId.toString(),
-          productid: selectedoilproductTypeId!=null?selectedoilproductTypeId.toString(): null,
-          voilumeid: selectedVolumeId!=null?selectedVolumeId.toString(): null,
-          extraid: selectedExtraId!=null?selectedExtraId.toString(): null,
+          productid: selectedoilproductTypeId != null
+              ? selectedoilproductTypeId.toString()
+              : null,
+          voilumeid:
+              selectedVolumeId != null ? selectedVolumeId.toString() : null,
+          extraid: selectedExtraId != null ? selectedExtraId.toString() : null,
         );
         // }
         update();
@@ -708,7 +758,6 @@ class FilterServiceController extends GetxController {
       case '7':
       case '8':
       case '9':
-       
         response = await FilterOrderApi.filterextraOrder(
           startprice: start.toString(),
           endprice: end.toString(),
@@ -807,7 +856,7 @@ class FilterServiceController extends GetxController {
       UiUtilites.successAlertDialog(
           context: Get.context,
           onTap: () {
-            Get.toNamed(AppRoutes.main);
+            Get.offAllNamed(AppRoutes.main);
           },
           title: 'Thank you!'.tr,
           buttontitle: 'Back to home'.tr,

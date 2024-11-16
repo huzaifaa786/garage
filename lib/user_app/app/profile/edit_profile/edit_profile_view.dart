@@ -14,7 +14,6 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
@@ -57,7 +56,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundColor: Colors.grey[300],
+                      backgroundColor: Colors.transparent,
                       child: controller.img != ''
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(80),
@@ -81,9 +80,10 @@ class _EditProfileViewState extends State<EditProfileView> {
                                     fit: BoxFit.cover,
                                   ),
                                 )
-                              : ClipOval(
+                              : ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
                                   child: Image.asset(
-                                    'assets/images/user_profile2.png',
+                                    'assets/images/account.png',
                                     height: 100,
                                     width: 100,
                                     fit: BoxFit.cover,
@@ -97,7 +97,15 @@ class _EditProfileViewState extends State<EditProfileView> {
                         onTap: () {
                           controller.pickImageFromGallery('profilepic');
                         },
-                        child: Image.asset('assets/images/camera.png'),
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: AppColors.lightPink
+                          ),
+                            child:
+                                Center(child: SvgPicture.asset('assets/images/cammera.svg'))),
                       ),
                     ),
                   ],
@@ -181,14 +189,13 @@ class _EditProfileViewState extends State<EditProfileView> {
                         ),
                         Gap(2),
                         SvgPicture.asset(box.read('locale') != 'ar'
-                            ? 'assets/icons/arrow-left.svg'
+                            ? 'assets/icons/arrow_rightside.svg'
                             : 'assets/icons/arrow_leftside.svg'),
                       ],
                     ),
                   ),
                 ),
                 Gap(50),
-                // Gap(88),
                 MainButton(
                   title: 'Save changes'.tr,
                   buttonWidth: Get.width * 0.77,

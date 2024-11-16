@@ -41,49 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBzMoY6JLVp8IGojF0eQyviFI75P_xMTbM',
-    appId: '1:807664586594:web:f6a843d60be2923308663b',
-    messagingSenderId: '807664586594',
-    projectId: 'mobilegarage-e741f',
-    authDomain: 'mobilegarage-e741f.firebaseapp.com',
-    storageBucket: 'mobilegarage-e741f.firebasestorage.app',
-    measurementId: 'G-VZYGM5KJDG',
+    apiKey: 'AIzaSyBFspOpY70fGPnHH-bkwz4OFU1ZI5zzjJ4',
+    appId: '1:323733471662:web:e5c5efb662d5d57c04483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    authDomain: 'mobile-garage-b16a3.firebaseapp.com',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
+    measurementId: 'G-15VHBCYYMJ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCBlVJyFXAnu7sv9tFNnGc0AXwX2OJRjP8',
-    appId: '1:807664586594:android:cbb180cf4f4b348108663b',
-    messagingSenderId: '807664586594',
-    projectId: 'mobilegarage-e741f',
-    storageBucket: 'mobilegarage-e741f.firebasestorage.app',
+    apiKey: 'AIzaSyDwf8uu4aqcldQtSKLPxfLdXCCf2G3oXTM',
+    appId: '1:323733471662:android:bf0816f7df1e12e704483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBaN2WKk568DPjf4DiJrY3Vghd5aMKUBdU',
-    appId: '1:807664586594:ios:4cca3119b4b5f9ea08663b',
-    messagingSenderId: '807664586594',
-    projectId: 'mobilegarage-e741f',
-    storageBucket: 'mobilegarage-e741f.firebasestorage.app',
+    apiKey: 'AIzaSyCRT9wNcCIozIiLEYYDxIB-o8Gfo80oaoM',
+    appId: '1:323733471662:ios:628f43df1b83243d04483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
     iosBundleId: 'com.tritec.mobilegarage',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBaN2WKk568DPjf4DiJrY3Vghd5aMKUBdU',
-    appId: '1:807664586594:ios:4cca3119b4b5f9ea08663b',
-    messagingSenderId: '807664586594',
-    projectId: 'mobilegarage-e741f',
-    storageBucket: 'mobilegarage-e741f.firebasestorage.app',
+    apiKey: 'AIzaSyCRT9wNcCIozIiLEYYDxIB-o8Gfo80oaoM',
+    appId: '1:323733471662:ios:628f43df1b83243d04483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
     iosBundleId: 'com.tritec.mobilegarage',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBzMoY6JLVp8IGojF0eQyviFI75P_xMTbM',
-    appId: '1:807664586594:web:f28d22b79b07528e08663b',
-    messagingSenderId: '807664586594',
-    projectId: 'mobilegarage-e741f',
-    authDomain: 'mobilegarage-e741f.firebaseapp.com',
-    storageBucket: 'mobilegarage-e741f.firebasestorage.app',
-    measurementId: 'G-CFKDS1P25G',
+    apiKey: 'AIzaSyBFspOpY70fGPnHH-bkwz4OFU1ZI5zzjJ4',
+    appId: '1:323733471662:web:928523b667b5d37104483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    authDomain: 'mobile-garage-b16a3.firebaseapp.com',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
+    measurementId: 'G-38HGX9D8BC',
   );
 
 }

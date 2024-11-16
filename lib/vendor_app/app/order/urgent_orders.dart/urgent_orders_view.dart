@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/vendor_app/app/order/orders/components/filter_view.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/components/orders_card.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
@@ -23,6 +24,7 @@ class VUrgentOrdersView extends StatelessWidget {
                   // const FilterView(),
                   Expanded(
                     child: ListView.builder(
+                        // reverse: true,
                       physics: const BouncingScrollPhysics(),
                       itemCount: controller.urgentOrders.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -32,11 +34,11 @@ class VUrgentOrdersView extends StatelessWidget {
                             OrdersCard(
                               order: orders,
                               ontapReject: () {
-                                controller.rejectedOrder(orders.id.toString(),
+                                controller.rejectUrgentOrder(orders.id.toString(),
                                     orders.paymentIntent.toString());
                               },
                               ontapAccept: () {
-                                controller.acceptOrder(orders.id.toString());
+                                controller.acceptUrgentOrder(orders.id.toString());
                               },
                             ),
                             const Gap(20),

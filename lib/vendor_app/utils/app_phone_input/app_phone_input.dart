@@ -51,7 +51,7 @@ class AppPhoneInput extends StatelessWidget {
           style: GoogleFonts.inter(fontSize: 14),
           decoration: InputDecoration(
             hintText: "phone number".tr,
-            hintStyle: GoogleFonts.inter(color: AppColors.hint_text_color),
+            hintStyle: GoogleFonts.inter(color: AppColors.black.withOpacity(0.4)),
             fillColor: AppColors.input_bg_color,
             filled: true,
             border: OutlineInputBorder(

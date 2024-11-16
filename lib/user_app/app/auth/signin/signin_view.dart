@@ -12,7 +12,6 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
@@ -34,7 +33,6 @@ class SigninView extends StatelessWidget {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        // Image.asset('assets/images/splash_logo.png'),
                         Padding(
                           padding: EdgeInsets.only(top: 30, bottom: 20),
                           child: SvgPicture.asset(

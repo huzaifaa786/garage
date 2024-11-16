@@ -318,7 +318,7 @@ class OrderCard extends StatelessWidget {
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 15, bottom: 12, left: 20),
-                      child: Row(
+                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Stack(
                             children: [
@@ -337,13 +337,13 @@ class OrderCard extends StatelessWidget {
                                                 bottomLeft:
                                                     Radius.circular(20))),
                                         height: Get.height * 0.05,
-                                        width: Get.width * 0.65,
+                                        width: Get.width * 0.7,
                                         child: Center(
                                           child: Text(
                                             'View garage'.tr,
                                             style: TextStyle(
                                                 color: AppColors.primary,
-                                                fontSize: 8,
+                                                fontSize: 10,
                                                 fontWeight: FontWeight.w500),
                                           ),
                                         ),
@@ -357,9 +357,7 @@ class OrderCard extends StatelessWidget {
                                 right: 0,
                                 top: Get.height * 0.003,
                                 child: GestureDetector(
-                                  onTap: () {
-                                    // Get.toNamed(AppRoutes.chats_accounts);
-                                  },
+                                  onTap: onchattap,
                                   child: Container(
                                       height: Get.height * 0.045,
                                       width: Get.width * 0.085,

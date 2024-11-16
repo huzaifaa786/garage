@@ -27,11 +27,13 @@ class MyLocationController extends GetxController {
       emirates = (response['emirates'] as List<dynamic>)
           .map((item) => EmirateModel.from(item as Map<String, dynamic>))
           .toList();
+       await setSelectedEmirate(
+          emirates.firstWhere((category) => category.name == user!.emirate.toString()));
       update();
     }
   }
 
-  void setSelectedEmirate(EmirateModel? Brand) {
+   setSelectedEmirate(EmirateModel? Brand) {
     selectedEmirate = Brand;
     selectedEmirateId = Brand?.id;
     selectedemirateName = Brand?.name;
@@ -49,7 +51,8 @@ class MyLocationController extends GetxController {
       if (response.isNotEmpty) {
         user = UserModel.fromJson(response['user']);
         update();
-        UiUtilites.successSnackbar('Location updated successfully'.tr, 'Success'.tr);
+        UiUtilites.successSnackbar(
+            'Location updated successfully'.tr, 'Success'.tr);
         Get.back();
       }
     }
@@ -117,8 +120,8 @@ class MyLocationController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    await getEmirates();
     await userdata();
+    await getEmirates();
     update();
   }
 

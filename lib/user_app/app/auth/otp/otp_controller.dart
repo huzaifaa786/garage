@@ -66,13 +66,13 @@ class OtpController extends GetxController {
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         verificationid = verificationId;
-        Get.snackbar(
-          'TIMEOUT'.tr,
-          '',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: AppColors.white,
-        );
+        // Get.snackbar(
+        //   'TIMEOUT'.tr,
+        //   '',
+        //   snackPosition: SnackPosition.BOTTOM,
+        //   backgroundColor: Colors.red,
+        //   colorText: AppColors.white,
+        // );
       },
     );
   }

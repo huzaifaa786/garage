@@ -42,7 +42,7 @@ class SigninController extends GetxController {
        Get.toNamed(AppRoutes.otp,
           parameters: {'phone': completePhone.toString(),'auth':'signin'});
     } else {
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(Duration(seconds: 1), () {
         Get.toNamed(AppRoutes.signup);
       });
     }

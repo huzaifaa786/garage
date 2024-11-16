@@ -7,9 +7,15 @@ class NotificationsModel {
   DateTime? createdAt;
   String? userImage;
   String? username;
+  String? userId;
   String? categoryName;
+  String? ordertype;
+  String? status;
+
   bool seen;
   OrdersModel? order;
+  OrdersModel? requestOrder;
+
   NotificationsModel(
       {this.id,
       this.title,
@@ -19,7 +25,10 @@ class NotificationsModel {
       this.categoryName,
       required this.seen,
       this.username,
-      this.order});
+      this.userId,
+      this.status,
+      this.order,
+      this.ordertype,this.requestOrder});
 
   factory NotificationsModel.fromJson(Map<String, dynamic> json) {
     return NotificationsModel(
@@ -27,11 +36,16 @@ class NotificationsModel {
         title: json['title'],
         seen: json['seen'] ?? false,
         body: json['body'],
+        status: json['status'],
+        ordertype: json['order_type'],
         createdAt: DateTime.parse(json['created_at']),
         userImage: json['sender'] != null ? json['sender']['image'] : '',
+        userId: json['sender'] != null ? json['sender']['id'] : '',
         username: json['sender'] != null ? json['sender']['name'] : '',
         categoryName: json['category'] != null ? json['category'] : '',
         order:
-            json['order'] != null ? OrdersModel.fromJson(json['order']) : null);
+            json['order'] != null ? OrdersModel.fromJson(json['order']) : null,
+             requestOrder:
+            json['request_order'] != null ? OrdersModel.fromJson(json['request_order']) : null);
   }
 }

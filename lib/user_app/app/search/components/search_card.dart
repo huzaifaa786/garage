@@ -19,6 +19,8 @@ class SearchCard extends StatelessWidget {
   final String? currentAddress;
   final VoidCallback? onTapViewGarage;
   final VoidCallback? onTap;
+  final VoidCallback? onChatTap;
+
   final String? price;
   final String? rating;
 
@@ -32,7 +34,8 @@ class SearchCard extends StatelessWidget {
     this.logoimage,
     this.currentAddress,
     this.onTapViewGarage,
-    this.rating
+    this.rating,
+    this.onChatTap
   });
 
   @override
@@ -172,66 +175,70 @@ class SearchCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15, bottom: 5),
-                    child: Stack(
+                    child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
+                        Stack(
                           children: [
-                            ClipPath(
-                              clipper: RightCircularClipper(),
-                              child: GestureDetector(
-                                onTap: onTapViewGarage,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: AppColors.lightPink,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20),
-                                          bottomLeft: Radius.circular(20))),
-                                  height: Get.height * 0.05,
-                                  width: Get.width * 0.67,
-                                  child: Center(
-                                    child: Text(
-                                      'View garage'.tr,
-                                      style: TextStyle(
-                                          color: AppColors.primary,
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w500),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ClipPath(
+                                  clipper: RightCircularClipper(),
+                                  child: GestureDetector(
+                                    onTap: onTapViewGarage,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: AppColors.lightPink,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              bottomLeft: Radius.circular(20))),
+                                      height: Get.height * 0.05,
+                                      width: Get.width * 0.7,
+                                      child: Center(
+                                        child: Text(
+                                          'View garage'.tr,
+                                          style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
+                                Gap(13)
+                              ],
                             ),
-                            Gap(13)
+                            Positioned(
+                              right: 0,
+                              top: Get.height * 0.003,
+                              child: GestureDetector(
+                                onTap:onChatTap,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(60),
+                                  child: Container(
+                                      height: Get.height * 0.044,
+                                      width: Get.width * 0.1,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.lightPink,
+                                        borderRadius: BorderRadius.circular(60),
+                                      ),
+                                      child: SvgPicture.asset(
+                                        'assets/icons/chat.svg',
+                                        color: AppColors.primary,
+                                      )
+                                      // child: Image.asset(
+                                      //   'assets/images/chat.png',
+                                      //   color: AppColors.primary,
+                                      // ),
+                                      ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
-                        Positioned(
-                          right: 0,
-                          top: Get.height * 0.003,
-                          child: GestureDetector(
-                            onTap: () {
-                              // Get.toNamed(AppRoutes.chats_accounts);
-                            },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(60),
-                              child: Container(
-                                  height: Get.height * 0.044,
-                                  width: Get.width * 0.1,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.lightPink,
-                                    borderRadius: BorderRadius.circular(60),
-                                  ),
-                                  child: SvgPicture.asset(
-                                    'assets/icons/chat.svg',
-                                    color: AppColors.primary,
-                                  )
-                                  // child: Image.asset(
-                                  //   'assets/images/chat.png',
-                                  //   color: AppColors.primary,
-                                  // ),
-                                  ),
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   )

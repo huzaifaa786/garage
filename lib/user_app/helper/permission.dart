@@ -1,4 +1,6 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 //! LOCATIONS PERMISSIONS
@@ -9,8 +11,19 @@ Future<bool> getLocationPermission() async {
   print('serviceEnabled $serviceEnabled');
 
   if (!serviceEnabled) {
-    await Permission.location;
+     Get.snackbar(
+      'Error!',
+      'Enable your mobile location service to select your location',
+      snackPosition: SnackPosition.BOTTOM,
+      duration: Duration(seconds: 3),
+      backgroundColor: Get.theme.primaryColor,
+      colorText: Get.theme.colorScheme.onError,
+    );
+    // UiUtilites.errorSnackbar('Error!',
+    //     'Enable Your mobile location service to select your location');
+    // await Permission.location;
     // permission = await Geolocator.requestPermission();
+    return false;
   }
 
   permission = await Geolocator.checkPermission();

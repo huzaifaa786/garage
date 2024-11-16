@@ -96,17 +96,17 @@ class OtpView extends StatelessWidget {
                       },
                     ),
                     Gap(33),
-                    GestureDetector(
-                      onTap: () {
-                        controller.verifyPhone();
-                      },
-                      child: AppText(
-                        title: 'Resend'.tr,
-                        color: AppColors.darkprimary,
-                        size: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     controller.verifyPhone();
+                    //   },
+                    //   child: AppText(
+                    //     title: 'Resend'.tr,
+                    //     color: AppColors.darkprimary,
+                    //     size: 16,
+                    //     fontWeight: FontWeight.w500,
+                    //   ),s
+                    // )
                   ],
                 ),
               ),

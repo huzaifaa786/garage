@@ -3,7 +3,7 @@ import 'package:mobilegarage/vendor_app/utils/vender_base_url.dart';
 
 class ChangeOrderStatusApi {
   static Future<Map<String, dynamic>> changeOrderStatus(
-     { String? orderId, String? status}) async {
+      {String? orderId, String? status}) async {
     String url;
 
     switch (status) {
@@ -21,6 +21,13 @@ class ChangeOrderStatusApi {
         break;
       case 'delivered':
         url = '$vbaseUrl/deliver/order';
+        break;
+        //
+        case 'accepturgent':
+        url = '$vbaseUrl/accept/urgent/order';
+        break;
+        case 'rejecturgent':
+        url = '$vbaseUrl/reject/urgent/order';
         break;
       default:
         throw Exception('Invalid order status');

@@ -278,7 +278,6 @@ class GarageView extends StatelessWidget {
                               height: Get.height * 0.05,
                               child: GestureDetector(
                                 onTap: () {
-                                  // Get.toNamed(AppRoutes.chats_accounts);
                                    Get.to(() => ChatScreenView(
                                           id: controller.garage!.id.toString(),
                                           name:controller.garage!.name.toString(),
