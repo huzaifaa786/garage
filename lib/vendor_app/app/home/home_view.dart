@@ -336,7 +336,7 @@ class _VHomeViewState extends State<VHomeView> {
                       },
                     ):Center(
                       child: AppText(
-                        title: 'No Review Found!',
+                        title: 'No Review Found!'.tr,
                         color: AppColors.darkGrey,
                       ),
                     ),

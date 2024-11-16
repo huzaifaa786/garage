@@ -9,17 +9,18 @@ class VNotificationController extends GetxController {
 
   String? garageId = '';
   @override
-  void onInit()async {
+  void onInit() async {
     super.onInit();
     garageId = Get.parameters['garageId'] ?? '';
-  await  garageNotifications();
-   await seenNotification();
-
+    await garageNotifications();
+    await seenNotification();
   }
- seenNotification() async {
+
+  seenNotification() async {
     var response = await GarageNotificationSeenApi.seenNotification();
     update();
   }
+
   String? image;
   double ratings = 0.0;
   void updateRating(double rating) {
@@ -47,19 +48,19 @@ class VNotificationController extends GetxController {
 
     if (difference.inDays >= 1) {
       return difference.inDays == 1
-          ? '1 day ago'
+          ? '1 day ago'.tr
           : '${difference.inDays} ${'days ago'.tr}';
     } else if (difference.inHours >= 1) {
       return difference.inHours == 1
-          ? '1 hour ago'
+          ? '1 hour ago'.tr
           : '${difference.inHours} ${'hours ago'.tr}';
     } else if (difference.inMinutes >= 1) {
       return difference.inMinutes == 1
-          ? '1 minute ago'
+          ? '1 minute ago'.tr
           : '${difference.inMinutes} ${'minutes ago'.tr}';
     } else if (difference.inSeconds >= 1) {
       return difference.inSeconds == 1
-          ? '1 second ago'
+          ? '1 second ago'.tr
           : '${difference.inSeconds} ${'seconds ago'.tr}';
     } else {
       return '${'Just now'.tr}';

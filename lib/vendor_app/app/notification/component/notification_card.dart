@@ -76,77 +76,81 @@ class NotificationCard extends StatelessWidget {
 
                         const Gap(8),
                         Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AppText(
-                                title: notifications!.username.toString(),
-                                fontWeight: FontWeight.w600,
-                                size: 12,
-                              ),
-                              const Gap(10),
-                              // Row(
-                              //   children: [
-                              //     RatingBar.builder(
-                              //       initialRating: controller.ratings,
-                              //       minRating: 1,
-                              //       direction: Axis.horizontal,
-                              //       allowHalfRating: true,
-                              //       itemCount: 5,
-                              //       glow: false,
-                              //       itemSize: 14,
-                              //       unratedColor: Colors.grey,
-                              //       itemPadding: const EdgeInsets.symmetric(
-                              //           horizontal: 2.0),
-                              //       itemBuilder: (context, _) => const Icon(
-                              //           Icons.star,
-                              //           color: Colors.yellow),
-                              //       onRatingUpdate: (rating) {
-                              //         controller.updateRating(rating);
-                              //       },
-                              //     ),
-                              //     const Gap(10),
-                              //     AppText(
-                              //       title: controller.ratings.toString(),
-                              //       size: 8.0,
-                              //       fontWeight: FontWeight.w500,
-                              //     ),
-                              //   ],
-                              // ),
-
-                              AppText(
-                                title:
-                                    'Ordered a ${notifications!.categoryName.toString()} ,click to accept ',
-                                size: 11,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              Row(
-                                children: [
-                                  AppText(
-                                    title: 'or reject order',
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppText(
+                              title: notifications!.username.toString(),
+                              fontWeight: FontWeight.w600,
+                              size: 12,
+                              maxLines: 1,
+                              overFlow: TextOverflow.ellipsis,
+                            ),
+                            const Gap(10),
+                            // Uncomment if needed
+                            // Row(
+                            //   children: [
+                            //     RatingBar.builder(
+                            //       initialRating: controller.ratings,
+                            //       minRating: 1,
+                            //       direction: Axis.horizontal,
+                            //       allowHalfRating: true,
+                            //       itemCount: 5,
+                            //       glow: false,
+                            //       itemSize: 14,
+                            //       unratedColor: Colors.grey,
+                            //       itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                            //       itemBuilder: (context, _) => const Icon(
+                            //           Icons.star, color: Colors.yellow),
+                            //       onRatingUpdate: (rating) {
+                            //         controller.updateRating(rating);
+                            //       },
+                            //     ),
+                            //     const Gap(10),
+                            //     AppText(
+                            //       title: controller.ratings.toString(),
+                            //       size: 8.0,
+                            //       fontWeight: FontWeight.w500,
+                            //     ),
+                            //   ],
+                            // ),
+                            AppText(
+                              title: 'Ordered a'.tr +
+                                  ' ' +
+                                  '${notifications!.categoryName.toString()}'
+                                      .tr,
+                              size: 11,
+                              fontWeight: FontWeight.w600,
+                              maxLines: 2,
+                              overFlow: TextOverflow.ellipsis,
+                            ),
+                            Row(
+                              children: [
+                                AppText(
+                                  title: 'click to accept, or reject order'.tr,
+                                  size: 11,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.vorders_view);
+                                  },
+                                  child: AppText(
+                                    title: '  ' + 'view'.tr,
+                                    color: Colors.blue,
                                     size: 11,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed(AppRoutes.vorders_view);
-                                    },
-                                    child: AppText(
-                                      title: '  view',
-                                      color: Colors.blue,
-                                      size: 11,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const Gap(6),
-                              AppText(
-                                title: controller.timeAgo(notifications!
-                                    .createdAt!
-                                    .toIso8601String()),
-                                size: 11,
-                              )
-                            ]),
+                                )
+                              ],
+                            ),
+                            const Gap(6),
+                            AppText(
+                              title: controller.timeAgo(
+                                  notifications!.createdAt!.toIso8601String()),
+                              size: 11,
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ],

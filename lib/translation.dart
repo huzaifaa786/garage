@@ -464,6 +464,10 @@ class LocaleString extends Translations {
           'Email ': 'Email ',
           'Continue': 'Continue',
           "No garage timings found": "No garage timings found",
+          'No Review Found!': 'No Review Found!',
+          'click to accept, or reject order':
+              'click to accept, or reject order',
+          'Ordered a': 'Ordered a',
         },
         'ar_AE': {
           'Mobile Garage Vendor': 'بائع كراج متنقل',
@@ -918,6 +922,9 @@ class LocaleString extends Translations {
           'Car details': 'تفاصيل السيارة',
           'Continue': 'متابعة',
           "No garage timings found": "لم يتم العثور على مواعيد الجراج",
+          'No Review Found!': 'لم يتم العثور على أي مراجعة!',
+          'click to accept, or reject order': 'انقر للقبول، أو رفض الطلب',
+          'Ordered a': 'طلبَ',
         }
       };
 }
