@@ -27,10 +27,10 @@ class _HomeViewState extends State<HomeView> {
       autoRemove: false,
       builder: (controller) {
         return GestureDetector(
-           onTap: () {
-        // Dismiss the keyboard when tapping anywhere outside the input
-        FocusScope.of(context).unfocus();
-      },
+          onTap: () {
+            // Dismiss the keyboard when tapping anywhere outside the input
+            FocusScope.of(context).unfocus();
+          },
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
@@ -39,7 +39,10 @@ class _HomeViewState extends State<HomeView> {
               toolbarHeight: 80,
               title: HomeAppbar(
                 onNotificationtap: () {
-                  Get.toNamed(AppRoutes.notification);
+                  Get.toNamed(AppRoutes.notification)!.then((value) {
+                    controller.countNotification();
+                  });
+                  ;
                 },
                 isnotification:
                     controller.notificationcount == '0' ? false : true,
@@ -101,7 +104,8 @@ class _HomeViewState extends State<HomeView> {
                             duration: Duration(milliseconds: 300),
                             margin: EdgeInsets.symmetric(horizontal: 4.0),
                             height: 6.0,
-                            width: controller.currentIndex == index ? 20.0 : 6.0,
+                            width:
+                                controller.currentIndex == index ? 20.0 : 6.0,
                             decoration: BoxDecoration(
                               color: controller.currentIndex == index
                                   ? AppColors.primary

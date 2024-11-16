@@ -9,7 +9,6 @@ import 'package:mobilegarage/models/cart_model.dart/cart_model.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class CartCard extends StatelessWidget {
   CartCard({
@@ -133,9 +132,11 @@ class CartCard extends StatelessWidget {
                               children: [
                                 Flexible(
                                   child: AppText(
-                                    title: item!.fuelextra != null
-                                        ? "${item!.fuelextra!.price.toString()} ${'AED'.tr}"
-                                        : "${item!.price.toString()} ${'AED'.tr}",
+                                    title:
+                                    //  item!.fuelextra != null
+                                        // ? "${item!.fuelextra!.price.toString()} ${'AED'.tr}"
+                                        // :
+                                         "${item!.price.toString()} ${'AED'.tr}",
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.darkblue,
                                     size: 12,

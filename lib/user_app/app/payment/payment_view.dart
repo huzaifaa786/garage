@@ -245,8 +245,11 @@ class PaymentView extends StatelessWidget {
                                   onTap: () {
                                     controller.makePayment(
                                         context,
-                                        double.parse(controller.cart!.totalAmount
-                                            .toString()));
+                                        controller.discountAmount != ''
+                                  ? double.parse(controller.promoTotal.toString())
+                                  : double.parse(controller.cart!.totalAmount.toString(),)
+                                       
+                                            );
                                     // Get.bottomSheet(
                                     //   PaymentBottomsheet(),
                                     //   isScrollControlled: true,

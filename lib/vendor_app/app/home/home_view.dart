@@ -15,7 +15,6 @@ import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/reviewcard.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/switch_button.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -39,14 +38,17 @@ class _VHomeViewState extends State<VHomeView> {
               scrolledUnderElevation: 0,
               automaticallyImplyLeading: false,
               title: HomeAppbar(
-               isnotification:
-                  controller.notificationcount == '0' ? false : true,
+                isnotification:
+                    controller.notificationcount == '0' ? false : true,
                 chat: () {
                   Get.toNamed(AppRoutes.vchat);
                 },
                 notification: () {
                   Get.toNamed(AppRoutes.vnotification, parameters: {
                     'garageId': controller.garage!.id.toString(),
+                  })!
+                      .then((value) {
+                    controller.countNotification();
                   });
                 },
                 name: controller.garage != null
@@ -323,23 +325,23 @@ class _VHomeViewState extends State<VHomeView> {
                   Gap(10),
                   SizedBox(
                     height: Get.height * 0.42,
-                    child: 
-                    controller.garageReviews.isNotEmpty
-                  ?  ListView.builder(
-                      itemCount: controller.garageReviews.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final item = controller.garageReviews![index];
-                        return Reviewcard(
-                          reviews: item,
-                          img: 'assets/images/user_icon.png',
-                        );
-                      },
-                    ):Center(
-                      child: AppText(
-                        title: 'No Review Found!'.tr,
-                        color: AppColors.darkGrey,
-                      ),
-                    ),
+                    child: controller.garageReviews.isNotEmpty
+                        ? ListView.builder(
+                            itemCount: controller.garageReviews.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final item = controller.garageReviews![index];
+                              return Reviewcard(
+                                reviews: item,
+                                img: 'assets/images/user_icon.png',
+                              );
+                            },
+                          )
+                        : Center(
+                            child: AppText(
+                              title: 'No Review Found!'.tr,
+                              color: AppColors.darkGrey,
+                            ),
+                          ),
                   ),
                 ],
               ),

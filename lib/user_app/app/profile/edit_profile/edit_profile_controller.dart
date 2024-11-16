@@ -43,10 +43,10 @@ class EditProfileController extends GetxController {
 
   void onSaveChanges() async {
     var response = await EditProfileApi.editProfile(
-      username: nameController.text,
-      profileimage: base64pic,
-      phone: phoneController.text,
-    );
+        username: nameController.text,
+        profileimage: base64pic,
+        phone: phoneController.text,
+        email: emailController.text);
     if (response.isNotEmpty) {
       user = UserModel.fromJson(response['user']);
       isButtonClicked = true;
@@ -70,6 +70,7 @@ class EditProfileController extends GetxController {
 
         switch (imageName) {
           case 'profilepic': // Fix here
+            // img = null;
             profilepic = File(croppedImage.path);
             base64pic = base64Image;
             update(); // Force update
