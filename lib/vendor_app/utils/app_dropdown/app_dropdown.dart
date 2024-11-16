@@ -38,6 +38,7 @@ class DropDownField<T> extends StatelessWidget {
               ? TextDirection.ltr
               : TextDirection.rtl,
           child: Container(
+            height: 55,
             width: Get.width,
             decoration: errorText!.isNotEmpty
                 ? circularErrorInputDecoration
@@ -48,8 +49,7 @@ class DropDownField<T> extends StatelessWidget {
                   title: hint!,
                   size: 12,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.hint_text_color,
-                  // color: AppColors.black,
+                  color: AppColors.black.withOpacity(0.4),
                 ),
                 items: items
                     .map((item) => DropdownMenuItem<T>(
@@ -79,7 +79,7 @@ class DropDownField<T> extends StatelessWidget {
                         title: displayValue!(item),
                         size: 14,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.black_color.withOpacity(0.4),
+                        color: AppColors.black_color,
                       ),
                     );
                   }).toList();

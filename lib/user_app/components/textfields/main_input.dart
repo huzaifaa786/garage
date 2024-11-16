@@ -20,7 +20,7 @@ class MainInput extends StatelessWidget {
     this.errorText,
     this.type = TextInputType.text,
     this.onchange,
-    this.height = 60.0,
+    this.height = 55.0,
     this.width,
   });
 

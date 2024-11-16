@@ -10,7 +10,6 @@ import 'package:mobilegarage/user_app/components/cards/all_profile_card.dart';
 import 'package:mobilegarage/user_app/components/cards/profile_card.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class AccountView extends StatefulWidget {
@@ -67,25 +66,13 @@ class _AccountViewState extends State<AccountView> {
                               image: controller.user!.image.toString(),
                               ontap: () {
                                 Get.toNamed(AppRoutes.editprofile, parameters: {
-                                  'image': 
-                                  // controller.user!.image != ''
-                                      controller.user!.image.toString(),
-                                      // : 'https://dummyimage.com/60x60/ede4ed/fff',
+                                  'image': controller.user!.image.toString(),
                                   'userName': controller.user!.name.toString(),
                                   'userNumber':
                                       controller.user!.phone.toString(),
                                   'userEmail':
                                       controller.user!.email.toString(),
-                                }
-                                        // arguments: {
-                                        //   'image': controller.user!.image != null
-                                        //       ? controller.user!.image.toString()
-                                        //       : 'https://dummyimage.com/60x60/ede4ed/fff',
-                                        //   'userName': controller.user!.name,
-                                        //   'userNumber': controller.user!.phone,
-                                        //   'userEmail': controller.user!.email,
-                                        // },
-                                        )!
+                                })!
                                     .then(
                                   (value) {
                                     controller.userdata();

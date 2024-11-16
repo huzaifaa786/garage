@@ -13,7 +13,6 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_phone_input/app_phone_input.dart';
 
@@ -94,7 +93,7 @@ class SignupView extends StatelessWidget {
                                 controller: controller.phoneController,
                               ),
                             ),
-                            Gap(20),
+                            Gap(12),
                             DropDownField<EmirateModel>(
                               displayValue: (item) => item.name!,
                               items: controller.emirates,

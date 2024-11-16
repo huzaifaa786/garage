@@ -856,7 +856,7 @@ class FilterServiceController extends GetxController {
       UiUtilites.successAlertDialog(
           context: Get.context,
           onTap: () {
-            Get.toNamed(AppRoutes.main);
+            Get.offAllNamed(AppRoutes.main);
           },
           title: 'Thank you!'.tr,
           buttontitle: 'Back to home'.tr,

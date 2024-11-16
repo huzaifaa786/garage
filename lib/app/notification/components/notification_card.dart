@@ -88,8 +88,7 @@ class NotificationCard extends StatelessWidget {
                               Gap(10),
                               AppText(
                                 title: status == 'PENDING'
-                                    ? 'Congratulation!'
-                                    // : 'Street garage',
+                                    ? 'Congratulation!'.tr
                                     : notification!.order != null
                                         ? notification!.order!.garage!.name
                                             .toString()
@@ -144,15 +143,15 @@ class NotificationCard extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 50),
                       child: AuthRichText(
                         title: status == 'ACCEPTED'
-                            ? 'Has been accepted your order!'
+                            ? 'Has been accepted your order!'.tr
                             : status == 'ON_THE_WAY'
-                                ? 'Your order is on the way'
+                                ? 'Your order is on the way'.tr
                                 : status == 'DELIVERED'
-                                    ? 'Your order has been delivered'
+                                    ? 'Your order has been delivered'.tr
                                     : status == 'REJECTED'
-                                        ? 'Your order has been Rejected'
+                                        ? 'Your order has been Rejected'.tr
                                         : '',
-                        description: status == 'ACCEPTED' ? 'View_order' : '',
+                        description: status == 'ACCEPTED' ? 'View_order'.tr : '',
                         titlesize: 12,
                         descriptiosize: 12,
                         titleColor: AppColors.black,

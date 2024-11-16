@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/filter_service/accapted_order/component/order_card.dart';
 import 'package:mobilegarage/user_app/app/filter_service/accapted_order/component/order_filter_bottomsheet.dart';
 import 'package:mobilegarage/user_app/app/filter_service/accapted_order/component/selected_filtercard.dart';
@@ -27,8 +28,9 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
     return GetBuilder<FilterServiceController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle:
-            controller.path == 'filter' ? 'Service Results'.tr : 'Accepted Orders'.tr,
+        appBarTitle: controller.path == 'filter'
+            ? 'Service Results'.tr
+            : 'Accepted Orders'.tr,
         hasBgColor: false,
         hasShadow: true,
         child: SingleChildScrollView(
@@ -167,12 +169,20 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                           : null;
                   return OrderCard(
                     garage: controller.garages[index],
-                    // location: garageAddress!['location'],
-                     location: garageAddress != null ? garageAddress['location'] : 'Unknown location',
-
-                    city:garageAddress != null ? garageAddress['city'] : 'Unknown location',
+                    location: garageAddress != null
+                        ? garageAddress['location']
+                        : 'Unknown location',
+                    city: garageAddress != null
+                        ? garageAddress['city']
+                        : 'Unknown location',
                     isSelected: controller.selectedGarageIndex == index,
-                    onchattap: () {},
+                    onchattap: () {
+                      Get.to(() => ChatScreenView(
+                          id: controller.garages[index].id.toString(),
+                          name: controller.garages[index].name.toString(),
+                          profilePic: '',
+                          screen: 'chat'));
+                    },
                     ontap: () {
                       Get.toNamed(AppRoutes.garage, parameters: {
                         'id': controller.garages[index].id.toString(),

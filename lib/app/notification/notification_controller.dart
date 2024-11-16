@@ -100,7 +100,7 @@ class NotificationController extends GetxController {
             )),
         StepperData(
             title: StepperText(
-              "Delivered",
+              "Delivered".tr,
               textStyle: TextStyle(
                   color: status == 'DELIVERED'
                       ? AppColors.lightgreen

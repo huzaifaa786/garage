@@ -7,13 +7,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class UiUtilites {
@@ -227,11 +225,11 @@ class UiUtilites {
       },
     );
 
-    Future.delayed(Duration(seconds: 3), () {
-      if (Navigator.canPop(context)) {
-        Navigator.pop(context);
-      }
-    });
+    // Future.delayed(Duration(seconds: 3), () {
+    //   if (Navigator.canPop(context)) {
+    //     Navigator.pop(context);
+    //   }
+    // });
   }
 
   static pendingApprovalAlertDialog({
