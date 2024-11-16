@@ -475,6 +475,8 @@ class LocaleString extends Translations {
           'Your order has been Rejected': 'Your order has been Rejected',
           'View_order': 'View_order',
           'No Review found!': 'No Review found!',
+          "A vehicle is already selected for this user.":
+              "A vehicle is already selected for this user.",
         },
         'ar_AE': {
           'No Review found!': 'لم يتم العثور على أي مراجعة!',
@@ -939,6 +941,8 @@ class LocaleString extends Translations {
           'No Review Found!': 'لم يتم العثور على أي مراجعة!',
           'click to accept, or reject order': 'انقر للقبول، أو رفض الطلب',
           'Ordered a': 'طلبَ',
+          "A vehicle is already selected for this user.":
+              "تم اختيار مركبة بالفعل لهذا المستخدم.",
         }
       };
 }
