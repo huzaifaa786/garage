@@ -2,12 +2,14 @@ class ServicesModel {
   int id;
   String image;
   String name;
+  String ar_name;
   String? subText; // Add subText field, nullable if optional
 
   ServicesModel({
     required this.id,
     required this.image,
     required this.name,
+    required this.ar_name,
     this.subText, // Optional field
   });
 
@@ -16,7 +18,8 @@ class ServicesModel {
       id: json['id'],
       image: json['image'],
       name: json['name'],
-      subText: json['subText'], // Ensure this is correctly mapped from JSON
+      ar_name: json['ar_name'],
+      subText: json['subText'],
     );
   }
 }

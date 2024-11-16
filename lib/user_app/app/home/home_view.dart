@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/home/components/banner_card.dart';
 import 'package:mobilegarage/user_app/app/home/components/home_appbar.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_icons.dart';
@@ -148,7 +149,9 @@ class _HomeViewState extends State<HomeView> {
                           final item = controller.servicesList[index];
                           return ServicesIcons(
                             imageUrl: item.image,
-                            text: item.name,
+                            text: box.read('locale') == 'ar'
+                                ? item.ar_name
+                                : item.name,
                             ontap: () {
                               Get.toNamed(
                                 AppRoutes.filterorder,
