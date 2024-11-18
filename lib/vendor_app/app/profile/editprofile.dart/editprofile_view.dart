@@ -12,7 +12,6 @@ import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/b
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/profile_cover_picker.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -48,7 +47,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
             child: AppBar(
                 centerTitle: true,
                 title: AppText(
-                  title: 'Log out'.tr,
+                  title: 'Edit profile'.tr,
                   size: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary_color,
@@ -64,7 +63,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                 ? Column(
                     children: [
                       Container(
-                        height: Get.height * 0.6,
+                        // height: Get.height * 0.6,
                         decoration: BoxDecoration(color: AppColors.white_color),
                         child: Padding(
                           padding: const EdgeInsets.all(25.0),
@@ -177,7 +176,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 25, top: 24),
+                                    const EdgeInsets.only(left: 25, top: 24,right: 25),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [

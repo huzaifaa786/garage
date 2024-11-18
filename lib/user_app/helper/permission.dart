@@ -1,14 +1,17 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:permission_handler/permission_handler.dart' as permissionHandler;
 
 //! LOCATIONS PERMISSIONS
 Future<bool> getLocationPermission() async {
   bool serviceEnabled;
+  print('qqqqqqq');
+
   LocationPermission permission;
+  print('sssss');
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   print('serviceEnabled $serviceEnabled');
+  print('sddddddddddddd');
 
   if (!serviceEnabled) {
      Get.snackbar(
@@ -37,7 +40,6 @@ Future<bool> getLocationPermission() async {
   if (permission == LocationPermission.deniedForever) {
     /////   remove this comment when snackbar made
     await Future.delayed(Duration(seconds: 3), () {
-      openAppSettings();
     });
     return false;
   }

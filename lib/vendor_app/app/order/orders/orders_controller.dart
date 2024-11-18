@@ -6,6 +6,7 @@ import 'package:mobilegarage/apis/vender_apis/orders_apis/orders_byStatus_api.da
 import 'package:mobilegarage/apis/vender_apis/orders_apis/quick_orders_api.dart';
 import 'package:mobilegarage/models/order_models/order_status_model.dart';
 import 'package:mobilegarage/models/order_models/orders_model.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
@@ -52,7 +53,7 @@ class VOrdersController extends GetxController {
     return DateFormat('yyyy-MM-dd').format(parsedDate);
   }
 
-   /// Formats the time in 12-hour format with localized AM/PM.
+  /// Formats the time in 12-hour format with localized AM/PM.
   String formatTime(String dateTime) {
     DateTime parsedDate = DateTime.parse(dateTime);
     String formattedTime = DateFormat('hh:mm a').format(parsedDate);
@@ -63,6 +64,7 @@ class VOrdersController extends GetxController {
     }
     return formattedTime;
   }
+
   Future<void> fetchOrders() async {
     var response = await OrdersbyStatusApi.getOrders();
     if (response.isNotEmpty && response['orders_by_status'] is Map) {
@@ -148,6 +150,8 @@ class VOrdersController extends GetxController {
     if (response.isNotEmpty) {
       await fetchOrders();
       await getUrgentOrders();
+      UiUtilites.successSnackbar('Success'.tr, 'Your order is accepted'.tr);
+      update();
     }
   }
 
@@ -161,23 +165,30 @@ class VOrdersController extends GetxController {
       }
       await fetchOrders();
       await getUrgentOrders();
+       UiUtilites.successSnackbar('Success'.tr, 'Your order is rejected'.tr);
       update();
     }
   }
+
   acceptUrgentOrder(id) async {
     var response = await ChangeOrderStatusApi.changeOrderStatus(
         orderId: id, status: 'accepturgent');
     if (response.isNotEmpty) {
       await fetchOrders();
       await getUrgentOrders();
+      UiUtilites.successSnackbar('Success'.tr, 'Your order is accepted'.tr);
+      update();
     }
   }
-  rejectUrgentOrder(id,String paymentIntentString) async {
+
+  rejectUrgentOrder(id, String paymentIntentString) async {
     var response = await ChangeOrderStatusApi.changeOrderStatus(
         orderId: id, status: 'rejecturgent');
     if (response.isNotEmpty) {
       await fetchOrders();
       await getUrgentOrders();
+       UiUtilites.successSnackbar('Success'.tr, 'Your order is rejected'.tr);
+      update();
     }
   }
 
@@ -219,6 +230,8 @@ class VOrdersController extends GetxController {
         orderId: id, status: 'on_the_way');
     if (response.isNotEmpty) {
       await fetchOrders();
+       UiUtilites.successSnackbar('Success'.tr, 'Your order is on the way'.tr);
+      update();
     }
   }
 
@@ -227,6 +240,8 @@ class VOrdersController extends GetxController {
         orderId: id, status: 'delivered');
     if (response.isNotEmpty) {
       await fetchOrders();
+       UiUtilites.successSnackbar('Success'.tr, 'Your order is delivered'.tr);
+      update();
     }
   }
 }

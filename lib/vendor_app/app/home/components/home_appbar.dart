@@ -27,7 +27,7 @@ class HomeAppbar extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset('assets/images/appbar.png'),
+              Image.asset('assets/images/garagehomologo.png',height: 42,width: 70,),
               AppText(
                 title: '  ' + name.toString(),
                 size: 12,

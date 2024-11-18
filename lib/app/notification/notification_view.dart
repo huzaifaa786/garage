@@ -30,7 +30,7 @@ class NotificationView extends StatelessWidget {
           child: controller.notifications.isNotEmpty
               ? ListView.builder(
                   shrinkWrap: true,
-                  reverse:true,
+                  // reverse:true,
                   itemCount: controller.notifications.length,
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
