@@ -143,6 +143,7 @@ class CartCard extends StatelessWidget {
                                     maxLines: 1,
                                   ),
                                 ),
+                                
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       right: 5, bottom: 5),
