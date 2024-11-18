@@ -17,7 +17,8 @@ class AvaliableDateController extends GetxController {
     update();
   }
 
-  void onDaySelected(DateTime day, DateTime focusedDay) {
+  void onDaySelected(DateTime day, DateTime focusedDay) async {
+    print('object');
     if (selectedDates.contains(day)) {
       selectedDates.remove(day);
     } else {
@@ -26,6 +27,8 @@ class AvaliableDateController extends GetxController {
     this.focusedDay = focusedDay;
     print(selectedDates);
     isButtonClicked = false;
+    await onconfirm();
+
     update();
   }
 
@@ -33,8 +36,9 @@ class AvaliableDateController extends GetxController {
     return selectedDates.contains(day);
   }
 
-  void removeDate(DateTime day) {
+  void removeDate(DateTime day) async {
     selectedDates.remove(day);
+    await onconfirm();
     update();
   }
 
@@ -52,13 +56,12 @@ class AvaliableDateController extends GetxController {
     var response =
         await VUnvailableDateApi.storeUnavailableDates(selectedDates);
     if (response.isNotEmpty) {
-      // selectedDates.clear();
       isButtonClicked = true;
       update();
     }
   }
 
-   getUnavailableDates() async {
+  getUnavailableDates() async {
     var response = await GetUnavailableDatesApi.getUnAvailableDates();
 
     if (response.isNotEmpty && response['unavailableDates'] != null) {

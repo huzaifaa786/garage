@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_controller.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class SelectedDate extends StatelessWidget {
   const SelectedDate({super.key});
@@ -57,7 +58,7 @@ class SelectedDate extends StatelessWidget {
                           ),
                         ],
                       ),
- ),
+                    ),
                   ),
                   const Gap(13),
                   Container(
@@ -69,7 +70,16 @@ class SelectedDate extends StatelessWidget {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        controller.removeDate(date);
+                        // controller.removeDate(date);
+                        UiUtilites.showConfirmationDialog(
+                          false,
+                          'Are you sure that you want\n to delete this date?'.tr,
+                          onConfirm: () async {
+                            // If confirmed, remove the date
+                            controller.removeDate(date);
+                            controller.update();
+                          },
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),

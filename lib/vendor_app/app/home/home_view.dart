@@ -12,7 +12,6 @@ import 'package:mobilegarage/vendor_app/app/home/components/edit_button.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/home_appbar.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/main_box.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
-import 'package:mobilegarage/vendor_app/app/home/components/reviewcard.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/switch_button.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -60,7 +59,7 @@ class _VHomeViewState extends State<VHomeView> {
                     },
                     name: controller.garage != null
                         ? controller.garage!.name!
-                        : "Street Garage",
+                        : "",
                   ),
                 ),
                 body: SingleChildScrollView(
@@ -110,7 +109,7 @@ class _VHomeViewState extends State<VHomeView> {
                                 AppText(
                                   title: controller.garage != null
                                       ? controller.garage!.name!
-                                      : "street garage",
+                                      : "",
                                   size: 14,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primary_color,
@@ -127,7 +126,7 @@ class _VHomeViewState extends State<VHomeView> {
                               child: AppText(
                                 title: controller.garage != null
                                     ? controller.garage!.description!
-                                    : 'description'.tr,
+                                    : ''.tr,
                                 size: 12,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey,

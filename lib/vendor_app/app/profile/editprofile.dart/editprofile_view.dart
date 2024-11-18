@@ -175,13 +175,13 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                 langtext: 'English'.tr,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 25, top: 24,right: 25),
+                                padding: const EdgeInsets.only(
+                                    left: 25, top: 14, right: 25),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    ReviewBox(
-                                      ontap: () {
+                                    GestureDetector(
+                                      onTap: () {
                                         UiUtilites.showConfirmationDialog(
                                           false,
                                           'Are you Sure that you want\n to log out ?'
@@ -195,8 +195,46 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                           },
                                         );
                                       },
-                                      icon: 'assets/images/power.png',
-                                      text: 'Log Out'.tr,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColors.light_red,
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                        height: 49,
+                                        width: Get.width*0.4,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                  height: 25,
+                                                  width: 25,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        AppColors.white_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            5.0),
+                                                    child: Image.asset(
+                                                        'assets/images/loggout.png'),
+                                                  )),
+                                                  Gap(8),
+                                              AppText(
+                                                title: 'Log Out'.tr,
+                                                size: 12,
+                                                color: AppColors.primary_color,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

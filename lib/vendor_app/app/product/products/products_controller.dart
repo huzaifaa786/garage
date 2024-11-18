@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/get_products_api.dart';
 import 'package:mobilegarage/apis/vender_apis/products/delete_product_apis/delete_product_api.dart';
 import 'package:mobilegarage/models/category_model.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class VProductsController extends GetxController {
   static VProductsController instance = Get.find();
@@ -21,6 +22,7 @@ class VProductsController extends GetxController {
     var response = await VDeleteProductsApi.deleteProducts(id);
     if (response.isNotEmpty) {
       await getProducts();
+      UiUtilites.successSnackbar('Product deleted successfully'.tr, 'Success'.tr);
     }
   }
 

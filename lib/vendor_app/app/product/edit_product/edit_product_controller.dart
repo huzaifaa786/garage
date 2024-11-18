@@ -93,11 +93,11 @@ class EditProductController extends GetxController {
         productid: productId, imageid: imageId);
     if (response.isNotEmpty) {
       update();
-      Get.offAllNamed(AppRoutes.vhome);
+      // Get.offAllNamed(AppRoutes.vhome);
       UiUtilites.successSnackbar('Image deleted Successfully'.tr, 'Success'.tr);
     } else {
       update();
-      Get.back();
+      // Get.back();
     }
   }
 
