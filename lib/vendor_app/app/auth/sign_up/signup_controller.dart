@@ -16,6 +16,7 @@ import 'package:mobilegarage/user_app/helper/validators.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class VSignUpController extends GetxController {
   static VSignUpController instance = Get.find();
@@ -349,4 +350,24 @@ class VSignUpController extends GetxController {
     garageDescriptionError = '';
     update();
   }
+
+Future<bool> getLocationPermission() async {
+  // Check if location services are enabled
+  if (!await Geolocator.isLocationServiceEnabled()) {
+    // Prompt user to enable location services
+    await Geolocator.openLocationSettings();
+    return false; // Return false if location service is not enabled
+  }
+
+  // Request location permissions
+  PermissionStatus status = await Permission.locationWhenInUse.request();
+  if (status.isGranted) {
+    return true; // Permission granted
+  } else if (status.isDenied || status.isPermanentlyDenied) {
+    // Handle denied permissions
+    await openAppSettings();
+  }
+
+  return false; // Permission not granted
+}
 }
