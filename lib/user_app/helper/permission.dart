@@ -58,7 +58,6 @@ Future<bool> getLocationPermission() async {
     await Geolocator.openLocationSettings();
     return false; // Return false if location service is not enabled
   }
-
   // Request location permissions
   PermissionStatus status = await Permission.locationWhenInUse.request();
   if (status.isGranted) {
