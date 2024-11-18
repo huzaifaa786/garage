@@ -144,25 +144,34 @@ class VSignupView extends StatelessWidget {
                               address: controller.currentAddress,
                               isSelected: controller.locationselected,
                               onTap: () async {
-                                if (await getLocationPermission() == true) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PlacePicker(
-                                        apiKey:
-                                            "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
-                                        onPlacePicked: (result) {
-                                          controller.currentAddress =
-                                              result.formattedAddress!;
-                                          controller.lat =
-                                              result.geometry!.location.lat;
-                                          controller.lng =
-                                              result.geometry!.location.lng;
-                                          controller.locationselected = true;
-                                          controller.update();
-                                          Navigator.of(context).pop();
-                                        },
-                                        initialPosition: LatLng(
+                                if (await controller.getLocationPermission() == true) {
+                                  try {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PlacePicker(
+                                          apiKey:
+                                              "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
+                                          onPlacePicked: (result) {
+                                            if (result != null &&
+                                                result.geometry != null) {
+                                              controller.currentAddress =
+                                                  result.formattedAddress ?? '';
+                                              controller.lat =
+                                                  result.geometry!.location.lat;
+                                              controller.lng =
+                                                  result.geometry!.location.lng;
+                                              controller.locationselected =
+                                                  true;
+                                              controller.update();
+                                              Navigator.of(context).pop();
+                                            } else {
+                                              // Handle invalid result
+                                              print(
+                                                  "Error: Invalid place result");
+                                            }
+                                          },
+                                          initialPosition: LatLng(
                                             controller.currentPosition != null
                                                 ? controller
                                                     .currentPosition!.latitude
@@ -170,12 +179,18 @@ class VSignupView extends StatelessWidget {
                                             controller.currentPosition != null
                                                 ? controller
                                                     .currentPosition!.longitude
-                                                : 55.2744),
-                                        useCurrentLocation: true,
-                                        resizeToAvoidBottomInset: false,
+                                                : 55.2744,
+                                          ),
+                                          useCurrentLocation: true,
+                                          resizeToAvoidBottomInset: false,
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                    );
+                                  } catch (e) {
+                                    print("Error: $e");
+                                  }
+                                } else {
+                                  print("Location permission not granted");
                                 }
                               },
                             ),
