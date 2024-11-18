@@ -45,7 +45,7 @@ class DropDownWithAdd<T> extends StatelessWidget {
                 title: hint!,
                 size: 12,
                 fontWeight: FontWeight.w400,
-                color: AppColors.hint_text_color,
+                color: AppColors.black.withOpacity(0.4),
               ),
               items: [
                 ...items
@@ -89,7 +89,7 @@ class DropDownWithAdd<T> extends StatelessWidget {
                       title: displayValue!(item),
                       size: 14,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.black_color.withOpacity(0.4),
+                      color: AppColors.black,
                     ),
                   );
                 }).toList();

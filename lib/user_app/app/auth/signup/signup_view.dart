@@ -109,7 +109,7 @@ class SignupView extends StatelessWidget {
                             ),
                             Gap(20),
                             MainInput(
-                              hint: 'address details'.tr,
+                              hint: 'Address details'.tr,
                               controller: controller.adreesdetailController,
                               errorText: controller.addressdetailError,
                               onchange: (p0) {

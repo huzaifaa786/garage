@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/home/components/banner_card.dart';
 import 'package:mobilegarage/user_app/app/home/components/home_appbar.dart';
 import 'package:mobilegarage/user_app/app/home/components/service_icons.dart';
@@ -27,10 +28,10 @@ class _HomeViewState extends State<HomeView> {
       autoRemove: false,
       builder: (controller) {
         return GestureDetector(
-           onTap: () {
-        // Dismiss the keyboard when tapping anywhere outside the input
-        FocusScope.of(context).unfocus();
-      },
+          onTap: () {
+            // Dismiss the keyboard when tapping anywhere outside the input
+            FocusScope.of(context).unfocus();
+          },
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
@@ -39,7 +40,10 @@ class _HomeViewState extends State<HomeView> {
               toolbarHeight: 80,
               title: HomeAppbar(
                 onNotificationtap: () {
-                  Get.toNamed(AppRoutes.notification);
+                  Get.toNamed(AppRoutes.notification)!.then((value) {
+                    controller.countNotification();
+                  });
+                  ;
                 },
                 isnotification:
                     controller.notificationcount == '0' ? false : true,
@@ -101,7 +105,8 @@ class _HomeViewState extends State<HomeView> {
                             duration: Duration(milliseconds: 300),
                             margin: EdgeInsets.symmetric(horizontal: 4.0),
                             height: 6.0,
-                            width: controller.currentIndex == index ? 20.0 : 6.0,
+                            width:
+                                controller.currentIndex == index ? 20.0 : 6.0,
                             decoration: BoxDecoration(
                               color: controller.currentIndex == index
                                   ? AppColors.primary
@@ -144,7 +149,9 @@ class _HomeViewState extends State<HomeView> {
                           final item = controller.servicesList[index];
                           return ServicesIcons(
                             imageUrl: item.image,
-                            text: item.name,
+                            text: box.read('locale') == 'ar'
+                                ? item.ar_name
+                                : item.name,
                             ontap: () {
                               Get.toNamed(
                                 AppRoutes.filterorder,

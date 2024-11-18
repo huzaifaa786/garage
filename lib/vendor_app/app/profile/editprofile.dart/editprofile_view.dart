@@ -12,7 +12,6 @@ import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/b
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/profile_cover_picker.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -48,7 +47,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
             child: AppBar(
                 centerTitle: true,
                 title: AppText(
-                  title: 'Log out'.tr,
+                  title: 'Edit profile'.tr,
                   size: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary_color,
@@ -64,7 +63,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                 ? Column(
                     children: [
                       Container(
-                        height: Get.height * 0.6,
+                        // height: Get.height * 0.6,
                         decoration: BoxDecoration(color: AppColors.white_color),
                         child: Padding(
                           padding: const EdgeInsets.all(25.0),
@@ -176,13 +175,13 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                 langtext: 'English'.tr,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 25, top: 24),
+                                padding: const EdgeInsets.only(
+                                    left: 25, top: 14, right: 25),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    ReviewBox(
-                                      ontap: () {
+                                    GestureDetector(
+                                      onTap: () {
                                         UiUtilites.showConfirmationDialog(
                                           false,
                                           'Are you Sure that you want\n to log out ?'
@@ -196,8 +195,46 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                           },
                                         );
                                       },
-                                      icon: 'assets/images/power.png',
-                                      text: 'Log Out'.tr,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColors.light_red,
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                        height: 49,
+                                        width: Get.width*0.4,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                  height: 25,
+                                                  width: 25,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        AppColors.white_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            5.0),
+                                                    child: Image.asset(
+                                                        'assets/images/loggout.png'),
+                                                  )),
+                                                  Gap(8),
+                                              AppText(
+                                                title: 'Log Out'.tr,
+                                                size: 12,
+                                                color: AppColors.primary_color,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

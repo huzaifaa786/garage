@@ -90,19 +90,28 @@ class ProductCard extends StatelessWidget {
                         const Gap(12),
                         EdittButton(
                           ontap: () {
-                            UiUtilites.confirmAlertDialog(
-                              title:
-                                  'Are you sure you want to delete this Product?'
-                                      .tr,
-                              context: Get.context,
-                              onCancelTap: () {
-                                Get.back();
-                              },
-                              onConfirmTap: ondeltap,
-                              cancelText: 'No'.tr,
-                              confirmText: 'Yes'.tr,
+                            UiUtilites.showConfirmationDialog(
+                              false,
+                              'Are you sure you want to\n delete this Product?'
+                                  .tr,
+                              onConfirm: 
+                                ondeltap
                             );
                           },
+                          // ontap: () {
+                          //   UiUtilites.confirmAlertDialog(
+                          //     title:
+                          //         'Are you sure you want to delete this Product?'
+                          //             .tr,
+                          //     context: Get.context,
+                          //     onCancelTap: () {
+                          //       Get.back();
+                          //     },
+                          //     onConfirmTap: ondeltap,
+                          //     cancelText: 'No'.tr,
+                          //     confirmText: 'Yes'.tr,
+                          //   );
+                          // },
                           icon: 'assets/images/delete.svg',
                           width: Get.width * 0.22,
                           text: 'Delete'.tr,

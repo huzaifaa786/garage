@@ -9,12 +9,11 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class OtpController extends GetxController {
   static OtpController instanse = Get.find();
-
+  TextEditingController otpController = TextEditingController();
   @override
   void onInit() async {
     super.onInit();
@@ -42,7 +41,7 @@ class OtpController extends GetxController {
     LoadingHelper.show();
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.verifyPhoneNumber(
-      timeout: const Duration(minutes: 2),
+      timeout: const Duration(seconds: 10),
       phoneNumber: phone,
       verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException e) {

@@ -6,8 +6,8 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/components/selected_date.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
@@ -50,15 +50,33 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TableCalendar(
-                      availableGestures: AvailableGestures.none,
-                      firstDay: DateTime.utc(2010, 10, 16),
-                      lastDay: DateTime.utc(2030, 3, 14),
+                      // availableGestures: AvailableGestures.none,
+                      firstDay: DateTime.now(),
+                      lastDay: DateTime.now().add(Duration(days: 365 * 2)),
                       focusedDay: controller.focusedDay,
                       selectedDayPredicate: (day) => controller.isSelected(day),
                       availableCalendarFormats: const {
                         CalendarFormat.month: 'Month',
                       },
-                      onDaySelected: controller.onDaySelected,
+                      onDaySelected: (selectedDay, focusedDay) {
+                        bool isDateSelected =
+                            controller.selectedDates.contains(selectedDay);
+                        String alertMessage = isDateSelected
+                            ? 'Are you sure that you want\n to delete this date?'
+                                .tr
+                            : 'Are you sure that you want\n to add this date?'
+                                .tr;
+                        UiUtilites.showConfirmationDialog(
+                          false,
+                          alertMessage,
+                          onConfirm: () async {
+                            controller.onDaySelected(selectedDay, focusedDay);
+                            controller.update();
+                          },
+                        );
+                      },
+
+                      // controller.onDaySelected,
                       onPageChanged: (focusedDay) {
                         controller.focusedDay = focusedDay;
                       },
@@ -122,30 +140,30 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                           : Container(),
                       const Gap(13),
                       const SelectedDate(),
-                      const Gap(20),
-                      AppButton(
-                        buttonWidth: 0.8,
-                        title: controller.isButtonClicked
-                            ? 'Confirm'.tr
-                            : 'Confirm'.tr,
-                        titleColor: controller.isButtonClicked
-                            ? AppColors.green_color
-                            : AppColors.white_color,
-                        buttonColor: controller.isButtonClicked
-                            ? AppColors.divider_color
-                            : AppColors.primary_color,
-                        suffixWidget: controller.isButtonClicked
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
-                                child: SvgPicture.asset(
-                                    'assets/images/checkcircle.svg'),
-                              )
-                            : const Gap(1),
-                        ontap: () {
-                          controller.onconfirm();
-                        },
-                      )
+                      // const Gap(20),
+                      // AppButton(
+                      //   buttonWidth: 0.8,
+                      //   title: controller.isButtonClicked
+                      //       ? 'Confirm'.tr
+                      //       : 'Confirm'.tr,
+                      //   titleColor: controller.isButtonClicked
+                      //       ? AppColors.green_color
+                      //       : AppColors.white_color,
+                      //   buttonColor: controller.isButtonClicked
+                      //       ? AppColors.divider_color
+                      //       : AppColors.primary_color,
+                      //   suffixWidget: controller.isButtonClicked
+                      //       ? Padding(
+                      //           padding:
+                      //               const EdgeInsets.symmetric(horizontal: 8),
+                      //           child: SvgPicture.asset(
+                      //               'assets/images/checkcircle.svg'),
+                      //         )
+                      //       : const Gap(1),
+                      //   ontap: () {
+                      //     controller.onconfirm();
+                      //   },
+                      // )
                     ],
                   ),
                 )

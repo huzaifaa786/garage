@@ -72,7 +72,7 @@ class GarageTimingsController extends GetxController {
 
     if (response.isNotEmpty) {
       update();
-      UiUtilites.successSnackbar('Success'.tr, 'Time Added Successfully'.tr);
+      UiUtilites.successSnackbar( 'Time Added Successfully'.tr,'Success'.tr,);
       Get.back();
     }
 

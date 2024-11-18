@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_review_api.dart';
@@ -10,6 +11,9 @@ import 'package:mobilegarage/apis/vender_apis/home_apis/get_review_api.dart';
 import 'package:mobilegarage/apis/vender_apis/notifications_api/garage_notification_count_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/garage_reviews_model.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/app/home/components/reviewcard.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 
 class VHomeController extends GetxController {
@@ -51,6 +55,18 @@ class VHomeController extends GetxController {
     ;
   }
 
+ getReviewsonClick() async {
+    var response = await GarageReviewsApi.garageReviews(garage!.id.toString());
+    if (response.isNotEmpty && response['ratings'] != null) {
+      garageReviews = (response['ratings'] as List<dynamic>)
+          .map((item) => GarageReviewsModel.fromJson(item))
+          .toList();
+                                          _openReviewBottomSheet(Get.context!);
+
+      update();
+    }
+    ;
+  }
   //!  Time Format
   String timeAgo(String createdAt) {
     DateTime dateTime = DateTime.parse(createdAt);
@@ -226,6 +242,63 @@ class VHomeController extends GetxController {
           ),
         ],
       ),
+    );
+  }
+  //
+  void _openReviewBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return GetBuilder<VHomeController>(
+          builder: (controller) {
+            return Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Reviews'.tr,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Gap(20),
+                  Divider(
+                    color: const Color.fromARGB(255, 209, 208, 208),
+                    thickness: 1.0,
+                  ),
+                  Gap(10),
+                  SizedBox(
+                    height: Get.height * 0.42,
+                    child: controller.garageReviews.isNotEmpty
+                        ? ListView.builder(
+                            itemCount: controller.garageReviews.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final item = controller.garageReviews![index];
+                              return Reviewcard(
+                                reviews: item,
+                                img: 'assets/images/user_icon.png',
+                              );
+                            },
+                          )
+                        : Center(
+                            child: AppText(
+                              title: 'No Review Found!'.tr,
+                              color: AppColors.darkGrey,
+                            ),
+                          ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

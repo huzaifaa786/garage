@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
@@ -27,7 +28,7 @@ class HomeAppbar extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset('assets/images/appbar.png'),
+              Image.asset('assets/images/garagehomologo.png',height: 42,width: 70,),
               AppText(
                 title: '  ' + name.toString(),
                 size: 12,
@@ -62,6 +63,7 @@ class HomeAppbar extends StatelessWidget {
                   ],
                 ),
               ),
+              Gap(10),
               InkWell(
                 onTap: chat,
                 child: Stack(

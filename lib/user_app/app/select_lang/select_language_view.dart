@@ -89,7 +89,7 @@ class SelectLanguageView extends StatelessWidget {
                                     controller.site == translateMethod.English,
                               ),
                             ),
-                            Gap(30),
+                            Gap(60),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 2),
