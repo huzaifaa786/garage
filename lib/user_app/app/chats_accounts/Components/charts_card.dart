@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
@@ -9,11 +9,11 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class ChartsCard extends StatelessWidget {
-  const ChartsCard({super.key, this.name,this.img,this.msg,this.ontap});
+  const ChartsCard({super.key, this.name, this.img, this.msg, this.ontap});
   final name;
   final img;
   final msg;
- final ontap;
+  final ontap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,7 +23,7 @@ class ChartsCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20),
         width: Get.width,
         // height: 81,
-        color:  AppColors.white,
+        color: AppColors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Row(
@@ -31,34 +31,17 @@ class ChartsCard extends StatelessWidget {
               Container(
                 width: 54.0,
                 height: 54.0,
-                decoration: BoxDecoration(
-                  color: Color(0xff7c94b6),
-                  // image: DecorationImage(
-                  //   image: NetworkImage(
-                  //     'https://dummyimage.com/61x61/000/fff',
-                  //   ),
-                  //   fit: BoxFit.cover,
-                  // ),
+                decoration: BoxDecoration(                
                   borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                  border: Border.all(
-                    color: AppColors.grey.shade100,
-                    width: 3.0,
-                  ),
                 ),
                 child: ClipOval(
-                    child: AppNetworkImage(
-                  assetPath: 'assets/images/street_garage.png',
-                  height: Get.height * 0.08,
-                  width: Get.width * 0.18,
+                    child: SvgPicture.asset(
+                  'assets/images/avatar.svg',
+                   color: AppColors.primary,
                 )),
               ),
-          
-              // GestureDetector(
-              //     onTap: () {
-              //       Get.toNamed(AppRoutes.chatScreen);
-              //     },
-              //     child: Text("ddd")),
-              Gap(8),
+
+              Gap(13),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

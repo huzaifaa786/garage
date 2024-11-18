@@ -8,7 +8,6 @@ import 'package:mobilegarage/components/buttons/google_button.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
-import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/image_selection_tile.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_up/components/inputfiled_title.dart';

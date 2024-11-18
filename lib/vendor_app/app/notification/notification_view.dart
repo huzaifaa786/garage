@@ -42,7 +42,7 @@ class _VNotificationViewState extends State<VNotificationView> {
                       // ),
                       ListView.builder(
                           shrinkWrap: true,
-                          reverse: true,
+                          // reverse: true,
                           physics: BouncingScrollPhysics(),
                           itemCount: controller.notifications.length,
                           itemBuilder: (BuildContext context, int index) {

@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -68,20 +70,15 @@ class ChatAppbar extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Gap(10),
                 ClipRRect(
-                    child: AppNetworkImage(
-                  networkImage: appBarimage,
-                  assetPath: 'assets/images/street_garage.png',
-                  // width: Get.width,
-                  height: 53,
-                  width: 53,
+                    child: SvgPicture.asset(
+                 'assets/images/avatar.svg',
+                  height: 43,
+                  width: 43,
+                   color: AppColors.primary,
                 )
-                    // borderRadius: BorderRadius.circular(30),
-                    // child: CachedNetworkImage(
-                    //   imageUrl: "https://dummyimage.com/61x61/000/fff",
-                    //   width: 40,
-                    //   height: 40,
-                    // ),
+                  
                     ),
                 const SizedBox(width: 12),
                 AppText(

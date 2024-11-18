@@ -40,7 +40,12 @@ class _VContactusViewState extends State<VContactusView> {
                       //   fontWeight: FontWeight.w600,
                       // ),
                       // Gap(40),
-                      Image.asset('assets/images/contactus.png'),
+                      Image.asset(
+                        'assets/images/contactuslogo.png',
+                        height: 130,
+                        width: 230,
+                        fit: BoxFit.cover,
+                      ),
                       Gap(40),
                       Row(
                         children: [

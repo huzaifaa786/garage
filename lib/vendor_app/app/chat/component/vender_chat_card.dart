@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
@@ -36,17 +37,16 @@ class ChatCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 47,
+                    height: 50,
                     width: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(38),
-                      child: AppNetworkImage(
-                        networkImage:
-                            img ?? 'https://dummyimage.com/50x47/000/fff',
-                        assetPath: 'assets/images/street_garage.png',
+                      borderRadius: BorderRadius.circular(30),
+                      child: SvgPicture.asset(
+                       'assets/images/avatar.svg',
+                        color: AppColors.primary,
                         fit: BoxFit.cover,
                       ),
                     ),

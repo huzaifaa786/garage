@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_typing_uninitialized_variables
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
@@ -11,19 +12,17 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Reviewcard extends StatelessWidget {
   Reviewcard({
     super.key,
     required this.reviews,
     this.img,
-    // this.ordername,
-    // this.name,
   });
   GarageReviewsModel reviews;
   final img;
-  // final ordername;
-  // final name;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<VHomeController>(
@@ -52,30 +51,40 @@ class Reviewcard extends StatelessWidget {
                           ),
                           const Gap(6),
                           Container(
-                            height: 47,
-                            width: 50,
+                            height: 35,
+                            width: 35,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(38),
-                                child:
-                                 Image.asset(
-                                  img,
+                            child:  ClipRRect(
+                                    borderRadius: BorderRadius.circular(38),
+                                    child: reviews.user!.image == null ||
+                                    reviews.user!.image!.isEmpty
+                                ?SvgPicture.asset(
+                                      img,
+                                      color: AppColors.primary,
+                                    ) : CachedNetworkImage(
+                                    imageUrl: reviews.user!.image.toString(),
                                   
-                                  fit: BoxFit.cover,
-                                )
-                                //  CachedNetworkImage(
-                                //   imageUrl: controller.image?.isEmpty ?? true
-                                //       ? img
-                                //       : controller.image.toString(),
-                                //   placeholder: (context, url) =>
-                                //       const CircularProgressIndicator(),
-                                //   errorWidget: (context, url, error) =>
-                                //       const Icon(Icons.error),
-                                //   fit: BoxFit.cover,
-                                // ),
-                                ),
+                                    placeholder: (context, url) =>
+                                        Shimmer.fromColors(
+                                      baseColor: Colors.grey[300]!,
+                                      highlightColor: Colors.grey[100]!,
+                                      child: Container(
+                                        height: 35,
+                                        width: 35,
+                                        
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                    fit: BoxFit.cover,
+                                  ),)
+                               
                           ),
                           const Gap(8),
                           Flexible(

@@ -151,7 +151,7 @@ class SignupController extends GetxController {
         validateFields('address details', adreesdetailController.text);
 
     if (selectedEmirateId == null) {
-      emirateError = 'please select an Brand'.tr;
+      emirateError = 'Please select an Emirate'.tr;
       update();
     } else {
       emirateError = '';

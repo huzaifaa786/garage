@@ -2,14 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_controller.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
 import 'package:mobilegarage/user_app/app/chats_accounts/Components/charts_card.dart';
-import 'package:mobilegarage/user_app/app/chats_accounts/chats_accounts_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class ChatsAccountsView extends StatefulWidget {
   const ChatsAccountsView({super.key});
@@ -29,15 +26,19 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
           });
         },
         builder: (controller) => Scaffold(
+
+
               appBar: AppBar(
                 toolbarHeight: Get.height * 0.1,
                 automaticallyImplyLeading: false,
+                scrolledUnderElevation: 0,
                 title: TopBar(
                   title: "Chats".tr,
                   showicon: true,
                 ),
               ),
               body: SafeArea(
+
                 child: SingleChildScrollView(
                     child: Column(
                   children: [

@@ -55,18 +55,19 @@ class VHomeController extends GetxController {
     ;
   }
 
- getReviewsonClick() async {
+  getReviewsonClick() async {
     var response = await GarageReviewsApi.garageReviews(garage!.id.toString());
     if (response.isNotEmpty && response['ratings'] != null) {
       garageReviews = (response['ratings'] as List<dynamic>)
           .map((item) => GarageReviewsModel.fromJson(item))
           .toList();
-                                          _openReviewBottomSheet(Get.context!);
+      _openReviewBottomSheet(Get.context!);
 
       update();
     }
     ;
   }
+
   //!  Time Format
   String timeAgo(String createdAt) {
     DateTime dateTime = DateTime.parse(createdAt);
@@ -244,6 +245,7 @@ class VHomeController extends GetxController {
       ),
     );
   }
+
   //
   void _openReviewBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -282,7 +284,7 @@ class VHomeController extends GetxController {
                               final item = controller.garageReviews![index];
                               return Reviewcard(
                                 reviews: item,
-                                img: 'assets/images/user_icon.png',
+                                img: 'assets/images/avatar.svg',
                               );
                             },
                           )

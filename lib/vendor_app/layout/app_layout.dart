@@ -40,6 +40,7 @@ class AppLayout extends StatelessWidget {
           ),
           child: AppBar(
             automaticallyImplyLeading: false,
+            scrolledUnderElevation: 0,
             title: Row(
               mainAxisAlignment: hasIcon == true
                   ? MainAxisAlignment.spaceBetween

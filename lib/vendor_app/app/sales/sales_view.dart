@@ -113,8 +113,9 @@ class _SalesViewState extends State<SalesView> {
                       daysOfWeekVisible: true,
                     ),
                   ),
-                  const Gap(10),
-                  Image.asset('assets/images/sale.png'),
+                  const Gap(30),
+                  Image.asset('assets/images/salelogo.png',height: 80,width: 80,fit: BoxFit.cover,),
+                  const Gap(20),
                   AppText(
                     title: '${'Total orders'.tr} (${controller.totalOrders})',
                     size: 20,
