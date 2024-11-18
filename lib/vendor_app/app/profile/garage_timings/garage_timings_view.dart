@@ -142,11 +142,12 @@ class GarageTimingsView extends StatelessWidget {
     );
   }
 
-  // Updated method to display time in 24-hour format
+// Updated method to display time in 12-hour format
   String _formatTime(TimeOfDay time) {
-    final hours = time.hour.toString().padLeft(2, '0');
+    final hours = time.hour % 12 == 0 ? 12 : time.hour % 12;
     final minutes = time.minute.toString().padLeft(2, '0');
-    return "$hours:$minutes"; // 24-hour format without AM/PM
+    final period = time.hour < 12 ? 'AM' : 'PM';
+    return "$hours:$minutes $period";
   }
 
   Widget buildTimeRow(String label, TimeOfDay selectedTime,
@@ -160,6 +161,26 @@ class GarageTimingsView extends StatelessWidget {
               final TimeOfDay? newTime = await showTimePicker(
                 context: Get.context!,
                 initialTime: selectedTime,
+                builder: (BuildContext context, Widget? child) {
+                  return Theme(
+                    data: ThemeData.light().copyWith(
+                      primaryColor: AppColors.primary_color,
+                      timePickerTheme: TimePickerThemeData(
+                        dialHandColor: AppColors.primary_color,
+                        dialBackgroundColor: Colors.transparent,
+                        hourMinuteColor: AppColors.primary_color,
+                        dayPeriodColor: AppColors.primary_color,
+                      ),
+                      colorScheme: ColorScheme.fromSwatch().copyWith(
+                        primary: AppColors.primary_color,
+                        secondary: AppColors.white,
+                        onPrimary: Colors.white,
+                        onSecondary: Colors.white,
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
               );
 
               if (newTime != null) {
