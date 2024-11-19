@@ -52,7 +52,10 @@ class _SearchViewState extends State<SearchView> {
                           hint: 'street,garages'.tr,
                           readOnly: false,
                           onChange: (text) {
-                            controller.filterPosts(query: text, category: text);
+                            // controller.filterPosts(query: text, category: text);
+                          },
+                          onsubmit: (value) {
+                           controller. getsearchGarages();
                           },
                         ),
                       ),

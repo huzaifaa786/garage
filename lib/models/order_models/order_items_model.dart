@@ -51,7 +51,7 @@ class OrderItemsModel {
       productsExtra: json['product_extra'] != null
           ? ProductExtraModel.fromJson(json['product_extra'])
           : null,
-      userVehicles: UserVehicles.fromJson(json['user_vehicle']),
+      userVehicles:json['user_vehicle']!=null? UserVehicles.fromJson(json['user_vehicle']):null,
     );
   }
 }

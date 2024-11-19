@@ -93,6 +93,9 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                         checkFileExistance(index)
                             .then((value) => fileExist = value);
                         print(fileExist);
+                        print('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq${controller
+                              .massages[controller.massages.length - 1 - index]
+                              .location.toString()},');
                         return ReplyMessageCard(
                           msg: controller
                               .massages[controller.massages.length - 1 - index]

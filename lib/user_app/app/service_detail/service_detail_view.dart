@@ -5,7 +5,6 @@ import 'package:mobilegarage/user_app/app/home/components/service_cards.dart';
 import 'package:mobilegarage/user_app/app/service_detail/service_detail_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ServiceDetailView extends StatelessWidget {
@@ -66,7 +65,11 @@ class ServiceDetailView extends StatelessWidget {
                                       price: product.brands == null
                                           ? product.fuelextra![0].price
                                               .toString()
-                                          : product.price.toString(),
+                                          : controller.serviceId == '2'
+                                              ? product.fuelextra![0].price
+                                                  .toString()
+                                              : product.brands!.price
+                                                  .toString(),
                                       title: product.brands == null
                                           ? product.fuelextra![0].name
                                               .toString()
@@ -74,7 +77,8 @@ class ServiceDetailView extends StatelessWidget {
                                       onTap: () {
                                         UiUtilites.showConfirmationDialog(
                                           false,
-                                          'Are you Sure that you want\n to Add this product to cart ?'.tr,
+                                          'Are you Sure that you want\n to Add this product to cart ?'
+                                              .tr,
                                           onConfirm: () async {
                                             controller.addToCart(
                                                 product.id.toString(),

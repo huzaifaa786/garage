@@ -16,13 +16,21 @@ class VMapView extends StatelessWidget {
         hasShadow: false,
         child: GoogleMap(
           initialCameraPosition: CameraPosition(
-            target: LatLng(double.parse(controller.lat.toString()),
-                double.parse(controller.lng.toString())),
+            // target: LatLng(double.parse(controller.lat.toString()),
+            //     double.parse(controller.lng.toString())),
+            target: LatLng(
+              controller.lat ?? 0.0,
+              controller.lng ?? 0.0,
+            ),
             zoom: 14,
           ),
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
-          markers: Set<Marker>(),
+          // markers: Set<Marker>(),
+           markers: controller.markers, 
+            onMapCreated: (GoogleMapController googleMapController) {
+            controller.mController.complete(googleMapController);
+          },
         ),
       ),
     );

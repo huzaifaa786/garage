@@ -42,6 +42,9 @@ class _VChatViewState extends State<VChatView> {
                     physics: BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
                       return ChatCard(
+                        isunseen: controller.scontacts[index].unseen == '0'
+                            ? false
+                            : true,
                         name: controller.scontacts[index].username,
                         img: controller.scontacts[index].profilePic != null
                             ? controller.scontacts[index].profilePic
@@ -52,7 +55,10 @@ class _VChatViewState extends State<VChatView> {
                               name: controller.scontacts[index].username,
                               profilePic:
                                   controller.scontacts[index].profilePic,
-                              screen: 'chat'));
+                              screen: 'chat'))!
+                          .then((value) {
+                        controller.getContacts();
+                      });
                         },
                       );
                     },

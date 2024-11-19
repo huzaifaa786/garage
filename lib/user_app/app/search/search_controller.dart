@@ -165,7 +165,23 @@ Future<Position> _getCurrentLocation() async {
     }
     update();
   }
-
+Future getsearchGarages() async {
+    var response = await PostApi.getAllGarages(searchController.text);
+    log('$response');
+    if (response != {}) {
+      garages = (response['garages'] as List<dynamic>)
+          .map((postJson) => GarageModel.fromJson(postJson))
+          .toList();
+      filteredGarages = garages;
+      if (garages.isNotEmpty) {
+        GarageModel post = garages.first;
+        lat = double.tryParse(post.lat!);
+        lng = double.tryParse(post.lng!);
+        getPlaceName(lat!, lng!);
+      }
+    }
+    update();
+  }
   void filterPosts({String? query, String? category}) {
     searchText = query ?? '';
     selectedCategory = category ?? '';

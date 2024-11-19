@@ -255,7 +255,10 @@ class ChatScreenController extends GetxController {
       'api_token': box.read('api_token')!,
       'id': id,
     };
+    developer.log(data.toString());
+
     var response = await Api.execute(url: url, data: data);
+    developer.log(response.toString());
     massages = <Msg>[].obs;
     for (var van in response['messages']) {
       // print(van['attachment']);

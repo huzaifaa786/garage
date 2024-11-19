@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/chatify/user_api.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/home_api.dart';
 import 'package:mobilegarage/apis/user_apis/home_apis/store_ratings_api.dart';
 import 'package:mobilegarage/apis/user_apis/notification_apis/notification_count_api.dart';
 import 'package:mobilegarage/models/user_model/banner_model.dart';
 import 'package:mobilegarage/models/user_model/services_model.dart';
+import 'package:mobilegarage/user_app/helper/loading.dart';
+import 'package:mobilegarage/user_app/utils/base_url.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -28,6 +31,8 @@ String? notificationcount='';
     await getServices();
     await getGarageRatings();
    await countNotification();
+   await countUnSeenMsg();
+
   }
  countNotification() async {
     var response = await UserNotificationCountApi.countNotification();
@@ -37,6 +42,23 @@ String? notificationcount='';
       
     }
   }
+String? msgUnSeenCount = '';
+
+   countUnSeenMsg() async {
+    LoadingHelper.show();
+    var url = chatbaseUrl + '/unseen/all';
+    var data;
+    GetStorage box = GetStorage();
+    data = {
+      'api_token': box.read('api_token')!,
+    };
+    var response = await Api.execute(url: url, data: data);
+    msgUnSeenCount = response['unseen'].toString();
+    update();
+    LoadingHelper.dismiss();
+  }
+
+
   int currentIndex = 0;
 
   void updateIndex(int index) {

@@ -36,6 +36,7 @@ class _VHomeViewState extends State<VHomeView> {
               await controller.garageRating();
               await controller.getReviews();
               await controller.countNotification();
+              await controller.countUnSeenMsg();
             },
             child: Scaffold(
                 backgroundColor: const Color.fromARGB(255, 224, 223, 223),
@@ -44,10 +45,14 @@ class _VHomeViewState extends State<VHomeView> {
                   scrolledUnderElevation: 0,
                   automaticallyImplyLeading: false,
                   title: HomeAppbar(
+                    ischat: controller.msgUnSeenCount == '0' ? false : true,
                     isnotification:
                         controller.notificationcount == '0' ? false : true,
                     chat: () {
-                      Get.toNamed(AppRoutes.vchat);
+                      Get.toNamed(AppRoutes.vchat)!
+                          .then((value) {
+                        controller.countUnSeenMsg();
+                      });
                     },
                     notification: () {
                       Get.toNamed(AppRoutes.vnotification, parameters: {

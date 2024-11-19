@@ -39,14 +39,19 @@ class _HomeViewState extends State<HomeView> {
               scrolledUnderElevation: 0.0,
               toolbarHeight: 80,
               title: HomeAppbar(
+                onChatntap: () {
+                    Get.toNamed(AppRoutes.chats_accounts)!.then((value) {
+                    controller.countUnSeenMsg();
+                  });
+                  },
+                 ischat: controller.msgUnSeenCount == '0' ? false : true,
                 onNotificationtap: () {
                   Get.toNamed(AppRoutes.notification)!.then((value) {
                     controller.countNotification();
                   });
-                  ;
+                  
                 },
-                isnotification:
-                    controller.notificationcount == '0' ? false : true,
+                isnotification: controller.notificationcount == '0',
               ),
             ),
             body: SingleChildScrollView(

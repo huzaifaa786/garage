@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:mobilegarage/apis/chatify/unseen_count_msg_api.dart';
+import 'package:mobilegarage/apis/chatify/user_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_review_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_status_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
@@ -11,7 +14,9 @@ import 'package:mobilegarage/apis/vender_apis/home_apis/get_review_api.dart';
 import 'package:mobilegarage/apis/vender_apis/notifications_api/garage_notification_count_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/models/garage_reviews_model.dart';
+import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/user_app/utils/base_url.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/reviewcard.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
@@ -32,6 +37,7 @@ class VHomeController extends GetxController {
     await garageRating();
     await getReviews();
     await countNotification();
+   await countUnSeenMsg();
   }
 
   String? notificationcount = '';
@@ -42,6 +48,22 @@ class VHomeController extends GetxController {
       notificationcount = response['count'].toString();
       update();
     }
+  }
+
+ String? msgUnSeenCount = '';
+
+   countUnSeenMsg() async {
+    LoadingHelper.show();
+    var url = chatbaseUrl + '/unseen/all';
+    var data;
+    GetStorage box = GetStorage();
+    data = {
+      'api_token': box.read('api_token')!,
+    };
+    var response = await Api.execute(url: url, data: data);
+    msgUnSeenCount = response['unseen'].toString();
+    update();
+    LoadingHelper.dismiss();
   }
 
   getReviews() async {

@@ -26,8 +26,6 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
           });
         },
         builder: (controller) => Scaffold(
-
-
               appBar: AppBar(
                 toolbarHeight: Get.height * 0.1,
                 automaticallyImplyLeading: false,
@@ -38,7 +36,6 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                 ),
               ),
               body: SafeArea(
-
                 child: SingleChildScrollView(
                     child: Column(
                   children: [
@@ -51,6 +48,11 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                               return Container(
                                   color: AppColors.grey.shade100,
                                   child: ChartsCard(
+                                    isunseen:
+                                        controller.scontacts[index].unseen ==
+                                                '0'
+                                            ? false
+                                            : true,
                                     name: controller.scontacts[index].username,
                                     img: controller.scontacts[index].profilePic,
                                     msg: 'Tap here to view messages'.tr,
@@ -61,7 +63,12 @@ class _ChatsAccountsViewState extends State<ChatsAccountsView> {
                                               .scontacts[index].username,
                                           profilePic: controller
                                               .scontacts[index].profilePic,
-                                          screen: 'chat'));
+                                          screen: 'chat'))!
+                                    .then(
+                                  (value) {
+                                    controller.getContacts();
+                                  },
+                                );
                                     },
                                   ));
                             })

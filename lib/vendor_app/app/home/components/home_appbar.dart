@@ -12,8 +12,12 @@ class HomeAppbar extends StatelessWidget {
       this.notification,
       this.chat,
       this.name,
-      this.isnotification = true});
+      this.isnotification = true,
+      this.ischat = true
+      });
   final isnotification;
+  final ischat;
+
 
   final notification;
   final chat;
@@ -84,18 +88,19 @@ class HomeAppbar extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Positioned(
-                    //   top: 2,
-                    //   right: 0,
-                    //   child: Container(
-                    //     height: 7,
-                    //     width: 7,
-                    //     decoration: BoxDecoration(
-                    //       shape: BoxShape.circle,
-                    //       color: AppColors.primary_color,
-                    //     ),
-                    //   ),
-                    // ),
+                     if (ischat == true)
+                    Positioned(
+                      top: 2,
+                      right: 0,
+                      child: Container(
+                        height: 7,
+                        width: 7,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primary_color,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -51,7 +51,7 @@ class IconInputField extends StatelessWidget {
         onChange;
       },
       child: Container(
-        height: Get.height * 0.06,
+        // height: Get.height * 0.06,
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: AppColors.grey.withOpacity(0.4)),
           borderRadius: BorderRadius.circular(60),

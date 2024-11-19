@@ -6,12 +6,12 @@ class VendorNotificationsApi {
       String? garageId) async {
     String url = '$vbaseUrl/show/order/notification';
     var data = {
-      "garage_id": garageId,
+      // "garage_id": garageId,
     };
 
-    var response = await DioService.post(
+    var response = await DioService.get(
       url: url,
-      data: data,
+      // data: data,
     );
     return response;
   }

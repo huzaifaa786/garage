@@ -9,7 +9,12 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class ChartsCard extends StatelessWidget {
-  const ChartsCard({super.key, this.name, this.img, this.msg, this.ontap});
+  const ChartsCard({super.key, this.name, this.img, this.msg, this.ontap,
+    this.isunseen = false,
+  
+  });
+  final isunseen;
+
   final name;
   final img;
   final msg;
@@ -28,6 +33,18 @@ class ChartsCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Row(
             children: [
+                if (isunseen == true)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Container(
+                        height: 6,
+                        width: 6,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.darkprimary),
+                      ),
+                    ),
+                  Gap(7),
               Container(
                 width: 54.0,
                 height: 54.0,

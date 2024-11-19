@@ -23,6 +23,10 @@ class NotificationCard extends StatelessWidget {
   NotificationsModel? notifications;
   @override
   Widget build(BuildContext context) {
+    String categoryname
+     = notifications!.categoryName == null
+        ? notifications!.body.toString()
+        : notifications!.categoryName.toString();
     return GetBuilder<VNotificationController>(
       builder: (controller) => Padding(
         padding: const EdgeInsets.only(top: 12),
@@ -76,8 +80,12 @@ class NotificationCard extends StatelessWidget {
 
                         const Gap(8),
                         Column(
+
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            if(  notifications!.categoryName==null)
+                             Gap(10),
+
                             AppText(
                               title: notifications!.username.toString(),
                               fontWeight: FontWeight.w600,
@@ -114,15 +122,18 @@ class NotificationCard extends StatelessWidget {
                             //   ],
                             // ),
                             AppText(
-                              title: 'Ordered a'.tr +
+                              title:
+                              notifications!.categoryName!=null?
+                               'Ordered a'.tr +
                                   ' ' +
                                   '${notifications!.categoryName.toString()}'
-                                      .tr,
+                                      .tr:notifications!.title.toString(),
                               size: 11,
                               fontWeight: FontWeight.w600,
                               maxLines: 2,
                               overFlow: TextOverflow.ellipsis,
                             ),
+                            if(  notifications!.categoryName!=null)
                             Row(
                               children: [
                                 AppText(

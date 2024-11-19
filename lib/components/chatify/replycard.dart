@@ -41,15 +41,19 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
 
   @override
   Widget build(BuildContext context) {
+
     double? lat;
     double? lng;
 
     // Split location into lat and lng
     if (widget.location.isNotEmpty || widget.location != null) {
+      print('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww${widget.location}');
       List<String> latLng = widget.location.split(',');
       if (latLng.length == 2) {
         lat = double.tryParse(latLng[0].trim());
+        print('weeeeeeeeeeeeeeeeeee$lat');
         lng = double.tryParse(latLng[1].trim());
+        print('fffffffffffffffffffffffff$lng');
       }
     }
     return Align(

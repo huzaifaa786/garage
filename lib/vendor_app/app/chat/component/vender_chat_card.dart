@@ -16,8 +16,11 @@ class ChatCard extends StatelessWidget {
     this.name,
     this.img,
     this.ontap,
+    this.isunseen = false,
   });
   final name;
+  final isunseen;
+
   final img;
   final ontap;
 
@@ -36,6 +39,18 @@ class ChatCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (isunseen == true)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Container(
+                        height: 6,
+                        width: 6,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.darkprimary),
+                      ),
+                    ),
+                  Gap(7),
                   Container(
                     height: 50,
                     width: 50,
@@ -45,7 +60,7 @@ class ChatCard extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: SvgPicture.asset(
-                       'assets/images/avatar.svg',
+                        'assets/images/avatar.svg',
                         color: AppColors.primary,
                         fit: BoxFit.cover,
                       ),

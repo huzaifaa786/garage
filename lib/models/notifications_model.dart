@@ -28,7 +28,8 @@ class NotificationsModel {
       this.userId,
       this.status,
       this.order,
-      this.ordertype,this.requestOrder});
+      this.ordertype,
+      this.requestOrder});
 
   factory NotificationsModel.fromJson(Map<String, dynamic> json) {
     return NotificationsModel(
@@ -42,10 +43,16 @@ class NotificationsModel {
         userImage: json['sender'] != null ? json['sender']['image'] : '',
         userId: json['sender'] != null ? json['sender']['id'] : '',
         username: json['sender'] != null ? json['sender']['name'] : '',
-        categoryName: json['category'] != null ? json['category'] : '',
+        categoryName: json['order'] != null &&
+                json['order']['items'] != null &&
+                json['order']['items'].isNotEmpty&&
+                 (json['order']['items'] as List).isNotEmpty
+            ? json['order']['items'][0]['products']['category']['name']
+            : null,
         order:
             json['order'] != null ? OrdersModel.fromJson(json['order']) : null,
-             requestOrder:
-            json['request_order'] != null ? OrdersModel.fromJson(json['request_order']) : null);
+        requestOrder: json['request_order'] != null
+            ? OrdersModel.fromJson(json['request_order'])
+            : null);
   }
 }
