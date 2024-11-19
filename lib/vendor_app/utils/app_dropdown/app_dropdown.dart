@@ -54,7 +54,6 @@ class DropDownField<T> extends StatelessWidget {
                 items: items
                     .map((item) => DropdownMenuItem<T>(
                           value: item,
-                          
                           child: Text(
                             displayValue!(item),
                             style: TextStyle(
