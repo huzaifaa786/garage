@@ -53,6 +53,7 @@ class CartView extends StatelessWidget {
                         children: [
                           AppText(
                             title: "Items (".tr +
+                                " " +
                                 '${controller.cart!.items!.length} )',
                             size: 12,
                             fontWeight: FontWeight.w600,
