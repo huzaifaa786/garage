@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/models/notifications_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/app/chat_screen/vender_chat_detail_screen_view.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
@@ -23,8 +24,7 @@ class NotificationCard extends StatelessWidget {
   NotificationsModel? notifications;
   @override
   Widget build(BuildContext context) {
-    String categoryname
-     = notifications!.categoryName == null
+    String categoryname = notifications!.categoryName == null
         ? notifications!.body.toString()
         : notifications!.categoryName.toString();
     return GetBuilder<VNotificationController>(
@@ -80,11 +80,9 @@ class NotificationCard extends StatelessWidget {
 
                         const Gap(8),
                         Column(
-
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if(  notifications!.categoryName==null)
-                             Gap(10),
+                            if (notifications!.categoryName == null) Gap(10),
 
                             AppText(
                               title: notifications!.username.toString(),
@@ -122,42 +120,45 @@ class NotificationCard extends StatelessWidget {
                             //   ],
                             // ),
                             AppText(
-                              title:
-                              notifications!.categoryName!=null?
-                               'Ordered a'.tr +
-                                  ' ' +
-                                  '${notifications!.categoryName.toString()}'
-                                      .tr:notifications!.title.toString(),
+                              title: notifications!.categoryName != null
+                                  ? 'Ordered a'.tr +
+                                      ' ' +
+                                      '${notifications!.categoryName.toString()}'
+                                          .tr
+                                  : notifications!.title.toString(),
                               size: 11,
                               fontWeight: FontWeight.w600,
                               maxLines: 2,
                               overFlow: TextOverflow.ellipsis,
                             ),
-                            if(  notifications!.categoryName!=null)
-                            Row(
-                              children: [
-                                AppText(
-                                  title: 'click to accept, or reject order'.tr,
-                                  size: 11,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                if (notifications!.ordertype != 'Not specified')
-                                  GestureDetector(
-                                    onTap: () {
-                                      notifications!.ordertype != 'urgent'
-                                          ? Get.toNamed(AppRoutes.vorders_view)
-                                          : Get.toNamed(
-                                              AppRoutes.vurgent_orders_view);
-                                    },
-                                    child: AppText(
-                                      title: '  ' + 'view'.tr,
-                                      color: Colors.blue,
-                                      size: 11,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  )
-                              ],
-                            ),
+                            if (notifications!.categoryName != null)
+                              Row(
+                                children: [
+                                  AppText(
+                                    title:
+                                        'click to accept, or reject order'.tr,
+                                    size: 11,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  if (notifications!.ordertype !=
+                                      'Not specified')
+                                    GestureDetector(
+                                      onTap: () {
+                                        notifications!.ordertype != 'urgent'
+                                            ? Get.toNamed(
+                                                AppRoutes.vorders_view)
+                                            : Get.toNamed(
+                                                AppRoutes.vurgent_orders_view);
+                                      },
+                                      child: AppText(
+                                        title: '  ' + 'view'.tr,
+                                        color: Colors.blue,
+                                        size: 11,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
+                                ],
+                              ),
                             const Gap(6),
                             AppText(
                               title: controller.timeAgo(
@@ -170,27 +171,34 @@ class NotificationCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed(AppRoutes.chatScreen);
-                  },
-                  child: Container(
-                    height: 30,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: AppColors.lightPink),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: SvgPicture.asset(
-                        'assets/icons/chat.svg',
-                        fit: BoxFit.scaleDown,
-                        height: 20.0,
-                        width: 18.0,
-                        color: AppColors.darkprimary,
+                if (notifications!.sender != null)
+                  InkWell(
+                    onTap: () {
+                      // Get.toNamed(AppRoutes.chatScreen);
+                        Get.to(() => ChatDetailScreenView(
+                              id: notifications!.sender!.id.toString(),
+                              name: notifications!.sender!.name.toString(),
+                              profilePic:
+                                 '',
+                              screen: 'chat'));
+                    },
+                    child: Container(
+                      height: 30,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: AppColors.lightPink),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: SvgPicture.asset(
+                          'assets/icons/chat.svg',
+                          fit: BoxFit.scaleDown,
+                          height: 20.0,
+                          width: 18.0,
+                          color: AppColors.darkprimary,
+                        ),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

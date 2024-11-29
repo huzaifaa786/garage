@@ -49,8 +49,6 @@ class VChatController extends GetxController {
     };
 
     var response = await Api.execute(url: url, data: data);
-    print('AAAAAAAAAAAAAAAAaa');
-    print(response);
     LoadingHelper.dismiss();
     return response;
   }
@@ -147,28 +145,24 @@ class VChatController extends GetxController {
 
   void onEvent(PusherEvent event) {
     // var response = jsonDecode(event.data);
- var response;
-  if (event.data is String) {
-    response = jsonDecode(event.data);
-  } else if (event.data is Map) {
-    response = event.data;
-  } else {
-    print("Unexpected data type in event: ${event.data.runtimeType}");
-    return;
-  }
-    // response['message']['body'] = response['message']['message'];
-    // response['message']['created_at'] = response['message']['created_at'];
-
-    // massages.add(Msg(response['message']));
-     if (response['message'] is Map) {
-    response['message']['body'] = response['message']['message'];
-    response['message']['created_at'] = response['message']['created_at'];
-    massages.add(Msg(response['message']));
-    update();
-  } else {
-    print("Message key is missing or has an unexpected format.");
-  }
-  //
+    var response;
+    if (event.data is String) {
+      response = jsonDecode(event.data);
+    } else if (event.data is Map) {
+      response = event.data;
+    } else {
+      print("Unexpected data type in event: ${event.data.runtimeType}");
+      return;
+    }
+    if (response['message'] is Map) {
+      response['message']['body'] = response['message']['message'];
+      response['message']['created_at'] = response['message']['created_at'];
+      massages.add(Msg(response['message']));
+      update();
+    } else {
+      print("Message key is missing or has an unexpected format.");
+    }
+    //
     update();
   }
 
@@ -199,18 +193,18 @@ class VChatController extends GetxController {
     GetStorage box = GetStorage();
 
     String fileName = file?.path.split('/').last ?? '';
-    print('object ************');
- String location = lat.toString() + ',' + lng.toString();
+    String location = lat.toString() + ',' + lng.toString();
     developer.log(location);
     data = dio.FormData.fromMap({
       'api_token': box.read('api_token')!,
-      'message': massagecontroller.text.toString(),
+      // if (lat != null)
+       'message': massagecontroller.text.toString(),
       'type': 'user',
       'temporaryMsgId': main(),
       'id': activeUserId,
       'location': lat.toString() + ',' + lng.toString()
     });
-    print(data);
+    developer.log(data.toString());
     if (file != null) {
       data.files.add(
         MapEntry(
@@ -223,7 +217,7 @@ class VChatController extends GetxController {
     if (file != null) {
       file = null;
     }
-      if (lat != null) {
+    if (lat != null) {
       lat = null;
       lng = null;
       location = '';
@@ -237,8 +231,11 @@ class VChatController extends GetxController {
 
     massages.add(Msg(response['message']));
 
+    developer.log(massages.toString());
     update();
     ClearVariable();
+    lat = null;
+    lng = null;
   }
 
   fetchmassage(id) async {
@@ -246,35 +243,27 @@ class VChatController extends GetxController {
     var url = chatbaseUrl + '/fetchMessages';
     var data;
     GetStorage box = GetStorage();
-    print(box.read('api_token'));
 
     data = {
       'api_token': box.read('api_token')!,
       'id': id,
     };
-    print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx$data');
-
+developer.log(data.toString());
     var response = await Api.execute(url: url, data: data);
-    print('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww$response');
     massages = <Msg>[].obs;
     for (var van in response['messages']) {
-      print(van['attachment']);
-        String location = van['location'] ?? ''; // Ensure location exists
-    double? lat;
-    double? lng;
-     // Split location into lat and lng
-    if (location.isNotEmpty) {
-      List<String> latLng = location.split(',');
-      if (latLng.length == 2) {
-       lat = double.tryParse(latLng[0].trim());
-        lng = double.tryParse(latLng[1].trim());
+      String location = van['location'] ?? ''; // Ensure location exists
+      double? lat;
+      double? lng;
+      // Split location into lat and lng
+      if (location.isNotEmpty) {
+        List<String> latLng = location.split(',');
+        if (latLng.length == 2) {
+          lat = double.tryParse(latLng[0].trim());
+          lng = double.tryParse(latLng[1].trim());
+        }
       }
-    }
-      // massages.add(Msg(van));
-       massages.add(Msg(van, lat: lat, lng: lng));
-
-      print(massages.last.file_name);
-
+      massages.add(Msg(van, lat: lat, lng: lng));
       update();
     }
     LoadingHelper.dismiss();
@@ -303,10 +292,7 @@ class VChatController extends GetxController {
       'api_token': box.read('api_token')!,
     };
     var response = await Api.execute(url: url, data: data);
-    print("object#######################################################3");
     unseen = response['unseen'].toString();
-    print('unseen');
-    print(unseen);
     update();
     LoadingHelper.dismiss();
   }
