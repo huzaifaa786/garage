@@ -53,6 +53,8 @@ class DropDownWithAdd<T> extends StatelessWidget {
               : circularInputDecoration,
           child: DropdownButtonHideUnderline(
             child: DropdownButton2(
+              isDense:false ,
+              isExpanded: false,
               hint: AppText(
                 title: hint!,
                 size: 12,

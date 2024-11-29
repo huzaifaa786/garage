@@ -59,7 +59,7 @@ class VSignInView extends StatelessWidget {
                                   horizontal: 20, vertical: 12),
                               child: Column(
                                 children: [
-                                  const Gap(40),
+                                   Gap(40),
                                   AppText(
                                     title: 'Sign In'.tr,
                                     size: 28,
@@ -67,7 +67,7 @@ class VSignInView extends StatelessWidget {
                                     color: AppColors.heading_text_color,
                                     fontFamily: 'Ibarra Real Nova',
                                   ),
-                                  const Gap(25),
+                                   Gap(25),
                                   AppInputField(
                                     errorText: controller.emailError,
                                     hint: 'Email'.tr,
@@ -76,7 +76,7 @@ class VSignInView extends StatelessWidget {
                                       controller.validateFields("Email", val);
                                     },
                                   ),
-                                  const Gap(12),
+                                   Gap(12),
                                   AppInputField(
                                     errorText: controller.passwordError,
                                     hint: 'Password'.tr,
@@ -100,7 +100,7 @@ class VSignInView extends StatelessWidget {
                                             ),
                                     ),
                                   ),
-                                  const Gap(20),
+                                   Gap(20),
                                   GestureDetector(
                                     onTap: () {
                                       Get.toNamed(AppRoutes.forgot_password);
@@ -112,7 +112,7 @@ class VSignInView extends StatelessWidget {
                                       size: 12,
                                     ),
                                   ),
-                                  const Gap(20),
+                                   Gap(20),
                                   AppButton(
                                     title: 'Sign In'.tr,
                                     buttonColor: AppColors.primary_color,
@@ -120,7 +120,7 @@ class VSignInView extends StatelessWidget {
                                       controller.login();
                                     },
                                   ),
-                                  const Gap(30),
+                                   Gap(30),
                                   AppRichText(
                                     title: "Don’t have an account?".tr,
                                     buttonText: 'Sign Up'.tr,

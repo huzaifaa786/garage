@@ -212,8 +212,10 @@ class ProductFormView extends StatelessWidget {
                                   .contains(searchValue.toLowerCase());
                             },
                             onMenuStateChange: (isOpen) {
+                              
                               if (!isOpen) {
                                 controller.searchbrandController.clear();
+
                               }
                             },
                           ),
