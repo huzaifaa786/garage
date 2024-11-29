@@ -91,7 +91,7 @@ class EditProductView extends StatelessWidget {
                       Column(
                         children: [
                           Gap(20),
-                          DropDownWithAdd<BrandModel>(
+                          DropDownField<BrandModel>(
                             displayValue: (item) => item.name!,
                             items: controller.brands,
                             hint: 'Brands Name'.tr,
@@ -101,15 +101,15 @@ class EditProductView extends StatelessWidget {
                               controller.update();
                             },
                             errorText: '',
-                            onAddPressed: () {
-                              UiUtilites.AddProductDialog(
-                                context,
-                                controller.nameController,
-                                () {
-                                  controller.addBrand();
-                                },
-                              );
-                            },
+                            // onAddPressed: () {
+                            //   UiUtilites.AddProductDialog(
+                            //     context,
+                            //     controller.nameController,
+                            //     () {
+                            //       controller.addBrand();
+                            //     },
+                            //   );
+                            // },
                           ),
                         ],
                       ),

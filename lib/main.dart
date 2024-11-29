@@ -70,4 +70,3 @@ class MyHttpOverrides extends HttpOverrides {
           (X509Certificate cert, String dhost, int port) => true;
   }
 }
-

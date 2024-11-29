@@ -23,6 +23,7 @@ class VContactusController extends GetxController {
         phoneNo = contacts['phone_no'] ?? '';
         whatsappNo = contacts['whatsapp_no'] ?? '';
         instagram = contacts['instagram_handle'] ?? '';
+        linkedin = contacts['linkedin_handle'] ?? '';
       }
 
       update();
@@ -33,6 +34,8 @@ class VContactusController extends GetxController {
   String phoneNo = '';
   String whatsappNo = '';
   String instagram = '';
+  String linkedin = '';
+
   void openEmail(BuildContext context) async {
     final uri = Uri(scheme: 'mailto', path: email);
     if (await canLaunchUrl(uri)) {
@@ -67,6 +70,21 @@ class VContactusController extends GetxController {
       await launchUrl(uri);
     } else {
       UiUtilites.errorSnackbar('Error'.tr, 'Instagram account not found.'.tr);
+    }
+  }
+
+  void openLinkedIn(BuildContext context) async {
+    final uri = Uri.parse(linkedin);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+    print('error in url from backend side ');
+      final fallbackUri = Uri.parse("https://www.linkedin.com");
+      if (await canLaunchUrl(fallbackUri)) {
+        await launchUrl(fallbackUri);
+      } else {
+        UiUtilites.errorSnackbar('Error'.tr, 'LinkedIn profile not found.'.tr);
+      }
     }
   }
 }

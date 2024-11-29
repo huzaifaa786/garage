@@ -107,7 +107,9 @@ class SigninView extends StatelessWidget {
                                           txtweight: FontWeight.w600,
                                           onTap: () {
                                             // Get.toNamed(AppRoutes.otp);
-                                            controller.verifyNumber();
+                                            // controller.verifyNumber();
+                                            controller.login();
+
                                           },
                                         ),
                                         Gap(40),

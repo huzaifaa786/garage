@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/login_verify_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/verify_number_api.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 
@@ -39,12 +40,32 @@ class SigninController extends GetxController {
   verifyNumber() async {
     var response = await VerifyNumberApi.verifyNumber(phone: completePhone);
     if (response.isNotEmpty) {
-       Get.toNamed(AppRoutes.otp,
-          parameters: {'phone': completePhone.toString(),'auth':'signin'});
+      Get.toNamed(AppRoutes.otp,
+          parameters: {'phone': completePhone.toString(), 'auth': 'signin'});
     } else {
       Future.delayed(Duration(seconds: 1), () {
         Get.toNamed(AppRoutes.signup);
       });
     }
+  }
+
+  String? otp = '';
+  login() async {
+    // var response = await VerifyNumberApi.verifyNumber(phone: completePhone);
+    var response = await LoginVerifyApi.verifyNumber(phone: completePhone);
+    if (response.isNotEmpty) {
+      otp = response['user']['otp'].toString();
+
+      Get.toNamed(AppRoutes.otp, parameters: {
+        'phone': completePhone.toString(),
+        'auth': 'signin',
+        'otp': otp.toString()
+      });
+    }
+    //  else {
+    //   Future.delayed(Duration(seconds: 1), () {
+    //     Get.toNamed(AppRoutes.signup);
+    //   });
+    // }
   }
 }

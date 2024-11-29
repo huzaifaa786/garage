@@ -2,7 +2,7 @@ class BrandModel {
   int id;
   int? categoryid;
   int? vehicletypeid;
-  String? name;
+ final String name;
   String? price;
   String? image;
   String? description;
@@ -12,7 +12,7 @@ class BrandModel {
     required this.id,
     this.vehicletypeid,
     this.categoryid,
-    this.name,
+  required  this.name,
     this.image,
     this.description,
     this.price,

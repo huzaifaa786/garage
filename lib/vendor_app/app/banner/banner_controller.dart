@@ -59,8 +59,19 @@ class VBannerController extends GetxController {
       update();
       Future.delayed(Duration(seconds: 1), () {
         Get.back();
-        UiUtilites.successSnackbar(
-            'Banner added successfully'.tr, 'Success'.tr);
+        // UiUtilites.successSnackbar(
+        //     'Banner added successfully'.tr, 'Success'.tr);
+         UiUtilites.successAlertDialog(
+            context: Get.context,
+            onTap: () {
+              // Get.toNamed(AppRoutes.vsignin);
+              Get.back();
+            },
+            title: 'Thank you!'.tr,
+            description:
+                'Your banner has been placed successfully!'
+                    .tr,
+            buttontitle: 'Ok');
       });
     }
   }

@@ -38,7 +38,9 @@ class _VHomeViewState extends State<VHomeView> {
               await controller.countNotification();
               await controller.countUnSeenMsg();
             },
-            child: Scaffold(
+            child:
+            controller.garage != null?
+             Scaffold(
                 backgroundColor: const Color.fromARGB(255, 224, 223, 223),
                 appBar: AppBar(
                   toolbarHeight: 70,
@@ -314,7 +316,9 @@ class _VHomeViewState extends State<VHomeView> {
                           ))
                     ]),
                   ),
-                ))));
+                )
+                ): Text('')
+                ));
   }
 
   // void _openReviewBottomSheet(BuildContext context) {

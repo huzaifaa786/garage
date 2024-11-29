@@ -272,19 +272,22 @@ class SignupController extends GetxController {
       includes: formattedVehicleSections,
     );
     if (response.isNotEmpty) {
-      box.write('api_token', response['user']['token']);
+      // box.write('api_token', response['user']['token']);
       // box.write('user_id', response['user']['id']);
 
       box.write('user_type', 'user');
-
+      otp = response['user']['otp'].toString();
       box.write('number_verified', 'false');
       Get.toNamed(AppRoutes.otp, parameters: {
         'phone': completePhoneNumber.toString(),
-        'auth': 'signup'
+        'auth': 'signup',
+        'otp':otp.toString()
       });
       update();
     }
   }
+
+  String? otp = '';
 
 ///////////////
 ///////////////

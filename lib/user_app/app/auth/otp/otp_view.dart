@@ -137,8 +137,9 @@ class OtpView extends StatelessWidget {
                       onCompleted: (v) {
                         // debugPrint("Completed");
                          controller.otpCode = v;
-                        controller.verifyOtpCode();
-                        debugPrint("Completed");
+                        // controller.verifyOtpCode();
+                        controller.veryifyTestCode();
+                        
 
                       },
                       onChanged: (value) {

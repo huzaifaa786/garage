@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
@@ -19,11 +20,13 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
+import 'package:mobilegarage/vendor_app/utils/app_dropdown/brand_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/dropdown_with_add.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -68,7 +71,8 @@ class ProductFormView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: AppText(
                         title:
-                            '(Note : prices will be final and if you ever need to change the price contact the owner.)'.tr,
+                            '(Note : prices will be final and if you ever need to change the price contact the owner.)'
+                                .tr,
                         size: 11,
                         fontWeight: FontWeight.w400,
                         color: AppColors.grey,
@@ -92,16 +96,83 @@ class ProductFormView extends StatelessWidget {
                         .contains(controller.selectedCategoryId))
                       Column(
                         children: [
+                          // Gap(20),
+                          ////////////////////////
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     controller.toggleisExpanded();
+                          //   },
+                          //   child: Container(
+                          //     height: 55,
+                          //     width: Get.width,
+                          //     decoration: controller.brandserror.isNotEmpty
+                          //         ? circularErrorInputDecoration
+                          //         : circularInputDecoration,
+                          //     child: Padding(
+                          //       padding:
+                          //           const EdgeInsets.symmetric(horizontal: 20),
+                          //       child: Row(
+                          //         mainAxisAlignment:
+                          //             MainAxisAlignment.spaceBetween,
+                          //         children: [
+                          //           AppText(
+                          //             title: controller.selectedName,
+                          //             size: 12,
+                          //             fontWeight: FontWeight.w400,
+                          //           ),
+                          //           Icon(Icons.keyboard_arrow_down_sharp)
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          // Gap(20),
+                          // if (controller.isExpanded)
+                          //   Container(
+                          //     width: Get.width*0.6,
+                          //     // height: 55,
+                          //     decoration: circularInputDecoration,
+                          //     child: ListView.builder(
+                          //       shrinkWrap: true,
+                          //       physics: NeverScrollableScrollPhysics(),
+                          //       itemCount: controller.brands.length,
+                          //       itemBuilder: (context, index) {
+                          //         final brand = controller.brands[index];
+                          //         return GestureDetector(
+                          //           onTap: () {
+                          //             controller.setSelectedBrands(brand);
+                          //             controller.toggleisExpanded();
+                          //           },
+                          //           child: Padding(
+                          //             padding: const EdgeInsets.symmetric(
+                          //                 vertical: 10, horizontal: 20),
+                          //             child: Row(
+                          //               children: [
+                          //                 AppText(
+                          //                   title: brand.name.toString(),
+                          //                   size: 12,
+                          //                   fontWeight: FontWeight.w400,
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         );
+                          //       },
+                          //     ),
+                          //   ),
+                          //////////////////////////
                           Gap(20),
                           DropDownWithAdd<BrandModel>(
-                            displayValue: (item) => item.name!,
+                            displayValue: (item) => item.name,
                             items: controller.brands,
                             hint: 'Brands Name'.tr,
+                            // selectedValue: controller.selectedBrand??controller.brands.first,
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
                               controller.validateFields("Brand",
                                   controller.selectedBrandId.toString());
+                              // controller.selectedBrand =value;s
                               controller.update();
                             },
                             errorText: controller.brandError,
@@ -113,6 +184,37 @@ class ProductFormView extends StatelessWidget {
                                   controller.addBrand();
                                 },
                               );
+                            },
+                            ///////
+                            searchController: controller.searchbrandController,
+                            searchInnerWidget: Container(
+                              padding: const EdgeInsets.all(8),
+                              child: TextFormField(
+                                controller: controller.searchbrandController,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 6,
+                                  ),
+                                  hintText: 'Search brands'.tr,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            searchMatchFn: (item, searchValue) {
+                              if (item.value == null) return true;
+                              final brand = item.value as BrandModel;
+                              return brand.name
+                                  .toLowerCase()
+                                  .contains(searchValue.toLowerCase());
+                            },
+                            onMenuStateChange: (isOpen) {
+                              if (!isOpen) {
+                                controller.searchbrandController.clear();
+                              }
                             },
                           ),
                         ],
@@ -298,7 +400,6 @@ class ProductFormView extends StatelessWidget {
                                 errorText: controller.oilproductTypeError,
                               ),
                               Gap(20),
-                              
                               DropDownField<OilVolumeModel>(
                                 displayValue: (item) => item.volume!,
                                 items: controller.oilVolumes,

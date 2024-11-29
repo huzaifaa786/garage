@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/vender_apis/products/add_product_apis/add_product_api.dart';
@@ -224,10 +225,10 @@ class ProductFormController extends GetxController {
   void setSelectedBrands(BrandModel? brands) async {
     selectedBrand = brands;
     selectedBrandId = brands?.id;
-
     update();
   }
 
+TextEditingController searchbrandController= TextEditingController();
   ProductDetailModel? productdetails;
 //
   List<BatteryProductTypeModel> producttypes = [];
@@ -1237,12 +1238,12 @@ class ProductFormController extends GetxController {
               Get.offAllNamed(AppRoutes.vhome);
             },
             title: 'Done!');
-      //       Future.delayed(Duration(seconds: 3), () {
-      //   if (Navigator.canPop(Get.context!)) {
-      //    Get.offAllNamed(AppRoutes.vhome);
+        //       Future.delayed(Duration(seconds: 3), () {
+        //   if (Navigator.canPop(Get.context!)) {
+        //    Get.offAllNamed(AppRoutes.vhome);
 
-      //   }
-      // });
+        //   }
+        // });
         update();
       }
     }
@@ -1335,5 +1336,14 @@ class ProductFormController extends GetxController {
       default:
         return '';
     }
+  }
+
+  String brandserror = '';
+  String selectedName = 'Brands Name';
+  bool isExpanded = false;
+
+   toggleisExpanded() {
+    isExpanded = !isExpanded;
+    update();
   }
 }

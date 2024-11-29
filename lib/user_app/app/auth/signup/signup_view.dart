@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -130,17 +131,31 @@ class SignupView extends StatelessWidget {
                                         style: TextStyle(
                                             decoration:
                                                 TextDecoration.underline,
-                                            fontWeight: FontWeight.bold)),
+                                            fontWeight: FontWeight.bold),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Get.toNamed(
+                                                AppRoutes.termscondition);
+                                          }),
                                     TextSpan(
-                                      text: '\tand'.tr,
-                                    ),
+                                        text: '\tand'.tr,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Get.toNamed(
+                                                AppRoutes.termscondition);
+                                          }),
                                     TextSpan(
                                         text: '\tconditions'.tr,
                                         style: TextStyle(
                                             wordSpacing: 1,
                                             decoration:
                                                 TextDecoration.underline,
-                                            fontWeight: FontWeight.bold)),
+                                            fontWeight: FontWeight.bold),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Get.toNamed(
+                                                AppRoutes.termscondition);
+                                          }),
                                   ],
                                 ),
                               ),

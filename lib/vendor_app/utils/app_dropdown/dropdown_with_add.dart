@@ -4,6 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
@@ -18,7 +19,12 @@ class DropDownWithAdd<T> extends StatelessWidget {
     this.onChanged,
     this.errorText,
     this.displayValue,
-    this.onAddPressed, // Add a callback for "Add" button
+    this.onAddPressed,
+    ////////
+    this.searchController,
+    this.searchInnerWidget,
+    this.searchMatchFn,
+    this.onMenuStateChange,
   });
 
   final List<T> items;
@@ -27,7 +33,13 @@ class DropDownWithAdd<T> extends StatelessWidget {
   final ValueChanged<T?>? onChanged;
   final String Function(T)? displayValue;
   final String? errorText;
-  final VoidCallback? onAddPressed; // Add this for "Add" button functionality
+  final VoidCallback? onAddPressed;
+
+  // Searchable dropdown specific parameters
+  final TextEditingController? searchController;
+  final Widget? searchInnerWidget;
+  final bool Function(dynamic item, String searchValue)? searchMatchFn;
+  final void Function(bool isOpen)? onMenuStateChange;
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +75,15 @@ class DropDownWithAdd<T> extends StatelessWidget {
                           ),
                         ))
                     .toList(),
-                DropdownMenuItem<T>(
+                DropdownMenuItem<BrandModel>(
                   value: null,
-                  child: Container(
-                    height: Get.height,
-                    width: Get.width,
-                    child:
-                        Icon(Icons.add_circle_outline_sharp, color: Colors.red),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.add_circle_outline_sharp, color: Colors.white),
+                      SizedBox(width: 8),
+                      Text("Add Brand", style: TextStyle(color: Colors.white)),
+                    ],
                   ),
                 ),
               ],
@@ -79,7 +93,7 @@ class DropDownWithAdd<T> extends StatelessWidget {
                 if (value == null && onAddPressed != null) {
                   onAddPressed!(); // Trigger "Add" button action
                 } else if (onChanged != null) {
-                  onChanged!(value);
+                  onChanged!(value as T);
                 }
               },
               selectedItemBuilder: (BuildContext context) {
@@ -94,6 +108,12 @@ class DropDownWithAdd<T> extends StatelessWidget {
                   );
                 }).toList();
               },
+              dropdownSearchData: DropdownSearchData(
+                  searchController: searchController,
+                  searchInnerWidget: searchInnerWidget,
+                  searchMatchFn: searchMatchFn,
+                  searchInnerWidgetHeight: 70),
+              onMenuStateChange: onMenuStateChange,
               menuItemStyleData: MenuItemStyleData(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 selectedMenuItemBuilder: (context, child) =>

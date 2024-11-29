@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl_phone_field/countries.dart';
-import 'package:intl_phone_field/phone_number.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingController extends GetxController {
@@ -17,7 +14,7 @@ class SettingController extends GetxController {
   String phoneNo = '+923455453765';
   String whatsappNo = '+923455453765';
   String instagram = '@babarAzam';
-
+ String linkedin = 'https://www.linkedin.com/in/your-profile/';
   void openEmail() async {
     final uri = Uri(scheme: 'mailto', path: email);
     if (await canLaunchUrl(uri)) {
@@ -41,6 +38,12 @@ class SettingController extends GetxController {
 
   void openInstagram() async {
     final uri = Uri.parse("https://www.instagram.com/$instagram");
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+   void openLinkedIn() async {
+    final uri = Uri.parse(linkedin);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }

@@ -224,12 +224,88 @@ class UiUtilites {
         );
       },
     );
-
-    // Future.delayed(Duration(seconds: 3), () {
-    //   if (Navigator.canPop(context)) {
-    //     Navigator.pop(context);
-    //   }
-    // });
+  }
+  static successRegisterAlertDialog(
+      {required context,
+      required onTap,
+      required title,
+      required buttontitle,
+      required description,
+      required verificationnumber,
+      }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            backgroundColor: AppColors.white_color,
+            surfaceTintColor: AppColors.white_color,
+            content: Wrap(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  width: Get.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(ImageConst.success_ic),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: AppText(
+                          title: '$title',
+                          size: 14,
+                          fontWeight: FontWeight.w700,
+                          textAlign: TextAlign.center,
+                          color: AppColors.darkprimary,
+                        ),
+                      ),
+                        Gap(10),
+                      AppText(
+                        title: 'Your Verification number',
+                        size: 11,
+                        textAlign: TextAlign.center,
+                        color: AppColors.hint_text_color,
+                      ),
+                      Gap(10),
+                      AppText(
+                          title: '$verificationnumber',
+                          size: 14,
+                          fontWeight: FontWeight.w700,
+                          textAlign: TextAlign.center,
+                          color: AppColors.darkprimary,
+                        ),
+                      Gap(10),
+                       Padding(
+                         padding: const EdgeInsets.symmetric(horizontal:  8.0),
+                         child: AppText(
+                          title: '$description',
+                          size: 12,
+                          textAlign: TextAlign.center,
+                          color: AppColors.hint_text_color,
+                                               ),
+                       ),
+                    
+                      Gap(20),
+                      AppButton(
+                        height: 45,
+                        title: '$buttontitle',
+                        buttonColor: AppColors.primary_color.withOpacity(0.1),
+                        titleColor: AppColors.primary_color,
+                        ontap: onTap,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   static pendingApprovalAlertDialog({

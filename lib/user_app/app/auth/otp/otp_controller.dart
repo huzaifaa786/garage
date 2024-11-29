@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/login_verify_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/phone_verify_api.dart';
+import 'package:mobilegarage/apis/user_apis/auth_apis/verify_otp_test_api.dart';
 import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
@@ -19,13 +20,31 @@ class OtpController extends GetxController {
     super.onInit();
     phone = Get.parameters['phone'];
     authmethod = Get.parameters['auth'];
-
+    otp = Get.parameters['otp'];
+    otpController.text = otp.toString();
+    update();
+   await veryifyTestCode();
     print(phone);
-    await verifyPhone();
+    print(otp);
+
+    // await verifyPhone();
+  }
+
+  veryifyTestCode() async {
+    var response = await VerifyOtpTestApi.verifyNumber(phone: phone, otp: otp);
+    if (response.isNotEmpty) {
+        box.write('api_token', response['user']['token']);
+        box.write('number_verified', 'true');
+        box.write('user_type', 'user');
+        box.write('user_id', response['user']['id']);
+
+        Get.offAllNamed(AppRoutes.main);
+    }
   }
 
   String? phone = '';
   String? authmethod = '';
+  String? otp = '';
 
   String otpCode = '';
   GetStorage box = GetStorage();

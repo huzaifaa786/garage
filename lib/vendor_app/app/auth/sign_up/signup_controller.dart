@@ -300,12 +300,14 @@ class VSignUpController extends GetxController {
         // box.write('api_token', response['garage']['token']);
         // box.write('user_type', 'vendor');
         // print(response['garage']['token']);
-        UiUtilites.successAlertDialog(
+    print('qqqqqqqqqqqqqqqqqqq${response['garage']['garage']['id']}');    
+        UiUtilites.successRegisterAlertDialog(
             context: Get.context,
             onTap: () {
               Get.toNamed(AppRoutes.vsignin);
             },
             title: 'Thank you!'.tr,
+            verificationnumber:response['garage']['garage']['id'] ,
             description:
                 'You have submitted your application successfully and it’s pending approval.'
                     .tr,

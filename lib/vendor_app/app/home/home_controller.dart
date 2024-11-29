@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:mobilegarage/apis/chatify/unseen_count_msg_api.dart';
 import 'package:mobilegarage/apis/chatify/user_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_review_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/garage_status_api.dart';

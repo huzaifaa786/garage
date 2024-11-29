@@ -72,6 +72,12 @@ class _VContactusViewState extends State<VContactusView> {
                             ontap: () {
                               controller.openPhone(context);
                             },
+                          ),
+                          ContactBox(
+                            icon: 'assets/icons/linkedln.svg',
+                            ontap: () {
+                              controller.openLinkedIn(context);
+                            },
                           )
                         ],
                       ),

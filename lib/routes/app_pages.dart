@@ -430,7 +430,7 @@ class AppPages {
     //* {Product Form View Route}
     GetPage(
       name: AppRoutes.vproduct_form_view,
-      page: () => const ProductFormView(),
+      page: () =>  ProductFormView(),
       binding: ProductFormBinding(),
     ),
 
