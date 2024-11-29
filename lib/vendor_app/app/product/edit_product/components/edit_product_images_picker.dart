@@ -120,27 +120,12 @@ class EditProductImagesPicker extends StatelessWidget {
                                             right: -2,
                                             child: InkWell(
                                               onTap: () {
-                                                // UiUtilites.confirmAlertDialog(
-                                                //   context: context,
-                                                //   onCancelTap: () {
-                                                //     Get.back();
-                                                //   },
-                                                //   onConfirmTap: () {
-                                                //     controller.deleteimage(controller.product!.images![i].id.toString(),
-                                                //         controller.product!.id.toString());
-                                                //   },
-                                                //   title:
-                                                //       'Are you sure you want to delete this Image?'.tr,
-                                                //   cancelText: 'Cancel'.tr,
-                                                //   confirmText: 'Delete'.tr,
-                                                // );
-
-                                                UiUtilites
-                                                    .showConfirmationDialog(
-                                                  false,
-                                                  'Are you sure you want\n to delete this Image?'
-                                                      .tr,
-                                                  onConfirm: () async {
+                                                UiUtilites.confirmAlertDialog(
+                                                  context: context,
+                                                  onCancelTap: () {
+                                                    Get.back();
+                                                  },
+                                                  onConfirmTap: () {
                                                     controller.deleteimage(
                                                         controller.product!
                                                             .images![i].id
@@ -151,7 +136,30 @@ class EditProductImagesPicker extends StatelessWidget {
                                                         .removeAt(i);
                                                     controller.update();
                                                   },
+                                                  title:
+                                                      'Are you sure you want to delete this Image?'
+                                                          .tr,
+                                                  cancelText: 'No'.tr,
+                                                  confirmText: 'Yes'.tr,
                                                 );
+
+                                                // UiUtilites
+                                                //     .showConfirmationDialog(
+                                                //   false,
+                                                //   'Are you sure you want\n to delete this Image?'
+                                                //       .tr,
+                                                //   onConfirm: () async {
+                                                //     controller.deleteimage(
+                                                //         controller.product!
+                                                //             .images![i].id
+                                                //             .toString(),
+                                                //         controller.product!.id
+                                                //             .toString());
+                                                //     controller.images
+                                                //         .removeAt(i);
+                                                //     controller.update();
+                                                //   },
+                                                // );
                                               },
                                               child: Icon(
                                                 Icons.cancel,

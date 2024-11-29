@@ -182,17 +182,36 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        UiUtilites.showConfirmationDialog(
-                                          false,
-                                          'Are you Sure that you want\n to log out ?'
-                                              .tr,
-                                          onConfirm: () async {
+                                        // UiUtilites.showConfirmationDialog(
+                                        //   false,
+                                        //   'Are you Sure that you want\n to log out ?'
+                                        //       .tr,
+                                        //   onConfirm: () async {
+                                        //     GetStorage box = GetStorage();
+                                        //     await box.remove('api_token');
+                                        //     controller.update();
+                                        //     Get.offAllNamed(
+                                        //         AppRoutes.selectside);
+                                        //   },
+                                        // );
+
+                                        UiUtilites.confirmAlertDialog(
+                                          context: context,
+                                          onCancelTap: () {
+                                            Get.back();
+                                          },
+                                          onConfirmTap: () async {
                                             GetStorage box = GetStorage();
                                             await box.remove('api_token');
                                             controller.update();
                                             Get.offAllNamed(
                                                 AppRoutes.selectside);
                                           },
+                                          title:
+                                              'Are you Sure that you want\n to log out ?'
+                                                  .tr,
+                                          cancelText: 'No'.tr,
+                                          confirmText: 'Yes'.tr,
                                         );
                                       },
                                       child: Container(
@@ -202,7 +221,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                               BorderRadius.circular(50),
                                         ),
                                         height: 49,
-                                        width: Get.width*0.4,
+                                        width: Get.width * 0.4,
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Row(
@@ -224,7 +243,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                                     child: Image.asset(
                                                         'assets/images/loggout.png'),
                                                   )),
-                                                  Gap(8),
+                                              Gap(8),
                                               AppText(
                                                 title: 'Log Out'.tr,
                                                 size: 12,

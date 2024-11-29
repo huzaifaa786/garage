@@ -162,17 +162,34 @@ class _AccountViewState extends State<AccountView> {
                               buttonWidth: Get.width * 0.77,
                               height: Get.height * 0.07,
                               onTap: () {
-                                UiUtilites.showConfirmationDialog(
-                                  false,
-                                  'Are you Sure that you want\n to log out ?'
-                                      .tr,
-                                  onConfirm: () async {
+                                UiUtilites.confirmAlertDialog(
+                                  context: context,
+                                  onCancelTap: () {
+                                    Get.back();
+                                  },
+                                  onConfirmTap: () async {
                                     GetStorage box = GetStorage();
                                     await box.remove('api_token');
                                     await box.remove('user_type');
                                     Get.offAllNamed(AppRoutes.selectside);
                                   },
+                                  title:
+                                      'Are you Sure that you want\n to log out ?'
+                                          .tr,
+                                  cancelText: 'No'.tr,
+                                  confirmText: 'Yes'.tr,
                                 );
+                                // UiUtilites.showConfirmationDialog(
+                                //   false,
+                                //   'Are you Sure that you want\n to log out ?'
+                                //       .tr,
+                                //   onConfirm: () async {
+                                //     GetStorage box = GetStorage();
+                                //     await box.remove('api_token');
+                                //     await box.remove('user_type');
+                                //     Get.offAllNamed(AppRoutes.selectside);
+                                //   },
+                                // );
                               },
                             ),
                             const Gap(25),

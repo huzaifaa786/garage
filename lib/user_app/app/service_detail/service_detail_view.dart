@@ -75,15 +75,32 @@ class ServiceDetailView extends StatelessWidget {
                                               .toString()
                                           : product.brands!.name.toString(),
                                       onTap: () {
-                                        UiUtilites.showConfirmationDialog(
-                                          false,
-                                          'Are you Sure that you want\n to Add this product to cart ?'
-                                              .tr,
-                                          onConfirm: () async {
+                                        // UiUtilites.showConfirmationDialog(
+                                        //   false,
+                                        //   'Are you Sure that you want\n to Add this product to cart ?'
+                                        //       .tr,
+                                        //   onConfirm: () async {
+                                        //     controller.addToCart(
+                                        //         product.id.toString(),
+                                        //         productextra);
+                                        //   },
+                                        // );
+
+                                        UiUtilites.confirmAlertDialog(
+                                          context: context,
+                                          onCancelTap: () {
+                                            Get.back();
+                                          },
+                                          onConfirmTap: () async {
                                             controller.addToCart(
                                                 product.id.toString(),
                                                 productextra);
                                           },
+                                          title:
+                                              'Are you Sure that you want\n to Add this product to cart ?'
+                                                  .tr,
+                                          cancelText: 'No'.tr,
+                                          confirmText: 'Yes'.tr,
                                         );
                                       },
                                     );

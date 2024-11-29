@@ -278,11 +278,11 @@ class GarageView extends StatelessWidget {
                               height: Get.height * 0.05,
                               child: GestureDetector(
                                 onTap: () {
-                                   Get.to(() => ChatScreenView(
-                                          id: controller.garage!.id.toString(),
-                                          name:controller.garage!.name.toString(),
-                                          profilePic: '',
-                                          screen: 'chat'));
+                                  Get.to(() => ChatScreenView(
+                                      id: controller.garage!.id.toString(),
+                                      name: controller.garage!.name.toString(),
+                                      profilePic: '',
+                                      screen: 'chat'));
                                 },
                                 child: Container(
                                   height: Get.height * 0.045,
@@ -333,14 +333,28 @@ class GarageView extends StatelessWidget {
                           controller.productextraId != '')
                         InkWell(
                           onTap: () {
-                            UiUtilites.showConfirmationDialog(
-                              false,
-                              'Are you Sure that you want\n to Add this product to cart ?'
-                                  .tr,
-                              onConfirm: () async {
+                            UiUtilites.confirmAlertDialog(
+                              context: context,
+                              onCancelTap: () {
+                                Get.back();
+                              },
+                              onConfirmTap: () async {
                                 controller.addToCart();
                               },
+                              title:
+                                  'Are you Sure that you want\n to Add this product to cart ?'
+                                      .tr,
+                              cancelText: 'No'.tr,
+                              confirmText: 'Yes'.tr,
                             );
+                            // UiUtilites.showConfirmationDialog(
+                            //   false,
+                            //   'Are you Sure that you want\n to Add this product to cart ?'
+                            //       .tr,
+                            //   onConfirm: () async {
+                            //     controller.addToCart();
+                            //   },
+                            // );
                           },
                           child: GarageProductCard(),
                         ),
