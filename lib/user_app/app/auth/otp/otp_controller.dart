@@ -23,7 +23,7 @@ class OtpController extends GetxController {
     otp = Get.parameters['otp'];
     otpController.text = otp.toString();
     update();
-   await veryifyTestCode();
+  //  await veryifyTestCode();
     print(phone);
     print(otp);
 

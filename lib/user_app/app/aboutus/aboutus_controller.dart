@@ -10,6 +10,7 @@ class AboutusController extends GetxController {
   String? lng;
   String? location;
   String? city;
+  String? ardes;
 
   @override
   void onInit() {
@@ -21,6 +22,8 @@ class AboutusController extends GetxController {
     var response = await AboutusApi.getAboutUs();
     if (response.isNotEmpty && response['aboutus'] != null) {
       des = response['aboutus']['des'];
+      ardes = response['aboutus']['ar_des'];
+
       lat = response['aboutus']['lat'];
       lng = response['aboutus']['lng'];
 

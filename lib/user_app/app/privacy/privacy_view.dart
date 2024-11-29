@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/privacy/privacy_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -46,6 +47,7 @@ class _PrivacyViewState extends State<PrivacyView> {
 
   @override
   Widget build(BuildContext context) {
+        GetStorage box = GetStorage();
     return GetBuilder<PrivacyController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
@@ -92,7 +94,7 @@ class _PrivacyViewState extends State<PrivacyView> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: AppText(
-                          title: policy['description'],
+                          title:  box.read('locale') == 'ar'?policy['ar_description']:policy['description'],
                           size: 10,
                           fontWeight: FontWeight.w400,
                           height: 1.5,

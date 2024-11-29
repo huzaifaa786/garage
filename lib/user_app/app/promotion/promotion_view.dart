@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/promotion/promotion_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -18,6 +19,8 @@ class PromotionView extends StatefulWidget {
 class _PromotionViewState extends State<PromotionView> {
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
+
     return GetBuilder<PromotionController>(
       autoRemove: false,
       builder: (controller) => Scaffold(
@@ -71,7 +74,9 @@ class _PromotionViewState extends State<PromotionView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AppText(
-                                title: promotions['promotions'],
+                                title:
+                                
+                                box.read('locale') == 'ar'? promotions['ar_promotions']:promotions['promotions'],
                                 size: 10,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.primary,

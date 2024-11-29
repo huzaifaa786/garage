@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/aboutus/aboutus_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -19,6 +20,7 @@ class AboutusView extends StatefulWidget {
 class _TermsConditionsViewState extends State<AboutusView> {
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return GetBuilder<AboutusController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
@@ -61,7 +63,9 @@ class _TermsConditionsViewState extends State<AboutusView> {
                   ),
                   Gap(25),
                   AppText(
-                    title: controller.des ?? '',
+                    title: box.read('locale') == 'ar'
+                        ? controller.ardes ?? ''
+                        : controller.des ?? '',
                     size: 10,
                     fontWeight: FontWeight.w400,
                     height: 1.5,

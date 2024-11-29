@@ -84,7 +84,7 @@ class DropDownWithAdd<T> extends StatelessWidget {
                     children: [
                       Icon(Icons.add_circle_outline_sharp, color: Colors.white),
                       SizedBox(width: 8),
-                      Text("Add Brand", style: TextStyle(color: Colors.white)),
+                      Text("Add".tr, style: TextStyle(color: Colors.white)),
                     ],
                   ),
                 ),

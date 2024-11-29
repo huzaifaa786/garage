@@ -59,12 +59,15 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
                                 garage: orders.garage,
                               );
                             })
-                        : Center(
-                            child: AppText(
-                              title: 'No order Found!',
-                              color: AppColors.darkGrey,
+                        : SizedBox(
+                          height: Get.height*0.7,
+                          child: Center(
+                              child: AppText(
+                                title: 'No order Found!'.tr,
+                                color: AppColors.darkGrey,
+                              ),
                             ),
-                          ),
+                        ),
                   ],
                 ),
               ),

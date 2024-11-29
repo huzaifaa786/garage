@@ -69,8 +69,8 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                   widget.msg == '' || widget.msg == null
                       ? Column(
                          crossAxisAlignment: widget.sender == true
-                    ? CrossAxisAlignment.start
-                    : CrossAxisAlignment.end,
+                             ? CrossAxisAlignment.start
+                                : CrossAxisAlignment.end,
                           children: [
                             InkWell(
                               onTap: () async {

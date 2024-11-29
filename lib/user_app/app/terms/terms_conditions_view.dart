@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/terms/terms_conditions_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -45,6 +46,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return GetBuilder<TermsConditionsController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
@@ -91,7 +93,9 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: AppText(
-                          title: term['description'],
+                          title: box.read('locale') == 'ar'
+                              ? term['ar_description']
+                              : term['description'],
                           size: 10,
                           fontWeight: FontWeight.w400,
                           height: 1.5,

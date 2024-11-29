@@ -300,7 +300,6 @@ class VSignUpController extends GetxController {
         // box.write('api_token', response['garage']['token']);
         // box.write('user_type', 'vendor');
         // print(response['garage']['token']);
-    print('qqqqqqqqqqqqqqqqqqq${response['garage']['garage']['id']}');    
         UiUtilites.successRegisterAlertDialog(
             context: Get.context,
             onTap: () {

@@ -477,8 +477,22 @@ class LocaleString extends Translations {
           'No Review found!': 'No Review found!',
           "A vehicle is already selected for this user.":
               "A vehicle is already selected for this user.",
+          'No order Found!': 'No order Found!',
+          'Your Verification number': 'Your Verification number',
+          'Your banner has been placed successfully!':
+              'Your banner has been placed successfully!',
+          'Add Brand': 'Add Brand',
+          'Search brands': 'Search brands',
+            'Add': 'Add',
         },
         'ar_AE': {
+         'Add': 'إضافة' ,
+          'Search brands': 'البحث عن العلامات التجارية',
+          'Add Brand': 'إضافة علامة تجارية',
+          'Your banner has been placed successfully!':
+              'تم وضع البانر الخاص بك بنجاح!',
+          'Your Verification number': 'رقم التحقق الخاص بك',
+          'No order Found!': 'لا توجد طلبات!',
           'No Review found!': 'لم يتم العثور على أي مراجعة!',
           'Your order has been Rejected': 'تم رفض طلبك',
           'View_order': 'عرض الطلب',

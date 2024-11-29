@@ -191,20 +191,20 @@ class VChatController extends GetxController {
     var url = chatbaseUrl + '/sendMessage';
     var data;
     GetStorage box = GetStorage();
-
     String fileName = file?.path.split('/').last ?? '';
     String location = lat.toString() + ',' + lng.toString();
     developer.log(location);
     data = dio.FormData.fromMap({
       'api_token': box.read('api_token')!,
-      // if (lat != null)
-       'message': massagecontroller.text.toString(),
+      if (lat == null && file == null)
+        'message': massagecontroller.text.toString(),
       'type': 'user',
       'temporaryMsgId': main(),
       'id': activeUserId,
-      'location': lat.toString() + ',' + lng.toString()
+      if (file == null)
+        if (lat != null) 'location': lat.toString() + ',' + lng.toString()
     });
-    developer.log(data.toString());
+    // developer.log(data.toString());
     if (file != null) {
       data.files.add(
         MapEntry(
@@ -213,10 +213,9 @@ class VChatController extends GetxController {
         ),
       );
     }
-    ClearVariable();
-    if (file != null) {
-      file = null;
-    }
+    if (lat == null && file == null) ClearVariable();
+    if (file != null) file = null;
+
     if (lat != null) {
       lat = null;
       lng = null;
@@ -233,9 +232,6 @@ class VChatController extends GetxController {
 
     developer.log(massages.toString());
     update();
-    ClearVariable();
-    lat = null;
-    lng = null;
   }
 
   fetchmassage(id) async {
@@ -248,7 +244,7 @@ class VChatController extends GetxController {
       'api_token': box.read('api_token')!,
       'id': id,
     };
-developer.log(data.toString());
+    developer.log(data.toString());
     var response = await Api.execute(url: url, data: data);
     massages = <Msg>[].obs;
     for (var van in response['messages']) {

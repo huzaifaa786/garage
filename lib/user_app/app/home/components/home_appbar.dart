@@ -10,15 +10,16 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class HomeAppbar extends StatelessWidget {
   const HomeAppbar(
-      {super.key, this.onNotificationtap, this.isnotification = true,
+      {super.key,
+      this.onNotificationtap,
+      this.isnotification = true,
       this.ischat = false,
-      this.onChatntap
-      });
+      this.onChatntap});
   final onNotificationtap;
   final onChatntap;
 
   final isnotification;
-final  ischat;
+  final ischat;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -43,27 +44,27 @@ final  ischat;
                         padding: const EdgeInsets.all(6),
                         child: SvgPicture.asset('assets/images/bell.svg'),
                       ),
-                      if(isnotification==true)
-                      Positioned(
-                        top: 3,
-                        right: 0,
-                        child: Container(
-                          height: 7,
-                          width: 7,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.primary_color,
+                      if (isnotification == true)
+                        Positioned(
+                          top: 3,
+                          right: 0,
+                          child: Container(
+                            height: 7,
+                            width: 7,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.primary_color,
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ),
                 Gap(20),
                 GestureDetector(
                   onTap: onChatntap,
-                  child: Stack(
-                    children:[ Container(
+                  child: Stack(children: [
+                    Container(
                       height: 35,
                       width: 35,
                       decoration: BoxDecoration(
@@ -75,21 +76,20 @@ final  ischat;
                         color: AppColors.darkprimary,
                       ),
                     ),
-                     if (ischat == true)
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: Container(
-                        height: 7,
-                        width: 7,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary_color,
+                    if (ischat == true)
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary_color,
+                          ),
                         ),
                       ),
-                    ),
-                    ]
-                  ),
+                  ]),
                 ),
               ],
             ),

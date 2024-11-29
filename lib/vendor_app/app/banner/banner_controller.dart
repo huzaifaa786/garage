@@ -69,9 +69,9 @@ class VBannerController extends GetxController {
             },
             title: 'Thank you!'.tr,
             description:
-                'Your banner has been placed successfully!'
+                'Your banner has been placed successfully!'.tr
                     .tr,
-            buttontitle: 'Ok');
+            buttontitle: 'Ok'.tr);
       });
     }
   }

@@ -265,7 +265,7 @@ class UiUtilites {
                       ),
                         Gap(10),
                       AppText(
-                        title: 'Your Verification number',
+                        title: 'Your Verification number'.tr,
                         size: 11,
                         textAlign: TextAlign.center,
                         color: AppColors.hint_text_color,

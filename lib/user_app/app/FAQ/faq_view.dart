@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/FAQ/faq_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/cards/terms_condition_listile.dart';
@@ -19,6 +20,8 @@ class FaqView extends StatefulWidget {
 class _FaqViewState extends State<FaqView> {
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
+
     return GetBuilder<FaqController>(
       autoRemove: false,
       builder: (controller) => Scaffold(
@@ -47,7 +50,7 @@ class _FaqViewState extends State<FaqView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 AppText(
+                AppText(
                   title: 'Popular questions?'.tr,
                   size: 16,
                   fontWeight: FontWeight.w600,
@@ -61,8 +64,12 @@ class _FaqViewState extends State<FaqView> {
                     itemBuilder: (context, index) {
                       final qa = controller.frequentlyAskedQuestions[index];
                       return FaqQuestionAnswer(
-                        question: qa['question'],
-                        answer: qa['answer'],
+                        question: box.read('locale') == 'ar'
+                            ? qa['ar_question']
+                            : qa['question'],
+                        answer: box.read('locale') == 'ar'
+                            ? qa['ar_answer']
+                            : qa['answer'],
                       );
                     },
                   ),

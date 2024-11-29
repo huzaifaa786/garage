@@ -51,7 +51,7 @@ class _HomeViewState extends State<HomeView> {
                   });
                   
                 },
-                isnotification: controller.notificationcount == '0',
+                isnotification: controller.notificationcount == '0'? false : true,
               ),
             ),
             body: SingleChildScrollView(
