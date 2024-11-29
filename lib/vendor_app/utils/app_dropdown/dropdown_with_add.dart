@@ -91,7 +91,7 @@ class DropDownWithAdd<T> extends StatelessWidget {
                       ),
                       Gap(4),
                       AppText(
-                        title: "Add Brand",
+                        title: "Add".tr,
                         size: 14,
                         fontWeight: FontWeight.w600,
                         color: selectedValue == null
