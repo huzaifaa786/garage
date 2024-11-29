@@ -23,11 +23,11 @@ class PaymentView extends StatelessWidget {
     return GetBuilder<PaymentsController>(
       builder: (controller) => controller.cart != null
           ? GestureDetector(
-             onTap: () {
-        // Dismiss the keyboard when tapping anywhere outside the input
-        FocusScope.of(context).unfocus();
-      },
-            child: Scaffold(
+              onTap: () {
+                // Dismiss the keyboard when tapping anywhere outside the input
+                FocusScope.of(context).unfocus();
+              },
+              child: Scaffold(
                 appBar: PreferredSize(
                   preferredSize: Size.fromHeight(70.0),
                   child: Container(
@@ -69,22 +69,38 @@ class PaymentView extends StatelessWidget {
                                   shrinkWrap: true,
                                   physics: BouncingScrollPhysics(),
                                   itemCount: controller.cart!.items!.length,
-                                  itemBuilder: (BuildContext context, int index) {
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
                                     final item = controller.cart!.items![index];
                                     return Column(
                                       children: [
                                         PaymentCartCard(
                                           item: item,
                                           ontap: () {
-                                            UiUtilites.showConfirmationDialog(
-                                              false,
-                                              'Are you Sure that you want\n to delete this product ?'
-                                                  .tr,
-                                              onConfirm: () async {
+                                            UiUtilites.confirmAlertDialog(
+                                              context: context,
+                                              onCancelTap: () {
+                                                Get.back();
+                                              },
+                                              onConfirmTap: () async {
                                                 controller.deleteCartItems(
                                                     item.id.toString());
                                               },
+                                              title:
+                                                  'Are you Sure that you want\n to delete this product ?'
+                                                      .tr,
+                                              cancelText: 'No'.tr,
+                                              confirmText: 'Yes'.tr,
                                             );
+                                            // UiUtilites.showConfirmationDialog(
+                                            //   false,
+                                            //   'Are you Sure that you want\n to delete this product ?'
+                                            //       .tr,
+                                            //   onConfirm: () async {
+                                            //     controller.deleteCartItems(
+                                            //         item.id.toString());
+                                            //   },
+                                            // );
                                           },
                                         ),
                                         Gap(20)
@@ -95,7 +111,8 @@ class PaymentView extends StatelessWidget {
                                 children: [
                                   Gap(15),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       AppText(
                                         title: 'Date & Time'.tr,
@@ -172,8 +189,8 @@ class PaymentView extends StatelessWidget {
                     ],
                   ),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -246,10 +263,12 @@ class PaymentView extends StatelessWidget {
                                     controller.makePayment(
                                         context,
                                         controller.discountAmount != ''
-                                  ? double.parse(controller.promoTotal.toString())
-                                  : double.parse(controller.cart!.totalAmount.toString(),)
-                                       
-                                            );
+                                            ? double.parse(controller.promoTotal
+                                                .toString())
+                                            : double.parse(
+                                                controller.cart!.totalAmount
+                                                    .toString(),
+                                              ));
                                     // Get.bottomSheet(
                                     //   PaymentBottomsheet(),
                                     //   isScrollControlled: true,
@@ -265,7 +284,7 @@ class PaymentView extends StatelessWidget {
                   ),
                 ),
               ),
-          )
+            )
           : Center(
               child: Text(
               'No item Yet!'.tr,

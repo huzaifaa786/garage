@@ -71,14 +71,29 @@ class SelectedDate extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         // controller.removeDate(date);
-                        UiUtilites.showConfirmationDialog(
-                          false,
-                          'Are you sure that you want\n to delete this date?'.tr,
-                          onConfirm: () async {
-                            // If confirmed, remove the date
+                        // UiUtilites.showConfirmationDialog(
+                        //   false,
+                        //   'Are you sure that you want\n to delete this date?'.tr,
+                        //   onConfirm: () async {
+                        //     // If confirmed, remove the date
+                        //     controller.removeDate(date);
+                        //     controller.update();
+                        //   },
+                        // );
+                        UiUtilites.confirmAlertDialog(
+                          context: context,
+                          onCancelTap: () {
+                            Get.back();
+                          },
+                          onConfirmTap: () async {
                             controller.removeDate(date);
                             controller.update();
                           },
+                          title:
+                              'Are you sure that you want\n to delete this date?'
+                                  .tr,
+                          cancelText: 'No'.tr,
+                          confirmText: 'Yes'.tr,
                         );
                       },
                       child: Padding(

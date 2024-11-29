@@ -19,6 +19,7 @@ import 'package:mobilegarage/user_app/utils/base_url.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/reviewcard.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class VHomeController extends GetxController {
   String? image;
@@ -36,7 +37,7 @@ class VHomeController extends GetxController {
     await garageRating();
     await getReviews();
     await countNotification();
-   await countUnSeenMsg();
+    await countUnSeenMsg();
   }
 
   String? notificationcount = '';
@@ -49,9 +50,9 @@ class VHomeController extends GetxController {
     }
   }
 
- String? msgUnSeenCount = '';
+  String? msgUnSeenCount = '';
 
-   countUnSeenMsg() async {
+  countUnSeenMsg() async {
     LoadingHelper.show();
     var url = chatbaseUrl + '/unseen/all';
     var data;
@@ -194,18 +195,36 @@ class VHomeController extends GetxController {
 
   void toggleStatus(bool value) {
     if (garage != null) {
-      showConfirmationDialog(
-        value,
-        value
-            ? "Are you sure you want to mark your garage as available?".tr
-            : "Are you sure you want to mark your garage as unavailable?".tr,
-        onConfirm: () async {
+      // showConfirmationDialog(
+      //   value,
+      //   value
+      //       ? "Are you sure you want to mark your garage as available?".tr
+      //       : "Are you sure you want to mark your garage as unavailable?".tr,
+      //   onConfirm: () async {
+      //     await updateGarageStatus();
+      //     isSelected = value;
+      //     garage!.opened = value;
+      //     update();
+      //     print(value);
+      //   },
+      // );
+      UiUtilites.confirmAlertDialog(
+        context: Get.context,
+        onCancelTap: () {
+          Get.back();
+        },
+        onConfirmTap: () async {
           await updateGarageStatus();
           isSelected = value;
           garage!.opened = value;
           update();
-          print(value);
+          Get.back();
         },
+        title: value
+            ? "Are you sure you want to mark your garage as available?".tr
+            : "Are you sure you want to mark your garage as unavailable?".tr,
+        cancelText: 'No'.tr,
+        confirmText: 'Yes'.tr,
       );
     }
   }

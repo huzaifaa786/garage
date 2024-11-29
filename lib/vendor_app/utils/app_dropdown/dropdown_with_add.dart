@@ -3,8 +3,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
@@ -75,23 +75,35 @@ class DropDownWithAdd<T> extends StatelessWidget {
                           ),
                         ))
                     .toList(),
-                DropdownMenuItem<BrandModel>(
+                DropdownMenuItem<T>(
                   value: null,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.add_circle_outline_sharp, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text("Add Brand", style: TextStyle(color: Colors.white)),
+                      Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: selectedValue == null
+                            ? AppColors.white_color
+                            : AppColors.black_color,
+                        size: 20,
+                      ),
+                      Gap(4),
+                      AppText(
+                        title: "Add Brand",
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                        color: selectedValue == null
+                            ? AppColors.white_color
+                            : AppColors.black_color,
+                      ),
                     ],
                   ),
                 ),
               ],
               value: selectedValue,
               onChanged: (value) {
-                // Check if the Add button was clicked
                 if (value == null && onAddPressed != null) {
-                  onAddPressed!(); // Trigger "Add" button action
+                  onAddPressed!();
                 } else if (onChanged != null) {
                   onChanged!(value as T);
                 }

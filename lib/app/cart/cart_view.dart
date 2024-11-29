@@ -75,15 +75,30 @@ class CartView extends StatelessWidget {
                                     CartCard(
                                       item: item,
                                       ontap: () {
-                                        UiUtilites.showConfirmationDialog(
-                                          false,
-                                          'Are you Sure that you want\n to delete this product ?'
-                                              .tr,
-                                          onConfirm: () async {
+                                        UiUtilites.confirmAlertDialog(
+                                          context: context,
+                                          onCancelTap: () {
+                                            Get.back();
+                                          },
+                                          onConfirmTap: () async {
                                             controller.deleteCartItems(
                                                 item.id.toString());
                                           },
+                                          title:
+                                              'Are you Sure that you want\n to delete this product ?'
+                                                  .tr,
+                                          cancelText: 'No'.tr,
+                                          confirmText: 'Yes'.tr,
                                         );
+                                        // UiUtilites.showConfirmationDialog(
+                                        //   false,
+                                        //   'Are you Sure that you want\n to delete this product ?'
+                                        //       .tr,
+                                        //   onConfirm: () async {
+                                        //     controller.deleteCartItems(
+                                        //         item.id.toString());
+                                        //   },
+                                        // );
                                       },
                                     ),
                                     Gap(20)
