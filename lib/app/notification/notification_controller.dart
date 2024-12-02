@@ -15,6 +15,7 @@ class NotificationController extends GetxController {
     },
   ];
   List<StepperData> get stepperData => [
+    
         StepperData(
             title: StepperText(
               "Accepted",
