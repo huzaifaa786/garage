@@ -18,7 +18,7 @@ class NotificationController extends GetxController {
     
         StepperData(
             title: StepperText(
-              "Accepted",
+              "Accepted".tr,
               textStyle: const TextStyle(
                   color: AppColors.lightgreen,
                   fontSize: 10,
@@ -40,7 +40,7 @@ class NotificationController extends GetxController {
             )),
         StepperData(
             title: StepperText(
-              "On the way",
+              "On the way".tr,
               textStyle: TextStyle(
                   color: activestatus != 1
                       ? AppColors.lightgreen
@@ -66,7 +66,7 @@ class NotificationController extends GetxController {
             )),
         StepperData(
             title: StepperText(
-              "Delivered",
+              "Delivered".tr,
               textStyle: TextStyle(
                   color: activestatus == 2
                       ? AppColors.lightgreen
