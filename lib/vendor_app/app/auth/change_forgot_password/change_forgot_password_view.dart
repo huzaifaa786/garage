@@ -56,7 +56,7 @@ class VChangeForgotPasswordView extends StatelessWidget {
                                 children: [
                                   const Gap(40),
                                   AppText(
-                                    title: ConstantStrings.reset_password,
+                                    title: 'Reset Password?'.tr,
                                     size: 28,
                                     fontWeight: FontWeight.w600,
                                     color: AppColors.heading_text_color,
@@ -65,7 +65,7 @@ class VChangeForgotPasswordView extends StatelessWidget {
                                   const Gap(50),
                                   AppInputField(
                                     errorText: controller.passwordError,
-                                    hint: 'Password',
+                                    hint: 'Password'.tr,
                                     obscure: controller.obscurePassword,
                                     controller: controller.passwordController,
                                     onchange: (val) {
@@ -89,7 +89,7 @@ class VChangeForgotPasswordView extends StatelessWidget {
                                   const Gap(12),
                                   AppInputField(
                                     errorText: controller.confirmPasswordError,
-                                    hint: 'Confirm Password',
+                                    hint: 'Confirm Password'.tr,
                                     obscure: controller.cobscurePassword,
                                     controller:
                                         controller.confirmPasswordController,
@@ -113,7 +113,7 @@ class VChangeForgotPasswordView extends StatelessWidget {
                                   ),
                                   const Gap(50),
                                   AppButton(
-                                    title: 'Confirm',
+                                    title: 'Confirm'.tr,
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
                                       controller.forgot();

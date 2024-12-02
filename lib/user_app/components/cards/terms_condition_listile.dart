@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 
 class FaqQuestionAnswer extends StatelessWidget {
   final String question;
   final String answer;
 
-  FaqQuestionAnswer({
+  const FaqQuestionAnswer({
+    super.key,
     required this.question,
     required this.answer,
   });
@@ -13,46 +15,40 @@ class FaqQuestionAnswer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //padding: EdgeInsets.symmetric(horizontal: 20),
-
-       padding:  EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Question Row
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AppText(
-                title: 'Q. ',
-                fontWeight: FontWeight.bold,
+                title: 'Q. '.tr,
+                fontWeight: FontWeight.w500,
               ),
-              
               Expanded(
                 child: AppText(
                   title: question,
-                  overFlow: TextOverflow.visible, 
-                  size: 10,
+                  overFlow: TextOverflow.visible,
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 8), // Adds some space between the question and answer
-          
+          SizedBox(height: 8),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AppText(
-                title: 'A. ',
-                fontWeight: FontWeight.bold,
+                title: 'A. '.tr,
+                fontWeight: FontWeight.w500,
               ),
-              
               Expanded(
                 child: AppText(
                   title: answer,
-                  overFlow: TextOverflow.visible, 
-                  size: 8,
+                  overFlow: TextOverflow.visible,
+                  textAlign: TextAlign.justify,
+                  size: 12.0,
                   fontWeight: FontWeight.w400,
                 ),
               ),

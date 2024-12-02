@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/borders/border.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
+
 class PromocodeTextfield extends StatelessWidget {
   const PromocodeTextfield({
     super.key,
@@ -64,7 +65,6 @@ class PromocodeTextfield extends StatelessWidget {
                   fillColor: Colors.transparent,
                   filled: true,
                   border: inputborder,
-                
                   errorBorder: errorInputBorder,
                   errorStyle: TextStyle(fontSize: 0),
                   hoverColor: Colors.transparent,
@@ -82,20 +82,16 @@ class PromocodeTextfield extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             child: ElevatedButton(
-              
-              
               style: ElevatedButton.styleFrom(
-               
-                backgroundColor:
-                    isApplied ? AppColors.white : AppColors.primary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                minimumSize: Size(35,35)
-              ),
+                  backgroundColor:
+                      isApplied ? AppColors.white : AppColors.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  minimumSize: Size(35, 35)),
               onPressed: onTap,
               child: Text(
-                isApplied ? 'Applied' : 'Apply',
+                isApplied ? 'Applied'.tr : 'Apply'.tr,
                 style: TextStyle(
                   color: isApplied ? AppColors.lightgreen : AppColors.white,
                   fontWeight: FontWeight.w500,

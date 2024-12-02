@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/models/product_model.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -11,7 +12,10 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ProductCard extends StatelessWidget {
-  ProductCard({super.key, this.product, this.ondeltap,this.oneditTap});
+  ProductCard(
+      {super.key, this.product, this.category, this.ondeltap, this.oneditTap});
+
+  CategoryModel? category;
 
   ProductModel? product;
   final ondeltap;
@@ -46,61 +50,77 @@ class ProductCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   )),
               const Gap(10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppText(
-                    title: product!.description!.toString(),
-                    size: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  // const Gap(6.0),
-                  // AppText(
-                  //   title: products!.description.toString(),
-                  //   size: 12,
-                  //   fontWeight: FontWeight.w500,
-                  // ),
-                  const Gap(6.0),
-                  AppText(
-                    title: product!.price.toString() + ' AED',
-                    size: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.lightblue,
-                  ),
-                  const Gap(8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      EdittButton(
-                        ontap: oneditTap,
-                        icon: 'assets/images/edit.svg',
-                        width: Get.width * 0.22,
-                        text: 'Edit',
-                        color: AppColors.light_red,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppText(
+                      title: product!.brands != null
+                          ? product!.brands!.name.toString()
+                          : category!.name!.toString(),
+                      size: 14,
+                      fontWeight: FontWeight.w600,
+                      maxLines: 2,
+                    ),
+                    // const Gap(6.0),
+                    // AppText(
+                    //   title: products!.description.toString(),
+                    //   size: 12,
+                    //   fontWeight: FontWeight.w500,
+                    // ),
+                    const Gap(6.0),
+                    if (product!.price != '')
+                      AppText(
+                        title: product!.price! + ' ' + ' AED'.tr,
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.lightblue,
                       ),
-                      const Gap(12),
-                      EdittButton(
-                        ontap: () {
-                          UiUtilites.confirmAlertDialog(
-                            title:
-                                'Are you sure you want to delete this Product?',
-                            context: Get.context,
-                            onCancelTap: () {
-                              Get.back();
-                            },
-                            onConfirmTap: ondeltap,
-                            cancelText: 'No'.tr,
-                            confirmText: 'Yes'.tr,
-                          );
-                        },
-                        icon: 'assets/images/delete.svg',
-                        width: Get.width * 0.22,
-                        text: 'Delete',
-                        color: AppColors.light_red,
-                      )
-                    ],
-                  )
-                ],
+                    const Gap(8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        EdittButton(
+                          ontap: oneditTap,
+                          icon: 'assets/images/edit.svg',
+                          width: Get.width * 0.22,
+                          text: 'Edit'.tr,
+                          color: AppColors.light_red,
+                        ),
+                        const Gap(12),
+                        EdittButton(
+                          ontap: () {
+                            UiUtilites.showConfirmationDialog(
+                              false,
+                              'Are you sure you want to\n delete this Product?'
+                                  .tr,
+                              onConfirm: 
+                                ondeltap
+                            );
+                          },
+                          // ontap: () {
+                          //   UiUtilites.confirmAlertDialog(
+                          //     title:
+                          //         'Are you sure you want to delete this Product?'
+                          //             .tr,
+                          //     context: Get.context,
+                          //     onCancelTap: () {
+                          //       Get.back();
+                          //     },
+                          //     onConfirmTap: ondeltap,
+                          //     cancelText: 'No'.tr,
+                          //     confirmText: 'Yes'.tr,
+                          //   );
+                          // },
+                          icon: 'assets/images/delete.svg',
+                          width: Get.width * 0.22,
+                          text: 'Delete'.tr,
+                          color: AppColors.light_red,
+                        )
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),

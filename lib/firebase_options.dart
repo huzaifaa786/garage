@@ -41,48 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDxDiZkYIUuE3XWbBH7PNNKHrF_J3MOeqA',
-    appId: '1:457022457516:web:21ab486487c42244e80109',
-    messagingSenderId: '457022457516',
-    projectId: 'garage-67679',
-    authDomain: 'garage-67679.firebaseapp.com',
-    storageBucket: 'garage-67679.appspot.com',
-    measurementId: 'G-PZRGZCK5S0',
+    apiKey: 'AIzaSyBFspOpY70fGPnHH-bkwz4OFU1ZI5zzjJ4',
+    appId: '1:323733471662:web:e5c5efb662d5d57c04483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    authDomain: 'mobile-garage-b16a3.firebaseapp.com',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
+    measurementId: 'G-15VHBCYYMJ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBl1FsCqYfDAncFFFtf_VLMrjAWSepRNZ8',
-    appId: '1:457022457516:android:d82102f158303da3e80109',
-    messagingSenderId: '457022457516',
-    projectId: 'garage-67679',
-    storageBucket: 'garage-67679.appspot.com',
+    apiKey: 'AIzaSyDwf8uu4aqcldQtSKLPxfLdXCCf2G3oXTM',
+    appId: '1:323733471662:android:bf0816f7df1e12e704483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB2b71SoxGWEb3sInQw3u6isnAbVOnJnVE',
-    appId: '1:457022457516:ios:85847c4cc1312e3fe80109',
-    messagingSenderId: '457022457516',
-    projectId: 'garage-67679',
-    storageBucket: 'garage-67679.appspot.com',
+    apiKey: 'AIzaSyCRT9wNcCIozIiLEYYDxIB-o8Gfo80oaoM',
+    appId: '1:323733471662:ios:628f43df1b83243d04483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
     iosBundleId: 'com.tritec.mobilegarage',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyB2b71SoxGWEb3sInQw3u6isnAbVOnJnVE',
-    appId: '1:457022457516:ios:85847c4cc1312e3fe80109',
-    messagingSenderId: '457022457516',
-    projectId: 'garage-67679',
-    storageBucket: 'garage-67679.appspot.com',
+    apiKey: 'AIzaSyCRT9wNcCIozIiLEYYDxIB-o8Gfo80oaoM',
+    appId: '1:323733471662:ios:628f43df1b83243d04483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
     iosBundleId: 'com.tritec.mobilegarage',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDxDiZkYIUuE3XWbBH7PNNKHrF_J3MOeqA',
-    appId: '1:457022457516:web:6fb7fe3679a1b76fe80109',
-    messagingSenderId: '457022457516',
-    projectId: 'garage-67679',
-    authDomain: 'garage-67679.firebaseapp.com',
-    storageBucket: 'garage-67679.appspot.com',
-    measurementId: 'G-EQZ8Q7Y85J',
+    apiKey: 'AIzaSyBFspOpY70fGPnHH-bkwz4OFU1ZI5zzjJ4',
+    appId: '1:323733471662:web:928523b667b5d37104483f',
+    messagingSenderId: '323733471662',
+    projectId: 'mobile-garage-b16a3',
+    authDomain: 'mobile-garage-b16a3.firebaseapp.com',
+    storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
+    measurementId: 'G-38HGX9D8BC',
   );
+
 }

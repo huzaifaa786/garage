@@ -73,7 +73,7 @@ class VChangeForgotPasswordController extends GetxController {
         email: email.toString(), password: passwordController.text);
     if (response.isNotEmpty) {
       Get.offAllNamed(
-        AppRoutes.signin,
+        AppRoutes.vsignin,
       );}
     }
   }

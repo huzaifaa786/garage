@@ -26,7 +26,7 @@ class _VLanguageViewState extends State<VLanguageView> {
           children: [
             const Gap(9),
             LanguageOption(
-              languageName: 'English (United States)',
+              languageName: 'English (United States)'.tr,
               languageDescription: 'Default'.tr,
               value: 1,
               groupValue: controller.selectedValue,
@@ -38,8 +38,8 @@ class _VLanguageViewState extends State<VLanguageView> {
             ),
             const Gap(22),
             LanguageOption(
-              languageName: 'العربية',
-              languageDescription: 'Arabic',
+              languageName: 'العربية'.tr,
+              languageDescription: 'Arabic'.tr,
               value: 2,
               groupValue: controller.selectedValue,
               onChanged: (value) {

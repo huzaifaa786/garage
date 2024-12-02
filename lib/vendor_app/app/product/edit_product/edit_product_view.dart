@@ -37,7 +37,7 @@ class EditProductView extends StatelessWidget {
     return GetBuilder<EditProductController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: 'Edit product',
+        appBarTitle: 'Edit product'.tr,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -56,7 +56,7 @@ class EditProductView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: AppText(
-                        title: 'Edit info.',
+                        title: 'Edit info.'.tr,
                         size: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -66,7 +66,7 @@ class EditProductView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: AppText(
                         title:
-                            '(Note : prices will not be edited unless approved from the owner.)',
+                            '(Note : prices will not be edited unless approved from the owner.)'.tr,
                         size: 11,
                         fontWeight: FontWeight.w400,
                         color: AppColors.grey,
@@ -76,15 +76,14 @@ class EditProductView extends StatelessWidget {
                     DropDownField<CategoryModel>(
                       displayValue: (item) => item.name!,
                       items: controller.categories,
-                      hint: 'Category',
+                      hint: 'Category'.tr,
                       selectedValue: controller.selectedCategory,
                       onChanged: (value) {
-                        controller.setSelectedCategory(value);
-                        // controller.validateFields("Category",
-                        //     controller.selectedCategoryId.toString());
+                        // controller.setSelectedCategory(value);
+                        UiUtilites.errorSnackbar('Error'.tr,
+                            "Category can't be changed while editing product".tr);
                         controller.update();
                       },
-                      // errorText: controller.categorysError,
                       errorText: '',
                     ),
                     if (![4, 7, 9, 1, 8]
@@ -92,28 +91,25 @@ class EditProductView extends StatelessWidget {
                       Column(
                         children: [
                           Gap(20),
-                          DropDownWithAdd<BrandModel>(
+                          DropDownField<BrandModel>(
                             displayValue: (item) => item.name!,
                             items: controller.brands,
-                            hint: 'Brands Name',
+                            hint: 'Brands Name'.tr,
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
-                              // controller.validateFields("Brand",
-                              //     controller.selectedBrandId.toString());
                               controller.update();
                             },
-                            // errorText: controller.brandError,
                             errorText: '',
-                            onAddPressed: () {
-                              UiUtilites.AddProductDialog(
-                                context,
-                                controller.nameController,
-                                () {
-                                  controller.addBrand();
-                                },
-                              );
-                            },
+                            // onAddPressed: () {
+                            //   UiUtilites.AddProductDialog(
+                            //     context,
+                            //     controller.nameController,
+                            //     () {
+                            //       controller.addBrand();
+                            //     },
+                            //   );
+                            // },
                           ),
                         ],
                       ),
@@ -124,64 +120,48 @@ class EditProductView extends StatelessWidget {
                               DropDownField<BatteryProductTypeModel>(
                                 displayValue: (item) => item.name!,
                                 items: controller.producttypes,
-                                hint: 'Product type',
+                                hint: 'Product type'.tr,
                                 selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
                                   controller.setSelectedproducttype(value);
-                                  // controller.validateFields(
-                                  //     "producttype",
-                                  //     controller.selectedProducttypeId
-                                  //         .toString());
                                   controller.update();
                                 },
-                                // errorText: controller.producttypeError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<BatteryOriginModel>(
                                 displayValue: (item) => item.origin!,
                                 items: controller.batteryOrigins,
-                                hint: 'Origin',
+                                hint: 'Origin'.tr,
                                 selectedValue: controller.selectedbatteryOrigin,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryOrigin(value);
-                                  // controller.validateFields(
-                                  //     "origin",
-                                  //     controller.selectedbatteryOriginId
-                                  //         .toString());
                                   controller.update();
                                 },
-                                // errorText: controller.originError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<BatteryAmpereModel>(
                                 displayValue: (item) => item.ampere!,
                                 items: controller.batteryAmperes,
-                                hint: 'Battery Ampere',
+                                hint: 'Battery Ampere'.tr,
                                 selectedValue: controller.selectedampere,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryAmpere(value);
-                                  // controller.validateFields("ampere",
-                                  //     controller.selectedampereId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.ampereError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<BatteryVoltageModel>(
                                 displayValue: (item) => item.voltage!,
                                 items: controller.batteryVoltages,
-                                hint: 'Battery Voltage',
+                                hint: 'Battery Voltage'.tr,
                                 selectedValue: controller.selectedvoltage,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryvoltage(value);
-                                  // controller.validateFields("voltage",
-                                  //     controller.selectedvoltageId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.voltageError,
                                 errorText: '',
                               ),
                             ],
@@ -194,94 +174,73 @@ class EditProductView extends StatelessWidget {
                               DropDownField<TyreWidthModel>(
                                 displayValue: (item) => item.width!,
                                 items: controller.tyrewidths,
-                                hint: 'Tyer width',
+                                hint: 'Tyre width'.tr,
                                 selectedValue: controller.selectedwidth,
                                 onChanged: (value) {
                                   controller.setSelectedWidth(value);
-                                  // controller.validateFields("width",
-                                  //     controller.selectedwidthId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.widthError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyreHeightModel>(
                                 displayValue: (item) => item.height!,
                                 items: controller.tyreheights,
-                                hint: 'Tyer height',
+                                hint: 'Tyre height'.tr,
                                 selectedValue: controller.selectedheight,
                                 onChanged: (value) {
                                   controller.setSelectedheight(value);
-                                  // controller.validateFields("height",
-                                  //     controller.selectedheightId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.heightError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyreSizeModel>(
                                 displayValue: (item) => item.size!,
                                 items: controller.tyresizes,
-                                hint: 'Wheel size',
+                                hint: 'Wheel size'.tr,
                                 selectedValue: controller.selectedsize,
                                 onChanged: (value) {
                                   controller.setSelectedSize(value);
-                                  // controller.validateFields("size",
-                                  //     controller.selectedsizeId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.sizeError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyreSpeedRatingModel>(
                                 displayValue: (item) => item.speedrating!,
                                 items: controller.tyreSpeedRatings,
-                                hint: 'Speed rating',
+                                hint: 'Speed rating'.tr,
                                 selectedValue: controller.selectedSpeedRating,
                                 onChanged: (value) {
                                   controller.setSelectedSpeedRating(value);
-                                  // controller.validateFields(
-                                  //     "speed rating",
-                                  //     controller.selectedSpeedRatingId
-                                  //         .toString());
+
                                   controller.update();
                                 },
-                                // errorText: controller.speedratingError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyrePatternModel>(
                                 displayValue: (item) => item.pattern!,
                                 items: controller.tyrepattterens,
-                                hint: 'Pattern',
+                                hint: 'Pattern'.tr,
                                 selectedValue: controller.selectedpatteren,
                                 onChanged: (value) {
                                   controller.setSelectedPatteren(value);
-                                  // controller.validateFields("patteren",
-                                  //     controller.selectedpatterenId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.patterenError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<TyreOriginModel>(
                                 displayValue: (item) => item.origin!,
                                 items: controller.tyreorigins,
-                                hint: 'Origin',
+                                hint: 'Origin'.tr,
                                 selectedValue: controller.selectedtyreorigin,
                                 onChanged: (value) {
                                   controller.setSelectedTyreOrigin(value);
-                                  // controller.validateFields(
-                                  //     "tyre origin",
-                                  //     controller.selectedtyreoriginId
-                                  //         .toString());
                                   controller.update();
                                 },
-                                // errorText: controller.tyreoriginError,
                                 errorText: '',
                               ),
                             ],
@@ -294,33 +253,25 @@ class EditProductView extends StatelessWidget {
                               DropDownField<OilProductTTypeModel>(
                                 displayValue: (item) => item.producttype!,
                                 items: controller.oilproductTypes,
-                                hint: 'Product type',
+                                hint: 'Product type'.tr,
                                 selectedValue:
                                     controller.selectedoilproductType,
                                 onChanged: (value) {
                                   controller.setSelectedOilproducttype(value);
-                                  // controller.validateFields(
-                                  //     "product type",
-                                  //     controller.selectedoilproductTypeId
-                                  //         .toString());
                                   controller.update();
                                 },
-                                // errorText: controller.oilproductTypeError,
                                 errorText: '',
                               ),
                               Gap(20),
                               DropDownField<OilVolumeModel>(
                                 displayValue: (item) => item.volume!,
                                 items: controller.oilVolumes,
-                                hint: 'Liquid volume litter',
+                                hint: 'Liquid volume liter'.tr,
                                 selectedValue: controller.selectedvolume,
                                 onChanged: (value) {
                                   controller.setSelectedVolume(value);
-                                  // controller.validateFields("volume",
-                                  //     controller.selectedVolumeId.toString());
                                   controller.update();
                                 },
-                                // errorText: controller.volumeError,
                                 errorText: '',
                               ),
                             ],
@@ -329,24 +280,17 @@ class EditProductView extends StatelessWidget {
                     if (![7, 9, 4, 1, 8]
                         .contains(controller.selectedCategoryId))
                       Gap(20),
-                    if (![3, 4, 7, 9, 1, 8]
+                    if (![4, 7, 9, 1, 8]
                         .contains(controller.selectedCategoryId))
                       Column(
                         children: [
                           AppInputField(
-                            // errorText: controller.selectedCategoryId != 6
-                            //     ? controller.descriptionError
-                            //     : '',
                             errorText: '',
                             hint: controller.selectedCategoryId == 2
-                                ? 'Description'
-                                : 'Description (optional)',
+                                ? 'Description'.tr
+                                : 'Description (optional)'.tr,
                             controller: controller.descriptionController,
-                            onchange: (val) {
-                              // controller.selectedCategoryId != 6
-                              //     ? controller.validateFields("Price", val)
-                              //     : print('no validation needed');
-                            },
+                            onchange: (val) {},
                           ),
                           Gap(20),
                         ],
@@ -354,19 +298,17 @@ class EditProductView extends StatelessWidget {
                     if (![4, 7, 9, 1, 8]
                         .contains(controller.selectedCategoryId))
                       AppInputField(
-                        // errorText: controller.priceError,
                         errorText: '',
-                        hint: 'Price',
+                        hint: 'Price'.tr,
+                        readOnly: true,
                         type: TextInputType.number,
                         controller: controller.priceController,
-                        onchange: (val) {
-                          // controller.validateFields("Price", val);
-                        },
+                        onchange: (val) {},
                         hasSuffix: true,
                         suffixWidget: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: AppText(
-                            title: 'AED',
+                            title: 'AED'.tr,
                             size: 14,
                             fontWeight: FontWeight.w600,
                             color: AppColors.primary_color,
@@ -382,38 +324,30 @@ class EditProductView extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   itemCount: controller.itemCount,
                   itemBuilder: (context, index) {
-                    // var priceError = controller.getPriceError(index);
-                    // var timeError = controller.getTimeError(index);
-                    // var descriptionError =
-                    //     controller.acextradescriptionErrors[index] ?? '';
-                    TextEditingController descriptionController =
-                        TextEditingController();
-
-                    switch (controller.selectedCategoryId) {
-                      // case 2:
-                      //   descriptionController.text = controller.oilextras[index].description ?? '';
-                      //   break;
-                      // case 4:
-                      //   descriptionController.text = controller.roadAssistanceExtras[index].description ?? '';
-                      //   break;
-                      case 7:
-                        descriptionController.text =
-                            controller.recoveryExtras[index].description ?? '';
+                    var extra;
+                    switch (controller.product!.categoryId) {
+                      case '2':
+                        extra = controller.product!.oilextra![index];
                         break;
-                      // case 9:
-                      //   descriptionController.text = controller.fuelExtras[index].description ?? '';
-                      //   break;
-                      // case 1:
-                      //   descriptionController.text = controller.carwashExtras[index].description ?? '';
-                      //   break;
-                      // case 8:
-                      //   descriptionController.text = controller.acExtras[index].description ?? '';
-                      //   break;
+
+                      case '7':
+                        extra = controller.product!.recoveryextra![index];
+                        break;
+                      case '9':
+                        extra = controller.product!.fuelextra![index];
+                        break;
+                      case '4':
+                        extra = controller.product!.roadextra![index];
+                        break;
+                      case '1':
+                        extra = controller.product!.carwashextra![index];
+                        break;
+                      case '8':
+                        extra = controller.product!.acextra![index];
+                        break;
                       default:
-                        descriptionController.text = '';
                         break;
                     }
-
                     return Column(
                       children: [
                         if (![7, 9, 4, 1]
@@ -450,103 +384,47 @@ class EditProductView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 22),
                           child: MainInput(
-                            controller: descriptionController,
+                            controller: controller.extraDescriptions[extra.id],
                             hint: controller.selectedCategoryId == 8
-                                ? 'Description'
-                                : 'Description (optional)',
+                                ? 'Description'.tr
+                                : 'Description (optional)'.tr,
                             onchange: (p0) {
-                              switch (
-                                  controller.selectedCategoryId.toString()) {
-                                case '2':
-                                  controller.oilextras[index].description = p0;
-                                  break;
-                                case '4':
-                                  controller.roadAssistanceExtras[index]
-                                      .description = p0;
-                                  break;
-                                case '7':
-                                  controller.recoveryExtras[index].description =
-                                      p0;
-                                  break;
-                                case '9':
-                                  controller.fuelExtras[index].description = p0;
-                                  break;
-                                case '1':
-                                  controller.carwashExtras[index].description =
-                                      p0;
-                                  break;
-                                case '8':
-                                  controller.acExtras[index].description = p0;
-                                  break;
-                                default:
-                                  print('Not showing for other categories');
-                                  break;
-                              }
+                              extra.description = p0;
                               controller.update();
                             },
-                            // errorText: controller.selectedCategoryId == 8
-                            //     ? descriptionError
-                            //     : '',
                             errorText: '',
                           ),
                         ),
-                        if (controller.selectedCategoryId != 8)
-                          Column(
-                            children: [
-                              Gap(20),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 22),
-                                child: AppInputField(
-                                  hint: 'Price',
-                                  type: TextInputType.number,
-                                  // errorText: priceError,
-                                  errorText: '',
-                                  onchange: (val) {
-                                    switch (controller.selectedCategoryId
-                                        .toString()) {
-                                      case '2':
-                                        controller.oilextras[index].price = val;
-                                        break;
-                                      case '4':
-                                        controller.roadAssistanceExtras[index]
-                                            .price = val;
-                                        break;
-                                      case '7':
-                                        controller.recoveryExtras[index].price =
-                                            val;
-                                        break;
-                                      case '9':
-                                        controller.fuelExtras[index].price =
-                                            val;
-                                        break;
-                                      case '1':
-                                        controller.carwashExtras[index].price =
-                                            val;
-                                        break;
-                                      default:
-                                        print(
-                                            'Not showing for other categories');
-                                        break;
-                                    }
-
-                                    controller.update();
-                                  },
-                                  hasSuffix: true,
-                                  suffixWidget: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
-                                    child: AppText(
-                                      title: 'AED',
-                                      size: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.primary_color,
-                                    ),
+                        Column(
+                          children: [
+                            Gap(20),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 22),
+                              child: AppInputField(
+                                hint: 'Price'.tr,
+                                type: TextInputType.number,
+                                controller: controller.extraprices[extra.id],
+                                errorText: '',
+                                onchange: (val) {
+                                  extra.price = val;
+                                  controller.update();
+                                },
+                                hasSuffix: true,
+                                suffixWidget: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 16),
+                                  child: AppText(
+                                    title: 'AED'.tr,
+                                    size: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.primary_color,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
+                        ),
                         if ([4, 7, 9, 1]
                             .contains(controller.selectedCategoryId))
                           Padding(
@@ -555,33 +433,12 @@ class EditProductView extends StatelessWidget {
                               children: [
                                 Gap(20),
                                 AppInputField(
-                                  // errorText: timeError,
+                                  controller: controller.extratimes[extra.id],
                                   errorText: '',
-                                  hint: 'Time',
+                                  hint: 'Time'.tr,
                                   type: TextInputType.number,
                                   onchange: (val) {
-                                    switch (controller.selectedCategoryId
-                                        .toString()) {
-                                      case '4':
-                                        controller.roadAssistanceExtras[index]
-                                            .time = val;
-                                        break;
-                                      case '7':
-                                        controller.roadAssistanceExtras[index]
-                                            .time = val;
-                                        break;
-                                      case '9':
-                                        controller.fuelExtras[index].time = val;
-                                        break;
-                                      case '1':
-                                        controller.carwashExtras[index].time =
-                                            val;
-                                        break;
-                                      default:
-                                        print(
-                                            'Not showing for other categories');
-                                        break;
-                                    }
+                                    extra.time = val;
                                     controller.update();
                                   },
                                   hasSuffix: true,
@@ -589,7 +446,7 @@ class EditProductView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 16),
                                     child: AppText(
-                                      title: 'Min',
+                                      title: 'Min'.tr,
                                       size: 14,
                                       fontWeight: FontWeight.w600,
                                       color: AppColors.primary_color,
@@ -604,44 +461,10 @@ class EditProductView extends StatelessWidget {
                     );
                   },
                 ),
-              if (controller.selectedCategoryId == 8)
-                Column(
-                  children: [
-                    Divider(
-                      thickness: 7,
-                      color: AppColors.grey.shade100,
-                    ),
-                    Gap(25),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: AppInputField(
-                        // errorText: controller.priceError,
-                        errorText: '',
-                        hint: 'Price',
-                        type: TextInputType.number,
-                        controller: controller.priceController,
-                        onchange: (val) {
-                          // controller.validateFields("Price", val);
-                        },
-                        hasSuffix: true,
-                        suffixWidget: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: AppText(
-                            title: 'AED',
-                            size: 14,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primary_color,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Gap(20)
-                  ],
-                ),
               Gap(40),
               AppButton(
                 buttonWidth: 0.8,
-                title: 'Edit product',
+                title: 'Edit product'.tr,
                 buttonColor: AppColors.primary_color,
                 ontap: () {
                   controller.editProduct();

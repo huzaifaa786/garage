@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class BrandNameModel {
   int id;
   int? vechilebrandid;

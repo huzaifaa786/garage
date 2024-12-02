@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:mobilegarage/services/dio_service.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
 
@@ -5,11 +6,15 @@ class LoginVerifyApi {
   static Future<Map<String, dynamic>> verifyNumber({
     String? phone,
   }) async {
+        final token = await FirebaseMessaging.instance.getToken();
+
     //* URL
     String url = '$baseUrl/login';
-    
+
     var data = {
       'phone': phone,
+      'fcm_token': token,
+
     };
 
     //! Make the POST request using ApiService

@@ -27,11 +27,13 @@ class MyLocationController extends GetxController {
       emirates = (response['emirates'] as List<dynamic>)
           .map((item) => EmirateModel.from(item as Map<String, dynamic>))
           .toList();
+       await setSelectedEmirate(
+          emirates.firstWhere((category) => category.name == user!.emirate.toString()));
       update();
     }
   }
 
-  void setSelectedEmirate(EmirateModel? Brand) {
+   setSelectedEmirate(EmirateModel? Brand) {
     selectedEmirate = Brand;
     selectedEmirateId = Brand?.id;
     selectedemirateName = Brand?.name;
@@ -49,6 +51,9 @@ class MyLocationController extends GetxController {
       if (response.isNotEmpty) {
         user = UserModel.fromJson(response['user']);
         update();
+        UiUtilites.successSnackbar(
+            'Location updated successfully'.tr, 'Success'.tr);
+        Get.back();
       }
     }
   }
@@ -83,7 +88,7 @@ class MyLocationController extends GetxController {
         validateFields('address detail', adreesdetailController.text);
 
     if (selectedEmirateId == null) {
-      emirateError = 'Please select an Emirate';
+      emirateError = 'Please select an Emirate'.tr;
       update();
     } else {
       emirateError = '';
@@ -91,8 +96,8 @@ class MyLocationController extends GetxController {
     }
     //
     if (lat == null) {
-      latError = 'Please select an Address';
-      UiUtilites.errorSnackbar('error', 'Please select an Address');
+      latError = 'Please select an Address'.tr;
+      UiUtilites.errorSnackbar('Error'.tr, 'Please select an Address'.tr);
     } else {
       latError = '';
       update();
@@ -110,13 +115,14 @@ class MyLocationController extends GetxController {
   double? lat;
   double? lng;
   String currentAddress = '';
+
   //
-  //
-  //
+  @override
   void onInit() async {
     super.onInit();
-    await getEmirates();
     await userdata();
+    await getEmirates();
+    update();
   }
 
   Future<void> getPlaceName(double latitude, double longitude) async {
@@ -136,9 +142,12 @@ class MyLocationController extends GetxController {
     if (response.isNotEmpty) {
       user = UserModel.fromJson(response['user']);
       adreesdetailController.text = user!.addressDetail.toString();
-      lat = double.tryParse(user!.lat!);
-      lng = double.tryParse(user!.lng!);
-      getPlaceName(lat!, lng!);
+
+      if (user!.lng != '0' && user!.lat != '0') {
+        lat = double.tryParse(user!.lat!);
+        lng = double.tryParse(user!.lng!);
+        getPlaceName(lat!, lng!);
+      }
       update();
     }
   }

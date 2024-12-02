@@ -2,7 +2,7 @@
 
 class BannerModel {
   int id;
-  // int garageid;
+  int garageid;
   // int bannerpriceid;
   String image;
 
@@ -11,7 +11,7 @@ class BannerModel {
 
   BannerModel({
     required this.id,
-    // required this.garageid,
+    required this.garageid,
     // required this.bannerpriceid,
     required this.image,
 
@@ -22,7 +22,7 @@ class BannerModel {
   factory BannerModel.fromJson(Map<String, dynamic> json) {
     return BannerModel(
       id: json['id'],
-      // garageid: json['garage_id'],
+      garageid: json['garage_id'],
       // bannerpriceid: json['banner_price_id'],
       image: json['image'],
 

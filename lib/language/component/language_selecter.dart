@@ -7,13 +7,11 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class LanguageSelecter extends StatelessWidget {
-  const LanguageSelecter({
-    super.key,
-    this.text,
-    this.ontap,
-  });
+  const LanguageSelecter(
+      {super.key, this.text, this.ontap, this.isSelected = false});
   final text;
   final ontap;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {

@@ -9,8 +9,17 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class HomeAppbar extends StatelessWidget {
-  const HomeAppbar({super.key, this.onNotificationtap});
+  const HomeAppbar(
+      {super.key,
+      this.onNotificationtap,
+      this.isnotification = true,
+      this.ischat = false,
+      this.onChatntap});
   final onNotificationtap;
+  final onChatntap;
+
+  final isnotification;
+  final ischat;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,26 +36,60 @@ class HomeAppbar extends StatelessWidget {
             Gap(10),
             Row(
               children: [
-                GestureDetector(
-                    onTap: onNotificationtap,
-                    child: SvgPicture.asset('assets/icons/bell.svg')),
+                InkWell(
+                  onTap: onNotificationtap,
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: SvgPicture.asset('assets/images/bell.svg'),
+                      ),
+                      if (isnotification == true)
+                        Positioned(
+                          top: 3,
+                          right: 0,
+                          child: Container(
+                            height: 7,
+                            width: 7,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.primary_color,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
                 Gap(20),
                 GestureDetector(
-                  onTap: () {
-                    Get.toNamed(AppRoutes.chats_accounts);
-                  },
-                  child: Container(
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                      color: AppColors.lightPink,
-                      borderRadius: BorderRadius.circular(80),
+                  onTap: onChatntap,
+                  child: Stack(children: [
+                    Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        color: AppColors.lightPink,
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                      child: SvgPicture.asset(
+                        'assets/icons/chat.svg',
+                        color: AppColors.darkprimary,
+                      ),
                     ),
-                    child: SvgPicture.asset(
-                      'assets/icons/chat.svg',
-                      color: AppColors.darkprimary,
-                    ),
-                  ),
+                    if (ischat == true)
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary_color,
+                          ),
+                        ),
+                      ),
+                  ]),
                 ),
               ],
             ),

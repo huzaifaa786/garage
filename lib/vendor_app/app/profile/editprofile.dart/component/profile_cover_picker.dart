@@ -7,7 +7,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_controller.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -25,77 +24,63 @@ class ProfileAndCoverPickerr extends StatelessWidget {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(12)),
               onTap: () {
-                 controller.pickImageFromGallery('cover');
+                controller.pickImageFromGallery('cover');
               },
               child: DottedBorder(
                 borderType: BorderType.RRect,
                 strokeWidth: 1.0,
-                color:
-                     controller.cover != null &&
-                            controller.cover!.path.isNotEmpty
-                   ?
-                      AppColors.green_color
-                     :
-                    AppColors.primary_color,
+                color: controller.cover != null &&
+                        controller.cover!.path.isNotEmpty
+                    ? AppColors.green_color
+                    : AppColors.primary_color,
                 dashPattern: const <double>[4, 2],
                 padding: const EdgeInsets.all(0),
                 radius: const Radius.circular(5),
                 child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    child:
-                          controller.cover == null ||
-                                controller.cover!.path.isEmpty
-                           ?
-                        Container(
-                      height: 160,
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                          color: AppColors.primary_color.withOpacity(0.07),
-                          image: const DecorationImage(
-                              image: CachedNetworkImageProvider(
-                                // controller.garage!.banner!,
-                                // controller.garage != null
-                                //     ? controller.garage!.logo!
-                                //     :
-                                // 'https://dummyimage.com/60x40/000/fff',
-                                '',
-                              ),
-                              opacity: 0.5,
-                              fit: BoxFit.cover)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  child: controller.cover == null ||
+                          controller.cover!.path.isEmpty
+                      ? Container(
+                          height: 160,
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                              color: AppColors.primary_color.withOpacity(0.07),
+                              image: DecorationImage(
+                                  image: CachedNetworkImageProvider(
+                                      controller.garage!.banner.toString()),
+                                  opacity: 0.5,
+                                  fit: BoxFit.cover)),
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SvgPicture.asset(
-                                ImageConst.image_ic,
-                                height: 13,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    ImageConst.image_ic,
+                                    height: 13,
+                                  ),
+                                  const Gap(4),
+                                  AppText(
+                                    title: 'Upload garage banner'.tr,
+                                    size: 11,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primary_color,
+                                  )
+                                ],
                               ),
-                              const Gap(4),
+                              const Gap(6),
                               AppText(
-                                title: ConstantStrings.upload_garage_banner,
-                                size: 11,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.primary_color,
+                                title: 'Recomended size 390 * 185 px'.tr,
+                                size: 10,
+                                color: AppColors.hint_text_color,
                               )
                             ],
                           ),
-                          const Gap(6),
-                          AppText(
-                            title: ConstantStrings.recomended_image_size,
-                            size: 10,
-                            color: AppColors.hint_text_color,
-                          )
-                        ],
-                      ),
-                    )
-                    : Image.file(
-                        controller.cover!,
-                        height: 160,
-                        width: Get.width,
-                      ),
-                    ),
+                        )
+                      : Image.file(controller.cover!,
+                          height: 160, width: Get.width, fit: BoxFit.cover),
+                ),
               ),
             ),
           ),
@@ -117,73 +102,62 @@ class ProfileAndCoverPickerr extends StatelessWidget {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(35)),
               onTap: () {
-                 controller.pickImageFromGallery('logo');
+                controller.pickImageFromGallery('logo');
               },
-              // child: DottedBorder(
-              //   borderType: BorderType.RRect,
-              //   strokeWidth: 1.0,
-              // color:
-              //     controller.logo != null && controller.logo!.path.isNotEmpty
-              //         ? AppColors.green_color
-              //         : AppColors.primary_color,
-              // dashPattern: const <double>[4, 2],
-              // padding: const EdgeInsets.all(0),
-              // radius: const Radius.circular(35),
-              child: ClipRRect(
+              child: DottedBorder(
+                borderType: BorderType.RRect,
+                strokeWidth: 1.0,
+                color:
+                    controller.logo != null && controller.logo!.path.isNotEmpty
+                        ? AppColors.green_color
+                        : AppColors.primary_color,
+                dashPattern: const <double>[4, 2],
+                padding: const EdgeInsets.all(0),
+                radius: const Radius.circular(35),
+                child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(35)),
-                  child:
-                      // controller.logo == null ||
-                      //         controller.logo!.path.isEmpty
-                      //     ?
-                      Container(
-                    height: 70,
-                    width: 70,
-                    decoration: BoxDecoration(
-                        color: AppColors.primary_color.withOpacity(0.07),
-                        image: const DecorationImage(
-                            image: CachedNetworkImageProvider(
-                              // controller.garage!.logo!
-                              // controller.garage != null
-                              //     ? controller.garage!.logo!
-                              //     :
-                              // 'https://dummyimage.com/60x40/000/fff',
-                              '',
-                            ),
-                            opacity: 0.5,
-                            fit: BoxFit.cover)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          ImageConst.image_ic,
-                          height: 12,
-                        ),
-                        const Gap(2),
-                        AppText(
-                          title: ConstantStrings.upload_logo,
-                          size: 9,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.primary_color,
-                        ),
-                        const Gap(2),
-                        AppText(
-                          title: ConstantStrings.seventy_square,
-                          size: 8,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.hint_text_color,
-                        ),
-                      ],
-                    ),
-                  )
-                  // : Image.file(
-                  //     controller.logo!,
-                  //     height: 70,
-                  //     width: 70,
-                  //   ),
-                  ),
+                  child: controller.logo == null ||
+                          controller.logo!.path.isEmpty
+                      ? Container(
+                          height: 70,
+                          width: 70,
+                          decoration: BoxDecoration(
+                              color: AppColors.primary_color.withOpacity(0.07),
+                              image: DecorationImage(
+                                  image: CachedNetworkImageProvider(
+                                      controller.garage!.logo!.toString()),
+                                  opacity: 0.5,
+                                  fit: BoxFit.cover)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                ImageConst.image_ic,
+                                height: 12,
+                              ),
+                              const Gap(2),
+                              AppText(
+                                title: 'Uploaded'.tr,
+                                size: 9,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.primary_color,
+                              ),
+                              const Gap(2),
+                              AppText(
+                                title: '70*70'.tr,
+                                size: 8,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.hint_text_color,
+                              ),
+                            ],
+                          ),
+                        )
+                      : Image.file(controller.logo!,
+                          height: 70, width: 70, fit: BoxFit.cover),
+                ),
+              ),
             ),
-          ),
-          // )
+          )
         ],
       ),
     );

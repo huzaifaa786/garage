@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:mobilegarage/services/dio_service.dart';
 import 'package:mobilegarage/vendor_app/utils/vender_base_url.dart';
 
@@ -21,6 +22,8 @@ class VSignupApi {
    
 
   ) async {
+        final token = await FirebaseMessaging.instance.getToken();
+
     String url = '$vbaseUrl/register';
     var data = {
       'name': name,
@@ -38,6 +41,7 @@ class VSignupApi {
       'password': password,
       'email': email,
       'logo': logo,
+      'fcm_token': token,
     };
     var response = await DioService.post(url: url, data: data);
     return response;

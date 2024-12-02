@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/login_verify_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/phone_verify_api.dart';
+import 'package:mobilegarage/apis/user_apis/auth_apis/verify_otp_test_api.dart';
 import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
@@ -13,19 +14,37 @@ import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class OtpController extends GetxController {
   static OtpController instanse = Get.find();
-
+  TextEditingController otpController = TextEditingController();
   @override
   void onInit() async {
     super.onInit();
     phone = Get.parameters['phone'];
     authmethod = Get.parameters['auth'];
-
+    otp = Get.parameters['otp'];
+    otpController.text = otp.toString();
+    update();
+  //  await veryifyTestCode();
     print(phone);
-    await verifyPhone();
+    print(otp);
+
+    // await verifyPhone();
+  }
+
+  veryifyTestCode() async {
+    var response = await VerifyOtpTestApi.verifyNumber(phone: phone, otp: otp);
+    if (response.isNotEmpty) {
+        box.write('api_token', response['user']['token']);
+        box.write('number_verified', 'true');
+        box.write('user_type', 'user');
+        box.write('user_id', response['user']['id']);
+
+        Get.offAllNamed(AppRoutes.main);
+    }
   }
 
   String? phone = '';
   String? authmethod = '';
+  String? otp = '';
 
   String otpCode = '';
   GetStorage box = GetStorage();
@@ -41,7 +60,7 @@ class OtpController extends GetxController {
     LoadingHelper.show();
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.verifyPhoneNumber(
-      timeout: const Duration(minutes: 2),
+      timeout: const Duration(seconds: 10),
       phoneNumber: phone,
       verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException e) {
@@ -65,13 +84,13 @@ class OtpController extends GetxController {
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         verificationid = verificationId;
-        Get.snackbar(
-          'TIMEOUT'.tr,
-          '',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: AppColors.white,
-        );
+        // Get.snackbar(
+        //   'TIMEOUT'.tr,
+        //   '',
+        //   snackPosition: SnackPosition.BOTTOM,
+        //   backgroundColor: Colors.red,
+        //   colorText: AppColors.white,
+        // );
       },
     );
   }
@@ -79,21 +98,18 @@ class OtpController extends GetxController {
   void verifyOtpCode() async {
     LoadingHelper.show();
     try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationid,
-        smsCode: otpCode,
-      );
-      await auth.signInWithCredential(credential);
-
+      // PhoneAuthCredential credential = PhoneAuthProvider.credential(
+      //   verificationId: verificationid,
+      //   smsCode: otpCode,
+      // );
+      // await auth.signInWithCredential(credential);
       Map<String, dynamic> response;
       if (authmethod == 'signin') {
         response = await LoginVerifyApi.verifyNumber(phone: phone);
-      } else  if(authmethod == 'signup'){
+      } else if (authmethod == 'signup') {
         response = await phoneOtpApi.registerUserWithOtp(phone: phone);
-      }
-      else{
-           response =
-        await EditProfileApi.editProfile(phone: phone);
+      } else {
+        response = await EditProfileApi.editProfile(phone: phone);
       }
 
       if (response.isNotEmpty) {
@@ -113,16 +129,20 @@ class OtpController extends GetxController {
         box.write('api_token', response['user']['token']);
         box.write('number_verified', 'true');
 
-       box.write('user_type', 'user');
+        box.write('user_type', 'user');
+        box.write('user_type', 'user');
+        box.write('user_id', response['user']['id']);
 
         Get.offAllNamed(AppRoutes.main);
         LoadingHelper.dismiss();
         UiUtilites.successSnackbar(
-            'OTP verified successfully'.tr, 'Success!'.tr);
+          'OTP verified successfully'.tr,
+          'Success!'.tr,
+        );
       } else {
         LoadingHelper.dismiss();
         Get.snackbar(
-          'Login failed'.tr,
+          'Error'.tr,
           'Login failed'.tr,
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,

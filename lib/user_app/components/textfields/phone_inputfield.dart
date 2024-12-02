@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -21,11 +22,11 @@ class PhoneInputField extends StatelessWidget {
         FilteringTextInputFormatter.digitsOnly,
       ],
       decoration: InputDecoration(
-        hintText: 'Phone number' ,
-          hintStyle: TextStyle(
-                  color: AppColors.black.withOpacity(0.4),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400),
+        hintText: 'Phone number'.tr,
+        hintStyle: TextStyle(
+            color: AppColors.black.withOpacity(0.4),
+            fontSize: 13,
+            fontWeight: FontWeight.w400),
         // contentPadding: EdgeInsets.only(top: 5),
         filled: true,
         fillColor: AppColors.borderlightgrey,
@@ -41,7 +42,7 @@ class PhoneInputField extends StatelessWidget {
             borderRadius: BorderRadius.circular(30)),
         counterStyle: TextStyle(fontSize: 0),
       ),
-       initialCountryCode: 'AE',
+      initialCountryCode: 'AE',
       showDropdownIcon: false,
       flagsButtonPadding: EdgeInsets.only(left: 20),
       dropdownIcon: Icon(

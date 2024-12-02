@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -7,17 +9,19 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ChatAppbar extends StatelessWidget {
-  const ChatAppbar({
-    super.key,
-    required this.child,
-    this.appBarTitle,
-    this.hasIcon = true,
-    this.hasBgColor = false,
-    this.hasShadow = true,
-    this.isRectangle = false,
-  });
+  const ChatAppbar(
+      {super.key,
+      required this.child,
+      this.appBarTitle,
+      this.hasIcon = true,
+      this.hasBgColor = false,
+      this.hasShadow = true,
+      this.isRectangle = false,
+      this.appBarimage});
   final Widget child;
   final String? appBarTitle;
+  final String? appBarimage;
+
   final bool hasIcon;
   final bool hasBgColor;
   final bool hasShadow;
@@ -66,19 +70,15 @@ class ChatAppbar extends StatelessWidget {
                       ),
                     ),
                   ),
-                const ClipRRect(
-                    child: AppNetworkImage(
-                  assetPath: 'assets/images/street_garage.png',
-                  // width: Get.width,
-                  height: 53,
-                  width: 53,
+                  Gap(10),
+                ClipRRect(
+                    child: SvgPicture.asset(
+                 'assets/images/avatar.svg',
+                  height: 43,
+                  width: 43,
+                   color: AppColors.primary,
                 )
-                    // borderRadius: BorderRadius.circular(30),
-                    // child: CachedNetworkImage(
-                    //   imageUrl: "https://dummyimage.com/61x61/000/fff",
-                    //   width: 40,
-                    //   height: 40,
-                    // ),
+                  
                     ),
                 const SizedBox(width: 12),
                 AppText(

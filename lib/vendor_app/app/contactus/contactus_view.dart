@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/contactus/component/container.dart';
 import 'package:mobilegarage/vendor_app/app/contactus/contactus_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
+import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 
 class VContactusView extends StatefulWidget {
   const VContactusView({super.key});
@@ -22,7 +24,7 @@ class _VContactusViewState extends State<VContactusView> {
     return GetBuilder<VContactusController>(
         autoRemove: false,
         builder: (controller) => AppLayout(
-              appBarTitle: 'Contact Us',
+              appBarTitle: 'Contact Us'.tr,
               hasBgColor: false,
               hasShadow: false,
               child: Row(
@@ -31,37 +33,50 @@ class _VContactusViewState extends State<VContactusView> {
                   Column(
                     children: [
                       Gap(40),
-                      AppText(
-                        title: 'Contact Us',    
-                        size: 15,
-                        fontWeight: FontWeight.w600,
+                      // AppText(
+                      //   title: 'Contact Us',
+                      //   size: 15,
+                      //   color: AppColors.darkprimary,
+                      //   fontWeight: FontWeight.w600,
+                      // ),
+                      // Gap(40),
+                      Image.asset(
+                        'assets/images/contactuslogo.png',
+                        height: 130,
+                        width: 230,
+                        fit: BoxFit.cover,
                       ),
-                      Image.asset('assets/images/contactus.png'),
                       Gap(40),
                       Row(
                         children: [
                           ContactBox(
                             ontap: () {
-                              controller.openEmail();
+                              controller.openEmail(context);
                             },
                             icon: 'assets/images/mail.svg',
                           ),
                           ContactBox(
                             icon: 'assets/images/Instagram.svg',
                             ontap: () {
-                              controller.openInstagram();
+                              controller.openInstagram(context);
                             },
                           ),
                           ContactBox(
                             icon: 'assets/icons/whatsapp_img.svg',
                             ontap: () {
-                              controller.openWhatsApp();
+                              controller.openWhatsApp(context);
                             },
                           ),
                           ContactBox(
                             icon: 'assets/icons/phone.svg',
                             ontap: () {
-                              controller.openPhone();
+                              controller.openPhone(context);
+                            },
+                          ),
+                          ContactBox(
+                            icon: 'assets/icons/linkedln.svg',
+                            ontap: () {
+                              controller.openLinkedIn(context);
                             },
                           )
                         ],

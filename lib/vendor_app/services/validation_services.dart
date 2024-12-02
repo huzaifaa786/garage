@@ -9,7 +9,7 @@ class Validators {
     if (value == null) {
       return null;
     } else if (value.isEmpty) {
-      return "$valueType " + "can't be empty".tr;
+      return "$valueType ".tr + "can't be empty".tr;
     } else {
       return null;
     }
@@ -58,7 +58,7 @@ class Validators {
     } else if (newpassword == confirmPassword) {
       return null;
     } else {
-      return "Password and confirm password is not same!".tr;
+      return "Password and confirm password are not same!".tr;
     }
   }
 

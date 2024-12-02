@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/routes/app_routes.dart';   
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/button.dart';
@@ -47,7 +47,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
             child: AppBar(
                 centerTitle: true,
                 title: AppText(
-                  title: 'Edit Profile',
+                  title: 'Edit profile'.tr,
                   size: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary_color,
@@ -63,7 +63,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                 ? Column(
                     children: [
                       Container(
-                        height: Get.height * 0.6,
+                        // height: Get.height * 0.6,
                         decoration: BoxDecoration(color: AppColors.white_color),
                         child: Padding(
                           padding: const EdgeInsets.all(25.0),
@@ -75,7 +75,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               Row(
                                 children: [
                                   AppText(
-                                    title: 'Garage description',
+                                    title: 'Garage description'.tr,
                                     color: Colors.grey,
                                   )
                                 ],
@@ -83,7 +83,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               Gap(20),
                               AppInputField(
                                 errorText: controller.garageDescriptionError,
-                                hint: 'Garage description',
+                                hint: 'Garage description'.tr,
                                 controller:
                                     controller.garageDescriptionController,
                                 onchange: (val) {
@@ -94,8 +94,8 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                               Gap(16),
                               AppButton(
                                 title: controller.isButtonClicked
-                                    ? 'Changes saved successfully'
-                                    : 'Save Changes',
+                                    ? 'Changes saved successfully'.tr
+                                    : 'Save Changes'.tr,
                                 titleColor: controller.isButtonClicked
                                     ? AppColors.green_color
                                     : AppColors.white_color,
@@ -118,7 +118,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                           ),
                         ),
                       ),
-                      Gap(13),
+                      Gap(12),
                       Container(
                         decoration: BoxDecoration(color: AppColors.white_color),
                         child: Padding(
@@ -131,50 +131,129 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                   children: [
                                     Icon(Icons.settings),
                                     AppText(
-                                      title: ' Setting',
+                                      title: ' Setting'.tr,
                                       size: 16,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ],
                                 ),
                               ),
-                              ChangePassword(
+                              EditProductsField(
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.vtradinglicense);
+                                },
+                                icon: 'assets/icons/license.svg',
+                                text: 'Edit or add new trading license'.tr,
+                              ),
+                              EditProductsField(
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.vownerid);
+                                },
+                                icon: 'assets/icons/license.svg',
+                                text: 'Edit or add new owner ID'.tr,
+                              ),
+                              EditProductsField(
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.vgarage_timings);
+                                },
+                                icon: 'assets/icons/Timeclock.svg',
+                                text: 'Open time and close time'.tr,
+                              ),
+                              EditProductsField(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.vchangepassword);
                                 },
                                 icon: 'assets/images/lock.svg',
-                                text: 'Change password',
+                                text: 'Change password'.tr,
                               ),
-                              ChangePassword(
+                              EditProductsField(
                                 ontap: () {
                                   Get.toNamed(AppRoutes.language);
                                 },
                                 icon: 'assets/images/globe.svg',
-                                text: 'Change language',
-                                langtext: 'English',
+                                text: 'Change language'.tr,
+                                langtext: 'English'.tr,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 25, top: 24),
+                                padding: const EdgeInsets.only(
+                                    left: 25, top: 14, right: 25),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    ReviewBox(
-                                      ontap: () {
-                                        UiUtilites.showConfirmationDialog(
-                                          false,
-                                          'Are you Sure that you want\n to log out ?',
-                                          onConfirm: () async {
+                                    GestureDetector(
+                                      onTap: () {
+                                        // UiUtilites.showConfirmationDialog(
+                                        //   false,
+                                        //   'Are you Sure that you want\n to log out ?'
+                                        //       .tr,
+                                        //   onConfirm: () async {
+                                        //     GetStorage box = GetStorage();
+                                        //     await box.remove('api_token');
+                                        //     controller.update();
+                                        //     Get.offAllNamed(
+                                        //         AppRoutes.selectside);
+                                        //   },
+                                        // );
+
+                                        UiUtilites.confirmAlertDialog(
+                                          context: context,
+                                          onCancelTap: () {
+                                            Get.back();
+                                          },
+                                          onConfirmTap: () async {
                                             GetStorage box = GetStorage();
                                             await box.remove('api_token');
                                             controller.update();
                                             Get.offAllNamed(
                                                 AppRoutes.selectside);
                                           },
+                                          title:
+                                              'Are you Sure that you want\n to log out ?'
+                                                  .tr,
+                                          cancelText: 'No'.tr,
+                                          confirmText: 'Yes'.tr,
                                         );
                                       },
-                                      icon: 'assets/images/power.png',
-                                      text: 'Log Out',
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColors.light_red,
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                        height: 49,
+                                        width: Get.width * 0.4,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                  height: 25,
+                                                  width: 25,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        AppColors.white_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            5.0),
+                                                    child: Image.asset(
+                                                        'assets/images/loggout.png'),
+                                                  )),
+                                              Gap(8),
+                                              AppText(
+                                                title: 'Log Out'.tr,
+                                                size: 12,
+                                                color: AppColors.primary_color,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

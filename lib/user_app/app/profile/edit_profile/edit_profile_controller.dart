@@ -29,33 +29,30 @@ class EditProfileController extends GetxController {
   void onInit() {
     super.onInit();
     receiveArguments();
+    update();
   }
 
   void receiveArguments() {
-    var args = Get.arguments;
-    if (args != null) {
-      img = args['image'] ?? '';
-
-      nameController.text = args['userName'] ?? '';
-      phoneController.text = args['userNumber'] ?? '';
-      emailController.text = args['userEmail'] ?? '';
-    }
+    img = Get.parameters['image'];
+    nameController.text = Get.parameters['userName'] ?? '';
+    phoneController.text = Get.parameters['userNumber'] ?? '';
+    emailController.text = Get.parameters['userEmail'] ?? '';
+    update();
+    print('aaaaaaaaa$img');
   }
 
   void onSaveChanges() async {
     var response = await EditProfileApi.editProfile(
-      username: nameController.text,
-      
-      profileimage: base64pic,
-      phone: phoneController.text,
-    );
+        username: nameController.text,
+        profileimage: base64pic,
+        phone: phoneController.text,
+        email: emailController.text);
     if (response.isNotEmpty) {
       user = UserModel.fromJson(response['user']);
       isButtonClicked = true;
     }
     update();
     Get.back();
-
   }
 
   pickImageFromGallery(String imageName) async {
@@ -66,13 +63,14 @@ class EditProfileController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null && croppedImage.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());
 
         switch (imageName) {
           case 'profilepic': // Fix here
+            // img = null;
             profilepic = File(croppedImage.path);
             base64pic = base64Image;
             update(); // Force update

@@ -8,6 +8,7 @@ import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class VEditprofileController extends GetxController {
   static VEditprofileController instance = Get.find();
@@ -26,6 +27,7 @@ class VEditprofileController extends GetxController {
       isButtonClicked = true;
     }
     update();
+    UiUtilites.successSnackbar('Edit profile successfully', 'Success');
     Get.back();
   }
 
@@ -61,7 +63,7 @@ class VEditprofileController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());

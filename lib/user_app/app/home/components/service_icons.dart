@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_super_parameters, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
@@ -80,7 +78,8 @@ class ServicesIcons extends StatelessWidget {
                 ),
                 Gap(2),
                 // SvgPicture.asset(
-                //   'assets/icons/arrow_right.svg',
+                //   'assets/icons/arrow-right.svg',
+
                 //   color: AppColors.primarybg,
                 // )
               ],

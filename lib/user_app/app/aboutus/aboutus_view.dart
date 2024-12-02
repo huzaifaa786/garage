@@ -1,12 +1,10 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/aboutus/aboutus_controller.dart';
-import 'package:mobilegarage/user_app/app/privacy/privacy_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -22,6 +20,7 @@ class AboutusView extends StatefulWidget {
 class _TermsConditionsViewState extends State<AboutusView> {
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return GetBuilder<AboutusController>(
       builder: (controller) => Scaffold(
         appBar: PreferredSize(
@@ -37,7 +36,7 @@ class _TermsConditionsViewState extends State<AboutusView> {
               title: TopBar(
                 showicon: true,
                 showgarageicon: false,
-                title: "About us",
+                title: 'About us'.tr,
               ),
             ),
           ),
@@ -55,7 +54,7 @@ class _TermsConditionsViewState extends State<AboutusView> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       AppText(
-                        title: 'Who are we?',
+                        title: 'Who are we'.tr,
                         size: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,
@@ -64,15 +63,17 @@ class _TermsConditionsViewState extends State<AboutusView> {
                   ),
                   Gap(25),
                   AppText(
-                    title:
-                        'Conditions of use By using this app, you certify that you have read and reviewed this Agreement and that you agree to comply with its terms. If you do not want to be bound by the terms of this Agreement, you are advised to stop using the app accordingly. [company name] only grants use and access of this app, its products, and its services to those who have accepted its terms. Privacy policy Before you continue using our app, we advise you to read our privacy policy [link to privacy policy] regarding our user data collection. It will help ',
+                    title: box.read('locale') == 'ar'
+                        ? controller.ardes ?? ''
+                        : controller.des ?? '',
                     size: 10,
                     fontWeight: FontWeight.w400,
                     height: 1.5,
                   ),
                   Gap(27),
                   AppText(
-                    title: 'Location ',
+                    title: 'Location'.tr,
+
                     size: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.darkprimary,
@@ -84,24 +85,25 @@ class _TermsConditionsViewState extends State<AboutusView> {
                     children: [
                       SvgPicture.asset(
                         'assets/icons/map_pin.svg',
-                        // height: 15,
-                        // width: 15,
                         color: AppColors.darkprimary,
                       ),
                       Gap(8),
                       AppText(
-                        title: 'Dubai ',
+                        title: "${controller.city ?? ''},",
                         size: 12,
                         fontWeight: FontWeight.w500,
                         color: AppColors.darkprimary,
                       ),
-                      Gap(2),
-                      AppText(
-                        title: 'zayed street , house3564 ,.... ',
-                        size: 10,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.darkprimary,
-                        overFlow: TextOverflow.ellipsis,
+                      Gap(8),
+                      Expanded(
+                        child: AppText(
+                          title: controller.location ?? '',
+                          size: 10,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkprimary,
+                          overFlow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                        ),
                       ),
                     ],
                   )

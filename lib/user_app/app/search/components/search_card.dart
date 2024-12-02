@@ -6,20 +6,24 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
-import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class SearchCard extends StatelessWidget {
   final String? image;
   final String? logoimage;
-
   final String? title;
   final String? services;
-
+  final String? currentAddress;
+  final VoidCallback? onTapViewGarage;
   final VoidCallback? onTap;
+  final VoidCallback? onChatTap;
+
   final String? price;
+  final String? rating;
+
 
   const SearchCard({
     this.image,
@@ -28,11 +32,16 @@ class SearchCard extends StatelessWidget {
     this.onTap,
     this.price,
     this.logoimage,
+    this.currentAddress,
+    this.onTapViewGarage,
+    this.rating,
+    this.onChatTap
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -65,18 +74,16 @@ class SearchCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(12)),
-                    // child: AppNetworkImage(
-                    //   assetPath: 'assets/images/car_fueling.png',
-                    //   height: Get.height * 0.15,
-                    //   width: Get.width,
-                    //   // fit: BoxFit.cover,
-                    // ),
                     child: CachedNetworkImage(
                       imageUrl: image.toString(),
                       height: Get.height * 0.15,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      placeholder: (context, url) => CircularProgressIndicator(),
+                      placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(
+                        color: AppColors.greybg,
+                        strokeWidth: 1,
+                      )),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
@@ -94,10 +101,6 @@ class SearchCard extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(60),
-                      // child: AppNetworkImage(
-                      //   assetPath: 'assets/images/car_fueling.png',
-                      //   // fit: BoxFit.cover,
-                      // ),
                       child: CachedNetworkImage(
                         imageUrl: logoimage.toString(),
                         fit: BoxFit.cover,
@@ -137,7 +140,7 @@ class SearchCard extends StatelessWidget {
                   Row(
                     children: [
                       RatingBarIndicator(
-                        rating: 4.0,
+                        rating: double.parse(rating.toString()),
                         itemCount: 5,
                         itemSize: 11,
                         unratedColor: AppColors.black.withOpacity(0.5),
@@ -148,7 +151,7 @@ class SearchCard extends StatelessWidget {
                       ),
                       Gap(3),
                       AppText(
-                        title: '4.0',
+                        title: rating??'0.0',
                         size: 10,
                         fontWeight: FontWeight.w500,
                       )
@@ -163,7 +166,7 @@ class SearchCard extends StatelessWidget {
                       SizedBox(
                         width: Get.width * 0.70,
                         child: AppText(
-                          title: 'Dubai Zayed street , road 3452 ',
+                          title: currentAddress!,
                           size: 11,
                           fontWeight: FontWeight.w500,
                         ),
@@ -172,65 +175,70 @@ class SearchCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15, bottom: 5),
-                    child: Stack(
+                    child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
+                        Stack(
                           children: [
-                            ClipPath(
-                              clipper: RightCircularClipper(),
-                              child: GestureDetector(
-                                onTap: () {
-                                  print('object');
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: AppColors.lightPink,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20),
-                                          bottomLeft: Radius.circular(20))),
-                                  height: Get.height * 0.05,
-                                  width: Get.width * 0.67,
-                                  child: Center(
-                                    child: Text(
-                                      'View garage',
-                                      style: TextStyle(
-                                          color: AppColors.primary,
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.w500),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ClipPath(
+                                  clipper: RightCircularClipper(),
+                                  child: GestureDetector(
+                                    onTap: onTapViewGarage,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: AppColors.lightPink,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              bottomLeft: Radius.circular(20))),
+                                      height: Get.height * 0.05,
+                                      width: Get.width * 0.7,
+                                      child: Center(
+                                        child: Text(
+                                          'View garage'.tr,
+                                          style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
+                                Gap(13)
+                              ],
                             ),
-                            Gap(13)
+                            Positioned(
+                              right: 0,
+                              top: Get.height * 0.003,
+                              child: GestureDetector(
+                                onTap:onChatTap,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(60),
+                                  child: Container(
+                                      height: Get.height * 0.044,
+                                      width: Get.width * 0.1,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.lightPink,
+                                        borderRadius: BorderRadius.circular(60),
+                                      ),
+                                      child: SvgPicture.asset(
+                                        'assets/icons/chat.svg',
+                                        color: AppColors.primary,
+                                      )
+                                      // child: Image.asset(
+                                      //   'assets/images/chat.png',
+                                      //   color: AppColors.primary,
+                                      // ),
+                                      ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
-                        Positioned(
-                          right: 0,
-                          top: Get.height * 0.003,
-                          child: GestureDetector(
-                            onTap: () {
-                              print('object23');
-                            },
-                            child: Container(
-                                height: Get.height * 0.045,
-                                width: Get.width * 0.085,
-                                decoration: BoxDecoration(
-                                  color: AppColors.lightPink,
-                                  borderRadius: BorderRadius.circular(80),
-                                ),
-                                child: SvgPicture.asset(
-                                  'assets/icons/chat.svg',
-                                  color: AppColors.primary,
-                                )
-                                // child: Image.asset(
-                                //   'assets/images/chat.png',
-                                //   color: AppColors.primary,
-                                // ),
-                                ),
-                          ),
-                        )
                       ],
                     ),
                   )

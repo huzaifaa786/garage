@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/search_result/components/radioButton.dart';
 import 'package:mobilegarage/user_app/app/search_result/searchResult_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -39,7 +39,7 @@ class _SearchresultViewState extends State<SearchresultView> {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: TopBar(title: 'Date & Time'),
+              title: TopBar(title: 'Date & Time'.tr),
             ),
           ),
         ),
@@ -49,7 +49,7 @@ class _SearchresultViewState extends State<SearchresultView> {
               children: [
                 Gap(30),
                 Padding(
-                  padding: const EdgeInsets.only(left: 30),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -58,7 +58,7 @@ class _SearchresultViewState extends State<SearchresultView> {
                       ),
                       Gap(10),
                       AppText(
-                        title: 'Delivery Time',
+                        title: 'Delivery Time'.tr,
                         size: 14,
                         fontWeight: FontWeight.w500,
                       ),
@@ -72,12 +72,8 @@ class _SearchresultViewState extends State<SearchresultView> {
                   color: AppColors.lightgrey,
                   child: TableCalendar(
                     availableGestures: AvailableGestures.horizontalSwipe,
-                    firstDay:
-                        // controller.selectedService!='quickService'
-                        // ?
-                        DateTime.utc(2023, 1, 1),
-                    // :DateTime.now(),
-                    lastDay: DateTime.now(),
+                    firstDay: DateTime.utc(2023, 1, 1),
+                    lastDay: DateTime.utc(2035, 1, 1),
                     focusedDay: DateTime.now(),
                     calendarFormat: CalendarFormat.month,
                     startingDayOfWeek: StartingDayOfWeek.monday,
@@ -99,10 +95,17 @@ class _SearchresultViewState extends State<SearchresultView> {
                         color: AppColors.primarybg,
                       ),
                     ),
+                    onDaySelected: (selectedDay, focusedDay) {
+                      controller.selectDate(selectedDay);
+                    },
+                    selectedDayPredicate: (day) {
+                      return isSameDay(day, controller.selectedDate);
+                    },
                     calendarStyle: CalendarStyle(
+                      // isTodayHighlighted: false,
                       todayDecoration: BoxDecoration(
-                        color: AppColors
-                            .primarybg, // Today's date background color
+                        color: AppColors.primarybg
+                            .withOpacity(0.4), // Today's date background color
                         shape: BoxShape.circle,
                       ),
                       selectedDecoration: BoxDecoration(
@@ -132,7 +135,7 @@ class _SearchresultViewState extends State<SearchresultView> {
                     ),
                     Gap(10),
                     AppText(
-                      title: 'Select location ',
+                      title: 'Select location '.tr,
                       size: 12,
                       fontWeight: FontWeight.w500,
                     )
@@ -213,24 +216,18 @@ class _SearchresultViewState extends State<SearchresultView> {
                                           children: [
                                             AppText(
                                               title:
-                                                  "Select location on Google map",
+                                                  "Select location on Google map"
+                                                      .tr,
                                               size: 10,
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ],
                                         )
-                                      : ConstrainedBox(
-                                          constraints: BoxConstraints(
-                                              maxWidth: Get.width * 0.46),
-                                          child: Row(
-                                            children: [
-                                              AppText(
-                                                title:
-                                                    controller.currentAddress,
-                                                size: 10,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ],
+                                      : Flexible(
+                                          child: AppText(
+                                            title: controller.currentAddress,
+                                            size: 10,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                   Gap(30),
@@ -244,7 +241,9 @@ class _SearchresultViewState extends State<SearchresultView> {
                                         padding:
                                             const EdgeInsets.only(right: 20.0),
                                         child: SvgPicture.asset(
-                                          "assets/icons/arrow_right.svg",
+                                          box.read('locale') != 'ar'
+                                              ? "assets/icons/arrow_rightside.svg"
+                                              : 'assets/icons/arrow_leftside.svg',
                                           color: AppColors.primarybg,
                                           fit: BoxFit.scaleDown,
                                         ),
@@ -265,9 +264,9 @@ class _SearchresultViewState extends State<SearchresultView> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: MainButton(
                     height: Get.height * 0.077,
-                    title: 'Payment',
+                    title: 'Payment'.tr,
                     onTap: () {
-                      Get.toNamed(AppRoutes.payments);
+                      controller.checkDate();
                     },
                   ),
                 ),

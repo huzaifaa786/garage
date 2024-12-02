@@ -29,7 +29,7 @@ class SignupController extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController adreesdetailController = TextEditingController();
 
-GetStorage box =GetStorage();
+  GetStorage box = GetStorage();
 
 // onint
   @override
@@ -80,7 +80,7 @@ GetStorage box =GetStorage();
 
   phoneValidation(phone) {
     if (!isNumeric(phone.number)) {
-      phoneError = 'Use Numeric Variables';
+      phoneError = 'Use Numeric Variables'.tr;
       update();
       return phoneError;
     } else if (phone.number.length < selectedCountry!.minLength ||
@@ -112,31 +112,30 @@ GetStorage box =GetStorage();
     }
   }
 
-
   //TODO: Error Variables
   String nameError = '';
   String emirateError = '';
   String phoneError = '';
   String addressdetailError = '';
 
-// input field validation
   String validateFields(String fieldName, value) {
     switch (fieldName) {
       case 'name':
-        nameError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        nameError = Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return nameError;
       case 'phone':
-        phoneError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        phoneError = Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return phoneError;
       case 'Emirate':
-        emirateError = Validators.emptyStringValidator(value, fieldName) ?? '';
+        emirateError =
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return emirateError;
-      case 'address detail':
+      case 'address details':
         addressdetailError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return addressdetailError;
       default:
@@ -149,10 +148,10 @@ GetStorage box =GetStorage();
     final nameErrorString = validateFields('name', nameController.text);
     final phoneErrorString = validateFields('phone', phoneController.text);
     final addressdetailErrorString =
-        validateFields('address detail', adreesdetailController.text);
+        validateFields('address details', adreesdetailController.text);
 
     if (selectedEmirateId == null) {
-      emirateError = 'Please select an Brand';
+      emirateError = 'Please select an Emirate'.tr;
       update();
     } else {
       emirateError = '';
@@ -256,9 +255,9 @@ GetStorage box =GetStorage();
         imageBase64 = base64Encode(imageBytes);
       }
       return {
-        'vehicletype_id': section['vehicletype_id']?.id ?? null,
-        'vehiclebrand_id': section['vehiclebrand_id']?.id ?? null,
-        'vehiclebrandname_id': section['vehiclebrandname_id']?.id ?? null,
+        'vehicletype_id': section['vehicletype_id']?.id,
+        'vehiclebrand_id': section['vehiclebrand_id']?.id,
+        'vehiclebrandname_id': section['vehiclebrandname_id']?.id,
         'year_of_manufacture': section['year_of_manufacture'] ?? '',
         'vehicle_info': section['vehicle_info'] ?? '',
         'image': imageBase64,
@@ -273,15 +272,22 @@ GetStorage box =GetStorage();
       includes: formattedVehicleSections,
     );
     if (response.isNotEmpty) {
-       box.write('api_token', response['user']['token']);
-       box.write('user_type', 'user');
+      // box.write('api_token', response['user']['token']);
+      // box.write('user_id', response['user']['id']);
 
-       box.write('number_verified', 'false');
-      Get.toNamed(AppRoutes.otp,
-          parameters: {'phone': completePhoneNumber.toString(),'auth':'signup'});
+      box.write('user_type', 'user');
+      otp = response['user']['otp'].toString();
+      box.write('number_verified', 'false');
+      Get.toNamed(AppRoutes.otp, parameters: {
+        'phone': completePhoneNumber.toString(),
+        'auth': 'signup',
+        'otp':otp.toString()
+      });
       update();
     }
   }
+
+  String? otp = '';
 
 ///////////////
 ///////////////
@@ -325,36 +331,37 @@ GetStorage box =GetStorage();
       final errors = <String, String>{};
       // Validate vehicle type
       if (section['vehicletype_id'] == null) {
-        errors['vehicletype'] = 'Please select a vehicle type';
+        errors['vehicletype'] = 'Please select a vehicle type'.tr;
         isValid = false;
       }
 
       // Validate vehicle brand
       if (section['vehiclebrand_id'] == null) {
-        errors['vehiclebrand'] = 'Please select a vehicle brand';
+        errors['vehiclebrand'] = 'Please select a vehicle brand'.tr;
         isValid = false;
       }
 
       // Validate vehicle brand name
       if (section['vehiclebrandname_id'] == null) {
-        errors['vehiclebrandname'] = 'Please select a vehicle brand name';
+        errors['vehiclebrandname'] = 'Please select a vehicle brand name'.tr;
         isValid = false;
       }
 
       // Validate year of manufacture
       if (section['year_of_manufacture']?.isEmpty ?? true) {
-        errors['year_of_manufacture'] = 'Please enter the year of manufacture';
+        errors['year_of_manufacture'] =
+            'Please enter the year of manufacture'.tr;
         isValid = false;
       }
 
       // Validate vehicle information
       if (section['vehicle_info']?.isEmpty ?? true) {
-        errors['vehicle_info'] = 'Please enter vehicle information';
+        errors['vehicle_info'] = 'Please enter vehicle information'.tr;
         isValid = false;
       }
       // Validate image
       if (section['image'] == null) {
-        errors['image'] = 'Please select an image';
+        errors['image'] = 'Please select an image'.tr;
         isValid = false;
       }
       // Store errors for this section
@@ -413,21 +420,21 @@ GetStorage box =GetStorage();
 
     // Validate form fields
     if (selectedVehicleId == null) {
-      vehicletypeerror = 'Please select a vehicle';
+      vehicletypeerror = 'Please select a vehicle'.tr;
       isFormValid = false;
     } else {
       vehicletypeerror = '';
     }
 
     if (selectedVehiclebrandId == null) {
-      vehiclebranderror = 'Please select a brand';
+      vehiclebranderror = 'Please select a brand'.tr;
       isFormValid = false;
     } else {
       vehiclebranderror = '';
     }
 
     if (selectedbrandNameId == null) {
-      vehiclebrandnameerror = 'Please select a brand name';
+      vehiclebrandnameerror = 'Please select a brand name'.tr;
       isFormValid = false;
     } else {
       vehiclebrandnameerror = '';
@@ -442,7 +449,7 @@ GetStorage box =GetStorage();
       for (int index = 0; index < sectionErrors.length; index++) {
         var errors = sectionErrors[index];
         if (errors != null && errors.containsKey('image')) {
-          UiUtilites.errorSnackbar('error', 'Please select an image');
+          UiUtilites.errorSnackbar('error'.tr, 'Please select an image'.tr);
           break;
         }
       }

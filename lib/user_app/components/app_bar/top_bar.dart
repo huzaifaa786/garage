@@ -33,7 +33,7 @@ class TopBar extends StatelessWidget {
       children: [
         Container(
           child: Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -43,16 +43,14 @@ class TopBar extends StatelessWidget {
                           Get.back();
                         },
                         child: box.read('locale') == 'ar'
-                        ?SvgPicture.asset(
+                            ? SvgPicture.asset(
                                 'assets/icons/backarrow_right.svg',
                                 color: textColor,
                               )
                             : SvgPicture.asset(
                                 'assets/icons/backarrow.svg',
                                 color: textColor,
-                              )
-                            
-                      )
+                              ))
                     : const SizedBox.shrink(),
                 Row(
                   children: [
@@ -87,10 +85,10 @@ class TopBar extends StatelessWidget {
                     ],
                   )
                 else
-                  AppText(
-                    title: '*****',
+                  SvgPicture.asset(
+                    'assets/icons/backarrow_right.svg',
                     color: Colors.transparent,
-                  ),
+                  )
               ],
             ),
           ),

@@ -9,6 +9,8 @@ class MainBinding extends Bindings {
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => CartController());
     Get.lazyPut(() => AccountController());
-   ;
+    Get.lazyPut(() => AccountController());
+
+   
   }
 }

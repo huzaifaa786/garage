@@ -1,52 +1,68 @@
 import 'package:get/get.dart';
+import 'package:mobilegarage/apis/user_apis/order_apis/order_history_api.dart';
+import 'package:mobilegarage/models/order_models/orders_model.dart';
+import 'package:intl/intl.dart';
 
 class OrderHistoryController extends GetxController {
   static OrderHistoryController instance = Get.find();
-  List<Map<String, dynamic>> orders = [
-    {
-      "productImage": "https://dummyimage.com/93x93/000/fff",
-      "clientImage": "https://dummyimage.com/20x20/000/fff",
-      "client Name": "Street garage",
-      "product": "Car super power battery",
-      "product_Detail": "",
-      "carName": "white Mercedes 2022",
-      "date": "2/3/230",
-      "time": "2:30",
-      "Price": "230",
-      "item": "2",
-      "product_type": "xx4",
-      "quantity": "4",
-      'TrackingNumber': "356729100",
-    },
-    {
-      "productImage": "https://dummyimage.com/93x93/000/fff",
-      "clientImage": "https://dummyimage.com/20x20/000/fff",
-      "client Name": "Street garage",
-      "product": "Car washing",
-      "product_type": "self-service car wash",
-      "carName": "white Mercedes 2022",
-      "date": "2/3/230",
-      "time": "2:30",
-      "Price": "230",
-      "product_Detail": "7",
-      "item": "5",
-      "quantity": "",
-      'TrackingNumber': "356729100",
-    },
-    {
-      "productImage": "https://dummyimage.com/93x93/000/fff",
-      "clientImage": "https://dummyimage.com/20x20/000/fff",
-      "client Name": "Street garage",
-      "product": "Car battery oil",
-      "product_Detail": "",
-      "carName": "white Mercedes 2022",
-      "time": "2:30",
-      "Price": "230",
-      "date": "2/3/230",
-      "item": "2",
-      "product_type": "xx4",
-      "quantity": "4",
-      'TrackingNumber': "356729100",
+
+  List<OrdersModel>? orders = [];
+
+  @override
+  void onInit() async{
+    super.onInit();
+  await  getOrder();
+  }
+
+  // Function to format the date
+  String formatDate(String dateTime) {
+    DateTime parsedDate = DateTime.parse(dateTime);
+    return DateFormat('yyyy-MM-dd').format(parsedDate);
+  }
+
+// Function to format the time
+  String formatTime(String dateTime) {
+    DateTime parsedDate = DateTime.parse(dateTime);
+    return DateFormat('hh:mm a').format(parsedDate);
+  }
+
+  getOrder() async {
+    var response = await OrderHistoryApi.getOrder();
+    if (response.isNotEmpty) {
+      orders = (response['orders'] as List<dynamic>)
+          .map((item) => OrdersModel.fromJson(item))
+          .toList();
     }
-  ];
+    update();
+  }
+
+  // //!  Time Format
+  // String timeAgo(String createdAt) {
+  //   DateTime dateTime = DateTime.parse(createdAt);
+
+  //   final now = DateTime.now();
+
+  //   final difference = now.difference(dateTime);
+
+  //   if (difference.inDays >= 1) {
+  //     return difference.inDays == 1
+  //         ? '1 day ago'
+  //         : '${difference.inDays} days ago';
+  //   } else if (difference.inHours >= 1) {
+  //     return difference.inHours == 1
+  //         ? '1 hour ago'
+  //         : '${difference.inHours} hours ago';
+  //   } else if (difference.inMinutes >= 1) {
+  //     return difference.inMinutes == 1
+  //         ? '1 minute ago'
+  //         : '${difference.inMinutes} minutes ago';
+  //   } else if (difference.inSeconds >= 1) {
+  //     return difference.inSeconds == 1
+  //         ? '1 second ago'
+  //         : '${difference.inSeconds} seconds ago';
+  //   } else {
+  //     return 'Just now';
+  //   }
+  // }
+
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 
@@ -32,78 +33,83 @@ class DropDownField<T> extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: Get.width,
-          decoration: errorText!.isNotEmpty
-              ? circularErrorInputDecoration
-              : circularInputDecoration,
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton2(
-              hint: AppText(
-                title: hint!,
-                size: 12,
-                fontWeight: FontWeight.w400,
-                color: AppColors.hint_text_color,
-                // color: AppColors.black,
-              ),
-              items: items
-                  .map((item) => DropdownMenuItem<T>(
-                        value: item,
-                        child: Text(
-                          displayValue!(item),
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: item == selectedValue
-                                ? AppColors.white_color
-                                : AppColors.black_color,
-                          ),
-                        ),
-                      ))
-                  .toList(),
-              value: selectedValue,
-              onChanged: (value) {
-                if (onChanged != null) {
-                  onChanged!(value);
-                }
-              },
-              selectedItemBuilder: (BuildContext context) {
-                return items.map((item) {
-                  return Center(
-                    child: AppText(
-                      title: displayValue!(item),
-                      size: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black_color.withOpacity(0.4),
-                    ),
-                  );
-                }).toList();
-              },
-              menuItemStyleData: MenuItemStyleData(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                selectedMenuItemBuilder: (context, child) =>
-                    Container(color: AppColors.primary_color, child: child),
-              ),
-              iconStyleData: IconStyleData(
-                icon: SvgPicture.asset(ImageConst.drop_down_icon),
-              ),
-              buttonStyleData: ButtonStyleData(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-                width: Get.width,
-                decoration: BoxDecoration(
-                  color: AppColors.input_bg_color,
-                  borderRadius: BorderRadius.circular(45),
+        Directionality(
+          textDirection: box.read('locale') != 'ar'
+              ? TextDirection.ltr
+              : TextDirection.rtl,
+          child: Container(
+            height: 55,
+            width: Get.width,
+            decoration: errorText!.isNotEmpty
+                ? circularErrorInputDecoration
+                : circularInputDecoration,
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton2(
+                hint: AppText(
+                  title: hint!,
+                  size: 12,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.black.withOpacity(0.4),
                 ),
-              ),
-              dropdownStyleData: DropdownStyleData(
-                direction: DropdownDirection.left,
-                maxHeight: Get.height * 0.4,
-                width: 160,
-                padding: const EdgeInsets.all(0),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
+                items: items
+                    .map((item) => DropdownMenuItem<T>(
+                          value: item,
+                          child: Text(
+                            displayValue!(item),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: item == selectedValue
+                                  ? AppColors.white_color
+                                  : AppColors.black_color,
+                            ),
+                          ),
+                        ))
+                    .toList(),
+                value: selectedValue,
+                onChanged: (value) {
+                  if (onChanged != null) {
+                    onChanged!(value);
+                  }
+                },
+                selectedItemBuilder: (BuildContext context) {
+                  return items.map((item) {
+                    return Center(
+                      child: AppText(
+                        title: displayValue!(item),
+                        size: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.black_color,
+                      ),
+                    );
+                  }).toList();
+                },
+                menuItemStyleData: MenuItemStyleData(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  selectedMenuItemBuilder: (context, child) =>
+                      Container(color: AppColors.primary_color, child: child),
+                ),
+                iconStyleData: IconStyleData(
+                  icon: SvgPicture.asset(ImageConst.drop_down_icon),
+                ),
+                buttonStyleData: ButtonStyleData(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    color: AppColors.input_bg_color,
+                    borderRadius: BorderRadius.circular(45),
+                  ),
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  direction: DropdownDirection.left,
+                  maxHeight: Get.height * 0.4,
+                  width: 160,
+                  padding: const EdgeInsets.all(0),
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                    ),
                   ),
                 ),
               ),
@@ -115,7 +121,7 @@ class DropDownField<T> extends StatelessWidget {
             padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
             child: AppText(
               title: errorText!,
-              color: AppColors.primary_color,
+              color: AppColors.red,
               size: 10,
             ),
           ),

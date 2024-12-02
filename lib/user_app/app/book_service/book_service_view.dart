@@ -11,7 +11,7 @@ import 'package:mobilegarage/user_app/app/book_service/book_service_controller.d
 import 'package:mobilegarage/user_app/app/book_service/components/seller_card.dart';
 import 'package:mobilegarage/user_app/app/book_service/components/servicesTypesCard.dart';
 import 'package:mobilegarage/user_app/app/home/components/banner_card.dart';
-import 'package:mobilegarage/user_app/app/order/components/vehicle_listTile.dart';
+import 'package:mobilegarage/user_app/app/filter_service/components/vehicle_listTile.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';

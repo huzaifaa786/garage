@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
-class ChangePassword extends StatelessWidget {
-  const ChangePassword(
+class EditProductsField extends StatelessWidget {
+  const EditProductsField(
       {super.key, this.icon, this.text, this.ontap, this.langtext = ''});
   final icon;
   final text;
@@ -56,7 +57,11 @@ class ChangePassword extends StatelessWidget {
                     )
                   ],
                 ),
-                SvgPicture.asset('assets/images/arrow.svg')
+                SvgPicture.asset(
+                  box.read('locale') != 'ar'
+                      ? 'assets/images/arrow.svg'
+                      : 'assets/icons/arrow_leftside.svg',
+                )
               ],
             ),
           ),

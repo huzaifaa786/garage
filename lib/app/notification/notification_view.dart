@@ -17,7 +17,7 @@ class NotificationView extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: TopBar(
-            title: 'Notifications',
+            title: 'Notifications'.tr,
             showgarageicon: false,
           ),
         ),
@@ -27,12 +27,29 @@ class NotificationView extends StatelessWidget {
                 child: Container(
           height: 700,
           width: Get.width,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: controller.notifications.length,
-            physics: BouncingScrollPhysics(),
-            itemBuilder: (context, index) => NotificationCard(),
-          ),
+          child: controller.notifications.isNotEmpty
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  // reverse:true,
+                  itemCount: controller.notifications.length,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    final item = controller.notifications[index];
+
+                    return NotificationCard(
+                      status: item.order != null
+                          ? item.order!.status.toString()
+                          : item.requestOrder!.status.toString(),
+                      notification: item,
+                    );
+                  },
+                )
+              : Center(
+                  child: Text(
+                  'No notification found !'.tr,
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 180, 180, 180)),
+                )),
         ))),
       ),
     );

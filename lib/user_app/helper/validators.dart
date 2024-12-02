@@ -9,16 +9,16 @@ class Validators {
     if (value == null) {
       return null;
     } else if (value.isEmpty) {
-      return "$valueType ''can't be empty".tr;
+      return "${'$valueType'}${'can\'t be empty'.tr}";
     } else {
       return null;
     }
   }
 
-    /// Validates if a dropdown selection is empty
+  /// Validates if a dropdown selection is empty
   static String? dropdownValidator(String? value, String valueType) {
     if (value == null) {
-      return "$valueType ''can't be empty".tr;
+      return "${'$valueType'} ${'can\'t be empty'.tr}";
     } else {
       return null;
     }
@@ -40,20 +40,22 @@ class Validators {
     } else {
       return null;
     }
-  }  /// Validates the Phone Number for User Authentication
+  }
+
+  /// Validates the Phone Number for User Authentication
 
   static String? phoneNumberValidator(String? phoneNumber) {
-  print(phoneNumber);
-  final RegExp phoneRegExp = RegExp(
-    r'^\+?[1-9]\d{1,14}$',
-  );
-  if (phoneNumber == null || phoneNumber.isEmpty) {
-    return 'Phone number is required'.tr;
-  } else if (!phoneRegExp.hasMatch(phoneNumber)) {
-    return 'Invalid phone number'.tr;
+    print(phoneNumber);
+    final RegExp phoneRegExp = RegExp(
+      r'^\+?[1-9]\d{1,14}$',
+    );
+    if (phoneNumber == null || phoneNumber.isEmpty) {
+      return 'Phone number is required'.tr;
+    } else if (!phoneRegExp.hasMatch(phoneNumber)) {
+      return 'Invalid phone number'.tr;
+    }
+    return null;
   }
-  return null;
-}
 
   /// Validates the Password for User Authentication
   static String? passwordValidator(String? password) {

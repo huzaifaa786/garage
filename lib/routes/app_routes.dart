@@ -31,15 +31,15 @@ class AppRoutes {
   static const selectside = '/selectside';
   static const acceptedorder = '/acceptedorder';
   static const cardetails = '/cardetaile';
-
   static const garage = '/garage';
   static const bookservice = '/bookservice';
   static const payments = '/payments';
   static const filterorder = '/filterorder';
   static const search_result = '/search_result';
   static const edit_product = '/edit_product';
+  static const servicedetail = '/servicedetail';
+  static const vurgent_orders_view = '/vurgent_orders_view';
 
-  // static const forgotpassword = '/forgotpassword';
   // static const phonesignup = '/phonesignup';
   // static const profile =  '/profile';
   // static const orders = '/orders';
@@ -76,6 +76,7 @@ class AppRoutes {
 
   static const veditprofile = '/veditprofile';
   static const vcontactus = '/vcontactus';
+  static const vgarage_timings = '/vgarage_timings';
 
   static const vunavaliabledate = '/vaunavaliabledate';
   static const vsale = '/vsale';
@@ -84,5 +85,9 @@ class AppRoutes {
   static const vchangepassword = '/vchangepassword';
   static const vnotification = '/vnotification';
   static const vchat = '/vchat';
+  static const vchatdetail = '/vchatdetail';
+
   static const vmap = '/vmap';
+  static const vtradinglicense = '/vtradinglicense';
+  static const vownerid = '/vownerid';
 }

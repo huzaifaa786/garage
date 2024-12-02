@@ -181,36 +181,37 @@ class MyCarsControllers extends GetxController {
       final errors = <String, String>{};
       // Validate vehicle type
       if (section['vehicletype_id'] == null) {
-        errors['vehicletype'] = 'Please select a vehicle type';
+        errors['vehicletype'] = 'Please select a vehicle type'.tr;
         isValid = false;
       }
 
       // Validate vehicle brand
       if (section['vehiclebrand_id'] == null) {
-        errors['vehiclebrand'] = 'Please select a vehicle brand';
+        errors['vehiclebrand'] = 'Please select a vehicle brand'.tr;
         isValid = false;
       }
 
       // Validate vehicle brand name
       if (section['vehiclebrandname_id'] == null) {
-        errors['vehiclebrandname'] = 'Please select a vehicle brand name';
+        errors['vehiclebrandname'] = 'Please select a vehicle brand name'.tr;
         isValid = false;
       }
 
       // Validate year of manufacture
       if (section['year_of_manufacture']?.isEmpty ?? true) {
-        errors['year_of_manufacture'] = 'Please enter the year of manufacture';
+        errors['year_of_manufacture'] =
+            'Please enter the year of manufacture'.tr;
         isValid = false;
       }
 
       // Validate vehicle information
       if (section['vehicle_info']?.isEmpty ?? true) {
-        errors['vehicle_info'] = 'Please enter vehicle information';
+        errors['vehicle_info'] = 'Please enter vehicle information'.tr;
         isValid = false;
       }
       // Validate image
       if (section['image'] == null) {
-        errors['image'] = 'Please select an image';
+        errors['image'] = 'Please select an image'.tr;
         isValid = false;
       }
       // Store errors for this section
@@ -269,21 +270,21 @@ class MyCarsControllers extends GetxController {
 
     // Validate form fields
     if (selectedVehicleId == null) {
-      vehicletypeerror = 'Please select a vehicle';
+      vehicletypeerror = 'Please select a vehicle'.tr;
       isFormValid = false;
     } else {
       vehicletypeerror = '';
     }
 
     if (selectedVehiclebrandId == null) {
-      vehiclebranderror = 'Please select a brand';
+      vehiclebranderror = 'Please select a brand'.tr;
       isFormValid = false;
     } else {
       vehiclebranderror = '';
     }
 
     if (selectedbrandNameId == null) {
-      vehiclebrandnameerror = 'Please select a brand name';
+      vehiclebrandnameerror = 'Please select a brand name'.tr;
       isFormValid = false;
     } else {
       vehiclebrandnameerror = '';
@@ -298,7 +299,7 @@ class MyCarsControllers extends GetxController {
       for (int index = 0; index < sectionErrors.length; index++) {
         var errors = sectionErrors[index];
         if (errors != null && errors.containsKey('image')) {
-          UiUtilites.errorSnackbar('error', 'Please select an image');
+          UiUtilites.errorSnackbar('error'.tr, 'Please select an image'.tr);
           break;
         }
       }
@@ -318,7 +319,7 @@ class MyCarsControllers extends GetxController {
     var response = await DeleteVehiclesApi.deleteVehicles(id);
     if (response.isNotEmpty) {
       fetchUserVehicles();
-      UiUtilites.successSnackbar('Car deleted successfully', 'Success');
+      UiUtilites.successSnackbar('Car deleted successfully'.tr, 'Success'.tr);
       update();
     }
   }

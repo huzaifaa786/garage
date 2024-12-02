@@ -1,14 +1,15 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class AppPhoneInput extends StatelessWidget {
@@ -33,7 +34,7 @@ class AppPhoneInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         IntlPhoneField(
-          searchText: "Select Country/Region",
+          searchText: "Select Country/Region".tr,
           dropdownIconPosition: IconPosition.trailing,
           controller: controller,
           initialCountryCode: initialCountryCode,
@@ -49,8 +50,8 @@ class AppPhoneInput extends StatelessWidget {
           dropdownTextStyle: GoogleFonts.inter(fontSize: 14),
           style: GoogleFonts.inter(fontSize: 14),
           decoration: InputDecoration(
-            hintText: "phone number",
-            hintStyle: GoogleFonts.inter(color: AppColors.hint_text_color),
+            hintText: "phone number".tr,
+            hintStyle: GoogleFonts.inter(color: AppColors.black.withOpacity(0.4)),
             fillColor: AppColors.input_bg_color,
             filled: true,
             border: OutlineInputBorder(
@@ -83,12 +84,17 @@ class AppPhoneInput extends StatelessWidget {
           onChanged: onChanged,
         ),
         if (errorText!.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
-            child: AppText(
-              title: errorText!,
-              color: AppColors.primary_color,
-              size: 10,
+          Directionality(
+            textDirection: box.read('locale') != 'ar'
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            child: Padding(
+              padding: EdgeInsets.only(top: 4, left: 16, right: 16),
+              child: AppText(
+                title: errorText!,
+                color: AppColors.red,
+                size: 10,
+              ),
             ),
           ),
       ],

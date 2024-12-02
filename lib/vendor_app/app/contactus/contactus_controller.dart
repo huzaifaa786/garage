@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/vender_apis/contact_us/contact_us_api.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class VContactusController extends GetxController {
@@ -14,11 +17,15 @@ class VContactusController extends GetxController {
   getContacts() async {
     var response = await VContactUsApi.getContacts();
     if (response.isNotEmpty) {
-      var contact = response['contacts'];
-      email = contact['email'] ?? '';
-      phoneNo = contact['phone_no'] ?? '';
-      whatsappNo = contact['whatsapp_no'] ?? '';
-      instagram = contact['instagram_handle'] ?? '';
+      var contacts = response['contacts'];
+      if (contacts != null) {
+        email = contacts['email'] ?? '';
+        phoneNo = contacts['phone_no'] ?? '';
+        whatsappNo = contacts['whatsapp_no'] ?? '';
+        instagram = contacts['instagram_handle'] ?? '';
+        linkedin = contacts['linkedin_handle'] ?? '';
+      }
+
       update();
     }
   }
@@ -27,32 +34,57 @@ class VContactusController extends GetxController {
   String phoneNo = '';
   String whatsappNo = '';
   String instagram = '';
+  String linkedin = '';
 
-  void openEmail() async {
+  void openEmail(BuildContext context) async {
     final uri = Uri(scheme: 'mailto', path: email);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
+    } else {
+      // Use custom error snackbar
+      UiUtilites.errorSnackbar('Error'.tr, 'Email not found.'.tr);
     }
   }
 
-  void openPhone() async {
+  void openPhone(BuildContext context) async {
     final uri = Uri(scheme: 'tel', path: phoneNo);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
+    } else {
+      UiUtilites.errorSnackbar('Error'.tr, 'Phone number not found.'.tr);
     }
   }
 
-  void openWhatsApp() async {
+  void openWhatsApp(BuildContext context) async {
     final uri = Uri.parse("https://wa.me/$whatsappNo");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
+    } else {
+      UiUtilites.errorSnackbar('Error'.tr, 'WhatsApp number not found.'.tr);
     }
   }
 
-  void openInstagram() async {
+  void openInstagram(BuildContext context) async {
     final uri = Uri.parse("https://www.instagram.com/$instagram");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
+    } else {
+      UiUtilites.errorSnackbar('Error'.tr, 'Instagram account not found.'.tr);
+    }
+  }
+
+  void openLinkedIn(BuildContext context) async {
+    final uri = Uri.parse(linkedin);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+    print('error in url from backend side ');
+      final fallbackUri = Uri.parse("https://www.linkedin.com");
+      if (await canLaunchUrl(fallbackUri)) {
+        await launchUrl(fallbackUri);
+      } else {
+        UiUtilites.errorSnackbar('Error'.tr, 'LinkedIn profile not found.'.tr);
+      }
     }
   }
 }

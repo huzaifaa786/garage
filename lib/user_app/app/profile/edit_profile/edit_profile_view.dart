@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/profile/edit_profile/edit_profile_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
-
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
-
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -41,7 +40,7 @@ class _EditProfileViewState extends State<EditProfileView> {
               title: TopBar(
                 showgarageicon: false,
                 showicon: true,
-                title: "Edit profile",
+                title: "Edit profile".tr,
               ),
             ),
           ),
@@ -53,29 +52,76 @@ class _EditProfileViewState extends State<EditProfileView> {
             child: Column(
               children: [
                 Gap(15),
+                
                 Stack(
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundColor: Colors.grey[300],
-                      backgroundImage: controller.profilepic != null
-                          ? FileImage(controller.profilepic!)
-                          : null,
-                      child: controller.profilepic == null
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(80),
-                              child: CachedNetworkImage(
-                                imageUrl: controller.img.toString(),
-                                height: 100,
-                                width: 100,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
-                            )
-                          : null,
+                      backgroundColor: Colors.transparent,
+                      // child: controller.img != ''
+                          // ? ClipRRect(
+                          //     borderRadius: BorderRadius.circular(80),
+                          //     child: CachedNetworkImage(
+                          //       imageUrl: controller.img.toString(),
+                          //       height: 100,
+                          //       width: 100,
+                          //       fit: BoxFit.cover,
+                          //       placeholder: (context, url) =>
+                          //           CircularProgressIndicator(),
+                          //       errorWidget: (context, url, error) =>
+                          //           Icon(Icons.error),
+                          //     ),
+                          //   )
+                          // : controller.profilepic != null
+                          //     ? ClipOval(
+                          //         child: Image.file(
+                          //           controller.profilepic!,
+                          //           height: 100,
+                          //           width: 100,
+                          //           fit: BoxFit.cover,
+                          //         ),
+                          //       )
+                          //     : ClipRRect(
+                          //       borderRadius: BorderRadius.circular(100),
+                          //         child: Image.asset(
+                          //           'assets/images/account.png',
+                          //           height: 100,
+                          //           width: 100,
+                          //           fit: BoxFit.cover,
+                          //         ),
+                          //       ),
+                           child: controller.profilepic != null
+          ? ClipOval(
+              child: Image.file(
+                controller.profilepic!,
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            )
+          : controller.img != null && controller.img != ''
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(80),
+                  child: CachedNetworkImage(
+                    imageUrl: controller.img.toString(),
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) =>
+                        CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        Icon(Icons.error),
+                  ),
+                )
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.asset(
+                    'assets/images/account.png',
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  ),
+                ),
                     ),
                     Positioned(
                       bottom: 0,
@@ -84,7 +130,15 @@ class _EditProfileViewState extends State<EditProfileView> {
                         onTap: () {
                           controller.pickImageFromGallery('profilepic');
                         },
-                        child: Image.asset('assets/images/camera.png'),
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: AppColors.lightPink
+                          ),
+                            child:
+                                Center(child: SvgPicture.asset('assets/images/cammera.svg'))),
                       ),
                     ),
                   ],
@@ -93,7 +147,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                 Row(
                   children: [
                     AppText(
-                      title: 'My information',
+                      title: 'My information'.tr,
                       size: 14,
                       fontWeight: FontWeight.w500,
                     ),
@@ -116,7 +170,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           AppText(
-                            title: '(Optional)',
+                            title: '(Optional)'.tr,
                             size: 10,
                             fontWeight: FontWeight.w500,
                             color: AppColors.grey,
@@ -141,7 +195,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                   readOnly: true,
                   controller: controller.phoneController,
                   errorText: '',
-                  
                   onchange: (value) {
                     print('Current input: $value');
                   },
@@ -162,21 +215,22 @@ class _EditProfileViewState extends State<EditProfileView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppText(
-                          title: 'Change phone number',
+                          title: 'Change phone number'.tr,
                           size: 12,
                           fontWeight: FontWeight.w500,
                           color: AppColors.primary,
                         ),
                         Gap(2),
-                        SvgPicture.asset('assets/icons/arrow-left.svg'),
+                        SvgPicture.asset(box.read('locale') != 'ar'
+                            ? 'assets/icons/arrow_rightside.svg'
+                            : 'assets/icons/arrow_leftside.svg'),
                       ],
                     ),
                   ),
                 ),
                 Gap(50),
-                // Gap(88),
                 MainButton(
-                  title: 'Save changes',
+                  title: 'Save changes'.tr,
                   buttonWidth: Get.width * 0.77,
                   height: Get.height * 0.077,
                   onTap: () {

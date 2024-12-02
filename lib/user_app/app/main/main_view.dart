@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/app/cart/cart_view.dart';
 import 'package:mobilegarage/user_app/app/home/home_controller.dart';
 import 'package:mobilegarage/user_app/app/home/home_view.dart';
@@ -72,46 +73,52 @@ class _MainViewState extends State<MainView> with RouteAware {
       child: GetBuilder<HomeController>(
         autoRemove: false,
         builder: (controller) {
+          GetStorage box = GetStorage();
           return Scaffold(
             extendBody: true,
             body: SafeArea(
               child: _fragments[_bottom_index],
             ),
-            bottomNavigationBar: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
-                    offset: Offset(0, -3),
-                  ),
-                ],
-              ),
-              child: BottomAppBar(
-                shape: CircularNotchedRectangle(),
-                height: Get.height * 0.1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    _BuildnavigationBarItem(
-                      0,
-                      "assets/icons/redHome.svg",
-                      "assets/icons/home.svg",
-                      'Home',
-                    ),
-                    _BuildnavigationBarItem(
-                      1,
-                      "assets/icons/redCart.svg",
-                      "assets/icons/cart.svg",
-                      'Carts',
-                    ),
-                    _BuildnavigationBarItem(
-                      2,
-                      "assets/icons/redUser.svg",
-                      "assets/icons/user.svg",
-                      'Profile',
+            bottomNavigationBar: Directionality(
+              textDirection: box.read('locale') == 'ar'
+                  ? TextDirection.ltr
+                  : TextDirection.ltr,
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: Offset(0, -3),
                     ),
                   ],
+                ),
+                child: BottomAppBar(
+                  shape: CircularNotchedRectangle(),
+                  height: Get.height * 0.1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      _BuildnavigationBarItem(
+                        0,
+                        "assets/icons/redHome.svg",
+                        "assets/icons/home.svg",
+                        'Home'.tr,
+                      ),
+                      _BuildnavigationBarItem(
+                        1,
+                        "assets/icons/redCart.svg",
+                        "assets/icons/cart.svg",
+                        'Cart'.tr,
+                      ),
+                      _BuildnavigationBarItem(
+                        2,
+                        "assets/icons/redUser.svg",
+                        "assets/icons/user.svg",
+                        'Profile'.tr,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -39,10 +39,10 @@ import 'package:mobilegarage/user_app/app/my_cars/my_cars_binding.dart';
 import 'package:mobilegarage/user_app/app/my_cars/my_cars_view.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_binding.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_view.dart';
-import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_binding.dart';
-import 'package:mobilegarage/user_app/app/order/accapted_order/accapted_order_view.dart';
-import 'package:mobilegarage/user_app/app/order/order_binding.dart';
-import 'package:mobilegarage/user_app/app/order/order_view.dart';
+import 'package:mobilegarage/user_app/app/filter_service/accapted_order/accapted_order_binding.dart';
+import 'package:mobilegarage/user_app/app/filter_service/accapted_order/accapted_order_view.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_binding.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_binding.dart';
 import 'package:mobilegarage/user_app/app/onboarding/onboarding_view.dart';
 import 'package:mobilegarage/user_app/app/order_history/order_history_binding.dart';
@@ -59,6 +59,8 @@ import 'package:mobilegarage/user_app/app/search_result/searchResult_binding.dar
 import 'package:mobilegarage/user_app/app/search_result/searchResult_view.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_binding.dart';
 import 'package:mobilegarage/user_app/app/select_lang/select_language_view.dart';
+import 'package:mobilegarage/user_app/app/service_detail/service_detail_binding.dart';
+import 'package:mobilegarage/user_app/app/service_detail/service_detail_view.dart';
 import 'package:mobilegarage/user_app/app/terms/terms_conditions_binding.dart';
 import 'package:mobilegarage/user_app/app/terms/terms_conditions_view.dart';
 import 'package:mobilegarage/user_app/app/FAQ/faq_binding.dart';
@@ -85,8 +87,9 @@ import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_binding
 import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_view.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_binding.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_view.dart';
-import 'package:mobilegarage/vendor_app/app/chat/chat_binding.dart';
-import 'package:mobilegarage/vendor_app/app/chat/chat_view.dart';
+import 'package:mobilegarage/vendor_app/app/chat/vender_chat_binding.dart';
+import 'package:mobilegarage/vendor_app/app/chat/vender_chat_view.dart';
+import 'package:mobilegarage/vendor_app/app/chat_screen/vender_chat_detail_screen_view.dart';
 import 'package:mobilegarage/vendor_app/app/contactus/contactus_binding.dart';
 import 'package:mobilegarage/vendor_app/app/contactus/contactus_view.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_binding.dart';
@@ -99,6 +102,8 @@ import 'package:mobilegarage/vendor_app/app/notification/notification_binding.da
 import 'package:mobilegarage/vendor_app/app/notification/notification_view.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_binding.dart';
 import 'package:mobilegarage/vendor_app/app/order/orders/orders_view.dart';
+import 'package:mobilegarage/vendor_app/app/order/urgent_orders.dart/urgent_orders_binding.dart';
+import 'package:mobilegarage/vendor_app/app/order/urgent_orders.dart/urgent_orders_view.dart';
 import 'package:mobilegarage/vendor_app/app/product/edit_product/edit_product_binding.dart';
 import 'package:mobilegarage/vendor_app/app/product/edit_product/edit_product_view.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_binding.dart';
@@ -109,8 +114,14 @@ import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepasswor
 import 'package:mobilegarage/vendor_app/app/profile/changepassword/changepassword_view.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_binding.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_view.dart';
-import 'package:mobilegarage/vendor_app/app/sale/sale_binding.dart';
-import 'package:mobilegarage/vendor_app/app/sale/sale_view.dart';
+import 'package:mobilegarage/vendor_app/app/profile/owner_id/owner_id_binding.dart';
+import 'package:mobilegarage/vendor_app/app/profile/owner_id/owner_id_view.dart';
+import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timings_bindings.dart';
+import 'package:mobilegarage/vendor_app/app/profile/garage_timings/garage_timings_view.dart';
+import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_binding.dart';
+import 'package:mobilegarage/vendor_app/app/profile/trading_license/trading_license_view.dart';
+import 'package:mobilegarage/vendor_app/app/sales/sales_binding.dart';
+import 'package:mobilegarage/vendor_app/app/sales/sales_view.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
@@ -237,8 +248,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.orders,
-      page: () => const OrderView(),
-      binding: OrderBinding(),
+      page: () => const FilterServiceView(),
+      binding: FilterServiceBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
@@ -341,7 +352,7 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     //TODO:  [payment Screen]
+    //TODO:  [payment Screen]
     GetPage(
       name: AppRoutes.payments,
       page: () => PaymentView(),
@@ -350,7 +361,6 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 100),
     ),
 
-
     GetPage(
       name: AppRoutes.acceptedorder,
       page: () => AccaptedOrderView(),
@@ -358,10 +368,10 @@ class AppPages {
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.filterorder,
-      page: () => OrderView(),
-      binding: OrderBinding(),
+      page: () => FilterServiceView(),
+      binding: FilterServiceBinding(),
       transition: Transition.downToUp,
       transitionDuration: const Duration(milliseconds: 100),
     ),
@@ -420,7 +430,7 @@ class AppPages {
     //* {Product Form View Route}
     GetPage(
       name: AppRoutes.vproduct_form_view,
-      page: () => const ProductFormView(),
+      page: () =>  ProductFormView(),
       binding: ProductFormBinding(),
     ),
 
@@ -448,8 +458,8 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.vsale,
-      page: () => const SaleView(),
-      binding: SaleBinding(),
+      page: () => const SalesView(),
+      binding: SalesBinding(),
     ),
     GetPage(
       name: AppRoutes.vchangepassword,
@@ -466,10 +476,14 @@ class AppPages {
       page: () => const VChatView(),
       binding: VChatBinding(),
     ),
-
+GetPage(
+      name: AppRoutes.vchatdetail,
+      page: () => const ChatDetailScreenView(),
+      binding: VChatBinding(),
+    ),
     GetPage(
       name: AppRoutes.vproductlist,
-      page: () =>  VProductsView(),
+      page: () => VProductsView(),
       binding: VProductsBinding(),
     ),
     GetPage(
@@ -492,22 +506,45 @@ class AppPages {
       page: () => const VLanguageView(),
       binding: VLanguageBinding(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.cardetails,
       page: () => CarDetailsView(),
-      binding:CarDetailsBinding(),
+      binding: CarDetailsBinding(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.search_result,
       page: () => const SearchresultView(),
       binding: SearchResultBinding(),
-     
     ),
     GetPage(
       name: AppRoutes.edit_product,
       page: () => const EditProductView(),
       binding: EditProductBinding(),
-     
+    ),
+    GetPage(
+      name: AppRoutes.vtradinglicense,
+      page: () => const TradingLicenseView(),
+      binding: TradingLicenseBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vownerid,
+      page: () => const OwnerIdView(),
+      binding: OwnerIdBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vgarage_timings,
+      page: () => const GarageTimingsView(),
+      binding: GarageTimingsBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.servicedetail,
+      page: () => const ServiceDetailView(),
+      binding: ServiceDetailBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.vurgent_orders_view,
+      page: () => const VUrgentOrdersView(),
+      binding: VUrgentOrdersBinding(),
     ),
   ];
 }

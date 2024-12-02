@@ -10,6 +10,7 @@ import 'package:mobilegarage/selectside/selectside_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SelectsideView extends StatefulWidget {
   const SelectsideView({super.key});
@@ -57,7 +58,7 @@ class _SelectsideViewState extends State<SelectsideView> {
                           child: Column(children: [
                             Gap(30),
                             AppText(
-                              title: 'Select side..',
+                              title: "Select side..".tr,
                               size: 28,
                               fontWeight: FontWeight.w600,
                               // color: AppColors.primarybg,
@@ -66,15 +67,15 @@ class _SelectsideViewState extends State<SelectsideView> {
                             Gap(120),
                             ContainerSelect(
                               ontap: () {
-                                Get.toNamed(AppRoutes.signup);
+                                Get.toNamed(AppRoutes.signin);
                               },
-                              text: 'User',
+                              text: 'User'.tr,
                             ),
                             Gap(60),
                             ContainerSelect(
-                              text: 'Garage Owner',
+                              text: 'Garage Owner'.tr,
                               ontap: () {
-                                Get.toNamed(AppRoutes.vsignup);
+                                Get.toNamed(AppRoutes.vsignin);
                               },
                             ),
                           ])),

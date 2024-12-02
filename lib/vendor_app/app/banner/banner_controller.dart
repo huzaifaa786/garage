@@ -11,6 +11,7 @@ import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class VBannerController extends GetxController {
   static VBannerController instance = Get.find();
@@ -41,6 +42,11 @@ class VBannerController extends GetxController {
       List<dynamic> bannerList = response['bannerprice'];
       banners = bannerList.map((banner) => BannerModel.from(banner)).toList();
     }
+    if (banners.isNotEmpty) {
+      selectedBannerCost = banners[0].cost;
+      selectedValue = banners[0].id;
+    }
+
     update();
   }
 
@@ -51,8 +57,21 @@ class VBannerController extends GetxController {
         intent: paymentID.toString());
     if (response.isNotEmpty) {
       update();
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(Duration(seconds: 1), () {
         Get.back();
+        // UiUtilites.successSnackbar(
+        //     'Banner added successfully'.tr, 'Success'.tr);
+         UiUtilites.successAlertDialog(
+            context: Get.context,
+            onTap: () {
+              // Get.toNamed(AppRoutes.vsignin);
+              Get.back();
+            },
+            title: 'Thank you!'.tr,
+            description:
+                'Your banner has been placed successfully!'.tr
+                    .tr,
+            buttontitle: 'Ok'.tr);
       });
     }
   }
@@ -65,7 +84,7 @@ class VBannerController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+         uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());

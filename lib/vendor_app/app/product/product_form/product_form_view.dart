@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
@@ -19,11 +20,13 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
+import 'package:mobilegarage/vendor_app/utils/app_dropdown/brand_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/dropdown_with_add.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
@@ -37,7 +40,7 @@ class ProductFormView extends StatelessWidget {
     return GetBuilder<ProductFormController>(
       autoRemove: false,
       builder: (controller) => AppLayout(
-        appBarTitle: 'Add Product or Service',
+        appBarTitle: 'Add Product or Service'.tr,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -53,16 +56,33 @@ class ProductFormView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText(
-                      title: 'Fill Info',
-                      size: 14,
-                      fontWeight: FontWeight.w600,
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: AppText(
+                        title: 'Fill Info'.tr,
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     Gap(12),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: AppText(
+                        title:
+                            '(Note : prices will be final and if you ever need to change the price contact the owner.)'
+                                .tr,
+                        size: 11,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                    Gap(20),
                     DropDownField<CategoryModel>(
                       displayValue: (item) => item.name!,
                       items: controller.categories,
-                      hint: 'Category',
+                      hint: 'Category'.tr,
                       selectedValue: controller.selectedCategory,
                       onChanged: (value) {
                         controller.setSelectedCategory(value);
@@ -76,16 +96,83 @@ class ProductFormView extends StatelessWidget {
                         .contains(controller.selectedCategoryId))
                       Column(
                         children: [
+                          // Gap(20),
+                          ////////////////////////
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     controller.toggleisExpanded();
+                          //   },
+                          //   child: Container(
+                          //     height: 55,
+                          //     width: Get.width,
+                          //     decoration: controller.brandserror.isNotEmpty
+                          //         ? circularErrorInputDecoration
+                          //         : circularInputDecoration,
+                          //     child: Padding(
+                          //       padding:
+                          //           const EdgeInsets.symmetric(horizontal: 20),
+                          //       child: Row(
+                          //         mainAxisAlignment:
+                          //             MainAxisAlignment.spaceBetween,
+                          //         children: [
+                          //           AppText(
+                          //             title: controller.selectedName,
+                          //             size: 12,
+                          //             fontWeight: FontWeight.w400,
+                          //           ),
+                          //           Icon(Icons.keyboard_arrow_down_sharp)
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          // Gap(20),
+                          // if (controller.isExpanded)
+                          //   Container(
+                          //     width: Get.width*0.6,
+                          //     // height: 55,
+                          //     decoration: circularInputDecoration,
+                          //     child: ListView.builder(
+                          //       shrinkWrap: true,
+                          //       physics: NeverScrollableScrollPhysics(),
+                          //       itemCount: controller.brands.length,
+                          //       itemBuilder: (context, index) {
+                          //         final brand = controller.brands[index];
+                          //         return GestureDetector(
+                          //           onTap: () {
+                          //             controller.setSelectedBrands(brand);
+                          //             controller.toggleisExpanded();
+                          //           },
+                          //           child: Padding(
+                          //             padding: const EdgeInsets.symmetric(
+                          //                 vertical: 10, horizontal: 20),
+                          //             child: Row(
+                          //               children: [
+                          //                 AppText(
+                          //                   title: brand.name.toString(),
+                          //                   size: 12,
+                          //                   fontWeight: FontWeight.w400,
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         );
+                          //       },
+                          //     ),
+                          //   ),
+                          //////////////////////////
                           Gap(20),
                           DropDownWithAdd<BrandModel>(
-                            displayValue: (item) => item.name!,
+                            displayValue: (item) => item.name,
                             items: controller.brands,
-                            hint: 'Brands Name',
+                            hint: 'Brands Name'.tr,
+                            // selectedValue: controller.selectedBrand??controller.brands.first,
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
                               controller.validateFields("Brand",
                                   controller.selectedBrandId.toString());
+                              // controller.selectedBrand =value;s
                               controller.update();
                             },
                             errorText: controller.brandError,
@@ -98,6 +185,39 @@ class ProductFormView extends StatelessWidget {
                                 },
                               );
                             },
+                            ///////
+                            searchController: controller.searchbrandController,
+                            searchInnerWidget: Container(
+                              padding: const EdgeInsets.all(8),
+                              child: TextFormField(
+                                controller: controller.searchbrandController,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 6,
+                                  ),
+                                  hintText: 'Search brands'.tr,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            searchMatchFn: (item, searchValue) {
+                              if (item.value == null) return true;
+                              final brand = item.value as BrandModel;
+                              return brand.name
+                                  .toLowerCase()
+                                  .contains(searchValue.toLowerCase());
+                            },
+                            onMenuStateChange: (isOpen) {
+                              
+                              if (!isOpen) {
+                                controller.searchbrandController.clear();
+
+                              }
+                            },
                           ),
                         ],
                       ),
@@ -108,7 +228,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<BatteryProductTypeModel>(
                                 displayValue: (item) => item.name!,
                                 items: controller.producttypes,
-                                hint: 'Product type',
+                                hint: 'Product type'.tr,
                                 selectedValue: controller.selectedproducttype,
                                 onChanged: (value) {
                                   controller.setSelectedproducttype(value);
@@ -124,7 +244,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<BatteryOriginModel>(
                                 displayValue: (item) => item.origin!,
                                 items: controller.batteryOrigins,
-                                hint: 'Origin',
+                                hint: 'Origin'.tr,
                                 selectedValue: controller.selectedbatteryOrigin,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryOrigin(value);
@@ -140,7 +260,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<BatteryAmpereModel>(
                                 displayValue: (item) => item.ampere!,
                                 items: controller.batteryAmperes,
-                                hint: 'Battery Ampere',
+                                hint: 'Battery Ampere'.tr,
                                 selectedValue: controller.selectedampere,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryAmpere(value);
@@ -154,7 +274,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<BatteryVoltageModel>(
                                 displayValue: (item) => item.voltage!,
                                 items: controller.batteryVoltages,
-                                hint: 'Battery Voltage',
+                                hint: 'Battery Voltage'.tr,
                                 selectedValue: controller.selectedvoltage,
                                 onChanged: (value) {
                                   controller.setSelectedBatteryvoltage(value);
@@ -174,7 +294,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreWidthModel>(
                                 displayValue: (item) => item.width!,
                                 items: controller.tyrewidths,
-                                hint: 'Tyer width',
+                                hint: 'Tyre width'.tr,
                                 selectedValue: controller.selectedwidth,
                                 onChanged: (value) {
                                   controller.setSelectedWidth(value);
@@ -188,7 +308,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreHeightModel>(
                                 displayValue: (item) => item.height!,
                                 items: controller.tyreheights,
-                                hint: 'Tyer height',
+                                hint: 'Tyer height'.tr,
                                 selectedValue: controller.selectedheight,
                                 onChanged: (value) {
                                   controller.setSelectedheight(value);
@@ -202,7 +322,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreSizeModel>(
                                 displayValue: (item) => item.size!,
                                 items: controller.tyresizes,
-                                hint: 'Wheel size',
+                                hint: 'Wheel size'.tr,
                                 selectedValue: controller.selectedsize,
                                 onChanged: (value) {
                                   controller.setSelectedSize(value);
@@ -216,7 +336,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreSpeedRatingModel>(
                                 displayValue: (item) => item.speedrating!,
                                 items: controller.tyreSpeedRatings,
-                                hint: 'Speed rating',
+                                hint: 'Speed rating'.tr,
                                 selectedValue: controller.selectedSpeedRating,
                                 onChanged: (value) {
                                   controller.setSelectedSpeedRating(value);
@@ -232,7 +352,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyrePatternModel>(
                                 displayValue: (item) => item.pattern!,
                                 items: controller.tyrepattterens,
-                                hint: 'Pattern',
+                                hint: 'Pattern'.tr,
                                 selectedValue: controller.selectedpatteren,
                                 onChanged: (value) {
                                   controller.setSelectedPatteren(value);
@@ -246,7 +366,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<TyreOriginModel>(
                                 displayValue: (item) => item.origin!,
                                 items: controller.tyreorigins,
-                                hint: 'Origin',
+                                hint: 'Origin'.tr,
                                 selectedValue: controller.selectedtyreorigin,
                                 onChanged: (value) {
                                   controller.setSelectedTyreOrigin(value);
@@ -268,7 +388,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<OilProductTTypeModel>(
                                 displayValue: (item) => item.producttype!,
                                 items: controller.oilproductTypes,
-                                hint: 'Product type',
+                                hint: 'Product type'.tr,
                                 selectedValue:
                                     controller.selectedoilproductType,
                                 onChanged: (value) {
@@ -285,7 +405,7 @@ class ProductFormView extends StatelessWidget {
                               DropDownField<OilVolumeModel>(
                                 displayValue: (item) => item.volume!,
                                 items: controller.oilVolumes,
-                                hint: 'Liquid volume litter',
+                                hint: 'Liquid volume liter'.tr,
                                 selectedValue: controller.selectedvolume,
                                 onChanged: (value) {
                                   controller.setSelectedVolume(value);
@@ -301,7 +421,7 @@ class ProductFormView extends StatelessWidget {
                     if (![7, 9, 4, 1, 8]
                         .contains(controller.selectedCategoryId))
                       Gap(20),
-                    if (![3, 4, 7, 9, 1, 8]
+                    if (![4, 7, 9, 1, 8]
                         .contains(controller.selectedCategoryId))
                       Column(
                         children: [
@@ -310,8 +430,8 @@ class ProductFormView extends StatelessWidget {
                                 ? controller.descriptionError
                                 : '',
                             hint: controller.selectedCategoryId == 2
-                                ? 'Description'
-                                : 'Description (optional)',
+                                ? 'Description'.tr
+                                : 'Description (optional)'.tr,
                             controller: controller.descriptionController,
                             onchange: (val) {
                               controller.selectedCategoryId != 6
@@ -326,7 +446,7 @@ class ProductFormView extends StatelessWidget {
                         .contains(controller.selectedCategoryId))
                       AppInputField(
                         errorText: controller.priceError,
-                        hint: 'Price',
+                        hint: 'Price'.tr,
                         type: TextInputType.number,
                         controller: controller.priceController,
                         onchange: (val) {
@@ -336,7 +456,7 @@ class ProductFormView extends StatelessWidget {
                         suffixWidget: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: AppText(
-                            title: 'AED',
+                            title: 'AED'.tr,
                             size: 14,
                             fontWeight: FontWeight.w600,
                             color: AppColors.primary_color,
@@ -358,14 +478,13 @@ class ProductFormView extends StatelessWidget {
                         controller.acextradescriptionErrors[index] ?? '';
                     return Column(
                       children: [
-                        if (![7, 9, 4, 1]
+                        if (![7, 9, 4, 1, 8]
                                 .contains(controller.selectedCategoryId) ||
                             index != 0)
-                          if (controller.selectedCategoryId != 8)
-                            Divider(
-                              thickness: 7,
-                              color: AppColors.grey.shade100,
-                            ),
+                          Divider(
+                            thickness: 7,
+                            color: AppColors.grey.shade100,
+                          ),
                         Gap(28),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -393,8 +512,8 @@ class ProductFormView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 22),
                           child: MainInput(
                             hint: controller.selectedCategoryId == 8
-                                ? 'Description'
-                                : 'Description (optional)',
+                                ? 'Description'.tr
+                                : 'Description (optional)'.tr,
                             onchange: (p0) {
                               switch (
                                   controller.selectedCategoryId.toString()) {
@@ -430,61 +549,61 @@ class ProductFormView extends StatelessWidget {
                                 : '',
                           ),
                         ),
-                        if (controller.selectedCategoryId != 8)
-                          Column(
-                            children: [
-                              Gap(20),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 22),
-                                child: AppInputField(
-                                  hint: 'Price',
-                                  type: TextInputType.number,
-                                  errorText: priceError,
-                                  onchange: (val) {
-                                    switch (controller.selectedCategoryId
-                                        .toString()) {
-                                      case '2':
-                                        controller.oilextras[index].price = val;
-                                        break;
-                                      case '4':
-                                        controller.roadAssistanceExtras[index]
-                                            .price = val;
-                                        break;
-                                      case '7':
-                                        controller.recoveryExtras[index].price =
-                                            val;
-                                        break;
-                                      case '9':
-                                        controller.fuelExtras[index].price =
-                                            val;
-                                        break;
-                                      case '1':
-                                        controller.carwashExtras[index].price =
-                                            val;
-                                        break;
-                                      default:
-                                        print(
-                                            'Not showing for other categories');
-                                        break;
-                                    }
-                                    controller.update();
-                                  },
-                                  hasSuffix: true,
-                                  suffixWidget: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
-                                    child: AppText(
-                                      title: 'AED',
-                                      size: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.primary_color,
-                                    ),
+                        Column(
+                          children: [
+                            Gap(20),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 22),
+                              child: AppInputField(
+                                hint: 'Price'.tr,
+                                type: TextInputType.number,
+                                errorText: priceError,
+                                onchange: (val) {
+                                  switch (controller.selectedCategoryId
+                                      .toString()) {
+                                    case '2':
+                                      controller.oilextras[index].price = val;
+                                      break;
+                                    case '4':
+                                      controller.roadAssistanceExtras[index]
+                                          .price = val;
+                                      break;
+                                    case '7':
+                                      controller.recoveryExtras[index].price =
+                                          val;
+                                      break;
+                                    case '9':
+                                      controller.fuelExtras[index].price = val;
+                                      break;
+                                    case '1':
+                                      controller.carwashExtras[index].price =
+                                          val;
+                                      break;
+                                    case '8':
+                                      controller.acExtras[index].price = val;
+                                      break;
+                                    default:
+                                      print('Not showing for other categories');
+                                      break;
+                                  }
+                                  controller.update();
+                                },
+                                hasSuffix: true,
+                                suffixWidget: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 16),
+                                  child: AppText(
+                                    title: 'AED'.tr,
+                                    size: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.primary_color,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
+                        ),
                         if ([4, 7, 9, 1]
                             .contains(controller.selectedCategoryId))
                           Padding(
@@ -494,14 +613,14 @@ class ProductFormView extends StatelessWidget {
                                 Gap(20),
                                 AppInputField(
                                   errorText: timeError,
-                                  hint: 'Time',
+                                  hint: 'Time'.tr,
                                   type: TextInputType.number,
                                   onchange: (val) {
                                     switch (controller.selectedCategoryId
                                         .toString()) {
                                       case '7':
-                                        controller.recoveryExtras[index]
-                                            .time = val;
+                                        controller.recoveryExtras[index].time =
+                                            val;
                                         break;
                                       case '4':
                                         controller.roadAssistanceExtras[index]
@@ -526,7 +645,7 @@ class ProductFormView extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 16),
                                     child: AppText(
-                                      title: 'Min',
+                                      title: 'Min'.tr,
                                       size: 14,
                                       fontWeight: FontWeight.w600,
                                       color: AppColors.primary_color,
@@ -541,43 +660,43 @@ class ProductFormView extends StatelessWidget {
                     );
                   },
                 ),
-              if (controller.selectedCategoryId == 8)
-                Column(
-                  children: [
-                    Divider(
-                      thickness: 7,
-                      color: AppColors.grey.shade100,
-                    ),
-                    Gap(25),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: AppInputField(
-                        errorText: controller.priceError,
-                        hint: 'Price',
-                        type: TextInputType.number,
-                        controller: controller.priceController,
-                        onchange: (val) {
-                          controller.validateFields("Price", val);
-                        },
-                        hasSuffix: true,
-                        suffixWidget: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: AppText(
-                            title: 'AED',
-                            size: 14,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primary_color,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Gap(20)
-                  ],
-                ),
+              // if (controller.selectedCategoryId == 8)
+              //   Column(
+              //     children: [
+              //       Divider(
+              //         thickness: 7,
+              //         color: AppColors.grey.shade100,
+              //       ),
+              //       Gap(25),
+              //       Padding(
+              //         padding: const EdgeInsets.symmetric(horizontal: 32),
+              //         child: AppInputField(
+              //           errorText: controller.priceError,
+              //           hint: 'Price',
+              //           type: TextInputType.number,
+              //           controller: controller.priceController,
+              //           onchange: (val) {
+              //             controller.validateFields("Price", val);
+              //           },
+              //           hasSuffix: true,
+              //           suffixWidget: Padding(
+              //             padding: const EdgeInsets.symmetric(vertical: 16),
+              //             child: AppText(
+              //               title: 'AED',
+              //               size: 14,
+              //               fontWeight: FontWeight.w600,
+              //               color: AppColors.primary_color,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       Gap(20)
+              //     ],
+              //   ),
               Gap(40),
               AppButton(
                 buttonWidth: 0.8,
-                title: 'Add product',
+                title: 'Add product'.tr,
                 buttonColor: AppColors.primary_color,
                 ontap: () {
                   controller.addProduct();

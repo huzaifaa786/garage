@@ -22,7 +22,7 @@ class BackIConButton extends StatelessWidget {
           children: [
             Icon(Icons.arrow_back, color: AppColors.primary_color),
             AppText(
-              title: 'Back',
+              title: 'Back'.tr,
               color: AppColors.primary_color,
             ),
           ],

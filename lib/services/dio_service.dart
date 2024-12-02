@@ -3,8 +3,11 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/app/cart/cart_bindings.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class DioService {
@@ -103,7 +106,7 @@ class DioService {
       return {};
     } else {
       _handleError(
-        e: 'Failed to load data',
+        e: 'Failed to load data'.tr,
       );
       return {};
     }
@@ -114,8 +117,8 @@ class DioService {
     dynamic e,
   }) {
     LoadingHelper.dismiss();
-    // showAlert == false
-    UiUtilites.errorSnackbar('Error', e.toString());
+
+    UiUtilites.errorSnackbar('Error'.tr, e.toString().tr);
     // : UiUtilites.rememberAlert(e.toString());
   }
 }

@@ -14,10 +14,15 @@ class VMapController extends GetxController {
   double? lat;
   double? lng;
   Position? currentPosition;
-
+final Set<Marker> markers = {};
   @override
   void onInit() {
     super.onInit();
+    lat = double.parse(Get.parameters['lat'].toString());
+    lng = double.parse(Get.parameters['lng'].toString());
+     if (lat != null && lng != null) {
+      addMarker(LatLng(lat!, lng!), "Initial Position");
+    }
   }
 
   Future<void> requestLocationPermission() async {
@@ -39,9 +44,23 @@ class VMapController extends GetxController {
         desiredAccuracy: LocationAccuracy.high);
     lat = currentPosition?.latitude;
     lng = currentPosition?.longitude;
+     if (lat != null && lng != null) {
+      addMarker(LatLng(lat!, lng!), "My Location");
+    }
     update();
   }
-
+ void addMarker(LatLng position, String markerId) {
+    markers.add(
+      Marker(
+        markerId: MarkerId(markerId),
+        position: position,
+        infoWindow: InfoWindow(
+          title: markerId,
+        ),
+      ),
+    );
+    update();
+  }
   void updateCameraPosition(LatLng newPosition) async {
     final GoogleMapController controller = await mController.future;
     CameraPosition newCameraPosition = CameraPosition(

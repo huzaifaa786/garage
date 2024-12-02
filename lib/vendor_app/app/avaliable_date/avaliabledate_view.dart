@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/components/selected_date.dart';
+import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:mobilegarage/vendor_app/app/avaliable_date/avaliabledate_controller.dart';
-
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class AvaliableDateView extends StatefulWidget {
@@ -24,45 +23,21 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
   Widget build(BuildContext context) {
     return GetBuilder<AvaliableDateController>(
       autoRemove: false,
-      builder: (controller) => Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  offset: const Offset(0, 3),
-                  blurRadius: 6,
-                  spreadRadius: 1,
-                ),
-              ],
-            ),
-            child: AppBar(
-              centerTitle: true,
-              title: AppText(
-                title: 'Edit unavailable dates',
-                size: 16,
-                fontWeight: FontWeight.w600,
-                color: AppColors.primary_color,
-              ),
-              elevation: 0,
-              scrolledUnderElevation: 0.0,
-              backgroundColor: Colors.white,
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
+      builder: (controller) => AppLayout(
+        appBarTitle: 'Edit unavailable dates'.tr,
+        hasBgColor: false,
+        hasShadow: true,
+        child: SingleChildScrollView(
           child: SafeArea(
             child: Column(
               children: [
-                const Gap(10),
+                Gap(40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppText(
-                      title: '*Select date to mark as unavailable',
+                      title: '*Select date to mark as unavailable'.tr,
+                      fontWeight: FontWeight.w400,
                       color: AppColors.primary_color,
                     )
                   ],
@@ -75,15 +50,33 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TableCalendar(
-                      availableGestures: AvailableGestures.none,
-                      firstDay: DateTime.utc(2010, 10, 16),
-                      lastDay: DateTime.utc(2030, 3, 14),
+                      // availableGestures: AvailableGestures.none,
+                      firstDay: DateTime.now(),
+                      lastDay: DateTime.now().add(Duration(days: 365 * 2)),
                       focusedDay: controller.focusedDay,
                       selectedDayPredicate: (day) => controller.isSelected(day),
                       availableCalendarFormats: const {
                         CalendarFormat.month: 'Month',
                       },
-                      onDaySelected: controller.onDaySelected,
+                      onDaySelected: (selectedDay, focusedDay) {
+                        bool isDateSelected =
+                            controller.selectedDates.contains(selectedDay);
+                        String alertMessage = isDateSelected
+                            ? 'Are you sure that you want\n to delete this date?'
+                                .tr
+                            : 'Are you sure that you want\n to add this date?'
+                                .tr;
+                        UiUtilites.showConfirmationDialog(
+                          false,
+                          alertMessage,
+                          onConfirm: () async {
+                            controller.onDaySelected(selectedDay, focusedDay);
+                            controller.update();
+                          },
+                        );
+                      },
+
+                      // controller.onDaySelected,
                       onPageChanged: (focusedDay) {
                         controller.focusedDay = focusedDay;
                       },
@@ -130,43 +123,47 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 49),
-                            child: AppText(
-                              title: 'Unavailable dates',
-                              color: AppColors.primary_color,
-                            ),
-                          ),
-                        ],
-                      ),
+                      controller.selectedDates.isNotEmpty
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 49, right: 49),
+                                  child: AppText(
+                                    title: 'Unavailable dates'.tr,
+                                    color: AppColors.primary_color,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container(),
                       const Gap(13),
                       const SelectedDate(),
-                      const Gap(20),
-                      AppButton(
-                        buttonWidth: 0.8,
-                        title:
-                            controller.isButtonClicked ? 'Confirm' : 'Confirm',
-                        titleColor: controller.isButtonClicked
-                            ? AppColors.green_color
-                            : AppColors.white_color,
-                        buttonColor: controller.isButtonClicked
-                            ? AppColors.divider_color
-                            : AppColors.primary_color,
-                        suffixWidget: controller.isButtonClicked
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
-                                child: SvgPicture.asset(
-                                    'assets/images/checkcircle.svg'),
-                              )
-                            : const Gap(1),
-                        ontap: () {
-                          controller.onconfirm();
-                        },
-                      )
+                      // const Gap(20),
+                      // AppButton(
+                      //   buttonWidth: 0.8,
+                      //   title: controller.isButtonClicked
+                      //       ? 'Confirm'.tr
+                      //       : 'Confirm'.tr,
+                      //   titleColor: controller.isButtonClicked
+                      //       ? AppColors.green_color
+                      //       : AppColors.white_color,
+                      //   buttonColor: controller.isButtonClicked
+                      //       ? AppColors.divider_color
+                      //       : AppColors.primary_color,
+                      //   suffixWidget: controller.isButtonClicked
+                      //       ? Padding(
+                      //           padding:
+                      //               const EdgeInsets.symmetric(horizontal: 8),
+                      //           child: SvgPicture.asset(
+                      //               'assets/images/checkcircle.svg'),
+                      //         )
+                      //       : const Gap(1),
+                      //   ontap: () {
+                      //     controller.onconfirm();
+                      //   },
+                      // )
                     ],
                   ),
                 )

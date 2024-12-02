@@ -1,16 +1,20 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/user_app/app/order_history/components/order_history_card.dart';
 import 'package:mobilegarage/user_app/app/order_history/order_history_controller.dart';
-
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
+import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 
 class OrderHistoryView extends StatefulWidget {
-  const OrderHistoryView({super.key});
+  OrderHistoryView({
+    super.key,
+    this.garage,
+  });
+  GarageModel? garage;
 
   @override
   State<OrderHistoryView> createState() => _OrderHistoryViewState();
@@ -35,20 +39,38 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
                       title: TopBar(
                         showicon: true,
                         showgarageicon: false,
-                        title: "Orders history",
+                        title: "Orders history".tr,
                       ),
                     ),
                   )),
-              body: ListView.builder(
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemCount: controller.orders.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final orders = controller.orders[index];
-                    return OrderHistoryCard(
-                      orders: orders,
-                    );
-                  }),
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Gap(5),
+                    controller.orders!.isNotEmpty
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: controller.orders!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final orders = controller.orders![index];
+                              return OrderHistoryCard(
+                                order: orders,
+                                garage: orders.garage,
+                              );
+                            })
+                        : SizedBox(
+                          height: Get.height*0.7,
+                          child: Center(
+                              child: AppText(
+                                title: 'No order Found!'.tr,
+                                color: AppColors.darkGrey,
+                              ),
+                            ),
+                        ),
+                  ],
+                ),
+              ),
             ));
   }
 }

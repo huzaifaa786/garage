@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/vender_apis/edit_profile_apis/change_password_api.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class VChangepasswordController extends GetxController {
   static VChangepasswordController instance = Get.find();
@@ -28,9 +29,8 @@ class VChangepasswordController extends GetxController {
       if (response.isNotEmpty) {
         isButtonClicked = true;
         update();
-        Future.delayed(Duration(seconds: 3), () {
-          Get.back();
-        });
+        UiUtilites.successSnackbar('Password updated successfully'.tr, 'Success'.tr);
+        Get.back();
       }
     }
   }

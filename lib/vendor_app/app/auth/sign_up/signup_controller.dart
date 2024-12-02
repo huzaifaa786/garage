@@ -13,8 +13,10 @@ import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/signup_api.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/validators.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class VSignUpController extends GetxController {
   static VSignUpController instance = Get.find();
@@ -108,38 +110,39 @@ class VSignUpController extends GetxController {
   //TODO: INPUT VALIDATIONS
   String validateFields(String fieldName, value) {
     switch (fieldName) {
-      case 'Name':
-        nameError = Validators.emptyStringValidator(value, fieldName) ?? '';
+      case 'Name ':
+        nameError = Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return nameError;
-      case 'Garage name':
+      case 'Garage name ':
         garageNameError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return garageNameError;
-      case 'Garage description':
+      case 'Garage description ':
         garageDescriptionError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return garageDescriptionError;
-      case 'Emirate':
-        emirateError = Validators.emptyStringValidator(value, fieldName) ?? '';
+      case 'Emirate ':
+        emirateError =
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return emirateError;
-      case 'Garage address detail':
+      case 'Garage address detail ':
         garageAddressDetailError =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
+            Validators.emptyStringValidator(value, fieldName.tr) ?? '';
         update();
         return garageAddressDetailError;
-      case 'Email':
+      case 'Email ':
         emailError = Validators.emailValidator(value) ?? '';
         update();
         return emailError;
-      case 'password':
+      case 'password ':
         passwordError = Validators.passwordValidator(value) ?? '';
         update();
         return passwordError;
-      case 'confirm_password':
+      case 'confirm password ':
         confirmPasswordError = Validators.confrimPasswordValidator(
                 passwordController.text, value) ??
             '';
@@ -152,66 +155,37 @@ class VSignUpController extends GetxController {
 
   //TODO: BUTTON VALIDATION
   Future<bool> validateForm() async {
-    final nameErrorString = validateFields('Name', nameController.text);
-    final emailErrorString = validateFields('Email', emailController.text);
-    final garageNameErrorString =
-        validateFields('Garage name', garageNameController.text);
-    final garageDescriptionErrorString =
-        validateFields('Garage description', garageDescriptionController.text);
-    if (selectedEmirateId == null) {
-      emirateError = 'Please select an emirate';
-      update();
-    } else {
-      emirateError = '';
-      update();
-    }
-    final garageAddressDetailErrorString = validateFields(
-        'Garage address detail', garageDescriptionController.text);
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        Validators.emailValidator(emailController.text) != null ||
+        garageNameController.text.isEmpty ||
+        garageDescriptionController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        Validators.passwordValidator(passwordController.text) != null ||
+        confirmPasswordController.text.isEmpty ||
+        Validators.confrimPasswordValidator(
+                passwordController.text, confirmPasswordController.text) !=
+            null ||
+        selectedEmirateId == null ||
+        checkphoneController == null ||
+        logo == null ||
+        cover == null ||
+        idCardFrontSide == null ||
+        idCardBackSide == null ||
+        uploadLicense == null ||
+        lat == null ||
+        lng == null) {
+      UiUtilites.pendingApprovalAlertDialog(
+        context: Get.context!,
+        imageAssetPath: 'assets/icons/warning.svg',
+        onTap: () {},
+        description: 'Fill out all details required!'.tr,
+      );
 
-    final passwordErrorString =
-        validateFields('password', passwordController.text);
-    final confirmPasswordErrorString =
-        validateFields('confirm_password', confirmPasswordController.text);
-    if (checkphoneController != null) {
-      phoneValidation(checkphoneController);
-    } else {
-      phoneNumberError = "Phone number can't be empty.";
-      update();
+      return false;
     }
 
-    if (logo == null || logo!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "logo can't be empty");
-      return false;
-    }
-    if (cover == null || cover!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "banner can't be empty");
-      return false;
-    }
-    if (idCardBackSide == null || idCardBackSide!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "id backside can't be empty");
-      return false;
-    }
-    if (idCardFrontSide == null || idCardFrontSide!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "id front side can't be empty");
-      return false;
-    }
-    if (uploadLicense == null && uploadLicense!.path.isEmpty) {
-      UiUtilites.errorSnackbar('Error', "license can't be empty");
-      return false;
-    }
-    if (lat == null && lng == null) {
-      UiUtilites.errorSnackbar('Error', "location can't be empty");
-      return false;
-    }
-    return nameErrorString.isEmpty &&
-        emailErrorString.isEmpty &&
-        emirateError.isEmpty &&
-        garageNameErrorString.isEmpty &&
-        phoneNumberError.isEmpty &&
-        garageDescriptionErrorString.isEmpty &&
-        garageAddressDetailErrorString.isEmpty &&
-        passwordErrorString.isEmpty &&
-        confirmPasswordErrorString.isEmpty;
+    return true;
   }
 
   //TODO: Start Phone Validation
@@ -224,7 +198,7 @@ class VSignUpController extends GetxController {
 
   phoneValidation(phone) {
     if (!isNumeric(phone.number)) {
-      phoneNumberError = 'Use Numeric Variables';
+      phoneNumberError = 'Use Numeric Variables'.tr;
       update();
       return phoneNumberError;
     } else if (phone.number.length < selectedCountry!.minLength ||
@@ -266,7 +240,7 @@ class VSignUpController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-            uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());
@@ -323,16 +297,20 @@ class VSignUpController extends GetxController {
         idfrontside: base64IdCardFrontSide,
       );
       if (response.isNotEmpty) {
-        box.write('api_token', response['garage']['token']);
-        box.write('user_type', 'vendor');
-        print(response['garage']['token']);
-        UiUtilites.successAlertDialog(
+        // box.write('api_token', response['garage']['token']);
+        // box.write('user_type', 'vendor');
+        // print(response['garage']['token']);
+        UiUtilites.successRegisterAlertDialog(
             context: Get.context,
-            onTap: () {},
-            title: 'sdfsdfsf',
-            description: 'sdfsdfsdfs',
-            buttontitle: 'ok');
-        Get.offAllNamed(AppRoutes.vhome);
+            onTap: () {
+              Get.toNamed(AppRoutes.vsignin);
+            },
+            title: 'Thank you!'.tr,
+            verificationnumber:response['garage']['garage']['id'] ,
+            description:
+                'You have submitted your application successfully and it’s pending approval.'
+                    .tr,
+            buttontitle: 'Ok');
 
         resetfields();
       }
@@ -373,4 +351,24 @@ class VSignUpController extends GetxController {
     garageDescriptionError = '';
     update();
   }
+
+Future<bool> getLocationPermission() async {
+  // Check if location services are enabled
+  if (!await Geolocator.isLocationServiceEnabled()) {
+    // Prompt user to enable location services
+    await Geolocator.openLocationSettings();
+    return false; // Return false if location service is not enabled
+  }
+
+  // Request location permissions
+  PermissionStatus status = await Permission.locationWhenInUse.request();
+  if (status.isGranted) {
+    return true; // Permission granted
+  } else if (status.isDenied || status.isPermanentlyDenied) {
+    // Handle denied permissions
+    await openAppSettings();
+  }
+
+  return false; // Permission not granted
+}
 }

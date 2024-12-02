@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
@@ -42,7 +41,7 @@ class ProductImagesPicker extends StatelessWidget {
                             SvgPicture.asset(ImageConst.image_ic),
                             const Gap(4),
                             AppText(
-                              title: ConstantStrings.upload_services_photos,
+                              title: 'Upload services photos'.tr,
                               size: 10,
                               color: AppColors.primary_color,
                             )
@@ -50,7 +49,7 @@ class ProductImagesPicker extends StatelessWidget {
                         ),
                         const Gap(6),
                         AppText(
-                          title: ConstantStrings.recomended_image_size,
+                          title: 'Recomended size 390 * 185 px'.tr,
                           size: 8,
                           color: AppColors.hint_text_color,
                         )
@@ -70,7 +69,7 @@ class ProductImagesPicker extends StatelessWidget {
                               SvgPicture.asset(ImageConst.image_ic),
                               const Gap(4),
                               AppText(
-                                title: ConstantStrings.upload_services_photos,
+                                title:  'Upload services photos'.tr,
                                 size: 10,
                                 color: AppColors.primary_color,
                               )
@@ -118,9 +117,9 @@ class ProductImagesPicker extends StatelessWidget {
                                             controller.removeSelectedImages(i);
                                           },
                                           title:
-                                              'Are you sure you want to delete this Image?',
-                                          cancelText: 'Cancel',
-                                          confirmText: 'Delete',
+                                              'Are you sure you want to delete this Image?'.tr,
+                                          cancelText: 'Cancel'.tr,
+                                          confirmText: 'Delete'.tr,
                                         );
                                       },
                                       child: Icon(

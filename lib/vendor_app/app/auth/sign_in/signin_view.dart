@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_in/components/signin_triangle.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_in/signin_controller.dart';
@@ -31,7 +32,7 @@ class VSignInView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 10,bottom: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     // child: Image.asset(ImageConst.appLogo,
                     //     width: 172, height: 108)
                     child: SvgPicture.asset(
@@ -58,27 +59,27 @@ class VSignInView extends StatelessWidget {
                                   horizontal: 20, vertical: 12),
                               child: Column(
                                 children: [
-                                  const Gap(40),
+                                   Gap(40),
                                   AppText(
-                                    title: ConstantStrings.sign_in,
+                                    title: 'Sign In'.tr,
                                     size: 28,
                                     fontWeight: FontWeight.w600,
                                     color: AppColors.heading_text_color,
                                     fontFamily: 'Ibarra Real Nova',
                                   ),
-                                  const Gap(25),
+                                   Gap(25),
                                   AppInputField(
                                     errorText: controller.emailError,
-                                    hint: 'Email',
+                                    hint: 'Email'.tr,
                                     controller: controller.emailController,
                                     onchange: (val) {
                                       controller.validateFields("Email", val);
                                     },
                                   ),
-                                  const Gap(12),
+                                   Gap(12),
                                   AppInputField(
                                     errorText: controller.passwordError,
-                                    hint: 'Password',
+                                    hint: 'Password'.tr,
                                     obscure: controller.obscurePassword,
                                     controller: controller.passwordController,
                                     onchange: (val) {
@@ -99,30 +100,30 @@ class VSignInView extends StatelessWidget {
                                             ),
                                     ),
                                   ),
-                                  const Gap(20),
+                                   Gap(20),
                                   GestureDetector(
                                     onTap: () {
                                       Get.toNamed(AppRoutes.forgot_password);
                                     },
                                     child: AppText(
-                                      title: 'Forgot password?',
+                                      title: 'Forgot Password?'.tr,
                                       color: AppColors.primary_color,
                                       fontWeight: FontWeight.w600,
                                       size: 12,
                                     ),
                                   ),
-                                  const Gap(20),
+                                   Gap(20),
                                   AppButton(
-                                    title: 'Sign In',
+                                    title: 'Sign In'.tr,
                                     buttonColor: AppColors.primary_color,
                                     ontap: () {
                                       controller.login();
                                     },
                                   ),
-                                  const Gap(30),
+                                   Gap(30),
                                   AppRichText(
-                                    title: "Don’t have an account?",
-                                    buttonText: 'Sign Up',
+                                    title: "Don’t have an account?".tr,
+                                    buttonText: 'Sign Up'.tr,
                                     onTap: () {
                                       Get.toNamed(AppRoutes.vsignup);
                                     },

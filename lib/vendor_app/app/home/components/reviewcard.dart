@@ -3,24 +3,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:mobilegarage/models/garage_reviews_model.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/home/home_controller.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Reviewcard extends StatelessWidget {
-  const Reviewcard({
+  Reviewcard({
     super.key,
-    this.img = 'https://dummyimage.com/50x47/000/fff',
-    this.ordername,
-    this.name,
+    required this.reviews,
+    this.img,
   });
+  GarageReviewsModel reviews;
   final img;
-  final ordername;
-  final name;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<VHomeController>(
@@ -49,24 +51,40 @@ class Reviewcard extends StatelessWidget {
                           ),
                           const Gap(6),
                           Container(
-                            height: 47,
-                            width: 50,
+                            height: 35,
+                            width: 35,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(38),
-                              child: CachedNetworkImage(
-                                imageUrl: controller.image?.isEmpty ?? true
-                                    ? img
-                                    : controller.image.toString(),
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                            child:  ClipRRect(
+                                    borderRadius: BorderRadius.circular(38),
+                                    child: reviews.user!.image == null ||
+                                    reviews.user!.image!.isEmpty
+                                ?SvgPicture.asset(
+                                      img,
+                                      color: AppColors.primary,
+                                    ) : CachedNetworkImage(
+                                    imageUrl: reviews.user!.image.toString(),
+                                  
+                                    placeholder: (context, url) =>
+                                        Shimmer.fromColors(
+                                      baseColor: Colors.grey[300]!,
+                                      highlightColor: Colors.grey[100]!,
+                                      child: Container(
+                                        height: 35,
+                                        width: 35,
+                                        
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                    fit: BoxFit.cover,
+                                  ),)
+                               
                           ),
                           const Gap(8),
                           Flexible(
@@ -74,49 +92,45 @@ class Reviewcard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 AppText(
-                                  title: name,
+                                  title: reviews.user!.name.toString(),
                                   fontWeight: FontWeight.w600,
                                   size: 12,
                                 ),
                                 const Gap(10),
                                 Row(
                                   children: [
-                                    RatingBar.builder(
-                                      initialRating: controller.ratings,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: true,
+                                    RatingBarIndicator(
+                                      rating: double.parse(
+                                          reviews.rating!.toString()),
                                       itemCount: 5,
-                                      glow: false,
                                       itemSize: 14,
-                                      unratedColor: Colors.grey,
-                                      itemPadding: const EdgeInsets.symmetric(
-                                          horizontal: 2.0),
-                                      itemBuilder: (context, _) => const Icon(
-                                          Icons.star,
-                                          color: Colors.yellow),
-                                      onRatingUpdate: (rating) {
-                                        controller.updateRating(rating);
-                                      },
+                                      unratedColor: AppColors.grey,
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                      ),
                                     ),
                                     const Gap(10),
                                     AppText(
-                                      title: controller.ratings.toString(),
+                                      title: double.parse(
+                                              reviews.rating.toString())
+                                          .toString(),
                                       size: 8.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ],
                                 ),
-                                const AppText(
-                                  maxLines: 2,
-                                  title:
-                                      'this battery is very good, and the delivery is fast .',
-                                )
+                                if (reviews.comment != null)
+                                  AppText(
+                                    maxLines: 2,
+                                    title: reviews.comment.toString(),
+                                  )
                               ],
                             ),
                           ),
-                          const AppText(
-                            title: '3h ago',
+                          AppText(
+                            title: controller
+                                .timeAgo(reviews.createdAt!.toIso8601String()),
                             color: Colors.grey,
                             size: 12,
                             fontWeight: FontWeight.w400,

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/FAQ/faq_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/cards/terms_condition_listile.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class FaqView extends StatefulWidget {
   const FaqView({super.key});
@@ -18,6 +20,8 @@ class FaqView extends StatefulWidget {
 class _FaqViewState extends State<FaqView> {
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
+
     return GetBuilder<FaqController>(
       autoRemove: false,
       builder: (controller) => Scaffold(
@@ -31,10 +35,10 @@ class _FaqViewState extends State<FaqView> {
               automaticallyImplyLeading: false,
               scrolledUnderElevation: 0.0,
               toolbarHeight: 95.0,
-              title: const TopBar(
+              title: TopBar(
                 showicon: true,
                 showgarageicon: false,
-                title: "FAQ",
+                title: "FAQ".tr,
               ),
             ),
           ),
@@ -46,8 +50,8 @@ class _FaqViewState extends State<FaqView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AppText(
-                  title: 'Popular questions?',
+                AppText(
+                  title: 'Popular questions?'.tr,
                   size: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.darkprimary,
@@ -56,12 +60,16 @@ class _FaqViewState extends State<FaqView> {
                 Expanded(
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
-                    itemCount: controller.questionsAndAnswers.length,
+                    itemCount: controller.frequentlyAskedQuestions.length,
                     itemBuilder: (context, index) {
-                      final qa = controller.questionsAndAnswers[index];
+                      final qa = controller.frequentlyAskedQuestions[index];
                       return FaqQuestionAnswer(
-                        question: qa.question,
-                        answer: qa.answer,
+                        question: box.read('locale') == 'ar'
+                            ? qa['ar_question']
+                            : qa['question'],
+                        answer: box.read('locale') == 'ar'
+                            ? qa['ar_answer']
+                            : qa['answer'],
                       );
                     },
                   ),

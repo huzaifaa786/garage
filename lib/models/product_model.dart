@@ -34,15 +34,18 @@ class ProductModel {
   String? tyreheightId;
   String? tyresizeId;
   String? tyrespeedId;
-  String? tyrepatterenId;
+  String? tyreSpeedRatingId;
+  String? tyrepatternId;
   String? tyreoriginId;
   String? oilproducttypeId;
+  String? oilProductType;
   String? oilvolumeId;
   String? description;
   String? price;
   String? createdat;
   String? updatedat;
   String? serviceMinute;
+  //
 
   List<ProductImage>? images;
 
@@ -80,7 +83,6 @@ class ProductModel {
 //
   List<AcExtraModel>? acextra = [];
 
-
   ProductModel({
     required this.id,
     this.brands,
@@ -112,7 +114,7 @@ class ProductModel {
     this.tyreWidth,
     this.tyreheightId,
     this.tyreoriginId,
-    this.tyrepatterenId,
+    this.tyrepatternId,
     this.tyresizeId,
     this.tyrespeedId,
     this.tyrewidthId,
@@ -131,7 +133,11 @@ class ProductModel {
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'],
-      brands: json['brands'] != null ? BrandModel.from(json['brands']) : null,
+      brands: json['brands'] != null
+          ? BrandModel.from(json['brands'])
+          : json['brand'] != null
+              ? BrandModel.from(json['brand'])
+              : null,
       brandId: json['brand_id'].toString(),
       garageId: json['garage_id'].toString(),
       categoryId: json['category_id'].toString(),
@@ -154,12 +160,12 @@ class ProductModel {
       tyrewidthId: json['tyer_width_id'].toString(),
       tyresizeId: json['tyer_size_id'].toString(),
       tyrespeedId: json['tyer_speed_rating_id'].toString(),
-      tyrepatterenId: json['tyer_pattren_id'].toString(),
+      tyrepatternId: json['tyer_pattren_id'].toString(),
       tyreoriginId: json['tyer_origin_id'].toString(),
       oilproducttypeId: json['oil_product_type_id'].toString(),
       oilvolumeId: json['oil_volume_id'].toString(),
       description: json['description'].toString(),
-      price: json['price'].toString(),
+      price: json['price'] ?? '',
       createdat: json['created_at'].toString(),
       updatedat: json['updated_at'].toString(),
       batteryAmpere: json['battery_ampere'] != null
@@ -202,34 +208,58 @@ class ProductModel {
           ? OilVolumeModel.from(json['oil_volume'])
           : null,
       oilextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => OilExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => OilExtraModel.from(item))
+                  .toList()
+              : [
+                  OilExtraModel.from(json['product_extra'])
+                ]) // Wrap single object in a list
           : null,
       recoveryextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => RecoveryExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => RecoveryExtraModel.from(item))
+                  .toList()
+              : [
+                  RecoveryExtraModel.from(json['product_extra'])
+                ]) 
           : null,
       fuelextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => FuelExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => FuelExtraModel.from(item))
+                  .toList()
+              : [
+                  FuelExtraModel.from(json['product_extra'])
+                ])
           : null,
       roadextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => RoadAssistanceExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => RoadAssistanceExtraModel.from(item))
+                  .toList()
+              : [
+                  RoadAssistanceExtraModel.from(json['product_extra'])
+                ]) 
           : null,
       carwashextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => CarWashExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => CarWashExtraModel.from(item))
+                  .toList()
+              : [
+                  CarWashExtraModel.from(json['product_extra'])
+                ]) 
           : null,
       acextra: json['product_extra'] != null
-          ? (json['product_extra'] as List)
-              .map((item) => AcExtraModel.from(item))
-              .toList()
+          ? (json['product_extra'] is List
+              ? (json['product_extra'] as List)
+                  .map((item) => AcExtraModel.from(item))
+                  .toList()
+              : [
+                  AcExtraModel.from(json['product_extra'])
+                ]) 
           : null,
     );
   }
@@ -237,34 +267,61 @@ class ProductModel {
 
 ///////
 ///
-class ProductExtra {
-  int? id;
+class ProductExtraModel {
+  String? id;
   String? productId;
   String? categoryExtraId;
   String? description;
   String? time;
   String? price;
-  String? createdat;
+  String? createdAt;
+  String? updatedAt;
+  CategoryExtraModel? categoryExtra;
 
-  ProductExtra({
+  ProductExtraModel({
     this.id,
     this.productId,
     this.categoryExtraId,
     this.description,
     this.time,
     this.price,
-    this.createdat,
+    this.createdAt,
+    this.updatedAt,
+    this.categoryExtra,
   });
 
-  factory ProductExtra.fromJson(Map<String, dynamic> json) {
-    return ProductExtra(
-      id: json['id'],
-      productId: json['product_id'],
-      categoryExtraId: json['category_extra_id'],
+  factory ProductExtraModel.fromJson(Map<String, dynamic> json) {
+    return ProductExtraModel(
+      id: json['id']?.toString(),
+      productId: json['product_id']?.toString(),
+      categoryExtraId: json['category_extra_id']?.toString(),
       description: json['description'],
       time: json['time'],
-      price: json['price'],
-      createdat: json['created_at'],
+      price: json['price']?.toString(),
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at'],
+      categoryExtra: CategoryExtraModel.fromJson(json['category_extra']),
+    );
+  }
+}
+
+///
+class CategoryExtraModel {
+  int? id;
+  String? categoryId;
+  String? name;
+
+  CategoryExtraModel({
+    this.id,
+    this.categoryId,
+    this.name,
+  });
+
+  factory CategoryExtraModel.fromJson(Map<String, dynamic> json) {
+    return CategoryExtraModel(
+      id: json['id'],
+      categoryId: json['category_id']?.toString(),
+      name: json['name'],
     );
   }
 }

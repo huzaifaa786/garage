@@ -3,6 +3,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -18,7 +19,12 @@ class DropDownWithAdd<T> extends StatelessWidget {
     this.onChanged,
     this.errorText,
     this.displayValue,
-    this.onAddPressed, // Add a callback for "Add" button
+    this.onAddPressed,
+    ////////
+    this.searchController,
+    this.searchInnerWidget,
+    this.searchMatchFn,
+    this.onMenuStateChange,
   });
 
   final List<T> items;
@@ -27,7 +33,13 @@ class DropDownWithAdd<T> extends StatelessWidget {
   final ValueChanged<T?>? onChanged;
   final String Function(T)? displayValue;
   final String? errorText;
-  final VoidCallback? onAddPressed; // Add this for "Add" button functionality
+  final VoidCallback? onAddPressed;
+
+  // Searchable dropdown specific parameters
+  final TextEditingController? searchController;
+  final Widget? searchInnerWidget;
+  final bool Function(dynamic item, String searchValue)? searchMatchFn;
+  final void Function(bool isOpen)? onMenuStateChange;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +53,13 @@ class DropDownWithAdd<T> extends StatelessWidget {
               : circularInputDecoration,
           child: DropdownButtonHideUnderline(
             child: DropdownButton2(
+              isDense:false ,
+              isExpanded: false,
               hint: AppText(
                 title: hint!,
                 size: 12,
                 fontWeight: FontWeight.w400,
-                color: AppColors.hint_text_color,
+                color: AppColors.black.withOpacity(0.4),
               ),
               items: [
                 ...items
@@ -65,21 +79,35 @@ class DropDownWithAdd<T> extends StatelessWidget {
                     .toList(),
                 DropdownMenuItem<T>(
                   value: null,
-                  child: Container(
-                    height: Get.height,
-                    width: Get.width,
-                    child:
-                        Icon(Icons.add_circle_outline_sharp, color: Colors.red),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: selectedValue == null
+                            ? AppColors.white_color
+                            : AppColors.black_color,
+                        size: 20,
+                      ),
+                      Gap(4),
+                      AppText(
+                        title: "Add".tr,
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                        color: selectedValue == null
+                            ? AppColors.white_color
+                            : AppColors.black_color,
+                      ),
+                    ],
                   ),
                 ),
               ],
               value: selectedValue,
               onChanged: (value) {
-                // Check if the Add button was clicked
                 if (value == null && onAddPressed != null) {
-                  onAddPressed!(); // Trigger "Add" button action
+                  onAddPressed!();
                 } else if (onChanged != null) {
-                  onChanged!(value);
+                  onChanged!(value as T);
                 }
               },
               selectedItemBuilder: (BuildContext context) {
@@ -89,11 +117,17 @@ class DropDownWithAdd<T> extends StatelessWidget {
                       title: displayValue!(item),
                       size: 14,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.black_color.withOpacity(0.4),
+                      color: AppColors.black,
                     ),
                   );
                 }).toList();
               },
+              dropdownSearchData: DropdownSearchData(
+                  searchController: searchController,
+                  searchInnerWidget: searchInnerWidget,
+                  searchMatchFn: searchMatchFn,
+                  searchInnerWidgetHeight: 70),
+              onMenuStateChange: onMenuStateChange,
               menuItemStyleData: MenuItemStyleData(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 selectedMenuItemBuilder: (context, child) =>

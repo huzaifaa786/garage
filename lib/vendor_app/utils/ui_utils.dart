@@ -169,9 +169,8 @@ class UiUtilites {
       required onTap,
       required title,
       required buttontitle,
-      required description
-      }) {
-    return showDialog(
+      required description}) {
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return BackdropFilter(
@@ -191,12 +190,15 @@ class UiUtilites {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(ImageConst.success_ic),
-                      AppText(
-                        title: '$title',
-                        size: 14,
-                        fontWeight: FontWeight.w700,
-                        textAlign: TextAlign.center,
-                        color: AppColors.darkprimary,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: AppText(
+                          title: '$title',
+                          size: 14,
+                          fontWeight: FontWeight.w700,
+                          textAlign: TextAlign.center,
+                          color: AppColors.darkprimary,
+                        ),
                       ),
                       Gap(10),
                       AppText(
@@ -217,6 +219,159 @@ class UiUtilites {
                   ),
                 ),
               ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+  static successRegisterAlertDialog(
+      {required context,
+      required onTap,
+      required title,
+      required buttontitle,
+      required description,
+      required verificationnumber,
+      }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            backgroundColor: AppColors.white_color,
+            surfaceTintColor: AppColors.white_color,
+            content: Wrap(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  width: Get.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(ImageConst.success_ic),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: AppText(
+                          title: '$title',
+                          size: 14,
+                          fontWeight: FontWeight.w700,
+                          textAlign: TextAlign.center,
+                          color: AppColors.darkprimary,
+                        ),
+                      ),
+                        Gap(10),
+                      AppText(
+                        title: 'Your Verification number'.tr,
+                        size: 11,
+                        textAlign: TextAlign.center,
+                        color: AppColors.hint_text_color,
+                      ),
+                      Gap(10),
+                      AppText(
+                          title: '$verificationnumber',
+                          size: 14,
+                          fontWeight: FontWeight.w700,
+                          textAlign: TextAlign.center,
+                          color: AppColors.darkprimary,
+                        ),
+                      Gap(10),
+                       Padding(
+                         padding: const EdgeInsets.symmetric(horizontal:  8.0),
+                         child: AppText(
+                          title: '$description',
+                          size: 12,
+                          textAlign: TextAlign.center,
+                          color: AppColors.hint_text_color,
+                                               ),
+                       ),
+                    
+                      Gap(20),
+                      AppButton(
+                        height: 45,
+                        title: '$buttontitle',
+                        buttonColor: AppColors.primary_color.withOpacity(0.1),
+                        titleColor: AppColors.primary_color,
+                        ontap: onTap,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  static pendingApprovalAlertDialog({
+    required BuildContext context,
+    required VoidCallback onTap,
+    String? title,
+    required String description,
+    String? buttonTitle,
+    String? imageAssetPath,
+  }) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+              backgroundColor: AppColors.white_color,
+              surfaceTintColor: AppColors.white_color,
+              content: Wrap(
+                children: [
+                  SizedBox(
+                    width: Get.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (imageAssetPath != null)
+                          SvgPicture.asset(imageAssetPath),
+                        if (title != null)
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: AppText(
+                              title: title,
+                              size: 14,
+                              fontWeight: FontWeight.w700,
+                              textAlign: TextAlign.center,
+                              color: AppColors.darkprimary,
+                            ),
+                          ),
+                        Gap(10),
+                        AppText(
+                          title: description,
+                          size: 12,
+                          textAlign: TextAlign.center,
+                          color: AppColors.hint_text_color,
+                        ),
+                        Gap(20),
+                        if (buttonTitle != null)
+                          AppButton(
+                            height: 45,
+                            title: buttonTitle,
+                            buttonColor:
+                                AppColors.primary_color.withOpacity(0.1),
+                            titleColor: AppColors.primary_color,
+                            ontap: onTap,
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -248,7 +403,7 @@ class UiUtilites {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
                 child: Text(
-                  'No',
+                  "No".tr,
                   style: TextStyle(color: Colors.red, fontSize: 16),
                 ),
               ),
@@ -263,7 +418,7 @@ class UiUtilites {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
                 child: Text(
-                  'Yes',
+                  'Yes'.tr,
                   style: TextStyle(color: Colors.green, fontSize: 16),
                 ),
               ),
@@ -300,7 +455,7 @@ class UiUtilites {
                       ),
                     ),
                     Text(
-                      'Add new',
+                      'Add new'.tr,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

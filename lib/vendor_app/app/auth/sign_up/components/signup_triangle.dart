@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/painters/triangle_painter.dart';
 
@@ -32,7 +31,7 @@ class SignupTriangle extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               AppText(
-                title: ConstantStrings.sign_up,
+                title: "Sign Up".tr,
                 size: 28,
                 fontWeight: FontWeight.w600,
                 color: AppColors.heading_text_color,

@@ -8,6 +8,7 @@ import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
+import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_phone_input/app_phone_input.dart';
 
 class ChangePhonenumberView extends StatefulWidget {
@@ -36,7 +37,7 @@ class _ChangePhonenumberViewState extends State<ChangePhonenumberView> {
                     title: TopBar(
                       showicon: true,
                       showgarageicon: false,
-                      title: "Change phone number",
+                      title: "Change phone number".tr,
                     ),
                   ),
                 ),
@@ -72,11 +73,10 @@ class _ChangePhonenumberViewState extends State<ChangePhonenumberView> {
                         ),
                         Gap(83),
                         MainButton(
-                          title: 'Save changes',
+                          title: 'Save changes'.tr,
                           buttonWidth: Get.width * 0.77,
                           onTap: () {
                             controller.changeNumber();
-                         
                           },
                         ),
                       ],
