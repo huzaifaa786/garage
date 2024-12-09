@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:mobilegarage/apis/user_apis/auth_apis/send_otp_api.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/validators.dart';
 
@@ -55,6 +56,14 @@ class ChangePhonenumberController extends GetxController {
 
   changeNumber() async {
     if (await validateForm()) {
+      await sendOtp();
+    }
+  }
+
+  sendOtp() async {
+    var response =
+        await SendOtpApi.sendOtp(phone: completePhoneNumber.toString());
+    if (response.isNotEmpty) {
       Get.toNamed(AppRoutes.otp, parameters: {
         'phone': completePhoneNumber.toString(),
         'auth': 'changeNumber'

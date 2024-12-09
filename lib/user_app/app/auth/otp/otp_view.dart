@@ -139,7 +139,7 @@ class OtpView extends StatelessWidget {
                           // debugPrint("Completed");
                           controller.otpCode = v;
                           // controller.verifyOtpCode();
-                          controller.veryifyTestCode();
+                          // controller.veryifyTestCode();
                         },
                         onChanged: (value) {
                           debugPrint(value);
@@ -161,7 +161,9 @@ class OtpView extends StatelessWidget {
                       buttonWidth: 300.0,
                       title: 'Continue'.tr,
                       onTap: () {
-                        controller.veryifyTestCode();
+                        controller.authmethod == 'changeNumber'
+                            ? controller.verifyOtpCode()
+                            : controller.veryifyTestCode();
                       },
                     ),
                     Gap(33),

@@ -6,6 +6,7 @@ import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/login_verify_a
 import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/phone_verify_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/verify_otp_test_api.dart';
 import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
+import 'package:mobilegarage/models/user_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,10 +21,10 @@ class OtpController extends GetxController {
     super.onInit();
     phone = Get.parameters['phone'];
     authmethod = Get.parameters['auth'];
-    otp = Get.parameters['otp'];
-    otpController.text = otp.toString();
+    // otp = Get.parameters['otp'];
+    // otpController.text = otp.toString();
     update();
-  //  await veryifyTestCode();
+    //  await veryifyTestCode();
     print(phone);
     print(otp);
 
@@ -31,14 +32,15 @@ class OtpController extends GetxController {
   }
 
   veryifyTestCode() async {
-    var response = await VerifyOtpTestApi.verifyNumber(phone: phone, otp: otp);
+    var response = await VerifyOtpTestApi.verifyNumber(
+        phone: phone, otp: otpController.text);
     if (response.isNotEmpty) {
-        box.write('api_token', response['user']['token']);
-        box.write('number_verified', 'true');
-        box.write('user_type', 'user');
-        box.write('user_id', response['user']['id']);
+      box.write('api_token', response['user']['token']);
+      box.write('number_verified', 'true');
+      box.write('user_type', 'user');
+      box.write('user_id', response['user']['id']);
 
-        Get.offAllNamed(AppRoutes.main);
+      Get.offAllNamed(AppRoutes.main);
     }
   }
 
@@ -95,69 +97,21 @@ class OtpController extends GetxController {
     );
   }
 
+  UserModel? user;
+
   void verifyOtpCode() async {
-    LoadingHelper.show();
-    try {
-      // PhoneAuthCredential credential = PhoneAuthProvider.credential(
-      //   verificationId: verificationid,
-      //   smsCode: otpCode,
-      // );
-      // await auth.signInWithCredential(credential);
-      Map<String, dynamic> response;
-      if (authmethod == 'signin') {
-        response = await LoginVerifyApi.verifyNumber(phone: phone);
-      } else if (authmethod == 'signup') {
-        response = await phoneOtpApi.registerUserWithOtp(phone: phone);
-      } else {
-        response = await EditProfileApi.editProfile(phone: phone);
-      }
+    var response = await EditProfileApi.editProfile(phone: phone);
+    if (response.isNotEmpty) {
+      // user = UserModel.fromJson(response['user']);
+      // box.write('api_token', response['user']['token']);
+      // box.write('number_verified', 'true');
+      // box.write('user_type', 'user');
+      // box.write('user_type', 'user');
+      // box.write('user_id', response['user']['id']);
 
-      if (response.isNotEmpty) {
-        // Check if the response indicates that the account has been banned
-        if (response['error'] == true &&
-            response['error_data'] == 'Your account has been banned') {
-          LoadingHelper.dismiss();
-          Get.snackbar(
-            'Error'.tr,
-            'Your account has been banned'.tr,
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red,
-            colorText: AppColors.white,
-          );
-          return;
-        }
-        box.write('api_token', response['user']['token']);
-        box.write('number_verified', 'true');
-
-        box.write('user_type', 'user');
-        box.write('user_type', 'user');
-        box.write('user_id', response['user']['id']);
-
-        Get.offAllNamed(AppRoutes.main);
-        LoadingHelper.dismiss();
-        UiUtilites.successSnackbar(
-          'OTP verified successfully'.tr,
-          'Success!'.tr,
-        );
-      } else {
-        LoadingHelper.dismiss();
-        Get.snackbar(
-          'Error'.tr,
-          'Login failed'.tr,
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: AppColors.white,
-        );
-      }
-    } catch (e) {
-      LoadingHelper.dismiss();
-      Get.snackbar(
-        'Verification failed'.tr,
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: AppColors.white,
-      );
+      Get.offAllNamed(AppRoutes.main);
+      UiUtilites.successSnackbar(
+          'Phone Number changed successfully', 'Success');
     }
   }
 }
