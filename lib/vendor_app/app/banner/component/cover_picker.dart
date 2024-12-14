@@ -13,7 +13,36 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class CoverPickerr extends StatelessWidget {
   const CoverPickerr({super.key});
-
+void _showImageSourceDialog(BuildContext context, VBannerController controller) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text('Choose from Gallery'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller.pickImageFromGallery('cover'); // Existing functionality
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: Text('Take a Photo'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller.pickImageFromCamera('cover'); // New camera functionality
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return GetBuilder<VBannerController>(
@@ -22,7 +51,8 @@ class CoverPickerr extends StatelessWidget {
         child: InkWell(
           borderRadius: const BorderRadius.all(Radius.circular(12)),
           onTap: () {
-            controller.pickImageFromGallery('cover');
+            // controller.pickImageFromGallery('cover');
+            _showImageSourceDialog(context, controller);
           },
           child: DottedBorder(
             borderType: BorderType.RRect,

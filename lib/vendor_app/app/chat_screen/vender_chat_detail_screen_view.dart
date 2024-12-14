@@ -27,6 +27,45 @@ class ChatDetailScreenView extends StatefulWidget {
   State<ChatDetailScreenView> createState() => _ChatScreenViewState();
 }
 
+void _showImageSourceDialog(
+  BuildContext context,
+  VChatController controller,
+) {
+  showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+    ),
+    builder: (BuildContext context) {
+      return Wrap(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.photo_library),
+            title: Text('Choose from Gallery'.tr),
+            onTap: () {
+              Navigator.of(context).pop();
+              // controller
+              //     .pickImageFromGallery(imageName); // Existing functionality
+              controller.picksinglefile();
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.camera_alt),
+            title: Text('Take a Photo'.tr),
+            onTap: () {
+              Navigator.of(context).pop();
+              // controller
+              //     .pickImageFromCamera(imageName); // New camera functionality
+              // print('object');
+             controller. pickSingleImageFromCamera();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 class _ChatScreenViewState extends State<ChatDetailScreenView> {
   final VChatController chatController = Get.put(VChatController());
 
@@ -143,7 +182,8 @@ class _ChatScreenViewState extends State<ChatDetailScreenView> {
               children: [
                 GestureDetector(
                     onTap: () {
-                      controller.picksinglefile();
+                      // controller.picksinglefile();
+                      _showImageSourceDialog(context, controller);
                     },
                     child: SvgPicture.asset("assets/icons/Group 473.svg")),
                 Gap(8),

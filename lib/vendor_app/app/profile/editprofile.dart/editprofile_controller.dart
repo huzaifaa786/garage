@@ -54,6 +54,39 @@ class VEditprofileController extends GetxController {
   //
   String? base64Logo;
   String? base64Cover;
+pickImageFromCamera(String imageName) async {
+  final imageSelectorApi = ImageSelectorApi();
+
+  // Use the camera for image selection
+  final pickedImage = await imageSelectorApi.selectCameraImage(); 
+  if (pickedImage != null) {
+    CroppedFile? croppedImage = await ImageCropper().cropImage(
+      sourcePath: pickedImage.path,
+      uiSettings:
+          uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
+    );
+    if (croppedImage != null || croppedImage!.path.isNotEmpty) {
+      String base64Image = base64Encode(await croppedImage.readAsBytes());
+
+      switch (imageName) {
+        case 'logo':
+          logo = File(croppedImage.path);
+          base64Logo = base64Image;
+          update();
+          break;
+        case 'cover':
+          cover = File(croppedImage.path);
+          base64Cover = base64Image;
+          update();
+
+        default:
+          break;
+      }
+    } else {
+      return null;
+    }
+  }
+}
 
   pickImageFromGallery(String imageName) async {
     final imageSelectorApi = ImageSelectorApi();

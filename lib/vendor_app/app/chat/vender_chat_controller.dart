@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/apis/chatify/user_api.dart';
 import 'package:mobilegarage/models/chatify/contact.dart';
 import 'package:mobilegarage/models/chatify/msg.dart';
@@ -185,6 +186,21 @@ class VChatController extends GetxController {
       file = await File(result.files.single.path!);
       await sendMassage();
     } else {}
+  }
+
+  Future<void> pickSingleImageFromCamera() async {
+    final picker = ImagePicker();
+
+    // Capture a single image from the camera
+    final pickedFile =
+        await picker.pickImage(source: ImageSource.camera, imageQuality: 80);
+
+    if (pickedFile != null) {
+      file = File(pickedFile.path); // Save the captured image file
+      await sendMassage(); // Call the send function after image is captured
+    } else {
+      print('No image captured');
+    }
   }
 
   sendMassage() async {

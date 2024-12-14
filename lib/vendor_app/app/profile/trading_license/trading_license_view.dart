@@ -16,6 +16,39 @@ import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 
 class TradingLicenseView extends StatelessWidget {
   const TradingLicenseView({super.key});
+  void _showImageSourceDialog(BuildContext context,
+      TradingLicenseController controller, String imageName) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text('Choose from Gallery'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller
+                    .pickImageFromGallery(imageName); // Existing functionality
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: Text('Take a Photo'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller
+                    .pickImageFromCamera(imageName); // New camera functionality
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +102,9 @@ class TradingLicenseView extends StatelessWidget {
                         child: ImageSelectionTile(
                           title: 'Upload license'.tr,
                           onTap: () {
-                            controller.pickImageFromGallery('upload_license');
+                            // controller.pickImageFromGallery('upload_license');
+                            _showImageSourceDialog(
+                                context, controller, 'upload_license');
                           },
                           isSelected: controller.license != null &&
                               controller.license!.path.isNotEmpty,

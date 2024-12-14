@@ -14,6 +14,39 @@ import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 
 class OwnerIdView extends StatelessWidget {
   const OwnerIdView({super.key});
+  void _showImageSourceDialog(
+      BuildContext context, OwnerIdController controller, String imageName) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text('Choose from Gallery'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller
+                    .pickImageFromGallery(imageName); // Existing functionality
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: Text('Take a Photo'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller
+                    .pickImageFromCamera(imageName); // New camera functionality
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +66,8 @@ class OwnerIdView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                               child: AppText(
                                 title: 'Front side'.tr,
                                 size: 11,
@@ -43,7 +77,10 @@ class OwnerIdView extends StatelessWidget {
                             Gap(10),
                             Row(
                               children: [
-                                Expanded(child: OwnerIdImagePickerr(imageType: 'idfront',)),
+                                Expanded(
+                                    child: OwnerIdImagePickerr(
+                                  imageType: 'idfront',
+                                )),
                                 if (controller.idfront != null) Gap(15),
                                 if (controller.idfront != null)
                                   InkWell(
@@ -59,8 +96,9 @@ class OwnerIdView extends StatelessWidget {
                               ],
                             ),
                             Gap(20),
-                              Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                               child: AppText(
                                 title: 'Back side'.tr,
                                 size: 11,
@@ -70,7 +108,10 @@ class OwnerIdView extends StatelessWidget {
                             Gap(10),
                             Row(
                               children: [
-                                Expanded(child: OwnerIdImagePickerr(imageType: 'idback',)),
+                                Expanded(
+                                    child: OwnerIdImagePickerr(
+                                  imageType: 'idback',
+                                )),
                                 if (controller.idback != null) Gap(15),
                                 if (controller.idback != null)
                                   InkWell(
@@ -88,7 +129,6 @@ class OwnerIdView extends StatelessWidget {
                           ],
                         ),
                       ),
-                    
                       Divider(
                         thickness: 6,
                         color: AppColors.grey.shade200,
@@ -109,21 +149,25 @@ class OwnerIdView extends StatelessWidget {
                         child: ImageSelectionTile(
                           title: 'Upload the front side'.tr,
                           onTap: () {
-                            controller.pickImageFromGallery('idfront');
+                            // controller.pickImageFromGallery('idfront');
+                            _showImageSourceDialog(
+                                context, controller, 'idfront');
                           },
                           isSelected: controller.idfront != null &&
                               controller.idfront!.path.isNotEmpty,
                         ),
                       ),
                       Gap(20),
-                        Padding(
+                      Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 40,
                         ),
                         child: ImageSelectionTile(
                           title: 'Upload the Back side'.tr,
                           onTap: () {
-                            controller.pickImageFromGallery('idback');
+                            // controller.pickImageFromGallery('idback');
+                            _showImageSourceDialog(
+                                context, controller, 'idback');
                           },
                           isSelected: controller.idback != null &&
                               controller.idback!.path.isNotEmpty,

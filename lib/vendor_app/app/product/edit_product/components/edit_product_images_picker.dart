@@ -12,13 +12,49 @@ import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class EditProductImagesPicker extends StatelessWidget {
   const EditProductImagesPicker({super.key});
+  void _showImageSourceDialog(
+    BuildContext context,
+    EditProductController controller,
+  ) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text('Choose from Gallery'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller.onMultipleImagePick();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: Text('Take a Photo'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller.onCaptureSingleImage();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EditProductController>(
       builder: (controller) => InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
-        onTap: controller.onMultipleImagePick,
+        // onTap: controller.onMultipleImagePick,
+          onTap: () {
+          _showImageSourceDialog(context, controller);
+        },
         child: DottedBorder(
           borderType: BorderType.RRect,
           strokeWidth: 1.0,

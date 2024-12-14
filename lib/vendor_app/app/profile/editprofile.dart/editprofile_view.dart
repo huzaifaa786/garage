@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/app/home/components/review_box.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/button.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/component/profile_cover_picker.dart';
 import 'package:mobilegarage/vendor_app/app/profile/editprofile.dart/editprofile_controller.dart';

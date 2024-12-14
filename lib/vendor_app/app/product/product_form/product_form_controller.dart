@@ -74,6 +74,21 @@ class ProductFormController extends GetxController {
     }
   }
 
+  
+onCaptureSingleImage() async {
+  final imageSelectorApi = ImageSelectorApi();
+
+  // Capture a single image using the camera
+  final pickedImage = await imageSelectorApi.selectCameraImage();
+
+  if (pickedImage != null) {
+    images.add(File(pickedImage.path)); // Add the captured image to the list
+    update();
+  } else {
+    print('No image captured');
+  }
+}
+
   removeSelectedImages(int index) {
     images.removeAt(index);
     Get.back();

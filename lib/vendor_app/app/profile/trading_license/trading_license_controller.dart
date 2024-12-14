@@ -42,6 +42,36 @@ class TradingLicenseController extends GetxController {
       }
     }
   }
+pickImageFromCamera(String imageName) async {
+  final imageSelectorApi = ImageSelectorApi();
+
+  // Use the camera to capture an image
+  final pickedImage = await imageSelectorApi.selectCameraImage();
+  if (pickedImage != null) {
+    CroppedFile? croppedImage = await ImageCropper().cropImage(
+      sourcePath: pickedImage.path,
+      uiSettings:
+          uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
+    );
+    if (croppedImage != null && croppedImage.path.isNotEmpty) {
+      String base64Image = base64Encode(await croppedImage.readAsBytes());
+
+      switch (imageName) {
+        case 'upload_license':
+          license = File(croppedImage.path);
+          base64license = base64Image;
+          update();
+          break;
+        default:
+          break;
+      }
+    } else {
+      print('error');
+      update();
+      return null;
+    }
+  }
+}
 
   void removeLicenseImage() {
     license = null;

@@ -16,6 +16,43 @@ class OwnerIdController extends GetxController {
   String? base64idfront;
   File? idback;
   String? base64idback;
+  
+  pickImageFromCamera(String imageName) async {
+    final imageSelectorApi = ImageSelectorApi();
+
+    // Use the camera to capture an image
+    final pickedImage = await imageSelectorApi.selectCameraImage();
+    if (pickedImage != null) {
+      CroppedFile? croppedImage = await ImageCropper().cropImage(
+        sourcePath: pickedImage.path,
+        uiSettings:
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
+      );
+      if (croppedImage != null || croppedImage!.path.isNotEmpty) {
+        String base64Image = base64Encode(await croppedImage.readAsBytes());
+
+        switch (imageName) {
+          case 'idfront':
+            idfront = File(croppedImage.path);
+            base64idfront = base64Image;
+            update();
+            break;
+          case 'idback':
+            idback = File(croppedImage.path);
+            base64idback = base64Image;
+            update();
+            break;
+          default:
+            break;
+        }
+      } else {
+        print('error');
+        update();
+        return null;
+      }
+    }
+  }
+
   pickImageFromGallery(String imageName) async {
     final imageSelectorApi = ImageSelectorApi();
 

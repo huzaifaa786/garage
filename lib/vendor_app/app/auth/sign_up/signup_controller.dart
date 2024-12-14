@@ -274,6 +274,54 @@ class VSignUpController extends GetxController {
       }
     }
   }
+Future<void> pickImageFromCamera(String imageName) async {
+  final imageSelectorApi = ImageSelectorApi();
+
+  // Use the camera to capture an image
+  final pickedImage = await imageSelectorApi.selectCameraImage(); 
+
+  if (pickedImage != null) {
+    CroppedFile? croppedImage = await ImageCropper().cropImage(
+      sourcePath: pickedImage.path,
+      uiSettings:
+          uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
+    );
+    if (croppedImage != null || croppedImage!.path.isNotEmpty) {
+      String base64Image = base64Encode(await croppedImage.readAsBytes());
+      switch (imageName) {
+        case 'logo':
+          logo = File(croppedImage.path);
+          base64Logo = base64Image;
+          update();
+          break;
+        case 'cover':
+          cover = File(croppedImage.path);
+          base64Cover = base64Image;
+          update();
+          break;
+        case 'id_card_frontSide':
+          idCardFrontSide = File(croppedImage.path);
+          base64IdCardFrontSide = base64Image;
+          update();
+          break;
+        case 'id_card_backSide':
+          idCardBackSide = File(croppedImage.path);
+          base64IdCardBackSide = base64Image;
+          update();
+          break;
+        case 'upload_license':
+          uploadLicense = File(croppedImage.path);
+          base64UploadLicense = base64Image;
+          update();
+          break;
+        default:
+          break;
+      }
+    } else {
+      return null;
+    }
+  }
+}
 
   //TODO: Register Function
 

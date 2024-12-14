@@ -23,6 +23,40 @@ import 'package:mobilegarage/vendor_app/utils/rich_text/rich_text.dart';
 
 class VSignupView extends StatelessWidget {
   const VSignupView({super.key});
+  
+  void _showImageSourceDialog(
+      BuildContext context, VSignUpController controller, String imageName) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text('Choose from Gallery'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller
+                    .pickImageFromGallery(imageName); // Existing functionality
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: Text('Take a Photo'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller
+                    .pickImageFromCamera(imageName); // New camera functionality
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +119,10 @@ class VSignupView extends StatelessWidget {
                             ImageSelectionTile(
                               title: 'Upload the front side of ID'.tr,
                               onTap: () {
-                                controller
-                                    .pickImageFromGallery('id_card_frontSide');
+                                // controller
+                                //     .pickImageFromGallery('id_card_frontSide');
+                                _showImageSourceDialog(
+                                    context, controller, 'id_card_frontSide');
                               },
                               isSelected: controller.idCardFrontSide != null &&
                                   controller.idCardFrontSide!.path.isNotEmpty,
@@ -95,8 +131,10 @@ class VSignupView extends StatelessWidget {
                             ImageSelectionTile(
                               title: 'Upload the back side of ID'.tr,
                               onTap: () {
-                                controller
-                                    .pickImageFromGallery('id_card_backSide');
+                                // controller
+                                //     .pickImageFromGallery('id_card_backSide');
+                                _showImageSourceDialog(
+                                    context, controller, 'id_card_backSide');
                               },
                               isSelected: controller.idCardBackSide != null &&
                                   controller.idCardBackSide!.path.isNotEmpty,
@@ -107,8 +145,10 @@ class VSignupView extends StatelessWidget {
                             ImageSelectionTile(
                               title: 'Upload license'.tr,
                               onTap: () {
-                                controller
-                                    .pickImageFromGallery('upload_license');
+                                // controller
+                                //     .pickImageFromGallery('upload_license');
+                                _showImageSourceDialog(
+                                    context, controller, 'upload_license');
                               },
                               isSelected: controller.uploadLicense != null &&
                                   controller.uploadLicense!.path.isNotEmpty,
@@ -143,7 +183,8 @@ class VSignupView extends StatelessWidget {
                               address: controller.currentAddress,
                               isSelected: controller.locationselected,
                               onTap: () async {
-                                if (await controller.getLocationPermission() == true) {
+                                if (await controller.getLocationPermission() ==
+                                    true) {
                                   try {
                                     Navigator.push(
                                       context,

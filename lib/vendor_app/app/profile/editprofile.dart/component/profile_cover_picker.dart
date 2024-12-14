@@ -13,6 +13,39 @@ import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class ProfileAndCoverPickerr extends StatelessWidget {
   const ProfileAndCoverPickerr({super.key});
+  void _showImageSourceDialog(BuildContext context,
+      VEditprofileController controller, String imageName) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text('Choose from Gallery'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller
+                    .pickImageFromGallery(imageName); // Existing functionality
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: Text('Take a Photo'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller
+                    .pickImageFromCamera(imageName); // New camera functionality
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +57,8 @@ class ProfileAndCoverPickerr extends StatelessWidget {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(12)),
               onTap: () {
-                controller.pickImageFromGallery('cover');
+                // controller.pickImageFromGallery('cover');
+                _showImageSourceDialog(context, controller, 'cover');
               },
               child: DottedBorder(
                 borderType: BorderType.RRect,
@@ -102,7 +136,8 @@ class ProfileAndCoverPickerr extends StatelessWidget {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(35)),
               onTap: () {
-                controller.pickImageFromGallery('logo');
+                // controller.pickImageFromGallery('logo');
+                _showImageSourceDialog(context, controller, 'logo');
               },
               child: DottedBorder(
                 borderType: BorderType.RRect,

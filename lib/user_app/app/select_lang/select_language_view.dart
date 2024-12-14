@@ -82,7 +82,7 @@ class SelectLanguageView extends StatelessWidget {
                                   GetStorage box = GetStorage();
                                   await box.write('locale', 'en');
                                  
-                                  Get.offAllNamed(AppRoutes.selectside);
+                                  Get.toNamed(AppRoutes.selectside);
                                 },
                                 title: 'English (United States)',
                                 isSelected:
@@ -100,7 +100,7 @@ class SelectLanguageView extends StatelessWidget {
                                   Get.updateLocale(const Locale('ar', 'AE'));
                                   GetStorage box = GetStorage();
                                   await box.write('locale', 'ar');
-                                  Get.offAllNamed(AppRoutes.selectside);
+                                  Get.toNamed(AppRoutes.selectside);
                                 },
                                 title: 'عربي'.tr,
                                 isSelected:

@@ -61,18 +61,45 @@ class VBannerController extends GetxController {
         Get.back();
         // UiUtilites.successSnackbar(
         //     'Banner added successfully'.tr, 'Success'.tr);
-         UiUtilites.successAlertDialog(
+        UiUtilites.successAlertDialog(
             context: Get.context,
             onTap: () {
               // Get.toNamed(AppRoutes.vsignin);
               Get.back();
             },
             title: 'Thank you!'.tr,
-            description:
-                'Your banner has been placed successfully!'.tr
-                    .tr,
+            description: 'Your banner has been placed successfully!'.tr.tr,
             buttontitle: 'Ok'.tr);
       });
+    }
+  }
+
+  Future<void> pickImageFromCamera(String imageName) async {
+    final imageSelectorApi = ImageSelectorApi();
+
+    final pickedImage = await imageSelectorApi
+        .selectCameraImage(); // Adjust this to use your camera functionality
+    if (pickedImage != null) {
+      CroppedFile? croppedImage = await ImageCropper().cropImage(
+        sourcePath: pickedImage.path,
+        uiSettings:
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
+      );
+      if (croppedImage != null || croppedImage!.path.isNotEmpty) {
+        String base64Image = base64Encode(await croppedImage.readAsBytes());
+
+        switch (imageName) {
+          case 'cover':
+            cover = File(croppedImage.path);
+            base64Cover = base64Image;
+            update();
+
+          default:
+            break;
+        }
+      } else {
+        return null;
+      }
     }
   }
 
@@ -84,7 +111,7 @@ class VBannerController extends GetxController {
       CroppedFile? croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,
         uiSettings:
-         uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
       );
       if (croppedImage != null || croppedImage!.path.isNotEmpty) {
         String base64Image = base64Encode(await croppedImage.readAsBytes());

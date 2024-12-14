@@ -76,6 +76,21 @@ class EditProductController extends GetxController {
     }
   }
 
+  onCaptureSingleImage() async {
+    final imageSelectorApi = ImageSelectorApi();
+
+    // Capture a single image using the camera
+    final pickedImage = await imageSelectorApi.selectCameraImage();
+
+    if (pickedImage != null) {
+      newimages
+          .add(File(pickedImage.path)); // Add the captured image to the list
+      update();
+    } else {
+      print('No image captured');
+    }
+  }
+
   removeSelectedImages(int index) {
     images.removeAt(index);
     Get.back();
@@ -903,7 +918,8 @@ class EditProductController extends GetxController {
       UiUtilites.successAlertDialog(
           buttontitle: 'Back to dashboard'.tr,
           context: Get.context,
-          description: 'Your product / service has been\n added successfully!'.tr,
+          description:
+              'Your product / service has been\n added successfully!'.tr,
           onTap: () {
             Get.offAllNamed(AppRoutes.vhome);
           },

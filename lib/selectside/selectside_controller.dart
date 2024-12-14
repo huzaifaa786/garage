@@ -13,10 +13,12 @@ class SelectSideController extends GetxController {
 
   @override
   void onInit() {
+
     GetStorage box = GetStorage();
     site = box.read('locale') == 'ar'
         ? translateMethod.Arabic
         : translateMethod.English;
+
     update();
     super.onInit();
   }

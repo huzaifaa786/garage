@@ -11,13 +11,49 @@ import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class ProductImagesPicker extends StatelessWidget {
   const ProductImagesPicker({super.key});
+  void _showImageSourceDialog(
+    BuildContext context,
+    ProductFormController controller,
+  ) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text('Choose from Gallery'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller.onMultipleImagePick();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: Text('Take a Photo'.tr),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller.onCaptureSingleImage();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductFormController>(
       builder: (controller) => InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
-        onTap: controller.onMultipleImagePick,
+        // onTap: _showImageSourceDialog(context,controller),
+        onTap: () {
+          _showImageSourceDialog(context, controller);
+        },
         child: DottedBorder(
           borderType: BorderType.RRect,
           strokeWidth: 1.0,
@@ -69,7 +105,7 @@ class ProductImagesPicker extends StatelessWidget {
                               SvgPicture.asset(ImageConst.image_ic),
                               const Gap(4),
                               AppText(
-                                title:  'Upload services photos'.tr,
+                                title: 'Upload services photos'.tr,
                                 size: 10,
                                 color: AppColors.primary_color,
                               )
@@ -117,7 +153,8 @@ class ProductImagesPicker extends StatelessWidget {
                                             controller.removeSelectedImages(i);
                                           },
                                           title:
-                                              'Are you sure you want to delete this Image?'.tr,
+                                              'Are you sure you want to delete this Image?'
+                                                  .tr,
                                           cancelText: 'Cancel'.tr,
                                           confirmText: 'Delete'.tr,
                                         );
