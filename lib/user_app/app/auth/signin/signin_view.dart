@@ -12,6 +12,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/vendor_app/utils/app_phone_input/app_phone_input.dart';
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
@@ -68,15 +69,32 @@ class SigninView extends StatelessWidget {
                                           fontFamily: 'Ibarra Real Nova',
                                         ),
                                         Gap(30),
+                                        // Directionality(
+                                        //   textDirection:
+                                        //       box.read('locale') != 'ar'
+                                        //           ? TextDirection.ltr
+                                        //           : TextDirection.ltr,
+                                        //   child: PhoneInputField(
+                                        //     controller:
+                                        //         controller.phoneController,
+
+                                        //     onChanged: controller.onChanged,
+                                        //   ),
+                                        // ),
+                                        // Gap(20),
                                         Directionality(
                                           textDirection:
-                                              box.read('locale') != 'ar'
+                                              box.read('locale') == 'ar'
                                                   ? TextDirection.ltr
                                                   : TextDirection.ltr,
-                                          child: PhoneInputField(
+                                          child: AppPhoneInput(
+                                            onCountryChanged:
+                                                controller.onCountryChanged,
+                                            errorText: controller.phoneError,
+                                            onChanged:
+                                                controller.phoneValidation,
                                             controller:
                                                 controller.phoneController,
-                                            onChanged: controller.onChanged,
                                           ),
                                         ),
                                         Gap(40),
@@ -108,13 +126,15 @@ class SigninView extends StatelessWidget {
                                           onTap: () {
                                             // Get.toNamed(AppRoutes.otp);
                                             // controller.verifyNumber();
-                                            controller.login();
-
+                                            controller.phoneController.text
+                                                    .isEmpty
+                                                ? () {}
+                                                : controller.login();
                                           },
                                         ),
                                         Gap(40),
                                         AuthRichText(
-                                          title: 'Already have an account?'.tr,
+                                          title: 'don,t you have account?'.tr,
                                           description: 'Sign Up'.tr,
                                           titlesize: 14,
                                           descriptiosize: 14,

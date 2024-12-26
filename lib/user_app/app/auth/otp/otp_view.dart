@@ -97,61 +97,64 @@ class OtpView extends StatelessWidget {
                     //     controller.verifyOtpCode();
                     //   },
                     // ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: PinCodeTextField(
-                        appContext: context,
-                        // pastedTextStyle: TextStyle(
-                        //   color: Colors.green.shade600,
-                        //   fontWeight: FontWeight.bold,
-                        // ),
-                        length: 6,
-                        obscureText: false,
-                        obscuringCharacter: '*',
-                        blinkWhenObscuring: true,
-                        animationType: AnimationType.fade,
-                        pinTheme: PinTheme(
-                            shape: PinCodeFieldShape.box,
-                            borderRadius: BorderRadius.circular(10),
-                            fieldHeight: 40,
-                            fieldWidth: 35,
-                            activeFillColor: AppColors.lightgrey,
-                            activeColor: AppColors.primary,
-                            inactiveFillColor: AppColors.white,
-                            selectedColor: AppColors.primary,
-                            selectedFillColor: AppColors.white,
-                            inactiveColor: AppColors.primary,
-                            activeBorderWidth: 1.0,
-                            inactiveBorderWidth: 1.0),
-                        cursorColor: const Color.fromARGB(255, 222, 40, 43),
-                        animationDuration: const Duration(milliseconds: 300),
-                        enableActiveFill: true,
-                        controller: controller.otpController,
-                        keyboardType: TextInputType.number,
-                        boxShadows: const [
-                          BoxShadow(
-                            offset: Offset(0, 1),
-                            color: Colors.black12,
-                            blurRadius: 10,
-                          )
-                        ],
-                        onCompleted: (v) {
-                          // debugPrint("Completed");
-                          controller.otpCode = v;
-                          // controller.verifyOtpCode();
-                          // controller.veryifyTestCode();
-                        },
-                        onChanged: (value) {
-                          debugPrint(value);
-                          print('ddd');
-                        },
-
-                        // beforeTextPaste: (text) {
-                        //   debugPrint("Allowing to paste $text");
-                        //   //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                        //   //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                        //   return true;
-                        // },
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: PinCodeTextField(
+                          appContext: context,
+                          // pastedTextStyle: TextStyle(
+                          //   color: Colors.green.shade600,
+                          //   fontWeight: FontWeight.bold,
+                          // ),
+                          length: 6,
+                          obscureText: false,
+                          obscuringCharacter: '*',
+                          blinkWhenObscuring: true,
+                          animationType: AnimationType.fade,
+                          pinTheme: PinTheme(
+                              shape: PinCodeFieldShape.box,
+                              borderRadius: BorderRadius.circular(10),
+                              fieldHeight: 40,
+                              fieldWidth: 35,
+                              activeFillColor: AppColors.lightgrey,
+                              activeColor: AppColors.primary,
+                              inactiveFillColor: AppColors.white,
+                              selectedColor: AppColors.primary,
+                              selectedFillColor: AppColors.white,
+                              inactiveColor: AppColors.primary,
+                              activeBorderWidth: 1.0,
+                              inactiveBorderWidth: 1.0),
+                          cursorColor: const Color.fromARGB(255, 222, 40, 43),
+                          animationDuration: const Duration(milliseconds: 300),
+                          enableActiveFill: true,
+                          controller: controller.otpController,
+                          keyboardType: TextInputType.number,
+                          boxShadows: const [
+                            BoxShadow(
+                              offset: Offset(0, 1),
+                              color: Colors.black12,
+                              blurRadius: 10,
+                            )
+                          ],
+                          onCompleted: (v) {
+                            // debugPrint("Completed");
+                            controller.otpCode = v;
+                            // controller.verifyOtpCode();
+                            // controller.veryifyTestCode();
+                          },
+                          onChanged: (value) {
+                            debugPrint(value);
+                            print('ddd');
+                          },
+                      
+                          // beforeTextPaste: (text) {
+                          //   debugPrint("Allowing to paste $text");
+                          //   //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                          //   //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                          //   return true;
+                          // },
+                        ),
                       ),
                     ),
                     // ),

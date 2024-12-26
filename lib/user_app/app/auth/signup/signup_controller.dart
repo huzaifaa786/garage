@@ -281,7 +281,7 @@ class SignupController extends GetxController {
       Get.toNamed(AppRoutes.otp, parameters: {
         'phone': completePhoneNumber.toString(),
         'auth': 'signup',
-        'otp':otp.toString()
+        'otp': otp.toString()
       });
       update();
     }
