@@ -24,9 +24,9 @@ class NotificationCard extends StatelessWidget {
   NotificationsModel? notifications;
   @override
   Widget build(BuildContext context) {
-    String categoryname = notifications!.categoryName == null
-        ? notifications!.body.toString()
-        : notifications!.categoryName.toString();
+    // String categoryname = notifications!.categoryName == null
+    //     ? notifications!.body.toString()
+    //     : notifications!.categoryName.toString();
     return GetBuilder<VNotificationController>(
       builder: (controller) => Padding(
         padding: const EdgeInsets.only(top: 12),

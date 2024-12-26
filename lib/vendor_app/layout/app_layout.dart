@@ -12,12 +12,14 @@ class AppLayout extends StatelessWidget {
     this.hasIcon = true,
     this.hasBgColor = false,
     this.hasShadow = true,
+    this.bottomNavigationBar,
   });
   final Widget child;
   final String? appBarTitle;
   final bool hasIcon;
   final bool hasBgColor;
   final bool hasShadow;
+  final Widget? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +86,7 @@ class AppLayout extends StatelessWidget {
       body: SafeArea(
         child: child,
       ),
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }
