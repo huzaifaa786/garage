@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Mobile garage',
       translations: LocaleString(),
       locale:
           box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),

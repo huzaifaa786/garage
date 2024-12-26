@@ -136,7 +136,8 @@ class OrdersCard extends StatelessWidget {
                             //   fit: BoxFit.cover,
                             // ),
                             child: AppNetworkImage(
-                              assetPath: 'assets/images/boy.png',
+                              networkImage: order.user!.image,
+                              assetPath: 'assets/images/account.png',
                               // width: double.infinity,
                               // height: 80,
                             ),
@@ -172,12 +173,11 @@ class OrdersCard extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               // Get.toNamed(AppRoutes.vchat);
-                                Get.to(() => ChatDetailScreenView(
-                              id: order.user!.id.toString(),
-                              name: order.user!.name.toString(),
-                              profilePic:
-                                 '',
-                              screen: 'chat'));
+                              Get.to(() => ChatDetailScreenView(
+                                  id: order.user!.id.toString(),
+                                  name: order.user!.name.toString(),
+                                  profilePic: '',
+                                  screen: 'chat'));
                             },
                             child: Container(
                               height: 35,

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:full_screen_image/full_screen_image.dart';
 import 'package:get/get.dart';
@@ -66,6 +65,7 @@ class _ReplyMessageCardState extends State<ReplyMessageCard> {
                     ? CrossAxisAlignment.start
                     : CrossAxisAlignment.end,
                 children: [
+                  // ignore: unnecessary_null_comparison
                   widget.msg == '' || widget.msg == null
                       ? Column(
                          crossAxisAlignment: widget.sender == true

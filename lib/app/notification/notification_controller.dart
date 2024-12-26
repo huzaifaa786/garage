@@ -16,8 +16,8 @@ class NotificationController extends GetxController {
     var response = await GetNotificationApi.getNotification();
     if (response.isNotEmpty &&
         response['success'] != null &&
-      response['success']['data'] != null &&
-      response['success']['data'] is List<dynamic>) {
+        response['success']['data'] != null &&
+        response['success']['data'] is List<dynamic>) {
       notifications = (response['success']['data'] as List<dynamic>)
           .map((item) => NotificationsModel.fromJson(item))
           .toList();
@@ -41,11 +41,12 @@ class NotificationController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     await getNotification();
-   await seenNotification();
+    await seenNotification();
   }
 
   seenNotification() async {
     var response = await UserNotificationSeenApi.seenNotification();
+    print(response);
     update();
   }
 
