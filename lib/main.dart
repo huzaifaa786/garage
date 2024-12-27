@@ -14,9 +14,11 @@ import 'package:mobilegarage/translation.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/routes/app_pages.dart';
+import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +35,39 @@ void main() async {
       "pk_test_51NjyPoKj8kRF1XiuJAv5r6UPr91km5JqWugq5FWvrfUDtOcew75SLLnk09zXOWM3RjmxebIg5vB845xYtUFI16ck00mbTgntzu";
   await dotenv.load(fileName: "assets/.env");
   HttpOverrides.global = MyHttpOverrides();
+  // await getLocationPermission();
+   await _checkLocationPermission();
+}
+Future<void> _checkLocationPermission() async {
+  print("Checking location permission...");
+  final status = await Permission.locationWhenInUse.status;
+  print("Current permission status: $status");
+
+  if (status.isDenied) {
+    print("Permission is denied, requesting permission...");
+    final result = await Permission.locationWhenInUse.request();
+    print("Requested permission result: $result");
+
+    if (result.isDenied) {
+      print("Permission still denied after request.");
+      Get.snackbar(
+        'Permission Required',
+        'Location permission is needed for app functionality.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  } else if (status.isPermanentlyDenied) {
+    print("Permission permanently denied.");
+    Get.snackbar(
+      'Permission Denied',
+      'Please enable location permission from settings.',
+      snackPosition: SnackPosition.BOTTOM,
+      duration: Duration(seconds: 5),
+    );
+    await openAppSettings(); 
+  } else {
+    print("Permission granted.");
+  }
 }
 
 class MyApp extends StatelessWidget {
