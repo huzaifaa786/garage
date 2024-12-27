@@ -14,7 +14,6 @@ import 'package:mobilegarage/translation.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/routes/app_pages.dart';
-import 'package:mobilegarage/user_app/helper/permission.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -36,8 +35,9 @@ void main() async {
   await dotenv.load(fileName: "assets/.env");
   HttpOverrides.global = MyHttpOverrides();
   // await getLocationPermission();
-   await _checkLocationPermission();
+  await _checkLocationPermission();
 }
+
 Future<void> _checkLocationPermission() async {
   print("Checking location permission...");
   final status = await Permission.locationWhenInUse.status;
@@ -64,7 +64,7 @@ Future<void> _checkLocationPermission() async {
       snackPosition: SnackPosition.BOTTOM,
       duration: Duration(seconds: 5),
     );
-    await openAppSettings(); 
+    await openAppSettings();
   } else {
     print("Permission granted.");
   }
