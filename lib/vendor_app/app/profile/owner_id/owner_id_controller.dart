@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:mobilegarage/apis/vender_apis/edit_profile_apis/update_ownerid_api.dart';
-import 'package:mobilegarage/apis/vender_apis/edit_profile_apis/update_trading_license_api.dart';
 import 'package:mobilegarage/apis/vender_apis/home_apis/get_garage_api.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';

@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:mobilegarage/services/dio_service.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
 

@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/login_verify_api.dart';
-import 'package:mobilegarage/apis/user_apis/auth_apis/signup_apis/phone_verify_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/verify_otp_test_api.dart';
 import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
 import 'package:mobilegarage/models/user_model.dart';

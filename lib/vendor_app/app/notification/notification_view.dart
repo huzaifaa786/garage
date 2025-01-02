@@ -5,7 +5,6 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/notification/component/notification_card.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class VNotificationView extends StatefulWidget {

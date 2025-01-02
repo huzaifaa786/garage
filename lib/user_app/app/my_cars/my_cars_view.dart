@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
 
 class MyCarsView extends StatefulWidget {
@@ -242,7 +240,7 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                 children: [
                                                   DropDownField<BrandModel>(
                                                     displayValue: (item) =>
-                                                        item.name!,
+                                                        item.name,
                                                     items:
                                                         section['brands'] ?? [],
                                                     hint: 'Car brand'.tr,

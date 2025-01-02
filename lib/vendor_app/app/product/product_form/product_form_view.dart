@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/battery_models/ampere_model.dart';
@@ -20,13 +19,11 @@ import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/product_form_controller.dart';
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
-import 'package:mobilegarage/vendor_app/utils/app_dropdown/brand_dropdown.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/dropdown_with_add.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';

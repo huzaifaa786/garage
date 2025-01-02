@@ -26,7 +26,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
-import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class FilterServiceView extends StatefulWidget {
   const FilterServiceView({super.key});
@@ -162,7 +161,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         children: [
                           Gap(20),
                           DropDownField<BrandModel>(
-                            displayValue: (item) => item.name!,
+                            displayValue: (item) => item.name,
                             items: controller.brands,
                             hint: 'Brands Name'.tr,
                             selectedValue: controller.selectedBrand,

@@ -177,7 +177,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                             BrandModel>(
                                                           displayValue:
                                                               (item) =>
-                                                                  item.name!,
+                                                                  item.name,
                                                           items: section[
                                                                   'brands'] ??
                                                               [],

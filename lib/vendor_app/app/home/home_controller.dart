@@ -321,7 +321,7 @@ class VHomeController extends GetxController {
                         ? ListView.builder(
                             itemCount: controller.garageReviews.length,
                             itemBuilder: (BuildContext context, int index) {
-                              final item = controller.garageReviews![index];
+                              final item = controller.garageReviews[index];
                               return Reviewcard(
                                 reviews: item,
                                 img: 'assets/images/avatar.svg',

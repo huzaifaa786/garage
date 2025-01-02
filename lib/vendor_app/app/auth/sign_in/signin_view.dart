@@ -4,14 +4,12 @@ import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
-import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_in/components/signin_triangle.dart';
 import 'package:mobilegarage/vendor_app/app/auth/sign_in/signin_controller.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/rich_text/rich_text.dart';

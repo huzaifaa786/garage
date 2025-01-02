@@ -8,7 +8,6 @@ import 'package:mobilegarage/user_app/components/cards/terms_condition_listile.d
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/shadows/appbar_shadow.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class FaqView extends StatefulWidget {
   const FaqView({super.key});

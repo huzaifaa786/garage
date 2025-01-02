@@ -10,7 +10,6 @@ import 'package:mobilegarage/vendor_app/app/auth/sign_in/components/signin_trian
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 

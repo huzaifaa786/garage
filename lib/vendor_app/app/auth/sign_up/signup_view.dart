@@ -193,8 +193,7 @@ class VSignupView extends StatelessWidget {
                                           apiKey:
                                               "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
                                           onPlacePicked: (result) {
-                                            if (result != null &&
-                                                result.geometry != null) {
+                                            if (result.geometry != null) {
                                               controller.currentAddress =
                                                   result.formattedAddress ?? '';
                                               controller.lat =

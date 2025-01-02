@@ -10,7 +10,6 @@ import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 import 'package:mobilegarage/models/garage_model.dart';
-import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
@@ -120,11 +119,11 @@ class OrderCard extends StatelessWidget {
                                               '')
                                       : (garage.products?[0].oilextra?.isEmpty ?? true
                                           ? garage.products![0].brands?.name
-                                                  ?.toString() ??
+                                                  .toString() ??
                                               ''
                                           : (garage.products![0].categoryId == '2'
                                               ? garage.products![0].brands?.name
-                                                      ?.toString() ??
+                                                      .toString() ??
                                                   ''
                                               : garage.products![0].oilextra![0].name
                                                       ?.toString() ??
@@ -154,8 +153,7 @@ class OrderCard extends StatelessWidget {
                                               ''
                                           : (garage.products![0].categoryId == '2'
                                               ? garage.products![0].description
-                                                      .toString() ??
-                                                  ''
+                                                      .toString()
                                               : garage.products![0].oilextra![0]
                                                       .description
                                                       ?.toString() ??
