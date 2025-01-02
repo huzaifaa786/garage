@@ -32,10 +32,10 @@ class _SearchViewState extends State<SearchView> {
         hasShadow: true,
         appBarTitle: 'Search'.tr,
         child: GestureDetector(
-           onTap: () {
-        // Dismiss the keyboard when tapping anywhere outside the input
-        FocusScope.of(context).unfocus();
-      },
+          onTap: () {
+            // Dismiss the keyboard when tapping anywhere outside the input
+            FocusScope.of(context).unfocus();
+          },
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -55,7 +55,7 @@ class _SearchViewState extends State<SearchView> {
                             // controller.filterPosts(query: text, category: text);
                           },
                           onsubmit: (value) {
-                           controller. getsearchGarages();
+                            controller.getsearchGarages();
                           },
                         ),
                       ),
@@ -156,20 +156,21 @@ class _SearchViewState extends State<SearchView> {
                                 logoimage: item.logo,
                                 currentAddress:
                                     controller.currentAddress.toString(),
-                                    onChatTap: () {
-                                      Get.to(() => ChatScreenView(
-                                            id: item.id.toString(),
-                                            name:item.name.toString(),
-                                            profilePic: '',
-                                            screen: 'chat'));
-                                    },
+                                onChatTap: () {
+                                  Get.to(() => ChatScreenView(
+                                      id: item.id.toString(),
+                                      name: item.name.toString(),
+                                      profilePic: '',
+                                      screen: 'chat'));
+                                },
                                 onTap: () {
                                   Get.toNamed(AppRoutes.garage,
                                       parameters: {'id': item.id.toString()});
                                 },
                                 rating: item.rating.toString(),
                                 price: '',
-                                services: "${item.servicecount} ${"services".tr}",
+                                services:
+                                    "${item.servicecount} ${"services".tr}",
                                 onTapViewGarage: () {
                                   Get.toNamed(AppRoutes.garage, parameters: {
                                     'id': controller.filteredGarages[index].id
