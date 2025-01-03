@@ -147,7 +147,7 @@ class _HomeViewState extends State<HomeView> {
                           crossAxisCount: 4,
                           crossAxisSpacing: 9.0,
                           mainAxisSpacing: 1.0,
-                          mainAxisExtent: Get.height * 0.17,
+                          mainAxisExtent: Get.height * 0.18,
                         ),
                         itemCount: controller.servicesList.length,
                         itemBuilder: (context, index) {

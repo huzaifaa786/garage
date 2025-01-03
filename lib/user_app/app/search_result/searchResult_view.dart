@@ -72,8 +72,8 @@ class _SearchresultViewState extends State<SearchresultView> {
                   color: AppColors.lightgrey,
                   child: TableCalendar(
                     availableGestures: AvailableGestures.horizontalSwipe,
-                    firstDay: DateTime.utc(2023, 1, 1),
-                    lastDay: DateTime.utc(2035, 1, 1),
+                    firstDay: DateTime.now(),
+                    lastDay: DateTime.now().add(Duration(days: 365)),
                     focusedDay: DateTime.now(),
                     calendarFormat: CalendarFormat.month,
                     startingDayOfWeek: StartingDayOfWeek.monday,

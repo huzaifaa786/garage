@@ -254,7 +254,7 @@ class OrderFilterBottomsheet extends StatelessWidget {
                                     ),
                                     child: Center(
                                       child: AppText(
-                                        title: 'Reset'.removeAllWhitespace,
+                                        title: 'Reset'.tr,
                                         size: 12,
                                         fontWeight: FontWeight.w500,
                                         color: AppColors.primary,

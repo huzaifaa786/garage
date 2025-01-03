@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_view.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/garage/components/selected_product_card.dart';
 import 'package:mobilegarage/user_app/app/garage/garage_controller.dart';
 import 'package:mobilegarage/user_app/app/garage_review/garage_review_view.dart';
@@ -396,7 +397,11 @@ class GarageView extends StatelessWidget {
                             },
                             child: ServicesIcons(
                               imageUrl: item.image.toString(),
-                              text: item.name.toString(),
+                              text: 
+                              box.read('locale') == 'ar'
+                                  ? item.ar_name.toString()
+                                  :
+                              item.name.toString(),
                             ),
                           );
                         },

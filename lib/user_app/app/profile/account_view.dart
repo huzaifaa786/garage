@@ -117,7 +117,9 @@ class _AccountViewState extends State<AccountView> {
                                 text: 'Language'.tr,
                                 textColor: AppColors.black,
                                 image: 'assets/icons/language.svg',
-                                text2: 'English'.tr,
+                                text2: 
+                                box.read('locale')== 'ar'? 'العربية':
+                                'English'.tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.language);
                                 }),

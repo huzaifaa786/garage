@@ -121,8 +121,8 @@ class LocaleString extends Translations {
           'No Car found': 'No Car found',
           'name': 'name',
           'number': 'number',
-          'number, please enter it to continue':
-              'number, please enter it to continue',
+          'whatsapp number, please enter it to continue':
+              'whatsapp number, please enter it to continue',
           "No result found!": "No result found!",
           "No": "No",
           'Notifications': 'Notifications',
@@ -485,12 +485,61 @@ class LocaleString extends Translations {
           'Add': 'Add',
           'Phone number not found.': 'Phone number not found.',
           'don,t you have account?': 'don,t you have account?',
-          'Failed to send otp on this number': 'Failed to send otp on this number',
-          'The phone has already been taken': 'The phone has already been taken',
+          'Failed to send otp on this number':
+              'Failed to send otp on this number',
+          'The phone has already been taken.':
+              'The phone has already been taken',
+          'This garage is currently closed. No orders can be placed.':
+              'This garage is currently closed. No orders can be placed.',
+          'You can only add products from the same garage to the cart.':
+              'You can only add products from the same garage to the cart.',
+          'Item Deleted Successfully': 'Item Deleted Successfully',
+          'Promo code not found': 'Promo code not found',
+          'Please enter a promo code': 'Please enter a promo code',
+          'Phone Number changed successfully':
+              'Phone Number changed successfully',
+          'Are you sure that you want to delete ':
+              'Are you sure that you want to delete ',
+          ' from your cars': ' from your cars',
+          'The email has already been taken.':
+              'The email has already been taken',
+          'Invalid credentials': 'Invalid credentials',
+          'Account under review. Please await approval.': 'Account under review. Please await approval',
+          
+          'Account does not exist': 'Account does not exist',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
         },
         'ar_AE': {
-          'The phone has already been taken': 'تم أخذ الهاتف بالفعل',
-          'Failed to send otp on this number': 'فشل في إرسال رمز التحقق على هذا الرقم',
+          'Account does not exist': 'الحساب غير موجود',
+          'Account under review. Please await approval.': 'الحساب قيد المراجعة. يرجى انتظار الموافقة',
+          'Invalid credentials': 'بيانات الاعتماد غير صحيحة',
+          'The email has already been taken.':
+              'تم استخدام البريد الإلكتروني بالفعل',
+          ' from your cars': 'من سياراتك',
+          'Are you sure that you want to delete ':
+              'هل أنت متأكد أنك تريد الحذف',
+          'Phone Number changed successfully': 'تم تغيير رقم الهاتف بنجاح.',
+          'Please enter a promo code': 'يرجى إدخال رمز الخصم.',
+          'Promo code not found': 'لم يتم العثور على رمز الخصم.',
+          'Item Deleted Successfully': 'تم حذف العنصر بنجاح.',
+          'You can only add products from the same garage to the cart.':
+              'يمكنك إضافة منتجات من نفس المرآب فقط إلى السلة.',
+          'This garage is currently closed. No orders can be placed.':
+              'هذا المرآب مغلق حاليًا. لا يمكن تقديم أي طلبات.',
+          'The phone has already been taken.': 'تم أخذ الهاتف بالفعل',
+          'Failed to send otp on this number':
+              'فشل في إرسال رمز التحقق على هذا الرقم',
           'brand': 'ماركة',
           'don,t you have account?': 'ليس لديك حساب؟',
           'Phone number not found.': 'رقم الهاتف غير موجود',
@@ -621,7 +670,8 @@ class LocaleString extends Translations {
           'No Car found': 'لم يتم العثور على سيارة',
           'name': 'الاسم',
           'number': 'الرقم',
-          'number, please enter it to continue': 'الرقم، يرجى إدخاله للمتابعة',
+          'whatsapp number, please enter it to continue':
+              'رقم الواتساب، يرجى إدخاله للمتابعة',
           "No result found!": 'لم يتم العثور على نتائج!',
           "No": 'لا',
           'Notifications': 'الإشعارات',
@@ -665,7 +715,7 @@ class LocaleString extends Translations {
           'Recomended size 390 * 185 px': 'الحجم الموصى به 390 * 185 بكسل',
           'Reset Password?': 'إعادة تعيين كلمة المرور؟',
           'Resend': 'إعادة الإرسال',
-          'Reviews': 'التقييمات',
+          'Reviews': 'مات',
           'Reset': 'إعادة تعيين',
           'Random': 'عشوائي',
           'Rating': 'التقييم',

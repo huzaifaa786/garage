@@ -67,7 +67,7 @@ class OtpView extends StatelessWidget {
                       color: AppColors.black.withOpacity(0.4),
                     ),
                     AppText(
-                      title: 'number, please enter it to continue'.tr,
+                      title: 'whatsapp number, please enter it to continue'.tr,
                       size: 12,
                       fontWeight: FontWeight.w500,
                       color: AppColors.black.withOpacity(0.4),

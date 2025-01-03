@@ -40,7 +40,9 @@ class UserVehicles {
       vehiclebrandname_id: json['vehiclebrandname_id'] != null
           ? json['vehiclebrandname_id'].toString()
           : null,
-      vehicle_type: vehicleType.fromJson(json['vehicle_type']),
+      vehicle_type: json['vehicle_type'] != null
+          ? vehicleType.fromJson(json['vehicle_type'])
+          : null,
       vehiclebrand_id: json['vehiclebrand_id'] != null
           ? json['vehiclebrand_id'].toString()
           : null,
@@ -48,7 +50,9 @@ class UserVehicles {
       vehicle_info: json['vehicle_info'],
       image: json['image'],
       vehiclebrand: vehicleBrand.fromJson(json['vehicle_brand']),
-      vehiclebrandname:json['vehicle_brand_name']!=null? vehicleBrandName.fromJson(json['vehicle_brand_name']):null,
+      vehiclebrandname: json['vehicle_brand_name'] != null
+          ? vehicleBrandName.fromJson(json['vehicle_brand_name'])
+          : null,
       createdAt: json['createdAt'],
       updatedAt: json['updatedAt'],
     );
@@ -57,23 +61,23 @@ class UserVehicles {
 
 class vehicleType {
   final int id;
-  final String icon;
-  final String? name;
-  final String? createdAt;
+  String? icon;
+  String? name;
+  String? createdAt;
 
   vehicleType({
     required this.id,
-    required this.name,
-    required this.icon,
+    this.name,
+    this.icon,
     this.createdAt,
   });
 
   factory vehicleType.fromJson(Map<String, dynamic> json) {
     return vehicleType(
       id: json['id'],
-      name: json['name'],
-      createdAt: json['createdAt'],
-      icon: json['icon'],
+      name: json['name'] != null ? json['name'] : null,
+      createdAt: json['createdAt'] != null ? json['createdAt'] : null,
+      icon: json['icon'] != null ? json['icon'] : null,
     );
   }
 }

@@ -690,6 +690,10 @@ class FilterServiceController extends GetxController {
   }
 
   filterorder() async {
+    print('filtering');
+    print(selectedgarageName);
+
+    
     var response;
 
     switch (categoryId) {
@@ -784,6 +788,10 @@ class FilterServiceController extends GetxController {
   }
 
   void sendtoAllGarages() async {
+    print('send to all garage');
+    print(selectedgarageName);
+
+
     var response;
 
     switch (categoryId) {

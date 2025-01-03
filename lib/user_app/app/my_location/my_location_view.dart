@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart'; // Import this package
 import 'package:mobilegarage/models/emirate_model.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/my_location/my_location_controller.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -103,7 +104,11 @@ class _MyLocationViewState extends State<MyLocationView> {
                                       ),
                                       Gap(29),
                                       DropDownField<EmirateModel>(
-                                        displayValue: (item) => item.name!,
+                                        displayValue: (item) => 
+                                        box.read('locale') == 'ar'
+                                            ? item.arname!
+                                            :
+                                        item.name!,
                                         items: controller.emirates,
                                         hint: 'Emirate'.tr,
                                         selectedValue:

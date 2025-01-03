@@ -90,7 +90,7 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                             controller.update();
                           },
                           controller: controller,
-                          text: controller.selecetedPrice),
+                          text: controller.selecetedPrice.tr),
                   ],
                 ),
               ),
@@ -107,7 +107,7 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                             controller.update();
                           },
                           controller: controller,
-                          text: controller.selecetedPlace),
+                          text: controller.selecetedPlace.tr),
                   ],
                 ),
               ),
@@ -124,7 +124,7 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                             controller.update();
                           },
                           controller: controller,
-                          text: controller.selecetedRating),
+                          text: controller.selecetedRating.tr),
                     ],
                   ),
                 ),

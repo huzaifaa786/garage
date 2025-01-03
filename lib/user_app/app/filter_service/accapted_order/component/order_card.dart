@@ -11,6 +11,7 @@ import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 import 'package:mobilegarage/models/garage_model.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_controller.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/components/buttons/curved_container.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
@@ -66,8 +67,11 @@ class OrderCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ClipRRect(
-                            borderRadius:
-                                BorderRadius.only(topLeft: Radius.circular(13)),
+                            borderRadius: box.read('locale') == 'ar'
+                                ? BorderRadius.only(
+                                    topRight: Radius.circular(13))
+                                : BorderRadius.only(
+                                    topLeft: Radius.circular(13)),
                             child: AppNetworkImage(
                               networkImage: garage.banner.toString(),
                               assetPath: 'assets/images/garage.png',
@@ -84,8 +88,11 @@ class OrderCard extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(60)),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(13)),
+                                  borderRadius: box.read('locale') == 'ar'
+                                      ? BorderRadius.only(
+                                          topLeft: Radius.circular(13))
+                                      : BorderRadius.only(
+                                          topRight: Radius.circular(13)),
                                   child: AppNetworkImage(
                                     networkImage: controller.path != 'filter'
                                         ? garage.order!.orderItems![0].products!
@@ -118,14 +125,14 @@ class OrderCard extends StatelessWidget {
                                                   ?.toString() ??
                                               '')
                                       : (garage.products?[0].oilextra?.isEmpty ?? true
-                                          ? garage.products![0].brands?.name
-                                                  .toString() ??
+                                          ? garage.products![0].brands?.name.toString() ??
                                               ''
                                           : (garage.products![0].categoryId == '2'
                                               ? garage.products![0].brands?.name
                                                       .toString() ??
                                                   ''
-                                              : garage.products![0].oilextra![0].name
+                                              : garage.products![0].oilextra![0]
+                                                      .name
                                                       ?.toString() ??
                                                   '')),
                                   size: 11,
@@ -149,11 +156,13 @@ class OrderCard extends StatelessWidget {
                                                   ?.toString() ??
                                               '')
                                       : (garage.products?[0].oilextra?.isEmpty ?? true
-                                          ? garage.products![0].description?.toString() ??
+                                          ? garage
+                                                  .products![0].description
+                                                  ?.toString() ??
                                               ''
                                           : (garage.products![0].categoryId == '2'
                                               ? garage.products![0].description
-                                                      .toString()
+                                                  .toString()
                                               : garage.products![0].oilextra![0]
                                                       .description
                                                       ?.toString() ??
@@ -218,7 +227,9 @@ class OrderCard extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20, top: 13),
+                      padding: box.read('locale') == 'ar'
+                          ? const EdgeInsets.only(right: 20, top: 13)
+                          : const EdgeInsets.only(left: 20, top: 13),
                       child: Row(
                         children: [
                           AppText(
@@ -239,7 +250,9 @@ class OrderCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 6),
+                      padding: box.read('locale') == 'ar'
+                          ? const EdgeInsets.only(right: 20, top: 6)
+                          : EdgeInsets.only(left: 20, top: 6),
                       child: Row(
                         children: [
                           RatingBar.builder(
@@ -269,10 +282,12 @@ class OrderCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
-                        left: 20,
-                        top: 7,
-                      ),
+                      padding: box.read('locale') == 'ar'
+                          ? const EdgeInsets.only(right: 20, top: 6)
+                          : EdgeInsets.only(
+                              left: 20,
+                              top: 7,
+                            ),
                       child: Row(
                         children: [
                           SvgPicture.asset(
@@ -313,79 +328,84 @@ class OrderCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 15, bottom: 12, left: 20),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Stack(
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  ClipPath(
-                                    clipper: RightCircularClipper(),
-                                    child: GestureDetector(
-                                      onTap: ontap,
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                            color: AppColors.lightPink,
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(20),
-                                                bottomLeft:
-                                                    Radius.circular(20))),
-                                        height: Get.height * 0.05,
-                                        width: Get.width * 0.7,
-                                        child: Center(
-                                          child: Text(
-                                            'View garage'.tr,
-                                            style: TextStyle(
-                                                color: AppColors.primary,
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500),
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 12, left: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Stack(
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ClipPath(
+                                      clipper: RightCircularClipper(),
+                                      child: GestureDetector(
+                                        onTap: ontap,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              color: AppColors.lightPink,
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  bottomLeft:
+                                                      Radius.circular(20))),
+                                          height: Get.height * 0.05,
+                                          width: Get.width * 0.7,
+                                          child: Center(
+                                            child: Text(
+                                              'View garage'.tr,
+                                              style: TextStyle(
+                                                  color: AppColors.primary,
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  const Gap(13),
-                                ],
-                              ),
-                              Positioned(
-                                right: 0,
-                                top: Get.height * 0.003,
-                                child: GestureDetector(
-                                  onTap: onchattap,
-                                  child: Container(
-                                      height: Get.height * 0.045,
-                                      width: Get.width * 0.085,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.lightPink,
-                                        borderRadius: BorderRadius.circular(80),
-                                      ),
-                                      child: SvgPicture.asset(
-                                        'assets/icons/chat.svg',
-                                        color: AppColors.primary,
-
-                                        // Image.asset(
-                                        //   'assets/images/chat.png',
-                                        // ),
-                                      )),
+                                    const Gap(13),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                          const Gap(17),
-                          // if (isSelected)
-                          isSelected
-                              ? SvgPicture.asset(
-                                  'assets/icons/check-circle.svg',
-                                  height: 20,
-                                  width: 20,
-                                  color: AppColors.primary,
-                                )
-                              : const Text(''),
-                        ],
+                                Positioned(
+                                  right: 0,
+                                  top: Get.height * 0.003,
+                                  child: GestureDetector(
+                                    onTap: onchattap,
+                                    child: Container(
+                                        height: Get.height * 0.045,
+                                        width: Get.width * 0.085,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.lightPink,
+                                          borderRadius:
+                                              BorderRadius.circular(80),
+                                        ),
+                                        child: SvgPicture.asset(
+                                          'assets/icons/chat.svg',
+                                          color: AppColors.primary,
+
+                                          // Image.asset(
+                                          //   'assets/images/chat.png',
+                                          // ),
+                                        )),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Gap(17),
+                            // if (isSelected)
+                            isSelected
+                                ? SvgPicture.asset(
+                                    'assets/icons/check-circle.svg',
+                                    height: 20,
+                                    width: 20,
+                                    color: AppColors.primary,
+                                  )
+                                : const Text(''),
+                          ],
+                        ),
                       ),
                     )
                   ]),

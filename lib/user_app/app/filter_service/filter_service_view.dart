@@ -124,6 +124,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         activeTrackColor: AppColors.primary,
                         inactiveTrackColor: AppColors.darkGrey,
                         trackHeight: 1.0,
+
                         thumbShape:
                             RoundSliderThumbShape(enabledThumbRadius: 10.0),
                         overlayShape:
@@ -345,7 +346,9 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                       Column(
                         children: [
                           DropDownField<OilExtraModel>(
-                            displayValue: (item) => item.name!,
+                            displayValue: (item) =>
+                            box.read('locale')== 'ar'? item.ar_name!:
+                             item.name!,
                             items: controller.oilextras,
                             hint: 'Extra Name'.tr,
                             selectedValue: controller.selectedexra,
@@ -427,7 +430,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           child: Row(
                             children: [
                               Radio<String>(
-                                value: 'Select garage',
+                                value: 'Select garage'.tr,
                                 groupValue: controller.selectedgarageName,
                                 onChanged: (value) {
                                   controller.selectGarage(value!);
@@ -460,7 +463,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                           child: Row(
                             children: [
                               Radio<String>(
-                                value: 'Send to all garages',
+                                value: 'Send to all garages'.tr,
                                 groupValue: controller.selectedgarageName,
                                 onChanged: (value) {
                                   controller.selectGarage(value!);

@@ -109,7 +109,7 @@ class OtpController extends GetxController {
 
       Get.offAllNamed(AppRoutes.main);
       UiUtilites.successSnackbar(
-          'Phone Number changed successfully', 'Success');
+          'Phone Number changed successfully'.tr, 'Success!'.tr);
     }
   }
 }

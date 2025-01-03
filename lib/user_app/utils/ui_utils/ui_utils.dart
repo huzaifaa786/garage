@@ -392,7 +392,7 @@ class UiUtilites {
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          text: "Are you sure that you want to delete ",
+                          text: "Are you sure that you want to delete ".tr,
                           style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
                             TextSpan(
@@ -401,9 +401,9 @@ class UiUtilites {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red),
                             ),
-                            TextSpan(text: ' from your cars?'),
+                            TextSpan(text: ' from your cars'.tr),
                           ],
-                        ),
+                        ),  
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -423,7 +423,7 @@ class UiUtilites {
                               child: GestureDetector(
                                 onTap: noOnTap,
                                 child: Text(
-                                  "No",
+                                  "No".tr,
                                   style: TextStyle(color: AppColors.red),
                                 ),
                               )),
@@ -440,7 +440,7 @@ class UiUtilites {
                               child: GestureDetector(
                                 onTap: yesOnTap,
                                 child: Text(
-                                  "Yes",
+                                  "Yes".tr,
                                   style: TextStyle(color: Colors.green),
                                 ),
                               )),

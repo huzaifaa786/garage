@@ -4,6 +4,7 @@ import 'package:mobilegarage/apis/user_apis/cart_apis/cart_detail_api.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/delete_from_cart_api.dart';
 import 'package:mobilegarage/apis/user_apis/cart_apis/update_cart_api.dart';
 import 'package:mobilegarage/models/cart_model.dart/cart_model.dart';
+import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class CartController extends GetxController {
   static CartController instanse = Get.find();
@@ -38,6 +39,8 @@ class CartController extends GetxController {
     var response =
         await DeleteFromCartApi.deleteCart(cartItemId: cartItemId.toString());
     if (response.isNotEmpty) {
+      Get.back();
+      UiUtilites.successSnackbar('Item Deleted Successfully'.tr, 'Success!'.tr);
       await getCartData();
       update();
     }

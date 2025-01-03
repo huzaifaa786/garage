@@ -43,7 +43,7 @@ class _PromotionViewState extends State<PromotionView> {
         ),
         body: SafeArea(
           child: Container(
-            padding: const EdgeInsets.only(left: 46, top: 40,right: 45),
+            padding: const EdgeInsets.only(left: 46, top: 40, right: 45),
             child: controller.getPromotions.isEmpty
                 ? Center(
                     child: AppText(
@@ -57,7 +57,9 @@ class _PromotionViewState extends State<PromotionView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        title: controller.getPromotions[0]['title'],
+                        title: box.read('locale') == 'ar'
+                            ? controller.getPromotions[0]['ar_title']
+                            : controller.getPromotions[0]['title'],
                         size: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,
@@ -73,9 +75,9 @@ class _PromotionViewState extends State<PromotionView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AppText(
-                                title:
-                                
-                                box.read('locale') == 'ar'? promotions['ar_promotions']:promotions['promotions'],
+                                title: box.read('locale') == 'ar'
+                                    ? promotions['ar_promotions']
+                                    : promotions['promotions'],
                                 size: 10,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.primary,

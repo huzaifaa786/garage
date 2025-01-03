@@ -24,7 +24,7 @@ class PaymentsController extends GetxController {
 
   Future<void> promoCode() async {
     if (promocodeController.text.trim().isEmpty) {
-      UiUtilites.errorSnackbar('Error', 'Please enter a promo code');
+      UiUtilites.errorSnackbar('Error'.tr, 'Please enter a promo code'.tr);
       return;
     }
     var response = await PromoCodeApi.checkPromoCode(
@@ -105,7 +105,8 @@ class PaymentsController extends GetxController {
           title: 'Thank you!'.tr,
           buttontitle: 'Back to home'.tr,
           description:
-              'your order has been placed successfully, and soon a garage will accept your order.'.tr);
+              'your order has been placed successfully, and soon a garage will accept your order.'
+                  .tr);
       update();
     }
   }
@@ -248,6 +249,8 @@ class PaymentsController extends GetxController {
     var response =
         await DeleteFromCartApi.deleteCart(cartItemId: cartItemId.toString());
     if (response.isNotEmpty) {
+      Get.back();
+      UiUtilites.successSnackbar('Item Deleted Successfully'.tr, 'Success!'.tr);
       getCartData();
       update();
     }
