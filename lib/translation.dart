@@ -504,25 +504,15 @@ class LocaleString extends Translations {
           'The email has already been taken.':
               'The email has already been taken',
           'Invalid credentials': 'Invalid credentials',
-          'Account under review. Please await approval.': 'Account under review. Please await approval',
-          
+          'Account under review. Please await approval.':
+              'Account under review. Please await approval',
           'Account does not exist': 'Account does not exist',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
+         
         },
         'ar_AE': {
           'Account does not exist': 'الحساب غير موجود',
-          'Account under review. Please await approval.': 'الحساب قيد المراجعة. يرجى انتظار الموافقة',
+          'Account under review. Please await approval.':
+              'الحساب قيد المراجعة. يرجى انتظار الموافقة',
           'Invalid credentials': 'بيانات الاعتماد غير صحيحة',
           'The email has already been taken.':
               'تم استخدام البريد الإلكتروني بالفعل',
