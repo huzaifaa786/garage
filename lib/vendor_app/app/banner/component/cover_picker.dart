@@ -8,7 +8,6 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/banner/banner_controller.dart';
 
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class CoverPickerr extends StatelessWidget {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobilegarage/user_app/app/chat_screen/chat_screen_controller.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/chat/vender_chat_controller.dart';
 import 'package:mobilegarage/vendor_app/app/chat/component/vender_chat_card.dart';

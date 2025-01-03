@@ -14,11 +14,7 @@ class DioService {
   );
   static final Dio _dio = Dio(baseOptions);
   //* POST REQUEST
-  static post({
-    required String? url,
-    dynamic data,
-    bool image = false,
-  }) async {
+  static post({required String? url, dynamic data, bool image = false}) async {
     try {
       LoadingHelper.show();
       _setHeaders(image: image);
@@ -34,26 +30,21 @@ class DioService {
       log(response.toString());
       return _handleResponse(response);
     } catch (e) {
-      _handleError(
-        e: e,
-      );
+      _handleError(e: e);
     }
   }
 
   //* GET REQUEST
-  static Future<Map<String, dynamic>> get({
-    String? url,
-    dynamic data,
-  }) async {
+  static Future<Map<String, dynamic>> get({String? url, dynamic data}) async {
     try {
       LoadingHelper.show();
       _setHeaders();
       log(url!.toString());
-      Response response = await _dio.get(url,
-          // queryParameters: data,
-          options: Options(
-            validateStatus: (status) => [200, 201, 400, 422].contains(status),
-          ));
+      Response response = await _dio.get(
+        url,
+        options: Options(
+            validateStatus: (status) => [200, 201, 400, 422].contains(status)),
+      );
       print(response);
       log(response.toString());
 
@@ -111,12 +102,8 @@ class DioService {
   }
 
   //* HANDLE ERROR MESSAGE HERE
-  static void _handleError({
-    dynamic e,
-  }) {
+  static void _handleError({dynamic e}) {
     LoadingHelper.dismiss();
-
     UiUtilites.errorSnackbar('Error'.tr, e.toString().tr);
-    // : UiUtilites.rememberAlert(e.toString());
   }
 }

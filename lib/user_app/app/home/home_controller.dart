@@ -9,7 +9,6 @@ import 'package:mobilegarage/models/user_model/banner_model.dart';
 import 'package:mobilegarage/models/user_model/services_model.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/user_app/utils/base_url.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/rating_alertdialog/rating_alertdialog.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 

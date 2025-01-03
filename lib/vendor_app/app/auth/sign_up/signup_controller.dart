@@ -13,7 +13,6 @@ import 'package:mobilegarage/apis/vender_apis/auth/signup_apis/signup_api.dart';
 import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/validators.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 import 'package:mobilegarage/vendor_app/utils/image_picker/image_picker.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 import 'package:permission_handler/permission_handler.dart';

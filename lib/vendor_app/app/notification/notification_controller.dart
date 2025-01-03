@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:get/get.dart';
 import 'package:mobilegarage/apis/vender_apis/notifications_api/garage_notification_seen_api.dart';
 import 'package:mobilegarage/apis/vender_apis/notifications_api/notifications_api.dart';

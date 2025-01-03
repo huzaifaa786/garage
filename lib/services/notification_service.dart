@@ -1,15 +1,12 @@
-// ignore_for_file: unused_element, prefer_const_constructors, avoid_print, unused_local_variable
+// ignore_for_file: unused_element, prefer_const_constructors, avoid_print, unused_local_variable, unused_field
 
 import 'dart:async';
-import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:googleapis_auth/auth_io.dart' as auth;
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 class NotificationService extends GetxController {
   late final FirebaseMessaging _messaging;

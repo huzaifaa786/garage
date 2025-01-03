@@ -10,7 +10,6 @@ import 'package:mobilegarage/selectside/selectside_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class SelectsideView extends StatefulWidget {
   const SelectsideView({super.key});

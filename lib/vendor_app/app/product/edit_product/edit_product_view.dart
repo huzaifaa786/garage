@@ -24,7 +24,6 @@ import 'package:mobilegarage/vendor_app/app/product/edit_product/edit_product_co
 import 'package:mobilegarage/vendor_app/layout/app_layout.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_dropdown/app_dropdown.dart';
-import 'package:mobilegarage/vendor_app/utils/app_dropdown/dropdown_with_add.dart';
 import 'package:mobilegarage/vendor_app/utils/app_inputfields/app_inputfield.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
@@ -92,7 +91,7 @@ class EditProductView extends StatelessWidget {
                         children: [
                           Gap(20),
                           DropDownField<BrandModel>(
-                            displayValue: (item) => item.name!,
+                            displayValue: (item) => item.name,
                             items: controller.brands,
                             hint: 'Brands Name'.tr,
                             selectedValue: controller.selectedBrand,

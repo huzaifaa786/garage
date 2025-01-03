@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_super_parameters, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';

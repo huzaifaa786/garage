@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 

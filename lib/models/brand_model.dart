@@ -2,7 +2,8 @@ class BrandModel {
   int id;
   int? categoryid;
   int? vehicletypeid;
- final String name;
+  final String name;
+  String? arName;
   String? price;
   String? image;
   String? description;
@@ -12,7 +13,8 @@ class BrandModel {
     required this.id,
     this.vehicletypeid,
     this.categoryid,
-  required  this.name,
+    required this.name,
+    this.arName,
     this.image,
     this.description,
     this.price,
@@ -27,6 +29,7 @@ class BrandModel {
       description: json['description'] ?? '',
       image: json['image'],
       name: json['name'] ?? '',
+      arName: json['ar_name'] ?? '',
       status: json['status'] ?? '',
     );
   }

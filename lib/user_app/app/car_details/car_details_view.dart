@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/brand_name_model.dart';
 import 'package:mobilegarage/models/vehicle_model.dart';
@@ -23,6 +24,7 @@ class CarDetailsView extends StatefulWidget {
 }
 
 class _CarDetailsViewState extends State<CarDetailsView> {
+  GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignupController>(
@@ -148,7 +150,9 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                               Gap(36),
                                               DropDownField<VehicleModel>(
                                                 displayValue: (item) =>
-                                                    item.name!,
+                                                    box.read('locale') == 'ar'
+                                                        ? item.arName!
+                                                        : item.name!,
                                                 items: controller.vehilcles,
                                                 hint: 'Type of vehicle'.tr,
                                                 selectedValue:
@@ -175,13 +179,15 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                       children: [
                                                         DropDownField<
                                                             BrandModel>(
-                                                          displayValue:
-                                                              (item) =>
-                                                                  item.name!,
+                                                          displayValue: (item) =>
+                                                              box.read('locale') ==
+                                                                      'ar'
+                                                                  ? item.arName!
+                                                                  : item.name,
                                                           items: section[
                                                                   'brands'] ??
                                                               [],
-                                                          hint: 'Car brand'.tr,
+                                                          hint: 'brand'.tr,
                                                           selectedValue: section[
                                                               'vehiclebrand_id'],
                                                           onChanged: (value) {
@@ -212,9 +218,11 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                       children: [
                                                         DropDownField<
                                                             BrandNameModel>(
-                                                          displayValue:
-                                                              (item) =>
-                                                                  item.name!,
+                                                          displayValue: (item) =>
+                                                              box.read('locale') ==
+                                                                      'ar'
+                                                                  ? item.arName ?? item.name!
+                                                                  : item.name!,
                                                           items: section[
                                                                   'brandnames'] ??
                                                               [],

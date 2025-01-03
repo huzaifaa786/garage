@@ -9,7 +9,6 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'dart:ui';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
-import 'package:mobilegarage/vendor_app/utils/app_constants/text_strings.dart';
 
 class RatingAlertDialog extends StatelessWidget {
   final String garagetitle;
