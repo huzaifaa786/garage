@@ -69,7 +69,6 @@ Future<void> _checkLocationPermission() async {
     print("Permission granted.");
   }
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
