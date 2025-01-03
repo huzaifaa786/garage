@@ -507,7 +507,6 @@ class LocaleString extends Translations {
           'Account under review. Please await approval.':
               'Account under review. Please await approval',
           'Account does not exist': 'Account does not exist',
-         
         },
         'ar_AE': {
           'Account does not exist': 'الحساب غير موجود',
