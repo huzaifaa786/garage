@@ -28,14 +28,14 @@ class VSignupView extends StatelessWidget {
       BuildContext context, VSignUpController controller, String imageName) {
     showModalBottomSheet(
       context: context,
-      shape: const RoundedRectangleBorder(
+      shape:  RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
       ),
       builder: (BuildContext context) {
         return Wrap(
           children: [
             ListTile(
-              leading: const Icon(Icons.photo_library),
+              leading:  Icon(Icons.photo_library),
               title: Text('Choose from Gallery'.tr),
               onTap: () {
                 Navigator.of(context).pop();
@@ -67,9 +67,9 @@ class VSignupView extends StatelessWidget {
           child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children:[
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  padding:  EdgeInsets.only(top: 10, bottom: 10),
                   // child: Image.asset(
                   //   ImageConst.appLogo,
                   //   width: 172,

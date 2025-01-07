@@ -273,54 +273,55 @@ class VSignUpController extends GetxController {
       }
     }
   }
-Future<void> pickImageFromCamera(String imageName) async {
-  final imageSelectorApi = ImageSelectorApi();
 
-  // Use the camera to capture an image
-  final pickedImage = await imageSelectorApi.selectCameraImage(); 
+  Future<void> pickImageFromCamera(String imageName) async {
+    final imageSelectorApi = ImageSelectorApi();
 
-  if (pickedImage != null) {
-    CroppedFile? croppedImage = await ImageCropper().cropImage(
-      sourcePath: pickedImage.path,
-      uiSettings:
-          uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
-    );
-    if (croppedImage != null || croppedImage!.path.isNotEmpty) {
-      String base64Image = base64Encode(await croppedImage.readAsBytes());
-      switch (imageName) {
-        case 'logo':
-          logo = File(croppedImage.path);
-          base64Logo = base64Image;
-          update();
-          break;
-        case 'cover':
-          cover = File(croppedImage.path);
-          base64Cover = base64Image;
-          update();
-          break;
-        case 'id_card_frontSide':
-          idCardFrontSide = File(croppedImage.path);
-          base64IdCardFrontSide = base64Image;
-          update();
-          break;
-        case 'id_card_backSide':
-          idCardBackSide = File(croppedImage.path);
-          base64IdCardBackSide = base64Image;
-          update();
-          break;
-        case 'upload_license':
-          uploadLicense = File(croppedImage.path);
-          base64UploadLicense = base64Image;
-          update();
-          break;
-        default:
-          break;
+    // Use the camera to capture an image
+    final pickedImage = await imageSelectorApi.selectCameraImage();
+
+    if (pickedImage != null) {
+      CroppedFile? croppedImage = await ImageCropper().cropImage(
+        sourcePath: pickedImage.path,
+        uiSettings:
+            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
+      );
+      if (croppedImage != null || croppedImage!.path.isNotEmpty) {
+        String base64Image = base64Encode(await croppedImage.readAsBytes());
+        switch (imageName) {
+          case 'logo':
+            logo = File(croppedImage.path);
+            base64Logo = base64Image;
+            update();
+            break;
+          case 'cover':
+            cover = File(croppedImage.path);
+            base64Cover = base64Image;
+            update();
+            break;
+          case 'id_card_frontSide':
+            idCardFrontSide = File(croppedImage.path);
+            base64IdCardFrontSide = base64Image;
+            update();
+            break;
+          case 'id_card_backSide':
+            idCardBackSide = File(croppedImage.path);
+            base64IdCardBackSide = base64Image;
+            update();
+            break;
+          case 'upload_license':
+            uploadLicense = File(croppedImage.path);
+            base64UploadLicense = base64Image;
+            update();
+            break;
+          default:
+            break;
+        }
+      } else {
+        return null;
       }
-    } else {
-      return null;
     }
   }
-}
 
   //TODO: Register Function
 
@@ -353,11 +354,11 @@ Future<void> pickImageFromCamera(String imageName) async {
               Get.toNamed(AppRoutes.vsignin);
             },
             title: 'Thank you!'.tr,
-            verificationnumber:response['garage']['garage']['id'] ,
+            verificationnumber: response['garage']['garage']['id'],
             description:
                 'You have submitted your application successfully and it’s pending approval.'
                     .tr,
-            buttontitle: 'Ok');
+            buttontitle: 'Ok'.tr);
 
         resetfields();
       }
@@ -399,23 +400,23 @@ Future<void> pickImageFromCamera(String imageName) async {
     update();
   }
 
-Future<bool> getLocationPermission() async {
-  // Check if location services are enabled
-  if (!await Geolocator.isLocationServiceEnabled()) {
-    // Prompt user to enable location services
-    await Geolocator.openLocationSettings();
-    return false; // Return false if location service is not enabled
-  }
+  Future<bool> getLocationPermission() async {
+    // Check if location services are enabled
+    if (!await Geolocator.isLocationServiceEnabled()) {
+      // Prompt user to enable location services
+      await Geolocator.openLocationSettings();
+      return false; // Return false if location service is not enabled
+    }
 
-  // Request location permissions
-  PermissionStatus status = await Permission.locationWhenInUse.request();
-  if (status.isGranted) {
-    return true; // Permission granted
-  } else if (status.isDenied || status.isPermanentlyDenied) {
-    // Handle denied permissions
-    await openAppSettings();
-  }
+    // Request location permissions
+    PermissionStatus status = await Permission.locationWhenInUse.request();
+    if (status.isGranted) {
+      return true; // Permission granted
+    } else if (status.isDenied || status.isPermanentlyDenied) {
+      // Handle denied permissions
+      await openAppSettings();
+    }
 
-  return false; // Permission not granted
-}
+    return false; // Permission not granted
+  }
 }
