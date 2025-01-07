@@ -114,7 +114,7 @@ class GarageView extends StatelessWidget {
                           ),
                           Gap(5),
                           AppText(
-                            title: '4.0',
+                            title: controller.garage!.garagerating.toString(),
                             textAlign: TextAlign.center,
                             size: 10,
                           ),

@@ -483,4 +483,53 @@ class SignupController extends GetxController {
     vehicleSections[index]['image'] = null;
     update();
   }
+  //
+  Future<void> openImagePickerBottomSheet(int index) async {
+  await Get.bottomSheet(
+    Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.photo_library),
+            title: Text('Choose from Gallery'.tr),
+            onTap: () async {
+              await _pickImage(ImageSource.gallery, index);
+              Get.back(); // Close the bottom sheet
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.camera_alt),
+            title: Text('Take a Photo'.tr),
+            onTap: () async {
+              await _pickImage(ImageSource.camera, index);
+              Get.back(); // Close the bottom sheet
+            },
+          ),
+          // ListTile(
+          //   leading: const Icon(Icons.close),
+          //   title: Text('Cancel'.tr),
+          //   onTap: () {
+          //     Get.back(); // Close the bottom sheet
+          //   },
+          // ),
+        ],
+      ),
+    ),
+  );
+}
+Future<void> _pickImage(ImageSource source, int index) async {
+  final pickedFile = await ImagePicker().pickImage(source: source);
+  if (pickedFile != null) {
+    String filePath = pickedFile.path;
+    vehicleSections[index]['image'] = filePath;
+    update();
+  }
+}
+
 }

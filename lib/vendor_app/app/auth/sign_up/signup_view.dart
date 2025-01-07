@@ -23,33 +23,31 @@ import 'package:mobilegarage/vendor_app/utils/rich_text/rich_text.dart';
 
 class VSignupView extends StatelessWidget {
   const VSignupView({super.key});
-  
+
   void _showImageSourceDialog(
       BuildContext context, VSignUpController controller, String imageName) {
     showModalBottomSheet(
       context: context,
-      shape:  RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
       ),
       builder: (BuildContext context) {
         return Wrap(
           children: [
             ListTile(
-              leading:  Icon(Icons.photo_library),
+              leading: Icon(Icons.photo_library),
               title: Text('Choose from Gallery'.tr),
               onTap: () {
                 Navigator.of(context).pop();
-                controller
-                    .pickImageFromGallery(imageName); // Existing functionality
+                controller.pickImageFromGallery(imageName);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.camera_alt),
+              leading: Icon(Icons.camera_alt),
               title: Text('Take a Photo'.tr),
               onTap: () {
                 Navigator.of(context).pop();
-                controller
-                    .pickImageFromCamera(imageName); // New camera functionality
+                controller.pickImageFromCamera(imageName);
               },
             ),
           ],
@@ -67,9 +65,9 @@ class VSignupView extends StatelessWidget {
           child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children:[
+              children: [
                 Padding(
-                  padding:  EdgeInsets.only(top: 10, bottom: 10),
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
                   // child: Image.asset(
                   //   ImageConst.appLogo,
                   //   width: 172,
@@ -235,11 +233,9 @@ class VSignupView extends StatelessWidget {
                             ),
                             const Gap(15),
                             DropDownField<EmirateModel>(
-                              displayValue: (item) => 
-                              box.read('locale') == 'ar'
+                              displayValue: (item) => box.read('locale') == 'ar'
                                   ? item.arname!
-                                  :
-                              item.name!,
+                                  : item.name!,
                               items: controller.emirates,
                               hint: 'Emirate'.tr,
                               selectedValue: controller.selectedEmirate,

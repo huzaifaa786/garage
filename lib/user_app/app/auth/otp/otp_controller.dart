@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/apis/user_apis/auth_apis/resend_otp_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/verify_otp_test_api.dart';
 import 'package:mobilegarage/apis/user_apis/edit_profile_apis/edit_profile.dart';
 import 'package:mobilegarage/models/user_model.dart';
@@ -23,8 +24,6 @@ class OtpController extends GetxController {
     // otpController.text = otp.toString();
     update();
     //  await veryifyTestCode();
-    print(phone);
-    print(otp);
 
     // await verifyPhone();
   }
@@ -39,6 +38,15 @@ class OtpController extends GetxController {
       box.write('user_id', response['user']['id']);
 
       Get.offAllNamed(AppRoutes.main);
+    }
+  }
+
+  resendOtp() async {
+    var response = await ResendOtpApi.sendOtp(
+      phone: phone,
+    );
+    if (response.isNotEmpty) {
+      update();
     }
   }
 

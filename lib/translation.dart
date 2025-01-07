@@ -507,8 +507,23 @@ class LocaleString extends Translations {
           'Account under review. Please await approval.':
               'Account under review. Please await approval',
           'Account does not exist': 'Account does not exist',
+          'Choose from Gallery': 'Choose from Gallery',
+          'Take a Photo': 'Take a Photo',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+          'Add': 'Add',
+
         },
         'ar_AE': {
+          'Take a Photo': 'التقط صورة',
+          'Choose from Gallery': 'اختر من المعرض',
           'Account does not exist': 'الحساب غير موجود',
           'Account under review. Please await approval.':
               'الحساب قيد المراجعة. يرجى انتظار الموافقة',

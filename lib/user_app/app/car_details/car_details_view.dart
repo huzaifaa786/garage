@@ -285,8 +285,10 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                               DottedBorderButton(
                                                 title:
                                                     'Upload vehicle photo'.tr,
-                                                imgselect: () => controller
-                                                    .selectVehicleImage(index),
+                                                imgselect: () =>
+                                                //  controller
+                                                //     .selectVehicleImage(index),
+                                                controller.openImagePickerBottomSheet(index),
                                                 isImgSelected: controller
                                                     .isImageSelected(index),
                                                 selectedimgpath:

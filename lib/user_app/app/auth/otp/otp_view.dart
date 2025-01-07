@@ -158,6 +158,17 @@ class OtpView extends StatelessWidget {
                     ),
                     // ),
                     // ),
+                    Gap(50),
+                    GestureDetector(
+                      onTap: () {
+                        controller.resendOtp();
+                      },
+                      child: AppText(title: 'Resend',
+                      size: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.primarybg.withOpacity(0.8),
+                      ),
+                    ),
                     Gap(80),
                     MainButton(
                       buttonWidth: 300.0,
