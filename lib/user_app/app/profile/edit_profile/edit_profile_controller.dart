@@ -55,28 +55,50 @@ class EditProfileController extends GetxController {
     Get.back();
   }
 
-  pickImageFromGallery(String imageName) async {
-    final imageSelectorApi = ImageSelectorApi();
+  // pickImageFromGallery(String imageName) async {
+  //   final imageSelectorApi = ImageSelectorApi();
 
-    final pickedImage = await imageSelectorApi.selectImageForCropper();
-    if (pickedImage != null) {
-      CroppedFile? croppedImage = await ImageCropper().cropImage(
-        sourcePath: pickedImage.path,
-        uiSettings:
-            uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
-      );
-      if (croppedImage != null && croppedImage.path.isNotEmpty) {
-        String base64Image = base64Encode(await croppedImage.readAsBytes());
+  //   final pickedImage = await imageSelectorApi.selectImageForCropper();
+  //   if (pickedImage != null) {
+  //     CroppedFile? croppedImage = await ImageCropper().cropImage(
+  //       sourcePath: pickedImage.path,
+  //       uiSettings:
+  //           uiSetting(androidTitle: 'Crop Image'.tr, iosTitle: 'Crop Image'.tr),
+  //     );
+  //     if (croppedImage != null && croppedImage.path.isNotEmpty) {
+  //       String base64Image = base64Encode(await croppedImage.readAsBytes());
 
-        switch (imageName) {
-          case 'profilepic': // Fix here
-            // img = null;
-            profilepic = File(croppedImage.path);
-            base64pic = base64Image;
-            update(); // Force update
-            break;
-        }
-      }
+  //       switch (imageName) {
+  //         case 'profilepic': // Fix here
+  //           // img = null;
+  //           profilepic = File(croppedImage.path);
+  //           base64pic = base64Image;
+  //           update(); // Force update
+  //           break;
+  //       }
+  //     }
+  //   }
+  // }
+
+  pickImage(String source) async {
+  final imageSource = source == 'camera' ? ImageSource.camera : ImageSource.gallery;
+
+  final pickedImage = await picker.pickImage(source: imageSource);
+  if (pickedImage != null) {
+    CroppedFile? croppedImage = await ImageCropper().cropImage(
+      sourcePath: pickedImage.path,
+      uiSettings: uiSetting(
+        androidTitle: 'Crop Image'.tr,
+        iosTitle: 'Crop Image'.tr,
+      ),
+    );
+    if (croppedImage != null && croppedImage.path.isNotEmpty) {
+      String base64Image = base64Encode(await croppedImage.readAsBytes());
+      profilepic = File(croppedImage.path);
+      base64pic = base64Image;
+      update();
     }
   }
+}
+
 }

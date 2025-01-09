@@ -3,6 +3,7 @@ import 'package:mobilegarage/models/order_models/orders_model.dart';
 class NotificationsModel {
   String? id;
   String? title;
+  String? artitle;
   String? body;
   DateTime? createdAt;
   String? userImage;
@@ -19,6 +20,7 @@ class NotificationsModel {
   NotificationsModel(
       {this.id,
       this.title,
+      this.artitle,
       this.body,
       this.createdAt,
       this.userImage,
@@ -36,13 +38,14 @@ class NotificationsModel {
     return NotificationsModel(
       id: json['id']?.toString(),
       title: json['title'],
+      artitle: json['ar_title'],
       seen: json['seen'] ?? false,
       body: json['body'],
       status: json['status'],
       ordertype: json['order_type'],
       createdAt: DateTime.parse(json['created_at']),
       userImage: json['sender'] != null ? json['sender']['image'] : '',
-      userId: json['sender'] != null ? json['sender']['id'] : '',
+      userId: json['sender'] != null ? json['sender']['id'].toString() : '',
       username: json['sender'] != null ? json['sender']['name'] : '',
       categoryName: json['order'] != null &&
               json['order']['items'] != null &&
@@ -63,16 +66,15 @@ class NotificationsModel {
 class SenderModel {
   String? id;
   String? name;
+  String? image;
 
-  SenderModel({
-    this.id,
-    this.name,
-  });
+  SenderModel({this.id, this.name, this.image});
 
   factory SenderModel.fromJson(Map<String, dynamic> json) {
     return SenderModel(
       id: json['id'].toString(),
       name: json['name'].toString(),
+      image: json['logo'].toString(),
     );
   }
 }

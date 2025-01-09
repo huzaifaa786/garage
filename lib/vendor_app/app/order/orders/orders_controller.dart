@@ -83,6 +83,12 @@ class VOrdersController extends GetxController {
     onTheWayOrders = _mapOrders(ordersByStatus['ON_THE_WAY']);
     deliveredOrders = _mapOrders(ordersByStatus['DELIVERED']);
     rejectedOrders = _mapOrders(ordersByStatus['REJECTED']);
+//////////
+    print("Pending Orders: ${pendingOrders.length}");
+    print("Accepted Orders: ${acceptedOrders.length}");
+    print("On The Way Orders: ${onTheWayOrders.length}");
+    print("Delivered Orders: ${deliveredOrders.length}");
+    print("Rejected Orders: ${rejectedOrders.length}");
   }
 
   List<OrdersModel> _mapOrders(List<dynamic> orders) {
@@ -112,6 +118,7 @@ class VOrdersController extends GetxController {
         return selectedSubIndex == 0
             ? pendingOrders[index]
             : acceptedOrders[index];
+      
       case 1:
         return onTheWayOrders[index];
       case 2:
@@ -122,6 +129,33 @@ class VOrdersController extends GetxController {
         throw Exception("Invalid selectedIndex or selectedSubIndex");
     }
   }
+  // OrdersModel getOrder(int index) {
+  //   List<OrdersModel> orders;
+  //   switch (selectedIndex) {
+  //     case 0:
+  //       orders = selectedSubIndex == 0 ? pendingOrders : acceptedOrders;
+  //       break;
+  //     case 1:
+  //       orders = onTheWayOrders;
+  //       break;
+  //     case 2:
+  //       orders = deliveredOrders;
+  //       break;
+  //     case 3:
+  //       orders = rejectedOrders;
+  //       break;
+  //     default:
+  //       throw Exception("Invalid selectedIndex or selectedSubIndex");
+  //   }
+
+    // Ensure index is valid
+  //   if (index < 0 || index >= orders.length) {
+  //     throw RangeError(
+  //         "Index $index out of range for orders list with length ${orders.length}");
+  //   }
+
+  //   return orders[index];
+  // }
 
   Future<void> makePhoneCall(String phoneNumber) async {
     final Uri phoneUri = Uri(scheme: 'tel', path: phoneNumber);
@@ -165,7 +199,7 @@ class VOrdersController extends GetxController {
       }
       await fetchOrders();
       await getUrgentOrders();
-       UiUtilites.successSnackbar('Success'.tr, 'Your order is rejected'.tr);
+      UiUtilites.successSnackbar('Success'.tr, 'Your order is rejected'.tr);
       update();
     }
   }
@@ -187,7 +221,7 @@ class VOrdersController extends GetxController {
     if (response.isNotEmpty) {
       await fetchOrders();
       await getUrgentOrders();
-       UiUtilites.successSnackbar('Success'.tr, 'Your order is rejected'.tr);
+      UiUtilites.successSnackbar('Success'.tr, 'Your order is rejected'.tr);
       update();
     }
   }
@@ -230,7 +264,7 @@ class VOrdersController extends GetxController {
         orderId: id, status: 'on_the_way');
     if (response.isNotEmpty) {
       await fetchOrders();
-       UiUtilites.successSnackbar('Success'.tr, 'Your order is on the way'.tr);
+      UiUtilites.successSnackbar('Success'.tr, 'Your order is on the way'.tr);
       update();
     }
   }
@@ -240,7 +274,7 @@ class VOrdersController extends GetxController {
         orderId: id, status: 'delivered');
     if (response.isNotEmpty) {
       await fetchOrders();
-       UiUtilites.successSnackbar('Success'.tr, 'Your order is delivered'.tr);
+      UiUtilites.successSnackbar('Success'.tr, 'Your order is delivered'.tr);
       update();
     }
   }

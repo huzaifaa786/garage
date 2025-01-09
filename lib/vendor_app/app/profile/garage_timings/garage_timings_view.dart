@@ -17,9 +17,8 @@ class GarageTimingsView extends StatelessWidget {
       autoRemove: false,
       builder: (controller) {
         bool isButtonPressed = false;
-
         String successMessage = '';
-
+        
         return AppLayout(
           appBarTitle: "Open time & close time".tr,
           child: SingleChildScrollView(
@@ -31,6 +30,18 @@ class GarageTimingsView extends StatelessWidget {
                   controller.selectedTimeOpenFromMorning,
                   controller.selectedTimeCloseMorning,
                   (fromTime, toTime) {
+                    if (toTime.hour < fromTime.hour ||
+                        (toTime.hour == fromTime.hour &&
+                            toTime.minute < fromTime.minute)) {
+                      Get.snackbar(
+                        'Invalid Time',
+                        'Closing time cannot be before opening time.',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: AppColors.red,
+                        colorText: AppColors.white,
+                      );
+                      return; // Exit if validation fails
+                    }
                     controller.selectedTimeOpenFromMorning = fromTime;
 
                     controller.selectedTimeCloseMorning = toTime;
@@ -45,6 +56,19 @@ class GarageTimingsView extends StatelessWidget {
                   controller.selectedTimeOpenFromNight,
                   controller.selectedTimeCloseNight,
                   (fromTime, toTime) {
+                    // Validate the time selection
+                    if (toTime.hour < fromTime.hour ||
+                        (toTime.hour == fromTime.hour &&
+                            toTime.minute < fromTime.minute)) {
+                      Get.snackbar(
+                        'Invalid Time',
+                        'Closing time cannot be before opening time.',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: AppColors.red,
+                        colorText: AppColors.white,
+                      );
+                      return; // Exit if validation fails
+                    }
                     controller.selectedTimeOpenFromNight = fromTime;
 
                     controller.selectedTimeCloseNight = toTime;
@@ -146,7 +170,7 @@ class GarageTimingsView extends StatelessWidget {
   String _formatTime(TimeOfDay time) {
     final hours = time.hour % 12 == 0 ? 12 : time.hour % 12;
     final minutes = time.minute.toString().padLeft(2, '0');
-    final period = time.hour < 12 ? 'AM' : 'PM';
+    final period = time.hour < 12 ? 'AM'.tr : 'PM'.tr;
     return "$hours:$minutes $period";
   }
 
@@ -159,6 +183,10 @@ class GarageTimingsView extends StatelessWidget {
           child: GestureDetector(
             onTap: () async {
               final TimeOfDay? newTime = await showTimePicker(
+                cancelText: 'Cancel'.tr,
+                confirmText: 'Ok'.tr,
+                errorInvalidText: 'Enter a valid time'.tr,
+                helpText: 'Select time'.tr,
                 context: Get.context!,
                 initialTime: selectedTime,
                 builder: (BuildContext context, Widget? child) {
@@ -216,9 +244,9 @@ class GarageTimingsView extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _buildAmPmButton('AM', selectedTime.hour < 12),
+                _buildAmPmButton('AM'.tr, selectedTime.hour < 12),
                 const Gap(5),
-                _buildAmPmButton('PM', selectedTime.hour >= 12),
+                _buildAmPmButton('PM'.tr, selectedTime.hour >= 12),
               ],
             ),
           ),

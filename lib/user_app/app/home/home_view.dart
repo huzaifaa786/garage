@@ -40,18 +40,18 @@ class _HomeViewState extends State<HomeView> {
               toolbarHeight: 80,
               title: HomeAppbar(
                 onChatntap: () {
-                    Get.toNamed(AppRoutes.chats_accounts)!.then((value) {
+                  Get.toNamed(AppRoutes.chats_accounts)!.then((value) {
                     controller.countUnSeenMsg();
                   });
-                  },
-                 ischat: controller.msgUnSeenCount == '0' ? false : true,
+                },
+                ischat: controller.msgUnSeenCount == '0' ? false : true,
                 onNotificationtap: () {
                   Get.toNamed(AppRoutes.notification)!.then((value) {
                     controller.countNotification();
                   });
-                  
                 },
-                isnotification: controller.notificationcount == '0'? false : true,
+                isnotification:
+                    controller.notificationcount == '0' ? false : true,
               ),
             ),
             body: SingleChildScrollView(
@@ -70,6 +70,8 @@ class _HomeViewState extends State<HomeView> {
                           onsubmit: (value) {
                             Get.toNamed(AppRoutes.search, parameters: {
                               'searchtext': controller.searchController.text
+                            })!.then((value) {
+                              controller.searchController.clear();
                             });
                           },
                         ),

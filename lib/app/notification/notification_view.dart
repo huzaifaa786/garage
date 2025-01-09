@@ -25,7 +25,7 @@ class NotificationView extends StatelessWidget {
         body: SafeArea(
             child: SingleChildScrollView(
                 child: Container(
-          height: 700,
+          height: Get.height,
           width: Get.width,
           child: controller.notifications.isNotEmpty
               ? ListView.builder(
@@ -39,7 +39,7 @@ class NotificationView extends StatelessWidget {
                     return NotificationCard(
                       status: item.order != null
                           ? item.order!.status.toString()
-                          : item.requestOrder!.status.toString(),
+                          : item.requestOrder != null ?item.requestOrder!.status.toString():null,
                       notification: item,
                     );
                   },

@@ -17,6 +17,7 @@ import 'package:mobilegarage/models/tyre_models/pattern_model.dart';
 import 'package:mobilegarage/models/tyre_models/size_model.dart';
 import 'package:mobilegarage/models/tyre_models/speed_rating_model.dart';
 import 'package:mobilegarage/models/tyre_models/width_model.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/components/textfields/main_input.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/product_form/components/product_images_picker.dart';
@@ -77,7 +78,9 @@ class ProductFormView extends StatelessWidget {
                     ),
                     Gap(20),
                     DropDownField<CategoryModel>(
-                      displayValue: (item) => item.name!,
+                      displayValue: (item) => box.read('locale') == 'ar'
+                          ? item.ar_name!
+                          : item.name!,
                       items: controller.categories,
                       hint: 'Category'.tr,
                       selectedValue: controller.selectedCategory,
@@ -160,7 +163,9 @@ class ProductFormView extends StatelessWidget {
                           //////////////////////////
                           Gap(20),
                           DropDownWithAdd<BrandModel>(
-                            displayValue: (item) => item.name,
+                            displayValue: (item) => box.read('locale') == 'ar'
+                                ? item.arName!
+                                : item.name!,
                             items: controller.brands,
                             hint: 'Brands Name'.tr,
                             // selectedValue: controller.selectedBrand??controller.brands.first,
@@ -209,10 +214,8 @@ class ProductFormView extends StatelessWidget {
                                   .contains(searchValue.toLowerCase());
                             },
                             onMenuStateChange: (isOpen) {
-                              
                               if (!isOpen) {
                                 controller.searchbrandController.clear();
-
                               }
                             },
                           ),
@@ -223,7 +226,10 @@ class ProductFormView extends StatelessWidget {
                             children: [
                               Gap(20),
                               DropDownField<BatteryProductTypeModel>(
-                                displayValue: (item) => item.name!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_name.toString()
+                                        : item.name!,
                                 items: controller.producttypes,
                                 hint: 'Product type'.tr,
                                 selectedValue: controller.selectedproducttype,

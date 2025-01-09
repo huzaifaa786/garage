@@ -31,34 +31,34 @@ class GarageModel {
   String? garagerating;
   final  locationName;
 
-  GarageModel({
-    this.id,
-    this.banner,
-    this.logo,
-    this.ownerName,
-    this.name,
-    this.email,
-    this.idFront,
-    this.idBack,
-    this.license,
-    this.description,
-    this.phone,
-    this.lat,
-    this.lng,
-    this.emirateId,
-    this.address,
-    this.opened,
-    this.status,
-    this.garageTime,
-    this.createdAt,
-    this.servicecount,
-    this.banned,
-    this.order,
-    this.rating,
-    this.products,
-    this.garagerating,
-    this.locationName,
-  });
+  GarageModel(
+      {this.id,
+      this.banner,
+      this.logo,
+      this.ownerName,
+      this.name,
+      this.email,
+      this.idFront,
+      this.idBack,
+      this.license,
+      this.description,
+      this.phone,
+      this.lat,
+      this.lng,
+      this.emirateId,
+      this.address,
+      this.opened,
+      this.status,
+      this.garageTime,
+      this.createdAt,
+      this.servicecount,
+      this.banned,
+      this.order,
+      this.rating,
+      this.products,
+      this.garagerating,
+      this.locationName
+      });
 
   factory GarageModel.fromJson(json) {
     
@@ -82,7 +82,7 @@ class GarageModel {
       status: json['status'],
       rating: json['average_rating'] != null
           ? json['average_rating'].toString()
-          : null,
+          : '0.0',
       garagerating: json['rating'] != null ? json['rating'].toString() : null,
       servicecount: json['totalCategoryCount'].toString(),
       order: json['order'] != null ? OrdersModel.fromJson(json['order']) : null,

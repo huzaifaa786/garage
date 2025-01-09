@@ -473,7 +473,7 @@ class UiUtilites {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: AppText(
-                    title: 'Enter name',
+                    title: 'Enter name'.tr,
                     size: 12,
                     fontWeight: FontWeight.w400,
                     color: AppColors.darkGrey,
@@ -485,14 +485,14 @@ class UiUtilites {
                   child: MainInput(
                     controller: nameController,
                     errorText: '',
-                    hint: 'product name',
+                    hint: 'product name'.tr,
                   ),
                 ),
                 Gap(30),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: MainButton(
-                    title: 'Submit',
+                    title: 'Submit'.tr,
                     onTap: onsubmit,
                   ),
                 ),
@@ -541,7 +541,7 @@ class UiUtilites {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppText(
-                      title: 'Pending Approval',
+                      title: 'Pending Approval'.tr,
                       size: 14,
                       fontWeight: FontWeight.w600,
                     ),
@@ -551,7 +551,7 @@ class UiUtilites {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 35),
                   child: MainButton(
-                    title: 'Done',
+                    title: 'Done!'.tr,
                     textcolor: AppColors.red,
                     btncolor: AppColors.lightPink,
                     onTap: () {

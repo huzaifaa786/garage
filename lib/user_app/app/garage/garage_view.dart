@@ -103,7 +103,7 @@ class GarageView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           RatingBarIndicator(
-                            rating: 4.0,
+                            rating: double.parse(controller.garage!.rating.toString()),
                             itemCount: 5,
                             itemSize: 11,
                             unratedColor: AppColors.black.withOpacity(0.5),
@@ -114,7 +114,7 @@ class GarageView extends StatelessWidget {
                           ),
                           Gap(5),
                           AppText(
-                            title: controller.garage!.garagerating.toString(),
+                            title: controller.garage!.rating.toString(),
                             textAlign: TextAlign.center,
                             size: 10,
                           ),
