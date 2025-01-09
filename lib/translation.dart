@@ -517,18 +517,6 @@ class LocaleString extends Translations {
           'must be a valid 4-digit year': 'must be a valid 4-digit year',
           "can't be in the future": "can't be in the future",
           "Unknown Location": "Unknown Location",
-        
-        },
-        'ar_AE': {
-          "can't be in the future": "لا يمكن أن يكون في المستقبل",
-          "must be a valid 4-digit year":
-              "يجب أن تكون سنة صالحة مكونة من 4 أرقام",
-              "Unknown Location":"موقع غير معروف",
-          "Manufacture year ": "سنة التصنيع",
-          "Are you sure that you want\n to delete this date?":
-              "هل أنت متأكد أنك تريد\n حذف هذا التاريخ؟",
-          "Are you sure that you want\n to add this date?":
-              "هل أنت متأكد أنك تريد\n إضافة هذا التاريخ؟",
           'Edit profile successfully': 'Edit profile successfully',
           'AM': 'AM',
           'PM': 'PM',
@@ -539,18 +527,27 @@ class LocaleString extends Translations {
           'product name': 'product name',
           'Pending Approval': 'Pending Approval',
           'Product deleted successfully': 'Product deleted successfully',
-          'Are you sure you want to\n delete this Product?': 'Are you sure you want to\n delete this Product?',
-          'You cannot delete this image as it is the only image left.': 'You cannot delete this image as it is the only image left',
+          'Are you sure you want to\n delete this Product?':
+              'Are you sure you want to\n delete this Product?',
+          'You cannot delete this image as it is the only image left.':
+              'You cannot delete this image as it is the only image left',
           'New Order Received': 'New Order Received',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
         },
         'ar_AE': {
+          "can't be in the future": "لا يمكن أن يكون في المستقبل",
+          "must be a valid 4-digit year":
+              "يجب أن تكون سنة صالحة مكونة من 4 أرقام",
+          "Unknown Location": "موقع غير معروف",
+          "Manufacture year ": "سنة التصنيع",
+          "Are you sure that you want\n to delete this date?":
+              "هل أنت متأكد أنك تريد\n حذف هذا التاريخ؟",
+          "Are you sure that you want\n to add this date?":
+              "هل أنت متأكد أنك تريد\n إضافة هذا التاريخ؟",
           'New Order Received': 'تم استلام طلب جديد',
-          'You cannot delete this image as it is the only image left.': 'لا يمكنك حذف هذه الصورة لأنها الصورة الوحيدة المتبقية',
-          'Are you sure you want to\n delete this Product?': 'هل أنت متأكد أنك تريد\n حذف هذا المنتج؟',
+          'You cannot delete this image as it is the only image left.':
+              'لا يمكنك حذف هذه الصورة لأنها الصورة الوحيدة المتبقية',
+          'Are you sure you want to\n delete this Product?':
+              'هل أنت متأكد أنك تريد\n حذف هذا المنتج؟',
           'Product deleted successfully': 'تم حذف المنتج بنجاح',
           'Pending Approval': 'في انتظار الموافقة',
           'product name': 'اسم المنتج',
