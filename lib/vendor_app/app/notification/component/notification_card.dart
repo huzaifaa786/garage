@@ -114,6 +114,7 @@ class NotificationCard extends StatelessWidget {
                                                     .vurgent_orders_view)
                                                 : () {};
                                       },
+
                                       child: AppText(
                                         title: '  ' + 'view'.tr,
                                         color: Colors.blue,
