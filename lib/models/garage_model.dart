@@ -1,3 +1,4 @@
+import 'package:geocoding/geocoding.dart';
 import 'package:mobilegarage/models/garage_timing_model/garage_timing_model.dart';
 import 'package:mobilegarage/models/order_models/orders_model.dart';
 import 'package:mobilegarage/models/product_model.dart';
@@ -28,6 +29,7 @@ class GarageModel {
   OrdersModel? order;
   String? rating;
   String? garagerating;
+  final  locationName;
 
   GarageModel(
       {this.id,
@@ -54,9 +56,12 @@ class GarageModel {
       this.order,
       this.rating,
       this.products,
-      this.garagerating});
+      this.garagerating,
+      this.locationName
+      });
 
-  factory GarageModel.fromJson(Map<String, dynamic> json) {
+  factory GarageModel.fromJson(json) {
+    
     return GarageModel(
       id: json['id'],
       banner: json['banner'],
@@ -94,6 +99,9 @@ class GarageModel {
               .map((item) => ProductModel.fromJson(item))
               .toList()
           : null,
+      
     );
   }
 }
+
+

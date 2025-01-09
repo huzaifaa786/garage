@@ -225,88 +225,88 @@ class MyCarsControllers extends GetxController {
   }
 
 // car detail view error variables
-  String vehicletypeerror = '';
-  String vehiclebranderror = '';
-  String vehiclebrandnameerror = '';
-  String yearmanufactureerror = '';
-  String vehicleinfoerror = '';
-  String imgerror = '';
+ String vehicletypeerror = '';
+String vehiclebranderror = '';
+String vehiclebrandnameerror = '';
+String yearmanufactureerror = '';
+String vehicleinfoerror = '';
+String imgerror = '';
 
-  String validateCarFields(String fieldName, value) {
-    switch (fieldName) {
-      case 'vehicletype':
-        vehicletypeerror =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
-        update();
-        return vehicletypeerror;
-      case 'vehiclebrand':
-        vehiclebranderror =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
-        update();
-        return vehiclebranderror;
-      case 'vehiclebrandname':
-        vehiclebrandnameerror =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
-        update();
-        return vehiclebrandnameerror;
-      case 'year_of_manufacture':
-        yearmanufactureerror =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
-        update();
-        return yearmanufactureerror;
-      case 'vehicle_info':
-        vehicleinfoerror =
-            Validators.emptyStringValidator(value, fieldName) ?? '';
-        update();
-        return vehicleinfoerror;
-
-      default:
-        return '';
-    }
+String validateCarFields(String fieldName, value) {
+  switch (fieldName) {
+    case 'vehicletype':
+      vehicletypeerror =
+          Validators.emptyStringValidator(value, fieldName) ?? '';
+      break;
+    case 'vehiclebrand':
+      vehiclebranderror =
+          Validators.emptyStringValidator(value, fieldName) ?? '';
+      break;
+    case 'vehiclebrandname':
+      vehiclebrandnameerror =
+          Validators.emptyStringValidator(value, fieldName) ?? '';
+      break;
+    case 'year_of_manufacture':
+      yearmanufactureerror =
+          Validators.manufactureYearValidator(value) ?? '';
+      break;
+    case 'vehicle_info':
+      vehicleinfoerror =
+          Validators.emptyStringValidator(value, fieldName) ?? '';
+      break;
+    default:
+      return '';
   }
+  update();
+  return '';
+}
 
-  Future<bool> validateCarForm() async {
-    bool isFormValid = true;
+Future<bool> validateCarForm() async {
+  bool isFormValid = true;
 
-    // Validate form fields
-    if (selectedVehicleId == null) {
-      vehicletypeerror = 'Please select a vehicle'.tr;
-      isFormValid = false;
-    } else {
-      vehicletypeerror = '';
-    }
+  // Validate fields with direct checks
+  vehicletypeerror = selectedVehicleId == null
+      ? 'Please select a vehicle'.tr
+      : '';
+  if (vehicletypeerror.isNotEmpty) isFormValid = false;
 
-    if (selectedVehiclebrandId == null) {
-      vehiclebranderror = 'Please select a brand'.tr;
-      isFormValid = false;
-    } else {
-      vehiclebranderror = '';
-    }
+  vehiclebranderror = selectedVehiclebrandId == null
+      ? 'Please select a brand'.tr
+      : '';
+  if (vehiclebranderror.isNotEmpty) isFormValid = false;
 
-    if (selectedbrandNameId == null) {
-      vehiclebrandnameerror = 'Please select a brand name'.tr;
-      isFormValid = false;
-    } else {
-      vehiclebrandnameerror = '';
-    }
+  vehiclebrandnameerror = selectedbrandNameId == null
+      ? 'Please select a brand name'.tr
+      : '';
+  if (vehiclebrandnameerror.isNotEmpty) isFormValid = false;
 
-    // Validate all vehicle sections
-    bool allSectionsValid = validateAllVehicleSections();
-    isFormValid = isFormValid && allSectionsValid;
+  yearmanufactureerror = Validators.manufactureYearValidator(
+          yearOfManufactureControllers.toString()) ??
+      '';
+  if (yearmanufactureerror.isNotEmpty) isFormValid = false;
 
-    // Display a snackbar if any section is missing an image
-    if (!isFormValid) {
-      for (int index = 0; index < sectionErrors.length; index++) {
-        var errors = sectionErrors[index];
-        if (errors != null && errors.containsKey('image')) {
-          UiUtilites.errorSnackbar('error'.tr, 'Please select an image'.tr);
-          break;
-        }
+  vehicleinfoerror = selectedVehicleId == null
+      ? "Please write information about the vehicle"
+      : '';
+  if (vehicleinfoerror.isNotEmpty) isFormValid = false;
+
+  // Validate all sections
+  bool allSectionsValid = validateAllVehicleSections();
+  isFormValid = isFormValid && allSectionsValid;
+
+  if (!isFormValid) {
+    for (int index = 0; index < sectionErrors.length; index++) {
+      var errors = sectionErrors[index];
+      if (errors != null && errors.containsKey('image')) {
+        UiUtilites.errorSnackbar('error'.tr, 'Please select an image'.tr);
+        break;
       }
     }
-
-    return isFormValid;
   }
+
+  return isFormValid;
+}
+
 
   void removeVehicleSection(int index) {
     if (vehicleSections.length > 1) {

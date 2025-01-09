@@ -69,6 +69,7 @@ class _AvaliableDateViewState extends State<AvaliableDateView> {
                           alertMessage,
                           onConfirm: () async {
                             controller.onDaySelected(selectedDay, focusedDay);
+                           
                             controller.update();
                           },
                         );

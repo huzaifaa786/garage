@@ -143,6 +143,7 @@ class _SearchViewState extends State<SearchView> {
                   Gap(10),
                   controller.filteredGarages.isNotEmpty
                       ? ListView.builder(
+                      
                           itemCount: controller.filteredGarages.length,
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),
@@ -154,8 +155,9 @@ class _SearchViewState extends State<SearchView> {
                                 image: item.banner,
                                 title: item.name,
                                 logoimage: item.logo,
-                                currentAddress:
-                                    controller.currentAddress.toString(),
+                                latitude: item.lat,
+                                longitude: item.lng,
+                               
                                 onChatTap: () {
                                   Get.to(() => ChatScreenView(
                                       id: item.id.toString(),
