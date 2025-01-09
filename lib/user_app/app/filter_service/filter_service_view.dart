@@ -124,7 +124,6 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         activeTrackColor: AppColors.primary,
                         inactiveTrackColor: AppColors.darkGrey,
                         trackHeight: 1.0,
-
                         thumbShape:
                             RoundSliderThumbShape(enabledThumbRadius: 10.0),
                         overlayShape:
@@ -346,9 +345,9 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                       Column(
                         children: [
                           DropDownField<OilExtraModel>(
-                            displayValue: (item) =>
-                            box.read('locale')== 'ar'? item.ar_name!:
-                             item.name!,
+                            displayValue: (item) => box.read('locale') == 'ar'
+                                ? item.ar_name!
+                                : item.name!,
                             items: controller.oilextras,
                             hint: 'Extra Name'.tr,
                             selectedValue: controller.selectedexra,
@@ -508,8 +507,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               //       controller.sendtoAllGarages();
                               //     },
                               //   );
-                              :  controller.sendtoAllGarages();
-
+                              : controller.sendtoAllGarages();
                         },
                       ),
                     ),

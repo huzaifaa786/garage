@@ -27,7 +27,7 @@ class VEditprofileController extends GetxController {
       isButtonClicked = true;
     }
     update();
-    UiUtilites.successSnackbar('Edit profile successfully', 'Success');
+    UiUtilites.successSnackbar('Edit profile successfully'.tr, 'Success!'.tr);
     Get.back();
   }
 

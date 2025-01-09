@@ -54,8 +54,7 @@ class GarageModel {
       this.order,
       this.rating,
       this.products,
-      this.garagerating
-      });
+      this.garagerating});
 
   factory GarageModel.fromJson(Map<String, dynamic> json) {
     return GarageModel(
@@ -76,8 +75,10 @@ class GarageModel {
       address: json['address'],
       opened: json['opened'],
       status: json['status'],
-      rating: json['average_rating']!=null?json['average_rating'].toString():null ,
-      garagerating: json['rating']!=null?json['rating'].toString():null ,
+      rating: json['average_rating'] != null
+          ? json['average_rating'].toString()
+          : '0.0',
+      garagerating: json['rating'] != null ? json['rating'].toString() : null,
       servicecount: json['totalCategoryCount'].toString(),
       order: json['order'] != null ? OrdersModel.fromJson(json['order']) : null,
       garageTime: json['garage_time'] != null

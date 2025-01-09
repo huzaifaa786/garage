@@ -52,7 +52,7 @@ class EditProductImagesPicker extends StatelessWidget {
       builder: (controller) => InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
         // onTap: controller.onMultipleImagePick,
-          onTap: () {
+        onTap: () {
           _showImageSourceDialog(context, controller);
         },
         child: DottedBorder(
@@ -161,16 +161,23 @@ class EditProductImagesPicker extends StatelessWidget {
                                                   onCancelTap: () {
                                                     Get.back();
                                                   },
-                                                  onConfirmTap: () {
-                                                    controller.deleteimage(
-                                                        controller.product!
-                                                            .images![i].id
-                                                            .toString(),
-                                                        controller.product!.id
-                                                            .toString());
-                                                    controller.images
-                                                        .removeAt(i);
-                                                    controller.update();
+                                                  onConfirmTap: () async {
+                                                    bool isDeleted =
+                                                        await controller
+                                                            .deleteimage(
+                                                                controller
+                                                                    .product!
+                                                                    .images![i]
+                                                                    .id
+                                                                    .toString(),
+                                                                controller
+                                                                    .product!.id
+                                                                    .toString());
+                                                    // if (isDeleted) {
+                                                    //   controller.images
+                                                    //       .removeAt(i);
+                                                    //   controller.update();
+                                                    // }
                                                   },
                                                   title:
                                                       'Are you sure you want to delete this Image?'

@@ -23,6 +23,53 @@ class EditProfileView extends StatefulWidget {
 }
 
 class _EditProfileViewState extends State<EditProfileView> {
+  void _showImageSourceDialog(
+    BuildContext context, EditProfileController controller, String imageName) {
+  showModalBottomSheet(
+    context: context,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+    ),
+    builder: (BuildContext context) {
+      return Wrap(
+        children: [
+ListTile(
+              leading: Icon(Icons.photo_library, ),
+              title: Text(
+                'Choose from Gallery'.tr,
+              
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller.pickImage('gallery');
+              },
+            ),
+            SizedBox(height: 10),
+            ListTile(
+              leading: Icon(Icons.camera_alt, ),
+              title: Text(
+                'Take a Photo'.tr,
+               
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                controller.pickImage('camera');
+              },
+            ),
+        ],
+        // child: Column(
+        //   mainAxisSize: MainAxisSize.min,
+        //   children: [
+          
+            
+        //   ],
+        // ),
+      );
+    },
+  );
+}
+
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EditProfileController>(
@@ -58,38 +105,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                     CircleAvatar(
                       radius: 50,
                       backgroundColor: Colors.transparent,
-                      // child: controller.img != ''
-                          // ? ClipRRect(
-                          //     borderRadius: BorderRadius.circular(80),
-                          //     child: CachedNetworkImage(
-                          //       imageUrl: controller.img.toString(),
-                          //       height: 100,
-                          //       width: 100,
-                          //       fit: BoxFit.cover,
-                          //       placeholder: (context, url) =>
-                          //           CircularProgressIndicator(),
-                          //       errorWidget: (context, url, error) =>
-                          //           Icon(Icons.error),
-                          //     ),
-                          //   )
-                          // : controller.profilepic != null
-                          //     ? ClipOval(
-                          //         child: Image.file(
-                          //           controller.profilepic!,
-                          //           height: 100,
-                          //           width: 100,
-                          //           fit: BoxFit.cover,
-                          //         ),
-                          //       )
-                          //     : ClipRRect(
-                          //       borderRadius: BorderRadius.circular(100),
-                          //         child: Image.asset(
-                          //           'assets/images/account.png',
-                          //           height: 100,
-                          //           width: 100,
-                          //           fit: BoxFit.cover,
-                          //         ),
-                          //       ),
                            child: controller.profilepic != null
           ? ClipOval(
               child: Image.file(
@@ -128,7 +143,8 @@ class _EditProfileViewState extends State<EditProfileView> {
                       right: 0,
                       child: GestureDetector(
                         onTap: () {
-                          controller.pickImageFromGallery('profilepic');
+                          // controller.pickImageFromGallery('profilepic');
+                            _showImageSourceDialog(context, controller, 'profilepic');
                         },
                         child: Container(
                           height: 30,

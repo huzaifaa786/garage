@@ -170,7 +170,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                   Get.toNamed(AppRoutes.language);
                                 },
                                 icon: 'assets/images/globe.svg',
-                                text: 'Change language'.tr,
+                                text: 'Change Language'.tr,
                                 langtext: 'English'.tr,
                               ),
                               Padding(

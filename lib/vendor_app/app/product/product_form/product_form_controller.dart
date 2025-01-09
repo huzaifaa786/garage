@@ -1252,7 +1252,7 @@ TextEditingController searchbrandController= TextEditingController();
             onTap: () {
               Get.offAllNamed(AppRoutes.vhome);
             },
-            title: 'Done!');
+            title: 'Done!'.tr);
         //       Future.delayed(Duration(seconds: 3), () {
         //   if (Navigator.canPop(Get.context!)) {
         //    Get.offAllNamed(AppRoutes.vhome);

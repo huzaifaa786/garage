@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/notifications_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/chat_screen/vender_chat_detail_screen_view.dart';
 import 'package:mobilegarage/vendor_app/app/notification/notification_controller.dart';
@@ -32,6 +33,7 @@ class NotificationCard extends StatelessWidget {
         padding: const EdgeInsets.only(top: 12),
         child: Container(
           height: 110,
+          width: Get.width,
           decoration: BoxDecoration(color: AppColors.white_color),
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -54,20 +56,6 @@ class NotificationCard extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // ClipRRect(
-                        //   borderRadius: BorderRadius.circular(60),
-                        //   child: CachedNetworkImage(
-                        //     imageUrl: notifications!.userImage == null
-                        //         ? img
-                        //         : notifications!.userImage.toString(),
-                        //     placeholder: (context, url) =>
-                        //         const CircularProgressIndicator(),
-                        //     errorWidget: (context, url, error) =>
-                        //         const Icon(Icons.error),
-                        //     fit: BoxFit.cover,
-                        //   ),
-                        // ),
-
                         ClipRRect(
                             borderRadius: BorderRadius.circular(60),
                             child: SvgPicture.asset(
@@ -77,13 +65,11 @@ class NotificationCard extends StatelessWidget {
                                   const CircularProgressIndicator(),
                               fit: BoxFit.cover,
                             )),
-
                         const Gap(8),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (notifications!.categoryName == null) Gap(10),
-
                             AppText(
                               title: notifications!.username.toString(),
                               fontWeight: FontWeight.w600,
@@ -91,46 +77,52 @@ class NotificationCard extends StatelessWidget {
                               maxLines: 1,
                               overFlow: TextOverflow.ellipsis,
                             ),
-                            const Gap(10),
-                            // Uncomment if needed
-                            // Row(
-                            //   children: [
-                            //     RatingBar.builder(
-                            //       initialRating: controller.ratings,
-                            //       minRating: 1,
-                            //       direction: Axis.horizontal,
-                            //       allowHalfRating: true,
-                            //       itemCount: 5,
-                            //       glow: false,
-                            //       itemSize: 14,
-                            //       unratedColor: Colors.grey,
-                            //       itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-                            //       itemBuilder: (context, _) => const Icon(
-                            //           Icons.star, color: Colors.yellow),
-                            //       onRatingUpdate: (rating) {
-                            //         controller.updateRating(rating);
-                            //       },
-                            //     ),
-                            //     const Gap(10),
-                            //     AppText(
-                            //       title: controller.ratings.toString(),
-                            //       size: 8.0,
-                            //       fontWeight: FontWeight.w500,
-                            //     ),
-                            //   ],
-                            // ),
-                            AppText(
-                              title: notifications!.categoryName != null
-                                  ? 'Ordered a'.tr +
-                                      ' ' +
-                                      '${notifications!.categoryName.toString()}'
-                                          .tr
-                                  : notifications!.title.toString(),
-                              size: 11,
-                              fontWeight: FontWeight.w600,
-                              maxLines: 2,
-                              overFlow: TextOverflow.ellipsis,
-                            ),
+                            Gap(10),
+                            if (notifications!.categoryName != null)
+                              AppText(
+                                title: 'Ordered a'.tr +
+                                    ' ' +
+                                    '${notifications!.categoryName.toString()}'
+                                        .tr,
+                                size: 11,
+                                fontWeight: FontWeight.w600,
+                                maxLines: 2,
+                                overFlow: TextOverflow.ellipsis,
+                              ),
+                            if (notifications!.categoryName == null)
+                              Row(
+                                children: [
+                                  AppText(
+                                    title: box.read('locale') == 'ar'
+                                        ? notifications!.artitle.toString()
+                                        : notifications!.title.toString(),
+                                    size: 11,
+                                    fontWeight: FontWeight.w600,
+                                    maxLines: 2,
+                                    overFlow: TextOverflow.ellipsis,
+                                  ),
+                                  if (notifications!.title ==
+                                      'New Order Received'.tr)
+                                    GestureDetector(
+                                      onTap: () {
+                                        notifications!.ordertype != 'urgent'
+                                            ? Get.toNamed(
+                                                AppRoutes.vorders_view)
+                                            : notifications!.ordertype ==
+                                                    'urgent'
+                                                ? Get.toNamed(AppRoutes
+                                                    .vurgent_orders_view)
+                                                : () {};
+                                      },
+                                      child: AppText(
+                                        title: '  ' + 'view'.tr,
+                                        color: Colors.blue,
+                                        size: 11,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
+                                ],
+                              ),
                             if (notifications!.categoryName != null)
                               Row(
                                 children: [
@@ -175,12 +167,11 @@ class NotificationCard extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       // Get.toNamed(AppRoutes.chatScreen);
-                        Get.to(() => ChatDetailScreenView(
-                              id: notifications!.sender!.id.toString(),
-                              name: notifications!.sender!.name.toString(),
-                              profilePic:
-                                 '',
-                              screen: 'chat'));
+                      Get.to(() => ChatDetailScreenView(
+                          id: notifications!.sender!.id.toString(),
+                          name: notifications!.sender!.name.toString(),
+                          profilePic: '',
+                          screen: 'chat'));
                     },
                     child: Container(
                       height: 30,

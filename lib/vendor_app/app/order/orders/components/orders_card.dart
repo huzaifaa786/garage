@@ -236,12 +236,16 @@ class OrdersCard extends StatelessWidget {
                         ),
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(38),
-                            child: AppNetworkImage(
-                              networkImage: order
-                                  .orderItems![0].userVehicles!.image
-                                  .toString(),
-                              fit: BoxFit.cover,
-                            )),
+                            child: order.orderItems!.isNotEmpty
+                                ? AppNetworkImage(
+                                    networkImage: order
+                                        .orderItems![0].userVehicles!.image
+                                        .toString(),
+                                    fit: BoxFit.cover,
+                                  )
+                                : AppText(
+                                    title: '',
+                                  )),
                       ),
                       Gap(12),
                       SvgPicture.asset(

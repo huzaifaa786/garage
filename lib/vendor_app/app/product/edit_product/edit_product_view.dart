@@ -65,7 +65,8 @@ class EditProductView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: AppText(
                         title:
-                            '(Note : prices will not be edited unless approved from the owner.)'.tr,
+                            '(Note : prices will not be edited unless approved from the owner.)'
+                                .tr,
                         size: 11,
                         fontWeight: FontWeight.w400,
                         color: AppColors.grey,
@@ -79,8 +80,10 @@ class EditProductView extends StatelessWidget {
                       selectedValue: controller.selectedCategory,
                       onChanged: (value) {
                         // controller.setSelectedCategory(value);
-                        UiUtilites.errorSnackbar('Error'.tr,
-                            "Category can't be changed while editing product".tr);
+                        UiUtilites.errorSnackbar(
+                            'Error'.tr,
+                            "Category can't be changed while editing product"
+                                .tr);
                         controller.update();
                       },
                       errorText: '',

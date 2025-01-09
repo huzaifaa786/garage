@@ -64,41 +64,64 @@ class NotificationCard extends StatelessWidget {
                                     color: AppColors.darkblue),
                               ),
                               Gap(15),
-                              status == 'PENDING'
-                                  ? SvgPicture.asset(
-                                      'assets/icons/order_accepted.svg',
-                                      height: 30,
-                                      width: 30,
-                                    )
-                                  : ClipRRect(
-                                      borderRadius: BorderRadius.circular(30),
-                                      child: AppNetworkImage(
-                                        networkImage:
-                                            notification!.order != null
-                                                ? notification!
-                                                    .order!.garage!.banner
-                                                    .toString()
-                                                : notification!.requestOrder!
-                                                    .garage!.banner
-                                                    .toString(),
-                                        assetPath:
-                                            'assets/images/street_garage.png',
-                                      ),
-                                    ),
-                              Gap(10),
-                              AppText(
-                                title: status == 'PENDING'
-                                    ? 'Congratulation!'.tr
-                                    : notification!.order != null
-                                        ? notification!.order!.garage!.name
+                              if (status == 'PENDING')
+                                SvgPicture.asset(
+                                  'assets/icons/order_accepted.svg',
+                                  height: 30,
+                                  width: 30,
+                                ),
+                              if (status != null)
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: AppNetworkImage(
+                                    networkImage: notification!.order != null
+                                        ? notification!.order!.garage!.banner
                                             .toString()
                                         : notification!
-                                            .requestOrder!.garage!.name
+                                            .requestOrder!.garage!.banner
                                             .toString(),
-                                size: 12,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.primarybg,
-                              ),
+                                    fit: BoxFit.cover,
+                                    assetPath:
+                                        'assets/images/street_garage.png',
+                                  ),
+                                ),
+                              if (status == null)
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: AppNetworkImage(
+                                    networkImage:
+                                        notification!.sender!.image!.toString(),
+                                    fit: BoxFit.cover,
+                                    assetPath:
+                                        'assets/images/street_garage.png',
+                                  ),
+                                ),
+                              Gap(10),
+                              if (status == 'PENDING')
+                                AppText(
+                                  title: 'Congratulation!'.tr,
+                                  size: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.primarybg,
+                                ),
+                              if (status != null)
+                                AppText(
+                                  title: notification!.order != null
+                                      ? notification!.order!.garage!.name
+                                          .toString()
+                                      : notification!.requestOrder!.garage!.name
+                                          .toString(),
+                                  size: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.primarybg,
+                                ),
+                              if (status == null)
+                                AppText(
+                                  title: notification!.sender!.name.toString(),
+                                  size: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.primarybg,
+                                ),
                             ],
                           ),
                           if (status != 'PENDING' ||
@@ -106,20 +129,44 @@ class NotificationCard extends StatelessWidget {
                               notification!.requestOrder != null)
                             GestureDetector(
                               onTap: () {
-                                // Get.toNamed(AppRoutes.chats_accounts);
+                                //
+                                String id = '';
+                                String name = '';
+                                String profilePic = '';
+                                //
+                                if (status == null) {
+                                  id = notification!.sender!.id.toString();
+                                  name = notification!.sender!.name.toString();
+                                  profilePic =
+                                      notification!.sender!.image ?? '';
+                                } else if (notification!.order != null) {
+                                  id = notification!.order!.garage!.id
+                                      .toString();
+                                  name = notification!.order!.garage!.name
+                                      .toString();
+                                } else if (notification!.requestOrder != null) {
+                                  id = notification!.requestOrder!.garage!.id
+                                      .toString();
+                                  name = notification!
+                                      .requestOrder!.garage!.name
+                                      .toString();
+                                }
                                 Get.to(() => ChatScreenView(
-                                    id: notification!.order != null
-                                        ? notification!.order!.garage!.id
-                                            .toString()
-                                        : notification!.requestOrder!.garage!.id
-                                            .toString(),
-                                    name: notification!.order != null
-                                        ? notification!.order!.garage!.name
-                                            .toString()
-                                        : notification!
-                                            .requestOrder!.garage!.name
-                                            .toString(),
-                                    profilePic: '',
+                                    // id: notification!.order != null
+                                    //     ? notification!.order!.garage!.id
+                                    //         .toString()
+                                    //     : notification!.requestOrder!.garage!.id
+                                    //         .toString(),
+                                    // name: notification!.order != null
+                                    //     ? notification!.order!.garage!.name
+                                    //         .toString()
+                                    //     : notification!
+                                    //         .requestOrder!.garage!.name
+                                    //         .toString(),
+                                    // profilePic: '',
+                                    id: id,
+                                    name: name,
+                                    profilePic: profilePic,
                                     screen: 'chat'));
                               },
                               child: Container(
@@ -139,35 +186,52 @@ class NotificationCard extends StatelessWidget {
                       ),
                     ),
                     Gap(16),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      child: AuthRichText(
-                        title: status == 'ACCEPTED'
-                            ? 'Has been accepted your order!'.tr
-                            : status == 'ON_THE_WAY'
-                                ? 'Your order is on the way'.tr
-                                : status == 'DELIVERED'
-                                    ? 'Your order has been delivered'.tr
-                                    : status == 'REJECTED'
-                                        ? 'Your order has been Rejected'.tr
-                                        : '',
-                        description: status == 'ACCEPTED' ? 'View_order'.tr : '',
-                        titlesize: 12,
-                        descriptiosize: 12,
-                        titleColor: AppColors.black,
-                        titlefontweight: FontWeight.w400,
-                        descriptionColor: AppColors.darkblue,
-                        descriptionfontweight: FontWeight.w500,
-                        onTap: () {
-                          Get.toNamed(
-                            AppRoutes.acceptedorder,
-                            parameters: {'path': 'notification'},
-                          );
-                        },
+                    if (status != null)
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 50),
+                        child: AuthRichText(
+                          title: status == 'ACCEPTED'
+                              ? 'Has been accepted your order!'.tr
+                              : status == 'ON_THE_WAY'
+                                  ? 'Your order is on the way'.tr
+                                  : status == 'DELIVERED'
+                                      ? 'Your order has been delivered'.tr
+                                      : status == 'REJECTED'
+                                          ? 'Your order has been Rejected'.tr
+                                          : '',
+                          description:
+                              status == 'ACCEPTED'.tr ? 'View_order'.tr : '',
+                          titlesize: 12,
+                          descriptiosize: 12,
+                          titleColor: AppColors.black,
+                          titlefontweight: FontWeight.w400,
+                          descriptionColor: AppColors.darkblue,
+                          descriptionfontweight: FontWeight.w500,
+                          onTap: () {
+                            Get.toNamed(
+                              AppRoutes.acceptedorder,
+                              parameters: {'path': 'notification'},
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    if ( status != 'REJECTED')
-                    // if (status != 'PENDING' || status != 'REJECTED')
+                    if (status == null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: AppText(
+                                title: notification!.body.toString(),
+                                size: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    if (status != 'REJECTED' && status != null)
+                      // if (status != 'PENDING' || status != 'REJECTED')
 
                       Column(
                         children: [
