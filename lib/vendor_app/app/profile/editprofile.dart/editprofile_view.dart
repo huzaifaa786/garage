@@ -169,6 +169,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                 ontap: () {
                                   Get.toNamed(AppRoutes.language);
                                 },
+                                
                                 icon: 'assets/images/globe.svg',
                                 text: 'Change Language'.tr,
                                 langtext: 'English'.tr,
