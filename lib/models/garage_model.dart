@@ -1,3 +1,4 @@
+import 'package:geocoding/geocoding.dart';
 import 'package:mobilegarage/models/garage_timing_model/garage_timing_model.dart';
 import 'package:mobilegarage/models/order_models/orders_model.dart';
 import 'package:mobilegarage/models/product_model.dart';
@@ -28,36 +29,39 @@ class GarageModel {
   OrdersModel? order;
   String? rating;
   String? garagerating;
+  final  locationName;
 
-  GarageModel(
-      {this.id,
-      this.banner,
-      this.logo,
-      this.ownerName,
-      this.name,
-      this.email,
-      this.idFront,
-      this.idBack,
-      this.license,
-      this.description,
-      this.phone,
-      this.lat,
-      this.lng,
-      this.emirateId,
-      this.address,
-      this.opened,
-      this.status,
-      this.garageTime,
-      this.createdAt,
-      this.servicecount,
-      this.banned,
-      this.order,
-      this.rating,
-      this.products,
-      this.garagerating
-      });
+  GarageModel({
+    this.id,
+    this.banner,
+    this.logo,
+    this.ownerName,
+    this.name,
+    this.email,
+    this.idFront,
+    this.idBack,
+    this.license,
+    this.description,
+    this.phone,
+    this.lat,
+    this.lng,
+    this.emirateId,
+    this.address,
+    this.opened,
+    this.status,
+    this.garageTime,
+    this.createdAt,
+    this.servicecount,
+    this.banned,
+    this.order,
+    this.rating,
+    this.products,
+    this.garagerating,
+    this.locationName,
+  });
 
-  factory GarageModel.fromJson(Map<String, dynamic> json) {
+  factory GarageModel.fromJson(json) {
+    
     return GarageModel(
       id: json['id'],
       banner: json['banner'],
@@ -76,8 +80,10 @@ class GarageModel {
       address: json['address'],
       opened: json['opened'],
       status: json['status'],
-      rating: json['average_rating']!=null?json['average_rating'].toString():null ,
-      garagerating: json['rating']!=null?json['rating'].toString():null ,
+      rating: json['average_rating'] != null
+          ? json['average_rating'].toString()
+          : null,
+      garagerating: json['rating'] != null ? json['rating'].toString() : null,
       servicecount: json['totalCategoryCount'].toString(),
       order: json['order'] != null ? OrdersModel.fromJson(json['order']) : null,
       garageTime: json['garage_time'] != null
@@ -93,6 +99,9 @@ class GarageModel {
               .map((item) => ProductModel.fromJson(item))
               .toList()
           : null,
+      
     );
   }
 }
+
+

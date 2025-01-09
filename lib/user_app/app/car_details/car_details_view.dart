@@ -221,7 +221,8 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                           displayValue: (item) =>
                                                               box.read('locale') ==
                                                                       'ar'
-                                                                  ? item.arName ?? item.name!
+                                                                  ? item.arName ??
+                                                                      item.name!
                                                                   : item.name!,
                                                           items: section[
                                                                   'brandnames'] ??
@@ -250,11 +251,17 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                     )
                                                   : Gap(0),
                                               MainInput(
+                                                errorText:
+                                                    controller.manufactureError,
+
                                                 hint: 'Year of manufacture'.tr,
                                                 controller: controller
                                                         .yearOfManufactureControllers[
                                                     index],
                                                 onchange: (p0) {
+                                                  controller.validateFields(
+                                                      "year_of_manufacture",
+                                                      p0);
                                                   section['year_of_manufacture'] =
                                                       p0;
                                                   controller.update();
@@ -263,9 +270,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                       '';
                                                   controller.update();
                                                 },
-                                                errorText: errors[
-                                                        'year_of_manufacture'] ??
-                                                    '',
+                                                // errorText:  ??
                                               ),
                                               Gap(27),
                                               MainInput(
@@ -286,9 +291,11 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                 title:
                                                     'Upload vehicle photo'.tr,
                                                 imgselect: () =>
-                                                //  controller
-                                                //     .selectVehicleImage(index),
-                                                controller.openImagePickerBottomSheet(index),
+                                                    //  controller
+                                                    //     .selectVehicleImage(index),
+                                                    controller
+                                                        .openImagePickerBottomSheet(
+                                                            index),
                                                 isImgSelected: controller
                                                     .isImageSelected(index),
                                                 selectedimgpath:

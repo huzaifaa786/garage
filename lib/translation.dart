@@ -509,19 +509,26 @@ class LocaleString extends Translations {
           'Account does not exist': 'Account does not exist',
           'Choose from Gallery': 'Choose from Gallery',
           'Take a Photo': 'Take a Photo',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-          'Add': 'Add',
-
+          'Are you sure that you want\n to add this date?':
+              'Are you sure that you want\n to add this date?',
+          'Are you sure that you want\n to delete this date?':
+              'Are you sure that you want\n to delete this date?',
+          "Manufacture year ": 'Manufacture year',
+          'must be a valid 4-digit year': 'must be a valid 4-digit year',
+          "can't be in the future": "can't be in the future",
+          "Unknown Location": "Unknown Location",
+        
         },
         'ar_AE': {
+          "can't be in the future": "لا يمكن أن يكون في المستقبل",
+          "must be a valid 4-digit year":
+              "يجب أن تكون سنة صالحة مكونة من 4 أرقام",
+              "Unknown Location":"موقع غير معروف",
+          "Manufacture year ": "سنة التصنيع",
+          "Are you sure that you want\n to delete this date?":
+              "هل أنت متأكد أنك تريد\n حذف هذا التاريخ؟",
+          "Are you sure that you want\n to add this date?":
+              "هل أنت متأكد أنك تريد\n إضافة هذا التاريخ؟",
           'Take a Photo': 'التقط صورة',
           'Choose from Gallery': 'اختر من المعرض',
           'Account does not exist': 'الحساب غير موجود',

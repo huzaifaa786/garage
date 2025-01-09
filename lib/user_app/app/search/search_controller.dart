@@ -17,7 +17,7 @@ class SearchScreenController extends GetxController {
   String selecetedPlace = '';
   String selecetedRating = '';
 
-  void updateApplySelections()async {
+  void updateApplySelections() async {
     selecetedPrice = selectedIndexPrice == 0
         ? ''
         : selectedIndexPrice == 1
@@ -46,7 +46,7 @@ class SearchScreenController extends GetxController {
           .compareTo(double.tryParse(a.rating ?? '0') ?? 0));
     }
 
- // filter with location
+    // filter with location
 
     if (selectedIndexClosest == 1) {
       Position position = await _getCurrentLocation();
@@ -66,13 +66,13 @@ class SearchScreenController extends GetxController {
             double.tryParse(b.lng ?? '0') ?? 0);
         return distanceA.compareTo(distanceB);
       });
+    } else if (selectedIndexClosest == 2) {
+      garages.shuffle();
     }
- else if (selectedIndexClosest == 2) {
-    garages.shuffle();  
-  }
     update();
   }
-Future<Position> _getCurrentLocation() async {
+
+  Future<Position> _getCurrentLocation() async {
     // Check if location services are enabled
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
@@ -96,12 +96,11 @@ Future<Position> _getCurrentLocation() async {
 
   double calculateDistance(
       double userLat, double userLng, double garageLat, double garageLng) {
-
     var latDistance = (userLat - garageLat).abs();
     var lngDistance = (userLng - garageLng).abs();
-    return latDistance +
-        lngDistance; 
+    return latDistance + lngDistance;
   }
+
   void ResetSelections() {
     selecetedPrice = '';
     selecetedPlace = '';
@@ -148,6 +147,7 @@ Future<Position> _getCurrentLocation() async {
     super.onInit();
   }
 
+
   Future getGarages() async {
     var response = await PostApi.getAllGarages(searchText);
     log('$response');
@@ -165,23 +165,28 @@ Future<Position> _getCurrentLocation() async {
     }
     update();
   }
-Future getsearchGarages() async {
+
+  Future getsearchGarages() async {
     var response = await PostApi.getAllGarages(searchController.text);
     log('$response');
     if (response != {}) {
       garages = (response['garages'] as List<dynamic>)
           .map((postJson) => GarageModel.fromJson(postJson))
           .toList();
+      update();
       filteredGarages = garages;
       if (garages.isNotEmpty) {
         GarageModel post = garages.first;
         lat = double.tryParse(post.lat!);
         lng = double.tryParse(post.lng!);
         getPlaceName(lat!, lng!);
+        update();
       }
     }
     update();
   }
+  
+
   void filterPosts({String? query, String? category}) {
     searchText = query ?? '';
     selectedCategory = category ?? '';
@@ -214,13 +219,20 @@ Future getsearchGarages() async {
   double? lng;
 
   Future<void> getPlaceName(double latitude, double longitude) async {
+    print("sssssssssssssssssssssssslatitude$latitude");
+    print("sssssssssssssssssssssssslongitude$longitude");
+
     List<Placemark> placemarks =
         await placemarkFromCoordinates(latitude, longitude);
+         update();
     if (placemarks.isNotEmpty) {
+     
       Placemark place = placemarks.first;
       currentAddress =
-          //  '${place.name},'
           ' ${place.locality}, ${place.administrativeArea}, ${place.country}';
+      update();
+      print(
+          "dddddddddddddddddddddddddddddddddddddddddddddddddcurrentAddress$currentAddress");
     }
     update();
   }

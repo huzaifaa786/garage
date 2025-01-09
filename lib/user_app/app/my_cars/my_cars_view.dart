@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/models/brand_model.dart';
 import 'package:mobilegarage/models/brand_name_model.dart';
 import 'package:mobilegarage/models/vehicle_model.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/app/my_cars/components/radio_card.dart';
 import 'package:mobilegarage/user_app/app/my_cars/my_cars_controllers.dart';
 import 'package:mobilegarage/user_app/components/app_bar/top_bar.dart';
@@ -183,8 +184,9 @@ class _MyCarsViewState extends State<MyCarsView> {
                                               if (index != 0)
                                                 AppText(
                                                   title: index == 0
-                                                      ? 'Vehicle Details'
-                                                      : 'Vehicle'.tr + ' ${index + 1}',
+                                                      ? 'Vehicle Details'.tr
+                                                      : 'Vehicle'.tr +
+                                                          ' ${index + 1}',
                                                   size: 14,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -216,7 +218,10 @@ class _MyCarsViewState extends State<MyCarsView> {
                                         ),
                                         Gap(36),
                                         DropDownField<VehicleModel>(
-                                          displayValue: (item) => item.name!,
+                                          displayValue: (item) =>
+                                              box.read('locale') == 'ar'
+                                                  ? item.arName!
+                                                  : item.name!,
                                           items: controller.vehilcles,
                                           hint: 'Type of vehicle'.tr,
                                           selectedValue:
@@ -240,10 +245,13 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                 children: [
                                                   DropDownField<BrandModel>(
                                                     displayValue: (item) =>
-                                                        item.name,
+                                                        box.read('locale') ==
+                                                                'ar'
+                                                            ? item.arName!
+                                                            : item.name,
                                                     items:
                                                         section['brands'] ?? [],
-                                                    hint: 'Car brand'.tr,
+                                                    hint: 'brand'.tr,
                                                     selectedValue: section[
                                                         'vehiclebrand_id'],
                                                     onChanged: (value) {
@@ -271,7 +279,11 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                 children: [
                                                   DropDownField<BrandNameModel>(
                                                     displayValue: (item) =>
-                                                        item.name!,
+                                                        box.read('locale') ==
+                                                                'ar'
+                                                            ? item.arName ??
+                                                                item.name!
+                                                            : item.name!,
                                                     items:
                                                         section['brandnames'] ??
                                                             [],
@@ -298,6 +310,8 @@ class _MyCarsViewState extends State<MyCarsView> {
                                               )
                                             : Gap(0),
                                         MainInput(
+                                          // errorText :
+
                                           hint: 'Year of manufacture'.tr,
                                           controller: controller
                                                   .yearOfManufactureControllers[
@@ -306,12 +320,14 @@ class _MyCarsViewState extends State<MyCarsView> {
                                             section['year_of_manufacture'] = p0;
                                             controller.update();
 
-                                            errors['year_of_manufacture'] ?? '';
+                                            controller.validateCarFields(
+                                                "year_of_manufacture", p0);
                                             controller.update();
                                           },
+                                          // errorText:
+                                          //     errors["year_of_manufacture"],
                                           errorText:
-                                              errors['year_of_manufacture'] ??
-                                                  '',
+                                              controller.yearmanufactureerror,
                                         ),
                                         Gap(27),
                                         MainInput(
@@ -319,11 +335,13 @@ class _MyCarsViewState extends State<MyCarsView> {
                                           controller: controller
                                               .carInfoControllers[index],
                                           onchange: (value) {
+                                            controller.validateCarFields(
+                                                "vehicle_info", value);
                                             section['vehicle_info'] = value;
                                             controller.update();
                                           },
                                           errorText:
-                                              errors['vehicle_info'] ?? '',
+                                              errors['vehicle_info'] ?? "",
                                         ),
                                         Gap(42),
                                         DottedBorderButton(
@@ -404,8 +422,13 @@ class _MyCarsViewState extends State<MyCarsView> {
                             child: MainButton(
                               height: Get.height * 0.07,
                               title: 'Save Changes'.tr,
-                              onTap: () {
-                                controller.addvehicle();
+                              onTap: () async {
+                                bool isValid =
+                                    await controller.validateCarForm();
+                                if (isValid) {
+                                  controller.addvehicle();
+                                }
+
                                 // UiUtilites.DeleteSuccessAlert(
                                 //     context, () {}, () {});
                               },

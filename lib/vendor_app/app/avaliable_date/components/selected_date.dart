@@ -87,6 +87,7 @@ class SelectedDate extends StatelessWidget {
                           },
                           onConfirmTap: () async {
                             controller.removeDate(date);
+                             Navigator.of(context).pop();
                             controller.update();
                           },
                           title:
