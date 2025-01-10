@@ -317,17 +317,20 @@ class _MyCarsViewState extends State<MyCarsView> {
                                                   .yearOfManufactureControllers[
                                               index],
                                           onchange: (p0) {
-                                            section['year_of_manufacture'] = p0;
-                                            controller.update();
+                                           
 
                                             controller.validateCarFields(
                                                 "year_of_manufacture", p0);
+                                                 section['year_of_manufacture'] = p0;
+                                            controller.update();
+                                                
+                                            
                                             controller.update();
                                           },
                                           // errorText:
                                           //     errors["year_of_manufacture"],
-                                          errorText:
-                                              controller.yearmanufactureerror,
+                                          errorText: errors["year_of_manufacture"] ?? ""
+                                              ,
                                         ),
                                         Gap(27),
                                         MainInput(
