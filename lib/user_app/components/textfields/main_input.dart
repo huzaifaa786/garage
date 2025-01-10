@@ -22,6 +22,7 @@ class MainInput extends StatelessWidget {
     this.onchange,
     this.height = 55.0,
     this.width,
+    this.keyboardAppearance,
   });
 
   final double height;
@@ -29,6 +30,7 @@ class MainInput extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final bool obscure;
+  final keyboardAppearance;
   final String? hint;
   final TextInputType type;
   final String? label;
@@ -54,6 +56,8 @@ class MainInput extends StatelessWidget {
                 ? circularErrorInputDecoration
                 : circularInputDecoration,
             child: TextFormField(
+
+           
               onChanged: onchange,
               readOnly: readOnly,
               maxLines: maxlines,

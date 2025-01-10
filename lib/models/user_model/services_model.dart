@@ -16,7 +16,7 @@ class ServicesModel {
   factory ServicesModel.fromJson(Map<String, dynamic> json) {
     return ServicesModel(
       id: json['id'],
-      image: json['image'],
+      image: json['image'].toString(),
       name: json['name'],
       ar_name: json['ar_name'],
       subText: json['subText'],
