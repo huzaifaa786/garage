@@ -532,8 +532,13 @@ class LocaleString extends Translations {
           'You cannot delete this image as it is the only image left.':
               'You cannot delete this image as it is the only image left',
           'New Order Received': 'New Order Received',
+          "Please upload the image": "Please upload the image",
+         'Brand':"Brand",
         },
         'ar_AE': {
+           'Brand': 'ماركة',
+          'Please select a vehicle type': 'يرجى اختيار نوع المركبة',
+          "Please upload the image": "يرجى تحميل الصورة",
           "can't be in the future": "لا يمكن أن يكون في المستقبل",
           "must be a valid 4-digit year":
               "يجب أن تكون سنة صالحة مكونة من 4 أرقام",
