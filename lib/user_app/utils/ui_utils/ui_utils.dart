@@ -12,6 +12,92 @@ import 'package:mobilegarage/vendor_app/utils/app_button/app_button.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 
 class UiUtilites {
+  static AdminAlert(context, ontapButton,
+      {required title, subTitle, String? buttontitle}) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          margin: EdgeInsets.symmetric(horizontal: 12),
+          child: AlertDialog(
+            backgroundColor: AppColors.white,
+            surfaceTintColor: AppColors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            content: Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        '$title',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Gap(10),
+                      Gap(10),
+                      Text(
+                        '$subTitle',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Gap(16),
+                      AppButton(
+                        //  borderColor: AppColors.whiteColor,
+                        // height: 55,
+                        buttonWidth: Get.width,
+                        title: "Done".tr,
+                        ontap: ontapButton,
+                        buttonColor: AppColors.primary,
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 1,
+                  right: 1,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                      height: 17,
+                      width: 17,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: AppColors.lightgreysettingCard,
+                      ),
+                      child: SvgPicture.asset(
+                        "assets/icons/cross.svg",
+                        color: AppColors.black,
+                        height: 15,
+                        width: 15,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 //   static UploadphotoAlert(
 //     context,
 //     title1,
@@ -403,7 +489,7 @@ class UiUtilites {
                             ),
                             TextSpan(text: ' from your cars'.tr),
                           ],
-                        ),  
+                        ),
                       ),
                     ),
                     SizedBox(height: 20.0),
@@ -421,12 +507,12 @@ class UiUtilites {
                           ),
                           child: Center(
                               child: GestureDetector(
-                                onTap: noOnTap,
-                                child: Text(
-                                  "No".tr,
-                                  style: TextStyle(color: AppColors.red),
-                                ),
-                              )),
+                            onTap: noOnTap,
+                            child: Text(
+                              "No".tr,
+                              style: TextStyle(color: AppColors.red),
+                            ),
+                          )),
                         ),
                         Container(
                           width: Get.width * 0.3,
@@ -438,12 +524,12 @@ class UiUtilites {
                           ),
                           child: Center(
                               child: GestureDetector(
-                                onTap: yesOnTap,
-                                child: Text(
-                                  "Yes".tr,
-                                  style: TextStyle(color: Colors.green),
-                                ),
-                              )),
+                            onTap: yesOnTap,
+                            child: Text(
+                              "Yes".tr,
+                              style: TextStyle(color: Colors.green),
+                            ),
+                          )),
                         ),
                       ],
                     )
