@@ -3,7 +3,6 @@ class OilExtraModel {
   int? categoryId;
   String? name;
   String? ar_name;
-
   String? description;
   String? price;
   String? createdAt;

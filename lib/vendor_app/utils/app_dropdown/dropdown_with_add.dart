@@ -10,7 +10,6 @@ import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 
-
 class DropDownWithAdd<T> extends StatelessWidget {
   DropDownWithAdd({
     super.key,

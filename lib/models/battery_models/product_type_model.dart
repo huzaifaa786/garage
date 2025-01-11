@@ -21,7 +21,6 @@ class BatteryProductTypeModel {
       categoryId: json['category_id'],
       name: json['name'],
       ar_name: json['ar_name'],
-
       createdAt: json['created_at'],
     );
   }

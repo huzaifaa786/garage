@@ -2,6 +2,7 @@ class RoadAssistanceExtraModel {
   int? id;
   int? categoryId;
   String? name;
+  String? arname;
   String? description;
   String? price;
   String? time;
@@ -14,6 +15,7 @@ class RoadAssistanceExtraModel {
       this.description,
       this.price,
       this.createdAt,
+      this.arname,
       this.time});
 
   factory RoadAssistanceExtraModel.from(Map<String, dynamic> json) {
@@ -24,6 +26,9 @@ class RoadAssistanceExtraModel {
       name: json['category_extra'] != null
           ? json['category_extra']['name']
           : json['name'] ?? '',
+           arname: json['category_extra'] != null
+          ? json['category_extra']['ar_name']
+          : json['ar_name'] ?? '',
 
       time: json['time'] ?? '',
       description: json['description'] ?? '',
