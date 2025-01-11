@@ -14,20 +14,18 @@ class Validators {
       return null;
     }
   }
-  static String? manufactureYearValidator(String? value,) {
-  if (value == null) {
-    return null;
-  } else if (value.isEmpty) {
-    return "Manufacture year ".tr + "can't be empty".tr;
-  } else if (!RegExp(r'^\d{4}$').hasMatch(value)) {
-    return "Manufacture year".tr + "must be a valid 4-digit year".tr;
-  } else if (int.parse(value) > DateTime.now().year) {
-    return "Manufacture year".tr + "can't be in the future".tr;
-  } else {
-    return null;
-  }
-}
 
+  static String? manufactureYearValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Manufacture year ".tr + "can't be empty".tr;
+    } else if (!RegExp(r'^\d{4}$').hasMatch(value)) {
+      return "Manufacture year ".tr + "must be a valid 4-digit year".tr;
+    } else if (int.parse(value) > DateTime.now().year) {
+      return "Manufacture year ".tr + "can't be in the future".tr;
+    } else {
+      return null; 
+    }
+  }
 
   /// Validates the Email for User Authentication
   static String? emailValidator(String? email) {
