@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/product_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/product_card.dart';
@@ -46,7 +47,10 @@ class _VProductsViewState extends State<VProductsView> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 15, vertical: 10),
                                     child: AppText(
-                                      title: categoryies.name.toString(),
+                                      title: 
+                                      box.read('locale')=='ar'?
+                                      categoryies.ar_name.toString():
+                                      categoryies.name.toString(),
                                       size: 14,
                                       fontWeight: FontWeight.w600,
                                     ),

@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobilegarage/models/category_model.dart';
 import 'package:mobilegarage/models/product_model.dart';
+import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/utils/App_image_network/app_image_network.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/app/product/products/component/button.dart';
@@ -54,20 +55,26 @@ class ProductCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // AppText(
+                    //   title: product!.brands != null
+                    //       ? product!.brands!.name.toString()
+                    //       : category!.name!.toString(),
+                    //   size: 14,
+                    //   fontWeight: FontWeight.w600,
+                    //   maxLines: 2,
+                    // ),
                     AppText(
-                      title: product!.brands != null
-                          ? product!.brands!.name.toString()
-                          : category!.name!.toString(),
+                      title: box.read('locale') == 'ar'
+                          ? (product!.brands != null
+                              ? product!.brands!.arName.toString()
+                              : category!.ar_name!.toString())
+                          : (product!.brands != null
+                              ? product!.brands!.name.toString()
+                              : category!.name!.toString()),
                       size: 14,
                       fontWeight: FontWeight.w600,
                       maxLines: 2,
                     ),
-                    // const Gap(6.0),
-                    // AppText(
-                    //   title: products!.description.toString(),
-                    //   size: 12,
-                    //   fontWeight: FontWeight.w500,
-                    // ),
                     const Gap(6.0),
                     if (product!.price != '')
                       AppText(
@@ -91,12 +98,10 @@ class ProductCard extends StatelessWidget {
                         EdittButton(
                           ontap: () {
                             UiUtilites.showConfirmationDialog(
-                              false,
-                              'Are you sure you want to\n delete this Product?'
-                                  .tr,
-                              onConfirm: 
-                                ondeltap
-                            );
+                                false,
+                                'Are you sure you want to\n delete this Product?'
+                                    .tr,
+                                onConfirm: ondeltap);
                           },
                           // ontap: () {
                           //   UiUtilites.confirmAlertDialog(

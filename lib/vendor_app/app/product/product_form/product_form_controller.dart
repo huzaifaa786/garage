@@ -74,20 +74,19 @@ class ProductFormController extends GetxController {
     }
   }
 
-  
-onCaptureSingleImage() async {
-  final imageSelectorApi = ImageSelectorApi();
+  onCaptureSingleImage() async {
+    final imageSelectorApi = ImageSelectorApi();
 
-  // Capture a single image using the camera
-  final pickedImage = await imageSelectorApi.selectCameraImage();
+    // Capture a single image using the camera
+    final pickedImage = await imageSelectorApi.selectCameraImage();
 
-  if (pickedImage != null) {
-    images.add(File(pickedImage.path)); // Add the captured image to the list
-    update();
-  } else {
-    print('No image captured');
+    if (pickedImage != null) {
+      images.add(File(pickedImage.path)); // Add the captured image to the list
+      update();
+    } else {
+      print('No image captured');
+    }
   }
-}
 
   removeSelectedImages(int index) {
     images.removeAt(index);
@@ -243,7 +242,7 @@ onCaptureSingleImage() async {
     update();
   }
 
-TextEditingController searchbrandController= TextEditingController();
+  TextEditingController searchbrandController = TextEditingController();
   ProductDetailModel? productdetails;
 //
   List<BatteryProductTypeModel> producttypes = [];
@@ -1334,20 +1333,53 @@ TextEditingController searchbrandController= TextEditingController();
     }
   }
 
+  // String getTitle(int index) {
+  //   switch (selectedCategoryId) {
+  //     case 2:
+  //       return oilextras[index].name.toString();
+  //     case 4:
+  //       return roadAssistanceExtras[index].name.toString();
+  //     case 7:
+  //       return recoveryExtras[index].name.toString();
+  //     case 9:
+  //       return fuelExtras[index].name.toString();
+  //     case 1:
+  //       return carwashExtras[index].name.toString();
+  //     case 8:
+  //       return acExtras[index].name.toString();
+  //     default:
+  //       return '';
+  //   }
+  // }
   String getTitle(int index) {
+
+    bool isArabic = box.read('locale') == 'ar';
+
     switch (selectedCategoryId) {
       case 2:
-        return oilextras[index].name.toString();
+        return isArabic
+            ? oilextras[index].ar_name.toString()
+            : oilextras[index].name.toString();
       case 4:
-        return roadAssistanceExtras[index].name.toString();
+        return isArabic
+            ? roadAssistanceExtras[index].arname.toString()
+            : roadAssistanceExtras[index].name.toString();
       case 7:
-        return recoveryExtras[index].name.toString();
+        return isArabic
+            ? recoveryExtras[index].arname.toString()
+            : recoveryExtras[index].name.toString();
       case 9:
-        return fuelExtras[index].name.toString();
+        return isArabic
+            ? fuelExtras[index].arname.toString()
+            : fuelExtras[index].name.toString();
       case 1:
-        return carwashExtras[index].name.toString();
+        return isArabic
+            ? carwashExtras[index].arname.toString()
+            : carwashExtras[index].name.toString();
       case 8:
-        return acExtras[index].name.toString();
+        return isArabic
+            ? acExtras[index].arname.toString()
+            : acExtras[index].name.toString();
       default:
         return '';
     }
@@ -1357,7 +1389,7 @@ TextEditingController searchbrandController= TextEditingController();
   String selectedName = 'Brands Name';
   bool isExpanded = false;
 
-   toggleisExpanded() {
+  toggleisExpanded() {
     isExpanded = !isExpanded;
     update();
   }

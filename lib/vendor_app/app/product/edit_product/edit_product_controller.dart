@@ -971,20 +971,52 @@ class EditProductController extends GetxController {
     }
   }
 
-  String getTitle(int index) {
+  // String getTitle(int index) {
+  //   switch (selectedCategoryId) {
+  //     case 2:
+  //       return product!.oilextra![index].name.toString();
+  //     case 4:
+  //       return product!.roadextra![index].name.toString();
+  //     case 7:
+  //       return product!.recoveryextra![index].name.toString();
+  //     case 9:
+  //       return product!.fuelextra![index].name.toString();
+  //     case 1:
+  //       return product!.carwashextra![index].name.toString();
+  //     case 8:
+  //       return product!.acextra![index].name.toString();
+  //     default:
+  //       return '';
+  //   }
+  // }
+
+   String getTitle(int index) {
+    bool isArabic = box.read('locale') == 'ar';
     switch (selectedCategoryId) {
       case 2:
-        return product!.oilextra![index].name.toString();
+        return isArabic
+            ? oilextras[index].ar_name.toString()
+            : oilextras[index].name.toString();
       case 4:
-        return product!.roadextra![index].name.toString();
+        return isArabic
+            ? roadAssistanceExtras[index].arname.toString()
+            : roadAssistanceExtras[index].name.toString();
       case 7:
-        return product!.recoveryextra![index].name.toString();
+        return isArabic
+            ? recoveryExtras[index].arname.toString()
+            : recoveryExtras[index].name.toString();
       case 9:
-        return product!.fuelextra![index].name.toString();
+        return isArabic
+            ? fuelExtras[index].arname.toString()
+            : fuelExtras[index].name.toString();
       case 1:
-        return product!.carwashextra![index].name.toString();
+        return isArabic
+            ? carwashExtras[index].arname.toString()
+            : carwashExtras[index].name.toString();
       case 8:
-        return product!.acextra![index].name.toString();
+        return isArabic
+            ? acExtras[index].arname.toString()
+            : acExtras[index].name.toString();
       default:
         return '';
     }

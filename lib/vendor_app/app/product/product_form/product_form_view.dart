@@ -245,7 +245,10 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<BatteryOriginModel>(
-                                displayValue: (item) => item.origin!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_origin.toString()
+                                        : item.origin!,
                                 items: controller.batteryOrigins,
                                 hint: 'Origin'.tr,
                                 selectedValue: controller.selectedbatteryOrigin,
@@ -261,7 +264,10 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<BatteryAmpereModel>(
-                                displayValue: (item) => item.ampere!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_ampere.toString()
+                                        : item.ampere!,
                                 items: controller.batteryAmperes,
                                 hint: 'Battery Ampere'.tr,
                                 selectedValue: controller.selectedampere,
@@ -275,7 +281,10 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<BatteryVoltageModel>(
-                                displayValue: (item) => item.voltage!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_voltage.toString()
+                                        : item.voltage!,
                                 items: controller.batteryVoltages,
                                 hint: 'Battery Voltage'.tr,
                                 selectedValue: controller.selectedvoltage,
@@ -295,7 +304,10 @@ class ProductFormView extends StatelessWidget {
                             children: [
                               Gap(20),
                               DropDownField<TyreWidthModel>(
-                                displayValue: (item) => item.width!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_width.toString()
+                                        : item.width!,
                                 items: controller.tyrewidths,
                                 hint: 'Tyre width'.tr,
                                 selectedValue: controller.selectedwidth,
@@ -309,9 +321,12 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyreHeightModel>(
-                                displayValue: (item) => item.height!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_height.toString()
+                                        : item.height!,
                                 items: controller.tyreheights,
-                                hint: 'Tyer height'.tr,
+                                hint: 'Tyre height'.tr,
                                 selectedValue: controller.selectedheight,
                                 onChanged: (value) {
                                   controller.setSelectedheight(value);
@@ -323,7 +338,10 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyreSizeModel>(
-                                displayValue: (item) => item.size!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_size.toString()
+                                        : item.size!,
                                 items: controller.tyresizes,
                                 hint: 'Wheel size'.tr,
                                 selectedValue: controller.selectedsize,
@@ -337,7 +355,10 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyreSpeedRatingModel>(
-                                displayValue: (item) => item.speedrating!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_speedrating.toString()
+                                        : item.speedrating!,
                                 items: controller.tyreSpeedRatings,
                                 hint: 'Speed rating'.tr,
                                 selectedValue: controller.selectedSpeedRating,
@@ -353,7 +374,10 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyrePatternModel>(
-                                displayValue: (item) => item.pattern!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_pattern.toString()
+                                        : item.pattern!,
                                 items: controller.tyrepattterens,
                                 hint: 'Pattern'.tr,
                                 selectedValue: controller.selectedpatteren,
@@ -367,7 +391,10 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyreOriginModel>(
-                                displayValue: (item) => item.origin!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_origin.toString()
+                                        : item.origin!,
                                 items: controller.tyreorigins,
                                 hint: 'Origin'.tr,
                                 selectedValue: controller.selectedtyreorigin,
@@ -389,7 +416,10 @@ class ProductFormView extends StatelessWidget {
                             children: [
                               Gap(20),
                               DropDownField<OilProductTTypeModel>(
-                                displayValue: (item) => item.producttype!,
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
+                                        ? item.ar_producttype.toString()
+                                        : item.producttype!,
                                 items: controller.oilproductTypes,
                                 hint: 'Product type'.tr,
                                 selectedValue:
@@ -406,7 +436,9 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<OilVolumeModel>(
-                                displayValue: (item) => item.volume!,
+                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                        ? item.arvolume.toString()
+                                        : item.volume!,
                                 items: controller.oilVolumes,
                                 hint: 'Liquid volume liter'.tr,
                                 selectedValue: controller.selectedvolume,
