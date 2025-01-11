@@ -44,7 +44,9 @@ class _HomeViewState extends State<HomeView> {
                   Get.toNamed(AppRoutes.chats_accounts)!.then((value) {
                     controller.countUnSeenMsg();
                   });
-                  // UiUtilites.AdminAlert(context, () {},
+                  // UiUtilites.AdminAlert(context, () {
+                  // Get.back();
+                  // },
                   //     title: "Congratulation",
                   //     subTitle:
                   //         "Your account has been created successfully,and its pending approval.");
