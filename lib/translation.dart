@@ -534,8 +534,10 @@ class LocaleString extends Translations {
           'New Order Received': 'New Order Received',
           "Please upload the image": "Please upload the image",
          'Brand':"Brand",
+      
         },
         'ar_AE': {
+          "Vehicle": "مركبة",
            'Brand': 'ماركة',
           'Please select a vehicle type': 'يرجى اختيار نوع المركبة',
           "Please upload the image": "يرجى تحميل الصورة",
