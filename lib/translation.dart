@@ -533,12 +533,19 @@ class LocaleString extends Translations {
               'You cannot delete this image as it is the only image left',
           'New Order Received': 'New Order Received',
           "Please upload the image": "Please upload the image",
-         'Brand':"Brand",
-      
+          'Brand': "Brand",
+          'User is banned. Please contact support.':
+              'User is banned. Please contact support.',
+          'Your garage is banned. Please contact support.':
+              'Your garage is banned. Please contact support.',
         },
         'ar_AE': {
+          'Your garage is banned. Please contact support.':
+              'تم حظر كراجك. يرجى الاتصال بالدعم.',
+          'User is banned. Please contact support.':
+              'تم حظر المستخدم. يرجى الاتصال بالدعم.',
           "Vehicle": "مركبة",
-           'Brand': 'ماركة',
+          'Brand': 'ماركة',
           'Please select a vehicle type': 'يرجى اختيار نوع المركبة',
           "Please upload the image": "يرجى تحميل الصورة",
           "can't be in the future": "لا يمكن أن يكون في المستقبل",
@@ -762,7 +769,7 @@ class LocaleString extends Translations {
           'Recomended size 390 * 185 px': 'الحجم الموصى به 390 * 185 بكسل',
           'Reset Password?': 'إعادة تعيين كلمة المرور؟',
           'Resend': 'إعادة الإرسال',
-          'Reviews': 'مات',
+          'Reviews': 'التقييمات',
           'Reset': 'إعادة تعيين',
           'Random': 'عشوائي',
           'Rating': 'التقييم',
@@ -973,7 +980,6 @@ class LocaleString extends Translations {
           'Extra Price is required': 'السعر الإضافي مطلوب',
           'Extra Time is required': 'الوقت الإضافي مطلوب',
           'Extra description is required': 'الوصف الإضافي مطلوب',
-          'Please select a vehicle type': 'يرجى اختيار نوع المركبة',
           'Please select a vehicle brand': 'يرجى اختيار علامة تجارية للمركبة',
           'Please select a vehicle brand name':
               'يرجى اختيار اسم علامة تجارية للمركبة',
@@ -1018,7 +1024,6 @@ class LocaleString extends Translations {
           'View More': 'عرض المزيد',
           'View Offer': 'عرض العرض',
           'Vehicles': 'المركبات',
-          'Vehicle': 'المركبة',
           'Vehicle Details': 'تفاصيل المركبة',
           'Verify your phone number': 'تحقق من رقم هاتفك',
           'Verify OTP': 'تحقق من OTP',

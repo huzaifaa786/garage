@@ -22,41 +22,40 @@ class HomeController extends GetxController {
   List<BannerModel> banners = [];
   List<ServicesModel> servicesList = [];
   GetStorage box = GetStorage();
-String? notificationcount=''; 
+  String? notificationcount = '';
   @override
   void onInit() async {
     super.onInit();
     await getBanners();
     await getServices();
     await getGarageRatings();
-   await countNotification();
-   await countUnSeenMsg();
-
+    await countNotification();
+    await countUnSeenMsg();
   }
- countNotification() async {
+
+  countNotification() async {
     var response = await UserNotificationCountApi.countNotification();
     if (response.isNotEmpty) {
-  notificationcount =response['count'].toString();
-    update();
-      
+      notificationcount = response['count'].toString();
+      update();
     }
   }
-String? msgUnSeenCount = '';
 
-   countUnSeenMsg() async {
+  String? msgUnSeenCount = '';
+
+  countUnSeenMsg() async {
     LoadingHelper.show();
     var url = chatbaseUrl + '/unseen/all';
     var data;
     GetStorage box = GetStorage();
     data = {
-      'api_token': box.read('api_token')!,
+      'api_token': box.read('api_token').toString(),
     };
     var response = await Api.execute(url: url, data: data);
     msgUnSeenCount = response['unseen'].toString();
     update();
     LoadingHelper.dismiss();
   }
-
 
   int currentIndex = 0;
 
