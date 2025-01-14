@@ -13,6 +13,7 @@ import 'package:mobilegarage/user_app/components/textfields/icon_inputfield.dart
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
+import 'package:mobilegarage/user_app/utils/ui_utils/ui_utils.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -43,6 +44,12 @@ class _HomeViewState extends State<HomeView> {
                   Get.toNamed(AppRoutes.chats_accounts)!.then((value) {
                     controller.countUnSeenMsg();
                   });
+                  // UiUtilites.AdminAlert(context, () {
+                  // Get.back();
+                  // },
+                  //     title: "Congratulation",
+                  //     subTitle:
+                  //         "Your account has been created successfully,and its pending approval.");
                 },
                 ischat: controller.msgUnSeenCount == '0' ? false : true,
                 onNotificationtap: () {
@@ -70,7 +77,8 @@ class _HomeViewState extends State<HomeView> {
                           onsubmit: (value) {
                             Get.toNamed(AppRoutes.search, parameters: {
                               'searchtext': controller.searchController.text
-                            })!.then((value) {
+                            })!
+                                .then((value) {
                               controller.searchController.clear();
                             });
                           },

@@ -84,18 +84,17 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                     var section = entry.value;
                                     var errors =
                                         controller.sectionErrors[index] ?? {};
+
                                     return Column(
                                       key: ValueKey(index),
                                       children: [
                                         if (index != 0)
                                           Divider(
-                                            thickness: 14,
-                                            color: AppColors.grey.shade100,
-                                          ),
+                                              thickness: 14,
+                                              color: AppColors.grey.shade100),
                                         Padding(
                                           padding: EdgeInsets.symmetric(
-                                            horizontal: 35,
-                                          ),
+                                              horizontal: 35),
                                           child: Column(
                                             key: ValueKey(index),
                                             children: [
@@ -109,16 +108,14 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    if (index != 0)
-                                                      AppText(
-                                                        title: index == 0
-                                                            ? 'Vehicle Details'
-                                                            : '${'Vehicle'.tr} ${index + 1}',
-                                                        // 'Vehicle ${index + 1}',
-                                                        size: 14,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
+                                                    AppText(
+                                                      title: index == 0
+                                                          ? 'Vehicle Details'.tr
+                                                          : 'Vehicle ${index + 1}',
+                                                      size: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
                                                     if (index != 0)
                                                       GestureDetector(
                                                         onTap: () => controller
@@ -127,10 +124,9 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                         child: Row(
                                                           children: [
                                                             SvgPicture.asset(
-                                                              "assets/icons/delete.svg",
-                                                              color: AppColors
-                                                                  .primarybg,
-                                                            ),
+                                                                "assets/icons/delete.svg",
+                                                                color: AppColors
+                                                                    .primarybg),
                                                             AppText(
                                                               title:
                                                                   "Delete".tr,
@@ -140,7 +136,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                                       .w500,
                                                               color: AppColors
                                                                   .primarybg,
-                                                            )
+                                                            ),
                                                           ],
                                                         ),
                                                       ),
@@ -161,118 +157,104 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                   controller.setSelectedVehicle(
                                                       index, value);
                                                   controller.validateCarFields(
-                                                      "vehicletype",
-                                                      controller
-                                                          .selectedVehicleId
-                                                          .toString());
-                                                  controller.update();
+                                                      "vehicletype", value?.id,
+                                                      index: index);
                                                 },
                                                 errorText:
-                                                    errors['vehicletype'] ?? '',
+                                                    errors['vehicletype'] ?? "",
                                               ),
+                                              if (section['vehicletype_id'] !=
+                                                      null &&
+                                                  controller
+                                                      .vehilcles.isNotEmpty)
+                                                Gap(20),
+                                              if (section['vehicletype_id'] !=
+                                                      null &&
+                                                  controller
+                                                      .vehilcles.isNotEmpty)
+                                                DropDownField<BrandModel>(
+                                                  displayValue: (item) =>
+                                                      box.read('locale') == 'ar'
+                                                          ? item.arName!
+                                                          : item.name,
+                                                  items:
+                                                      section['brands'] ?? [],
+                                                  hint: 'Brand'.tr,
+                                                  selectedValue: section[
+                                                      'vehiclebrand_id'],
+                                                  onChanged: (value) {
+                                                    controller
+                                                        .setSelectedVehicleBrand(
+                                                            index, value);
+                                                    controller
+                                                        .validateCarFields(
+                                                            "vehiclebrand",
+                                                            value?.id,
+                                                            index: index);
+                                                  },
+                                                  errorText:
+                                                      errors['vehiclebrand'] ??
+                                                          "",
+                                                ),
                                               Gap(20),
-                                              section['vehicletype_id'] !=
-                                                          null &&
-                                                      controller
-                                                          .vehilcles.isNotEmpty
-                                                  ? Column(
-                                                      children: [
-                                                        DropDownField<
-                                                            BrandModel>(
-                                                          displayValue: (item) =>
-                                                              box.read('locale') ==
-                                                                      'ar'
-                                                                  ? item.arName!
-                                                                  : item.name,
-                                                          items: section[
-                                                                  'brands'] ??
-                                                              [],
-                                                          hint: 'brand'.tr,
-                                                          selectedValue: section[
-                                                              'vehiclebrand_id'],
-                                                          onChanged: (value) {
-                                                            controller
-                                                                .setSelectedVehicleBrand(
-                                                                    index,
-                                                                    value);
-                                                            controller.validateCarFields(
-                                                                "vehiclebrand",
-                                                                controller
-                                                                    .selectedVehiclebrandId
-                                                                    .toString());
-                                                            controller.update();
-                                                          },
-                                                          errorText: errors[
-                                                                  'vehiclebrand'] ??
-                                                              '',
-                                                        ),
-                                                        Gap(20),
-                                                      ],
-                                                    )
-                                                  : Gap(0),
-                                              section['vehiclebrand_id'] !=
-                                                          null &&
-                                                      section['brandnames'] !=
-                                                          null
-                                                  ? Column(
-                                                      children: [
-                                                        DropDownField<
-                                                            BrandNameModel>(
-                                                          displayValue: (item) =>
-                                                              box.read('locale') ==
-                                                                      'ar'
-                                                                  ? item.arName ??
-                                                                      item.name!
-                                                                  : item.name!,
-                                                          items: section[
-                                                                  'brandnames'] ??
-                                                              [],
-                                                          hint: 'Brand name'.tr,
-                                                          selectedValue: section[
-                                                              'vehiclebrandname_id'],
-                                                          onChanged: (value) {
-                                                            controller
-                                                                .setSelectedBrandName(
-                                                                    index,
-                                                                    value);
-                                                            controller.validateCarFields(
+                                              if (section['vehiclebrand_id'] !=
+                                                      null &&
+                                                  section['brandnames'] != null)
+                                                Column(
+                                                  children: [
+                                                    DropDownField<
+                                                        BrandNameModel>(
+                                                      displayValue: (item) =>
+                                                          box.read('locale') ==
+                                                                  'ar'
+                                                              ? item.arName ??
+                                                                  item.name!
+                                                              : item.name!,
+                                                      items: section[
+                                                              'brandnames'] ??
+                                                          [],
+                                                      hint: 'Brand name'.tr,
+                                                      selectedValue: section[
+                                                          'vehiclebrandname_id'],
+                                                      onChanged: (value) {
+                                                        controller
+                                                            .setSelectedBrandName(
+                                                                index, value);
+                                                        controller
+                                                            .validateCarFields(
                                                                 "vehiclebrandname",
-                                                                controller
-                                                                    .selectedbrandNameId
-                                                                    .toString());
-                                                            controller.update();
-                                                          },
-                                                          errorText: errors[
-                                                                  'vehiclebrandname'] ??
-                                                              '',
-                                                        ),
-                                                        Gap(27),
-                                                      ],
-                                                    )
-                                                  : Gap(0),
+                                                                value?.id,
+                                                                index: index);
+                                                        controller.update();
+                                                      },
+                                                      errorText: errors[
+                                                              'vehiclebrandname'] ??
+                                                          "",
+                                                    ),
+                                                    Gap(20),
+                                                  ],
+                                                ),
                                               MainInput(
-                                                errorText:
-                                                    controller.manufactureError,
-
                                                 hint: 'Year of manufacture'.tr,
+                                                type: TextInputType.number,
                                                 controller: controller
                                                         .yearOfManufactureControllers[
                                                     index],
-                                                onchange: (p0) {
-                                                  controller.validateFields(
-                                                      "year_of_manufacture",
-                                                      p0);
+                                                onchange: (value) {
                                                   section['year_of_manufacture'] =
-                                                      p0;
-                                                  controller.update();
-
-                                                  errors['year_of_manufacture'] ??
-                                                      '';
+                                                      value;
+                                                  controller.validateCarFields(
+                                                    "year_of_manufacture",
+                                                    value,
+                                                    index: index,
+                                                  );
                                                   controller.update();
                                                 },
-                                                // errorText:  ??
+                                                errorText: errors[
+                                                        'year_of_manufacture'] ??
+                                                    "",
                                               ),
-                                              Gap(27),
+                                              Gap(20),
                                               MainInput(
                                                 hint: 'Car information'.tr,
                                                 controller: controller
@@ -280,28 +262,36 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                 onchange: (value) {
                                                   section['vehicle_info'] =
                                                       value;
-                                                  controller.update();
+                                                  controller.validateCarFields(
+                                                      "vehicle_info", value,
+                                                      index: index);
                                                 },
                                                 errorText:
                                                     errors['vehicle_info'] ??
-                                                        '',
+                                                        "",
                                               ),
                                               Gap(42),
                                               DottedBorderButton(
                                                 title:
                                                     'Upload vehicle photo'.tr,
-                                                imgselect: () =>
-                                                    //  controller
-                                                    //     .selectVehicleImage(index),
-                                                    controller
-                                                        .openImagePickerBottomSheet(
-                                                            index),
+                                                imgselect: () async {
+                                                  await controller
+                                                      .selectVehicleImage(
+                                                          index);
+                                                },
                                                 isImgSelected: controller
                                                     .isImageSelected(index),
                                                 selectedimgpath:
                                                     section['image'],
-                                                imgRemove: () => controller
-                                                    .removeVehicleImage(index),
+                                                imgRemove: () {
+                                                  section['image'] = null;
+                                                  controller.removeVehicleImage(
+                                                      index);
+                                                  controller.validateCarFields(
+                                                      'image', null,
+                                                      index: index);
+                                                },
+                                                errorText: controller.imgerror,
                                               ),
                                               Gap(37),
                                             ],
@@ -362,8 +352,8 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                     title: 'Continue'.tr,
                                     txtweight: FontWeight.w600,
                                     onTap: () async {
-                                      bool isValid =
-                                          await controller.validateCarForm();
+                                      bool isValid = await controller
+                                          .validateAllVehicleSections();
                                       if (isValid) {
                                         controller.registerUser();
                                       }

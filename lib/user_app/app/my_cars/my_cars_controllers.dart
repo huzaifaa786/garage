@@ -223,69 +223,67 @@ class MyCarsControllers extends GetxController {
   //   return '';
   // }
 
- String validateCarFields(
-  String fieldName,
-  dynamic value, {
-  required int index,
-}) {
-  String errorMessage = '';
+  String validateCarFields(
+    String fieldName,
+    dynamic value, {
+    required int index,
+  }) {
+    String errorMessage = '';
 
-  // Ensure sectionErrors entry exists for the given index
-  if (!sectionErrors.containsKey(index)) {
-    sectionErrors[index] = {};
+    sectionErrors.putIfAbsent(index, () => {});
+
+    switch (fieldName) {
+      case 'vehicletype':
+        if (value == null) {
+          errorMessage = "Please select a vehicle type".tr;
+        }
+        break;
+
+      case 'vehiclebrand':
+        if (value == null || (value is String && value.isEmpty)) {
+          errorMessage = "Please select a vehicle brand".tr;
+        }
+        break;
+
+      case 'vehiclebrandname':
+        if (value == null || (value is String && value.isEmpty)) {
+          errorMessage = "Please select a vehicle brand name".tr;
+        }
+        break;
+
+      case 'year_of_manufacture':
+        errorMessage = Validators.manufactureYearValidator(value) ?? '';
+        break;
+
+      case 'vehicle_info':
+        if (value == null || (value is String && value.isEmpty)) {
+          errorMessage = "Please enter vehicle information".tr;
+        }
+        break;
+
+      case 'image':
+        if (value == null || (value is String && value.isEmpty)) {
+          errorMessage = "Please upload the image".tr;
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    if (errorMessage.isNotEmpty) {
+      sectionErrors[index]![fieldName] = errorMessage;
+    } else {
+      sectionErrors[index]!.remove(fieldName);
+    }
+
+    if (sectionErrors[index]!.isEmpty) {
+      sectionErrors.remove(index);
+    }
+
+    update();
+    return errorMessage;
   }
-
-  // Validation logic based on field name
-  switch (fieldName) {
-    case 'vehicletype':
-      if (value == null) {
-        errorMessage = "Please select a vehicle type";
-      }
-      break;
-
-    case 'vehiclebrand':
-      if (value == null || (value is String && value.isEmpty)) {
-        errorMessage = "Please select a vehicle brand";
-      }
-      break;
-
-    case 'vehiclebrandname':
-      if (value == null || (value is String && value.isEmpty)) {
-        errorMessage = "Please select a vehicle brand name";
-      }
-      break;
-
-    case 'year_of_manufacture':
-      // Pass the actual value (not the controller) to the validator
-      errorMessage = Validators.manufactureYearValidator(value) ?? '';
-      break;
-
-    case 'vehicle_info':
-      if (value == null || (value is String && value.isEmpty)) {
-        errorMessage = "Please enter vehicle information";
-      }
-      break;
-
-    default:
-      break;
-  }
-
-  
-  if (errorMessage.isNotEmpty) {
-    sectionErrors[index]![fieldName] = errorMessage;
-  } else {
-    sectionErrors[index]!.remove(fieldName);
-  }
-
-  
-  if (sectionErrors[index]!.isEmpty) {
-    sectionErrors.remove(index);
-  }
-
-  update();
-  return errorMessage;
-}
-
 
   bool validateAllVehicleSections() {
     bool isValid = true;
@@ -299,10 +297,10 @@ class MyCarsControllers extends GetxController {
           index: index);
       validateCarFields('vehiclebrandname', section['vehiclebrandname_id'],
           index: index);
-      validateCarFields(
-          'year_of_manufacture', section['year_of_manufacture'],
+      validateCarFields('year_of_manufacture', section['year_of_manufacture'],
           index: index);
       validateCarFields('vehicle_info', section['vehicle_info'], index: index);
+      validateCarFields('image', section['image'], index: index);
 
       if (sectionErrors.containsKey(index)) {
         isValid = false;
@@ -310,14 +308,12 @@ class MyCarsControllers extends GetxController {
     }
 
     if (!isValid) {
-      UiUtilites.errorSnackbar(
-          'Error'.tr, 'Please fill in all required details.'.tr);
+      UiUtilites.errorSnackbar('Error'.tr, 'Please upload the image'.tr);
     }
 
     update();
     return isValid;
   }
-
   // validateAndProceed(BuildContext context) async {
   //   bool hasErrors = false;
 

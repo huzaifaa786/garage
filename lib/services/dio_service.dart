@@ -3,8 +3,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' as route;
 import 'package:get/get_utils/get_utils.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/helper/loading.dart';
 import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
@@ -25,7 +27,7 @@ class DioService {
           data: data,
           options: Options(
             validateStatus: (status) =>
-                [200, 201, 400, 422, 500].contains(status),
+                [200, 201, 400, 401,422, 500].contains(status),
           ));
       log(response.toString());
       return _handleResponse(response);
@@ -43,7 +45,7 @@ class DioService {
       Response response = await _dio.get(
         url,
         options: Options(
-            validateStatus: (status) => [200, 201, 400, 422].contains(status)),
+            validateStatus: (status) => [200, 201, 400, 401,422].contains(status)),
       );
       print(response);
       log(response.toString());
@@ -76,6 +78,7 @@ class DioService {
   static Map<String, dynamic> _handleResponse(
     Response response,
   ) {
+    print('response.statusCode ${response.statusCode}');
     if (response.statusCode == 200) {
       var res = jsonDecode(response.toString());
       if (!res['error']) {
@@ -87,6 +90,13 @@ class DioService {
         );
         return {};
       }
+    } else if (response.statusCode == 401) {
+      LoadingHelper.dismiss();
+      GetStorage box = GetStorage();
+      box.remove('api_token');
+      box.remove('user_type');
+      route.Get.offAllNamed(AppRoutes.selectside);
+      return {};
     } else if (response.statusCode == 422) {
       var showError = jsonDecode(response.toString());
       _handleError(

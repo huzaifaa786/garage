@@ -90,7 +90,7 @@ class NotificationCard extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30),
                                   child: AppNetworkImage(
                                     networkImage:
-                                        notification!.sender!.image!.toString(),
+                                        notification?.sender?.image?.toString(),
                                     fit: BoxFit.cover,
                                     assetPath:
                                         'assets/images/street_garage.png',
@@ -117,7 +117,9 @@ class NotificationCard extends StatelessWidget {
                                 ),
                               if (status == null)
                                 AppText(
-                                  title: notification!.sender!.name.toString(),
+                                  title:
+                                      notification?.sender?.name.toString() ??
+                                          "User",
                                   size: 12,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primarybg,
