@@ -37,7 +37,6 @@ void main() async {
   // await getLocationPermission();
   await _checkLocationPermission();
 }
-
 Future<void> _checkLocationPermission() async {
   print("Checking location permission...");
   final status = await Permission.locationWhenInUse.status;
