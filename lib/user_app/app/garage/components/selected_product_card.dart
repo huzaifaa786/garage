@@ -66,7 +66,6 @@ class GarageProductCard extends StatelessWidget {
                       size: 14.0,
                       maxLines: 1,
                       textAlign: TextAlign.center,
-                      // overFlow: TextOverflow.ellipsis,
                     ),
                   ),
                   Padding(

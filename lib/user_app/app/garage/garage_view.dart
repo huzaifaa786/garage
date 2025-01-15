@@ -350,14 +350,7 @@ class GarageView extends StatelessWidget {
                               cancelText: 'No'.tr,
                               confirmText: 'Yes'.tr,
                             );
-                            // UiUtilites.showConfirmationDialog(
-                            //   false,
-                            //   'Are you Sure that you want\n to Add this product to cart ?'
-                            //       .tr,
-                            //   onConfirm: () async {
-                            //     controller.addToCart();
-                            //   },
-                            // );
+                          
                           },
                           child: GarageProductCard(),
                         ),

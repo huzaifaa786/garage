@@ -11,7 +11,6 @@ class SignupApi {
     required List<Map<String, dynamic>> includes,
   }) async {
     final token = await FirebaseMessaging.instance.getToken();
-
     String url = '$baseUrl/register/user';
     var data = {
       "name": name,
