@@ -9,6 +9,25 @@
       "client_info": {
         "mobilesdk_app_id": "1:323733471662:android:bf0816f7df1e12e704483f",
         "android_client_info": {
+          "package_name": "com.tri"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwf8uu4aqcldQtSKLPxfLdXCCf2G3oXTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323733471662:android:0e93a41261ace1a804483f",
+        "android_client_info": {
           "package_name": "com.tritec.mobilegarage"
         }
       },
