@@ -23,7 +23,6 @@ class PaymentView extends StatelessWidget {
       builder: (controller) => controller.cart != null
           ? GestureDetector(
               onTap: () {
-                // Dismiss the keyboard when tapping anywhere outside the input
                 FocusScope.of(context).unfocus();
               },
               child: Scaffold(
