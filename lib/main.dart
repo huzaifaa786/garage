@@ -35,63 +35,42 @@ void main() async {
   await dotenv.load(fileName: "assets/.env");
   HttpOverrides.global = MyHttpOverrides();
   // await getLocationPermission();
-  await _checkLocationPermission();
 }
-Future<void> _checkLocationPermission() async {
-  print("Checking location permission...");
-  final status = await Permission.locationWhenInUse.status;
-  print("Current permission status: $status");
 
-  if (status.isDenied) {
-    print("Permission is denied, requesting permission...");
-    final result = await Permission.locationWhenInUse.request();
-    print("Requested permission result: $result");
-
-    if (result.isDenied) {
-      print("Permission still denied after request.");
-      Get.snackbar(
-        'Permission Required',
-        'Location permission is needed for app functionality.',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
-  } else if (status.isPermanentlyDenied) {
-    print("Permission permanently denied.");
-    Get.snackbar(
-      'Permission Denied',
-      'Please enable location permission from settings.',
-      snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 5),
-    );
-    await openAppSettings();
-  } else {
-    print("Permission granted.");
-  }
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Mobile garage',
-      translations: LocaleString(),
-      locale:
-          box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
-      fallbackLocale:
-          box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
-      theme: ThemeData(
-        colorScheme: ColorScheme.light().copyWith(
-          primary: AppColors.primarybg,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus!.unfocus();
+        }
+      },
+      child: GetMaterialApp(
+        title: 'Mobile garage',
+        translations: LocaleString(),
+        locale:
+            box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
+        fallbackLocale:
+            box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
+        theme: ThemeData(
+          colorScheme: ColorScheme.light().copyWith(
+            primary: AppColors.primarybg,
+          ),
+          useMaterial3: true,
+          scaffoldBackgroundColor: AppColors.white,
         ),
-        useMaterial3: true,
-        scaffoldBackgroundColor: AppColors.white,
+        debugShowCheckedModeBanner: false,
+        builder: EasyLoading.init(),
+        initialBinding: SplashBinding(),
+        home: const SplashView(),
+        getPages: AppPages.pages,
       ),
-      debugShowCheckedModeBanner: false,
-      builder: EasyLoading.init(),
-      initialBinding: SplashBinding(),
-      home: const SplashView(),
-      getPages: AppPages.pages,
     );
   }
 }

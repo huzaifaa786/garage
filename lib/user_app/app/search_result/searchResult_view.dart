@@ -143,7 +143,7 @@ class _SearchresultViewState extends State<SearchresultView> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    if (await getLocationPermission() == true) {
+                    await getLocationPermission();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -169,7 +169,6 @@ class _SearchresultViewState extends State<SearchresultView> {
                           ),
                         ),
                       );
-                    }
                   },
                   child: Stack(
                     children: [

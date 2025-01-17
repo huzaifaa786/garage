@@ -50,22 +50,37 @@
 
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 
-Future<bool> getLocationPermission() async {
-  // Check if location services are enabled
-  if (!await Geolocator.isLocationServiceEnabled()) {
-    // Prompt user to enable location services
-    await Geolocator.openLocationSettings();
-    return false; // Return false if location service is not enabled
+
+Future<void> getLocationPermission() async {
+  final GeolocatorPlatform _geolocator = GeolocatorPlatform.instance;
+
+  Location location = new Location();
+
+  bool _serviceEnabled;
+
+  _serviceEnabled = await location.serviceEnabled();
+
+  if (!_serviceEnabled) {
+    _serviceEnabled = await location.requestService();
+    if (!_serviceEnabled) {
+      await _geolocator.openLocationSettings();
+    }
   }
-  // Request location permissions
-  PermissionStatus status = await Permission.locationWhenInUse.request();
-  if (status.isGranted) {
-    return true; // Permission granted
-  } else if (status.isDenied || status.isPermanentlyDenied) {
-    // Handle denied permissions
-    await openAppSettings();
+  await location.requestPermission();
+  final permissions = [
+    Permission.locationWhenInUse,
+  ];
+
+  for (var permission in permissions) {
+    print(await permission.isGranted);
+    if (!await permission.isGranted) {
+      await permission.request();
+    }
   }
 
-  return false; // Permission not granted
+  if (!(await _geolocator.isLocationServiceEnabled())) {
+    await _geolocator.openLocationSettings();
+  }
 }
