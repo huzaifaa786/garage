@@ -1,11 +1,8 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:get/get.dart';
-import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
+
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/user_app/utils/decorations/box_decoration.dart';
 
@@ -13,41 +10,45 @@ import 'package:mobilegarage/vendor_app/utils/app_constants/const_images.dart';
 import 'package:mobilegarage/vendor_app/utils/app_text/app_text.dart';
 
 class DropDownField<T> extends StatelessWidget {
-  DropDownField(
-      {super.key,
-      required this.items,
-      this.hint,
-      this.selectedValue,
-      this.onChanged,
-      this.errorText,
-      this.displayValue});
+  DropDownField({
+    super.key,
+    required this.items,
+    this.hint,
+    this.selectedValue,
+    this.onChanged,
+    this.errorText,
+    this.displayValue,
+    this.isRTL = false,
+  });
+
   final List<T> items;
   final String? hint;
   T? selectedValue;
   final ValueChanged<T?>? onChanged;
   final String Function(T)? displayValue;
   final String? errorText;
+  final bool isRTL;
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController searchController = TextEditingController();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Directionality(
-          textDirection: box.read('locale') != 'ar'
-              ? TextDirection.ltr
-              : TextDirection.rtl,
+          textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
           child: Container(
             height: 55,
             width: Get.width,
-            decoration: errorText!.isNotEmpty
+            decoration: (errorText?.isNotEmpty ?? false)
                 ? circularErrorInputDecoration
                 : circularInputDecoration,
             child: DropdownButtonHideUnderline(
               child: DropdownButton2(
                 hint: AppText(
-                  title: hint!,
-                  size: 12,
+                  title: hint ?? '',
+                  size: 13,
                   fontWeight: FontWeight.w400,
                   color: AppColors.black.withOpacity(0.4),
                 ),
@@ -69,7 +70,7 @@ class DropDownField<T> extends StatelessWidget {
                 value: selectedValue,
                 onChanged: (value) {
                   if (onChanged != null) {
-                    onChanged!(value);
+                    onChanged!(value as T?);
                   }
                 },
                 selectedItemBuilder: (BuildContext context) {
@@ -84,6 +85,37 @@ class DropDownField<T> extends StatelessWidget {
                     );
                   }).toList();
                 },
+                dropdownSearchData: DropdownSearchData(
+                  searchController: searchController,
+                  searchInnerWidget: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: searchController,
+                      decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 8,
+                        ),
+                        hintText: 'Search'.tr,
+                        hintStyle: TextStyle(
+                          fontSize: 12,
+                          color: AppColors.black.withOpacity(0.4),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                  ),
+                  searchInnerWidgetHeight: 50,
+                  searchMatchFn: (item, searchValue) {
+                    return displayValue != null &&
+                        displayValue!(item.value as T)
+                            .toLowerCase()
+                            .contains(searchValue.toLowerCase());
+                  },
+                ),
                 menuItemStyleData: MenuItemStyleData(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   selectedMenuItemBuilder: (context, child) =>
@@ -116,7 +148,7 @@ class DropDownField<T> extends StatelessWidget {
             ),
           ),
         ),
-        if (errorText!.isNotEmpty)
+        if (errorText?.isNotEmpty ?? false)
           Padding(
             padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
             child: AppText(

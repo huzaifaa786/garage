@@ -100,16 +100,18 @@ class SigninController extends GetxController {
   String? otp = '';
   login() async {
     // var response = await VerifyNumberApi.verifyNumber(phone: completePhone);
-    var response = await LoginVerifyApi.verifyNumber(
-        phone: completePhoneNumber.toString());
-    if (response.isNotEmpty) {
-      otp = response['user']['otp'].toString();
+    // var response = await LoginVerifyApi.verifyNumber(
+    //     phone: completePhoneNumber.toString());
+    // if (response.isNotEmpty) {
+    //   otp = response['user']['otp'].toString();
 
-      Get.toNamed(AppRoutes.otp, parameters: {
+      Get.toNamed(AppRoutes.otp, 
+      parameters: {
         'phone': completePhoneNumber.toString(),
-        'auth': 'signin',
-        'otp': otp.toString()
-      });
+        // 'auth': 'signin',
+        // 'otp': otp.toString()
+      }
+      );
     }
     //  else {
     //   Future.delayed(Duration(seconds: 1), () {
@@ -117,4 +119,4 @@ class SigninController extends GetxController {
     //   });
     // }
   }
-}
+// }

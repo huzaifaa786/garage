@@ -76,10 +76,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Mobile garage',
       translations: LocaleString(),
-      locale:
-          box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
-      fallbackLocale:
-          box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
+      locale: box.read('locale') != null
+          ? Locale(box.read('locale'))
+          : Get.deviceLocale,
+      fallbackLocale: Locale('en', 'US'),
+      // fallbackLocale:
+      //     box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
       theme: ThemeData(
         colorScheme: ColorScheme.light().copyWith(
           primary: AppColors.primarybg,

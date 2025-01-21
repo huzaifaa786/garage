@@ -136,7 +136,7 @@ class _SearchresultViewState extends State<SearchresultView> {
                     Gap(10),
                     AppText(
                       title: 'Select location '.tr,
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w500,
                     )
                   ],

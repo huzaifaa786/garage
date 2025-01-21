@@ -117,7 +117,7 @@ class ProductFormView extends StatelessWidget {
                           //         children: [
                           //           AppText(
                           //             title: controller.selectedName,
-                          //             size: 12,
+                          //             size: 13,
                           //             fontWeight: FontWeight.w400,
                           //           ),
                           //           Icon(Icons.keyboard_arrow_down_sharp)
@@ -150,7 +150,7 @@ class ProductFormView extends StatelessWidget {
                           //               children: [
                           //                 AppText(
                           //                   title: brand.name.toString(),
-                          //                   size: 12,
+                          //                   size: 13,
                           //                   fontWeight: FontWeight.w400,
                           //                 ),
                           //               ],
@@ -436,7 +436,8 @@ class ProductFormView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<OilVolumeModel>(
-                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.arvolume.toString()
                                         : item.volume!,
                                 items: controller.oilVolumes,

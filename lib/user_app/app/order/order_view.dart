@@ -91,7 +91,7 @@ class _OrderViewState extends State<OrderView> {
                     Gap(19),
                     AppText(
                       title: 'Price Range'.tr,
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w400,
                     ),
                     Gap(28),
@@ -471,7 +471,7 @@ class _OrderViewState extends State<OrderView> {
                             AppText(
                               title: 'Choose your vehicle'.tr,
                               fontWeight: FontWeight.w600,
-                              size: 12,
+                              size: 13,
                             ),
                           ],
                         ),
@@ -509,7 +509,7 @@ class _OrderViewState extends State<OrderView> {
                             AppText(
                               title: 'What do you prefer?'.tr,
                               fontWeight: FontWeight.w600,
-                              size: 12,
+                              size: 13,
                             ),
                           ],
                         ),

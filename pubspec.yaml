@@ -94,6 +94,7 @@ dependencies:
 
   intl: any
   google_maps_flutter: any
+  flutter_email_sender: ^6.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

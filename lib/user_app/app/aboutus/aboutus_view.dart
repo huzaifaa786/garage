@@ -90,7 +90,7 @@ class _TermsConditionsViewState extends State<AboutusView> {
                       Gap(8),
                       AppText(
                         title: "${controller.city ?? ''},",
-                        size: 12,
+                        size: 13,
                         fontWeight: FontWeight.w500,
                         color: AppColors.darkprimary,
                       ),

@@ -69,9 +69,9 @@ class _LanguangeViewState extends State<LanguangeView> {
                               : AppColors.black,
                         ),
                         const Gap(5),
-                         AppText(
+                        AppText(
                           title: 'Default'.tr,
-                          size: 12,
+                          size: 13,
                           fontWeight: FontWeight.w400,
                           color: AppColors.grey,
                         ),
@@ -125,7 +125,7 @@ class _LanguangeViewState extends State<LanguangeView> {
                           const Gap(5),
                           const AppText(
                             title: 'Arabic',
-                            size: 12,
+                            size: 13,
                             fontWeight: FontWeight.w400,
                             color: AppColors.grey,
                           ),

@@ -106,18 +106,27 @@ class _MyCarsViewState extends State<MyCarsView> {
                                           final vehicle =
                                               controller.uservehicles![index];
                                           return RadioCard(
-                                            ondeletetap: () {
-                                              UiUtilites.DeleteAlert(
-                                                  context, vehicle.vehicle_info,
-                                                  () {
-                                                controller
-                                                    .deleteVehicles(vehicle.id);
+                                            vechicallistLength:
+                                                controller.uservehicles!.length,
+                                            ondeletetap: controller
+                                                        .uservehicles!.length ==
+                                                    1
+                                                ? () {}
+                                                : () {
+                                                    UiUtilites.DeleteAlert(
+                                                        context,
+                                                        vehicle.vehicle_info,
+                                                        () {
+                                                      controller.deleteVehicles(
+                                                          vehicle.id);
 
-                                                Navigator.of(context).pop();
-                                              }, () {
-                                                Navigator.of(context).pop();
-                                              });
-                                            },
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    }, () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    });
+                                                  },
                                             userVehicles: vehicle,
                                             value: vehicle.id.toString(),
                                             groupValue:

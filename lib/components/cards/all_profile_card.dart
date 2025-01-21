@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
-
 class AllProfileCard extends StatelessWidget {
   const AllProfileCard({
     super.key,
@@ -67,7 +66,7 @@ class AllProfileCard extends StatelessWidget {
                   AppText(
                     title: text,
                     color: textColor,
-                    size: 12,
+                    size: 13,
                     fontWeight: FontWeight.w500,
                     overFlow: TextOverflow.ellipsis,
                   ),
@@ -76,7 +75,6 @@ class AllProfileCard extends StatelessWidget {
                     constraints: BoxConstraints(maxWidth: Get.width * 0.29),
                     child: AppText(
                       title: text2,
-                      
                       size: 10,
                       fontWeight: FontWeight.w400,
                       overFlow: TextOverflow.ellipsis,
@@ -85,8 +83,7 @@ class AllProfileCard extends StatelessWidget {
                 ],
               ),
               SvgPicture.asset(
-                'assets/icons/arrow-right.svg'
-,
+                'assets/icons/arrow-right.svg',
                 height: 20,
                 width: 20,
               ),

@@ -12,11 +12,9 @@ class HomeAppbar extends StatelessWidget {
       this.chat,
       this.name,
       this.isnotification = true,
-      this.ischat = true
-      });
+      this.ischat = true});
   final isnotification;
   final ischat;
-
 
   final notification;
   final chat;
@@ -31,10 +29,14 @@ class HomeAppbar extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset('assets/images/garagehomologo.png',height: 42,width: 70,),
+              Image.asset(
+                'assets/images/garagehomologo.png',
+                height: 42,
+                width: 70,
+              ),
               AppText(
                 title: '  ' + name.toString(),
-                size: 12,
+                size: 13,
                 fontWeight: FontWeight.w600,
                 color: const Color.fromARGB(255, 158, 9, 12),
               ),
@@ -87,19 +89,19 @@ class HomeAppbar extends StatelessWidget {
                         ),
                       ),
                     ),
-                     if (ischat == true)
-                    Positioned(
-                      top: 2,
-                      right: 0,
-                      child: Container(
-                        height: 7,
-                        width: 7,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary_color,
+                    if (ischat == true)
+                      Positioned(
+                        top: 2,
+                        right: 0,
+                        child: Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary_color,
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),

@@ -63,7 +63,7 @@ class ServicesTypesCard extends StatelessWidget {
                 AppText(
                   title: price,
                   color: AppColors.darkblue,
-                  size: 12,
+                  size: 13,
                   fontWeight: FontWeight.w600,
                 ),
               ],

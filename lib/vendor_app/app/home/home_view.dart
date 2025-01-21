@@ -138,7 +138,7 @@ class _VHomeViewState extends State<VHomeView> {
                                     title: controller.garage != null
                                         ? controller.garage!.description!
                                         : ''.tr,
-                                    size: 12,
+                                    size: 13,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.grey,
                                     textAlign: TextAlign.center,

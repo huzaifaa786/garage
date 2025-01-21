@@ -85,7 +85,9 @@ class _AccountViewState extends State<AccountView> {
                                 height: Get.height * 0.08,
                                 width: Get.width * 0.8,
                                 color: AppColors.lightPink,
-                                text: controller.user!.emirate.toString(),
+                                text: box.read('locale') == 'ar'
+                                    ? controller.user!.arEmirate.toString().tr
+                                    : controller.user!.emirate.toString().tr,
                                 textColor: AppColors.black,
                                 image: 'assets/icons/map_pin.svg',
                                 text2:
@@ -117,9 +119,9 @@ class _AccountViewState extends State<AccountView> {
                                 text: 'Language'.tr,
                                 textColor: AppColors.black,
                                 image: 'assets/icons/language.svg',
-                                text2: 
-                                box.read('locale')== 'ar'? 'العربية':
-                                'English'.tr,
+                                text2: box.read('locale') == 'ar'
+                                    ? 'العربية'
+                                    : 'English'.tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.language);
                                 }),

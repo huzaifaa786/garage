@@ -6,15 +6,21 @@ class SettingController extends GetxController {
   static SettingController instance = Get.find();
  
   String email = 'admin@gmail.com';
-  String phoneNo = '+923455453765';
-  String whatsappNo = '+923455453765';
+  String phoneNo = '+971555147123';
+  String whatsappNo = '+971555147123';
   String instagram = '@babarAzam';
  String linkedin = 'https://www.linkedin.com/in/your-profile/';
-  void openEmail() async {
-    final uri = Uri(scheme: 'mailto', path: email);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    }
+  String subject = '';
+  String body = '';
+Future<void> openEmail() async {
+    final Uri url = Uri(
+      scheme: 'mailto',
+      path: email,
+      query:
+          'subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}',
+    );
+
+    await launchUrl(url);
   }
 
   void openPhone() async {

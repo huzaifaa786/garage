@@ -7,7 +7,9 @@ import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
 class FilterBottomsheet extends StatelessWidget {
-   FilterBottomsheet({super.key,});
+  FilterBottomsheet({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchScreenController>(
@@ -66,13 +68,13 @@ class FilterBottomsheet extends StatelessWidget {
                             //       const Gap(5),
                             //       AppText(
                             //         title: 'Price'.tr,
-                            //         size: 12,
+                            //         size: 13,
                             //         fontWeight: FontWeight.w500,
                             //       ),
                             //     ],
                             //   ),
                             // if (path != 'search')
-                              
+
                             // const Gap(10),
                             // if (path != 'search')
 
@@ -105,7 +107,7 @@ class FilterBottomsheet extends StatelessWidget {
                                 const Gap(5),
                                 AppText(
                                   title: 'The closest'.tr,
-                                  size: 12,
+                                  size: 13,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ],
@@ -140,7 +142,7 @@ class FilterBottomsheet extends StatelessWidget {
                                 const Gap(5),
                                 AppText(
                                   title: 'Rating'.tr,
-                                  size: 12,
+                                  size: 13,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ],
@@ -189,7 +191,7 @@ class FilterBottomsheet extends StatelessWidget {
                             //     const Gap(5),
                             //     const AppText(
                             //       title: 'Results',
-                            //       size: 12,
+                            //       size: 13,
                             //       fontWeight: FontWeight.w500,
                             //     ),
                             //   ],
@@ -257,7 +259,7 @@ class FilterBottomsheet extends StatelessWidget {
                                     child: Center(
                                       child: AppText(
                                         title: 'Reset'.tr,
-                                        size: 12,
+                                        size: 13,
                                         fontWeight: FontWeight.w500,
                                         color: AppColors.primary,
                                       ),
@@ -280,7 +282,7 @@ class FilterBottomsheet extends StatelessWidget {
                                     child: Center(
                                       child: AppText(
                                         title: 'Apply'.tr,
-                                        size: 12,
+                                        size: 13,
                                         fontWeight: FontWeight.w500,
                                         color: AppColors.white,
                                       ),

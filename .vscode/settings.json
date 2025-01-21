@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "D:/FLUTTER_PROJECTS/2024/garage/linux"
+    "cmake.sourceDirectory": "D:/FLUTTER_PROJECTS/2024/garage/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

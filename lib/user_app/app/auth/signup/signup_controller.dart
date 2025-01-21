@@ -108,7 +108,13 @@ class SignupController extends GetxController {
   //TODO: Register Function
   register() async {
     if (await validateForm()) {
-      Get.toNamed(AppRoutes.cardetails);
+      if (phoneController.text.isNotEmpty) {
+        var response = await SignupApi.userPhoneNumberCheck(
+            phone: completePhoneNumber.toString());
+        if (response.isNotEmpty) {
+          Get.toNamed(AppRoutes.cardetails);
+        }
+      }
     }
   }
 
@@ -456,13 +462,6 @@ class SignupController extends GetxController {
           errorMessage = "Please enter vehicle information".tr;
         }
         break;
-
-      case 'image':
-        if (value == null || (value is String && value.isEmpty)) {
-          errorMessage = "Please upload the image".tr;
-        }
-        break;
-
       default:
         break;
     }
@@ -496,16 +495,15 @@ class SignupController extends GetxController {
       validateCarFields('year_of_manufacture', section['year_of_manufacture'],
           index: index);
       validateCarFields('vehicle_info', section['vehicle_info'], index: index);
-      validateCarFields('image', section['image'], index: index);
 
       if (sectionErrors.containsKey(index)) {
         isValid = false;
       }
     }
 
-    if (!isValid) {
-      UiUtilites.errorSnackbar('Error'.tr, 'Please upload the image'.tr);
-    }
+    // if (!isValid) {
+    //   UiUtilites.errorSnackbar('Error'.tr, 'Please upload the image'.tr);
+    // }
 
     update();
     return isValid;

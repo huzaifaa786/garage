@@ -169,7 +169,6 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                 ontap: () {
                                   Get.toNamed(AppRoutes.language);
                                 },
-                                
                                 icon: 'assets/images/globe.svg',
                                 text: 'Change Language'.tr,
                                 langtext: 'English'.tr,
@@ -246,7 +245,7 @@ class _VEditprofileViewState extends State<VEditprofileView> {
                                               Gap(8),
                                               AppText(
                                                 title: 'Log Out'.tr,
-                                                size: 12,
+                                                size: 13,
                                                 color: AppColors.primary_color,
                                                 fontWeight: FontWeight.w500,
                                               ),

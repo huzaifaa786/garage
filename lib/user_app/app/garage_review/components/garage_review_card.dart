@@ -59,7 +59,7 @@ class GarageReviewCard extends StatelessWidget {
                             AppText(
                               // title: 'Street garage',
                               title: garageReview!.user!.name.toString(),
-                              size: 12,
+                              size: 13,
                               maxLines: 1,
                               overFlow: TextOverflow.ellipsis,
                               fontWeight: FontWeight.w600,

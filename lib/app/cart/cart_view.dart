@@ -55,7 +55,7 @@ class CartView extends StatelessWidget {
                             title: "Items (".tr +
                                 " " +
                                 '${controller.cart!.items!.length} )',
-                            size: 12,
+                            size: 13,
                             fontWeight: FontWeight.w600,
                           ),
                         ],
@@ -111,7 +111,7 @@ class CartView extends StatelessWidget {
                       //     Gap(10),
                       //     AppText(
                       //       title: 'Promo code',
-                      //       size: 12,
+                      //       size: 13,
                       //       fontWeight: FontWeight.w600,
                       //     ),
                       //   ],
@@ -141,7 +141,7 @@ class CartView extends StatelessWidget {
                       children: [
                         AppText(
                           title: 'Total:'.tr,
-                          size: 12,
+                          size: 13,
                           fontWeight: FontWeight.w500,
                           color: AppColors.black.withOpacity(0.4),
                         ),

@@ -45,7 +45,7 @@ class EditProductsField extends StatelessWidget {
                         )),
                     AppText(
                       title: '  ' + text,
-                      size: 12,
+                      size: 13,
                       color: AppColors.black_color,
                       fontWeight: FontWeight.w500,
                     ),

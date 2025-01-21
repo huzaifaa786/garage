@@ -77,10 +77,11 @@ class _SelectsideViewState extends State<SelectsideView> {
                                 Get.toNamed(AppRoutes.vsignin);
                               },
                             ),
-                            Gap(190),
+                            Gap(160),
                             GestureDetector(
                               onTap: () {
-                                Get.toNamed(AppRoutes.selectlang);                              },
+                                Get.toNamed(AppRoutes.selectlang);
+                              },
                               child: Row(
                                 children: [
                                   AppText(

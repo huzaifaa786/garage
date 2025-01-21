@@ -202,7 +202,7 @@ class UiUtilites {
                       Gap(10),
                       AppText(
                         title: '$description',
-                        size: 12,
+                        size: 13,
                         textAlign: TextAlign.center,
                         color: AppColors.hint_text_color,
                       ),
@@ -224,14 +224,15 @@ class UiUtilites {
       },
     );
   }
-  static successRegisterAlertDialog(
-      {required context,
-      required onTap,
-      required title,
-      required buttontitle,
-      required description,
-      required verificationnumber,
-      }) {
+
+  static successRegisterAlertDialog({
+    required context,
+    required onTap,
+    required title,
+    required buttontitle,
+    required description,
+    required verificationnumber,
+  }) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -262,7 +263,7 @@ class UiUtilites {
                           color: AppColors.darkprimary,
                         ),
                       ),
-                        Gap(10),
+                      Gap(10),
                       AppText(
                         title: 'Your Verification number'.tr,
                         size: 11,
@@ -271,23 +272,22 @@ class UiUtilites {
                       ),
                       Gap(10),
                       AppText(
-                          title: '$verificationnumber',
-                          size: 14,
-                          fontWeight: FontWeight.w700,
-                          textAlign: TextAlign.center,
-                          color: AppColors.darkprimary,
-                        ),
+                        title: '$verificationnumber',
+                        size: 14,
+                        fontWeight: FontWeight.w700,
+                        textAlign: TextAlign.center,
+                        color: AppColors.darkprimary,
+                      ),
                       Gap(10),
-                       Padding(
-                         padding: const EdgeInsets.symmetric(horizontal:  8.0),
-                         child: AppText(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: AppText(
                           title: '$description',
-                          size: 12,
+                          size: 13,
                           textAlign: TextAlign.center,
                           color: AppColors.hint_text_color,
-                                               ),
-                       ),
-                    
+                        ),
+                      ),
                       Gap(20),
                       AppButton(
                         height: 45,
@@ -352,7 +352,7 @@ class UiUtilites {
                         Gap(10),
                         AppText(
                           title: description,
-                          size: 12,
+                          size: 13,
                           textAlign: TextAlign.center,
                           color: AppColors.hint_text_color,
                         ),
@@ -474,7 +474,7 @@ class UiUtilites {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: AppText(
                     title: 'Enter name'.tr,
-                    size: 12,
+                    size: 13,
                     fontWeight: FontWeight.w400,
                     color: AppColors.darkGrey,
                   ),

@@ -149,6 +149,8 @@ class LocaleString extends Translations {
           'Price': 'Price',
           'Price Range': 'Price Range',
           "Profile": "Profile",
+          "Manufacture year must be a valid 4-digit year":
+              "Manufacture year must be a valid 4-digit year",
           "Promotion": "Promotion",
           'No promotions available': 'No promotions available',
           "Privacy": "Privacy",
@@ -536,15 +538,25 @@ class LocaleString extends Translations {
           'Brand': "Brand",
           'User is banned. Please contact support.':
               'User is banned. Please contact support.',
+          "Manufacture year can't be empty": "Manufacture year can't be empty",
+          "Manufacture year can't be in the future":
+              "Manufacture year can't be in the future",
           'Your garage is banned. Please contact support.':
               'Your garage is banned. Please contact support.',
+          "Resend": "Resend",
         },
         'ar_AE': {
+          "Manufacture year must be a valid 4-digit year":
+              "سنة الصنع يجب ان تكون سنة صالحة مكونة من 4 ارقام",
+          "Manufacture year can't be empty":
+              "لا يمكن أن تكون سنة التصنيع فارغة",
+          "Manufacture year can't be in the future":
+              "لا يمكن أن تكون سنة الصنع في المستقبل",
           'Your garage is banned. Please contact support.':
               'تم حظر كراجك. يرجى الاتصال بالدعم.',
           'User is banned. Please contact support.':
               'تم حظر المستخدم. يرجى الاتصال بالدعم.',
-          "Vehicle": "مركبة",
+          "Vehicle": "المركبة",
           'Brand': 'ماركة',
           'Please select a vehicle type': 'يرجى اختيار نوع المركبة',
           "Please upload the image": "يرجى تحميل الصورة",
@@ -591,7 +603,9 @@ class LocaleString extends Translations {
               'يمكنك إضافة منتجات من نفس المرآب فقط إلى السلة.',
           'This garage is currently closed. No orders can be placed.':
               'هذا المرآب مغلق حاليًا. لا يمكن تقديم أي طلبات.',
-          'The phone has already been taken.': 'تم أخذ الهاتف بالفعل',
+          'The phone has already been taken.':
+              'رقم الهاتف مسجل بالفعل، الرجاء تسجيل الدخول',
+          "Resend": "إعادة الإرسال",
           'Failed to send otp on this number':
               'فشل في إرسال رمز التحقق على هذا الرقم',
           'brand': 'ماركة',
@@ -828,7 +842,7 @@ class LocaleString extends Translations {
           'Upload the back side of ID': 'رفع الجهة الخلفية من الهوية',
           'Upload license': 'رفع الرخصة',
           'Verify Otp': 'تحقق من OTP',
-          'Verify your phone': 'تحقق من هاتفك',
+          'Verify your phone': "تحقق من رقم هاتفك",
           'Please enter the OTP sent to your email address to reset your password.':
               'يرجى إدخال OTP المرسل إلى عنوان بريدك الإلكتروني لإعادة تعيين كلمة المرور.',
           'Verification failed': 'فشل التحقق',
@@ -1033,7 +1047,7 @@ class LocaleString extends Translations {
           'Your profile is updated successfully': 'تم تحديث ملفك الشخصي بنجاح',
           'No garages found, order cannot be created':
               "لم يتم العثور على ورش، لا يمكن إنشاء الطلب",
-          'Invalid Phone Number': "الرجاء ادخال ارقام فقط",
+          'Invalid Phone Number': "رقم الهاتف غير صالح",
           "Service Results": "نتائج الخدمة",
           "Accepted Orders": "الطلبات المقبولة",
           "garages": "ورَش",

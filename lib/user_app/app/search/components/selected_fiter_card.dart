@@ -4,8 +4,11 @@ import 'package:mobilegarage/user_app/app/search/search_controller.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 
-Widget SelectedFilterCard(
-    {String? text, required SearchScreenController controller, required VoidCallback onCancel,}) {
+Widget SelectedFilterCard({
+  String? text,
+  required SearchScreenController controller,
+  required VoidCallback onCancel,
+}) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     decoration: BoxDecoration(
@@ -13,12 +16,13 @@ Widget SelectedFilterCard(
       borderRadius: BorderRadius.circular(30),
     ),
     child: Center(
-      child: Row(mainAxisSize: MainAxisSize.min,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           AppText(
             title: text.toString(),
             color: AppColors.primarybg,
-            size: 12,
+            size: 13,
           ),
           Gap(5),
           GestureDetector(

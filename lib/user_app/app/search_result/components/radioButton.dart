@@ -23,7 +23,7 @@ class ColumnRadioTile extends StatelessWidget {
                     children: [
                       AppText(
                         title: 'Quick Service'.tr,
-                        size: 12,
+                        size: 13,
                         fontWeight: FontWeight.w500,
                       ),
                       Gap(5),
@@ -41,7 +41,7 @@ class ColumnRadioTile extends StatelessWidget {
                     children: [
                       AppText(
                         title: 'Set time'.tr,
-                        size: 12,
+                        size: 13,
                         fontWeight: FontWeight.w500,
                       ),
                       Gap(20),

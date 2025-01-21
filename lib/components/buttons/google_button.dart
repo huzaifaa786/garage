@@ -58,8 +58,9 @@ class GoogleButton extends StatelessWidget {
                   const Gap(6),
                   Flexible(
                     child: AppText(
-                      title: address != '' ? '$address' : 'Pin location in map'.tr,
-                      size: 12,
+                      title:
+                          address != '' ? '$address' : 'Pin location in map'.tr,
+                      size: 13,
                       fontWeight: FontWeight.w500,
                       color: isSelected
                           ? AppColors.black_color

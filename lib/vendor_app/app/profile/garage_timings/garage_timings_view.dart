@@ -18,7 +18,7 @@ class GarageTimingsView extends StatelessWidget {
       builder: (controller) {
         bool isButtonPressed = false;
         String successMessage = '';
-        
+
         return AppLayout(
           appBarTitle: "Open time & close time".tr,
           child: SingleChildScrollView(
@@ -40,7 +40,7 @@ class GarageTimingsView extends StatelessWidget {
                         backgroundColor: AppColors.red,
                         colorText: AppColors.white,
                       );
-                      return; // Exit if validation fails
+                      return;
                     }
                     controller.selectedTimeOpenFromMorning = fromTime;
 
@@ -111,7 +111,7 @@ class GarageTimingsView extends StatelessWidget {
                       AppText(
                         title: successMessage,
                         color: AppColors.green_color,
-                        size: 12,
+                        size: 13,
                         fontWeight: FontWeight.w500,
                       ),
                       const Gap(5),
