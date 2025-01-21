@@ -102,7 +102,7 @@ class PaymentCartCard extends StatelessWidget {
                                         : item!.cartProduct!.categoryId == '2'
                                             ? item!.brand!.name.toString()
                                             : item!.fuelextra!.name.toString(),
-                                    size: 12,
+                                    size: 13,
                                     maxLines: 1,
                                     overFlow: TextOverflow.ellipsis,
                                     fontWeight: FontWeight.w600,
@@ -167,17 +167,17 @@ class PaymentCartCard extends StatelessWidget {
                                 Flexible(
                                   child: AppText(
                                     title:
-                                    //  item!.fuelextra != null
-                                    //     ? "${item!.fuelextra!.price.toString()}" +
-                                    //         " " +
-                                    //         "AED".tr
+                                        //  item!.fuelextra != null
+                                        //     ? "${item!.fuelextra!.price.toString()}" +
+                                        //         " " +
+                                        //         "AED".tr
                                         // :
-                                         "${item!.price.toString()}" +
+                                        "${item!.price.toString()}" +
                                             " " +
                                             "AED".tr,
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.darkblue,
-                                    size: 12,
+                                    size: 13,
                                     maxLines: 1,
                                   ),
                                 ),
@@ -201,7 +201,7 @@ class PaymentCartCard extends StatelessWidget {
                                         child: Icon(
                                           Icons.remove,
                                           color: AppColors.primary,
-                                          size: 12,
+                                          size: 13,
                                         ),
                                       ),
                                       isBordered: false,
@@ -218,7 +218,7 @@ class PaymentCartCard extends StatelessWidget {
                                         child: Icon(
                                           Icons.add,
                                           color: AppColors.white,
-                                          size: 12,
+                                          size: 13,
                                         ),
                                       ),
                                     ),

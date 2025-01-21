@@ -61,7 +61,7 @@ class PaymentCheckoutCard extends StatelessWidget {
                               BoxConstraints(maxWidth: Get.width * 0.5),
                           child: AppText(
                             title: orders!["product"].toString(),
-                            size: 12,
+                            size: 13,
                             maxLines: 1,
                             overFlow: TextOverflow.ellipsis,
                             fontWeight: FontWeight.w600,
@@ -116,7 +116,7 @@ class PaymentCheckoutCard extends StatelessWidget {
                       title: "${orders!['Price']} AED",
                       fontWeight: FontWeight.w500,
                       color: AppColors.darkblue,
-                      size: 12,
+                      size: 13,
                     ),
                     Gap(7)
                   ],

@@ -19,7 +19,9 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-void main() async {
+Future<void> main() async {
+  print("Get.deviceLbgfgocale ${Locale(Get.deviceLocale?.languageCode ?? 'en',
+                Get.deviceLocale?.countryCode ?? 'US')}");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -29,71 +31,74 @@ void main() async {
   await LoadingHelper.init();
   await GetStorage.init();
   EasyLoading.init();
-  runApp(const MyApp());
+  await dotenv.load(fileName: "assets/.env");
   Stripe.publishableKey =
       "pk_test_51NjyPoKj8kRF1XiuJAv5r6UPr91km5JqWugq5FWvrfUDtOcew75SLLnk09zXOWM3RjmxebIg5vB845xYtUFI16ck00mbTgntzu";
-  await dotenv.load(fileName: "assets/.env");
   HttpOverrides.global = MyHttpOverrides();
-  // await getLocationPermission();
-  await _checkLocationPermission();
-}
-Future<void> _checkLocationPermission() async {
-  print("Checking location permission...");
-  final status = await Permission.locationWhenInUse.status;
-  print("Current permission status: $status");
-
-  if (status.isDenied) {
-    print("Permission is denied, requesting permission...");
-    final result = await Permission.locationWhenInUse.request();
-    print("Requested permission result: $result");
-
-    if (result.isDenied) {
-      print("Permission still denied after request.");
-      Get.snackbar(
-        'Permission Required',
-        'Location permission is needed for app functionality.',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
-  } else if (status.isPermanentlyDenied) {
-    print("Permission permanently denied.");
-    Get.snackbar(
-      'Permission Denied',
-      'Please enable location permission from settings.',
-      snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 5),
-    );
-    await openAppSettings();
-  } else {
-    print("Permission granted.");
-  }
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Mobile garage',
-      translations: LocaleString(),
-      locale:
-          box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
-      fallbackLocale:
-          box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
-      theme: ThemeData(
-        colorScheme: ColorScheme.light().copyWith(
-          primary: AppColors.primarybg,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus!.unfocus();
+        }
+      },
+      child: GetMaterialApp(
+        title: 'Mobile Garage',
+        translations: LocaleString(),
+        locale: getInitialLocale(),
+        fallbackLocale: getFallbackLocale(),
+        theme: ThemeData(
+          colorScheme: ColorScheme.light().copyWith(
+            primary: AppColors.primarybg,
+          ),
+          useMaterial3: true,
+          scaffoldBackgroundColor: AppColors.white,
         ),
-        useMaterial3: true,
-        scaffoldBackgroundColor: AppColors.white,
+        debugShowCheckedModeBanner: false,
+        builder: EasyLoading.init(),
+        initialBinding: SplashBinding(),
+        home: const SplashView(),
+        getPages: AppPages.pages,
       ),
-      debugShowCheckedModeBanner: false,
-      builder: EasyLoading.init(),
-      initialBinding: SplashBinding(),
-      home: const SplashView(),
-      getPages: AppPages.pages,
     );
   }
+}
+
+Locale getInitialLocale() {
+  String? storedLocale = box.read('locale');
+  if (storedLocale != null) {
+    return storedLocale == 'ar'
+        ? Locale('ar', 'AE')
+        : Locale('en', 'US');
+  }
+  var deviceLocale = Get.deviceLocale;
+  if (deviceLocale != null) {
+    if (deviceLocale.languageCode == 'ar') {
+      return Locale('ar', 'AE');
+    }
+    return Locale(
+      deviceLocale.languageCode ?? 'en',
+      deviceLocale.countryCode ?? 'US',
+    );
+  }
+  return Locale('en', 'US');
+}
+
+Locale getFallbackLocale() {
+  String? storedLocale = box.read('locale');
+  return storedLocale == 'ar'
+      ? Locale('ar', 'AE')
+      : Locale('en', 'US');
 }
 
 class MyHttpOverrides extends HttpOverrides {
@@ -101,6 +106,6 @@ class MyHttpOverrides extends HttpOverrides {
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
       ..badCertificateCallback =
-          (X509Certificate cert, String dhost, int port) => true;
+          (X509Certificate cert, String host, int port) => true;
   }
 }

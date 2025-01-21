@@ -68,7 +68,7 @@ class AllProfileCard extends StatelessWidget {
                   AppText(
                     title: text,
                     color: textColor,
-                    size: 12,
+                    size: 13,
                     fontWeight: FontWeight.w500,
                     overFlow: TextOverflow.ellipsis,
                   ),
@@ -84,18 +84,17 @@ class AllProfileCard extends StatelessWidget {
                   ),
                 ],
               ),
-              box.read('locale') != 'ar'?
-              SvgPicture.asset(
-                'assets/icons/arrow-right.svg'
-,
-                height: 20,
-                width: 20,
-              )
-             : SvgPicture.asset(
-                'assets/icons/arrow_leftside.svg',
-                height: 20,
-                width: 20,
-              ),
+              box.read('locale') != 'ar'
+                  ? SvgPicture.asset(
+                      'assets/icons/arrow-right.svg',
+                      height: 20,
+                      width: 20,
+                    )
+                  : SvgPicture.asset(
+                      'assets/icons/arrow_leftside.svg',
+                      height: 20,
+                      width: 20,
+                    ),
             ],
           ),
         ),

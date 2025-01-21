@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -97,7 +98,7 @@ class SigninView extends StatelessWidget {
                                                 controller.phoneController,
                                           ),
                                         ),
-                                        Gap(40),
+                                        // Gap(40),
                                         // Row(
                                         //   mainAxisAlignment:
                                         //       MainAxisAlignment.center,
@@ -113,23 +114,78 @@ class SigninView extends StatelessWidget {
                                         //     ),
                                         //     AppText(
                                         //       title: 'Remember me',
-                                        //       size: 12,
+                                        //       size: 13,
                                         //       fontWeight: FontWeight.w500,
                                         //       color: AppColors.primary,
                                         //     )
                                         //   ],
                                         // ),
-                                        Gap(70),
+                                        // Gap(70),
+                                        Gap(30),
+                                        Center(
+                                          child: RichText(
+                                            textAlign: TextAlign.center,
+                                            text: TextSpan(
+                                              text:
+                                                  'By continuing you agree to the'
+                                                      .tr,
+                                              style:
+                                                  DefaultTextStyle.of(context)
+                                                      .style,
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text: '\n\tterms'.tr,
+                                                    style: TextStyle(
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            Get.toNamed(AppRoutes
+                                                                .termscondition);
+                                                          }),
+                                                TextSpan(
+                                                    text: '\tand'.tr,
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            Get.toNamed(AppRoutes
+                                                                .termscondition);
+                                                          }),
+                                                TextSpan(
+                                                    text: '\tconditions'.tr,
+                                                    style: TextStyle(
+                                                        wordSpacing: 1,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            Get.toNamed(AppRoutes
+                                                                .termscondition);
+                                                          }),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Gap(49),
                                         MainButton(
                                           title: 'Sign In'.tr,
                                           txtweight: FontWeight.w600,
                                           onTap: () {
                                             // Get.toNamed(AppRoutes.otp);
                                             // controller.verifyNumber();
-                                            controller.phoneController.text
-                                                    .isEmpty
-                                                ? () {}
-                                                : controller.login();
+                                            // controller.phoneController.text
+                                            //         .isEmpty
+                                            //     ? () {}
+                                            // :
+                                            controller.login();
                                           },
                                         ),
                                         Gap(40),

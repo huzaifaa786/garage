@@ -63,7 +63,7 @@ class VForgotPasswordView extends StatelessWidget {
                                   const Gap(6),
                                   AppText(
                                     title: 'Enter your registered Email'.tr,
-                                    size: 12,
+                                    size: 13,
                                     color: AppColors.hint_text_color,
                                     fontWeight: FontWeight.w300,
                                   ),

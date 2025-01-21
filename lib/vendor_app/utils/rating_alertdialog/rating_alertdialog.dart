@@ -54,9 +54,11 @@ class RatingAlertDialog extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15),
                           child: AppText(
-                            title:  'Your order has been \ndelivered! We enjoy serving \n you Please rate us.'.tr,
+                            title:
+                                'Your order has been \ndelivered! We enjoy serving \n you Please rate us.'
+                                    .tr,
                             textAlign: TextAlign.center,
-                            size: 12,
+                            size: 13,
                             fontWeight: FontWeight.w400,
                           ),
                         ),

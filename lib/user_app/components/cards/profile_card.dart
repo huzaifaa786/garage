@@ -44,13 +44,13 @@ class ProfileCard extends StatelessWidget {
                     networkImage: image,
                   ),
                 ),
-                 Gap(10),
+                Gap(10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: Get.width*0.4),
+                      constraints: BoxConstraints(maxWidth: Get.width * 0.4),
                       child: Text(
                         userName,
                         maxLines: 1,
@@ -78,7 +78,7 @@ class ProfileCard extends StatelessWidget {
                   AppText(
                     title: 'Edit'.tr,
                     color: AppColors.primary,
-                    size: 12,
+                    size: 13,
                     fontWeight: FontWeight.w500,
                   ),
                   const Gap(5),

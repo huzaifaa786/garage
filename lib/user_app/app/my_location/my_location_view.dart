@@ -62,8 +62,13 @@ class _MyLocationViewState extends State<MyLocationView> {
                                     ),
                                     Gap(10),
                                     AppText(
-                                      title:
-                                          controller.user!.emirate.toString(),
+                                      title: box.read('locale') == 'ar'
+                                          ? controller.user!.arEmirate
+                                              .toString()
+                                              .tr
+                                          : controller.user!.emirate
+                                              .toString()
+                                              .tr,
                                       size: 14,
                                       fontWeight: FontWeight.w500,
                                       overFlow: TextOverflow.ellipsis,
@@ -74,7 +79,8 @@ class _MyLocationViewState extends State<MyLocationView> {
                                           maxWidth: Get.width * 0.44),
                                       child: AppText(
                                         title: controller.user!.addressDetail
-                                            .toString(),
+                                            .toString()
+                                            .tr,
                                         size: 14,
                                         color: AppColors.grey.shade500,
                                         fontWeight: FontWeight.w400,
@@ -104,11 +110,10 @@ class _MyLocationViewState extends State<MyLocationView> {
                                       ),
                                       Gap(29),
                                       DropDownField<EmirateModel>(
-                                        displayValue: (item) => 
-                                        box.read('locale') == 'ar'
-                                            ? item.arname!
-                                            :
-                                        item.name!,
+                                        displayValue: (item) =>
+                                            box.read('locale') == 'ar'
+                                                ? item.arname!
+                                                : item.name!,
                                         items: controller.emirates,
                                         hint: 'Emirate'.tr,
                                         selectedValue:
@@ -135,8 +140,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                                       Gap(20),
                                       GestureDetector(
                                         onTap: () async {
-                                          if (await getLocationPermission() ==
-                                              true) {
+                                          await getLocationPermission();
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -174,7 +178,6 @@ class _MyLocationViewState extends State<MyLocationView> {
                                                 ),
                                               ),
                                             );
-                                          }
                                         },
                                         child: Stack(
                                           children: [
@@ -232,7 +235,8 @@ class _MyLocationViewState extends State<MyLocationView> {
                                                                 ""
                                                             ? AppText(
                                                                 title:
-                                                                    "Select location on Google map".tr,
+                                                                    "Select location on Google map"
+                                                                        .tr,
                                                                 size: 10,
                                                                 fontWeight:
                                                                     FontWeight

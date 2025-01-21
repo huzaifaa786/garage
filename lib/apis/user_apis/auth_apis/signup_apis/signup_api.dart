@@ -23,4 +23,14 @@ class SignupApi {
     var response = await DioService.post(url: url, data: data);
     return response;
   }
+   static Future<Map<String, dynamic>> userPhoneNumberCheck({
+    String? phone,
+  }) async {
+    String url = '$baseUrl/phone/check';
+    var data = {
+      "phone": phone,
+     };
+    var response = await DioService.post(url: url, data: data);
+    return response;
+  }
 }

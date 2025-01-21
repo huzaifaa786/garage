@@ -80,7 +80,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                                 AppText(
                                   title: 'Total price:',
                                   fontWeight: FontWeight.w500,
-                                  size: 12,
+                                  size: 13,
                                   color: AppColors.grey,
                                 ),
                                 Gap(5),
@@ -127,7 +127,7 @@ class _BookServiceViewState extends State<BookServiceView> {
                                       AppText(
                                         title: 'Book Service',
                                         color: AppColors.white,
-                                        size: 12,
+                                        size: 13,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ],

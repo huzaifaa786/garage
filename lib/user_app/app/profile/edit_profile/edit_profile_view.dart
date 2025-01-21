@@ -23,21 +23,22 @@ class EditProfileView extends StatefulWidget {
 }
 
 class _EditProfileViewState extends State<EditProfileView> {
-  void _showImageSourceDialog(
-    BuildContext context, EditProfileController controller, String imageName) {
-  showModalBottomSheet(
-    context: context,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-    ),
-    builder: (BuildContext context) {
-      return Wrap(
-        children: [
-ListTile(
-              leading: Icon(Icons.photo_library, ),
+  void _showImageSourceDialog(BuildContext context,
+      EditProfileController controller, String imageName) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: Icon(
+                Icons.photo_library,
+              ),
               title: Text(
                 'Choose from Gallery'.tr,
-              
               ),
               onTap: () {
                 Navigator.of(context).pop();
@@ -46,29 +47,28 @@ ListTile(
             ),
             SizedBox(height: 10),
             ListTile(
-              leading: Icon(Icons.camera_alt, ),
+              leading: Icon(
+                Icons.camera_alt,
+              ),
               title: Text(
                 'Take a Photo'.tr,
-               
               ),
               onTap: () {
                 Navigator.of(context).pop();
                 controller.pickImage('camera');
               },
             ),
-        ],
-        // child: Column(
-        //   mainAxisSize: MainAxisSize.min,
-        //   children: [
-          
-            
-        //   ],
-        // ),
-      );
-    },
-  );
-}
+          ],
+          // child: Column(
+          //   mainAxisSize: MainAxisSize.min,
+          //   children: [
 
+          //   ],
+          // ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,44 +99,43 @@ ListTile(
             child: Column(
               children: [
                 Gap(15),
-                
                 Stack(
                   children: [
                     CircleAvatar(
                       radius: 50,
                       backgroundColor: Colors.transparent,
-                           child: controller.profilepic != null
-          ? ClipOval(
-              child: Image.file(
-                controller.profilepic!,
-                height: 100,
-                width: 100,
-                fit: BoxFit.cover,
-              ),
-            )
-          : controller.img != null && controller.img != ''
-              ? ClipRRect(
-                  borderRadius: BorderRadius.circular(80),
-                  child: CachedNetworkImage(
-                    imageUrl: controller.img.toString(),
-                    height: 100,
-                    width: 100,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) =>
-                        CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        Icon(Icons.error),
-                  ),
-                )
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.asset(
-                    'assets/images/account.png',
-                    height: 100,
-                    width: 100,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                      child: controller.profilepic != null
+                          ? ClipOval(
+                              child: Image.file(
+                                controller.profilepic!,
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : controller.img != null && controller.img != ''
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(80),
+                                  child: CachedNetworkImage(
+                                    imageUrl: controller.img.toString(),
+                                    height: 100,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: Image.asset(
+                                    'assets/images/account.png',
+                                    height: 100,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                     ),
                     Positioned(
                       bottom: 0,
@@ -144,17 +143,18 @@ ListTile(
                       child: GestureDetector(
                         onTap: () {
                           // controller.pickImageFromGallery('profilepic');
-                            _showImageSourceDialog(context, controller, 'profilepic');
+                          _showImageSourceDialog(
+                              context, controller, 'profilepic');
                         },
                         child: Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: AppColors.lightPink
-                          ),
-                            child:
-                                Center(child: SvgPicture.asset('assets/images/cammera.svg'))),
+                            height: 30,
+                            width: 30,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: AppColors.lightPink),
+                            child: Center(
+                                child: SvgPicture.asset(
+                                    'assets/images/cammera.svg'))),
                       ),
                     ),
                   ],
@@ -203,7 +203,6 @@ ListTile(
                     ),
                   ],
                 ),
-
                 Gap(22),
                 MainInput(
                   height: Get.height * 0.07,
@@ -232,7 +231,7 @@ ListTile(
                       children: [
                         AppText(
                           title: 'Change phone number'.tr,
-                          size: 12,
+                          size: 13,
                           fontWeight: FontWeight.w500,
                           color: AppColors.primary,
                         ),

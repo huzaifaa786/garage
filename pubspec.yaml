@@ -88,12 +88,14 @@ dependencies:
   flutter_file_downloader: ^2.0.0
   is_first_run: ^1.0.0
   flutter_launcher_icons: ^0.14.1
+  location: ^7.0.1
 
 
 
 
   intl: any
   google_maps_flutter: any
+  flutter_email_sender: ^6.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -93,7 +93,7 @@ class DottedBorderButton extends StatelessWidget {
                       Gap(4),
                       AppText(
                         title: isImgSelected == false ? title : 'Uploaded'.tr,
-                        size: 12,
+                        size: 13,
                         fontWeight: FontWeight.w500,
                         color: isImgSelected == false
                             ? AppColors.red

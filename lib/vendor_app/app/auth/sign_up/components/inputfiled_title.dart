@@ -14,7 +14,7 @@ class InputfiledTitle extends StatelessWidget {
         children: [
           AppText(
             title: '$title',
-            size: 12,
+            size: 13,
             color: AppColors.hint_text_color,
           ),
         ],

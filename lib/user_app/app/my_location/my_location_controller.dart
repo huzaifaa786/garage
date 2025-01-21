@@ -21,22 +21,28 @@ class MyLocationController extends GetxController {
   List<EmirateModel> emirates = [];
   int? selectedEmirateId;
   String? selectedemirateName;
+  String? selectedemiratearName;
+
   getEmirates() async {
     var response = await VGetEmirates.getEmirats();
     if (response.isNotEmpty) {
       emirates = (response['emirates'] as List<dynamic>)
           .map((item) => EmirateModel.from(item as Map<String, dynamic>))
           .toList();
-       await setSelectedEmirate(
-          emirates.firstWhere((category) => category.name == user!.emirate.toString()));
+      // await setSelectedEmirate(
+      //   // emirates
+      //     // .firstWhere((category) => category.arname == user!.arEmirate.toString())
+      //     );
       update();
     }
   }
 
-   setSelectedEmirate(EmirateModel? Brand) {
+  setSelectedEmirate(EmirateModel? Brand) {
     selectedEmirate = Brand;
     selectedEmirateId = Brand?.id;
     selectedemirateName = Brand?.name;
+  selectedemiratearName= Brand?.arname;
+   
     update();
   }
 
@@ -47,6 +53,7 @@ class MyLocationController extends GetxController {
           lat: lat.toString(),
           lng: lng.toString(),
           emirateId: selectedemirateName.toString(),
+          arEmirate: selectedemiratearName.toString(),
           addressdetail: adreesdetailController.text);
       if (response.isNotEmpty) {
         user = UserModel.fromJson(response['user']);

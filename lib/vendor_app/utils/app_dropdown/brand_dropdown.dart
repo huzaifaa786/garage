@@ -38,7 +38,8 @@ class _BrandDropdownState extends State<BrandDropdown> {
   void initState() {
     super.initState();
     _scrollController.addListener(() {
-      if (_scrollController.position.userScrollDirection != ScrollDirection.idle) {
+      if (_scrollController.position.userScrollDirection !=
+          ScrollDirection.idle) {
         setState(() {
           activeKey = null;
         });
@@ -66,7 +67,7 @@ class _BrandDropdownState extends State<BrandDropdown> {
               horizontal: screenWidth * 0.04,
               vertical: screenHeight * 0.026,
             ),
-            decoration:widget.errorText!.isNotEmpty
+            decoration: widget.errorText!.isNotEmpty
                 ? circularErrorInputDecoration
                 : circularInputDecoration,
             child: Row(
@@ -74,10 +75,11 @@ class _BrandDropdownState extends State<BrandDropdown> {
               children: [
                 AppText(
                   title: selectedName,
-                  size: 12,
+                  size: 13,
                   fontWeight: FontWeight.w400,
                 ),
-                SvgPicture.asset("assets/icons/BrandDropdown.svg", height: screenHeight * 0.01),
+                SvgPicture.asset("assets/icons/BrandDropdown.svg",
+                    height: screenHeight * 0.01),
               ],
             ),
           ),
@@ -97,7 +99,8 @@ class _BrandDropdownState extends State<BrandDropdown> {
           ),
         if (isExpanded)
           Container(
-            margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.04, vertical: 10),
+            margin: EdgeInsets.symmetric(
+                horizontal: screenWidth * 0.04, vertical: 10),
             decoration: BoxDecoration(
               color: AppColors.white_color,
               borderRadius: BorderRadius.circular(16),
@@ -120,7 +123,8 @@ class _BrandDropdownState extends State<BrandDropdown> {
                   return ContractorListItem(
                     index: index,
                     title: key,
-                    showActivitiveColor: widget.contractors[key]!["show"] ?? false,
+                    showActivitiveColor:
+                        widget.contractors[key]!["show"] ?? false,
                     imagePath: widget.contractors[key]!['imagePath'] ?? "",
                     value: widget.contractors[key]!['selected'] ?? false,
                     isActive: activeKey == key,
@@ -148,8 +152,6 @@ class _BrandDropdownState extends State<BrandDropdown> {
     );
   }
 }
-
-
 
 class ContractorListItem extends StatelessWidget {
   final int index;
@@ -213,8 +215,10 @@ class ContractorListItem extends StatelessWidget {
                       child: imagePath.endsWith('.svg')
                           ? SvgPicture.asset(imagePath, height: 20, width: 20)
                           : (getBase64Image() != null
-                              ? Image.memory(getBase64Image()!, height: 20, width: 20)
-                              : CachedNetworkImage(imageUrl: imagePath, height: 20, width: 20)),
+                              ? Image.memory(getBase64Image()!,
+                                  height: 20, width: 20)
+                              : CachedNetworkImage(
+                                  imageUrl: imagePath, height: 20, width: 20)),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                       ),

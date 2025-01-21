@@ -68,7 +68,7 @@ class CartCard extends StatelessWidget {
                                         : item!.cartProduct!.categoryId == '2'
                                             ? item!.brand!.name.toString()
                                             : item!.fuelextra!.name.toString(),
-                                    size: 12,
+                                    size: 13,
                                     maxLines: 1,
                                     overFlow: TextOverflow.ellipsis,
                                     fontWeight: FontWeight.w600,
@@ -133,17 +133,16 @@ class CartCard extends StatelessWidget {
                                 Flexible(
                                   child: AppText(
                                     title:
-                                    //  item!.fuelextra != null
+                                        //  item!.fuelextra != null
                                         // ? "${item!.fuelextra!.price.toString()} ${'AED'.tr}"
                                         // :
-                                         "${item!.price.toString()} ${'AED'.tr}",
+                                        "${item!.price.toString()} ${'AED'.tr}",
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.darkblue,
-                                    size: 12,
+                                    size: 13,
                                     maxLines: 1,
                                   ),
                                 ),
-                                
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       right: 5, bottom: 5),
@@ -164,7 +163,7 @@ class CartCard extends StatelessWidget {
                                         child: Icon(
                                           Icons.remove,
                                           color: AppColors.primary,
-                                          size: 12,
+                                          size: 13,
                                         ),
                                       ),
                                       isBordered: false,
@@ -181,7 +180,7 @@ class CartCard extends StatelessWidget {
                                         child: Icon(
                                           Icons.add,
                                           color: AppColors.white,
-                                          size: 12,
+                                          size: 13,
                                         ),
                                       ),
                                     ),

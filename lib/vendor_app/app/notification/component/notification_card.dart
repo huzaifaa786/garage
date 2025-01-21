@@ -73,7 +73,7 @@ class NotificationCard extends StatelessWidget {
                             AppText(
                               title: notifications!.username.toString(),
                               fontWeight: FontWeight.w600,
-                              size: 12,
+                              size: 13,
                               maxLines: 1,
                               overFlow: TextOverflow.ellipsis,
                             ),

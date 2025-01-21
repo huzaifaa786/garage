@@ -85,5 +85,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'mobile-garage-b16a3.firebasestorage.app',
     measurementId: 'G-38HGX9D8BC',
   );
-
 }

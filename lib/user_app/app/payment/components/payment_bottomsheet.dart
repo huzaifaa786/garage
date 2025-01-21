@@ -89,7 +89,7 @@
 //                                           ),
 //                                           AppText(
 //                                             title: '100.50 AED',
-//                                             size: 12,
+//                                             size: 13,
 //                                             fontWeight: FontWeight.w600,
 //                                           ),
 //                                         ],
@@ -106,7 +106,7 @@
 //                                           ),
 //                                           AppText(
 //                                             title: '70.50 AED',
-//                                             size: 12,
+//                                             size: 13,
 //                                             fontWeight: FontWeight.w600,
 //                                           ),
 //                                         ],

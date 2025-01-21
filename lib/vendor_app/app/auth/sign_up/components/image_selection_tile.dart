@@ -54,7 +54,7 @@ class ImageSelectionTile extends StatelessWidget {
                     const Gap(4),
                     AppText(
                       title: isSelected ? 'Uploaded'.tr : '$title',
-                      size: 12,
+                      size: 13,
                       color: isSelected
                           ? AppColors.green_color
                           : AppColors.primary_color,

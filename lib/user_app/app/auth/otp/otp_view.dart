@@ -62,13 +62,13 @@ class OtpView extends StatelessWidget {
                     Gap(20),
                     AppText(
                       title: 'We have sent you an OTP code to your'.tr,
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w500,
                       color: AppColors.black.withOpacity(0.4),
                     ),
                     AppText(
                       title: 'whatsapp number, please enter it to continue'.tr,
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w500,
                       color: AppColors.black.withOpacity(0.4),
                     ),
@@ -146,7 +146,7 @@ class OtpView extends StatelessWidget {
                             debugPrint(value);
                             print('ddd');
                           },
-                      
+
                           // beforeTextPaste: (text) {
                           //   debugPrint("Allowing to paste $text");
                           //   //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
@@ -163,10 +163,11 @@ class OtpView extends StatelessWidget {
                       onTap: () {
                         controller.resendOtp();
                       },
-                      child: AppText(title: 'Resend',
-                      size: 14,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primarybg.withOpacity(0.8),
+                      child: AppText(
+                        title: 'Resend'.tr,
+                        size: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primarybg.withOpacity(0.8),
                       ),
                     ),
                     Gap(80),
