@@ -46,23 +46,31 @@ class DropDownField<T> extends StatelessWidget {
                 : circularInputDecoration,
             child: DropdownButtonHideUnderline(
               child: DropdownButton2(
-                hint: AppText(
-                  title: hint ?? '',
-                  size: 13,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.black.withOpacity(0.4),
+                hint: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppText(
+                      title: hint ?? '',
+                      size: 13,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.black.withOpacity(0.4),
+                    ),
+                  ],
                 ),
                 items: items
                     .map((item) => DropdownMenuItem<T>(
                           value: item,
-                          child: Text(
-                            displayValue!(item),
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: item == selectedValue
-                                  ? AppColors.white_color
-                                  : AppColors.black_color,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              displayValue!(item),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: item == selectedValue
+                                    ? AppColors.white_color
+                                    : AppColors.black_color,
+                              ),
                             ),
                           ),
                         ))
@@ -122,7 +130,9 @@ class DropDownField<T> extends StatelessWidget {
                       Container(color: AppColors.primary_color, child: child),
                 ),
                 iconStyleData: IconStyleData(
-                  icon: SvgPicture.asset(ImageConst.drop_down_icon),
+                  icon: SvgPicture.asset(
+                    ImageConst.drop_down_icon,
+                  ),
                 ),
                 buttonStyleData: ButtonStyleData(
                   padding:

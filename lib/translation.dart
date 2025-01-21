@@ -544,8 +544,10 @@ class LocaleString extends Translations {
           'Your garage is banned. Please contact support.':
               'Your garage is banned. Please contact support.',
           "Resend": "Resend",
+          "This phonenumber is already taken.":"This phonenumber is already taken.",
         },
         'ar_AE': {
+          "This phonenumber is already taken.": "رقم الهاتف مسجل بالفعل، الرجاء تسجيل الدخول",
           "Manufacture year must be a valid 4-digit year":
               "سنة الصنع يجب ان تكون سنة صالحة مكونة من 4 ارقام",
           "Manufacture year can't be empty":

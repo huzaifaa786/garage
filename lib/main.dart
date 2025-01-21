@@ -19,7 +19,9 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-void main() async {
+Future<void> main() async {
+  print("Get.deviceLbgfgocale ${Locale(Get.deviceLocale?.languageCode ?? 'en',
+                Get.deviceLocale?.countryCode ?? 'US')}");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -29,17 +31,16 @@ void main() async {
   await LoadingHelper.init();
   await GetStorage.init();
   EasyLoading.init();
-  runApp(const MyApp());
+  await dotenv.load(fileName: "assets/.env");
   Stripe.publishableKey =
       "pk_test_51NjyPoKj8kRF1XiuJAv5r6UPr91km5JqWugq5FWvrfUDtOcew75SLLnk09zXOWM3RjmxebIg5vB845xYtUFI16ck00mbTgntzu";
-  await dotenv.load(fileName: "assets/.env");
   HttpOverrides.global = MyHttpOverrides();
-  // await getLocationPermission();
+  runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -52,13 +53,10 @@ class MyApp extends StatelessWidget {
         }
       },
       child: GetMaterialApp(
-        title: 'Mobile garage',
+        title: 'Mobile Garage',
         translations: LocaleString(),
-        locale:box.read('locale') != null
-          ? box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US')
-          : Get.deviceLocale,
-        fallbackLocale:
-            box.read('locale') == 'ar' ? Locale('ar', 'AE') : Locale('en', 'US'),
+        locale: getInitialLocale(),
+        fallbackLocale: getFallbackLocale(),
         theme: ThemeData(
           colorScheme: ColorScheme.light().copyWith(
             primary: AppColors.primarybg,
@@ -76,11 +74,38 @@ class MyApp extends StatelessWidget {
   }
 }
 
+Locale getInitialLocale() {
+  String? storedLocale = box.read('locale');
+  if (storedLocale != null) {
+    return storedLocale == 'ar'
+        ? Locale('ar', 'AE')
+        : Locale('en', 'US');
+  }
+  var deviceLocale = Get.deviceLocale;
+  if (deviceLocale != null) {
+    if (deviceLocale.languageCode == 'ar') {
+      return Locale('ar', 'AE');
+    }
+    return Locale(
+      deviceLocale.languageCode ?? 'en',
+      deviceLocale.countryCode ?? 'US',
+    );
+  }
+  return Locale('en', 'US');
+}
+
+Locale getFallbackLocale() {
+  String? storedLocale = box.read('locale');
+  return storedLocale == 'ar'
+      ? Locale('ar', 'AE')
+      : Locale('en', 'US');
+}
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
       ..badCertificateCallback =
-          (X509Certificate cert, String dhost, int port) => true;
+          (X509Certificate cert, String host, int port) => true;
   }
 }

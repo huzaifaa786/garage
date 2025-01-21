@@ -1,18 +1,18 @@
-
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingController extends GetxController {
   static SettingController instance = Get.find();
- 
-  String email = 'admin@gmail.com';
-  String phoneNo = '+971555147123';
-  String whatsappNo = '+971555147123';
-  String instagram = '@babarAzam';
- String linkedin = 'https://www.linkedin.com/in/your-profile/';
+
+  String email = 'mobile.garage@outlook.com';
+  String phoneNo = '+971555007411';
+  String whatsappNo = '+971555007411';
+  String instagram =
+      'https://www.instagram.com/mobile_garage_app?igsh=b3M2OHNnYzQ4dWU4';
+  String linkedin = 'https://www.linkedin.com/in/your-profile/';
   String subject = '';
   String body = '';
-Future<void> openEmail() async {
+  Future<void> openEmail() async {
     final Uri url = Uri(
       scheme: 'mailto',
       path: email,
@@ -43,11 +43,11 @@ Future<void> openEmail() async {
       await launchUrl(uri);
     }
   }
-   void openLinkedIn() async {
+
+  void openLinkedIn() async {
     final uri = Uri.parse(linkedin);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }
   }
- 
 }
