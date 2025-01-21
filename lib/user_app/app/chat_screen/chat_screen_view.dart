@@ -170,7 +170,7 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                 Gap(8),
                 GestureDetector(
                     onTap: () async {
-                      if (await getLocationPermission() == true) {
+                      await getLocationPermission();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -200,7 +200,6 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                             ),
                           ),
                         );
-                      }
                     },
                     // },
                     child: SvgPicture.asset("assets/icons/location.svg")),

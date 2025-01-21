@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -94,7 +96,7 @@ class _MainViewState extends State<MainView> with RouteAware {
                 ),
                 child: BottomAppBar(
                   shape: CircularNotchedRectangle(),
-                  height: Get.height * 0.1,
+                  height: Platform.isIOS ? 65 :  Get.height * 0.1,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[

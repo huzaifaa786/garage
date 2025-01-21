@@ -140,8 +140,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                                       Gap(20),
                                       GestureDetector(
                                         onTap: () async {
-                                          if (await getLocationPermission() ==
-                                              true) {
+                                          await getLocationPermission();
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -179,7 +178,6 @@ class _MyLocationViewState extends State<MyLocationView> {
                                                 ),
                                               ),
                                             );
-                                          }
                                         },
                                         child: Stack(
                                           children: [
