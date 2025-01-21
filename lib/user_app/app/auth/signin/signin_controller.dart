@@ -99,7 +99,7 @@ class SigninController extends GetxController {
 
   String? otp = '';
   login() async {
-    var response = await VerifyNumberApi.verifyNumber(phone: completePhone);
+    
     var response = await LoginVerifyApi.verifyNumber(
         phone: completePhoneNumber.toString());
     if (response.isNotEmpty) {
