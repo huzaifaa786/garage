@@ -356,7 +356,7 @@ class VSignUpController extends GetxController {
             title: 'Thank you!'.tr,
             verificationnumber: response['garage']['garage']['id'],
             description:
-                'You have submitted your application successfully and it’s pending approval.'
+                'You have submitted your application successfully and waiting for approval.'
                     .tr,
             buttontitle: 'Ok'.tr);
 
