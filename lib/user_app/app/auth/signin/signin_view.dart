@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/auth/signin/signin_controller.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
-import 'package:mobilegarage/user_app/components/textfields/phone_inputfield.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
@@ -20,6 +20,17 @@ class SigninView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SigninController>(
+      initState: (state) {
+        Future.delayed(Duration(milliseconds: 100), () {
+          GetStorage box = GetStorage();
+          if (box.read('isRemember') == true) {
+            state.controller!.isChecked = true;
+            state.controller!.phoneController.text =
+                box.read('rememberedPhone');
+            state.controller!.update();
+          }
+        });
+      },
       builder: (controller) => Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primarybg,
@@ -98,27 +109,27 @@ class SigninView extends StatelessWidget {
                                           ),
                                         ),
                                         Gap(40),
-                                        // Row(
-                                        //   mainAxisAlignment:
-                                        //       MainAxisAlignment.center,
-                                        //   children: [
-                                        //     Checkbox(
-                                        //       value: controller.isChecked,
-                                        //       onChanged: (bool? value) {
-                                        //         controller.toggleCheckbox();
-                                        //       },
-                                        //       activeColor: AppColors.primary,
-                                        //       side: BorderSide(
-                                        //           color: AppColors.primary),
-                                        //     ),
-                                        //     AppText(
-                                        //       title: 'Remember me',
-                                        //       size: 12,
-                                        //       fontWeight: FontWeight.w500,
-                                        //       color: AppColors.primary,
-                                        //     )
-                                        //   ],
-                                        // ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Checkbox(
+                                              value: controller.isChecked,
+                                              onChanged: (bool? value) {
+                                                controller.toggleCheckbox();
+                                              },
+                                              activeColor: AppColors.primary,
+                                              side: BorderSide(
+                                                  color: AppColors.primary),
+                                            ),
+                                            AppText(
+                                              title: 'Remember me',
+                                              size: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: AppColors.primary,
+                                            )
+                                          ],
+                                        ),
                                         Gap(70),
                                         MainButton(
                                           title: 'Sign In'.tr,
