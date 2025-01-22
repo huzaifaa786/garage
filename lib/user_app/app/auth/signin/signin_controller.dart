@@ -74,28 +74,29 @@ class SigninController extends GetxController {
   String phoneError = '';
 
   phoneValidation(phone) {
+    print('phone: $phone');
     if (!isNumeric(phone.number)) {
       phoneError = 'Use Numeric Variables'.tr;
+      completePhoneNumber = null;
       update();
       return phoneError;
     } else if (phone.number.length < selectedCountry!.minLength ||
         phone.number.length > selectedCountry!.maxLength) {
       phoneError = 'Invalid Phone Number'.tr;
+      completePhoneNumber = null;
       update();
       return phoneError;
     } else {
       phoneError = '';
     }
+
     checkphoneController = phone;
-    update();
     if (countries
             .firstWhere((element) => element.code == phone!.countryISOCode)
             .maxLength ==
         phone!.number.length) {
       completePhoneNumber = phone.completeNumber;
       update();
-    } else {
-      completePhoneNumber = null;
     }
     return phoneError;
   }
@@ -103,31 +104,27 @@ class SigninController extends GetxController {
   String? otp = '';
   login() async {
     GetStorage box = GetStorage();
-    // var response = await LoginVerifyApi.verifyNumber(
-    //     phone: completePhoneNumber.toString());
-    // if (response.isNotEmpty) {
+    var response = await LoginVerifyApi.verifyNumber(
+        phone: completePhoneNumber.toString());
+
+    print(completePhoneNumber);
+    if (response.isNotEmpty) {
       if (isChecked == true) {
-        String isoCountryCode = parsePhoneNumber('$completePhoneNumber');
+        String countryCode = parsePhoneNumber('$completePhoneNumber');
         box.write('isRemember', true);
         box.write('rememberedPhone', phoneController.text);
-        box.write('rememberedPhoneCode', isoCountryCode);
+        box.write('rememberedPhoneCode', countryCode);
       } else {
         box.remove('isRemember');
         box.remove('rememberedPhone');
         box.remove('rememberedPhoneCode');
       }
-      // otp = response['user']['otp'].toString();
 
       Get.toNamed(AppRoutes.otp, parameters: {
         'phone': completePhoneNumber.toString(),
-        // 'auth': 'signin',
-        // 'otp': otp.toString()
+        'auth': 'signin',
       });
-    // } else {
-    //   Future.delayed(Duration(seconds: 1), () {
-    //     Get.toNamed(AppRoutes.signup);
-    //   });
-    // }
+    }
   }
 
   String? initialCode;
@@ -137,17 +134,28 @@ class SigninController extends GetxController {
     GetStorage box = GetStorage();
     String? i = box.read('rememberedPhoneCode');
     if (i != null && i.isNotEmpty) {
-      initialCode = box.read('rememberedPhoneCode');
-    } else {
-      initialCode = 'AE';
-    }
-    if (box.read('isRemember') == true) {
-      phoneController.text = box.read('rememberedPhone');
-      isChecked = true;
+      selectedCountry =
+          countries.firstWhere((country) => country.fullCountryCode == "$i");
       update();
     }
+    initialCode = selectedCountry!.code;
+    if (box.read('isRemember') == true) {
+      String countryCode = parsePhoneNumber(
+          '+${box.read('rememberedPhoneCode')}${box.read('rememberedPhone')}');
+      String isoCode = phoneNumberIsoCode(
+          '+${box.read('rememberedPhoneCode')}${box.read('rememberedPhone')}');
+
+      phoneValidation(
+        PhoneNumber(
+          countryCode: '+$countryCode',
+          countryISOCode: isoCode,
+          number: box.read('rememberedPhone'),
+        ),
+      );
+      phoneController.text = box.read('rememberedPhone');
+      isChecked = true;
+    }
+    update();
     super.onInit();
   }
 }
-
- 

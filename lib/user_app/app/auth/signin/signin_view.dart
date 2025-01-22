@@ -89,7 +89,8 @@ class SigninView extends StatelessWidget {
                                                   ? TextDirection.ltr
                                                   : TextDirection.ltr,
                                           child: AppPhoneInput(
-                                            initialCountryCode: controller.initialCode,
+                                            initialCountryCode:
+                                                controller.initialCode,
                                             // initialPhoneNumber: controller.phoneNumber,
                                             onCountryChanged:
                                                 controller.onCountryChanged,
@@ -182,11 +183,12 @@ class SigninView extends StatelessWidget {
                                           onTap: () {
                                             // Get.toNamed(AppRoutes.otp);
                                             // controller.verifyNumber();
-                                            // controller.phoneController.text
-                                            //         .isEmpty
-                                            //     ? () {}
-                                                // :
-                                                 controller.login();
+                                            controller.phoneController.text
+                                                        .isEmpty &&
+                                                    controller
+                                                        .phoneError.isNotEmpty
+                                                ? () {}
+                                                : controller.login();
                                           },
                                         ),
                                         Gap(40),
