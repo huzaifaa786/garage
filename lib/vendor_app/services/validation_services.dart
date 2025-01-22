@@ -18,13 +18,16 @@ class Validators {
   static String? manufactureYearValidator(String? value) {
     if (value == null || value.isEmpty) {
       return "Manufacture year can't be empty".tr;
-    } else if (!RegExp(r'^\d{4}$').hasMatch(value)) {
-      return "Manufacture year must be a valid 4-digit year".tr;
-    } else if (int.parse(value) > DateTime.now().year) {
-      return "Manufacture year can't be in the future".tr;
-    } else {
-      return null; 
     }
+    if (!RegExp(r'^\d{4}$').hasMatch(value)) {
+      return "Manufacture year must be a valid 4-digit year".tr;
+    }
+    int year = int.parse(value);
+    int currentYear = DateTime.now().year;
+    if (year < 1950 || year > currentYear) {
+      return "${"Manufacture year must be between 1950 and".tr} $currentYear".tr;
+    }
+    return null;
   }
 
   /// Validates the Email for User Authentication
