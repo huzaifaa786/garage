@@ -543,11 +543,12 @@ class LocaleString extends Translations {
               "Manufacture year can't be in the future",
           'Your garage is banned. Please contact support.':
               'Your garage is banned. Please contact support.',
-          "Resend": "Resend",
           "This phonenumber is already taken.":"This phonenumber is already taken.",
        "Manufacture year must be between 1950 and":"Manufacture year must be between 1900 and",
+       'Remember me' : 'Remember me',
         },
         'ar_AE': {
+       'Remember me' : 'تذكرنى',
           "Manufacture year must be between 1950 and":"يجب أن تكون سنة الصنع بين 1950 و",
           "This phonenumber is already taken.": "رقم الهاتف مسجل بالفعل، الرجاء تسجيل الدخول",
           "Manufacture year must be a valid 4-digit year":

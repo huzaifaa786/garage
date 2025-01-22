@@ -8,6 +8,7 @@ import 'package:intl_phone_field/phone_number.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/login_verify_api.dart';
 import 'package:mobilegarage/apis/user_apis/auth_apis/signin_apis/verify_number_api.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
+import 'package:mobilegarage/user_app/app/auth/signin/number_formater.dart';
 
 class SigninController extends GetxController {
   static SigninController instance = Get.find();
@@ -102,38 +103,51 @@ class SigninController extends GetxController {
   String? otp = '';
   login() async {
     GetStorage box = GetStorage();
-    // var response = await VerifyNumberApi.verifyNumber(phone: completePhone);
-    if (isChecked == true) {
-      box.write('isRemember', true);
-      box.write('rememberedPhone', phoneController.text);
-    } else {
-      box.remove('isRemember');
-      box.remove('rememberedPhone');
-    }
     // var response = await LoginVerifyApi.verifyNumber(
     //     phone: completePhoneNumber.toString());
     // if (response.isNotEmpty) {
-    //   otp = response['user']['otp'].toString();
+      if (isChecked == true) {
+        String isoCountryCode = parsePhoneNumber('$completePhoneNumber');
+        box.write('isRemember', true);
+        box.write('rememberedPhone', phoneController.text);
+        box.write('rememberedPhoneCode', isoCountryCode);
+      } else {
+        box.remove('isRemember');
+        box.remove('rememberedPhone');
+        box.remove('rememberedPhoneCode');
+      }
+      // otp = response['user']['otp'].toString();
 
-    Get.toNamed(AppRoutes.otp, parameters: {
-      'phone': completePhoneNumber.toString(),
-      // 'auth': 'signin',
-      // 'otp': otp.toString()
-    });
+      Get.toNamed(AppRoutes.otp, parameters: {
+        'phone': completePhoneNumber.toString(),
+        // 'auth': 'signin',
+        'otp': otp.toString()
+      });
     // } else {
     //   Future.delayed(Duration(seconds: 1), () {
     //     Get.toNamed(AppRoutes.signup);
     //   });
+    // }
+  }
+
+  String? initialCode;
+
+  @override
+  void onInit() {
+    GetStorage box = GetStorage();
+    String? i = box.read('rememberedPhoneCode');
+    if (i != null && i.isNotEmpty) {
+      initialCode = box.read('rememberedPhoneCode');
+    } else {
+      initialCode = 'AE';
+    }
+    if (box.read('isRemember') == true) {
+      phoneController.text = box.read('rememberedPhone');
+      isChecked = true;
+      update();
+    }
+    super.onInit();
   }
 }
 
-  // @override
-  // void onInit() {
-  //   GetStorage box = GetStorage();
-  //   if (box.read('isRemember') == true) {
-  //     phoneController.text = box.read('rememberedPhone');
-  //     isChecked = true;
-  //     update();
-  //   }
-  //   super.onInit();}
-  
+ 

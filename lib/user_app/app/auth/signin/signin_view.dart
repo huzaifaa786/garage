@@ -13,6 +13,7 @@ import 'package:mobilegarage/user_app/utils/app_text/app_rich_text.dart';
 import 'package:mobilegarage/user_app/utils/app_text/app_text.dart';
 import 'package:mobilegarage/user_app/utils/colors/app_color.dart';
 import 'package:mobilegarage/vendor_app/utils/app_phone_input/app_phone_input.dart';
+// import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
@@ -88,6 +89,8 @@ class SigninView extends StatelessWidget {
                                                   ? TextDirection.ltr
                                                   : TextDirection.ltr,
                                           child: AppPhoneInput(
+                                            initialCountryCode: controller.initialCode,
+                                            // initialPhoneNumber: controller.phoneNumber,
                                             onCountryChanged:
                                                 controller.onCountryChanged,
                                             errorText: controller.phoneError,
@@ -112,7 +115,7 @@ class SigninView extends StatelessWidget {
                                                   color: AppColors.primary),
                                             ),
                                             AppText(
-                                              title: 'Remember me',
+                                              title: 'Remember me'.tr,
                                               size: 12,
                                               fontWeight: FontWeight.w500,
                                               color: AppColors.primary,
