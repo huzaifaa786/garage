@@ -253,7 +253,7 @@ class FilterServiceController extends GetxController {
     if (!serviceEnabled) {
       UiUtilites.errorSnackbar('Error!',
           'Enable Your mobile location service to select your location');
-           return Future.error('Location services are disabled');
+      return Future.error('Location services are disabled');
     }
 
     LocationPermission permission = await Geolocator.checkPermission();
@@ -693,7 +693,6 @@ class FilterServiceController extends GetxController {
     print('filtering');
     print(selectedgarageName);
 
-    
     var response;
 
     switch (categoryId) {
@@ -766,7 +765,7 @@ class FilterServiceController extends GetxController {
           endprice: end.toString(),
           categoryextraid:
               selectedExtraId != null ? selectedExtraId.toString() : null,
-          categoryid: categoryId.toString(),
+          categoryid: categoryId != null ? categoryId.toString() : null,
         );
         // }
 
@@ -790,7 +789,6 @@ class FilterServiceController extends GetxController {
   void sendtoAllGarages() async {
     print('send to all garage');
     print(selectedgarageName);
-
 
     var response;
 

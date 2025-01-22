@@ -343,8 +343,8 @@ class LocaleString extends Translations {
           'Back to dashboard': 'Back to dashboard',
           'Done!': 'Done!',
           'Banner added successfully': 'Banner added successfully',
-          'You have submitted your application successfully and it’s pending approval.':
-              'You have submitted your application successfully and it’s pending approval.',
+          'You have submitted your application successfully and waiting for approval.':
+              'You have submitted your application successfully and waiting for approval.',
           'Ok': 'Ok',
           "Payment Failed": "Payment Failed",
           'New orders': 'New orders',
@@ -543,10 +543,13 @@ class LocaleString extends Translations {
               "Manufacture year can't be in the future",
           'Your garage is banned. Please contact support.':
               'Your garage is banned. Please contact support.',
-          "Resend": "Resend",
           "This phonenumber is already taken.":"This phonenumber is already taken.",
+       "Manufacture year must be between 1950 and":"Manufacture year must be between 1900 and",
+       'Remember me' : 'Remember me',
         },
         'ar_AE': {
+       'Remember me' : 'تذكرنى',
+          "Manufacture year must be between 1950 and":"يجب أن تكون سنة الصنع بين 1950 و",
           "This phonenumber is already taken.": "رقم الهاتف مسجل بالفعل، الرجاء تسجيل الدخول",
           "Manufacture year must be a valid 4-digit year":
               "سنة الصنع يجب ان تكون سنة صالحة مكونة من 4 ارقام",
@@ -961,8 +964,8 @@ class LocaleString extends Translations {
           'Back to dashboard': 'العودة إلى لوحة التحكم',
           'Done!': 'تم!',
           'Banner added successfully': 'تم إضافة اللافتة بنجاح',
-          'You have submitted your application successfully and it’s pending approval.':
-              'لقد قدمت طلبك بنجاح وهو قيد الموافقة.',
+          'You have submitted your application successfully and waiting for approval.':
+              'لقد قدمت طلبك بنجاح وتنتظر الموافقة.',
           'Ok': 'حسناً',
           "Payment Failed": "فشل الدفع",
           'New orders': 'طلبات جديدة',
