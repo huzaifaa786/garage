@@ -141,6 +141,11 @@ class SignupView extends StatelessWidget {
                                           }),
                                     TextSpan(
                                         text: '\tand'.tr,
+                                        style: TextStyle(
+                                            wordSpacing: 1,
+                                            decoration:
+                                                TextDecoration.underline,
+                                            fontWeight: FontWeight.bold),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
                                             Get.toNamed(
