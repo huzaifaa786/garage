@@ -21,7 +21,6 @@ import 'package:mobilegarage/models/emirate_model.dart';
 import 'package:mobilegarage/models/vehicle_model.dart';
 import 'package:mobilegarage/routes/app_routes.dart';
 import 'package:mobilegarage/vendor_app/services/validation_services.dart';
-import 'package:mobilegarage/vendor_app/utils/ui_utils.dart';
 
 class SignupController extends GetxController {
   static SignupController innstanse = Get.find();
