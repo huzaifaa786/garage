@@ -121,7 +121,7 @@ class SigninController extends GetxController {
       Get.toNamed(AppRoutes.otp, parameters: {
         'phone': completePhoneNumber.toString(),
         // 'auth': 'signin',
-        'otp': otp.toString()
+        // 'otp': otp.toString()
       });
     // } else {
     //   Future.delayed(Duration(seconds: 1), () {
