@@ -11,7 +11,6 @@ class SignupApi {
     required List<Map<String, dynamic>> includes,
   }) async {
     final token = await FirebaseMessaging.instance.getToken();
-
     String url = '$baseUrl/register/user';
     var data = {
       "name": name,
@@ -21,6 +20,16 @@ class SignupApi {
       'fcm_token': token,
       "include": includes,
     };
+    var response = await DioService.post(url: url, data: data);
+    return response;
+  }
+   static Future<Map<String, dynamic>> userPhoneNumberCheck({
+    String? phone,
+  }) async {
+    String url = '$baseUrl/phone/check';
+    var data = {
+      "phone": phone,
+     };
     var response = await DioService.post(url: url, data: data);
     return response;
   }

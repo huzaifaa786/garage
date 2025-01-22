@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -130,13 +131,66 @@ class SigninView extends StatelessWidget {
                                             )
                                           ],
                                         ),
-                                        Gap(70),
+                                        Gap(30),
+                                        Center(
+                                          child: RichText(
+                                            textAlign: TextAlign.center,
+                                            text: TextSpan(
+                                              text:
+                                                  'By continuing you agree to the'
+                                                      .tr,
+                                              style:
+                                                  DefaultTextStyle.of(context)
+                                                      .style,
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text: '\n\tterms'.tr,
+                                                    style: TextStyle(
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            Get.toNamed(AppRoutes
+                                                                .termscondition);
+                                                          }),
+                                                TextSpan(
+                                                    text: '\tand'.tr,
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            Get.toNamed(AppRoutes
+                                                                .termscondition);
+                                                          }),
+                                                TextSpan(
+                                                    text: '\tconditions'.tr,
+                                                    style: TextStyle(
+                                                        wordSpacing: 1,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            Get.toNamed(AppRoutes
+                                                                .termscondition);
+                                                          }),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Gap(49),
                                         MainButton(
                                           title: 'Sign In'.tr,
                                           txtweight: FontWeight.w600,
                                           onTap: () {
-                                            // Get.toNamed(AppRoutes.otp);
-                                            // controller.verifyNumber();
+                                            Get.toNamed(AppRoutes.otp);
+                                            controller.verifyNumber();
                                             controller.phoneController.text
                                                     .isEmpty
                                                 ? () {}

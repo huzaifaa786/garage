@@ -107,7 +107,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                     Gap(19),
                     AppText(
                       title: 'Price Range'.tr,
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w400,
                     ),
                     Gap(28),
@@ -150,7 +150,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: AppText(
                         title: '*All boxes are optional'.tr,
-                        size: 12,
+                        size: 13,
                         fontWeight: FontWeight.w400,
                         color: AppColors.grey,
                       ),
@@ -161,7 +161,9 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         children: [
                           Gap(20),
                           DropDownField<BrandModel>(
-                            displayValue: (item) => box.read('locale') != 'ar' ? item.name : item.arName!,
+                            displayValue: (item) => box.read('locale') != 'ar'
+                                ? item.name
+                                : item.arName!,
                             items: controller.brands,
                             hint: 'Brands Name'.tr,
                             selectedValue: controller.selectedBrand,
@@ -178,7 +180,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                             children: [
                               Gap(20),
                               DropDownField<BatteryProductTypeModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.name! : item.ar_name!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.name!
+                                        : item.ar_name!,
                                 items: controller.producttypes,
                                 hint: 'Product type'.tr,
                                 selectedValue: controller.selectedproducttype,
@@ -191,7 +196,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<BatteryOriginModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.origin! : item.ar_origin!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.origin!
+                                        : item.ar_origin!,
                                 items: controller.batteryOrigins,
                                 hint: 'Origin'.tr,
                                 selectedValue: controller.selectedbatteryOrigin,
@@ -203,7 +211,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<BatteryAmpereModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.ampere! : item.ar_ampere!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.ampere!
+                                        : item.ar_ampere!,
                                 items: controller.batteryAmperes,
                                 hint: 'Battery Ampere'.tr,
                                 selectedValue: controller.selectedampere,
@@ -216,7 +227,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<BatteryVoltageModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.voltage! : item.ar_voltage!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.voltage!
+                                        : item.ar_voltage!,
                                 items: controller.batteryVoltages,
                                 hint: 'Battery Voltage'.tr,
                                 selectedValue: controller.selectedvoltage,
@@ -234,7 +248,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                             children: [
                               Gap(20),
                               DropDownField<TyreWidthModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.width! : item.width!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.width!
+                                        : item.width!,
                                 items: controller.tyrewidths,
                                 hint: 'Tyre width'.tr,
                                 selectedValue: controller.selectedwidth,
@@ -246,7 +263,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<TyreHeightModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.height! : item.ar_height!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.height!
+                                        : item.ar_height!,
                                 items: controller.tyreheights,
                                 hint: 'Tyre height'.tr,
                                 selectedValue: controller.selectedheight,
@@ -258,7 +278,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<TyreSizeModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.size! : item.ar_size!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.size!
+                                        : item.ar_size!,
                                 items: controller.tyresizes,
                                 hint: 'Wheel size'.tr,
                                 selectedValue: controller.selectedsize,
@@ -270,7 +293,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<TyreSpeedRatingModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.speedrating! : item.ar_speedrating!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.speedrating!
+                                        : item.ar_speedrating!,
                                 items: controller.tyreSpeedRatings,
                                 hint: 'Speed rating'.tr,
                                 selectedValue: controller.selectedSpeedRating,
@@ -282,7 +308,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<TyrePatternModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.pattern! : item.ar_pattern!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.pattern!
+                                        : item.ar_pattern!,
                                 items: controller.tyrepattterens,
                                 hint: 'Pattern'.tr,
                                 selectedValue: controller.selectedpatteren,
@@ -294,7 +323,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<TyreOriginModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.origin!: item.ar_origin!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.origin!
+                                        : item.ar_origin!,
                                 items: controller.tyreorigins,
                                 hint: 'Origin'.tr,
                                 selectedValue: controller.selectedtyreorigin,
@@ -312,7 +344,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                         ? Column(
                             children: [
                               DropDownField<OilProductTTypeModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.producttype! : item.ar_producttype!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.producttype!
+                                        : item.ar_producttype!,
                                 items: controller.oilproductTypes,
                                 hint: 'Product type'.tr,
                                 selectedValue:
@@ -325,7 +360,10 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                               ),
                               Gap(20),
                               DropDownField<OilVolumeModel>(
-                                displayValue: (item) => box.read('locale') != 'ar' ? item.volume! : item.arvolume!,
+                                displayValue: (item) =>
+                                    box.read('locale') != 'ar'
+                                        ? item.volume!
+                                        : item.arvolume!,
                                 items: controller.oilVolumes,
                                 hint: 'Liquid volume liter'.tr,
                                 selectedValue: controller.selectedvolume,
@@ -374,7 +412,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                             AppText(
                               title: 'Choose your vehicle'.tr,
                               fontWeight: FontWeight.w600,
-                              size: 12,
+                              size: 13,
                             ),
                           ],
                         ),
@@ -417,7 +455,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                             AppText(
                               title: 'What do you prefer?'.tr,
                               fontWeight: FontWeight.w600,
-                              size: 12,
+                              size: 13,
                             ),
                           ],
                         ),

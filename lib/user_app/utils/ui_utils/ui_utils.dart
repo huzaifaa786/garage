@@ -583,7 +583,7 @@ class UiUtilites {
                     Gap(20),
                     AppText(
                       title: 'Added to cart successfully !'.tr,
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w500,
                       color: AppColors.primarybg,
                     ),
@@ -664,7 +664,7 @@ class UiUtilites {
                       Gap(10),
                       AppText(
                         title: '$description',
-                        size: 12,
+                        size: 13,
                         textAlign: TextAlign.center,
                         color: AppColors.black,
                       ),

@@ -68,7 +68,7 @@ class VForgotOtpVerifyView extends StatelessWidget {
                                       title:
                                           'Please enter the OTP sent to your email address to reset your password.'
                                               .tr,
-                                      size: 12,
+                                      size: 13,
                                       color: AppColors.hint_text_color,
                                       fontWeight: FontWeight.w300,
                                       textAlign: TextAlign.center,

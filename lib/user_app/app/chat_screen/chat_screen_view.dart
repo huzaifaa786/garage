@@ -93,9 +93,8 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                         checkFileExistance(index)
                             .then((value) => fileExist = value);
                         print(fileExist);
-                        print('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq${controller
-                              .massages[controller.massages.length - 1 - index]
-                              .location.toString()},');
+                        print(
+                            'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq${controller.massages[controller.massages.length - 1 - index].location.toString()},');
                         return ReplyMessageCard(
                           msg: controller
                               .massages[controller.massages.length - 1 - index]
@@ -124,7 +123,8 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                           fileExist: fileExist,
                           location: controller
                               .massages[controller.massages.length - 1 - index]
-                              .location.toString(),
+                              .location
+                              .toString(),
                         );
                       })),
             ],
@@ -134,7 +134,7 @@ class _ChatScreenViewState extends State<ChatScreenView> {
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -170,26 +170,23 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                 Gap(8),
                 GestureDetector(
                     onTap: () async {
-                      if (await getLocationPermission() == true) {
+                      await getLocationPermission();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => PlacePicker(
-                              apiKey:
-                                  "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
-                              onPlacePicked: (result)async {
+                              apiKey: "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
+                              onPlacePicked: (result) async {
                                 log(result.geometry!.location.lat.toString());
                                 log(result.geometry!.location.lng.toString());
 
                                 controller.currentAddress =
                                     result.formattedAddress!;
-                                controller.lat =
-                                    result.geometry!.location.lat;
-                                controller.lng =
-                                    result.geometry!.location.lng;
+                                controller.lat = result.geometry!.location.lat;
+                                controller.lng = result.geometry!.location.lng;
                                 controller.update();
                                 Navigator.of(context).pop();
-                                await chatController. sendMassage();
+                                await chatController.sendMassage();
                               },
                               initialPosition: LatLng(
                                   controller.currentPosition != null
@@ -203,7 +200,6 @@ class _ChatScreenViewState extends State<ChatScreenView> {
                             ),
                           ),
                         );
-                      }
                     },
                     // },
                     child: SvgPicture.asset("assets/icons/location.svg")),

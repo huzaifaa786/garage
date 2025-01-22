@@ -103,7 +103,8 @@ class GarageView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           RatingBarIndicator(
-                            rating: double.parse(controller.garage!.rating.toString()),
+                            rating: double.parse(
+                                controller.garage!.rating.toString()),
                             itemCount: 5,
                             itemSize: 11,
                             unratedColor: AppColors.black.withOpacity(0.5),
@@ -125,7 +126,7 @@ class GarageView extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 65),
                         child: AppText(
                           title: controller.garage!.description.toString(),
-                          size: 12,
+                          size: 13,
                           textAlign: TextAlign.center,
                           fontWeight: FontWeight.w400,
                           color: AppColors.grey,
@@ -248,7 +249,8 @@ class GarageView extends StatelessWidget {
                                             color: AppColors.lightPink,
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(20),
-                                                bottomLeft: Radius.circular(20))),
+                                                bottomLeft:
+                                                    Radius.circular(20))),
                                         height: Get.height * 0.05,
                                         width: Get.width * 0.5,
                                         child: Row(
@@ -282,13 +284,15 @@ class GarageView extends StatelessWidget {
                                   onTap: () {
                                     Get.to(() => ChatScreenView(
                                         id: controller.garage!.id.toString(),
-                                        name: controller.garage!.name.toString(),
+                                        name:
+                                            controller.garage!.name.toString(),
                                         profilePic: '',
                                         screen: 'chat'));
                                   },
                                   child: Container(
                                     height: Get.height * 0.045,
-                                    padding: EdgeInsets.symmetric(horizontal: 25),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 25),
                                     decoration: BoxDecoration(
                                       color: AppColors.lightPink,
                                       borderRadius: BorderRadius.circular(80),
@@ -350,14 +354,6 @@ class GarageView extends StatelessWidget {
                               cancelText: 'No'.tr,
                               confirmText: 'Yes'.tr,
                             );
-                            // UiUtilites.showConfirmationDialog(
-                            //   false,
-                            //   'Are you Sure that you want\n to Add this product to cart ?'
-                            //       .tr,
-                            //   onConfirm: () async {
-                            //     controller.addToCart();
-                            //   },
-                            // );
                           },
                           child: GarageProductCard(),
                         ),
@@ -397,11 +393,9 @@ class GarageView extends StatelessWidget {
                             },
                             child: ServicesIcons(
                               imageUrl: item.image.toString(),
-                              text: 
-                              box.read('locale') == 'ar'
+                              text: box.read('locale') == 'ar'
                                   ? item.ar_name.toString()
-                                  :
-                              item.name.toString(),
+                                  : item.name.toString(),
                             ),
                           );
                         },

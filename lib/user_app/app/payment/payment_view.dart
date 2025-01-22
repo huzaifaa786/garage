@@ -23,7 +23,6 @@ class PaymentView extends StatelessWidget {
       builder: (controller) => controller.cart != null
           ? GestureDetector(
               onTap: () {
-                // Dismiss the keyboard when tapping anywhere outside the input
                 FocusScope.of(context).unfocus();
               },
               child: Scaffold(
@@ -58,7 +57,7 @@ class PaymentView extends StatelessWidget {
                                     title: "${'Items'.tr}" +
                                         " " +
                                         "(${controller.cart!.items!.length})",
-                                    size: 12,
+                                    size: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ],
@@ -142,7 +141,7 @@ class PaymentView extends StatelessWidget {
                                   Gap(10),
                                   AppText(
                                     title: 'Promo code'.tr,
-                                    size: 12,
+                                    size: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ],
@@ -205,7 +204,7 @@ class PaymentView extends StatelessWidget {
                               ),
                               AppText(
                                 title: controller.cart!.totalAmount.toString(),
-                                size: 12,
+                                size: 13,
                                 fontWeight: FontWeight.w600,
                               ),
                             ],
@@ -222,7 +221,7 @@ class PaymentView extends StatelessWidget {
                               ),
                               AppText(
                                 title: controller.discountAmount.toString(),
-                                size: 12,
+                                size: 13,
                                 fontWeight: FontWeight.w600,
                               ),
                             ],
@@ -240,7 +239,7 @@ class PaymentView extends StatelessWidget {
                               title: controller.discountAmount != ''
                                   ? controller.promoTotal.toString()
                                   : controller.cart!.totalAmount.toString(),
-                              size: 12,
+                              size: 13,
                               fontWeight: FontWeight.w600,
                             ),
                           ],

@@ -48,7 +48,7 @@ class SelectedDate extends StatelessWidget {
                           AppText(
                             title: DateFormat('EEEE').format(date),
                             color: AppColors.primary_color,
-                            size: 12,
+                            size: 13,
                             fontWeight: FontWeight.w600,
                           ),
                           const Gap(10),
@@ -87,7 +87,7 @@ class SelectedDate extends StatelessWidget {
                           },
                           onConfirmTap: () async {
                             controller.removeDate(date);
-                             Navigator.of(context).pop();
+                            Navigator.of(context).pop();
                             controller.update();
                           },
                           title:

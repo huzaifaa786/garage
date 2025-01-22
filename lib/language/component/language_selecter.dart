@@ -31,7 +31,7 @@ class LanguageSelecter extends StatelessWidget {
               children: [
                 AppText(
                   title: text,
-                  size: 20,
+                  size: 27,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary_color,
                 ),

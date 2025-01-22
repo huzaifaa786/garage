@@ -8,7 +8,7 @@ import 'package:mobilegarage/routes/app_routes.dart';
 
 class SearchResultController extends GetxController {
   static SearchResultController instance = Get.find();
-
+  final time ="";
   var selectedService = 'quickService';
 
   TimeOfDay selectedTimeFrom = TimeOfDay(hour: 9, minute: 0);
@@ -43,9 +43,18 @@ class SearchResultController extends GetxController {
     final hour = selectedTimeFrom.hour;
     final minute = selectedTimeFrom.minute;
     final period = isAm ? 'AM' : 'PM';
+    
     return '${formatteddate}' +
         '   ' +
         '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} $period';
+  }
+   String get formattedTime {
+    final hour = selectedTimeFrom.hour;
+    final minute = selectedTimeFrom.minute;
+  
+    
+    return 
+        '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
   }
 
   String? garageid = '';
@@ -63,7 +72,9 @@ class SearchResultController extends GetxController {
 
   checkDate() async {
     var response = await CheckDateApi.checkunavialabledate(
-        date: formatteddate.toString(), garageid: garageid.toString());
+        time:  formattedTime.toString(),
+        date: formatteddate.toString(),
+        garageid: garageid.toString());
     if (response.isNotEmpty) {
       if (validateInputs()) {
         Get.toNamed(AppRoutes.payments, parameters: {

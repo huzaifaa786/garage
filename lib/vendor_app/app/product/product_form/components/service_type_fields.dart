@@ -61,7 +61,7 @@ class ServiceTypeFields extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 18),
             child: AppText(
               title: 'AED',
-              size: 12,
+              size: 13,
               fontWeight: FontWeight.w700,
             ),
           ),

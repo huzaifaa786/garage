@@ -152,6 +152,7 @@ class VHomeController extends GetxController {
   }
 
   GarageModel? garage;
+  
   garagedata() async {
     var response = await VGetGarageApi.getgarage();
     if (response.isNotEmpty) {

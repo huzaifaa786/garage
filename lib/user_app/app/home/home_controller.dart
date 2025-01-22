@@ -31,6 +31,7 @@ class HomeController extends GetxController {
     await getGarageRatings();
     await countNotification();
     await countUnSeenMsg();
+    print("Get.deviceLocale ${Get.deviceLocale}");
   }
 
   countNotification() async {

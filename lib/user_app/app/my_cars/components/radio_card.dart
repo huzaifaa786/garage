@@ -18,12 +18,14 @@ class RadioCard extends StatelessWidget {
     this.isSelected,
     this.userVehicles,
     this.ondeletetap,
+    this.vechicallistLength,
   });
   final addCars;
   final value;
   final groupValue;
   final onChanged;
   final isSelected;
+  final vechicallistLength;
   UserVehicles? userVehicles;
   final ondeletetap;
 
@@ -77,13 +79,15 @@ class RadioCard extends StatelessWidget {
             ),
           ),
         ),
-        GestureDetector(
-          onTap: ondeletetap,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SvgPicture.asset("assets/icons/trash.svg"),
-          ),
-        )
+        vechicallistLength == 1
+            ? SizedBox.shrink()
+            : GestureDetector(
+                onTap: ondeletetap,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SvgPicture.asset("assets/icons/trash.svg"),
+                ),
+              )
       ],
     );
   }

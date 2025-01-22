@@ -51,41 +51,40 @@ class Reviewcard extends StatelessWidget {
                           ),
                           const Gap(6),
                           Container(
-                            height: 35,
-                            width: 35,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child:  ClipRRect(
-                                    borderRadius: BorderRadius.circular(38),
-                                    child: reviews.user!.image == null ||
-                                    reviews.user!.image!.isEmpty
-                                ?SvgPicture.asset(
-                                      img,
-                                      color: AppColors.primary,
-                                    ) : CachedNetworkImage(
-                                    imageUrl: reviews.user!.image.toString(),
-                                  
-                                    placeholder: (context, url) =>
-                                        Shimmer.fromColors(
-                                      baseColor: Colors.grey[300]!,
-                                      highlightColor: Colors.grey[100]!,
-                                      child: Container(
-                                        height: 35,
-                                        width: 35,
-                                        
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(38),
+                                child: reviews.user!.image == null ||
+                                        reviews.user!.image!.isEmpty
+                                    ? SvgPicture.asset(
+                                        img,
+                                        color: AppColors.primary,
+                                      )
+                                    : CachedNetworkImage(
+                                        imageUrl:
+                                            reviews.user!.image.toString(),
+                                        placeholder: (context, url) =>
+                                            Shimmer.fromColors(
+                                          baseColor: Colors.grey[300]!,
+                                          highlightColor: Colors.grey[100]!,
+                                          child: Container(
+                                            height: 35,
+                                            width: 35,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                          ),
                                         ),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                        fit: BoxFit.cover,
                                       ),
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
-                                    fit: BoxFit.cover,
-                                  ),)
-                               
-                          ),
+                              )),
                           const Gap(8),
                           Flexible(
                             child: Column(
@@ -94,7 +93,7 @@ class Reviewcard extends StatelessWidget {
                                 AppText(
                                   title: reviews.user!.name.toString(),
                                   fontWeight: FontWeight.w600,
-                                  size: 12,
+                                  size: 13,
                                 ),
                                 const Gap(10),
                                 Row(
@@ -132,7 +131,7 @@ class Reviewcard extends StatelessWidget {
                             title: controller
                                 .timeAgo(reviews.createdAt!.toIso8601String()),
                             color: Colors.grey,
-                            size: 12,
+                            size: 13,
                             fontWeight: FontWeight.w400,
                           ),
                         ],

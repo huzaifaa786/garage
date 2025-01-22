@@ -52,13 +52,13 @@ class _ChangePhonenumberViewState extends State<ChangePhonenumberView> {
                         Gap(70),
                         AppText(
                           title: 'Enter your new phone number'.tr,
-                          size: 12,
+                          size: 13,
                           fontWeight: FontWeight.w500,
                           color: AppColors.black.withOpacity(0.4),
                         ),
                         AppText(
                           title: 'to continue'.tr,
-                          size: 12,
+                          size: 13,
                           fontWeight: FontWeight.w500,
                           color: AppColors.black.withOpacity(0.4),
                         ),

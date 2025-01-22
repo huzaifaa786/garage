@@ -5,6 +5,7 @@ class CheckDateApi {
   static Future<Map<String, dynamic>> checkunavialabledate({
     String? date,
     String? garageid,
+    String? time,
 
    
   }) async {
@@ -12,6 +13,7 @@ class CheckDateApi {
     var data = {
       'date': date,
       "garage_id":garageid,
+      "time":time
 
      };
     var response = await DioService.post(url: url, data: data);

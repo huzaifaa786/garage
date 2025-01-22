@@ -111,7 +111,7 @@ class _CarDetailsViewState extends State<CarDetailsView> {
                                                     AppText(
                                                       title: index == 0
                                                           ? 'Vehicle Details'.tr
-                                                          : 'Vehicle ${index + 1}',
+                                                          : '${"Vehicle".tr} ${index + 1}',
                                                       size: 14,
                                                       fontWeight:
                                                           FontWeight.w500,

@@ -136,14 +136,14 @@ class _SearchresultViewState extends State<SearchresultView> {
                     Gap(10),
                     AppText(
                       title: 'Select location '.tr,
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w500,
                     )
                   ],
                 ),
                 GestureDetector(
                   onTap: () async {
-                    if (await getLocationPermission() == true) {
+                    await getLocationPermission();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -169,7 +169,6 @@ class _SearchresultViewState extends State<SearchresultView> {
                           ),
                         ),
                       );
-                    }
                   },
                   child: Stack(
                     children: [

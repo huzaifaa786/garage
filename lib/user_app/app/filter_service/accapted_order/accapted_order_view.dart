@@ -151,7 +151,7 @@ class _AccaptedOrderViewState extends State<AccaptedOrderView> {
                     AppText(
                       title:
                           '(${controller.garages.length.toString()}) ${'garages'.tr}',
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w500,
                       color: AppColors.darkprimary,
                     ),

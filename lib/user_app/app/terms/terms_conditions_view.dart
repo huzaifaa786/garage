@@ -79,7 +79,7 @@ class _TermsConditionsViewState extends State<TermsConditionsView> {
                     children: [
                       AppText(
                         title: 'Terms & Conditions'.tr,
-                        size: 12,
+                        size: 13,
                         fontWeight: FontWeight.w600,
                         color: AppColors.darkprimary,
                       ),

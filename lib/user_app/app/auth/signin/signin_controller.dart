@@ -115,16 +115,18 @@ class SigninController extends GetxController {
     if (response.isNotEmpty) {
       otp = response['user']['otp'].toString();
 
-      Get.toNamed(AppRoutes.otp, parameters: {
+      Get.toNamed(AppRoutes.otp, 
+      parameters: {
         'phone': completePhoneNumber.toString(),
         'auth': 'signin',
         'otp': otp.toString()
+      }
+      );
+    }
+     else {
+      Future.delayed(Duration(seconds: 1), () {
+        Get.toNamed(AppRoutes.signup);
       });
     }
-    //  else {
-    //   Future.delayed(Duration(seconds: 1), () {
-    //     Get.toNamed(AppRoutes.signup);
-    //   });
-    // }
   }
-}
+ }

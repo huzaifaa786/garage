@@ -63,9 +63,9 @@ class SelectLanguageView extends StatelessWidget {
                           children: [
                             Gap(30),
                             AppText(
-                              title: 'Select \n language'.tr,
+                              title: 'Select  language'.tr,
                               textAlign: TextAlign.center,
-                              size: 32,
+                              size: 27,
                               fontWeight: FontWeight.w600,
                               // color: AppColors.heading_text_color,
                               color: AppColors.darkprimary,
@@ -81,7 +81,7 @@ class SelectLanguageView extends StatelessWidget {
                                   Get.updateLocale(const Locale('en', 'US'));
                                   GetStorage box = GetStorage();
                                   await box.write('locale', 'en');
-                                 
+
                                   Get.toNamed(AppRoutes.selectside);
                                 },
                                 title: 'English (United States)',

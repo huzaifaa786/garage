@@ -100,7 +100,7 @@ class NotificationCard extends StatelessWidget {
                               if (status == 'PENDING')
                                 AppText(
                                   title: 'Congratulation!'.tr,
-                                  size: 12,
+                                  size: 13,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primarybg,
                                 ),
@@ -111,7 +111,7 @@ class NotificationCard extends StatelessWidget {
                                           .toString()
                                       : notification!.requestOrder!.garage!.name
                                           .toString(),
-                                  size: 12,
+                                  size: 13,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primarybg,
                                 ),
@@ -120,7 +120,7 @@ class NotificationCard extends StatelessWidget {
                                   title:
                                       notification?.sender?.name.toString() ??
                                           "User",
-                                  size: 12,
+                                  size: 13,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primarybg,
                                 ),
@@ -225,7 +225,7 @@ class NotificationCard extends StatelessWidget {
                             Expanded(
                               child: AppText(
                                 title: notification!.body.toString(),
-                                size: 12,
+                                size: 13,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

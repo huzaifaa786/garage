@@ -90,13 +90,13 @@ class OrdersCard extends StatelessWidget {
                     Gap(13),
                     AppText(
                       title: 'Tracking number:'.tr,
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w500,
                     ),
                     Gap(13),
                     AppText(
                       title: order.id.toString(),
-                      size: 12,
+                      size: 13,
                       fontWeight: FontWeight.w600,
                       color: AppColors.primary_color,
                     ),

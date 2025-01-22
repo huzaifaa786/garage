@@ -81,7 +81,7 @@ class OrderProductCard extends StatelessWidget {
                     child: AppText(
                       title: garage?.name ?? '',
                       fontWeight: FontWeight.w600,
-                      size: 12,
+                      size: 13,
                       color: AppColors.primarybg,
                       maxLines: 1,
                     ),
@@ -106,8 +106,7 @@ class OrderProductCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: ' ( Quantity: '.tr
-                          ,
+                          text: ' ( Quantity: '.tr,
                           style: TextStyle(
                             fontSize: 10,
                             color: AppColors.black,
