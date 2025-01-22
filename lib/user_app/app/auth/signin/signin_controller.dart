@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/phone_number.dart';
@@ -36,6 +37,7 @@ class SigninController extends GetxController {
 
   void toggleCheckbox() {
     isChecked = !isChecked;
+
     update();
   }
 
@@ -99,7 +101,15 @@ class SigninController extends GetxController {
 
   String? otp = '';
   login() async {
-    
+    GetStorage box = GetStorage();
+    // var response = await VerifyNumberApi.verifyNumber(phone: completePhone);
+    if (isChecked == true) {
+      box.write('isRemember', true);
+      box.write('rememberedPhone', phoneController.text);
+    } else {
+      box.remove('isRemember');
+      box.remove('rememberedPhone');
+    }
     var response = await LoginVerifyApi.verifyNumber(
         phone: completePhoneNumber.toString());
     if (response.isNotEmpty) {
