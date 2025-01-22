@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:mobilegarage/user_app/app/auth/signin/signin_controller.dart';
 import 'package:mobilegarage/user_app/app/filter_service/filter_service_view.dart';
 import 'package:mobilegarage/user_app/components/buttons/main_button.dart';
@@ -21,17 +20,6 @@ class SigninView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SigninController>(
-      initState: (state) {
-        Future.delayed(Duration(milliseconds: 100), () {
-          GetStorage box = GetStorage();
-          if (box.read('isRemember') == true) {
-            state.controller!.isChecked = true;
-            state.controller!.phoneController.text =
-                box.read('rememberedPhone');
-            state.controller!.update();
-          }
-        });
-      },
       builder: (controller) => Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primarybg,

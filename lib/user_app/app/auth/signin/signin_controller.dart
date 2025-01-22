@@ -115,18 +115,26 @@ class SigninController extends GetxController {
     if (response.isNotEmpty) {
       otp = response['user']['otp'].toString();
 
-      Get.toNamed(AppRoutes.otp, 
-      parameters: {
+      Get.toNamed(AppRoutes.otp, parameters: {
         'phone': completePhoneNumber.toString(),
         'auth': 'signin',
         'otp': otp.toString()
-      }
-      );
-    }
-     else {
+      });
+    } else {
       Future.delayed(Duration(seconds: 1), () {
         Get.toNamed(AppRoutes.signup);
       });
     }
   }
- }
+
+  @override
+  void onInit() {
+    GetStorage box = GetStorage();
+    if (box.read('isRemember') == true) {
+      phoneController.text = box.read('rememberedPhone');
+      isChecked = true;
+      update();
+    }
+    super.onInit();
+  }
+}
