@@ -41,8 +41,8 @@ class MyLocationController extends GetxController {
     selectedEmirate = Brand;
     selectedEmirateId = Brand?.id;
     selectedemirateName = Brand?.name;
-  selectedemiratearName= Brand?.arname;
-   
+    selectedemiratearName = Brand?.arname;
+
     update();
   }
 
@@ -132,16 +132,18 @@ class MyLocationController extends GetxController {
     update();
   }
 
-  Future<void> getPlaceName(double latitude, double longitude) async {
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(latitude, longitude);
-    if (placemarks.isNotEmpty) {
-      Placemark place = placemarks.first;
-      currentAddress =
-          '${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}';
-    }
+Future<void> getPlaceName(double latitude, double longitude) async {
+  List<Placemark> placemarks =
+      await placemarkFromCoordinates(latitude, longitude);
+  if (placemarks.isNotEmpty) {
+    Placemark place = placemarks.first;
+    currentAddress =
+        '${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}';
     update();
   }
+}
+
+
 
   UserModel? user;
   userdata() async {
@@ -158,4 +160,17 @@ class MyLocationController extends GetxController {
       update();
     }
   }
+ Future<bool> getLocationPermission() async {
+  LocationPermission permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      return false;
+    }
+  }
+  return true;
+}
+
+
 }

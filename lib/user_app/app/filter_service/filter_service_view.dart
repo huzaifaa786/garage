@@ -434,7 +434,7 @@ class _FilterServiceViewState extends State<FilterServiceView> {
                                   controller.selectCar(
                                       value!, vehical.vehicle_info!);
                                 },
-                                iconPath: vehical.image!.toString(),
+                                iconPath: vehical.image.toString(),
                                 text: vehical.vehicle_info.toString());
                           },
                         ),

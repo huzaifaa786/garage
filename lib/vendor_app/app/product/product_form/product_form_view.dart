@@ -165,16 +165,14 @@ class ProductFormView extends StatelessWidget {
                           DropDownWithAdd<BrandModel>(
                             displayValue: (item) => box.read('locale') == 'ar'
                                 ? item.arName!
-                                : item.name!,
+                                : item.name,
                             items: controller.brands,
                             hint: 'Brands Name'.tr,
-                            // selectedValue: controller.selectedBrand??controller.brands.first,
                             selectedValue: controller.selectedBrand,
                             onChanged: (value) {
                               controller.setSelectedBrands(value);
                               controller.validateFields("Brand",
                                   controller.selectedBrandId.toString());
-                              // controller.selectedBrand =value;s
                               controller.update();
                             },
                             errorText: controller.brandError,
@@ -187,7 +185,6 @@ class ProductFormView extends StatelessWidget {
                                 },
                               );
                             },
-                            ///////
                             searchController: controller.searchbrandController,
                             searchInnerWidget: Container(
                               padding: const EdgeInsets.all(8),
@@ -210,15 +207,18 @@ class ProductFormView extends StatelessWidget {
                               if (item.value == null) return true;
                               final brand = item.value as BrandModel;
                               return brand.name
-                                  .toLowerCase()
-                                  .contains(searchValue.toLowerCase());
+                                      .toLowerCase()
+                                      .contains(searchValue.toLowerCase()) ||
+                                  brand.arName!
+                                      .toLowerCase()
+                                      .contains(searchValue.toLowerCase());
                             },
                             onMenuStateChange: (isOpen) {
                               if (!isOpen) {
                                 controller.searchbrandController.clear();
                               }
                             },
-                          ),
+                          )
                         ],
                       ),
                     controller.selectedCategoryId == 6

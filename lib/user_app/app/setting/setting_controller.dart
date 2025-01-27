@@ -38,7 +38,7 @@ class SettingController extends GetxController {
   }
 
   void openInstagram() async {
-    final uri = Uri.parse("https://www.instagram.com/$instagram");
+    final uri = Uri.parse("https://www.instagram.com/mobile_garage_app?igsh=b3M2OHNnYzQ4dWU4");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }

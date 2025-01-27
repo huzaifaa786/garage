@@ -261,12 +261,7 @@ class MyCarsControllers extends GetxController {
         }
         break;
 
-      case 'image':
-        if (value == null || (value is String && value.isEmpty)) {
-          errorMessage = "Please upload the image".tr;
-        }
-        break;
-
+      
       default:
         break;
     }
@@ -300,16 +295,14 @@ class MyCarsControllers extends GetxController {
       validateCarFields('year_of_manufacture', section['year_of_manufacture'],
           index: index);
       validateCarFields('vehicle_info', section['vehicle_info'], index: index);
-      validateCarFields('image', section['image'], index: index);
+      
 
       if (sectionErrors.containsKey(index)) {
         isValid = false;
       }
     }
 
-    if (!isValid) {
-      UiUtilites.errorSnackbar('Error'.tr, 'Please upload the image'.tr);
-    }
+   
 
     update();
     return isValid;

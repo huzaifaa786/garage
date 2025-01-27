@@ -196,7 +196,7 @@ class VSignupView extends StatelessWidget {
                                                   result.formattedAddress ?? '';
                                               controller.lat =
                                                   result.geometry!.location.lat;
-                                              controller.lng =
+                                              controller. lng =
                                                   result.geometry!.location.lng;
                                               controller.locationselected =
                                                   true;

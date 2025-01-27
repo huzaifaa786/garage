@@ -336,6 +336,19 @@ class _MyCarsViewState extends State<MyCarsView> {
                                               errors['vehicle_info'] ?? "",
                                         ),
                                         Gap(42),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 22, vertical: 5),
+                                          child: Row(
+                                            children: [
+                                              AppText(
+                                                title: '(Optional)'.tr,
+                                                size: 13,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                         DottedBorderButton(
                                           title: 'Upload vehicle photo'.tr,
                                           imgselect: () => controller
