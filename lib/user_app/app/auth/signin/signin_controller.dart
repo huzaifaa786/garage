@@ -48,7 +48,8 @@ class SigninController extends GetxController {
     if (response.isNotEmpty) {
       Get.toNamed(AppRoutes.otp, parameters: {
         'phone': checkphoneController.toString(),
-        'auth': 'signin'
+        'auth': 'signin',
+        "otp":"otp"
       });
     } else {
       Future.delayed(Duration(seconds: 1), () {
@@ -119,7 +120,6 @@ class SigninController extends GetxController {
         box.remove('rememberedPhone');
         box.remove('rememberedPhoneCode');
       }
-
       Get.toNamed(AppRoutes.otp, parameters: {
         'phone': completePhoneNumber.toString(),
         'auth': 'signin',  

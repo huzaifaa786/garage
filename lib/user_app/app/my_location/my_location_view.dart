@@ -142,7 +142,7 @@ class _MyLocationViewState extends State<MyLocationView> {
                                      GestureDetector(
   onTap: () async {
     bool isPermissionGranted = await   controller.getLocationPermission();
-    if (!isPermissionGranted) return;
+    if (!isPermissionGranted) return;  
 
     if (controller.currentPosition == null) {
       Position position = await Geolocator.getCurrentPosition(

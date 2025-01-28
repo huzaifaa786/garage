@@ -20,12 +20,7 @@ class OtpController extends GetxController {
     super.onInit();
     phone = Get.parameters['phone'];
     authmethod = Get.parameters['auth'];
-    // otp = Get.parameters['otp'];
-    // otpController.text = otp.toString();
     update();
-    //  await veryifyTestCode();
-
-    // await verifyPhone();
   }
 
   veryifyTestCode() async {

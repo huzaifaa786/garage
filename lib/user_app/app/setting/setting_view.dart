@@ -154,7 +154,7 @@ class _SettingViewState extends State<SettingView> {
                             },
                           ),
                           SocialMediaButton(
-                            image: 'assets/icons/linkedln.svg',
+                            image: 'assets/icons/facebook.svg',
                             ontap: () {
                               controller.openLinkedIn();
                             },

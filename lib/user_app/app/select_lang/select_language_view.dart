@@ -84,7 +84,7 @@ class SelectLanguageView extends StatelessWidget {
 
                                   Get.toNamed(AppRoutes.selectside);
                                 },
-                                title: 'English (United States)',
+                                title: 'English (United States)'.tr,
                                 isSelected:
                                     controller.site == translateMethod.English,
                               ),
@@ -102,7 +102,8 @@ class SelectLanguageView extends StatelessWidget {
                                   await box.write('locale', 'ar');
                                   Get.toNamed(AppRoutes.selectside);
                                 },
-                                title: 'عربي'.tr,
+title: "Arabic".tr,
+                               // title: 'عربي'.tr,
                                 isSelected:
                                     controller.site == translateMethod.Arabic,
                               ),

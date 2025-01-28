@@ -20,6 +20,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 Future<void> main() async {
+  
   print("Get.deviceLbgfgocale ${Locale(Get.deviceLocale?.languageCode ?? 'en',
                 Get.deviceLocale?.countryCode ?? 'US')}");
   WidgetsFlutterBinding.ensureInitialized();
@@ -76,30 +77,36 @@ class MyApp extends StatelessWidget {
 
 Locale getInitialLocale() {
   String? storedLocale = box.read('locale');
+  print('Stored Locale: $storedLocale');
+
   if (storedLocale != null) {
+    print('Using Stored Locale: $storedLocale');
     return storedLocale == 'ar'
         ? Locale('ar', 'AE')
         : Locale('en', 'US');
   }
+
   var deviceLocale = Get.deviceLocale;
+  print('Device Locale: $deviceLocale');
+
   if (deviceLocale != null) {
-    if (deviceLocale.languageCode == 'ar') {
-      return Locale('ar', 'AE');
-    }
-    return Locale(
-      deviceLocale.languageCode ?? 'en',
-      deviceLocale.countryCode ?? 'US',
-    );
+    String languageCode = deviceLocale.languageCode;
+    String countryCode = deviceLocale.countryCode ?? '';
+    print('Using Device Locale: ${Locale(languageCode, countryCode)}');
+    return Locale(languageCode, countryCode);
   }
+
+  print('Using Default Locale: en_US');
   return Locale('en', 'US');
 }
 
 Locale getFallbackLocale() {
-  String? storedLocale = box.read('locale');
-  return storedLocale == 'ar'
-      ? Locale('ar', 'AE')
-      : Locale('en', 'US');
+  print('Using Fallback Locale: en_US');
+  return Locale('en', 'US');
 }
+
+
+
 
 class MyHttpOverrides extends HttpOverrides {
   @override
