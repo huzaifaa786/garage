@@ -9,7 +9,7 @@ class SettingController extends GetxController {
   String whatsappNo = '+971555007411';
   String instagram =
       'https://www.instagram.com/mobile_garage_app?igsh=b3M2OHNnYzQ4dWU4';
-  String linkedin = 'https://www.linkedin.com/in/your-profile/';
+  String linkedin = 'https://www.facebook.com/share/19jFuhpeay/';
   String subject = '';
   String body = '';
   Future<void> openEmail() async {
@@ -38,7 +38,7 @@ class SettingController extends GetxController {
   }
 
   void openInstagram() async {
-    final uri = Uri.parse("https://www.instagram.com/$instagram");
+    final uri = Uri.parse("https://www.instagram.com/mobile_garage_app?igsh=b3M2OHNnYzQ4dWU4");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }

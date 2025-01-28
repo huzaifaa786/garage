@@ -22,15 +22,15 @@ class Validators {
     if (!RegExp(r'^\d{4}$').hasMatch(value)) {
       return "Manufacture year must be a valid 4-digit year".tr;
     }
-    int year = int.parse(value);
+    int year = int.parse(value.toString());
     int currentYear = DateTime.now().year;
-    if (year < 1950 || year > currentYear) {
-      return "${"Manufacture year must be between 1950 and".tr} $currentYear".tr;
+    if (year < 1949 || year >= currentYear) {
+      return "${"Manufacture year must be between 1950 and".tr} $currentYear"
+          .tr;
     }
     return null;
   }
 
-  /// Validates the Email for User Authentication
   static String? emailValidator(String? email) {
     final RegExp emailRegExp = RegExp(
       r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$',

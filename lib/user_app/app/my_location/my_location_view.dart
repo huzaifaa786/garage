@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart'; // Import this package
@@ -138,133 +139,104 @@ class _MyLocationViewState extends State<MyLocationView> {
                                             controller.addressdetailError,
                                       ),
                                       Gap(20),
-                                      GestureDetector(
-                                        onTap: () async {
-                                          await getLocationPermission();
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    PlacePicker(
-                                                  apiKey:
-                                                      "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
-                                                  onPlacePicked: (result) {
-                                                    controller.currentAddress =
-                                                        result
-                                                            .formattedAddress!;
-                                                    controller.lat = result
-                                                        .geometry!.location.lat;
-                                                    controller.lng = result
-                                                        .geometry!.location.lng;
-                                                    controller.update();
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  initialPosition: LatLng(
-                                                      controller.currentPosition !=
-                                                              null
-                                                          ? controller
-                                                              .currentPosition!
-                                                              .latitude
-                                                          : 25.1972,
-                                                      controller.currentPosition !=
-                                                              null
-                                                          ? controller
-                                                              .currentPosition!
-                                                              .longitude
-                                                          : 55.2744),
-                                                  useCurrentLocation: true,
-                                                  resizeToAvoidBottomInset:
-                                                      false,
-                                                ),
-                                              ),
-                                            );
-                                        },
-                                        child: Stack(
-                                          children: [
-                                            Image.asset(
-                                              'assets/images/map_image.png',
-                                            ),
-                                            Positioned(
-                                              left: Get.width * 0.1,
-                                              right: Get.width * 0.1,
-                                              top: Get.height * 0.12,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                    ),
-                                                    height: Get.height * 0.06,
-                                                    width:
-                                                        Get.width * 0.9 / 0.2,
-                                                    decoration: BoxDecoration(
-                                                      color: AppColors.white
-                                                          .withOpacity(0.6),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              30),
-                                                    ),
-                                                    child: Row(
-                                                      children: [
-                                                        Container(
-                                                          height: 35,
-                                                          width: 35,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: AppColors
-                                                                .lightPink,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        80),
-                                                          ),
-                                                          child:
-                                                              SvgPicture.asset(
-                                                            "assets/icons/map_pin.svg",
-                                                            color: AppColors
-                                                                .primarybg,
-                                                            fit: BoxFit
-                                                                .scaleDown,
-                                                          ),
-                                                        ),
-                                                        Gap(5),
-                                                        controller.currentAddress ==
-                                                                ""
-                                                            ? AppText(
-                                                                title:
-                                                                    "Select location on Google map"
-                                                                        .tr,
-                                                                size: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              )
-                                                            : ConstrainedBox(
-                                                                constraints: BoxConstraints(
-                                                                    maxWidth:
-                                                                        Get.width *
-                                                                            0.46),
-                                                                child: AppText(
-                                                                  title: controller
-                                                                      .currentAddress,
-                                                                  size: 10,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                              ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                     GestureDetector(
+  onTap: () async {
+    bool isPermissionGranted = await   controller.getLocationPermission();
+    if (!isPermissionGranted) return;  
+
+    if (controller.currentPosition == null) {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      controller.currentPosition = position;
+      controller.lat = position.latitude;
+      controller.lng = position.longitude;
+      await  controller.getPlaceName(controller.lat!, controller.lng!);
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PlacePicker(
+          apiKey: "AIzaSyASCMQagE0IHqYPiniGuCf-_jh5XHlwMy8",
+          onPlacePicked: (result) {
+            controller.currentAddress = result.formattedAddress!;
+            controller.lat = result.geometry!.location.lat;
+            controller.lng = result.geometry!.location.lng;
+            controller.update();
+            Navigator.of(context).pop();
+          },
+          initialPosition: LatLng(
+            controller.currentPosition!.latitude,
+            controller.currentPosition!.longitude,
+          ),
+          useCurrentLocation: false, // We manually fetch the location
+          resizeToAvoidBottomInset: false,
+        ),
+      ),
+    );
+  },
+  child: Stack(
+    children: [
+      Image.asset(
+        'assets/images/map_image.png',
+      ),
+      Positioned(
+        left: Get.width * 0.1,
+        right: Get.width * 0.1,
+        top: Get.height * 0.12,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              height: Get.height * 0.06,
+              width: Get.width * 0.9 / 0.2,
+              decoration: BoxDecoration(
+                color: AppColors.white.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      color: AppColors.lightPink,
+                      borderRadius: BorderRadius.circular(80),
+                    ),
+                    child: SvgPicture.asset(
+                      "assets/icons/map_pin.svg",
+                      color: AppColors.primarybg,
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                  Gap(5),
+                  controller.currentAddress == ""
+                      ? AppText(
+                          title: "Select location on Google map".tr,
+                          size: 10,
+                          fontWeight: FontWeight.w500,
+                        )
+                      : ConstrainedBox(
+                          constraints:
+                              BoxConstraints(maxWidth: Get.width * 0.46),
+                          child: AppText(
+                            title: controller.currentAddress,
+                            size: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
+),
+
+
                                       Gap(60),
                                       MainButton(
                                         onTap: () =>

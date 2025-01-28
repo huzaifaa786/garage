@@ -544,10 +544,16 @@ class LocaleString extends Translations {
           'Your garage is banned. Please contact support.':
               'Your garage is banned. Please contact support.',
           "This phonenumber is already taken.":"This phonenumber is already taken.",
-       "Manufacture year must be between 1950 and":"Manufacture year must be between 1900 and",
+       "Manufacture year must be between 1950 and":"Manufacture year must be between 1950 and",
        'Remember me' : 'Remember me',
+       "(Optional)":"(Optional)",
+       "Select  language":"Select  language",
+       "Arabic": "Arabic",
         },
         'ar_AE': {
+          "Arabic": "عربي",
+          "Select  language":"اختر اللغة",
+          "(Optional)":"(خياري)",
        'Remember me' : 'تذكرنى',
           "Manufacture year must be between 1950 and":"يجب أن تكون سنة الصنع بين 1950 و",
           "This phonenumber is already taken.": "رقم الهاتف مسجل بالفعل، الرجاء تسجيل الدخول",

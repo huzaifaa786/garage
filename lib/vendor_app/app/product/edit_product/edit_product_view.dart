@@ -191,7 +191,8 @@ class EditProductView extends StatelessWidget {
                             children: [
                               Gap(20),
                               DropDownField<TyreWidthModel>(
-                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.ar_width.toString()
                                         : item.width!,
                                 items: controller.tyrewidths,
@@ -205,7 +206,8 @@ class EditProductView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyreHeightModel>(
-                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.ar_height.toString()
                                         : item.height!,
                                 items: controller.tyreheights,
@@ -219,7 +221,8 @@ class EditProductView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyreSizeModel>(
-                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.ar_size.toString()
                                         : item.size!,
                                 items: controller.tyresizes,
@@ -233,7 +236,8 @@ class EditProductView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyreSpeedRatingModel>(
-                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.ar_speedrating.toString()
                                         : item.speedrating!,
                                 items: controller.tyreSpeedRatings,
@@ -248,7 +252,8 @@ class EditProductView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyrePatternModel>(
-                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.ar_pattern.toString()
                                         : item.pattern!,
                                 items: controller.tyrepattterens,
@@ -262,7 +267,8 @@ class EditProductView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<TyreOriginModel>(
-                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.ar_origin.toString()
                                         : item.origin!,
                                 items: controller.tyreorigins,
@@ -282,7 +288,8 @@ class EditProductView extends StatelessWidget {
                             children: [
                               Gap(20),
                               DropDownField<OilProductTTypeModel>(
-                                displayValue: (item) =>  box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.ar_producttype.toString()
                                         : item.producttype!,
                                 items: controller.oilproductTypes,
@@ -297,7 +304,8 @@ class EditProductView extends StatelessWidget {
                               ),
                               Gap(20),
                               DropDownField<OilVolumeModel>(
-                                displayValue: (item) => box.read('locale') == 'ar'
+                                displayValue: (item) =>
+                                    box.read('locale') == 'ar'
                                         ? item.arvolume.toString()
                                         : item.volume!,
                                 items: controller.oilVolumes,
@@ -330,12 +338,16 @@ class EditProductView extends StatelessWidget {
                           Gap(20),
                         ],
                       ),
-                    if (![4, 7, 9, 1, 8]
-                        .contains(controller.selectedCategoryId))
+                    if (![
+                      4,
+                      7,
+                      9,
+                      1,
+                      8,
+                    ].contains(controller.selectedCategoryId))
                       AppInputField(
                         errorText: '',
                         hint: 'Price'.tr,
-                        readOnly: true,
                         type: TextInputType.number,
                         controller: controller.priceController,
                         onchange: (val) {},
