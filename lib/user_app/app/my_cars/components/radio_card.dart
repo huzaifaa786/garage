@@ -53,6 +53,7 @@ class RadioCard extends StatelessWidget {
                   child: AppNetworkImage(
                     networkImage: userVehicles!.image.toString(),
                     fit: BoxFit.cover,
+                    assetPath: "assets/images/coupe.png",
                     height: 50,
                     width: 50,
                   ),
